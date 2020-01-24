@@ -93,15 +93,22 @@ static struct MAPI_GameLibrary* AddGameLibrary(
   game_libraries[game_libraries_count] = (struct MAPI_GameLibrary*) malloc(
       sizeof(*game_libraries[0])
   );
-  game_libraries[game_libraries_count]->base_address = LoadLibraryW(
+
+  if (game_libraries[game_libraries_count] == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
+  game_libraries[game_libraries_count]->base_address = (intptr_t) LoadLibraryW(
       wide_file_path
   );
+
   game_libraries[game_libraries_count]->file_path = (char*) malloc(
       (strlen(file_path) + 1) * sizeof(*game_libraries[0]->file_path)
   );
   if (game_libraries[game_libraries_count]->file_path == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
+
   strcpy(game_libraries[game_libraries_count]->file_path, file_path);
 
   game_libraries_count += 1;
@@ -150,8 +157,9 @@ static void ClearGameLibraries(void) {
 const struct MAPI_GameLibrary* GetGameLibrary(
     const char* file_path
 ) {
-  struct MAPI_GameLibrary key;
-  key.file_path = file_path;
+  const struct MAPI_GameLibrary key = {
+      .file_path = file_path
+  };
 
   struct MAPI_GameLibrary* search_result = NULL;
   
