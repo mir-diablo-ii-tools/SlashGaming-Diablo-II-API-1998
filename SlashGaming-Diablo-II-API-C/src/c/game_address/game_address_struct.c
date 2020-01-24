@@ -43,28 +43,10 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
-#define SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
+#include "../../../include/c/game_address/game_address_struct.h"
 
-#include <stdint.h>
-
-#include "../../dllexport_define.inc"
-
-#ifdef __cplusplus
-extern "C" {
-#endif // __cplusplus
-
-struct MAPI_GameAddress {
-  intptr_t raw_address;
-};
-
-DLLEXPORT void MAPI_GameAddress_Deinit(
+void MAPI_GameAddress_Deinit(
     struct MAPI_GameAddress* game_address
-);
-
-#ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
-
-#include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
+) {
+  // Do nothing, as there is nothing to free.
+}
