@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_ERROR_HANDLING_H_
-#define SGD2MAPI_C_ERROR_HANDLING_H_
+#ifndef SGMAPI_C_ERROR_HANDLING_H_
+#define SGMAPI_C_ERROR_HANDLING_H_
 
 #include <windows.h>
 
@@ -62,4 +62,4 @@ void ExitOnWindowsFunctionFailureWithLastError(
     int line
 );
 
-#endif // SGD2MAPI_C_ERROR_HANDLING_H_
+#endif // SGMAPI_C_ERROR_HANDLING_H_

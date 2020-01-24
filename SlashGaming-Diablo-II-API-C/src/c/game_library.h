@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_LIBRARY_H_
-#define SGD2MAPI_C_GAME_LIBRARY_H_
+#ifndef SGMAPI_C_GAME_LIBRARY_H_
+#define SGMAPI_C_GAME_LIBRARY_H_
 
 #include <stdint.h>
 
@@ -63,4 +63,4 @@ const struct MAPI_GameLibrary* GetGameLibrary(
     const char* file_path
 );
 
-#endif // SGD2MAPI_C_GAME_LIBRARY_H_
+#endif // SGMAPI_C_GAME_LIBRARY_H_

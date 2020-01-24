@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_ENCODING_H_
-#define SGD2MAPI_C_ENCODING_H_
+#ifndef SGMAPI_C_ENCODING_H_
+#define SGMAPI_C_ENCODING_H_
 
 #include <wchar.h>
 
@@ -62,4 +62,4 @@ char* ConvertWideToUtf8(
     int source_code_line
 );
 
-#endif // SGD2MAPI_C_ENCODING_H_
+#endif // SGMAPI_C_ENCODING_H_
