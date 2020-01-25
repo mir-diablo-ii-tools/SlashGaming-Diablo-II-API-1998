@@ -303,7 +303,8 @@ free_file_path_text_wide:
 static void SortGameVesionInfoByName(void) {
   qsort(
       sorted_name_game_version_infos,
-      sizeof(sorted_name_game_version_infos) / sizeof(sorted_name_game_version_infos[0]),
+      sizeof(sorted_name_game_version_infos)
+          / sizeof(sorted_name_game_version_infos[0]),
       sizeof(sorted_name_game_version_infos[0]),
       (int (*)(const void*, const void*)) &CompareGameVersionInfo
   );
