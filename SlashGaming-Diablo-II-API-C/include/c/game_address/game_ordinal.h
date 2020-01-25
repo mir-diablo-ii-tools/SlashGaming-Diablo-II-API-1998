@@ -64,7 +64,7 @@ extern "C" {
 DLLEXPORT struct MAPI_GameAddress*
 MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
     struct MAPI_GameAddress* game_address,
-    int library_id,
+    enum D2_DefaultLibrary library_id,
     int16_t ordinal
 );
 

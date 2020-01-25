@@ -45,7 +45,7 @@
 
 #include "architecture_opcode.h"
 
-static const enum OpCode kBranchTypeToOpCode[] = {
+static const enum MAPI_OpCode kBranchTypeToOpCode[] = {
     [BRANCH_CALL] = OPCODE_CALL,
     [BRANCH_JUMP] = OPCODE_JUMP,
 };

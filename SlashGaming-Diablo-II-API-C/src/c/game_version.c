@@ -286,7 +286,7 @@ static void ExtractFileVersionString(
   snprintf(
       file_version,
       MAX_FILE_VERSION_LEN,
-      "%u.%u.%u.%u",
+      "%lu.%lu.%lu.%lu",
       (version_info->dwFileVersionMS >> 16) & 0xFFFF,
       (version_info->dwFileVersionMS >> 0) & 0xFFFF,
       (version_info->dwFileVersionLS >> 16) & 0xFFFF,
