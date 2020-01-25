@@ -49,7 +49,7 @@
 #include <string.h>
 #include <windows.h>
 
-#include "../error_handling.h"
+#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
 
 void MAPI_GamePatch_Deinit(

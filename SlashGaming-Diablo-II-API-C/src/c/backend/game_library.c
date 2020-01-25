@@ -49,10 +49,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../include/c/default_game_library.h"
+#include "../../../include/c/default_game_library.h"
 #include "encoding.h"
 #include "error_handling.h"
-#include "../wide_macro.h"
+#include "../../wide_macro.h"
 
 static struct MAPI_GameLibrary** game_libraries = NULL;
 static size_t game_libraries_count = 0;

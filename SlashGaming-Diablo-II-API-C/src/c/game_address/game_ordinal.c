@@ -47,7 +47,7 @@
 
 #include <windows.h>
 
-#include "../game_library.h"
+#include "../backend/game_library.h"
 
 struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
     struct MAPI_GameAddress* game_address,

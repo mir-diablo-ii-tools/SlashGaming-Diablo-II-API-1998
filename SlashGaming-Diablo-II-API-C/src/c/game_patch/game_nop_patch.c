@@ -48,8 +48,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../architecture_opcode.h"
-#include "../error_handling.h"
+#include "../backend/architecture_opcode.h"
+#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
 
 void MAPI_GamePatch_InitGameNopPatch(

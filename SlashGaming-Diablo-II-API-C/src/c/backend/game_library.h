@@ -43,23 +43,24 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_ENCODING_H_
-#define SGMAPI_C_ENCODING_H_
+#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_H_
+#define SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 
-#include <wchar.h>
+#include <stdint.h>
 
-wchar_t* ConvertUtf8ToWide(
-    wchar_t* wide_string,
-    const char* utf8_string,
-    const wchar_t* source_code_file_path,
-    int source_code_line
+#include "../../../include/c/default_game_library.h"
+
+struct MAPI_GameLibrary {
+  char* file_path;
+  intptr_t base_address;
+};
+
+/**
+ * Gets the game library from a global table, loading it into the global table
+ * if it is not found.
+ */
+const struct MAPI_GameLibrary* GetGameLibrary(
+    const char* file_path
 );
 
-char* ConvertWideToUtf8(
-    char* utf8_string,
-    const wchar_t* wide_string,
-    const wchar_t* source_code_file_path,
-    int source_code_line
-);
-
-#endif // SGMAPI_C_ENCODING_H_
+#endif // SGMAPI_C_BACKEND_GAME_LIBRARY_H_

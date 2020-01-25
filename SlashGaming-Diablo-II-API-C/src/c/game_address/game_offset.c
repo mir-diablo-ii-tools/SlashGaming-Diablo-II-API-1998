@@ -45,7 +45,7 @@
 
 #include "../../../include/c/game_address/game_offset.h"
 
-#include "../game_library.h"
+#include "../backend/game_library.h"
 
 struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndOffset(
     struct MAPI_GameAddress* game_address,

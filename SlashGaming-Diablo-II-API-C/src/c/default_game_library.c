@@ -47,7 +47,7 @@
 
 #include <wchar.h>
 
-#include "error_handling.h"
+#include "backend/error_handling.h"
 #include "../../include/c/game_version.h"
 #include "../wide_macro.h"
 

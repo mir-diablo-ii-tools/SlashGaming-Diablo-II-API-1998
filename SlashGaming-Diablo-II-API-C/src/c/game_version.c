@@ -52,9 +52,9 @@
 #include <pthread.h>
 #include <wchar.h>
 
-#include "encoding.h"
-#include "error_handling.h"
-#include "game_library.h"
+#include "backend/encoding.h"
+#include "backend/error_handling.h"
+#include "backend/game_library.h"
 #include "../wide_macro.h"
 
 struct GameVersionInfo {
