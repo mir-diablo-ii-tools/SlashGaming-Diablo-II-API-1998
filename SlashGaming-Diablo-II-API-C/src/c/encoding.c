@@ -147,7 +147,7 @@ char* ConvertWideToUtf8(
 
   // Allocate space if the UTF-8 string is NULL.
   if (utf8_string == NULL) {
-    wchar_t* utf8_string = (char*) malloc(
+    utf8_string = (char*) malloc(
         num_utf8_chars * sizeof(utf8_string[0])
     );
 
@@ -185,6 +185,6 @@ char* ConvertWideToUtf8(
     );
   }
 
-  return wide_string;
+  return utf8_string;
 }
 
