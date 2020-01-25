@@ -267,7 +267,7 @@ static void ExtractFileVersionString(
   BOOL is_ver_query_value_success = VerQueryValueW(
       file_version_info,
       L"\\",
-      &version_info,
+      (void**) &version_info,
       &version_info_size
   );
 
@@ -305,7 +305,7 @@ static void SortGameVesionInfoByName(void) {
       sorted_name_game_version_infos,
       sizeof(sorted_name_game_version_infos) / sizeof(sorted_name_game_version_infos[0]),
       sizeof(sorted_name_game_version_infos[0]),
-      &CompareGameVersionInfo
+      (int (*)(const void*, const void*)) &CompareGameVersionInfo
   );
 }
 
@@ -328,8 +328,8 @@ static enum D2_GameVersion DetermineGameVersionByGameData(
   );
 
   int compare_result = memcmp(
-      game_library->base_address + game_data_info->offset_value,
-      game_data_info->expected_values,
+      (void*) game_library->base_address + game_data_info->offset_value,
+      (void*) game_data_info->expected_values,
       sizeof(game_data_info->expected_values)
   );
 
@@ -362,7 +362,7 @@ int D2_GetRunningGameVersionId(void) {
       sizeof(sorted_name_game_version_infos)
           / sizeof(sorted_name_game_version_infos[0]),
       sizeof(sorted_name_game_version_infos[0]),
-      &CompareGameVersionInfo
+      (int (*)(const void*, const void*)) &CompareGameVersionInfo
   );
 
   enum D2_GameVersion first_stage_game_version = search_result->game_version;

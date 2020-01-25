@@ -162,14 +162,14 @@ const struct MAPI_GameLibrary* GetGameLibrary(
   };
 
   struct MAPI_GameLibrary* search_result = NULL;
-  
+
   if (game_libraries != NULL) {
     search_result = (struct MAPI_GameLibrary*) bsearch(
         &key,
         game_libraries,
         game_libraries_count,
         sizeof(game_libraries[0]),
-        &CompareGameLibraryByFilePath
+        (int (*)(const void*, const void*)) &CompareGameLibraryByFilePath
     );
   }
 

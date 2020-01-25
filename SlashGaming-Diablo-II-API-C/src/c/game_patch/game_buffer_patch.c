@@ -87,7 +87,7 @@ void MAPI_GamePatch_InitGameBufferPatch(
 
   memcpy(
       game_patch->old_buffer,
-      game_patch->game_address->raw_address,
+      (void*) game_patch->game_address->raw_address,
       patch_size
   );
 }
