@@ -121,7 +121,12 @@ void ExitOnWindowsFunctionFailureWithLastError(
   );
 
   wchar_t message_box_caption[128];
-  swprintf(message_box_caption, "%s Failed", 128, function_name);
+  swprintf(
+      message_box_caption,
+      sizeof(message_box_caption) / sizeof(message_box_caption[0]),
+      L"%s Failed",
+      function_name
+  );
 
   MessageBoxW(
       NULL,
