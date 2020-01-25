@@ -43,19 +43,19 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_WIDE_MACRO_H_
-#define SGD2MAPI_WIDE_MACRO_H_
+#ifndef SGMAPI_WIDE_MACRO_H_
+#define SGMAPI_WIDE_MACRO_H_
 
 #ifndef MAPI_CAT
 #define MAPI_CAT(a, b) a##b
 #endif /* MAPI_CAT */
 
 #ifndef MAPI_WIDE_LIT
-#define MAPI_WIDE_LIT(s) MAPI_CAT(a, b)
+#define MAPI_WIDE_LIT(s) MAPI_CAT(L, s)
 #endif /* MAPI_WIDE_LIT */
 
 #ifndef __FILEW__
 #define __FILEW__ MAPI_WIDE_LIT(__FILE__)
 #endif /* __FILEW__ */
 
-#endif /* SGD2MAPI_WIDE_MACRO_H_ */
+#endif /* SGMAPI_WIDE_MACRO_H_ */
