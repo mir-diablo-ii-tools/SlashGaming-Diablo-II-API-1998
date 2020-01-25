@@ -330,7 +330,7 @@ static enum D2_GameVersion DetermineGameVersionByGameData(
 
   int compare_result = memcmp(
       (void*) game_library->base_address + game_data_info->offset_value,
-      (void*) game_data_info->expected_values,
+      (void*) &game_data_info->expected_values,
       sizeof(game_data_info->expected_values)
   );
 
