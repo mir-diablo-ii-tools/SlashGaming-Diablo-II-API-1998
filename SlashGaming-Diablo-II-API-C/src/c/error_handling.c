@@ -45,6 +45,7 @@
 
 #include "error_handling.h"
 
+#include <stdlib.h>
 #include <windows.h>
 #include <wchar.h>
 
