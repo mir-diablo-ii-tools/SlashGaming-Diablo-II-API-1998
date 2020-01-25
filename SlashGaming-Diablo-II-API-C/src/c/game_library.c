@@ -66,7 +66,7 @@ static int CompareGameLibraryByFilePath(
 }
 
 /**
- * Doubles the size of the game libraries if capacity is maxed.
+ * Doubles the size of the game libraries collection.
  */
 static void ResizeGameLibraries(void) {
   game_libraries_capacity *= 2;
