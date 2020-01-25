@@ -50,6 +50,7 @@
 #include <stdlib.h>
 
 #include "error_handling.h"
+#include "../wide_macro.h"
 
 wchar_t* ConvertUtf8ToWide(
     wchar_t* wide_string,

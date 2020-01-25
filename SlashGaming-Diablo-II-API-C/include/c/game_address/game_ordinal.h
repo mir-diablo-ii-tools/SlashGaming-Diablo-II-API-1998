@@ -48,6 +48,7 @@
 
 #include <stdint.h>
 
+#include "../default_game_library.h"
 #include "game_address_struct.h"
 
 #include "../../dllexport_define.inc"
