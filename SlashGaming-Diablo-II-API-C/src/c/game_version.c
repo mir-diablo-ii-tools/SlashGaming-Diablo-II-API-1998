@@ -369,7 +369,7 @@ int D2_GetRunningGameVersionId(void) {
 
   // Perform second stage game version detection by checking the bytes of game
   // libraries.
-
+  return DetermineGameVersionByGameData(first_stage_game_version);
 }
 
 const char* D2_GetRunningGameVersionName(void) {
