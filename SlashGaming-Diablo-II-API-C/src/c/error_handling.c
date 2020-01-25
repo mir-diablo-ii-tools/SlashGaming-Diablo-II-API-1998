@@ -66,7 +66,7 @@ void ExitOnGeneralFailure(
     const wchar_t* file_name,
     int line
 ) {
-#if _DEBUG
+#ifndef NDEBUG
   wchar_t full_message[512];
 
   swprintf(
@@ -84,7 +84,7 @@ void ExitOnGeneralFailure(
       caption,
       MB_OK | MB_ICONERROR
   );
-#endif // _DEBUG
+#endif // NDEBUG
 
   exit(EXIT_FAILURE);
 }
@@ -107,7 +107,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* file_name,
     int line
 ) {
-#if _DEBUG
+#ifndef NDEBUG
   wchar_t full_message[512];
 
   swprintf(
@@ -134,7 +134,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
       message_box_caption,
       MB_OK | MB_ICONERROR
   );
-#endif // _DEBUG
+#endif // NDEBUG
 
   exit(EXIT_FAILURE);
 }
