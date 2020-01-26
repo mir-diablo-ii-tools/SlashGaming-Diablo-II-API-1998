@@ -50,7 +50,7 @@
 #include "../../../asm_x86_macro.h"
 #include "../../backend/game_address_table.h"
 
-static __declspec(naked) struct D2_UnicodeChar_1_00* __cdecl
+static __declspec(naked) char* __cdecl
 D2Lang_Unicode_UnicodeToUtf8_1_00(
     intptr_t func_ptr,
     char* dest,
@@ -85,7 +85,7 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8(
 
   return D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
       dest,
-      src,
+      actual_src,
       count_including_null_terminator
   );
 }
