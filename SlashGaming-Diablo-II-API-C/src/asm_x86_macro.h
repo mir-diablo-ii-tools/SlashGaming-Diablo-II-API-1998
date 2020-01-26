@@ -62,7 +62,7 @@
 #else
 
 #define ASM_X86(...) \
-    asm( \
+    __asm( \
         #__VA_ARGS__ \
     );
 
