@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 
-#include <stdint.h>
-
 #include "../../../asm_x86_macro.h"
 #include "../../backend/game_address_table.h"
 
@@ -64,8 +62,8 @@ D2Lang_Unicode_UnicodeToUtf8_1_00(
   ASM_X86(push edx);
 
   ASM_X86(push dword ptr [ebp + 20]);
-  ASM_X86(mov edx, [ebp + 16]);
-  ASM_X86(mov ecx, [ebp + 12]);
+  ASM_X86(mov edx, dword ptr [ebp + 16]);
+  ASM_X86(mov ecx, dword ptr [ebp + 12]);
   ASM_X86(call dword ptr [ebp + 8]);
 
   ASM_X86(pop edx);
@@ -93,7 +91,7 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8(
 char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
     char* dest,
     const struct D2_UnicodeChar_1_00* src,
-    int count_including_null_terminator
+    int32_t count_including_null_terminator
 ) {
   struct MAPI_GameAddress* game_address = GetGameAddress(
       "D2Lang.dll",

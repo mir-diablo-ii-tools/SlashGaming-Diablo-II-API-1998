@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_UNICODE_TO_UTF8_H_
 #define SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_UNICODE_TO_UTF8_H_
 
+#include <stdint.h>
+
 #include "../../game_struct/d2_unicode_char.h"
 
 #include "../../../dllexport_define.inc"
@@ -63,7 +65,7 @@ DLLEXPORT char* D2_D2Lang_Unicode_UnicodeToUtf8(
 DLLEXPORT char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
     char* dest,
     const struct D2_UnicodeChar_1_00* src,
-    int count_including_null_terminator
+    int32_t count_including_null_terminator
 );
 
 #ifdef __cplusplus
