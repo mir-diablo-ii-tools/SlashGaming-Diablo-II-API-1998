@@ -51,8 +51,8 @@
 #include "../../../include/c/game_address/game_address_struct.h"
 
 struct MAPI_GameAddressTableEntry {
-  char* library_path;
-  char* address_name;
+  const char* library_path;
+  const char* address_name;
   struct MAPI_GameAddress game_address;
 };
 
