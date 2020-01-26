@@ -127,7 +127,7 @@ static struct MAPI_GameLibrary* AddGameLibrary(
       insertion_index > 0;
       insertion_index -= 1) {
     if (CompareGameLibraryByFilePath(
-            &new_game_library,
+            new_game_library,
             game_library_table.entries[insertion_index - 1]
         ) >= 0) {
       break;
