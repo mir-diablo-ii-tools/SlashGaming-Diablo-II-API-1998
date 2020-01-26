@@ -96,7 +96,11 @@ struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiString(const char* str) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 
-  D2_D2Lang_Unicode_AsciiToUnicode(actual_unicode_char, str, str_len + 1);
+  D2_D2Lang_Unicode_AsciiToUnicode_1_00(
+      actual_unicode_char,
+      str,
+      str_len + 1
+  );
 
   return (struct D2_UnicodeChar*) actual_unicode_char;
 }
@@ -113,7 +117,11 @@ struct D2_UnicodeChar* D2_UnicodeChar_CreateWithUtf8String(const char* str) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 
-  D2_D2Lang_Unicode_Utf8ToUnicode(actual_unicode_char, str, str_len + 1);
+  D2_D2Lang_Unicode_Utf8ToUnicode_1_00(
+      actual_unicode_char,
+      str,
+      str_len + 1
+  );
 
   return (struct D2_UnicodeChar*) actual_unicode_char;
 }
@@ -176,7 +184,7 @@ void D2_UnicodeChar_CopyChar(
     struct D2_UnicodeChar* ptr,
     const struct D2_UnicodeChar* src
 ) {
-  struct D2_UnicodeChar_1_00* actual_ptr = (struct D2_UnicodeChar*) ptr;
+  struct D2_UnicodeChar_1_00* actual_ptr = (struct D2_UnicodeChar_1_00*) ptr;
   const struct D2_UnicodeChar_1_00* actual_src =
       (const struct D2_UnicodeChar_1_00*) src;
 
