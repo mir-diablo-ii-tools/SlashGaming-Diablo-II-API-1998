@@ -46,6 +46,7 @@
 #include "../../../include/c/game_struct/d2_unicode_char.h"
 
 #include <assert.h>
+#include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
 
