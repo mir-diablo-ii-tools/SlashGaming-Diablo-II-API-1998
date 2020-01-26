@@ -45,18 +45,27 @@
 
 #include "game_library.h"
 
-#include <windows.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 
 #include "../../../include/c/default_game_library.h"
 #include "encoding.h"
 #include "error_handling.h"
 #include "../../wide_macro.h"
 
-static struct MAPI_GameLibrary** game_libraries = NULL;
-static size_t game_libraries_count = 0;
-static size_t game_libraries_capacity = 0;
+struct MAPI_GameLibraryTable {
+  struct MAPI_GameLibrary** entries;
+  size_t num_elements;
+  size_t capacity;
+};
+
+static struct MAPI_GameLibraryTable game_library_table = {
+  .entries = NULL,
+  .num_elements = 0,
+  .capacity = 0,
+};
 
 static int CompareGameLibraryByFilePath(
     const struct MAPI_GameLibrary* first,
@@ -69,13 +78,15 @@ static int CompareGameLibraryByFilePath(
  * Doubles the size of the game libraries collection.
  */
 static void ResizeGameLibraries(void) {
-  game_libraries_capacity *= 2;
-  game_libraries = (struct MAPI_GameLibrary**) realloc(
-      game_libraries,
-      game_libraries_capacity * sizeof(game_libraries[0])
+  game_library_table.capacity = (game_library_table.capacity == 0)
+          ? 1
+          : game_library_table.capacity * 2;
+  game_library_table.entries = (struct MAPI_GameLibrary**) realloc(
+      game_library_table.entries,
+      game_library_table.capacity * sizeof(game_library_table.entries[0])
   );
 
-  if (game_libraries == NULL) {
+  if (game_library_table.entries == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 }
@@ -83,75 +94,73 @@ static void ResizeGameLibraries(void) {
 static struct MAPI_GameLibrary* AddGameLibrary(
     const char* file_path
 ) {
-  if (game_libraries_count == game_libraries_capacity) {
+  if (game_library_table.num_elements == game_library_table.capacity) {
     ResizeGameLibraries();
   }
 
   wchar_t* wide_file_path = ConvertUtf8ToWide(NULL, file_path, __FILEW__, __LINE__);
 
-  // Append the new game library to the end.
-  game_libraries[game_libraries_count] = (struct MAPI_GameLibrary*) malloc(
-      sizeof(*game_libraries[0])
-  );
+  // Insert the new game library to the correct position.
+  struct MAPI_GameLibrary* new_game_library =
+      (struct MAPI_GameLibrary*) malloc(sizeof(*new_game_library));
 
-  if (game_libraries[game_libraries_count] == NULL) {
+  if (new_game_library == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 
-  game_libraries[game_libraries_count]->base_address = (intptr_t) LoadLibraryW(
-      wide_file_path
+  new_game_library->base_address = (intptr_t) LoadLibraryW(wide_file_path);
+  new_game_library->file_path = (char*) malloc(
+      (strlen(file_path) + 1) * sizeof(new_game_library->file_path[0])
   );
 
-  game_libraries[game_libraries_count]->file_path = (char*) malloc(
-      (strlen(file_path) + 1) * sizeof(*game_libraries[0]->file_path)
-  );
-  if (game_libraries[game_libraries_count]->file_path == NULL) {
+  if (new_game_library->file_path == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 
-  strcpy(game_libraries[game_libraries_count]->file_path, file_path);
+  strcpy(new_game_library->file_path, file_path);
 
-  game_libraries_count += 1;
+  game_library_table.num_elements += 1;
 
-  struct MAPI_GameLibrary* inserted_game_library =
-      game_libraries[game_libraries_count];
-
-  // Sort the element in the array.
-  for (size_t i = game_libraries_count - 1; i > 0; i -= 1) {
+  // Insert the element into the sorted part of the array.
+  size_t insertion_index = game_library_table.num_elements;
+  for (insertion_index = game_library_table.num_elements;
+      insertion_index > 0;
+      insertion_index -= 1) {
     if (CompareGameLibraryByFilePath(
-            game_libraries[i],
-            game_libraries[i - 1]
-        ) <= 0) {
+            &new_game_library,
+            game_library_table.entries[insertion_index - 1]
+        ) >= 0) {
       break;
     }
 
-    struct MAPI_GameLibrary* temp = game_libraries[i];
-    game_libraries[i] = game_libraries[i - 1];
-    game_libraries[i - 1] = temp;
+    game_library_table.entries[insertion_index] =
+        game_library_table.entries[insertion_index - 1];
   }
+
+  game_library_table.entries[insertion_index] = new_game_library;
 
 clean_wide_file_path:
   free(wide_file_path);
 
-  return inserted_game_library;
+  return new_game_library;
 }
 
 static void ClearGameLibraries(void) {
-  if (game_libraries == NULL) {
+  if (game_library_table.entries == NULL) {
     return;
   }
 
-  for (size_t i = 0; i < game_libraries_count; i += 1) {
-    FreeLibrary((HMODULE) game_libraries[i]->base_address);
-    free(game_libraries[i]->file_path);
-    free(game_libraries[i]);
+  for (size_t i = 0; i < game_library_table.num_elements; i += 1) {
+    FreeLibrary((HMODULE) game_library_table.entries[i]->base_address);
+    free(game_library_table.entries[i]->file_path);
+    free(game_library_table.entries[i]);
   }
 
-  free(game_libraries);
+  free(game_library_table.entries);
 
-  game_libraries = NULL;
-  game_libraries_capacity = 0;
-  game_libraries_count = 0;
+  game_library_table.entries = NULL;
+  game_library_table.num_elements = 0;
+  game_library_table.capacity = 0;
 }
 
 const struct MAPI_GameLibrary* GetGameLibrary(
@@ -163,12 +172,12 @@ const struct MAPI_GameLibrary* GetGameLibrary(
 
   struct MAPI_GameLibrary* search_result = NULL;
 
-  if (game_libraries != NULL) {
+  if (game_library_table.entries != NULL) {
     search_result = (struct MAPI_GameLibrary*) bsearch(
         &key,
-        game_libraries,
-        game_libraries_count,
-        sizeof(game_libraries[0]),
+        game_library_table.entries,
+        game_library_table.num_elements,
+        sizeof(game_library_table.entries[0]),
         (int (*)(const void*, const void*)) &CompareGameLibraryByFilePath
     );
   }
