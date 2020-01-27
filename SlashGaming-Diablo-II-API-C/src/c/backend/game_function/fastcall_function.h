@@ -43,35 +43,15 @@
  *  work.
  */
 
-/**
- * Warning: This header should never be used in any public interface!
- */
+#ifndef SGMAPI_C_BACKEND_GAME_FUNCTION_FASTCALL_FUNCTION_H_
+#define SGMAPI_C_BACKEND_GAME_FUNCTION_FASTCALL_FUNCTION_H_
 
-#ifndef SGD2MAPI_ASM_X86_MACRO_H_
-#define SGD2MAPI_ASM_X86_MACRO_H_
+#include <stdint.h>
 
-#if defined(_MSC_VER)
+void* __cdecl CallFastcallFunction(
+    intptr_t func_ptr,
+    int num_params,
+    ...
+);
 
-#define ASM_X86(...) \
-    __asm { \
-      __VA_ARGS__ \
-    }
-
-#define ASM_X86_FUNC(name) name
-
-#define ASM_X86_LABEL(name) name#:
-
-#else
-
-#define ASM_X86(...) \
-    __asm( \
-        #__VA_ARGS__ \
-    );
-
-#define ASM_X86_FUNC(name) _##name
-
-#define ASM_X86_LABEL(name) ASM_X86(name:)
-
-#endif
-
-#endif /* SGD2MAPI_ASM_X86_MACRO_H_ */
+#endif // SGMAPI_C_BACKEND_GAME_FUNCTION_FASTCALL_FUNCTION_H_

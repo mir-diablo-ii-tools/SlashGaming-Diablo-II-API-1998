@@ -43,35 +43,57 @@
  *  work.
  */
 
-/**
- * Warning: This header should never be used in any public interface!
- */
+#include "fastcall_function.h"
 
-#ifndef SGD2MAPI_ASM_X86_MACRO_H_
-#define SGD2MAPI_ASM_X86_MACRO_H_
+#include "../../../asm_x86_macro.h"
 
-#if defined(_MSC_VER)
+__declspec(naked) void* __cdecl CallFastcallFunction(
+    intptr_t func_ptr,
+    int num_params,
+    ...
+) {
+  ASM_X86(push ebp);
+  ASM_X86(mov ebp, esp);
 
-#define ASM_X86(...) \
-    __asm { \
-      __VA_ARGS__ \
-    }
+  ASM_X86(push ecx);
+  ASM_X86(push edx);
 
-#define ASM_X86_FUNC(name) name
+  // Push all the stack arguments.
 
-#define ASM_X86_LABEL(name) name#:
+  // Load num_params into ecx.
+  ASM_X86(mov ecx, dword ptr [ebp + 12]);
 
-#else
+  // Load pointer of num_params into eax, which will be used to get the
+  // pointer of the parameters after it.
+  ASM_X86(lea eax, dword ptr [ebp + 12]);
+  ASM_X86(lea eax, dword ptr [eax + ecx * 4]);
+ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
+  ASM_X86(cmp ecx, 3);
+  ASM_X86(jl CallFastcallFunction_PushStackArgsLoopEnd);
 
-#define ASM_X86(...) \
-    __asm( \
-        #__VA_ARGS__ \
-    );
+  ASM_X86(push eax);
+  ASM_X86(sub ecx, 1);
+  ASM_X86(sub eax, 4);
+  ASM_X86(jmp CallFastcallFunction_PushStackArgsLoop);
+ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoopEnd);
 
-#define ASM_X86_FUNC(name) _##name
+  // We do not conditionally branch when setting the ecx or edx registers,
+  // because it incurs additional cost (in readability and execution) with no
+  // realistic benefit. the fact that if the called function has no
+  // parameters, the register values are overriden anyways.
 
-#define ASM_X86_LABEL(name) ASM_X86(name:)
+  // Set second parameter.
+  ASM_X86(mov edx, dword ptr [ebp + 20]);
 
-#endif
+  // Set first parameter.
+  ASM_X86(mov ecx, dword ptr [ebp + 16]);
 
-#endif /* SGD2MAPI_ASM_X86_MACRO_H_ */
+  // Call the function.
+  ASM_X86(call dword ptr [ebp + 8]);
+
+  ASM_X86(pop edx);
+  ASM_X86(pop ecx);
+
+  ASM_X86(leave);
+  ASM_X86(ret);
+}
