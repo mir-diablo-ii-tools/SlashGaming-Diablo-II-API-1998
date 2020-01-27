@@ -46,32 +46,8 @@
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 
 #include "../../../asm_x86_macro.h"
+#include "../../backend/game_function/fastcall_function.h"
 #include "../../backend/game_address_table.h"
-
-static __declspec(naked) struct D2_UnicodeChar_1_00* __cdecl
-D2Lang_Unicode_AsciiToUnicode_1_00(
-    intptr_t func_ptr,
-    struct D2_UnicodeChar_1_00* dest,
-    const char* src,
-    int32_t count_including_null_terminator
-) {
-  ASM_X86(push ebp);
-  ASM_X86(mov ebp, esp);
-
-  ASM_X86(push ecx);
-  ASM_X86(push edx);
-
-  ASM_X86(push dword ptr [ebp + 20]);
-  ASM_X86(mov edx, dword ptr [ebp + 16]);
-  ASM_X86(mov ecx, dword ptr [ebp + 12]);
-  ASM_X86(call dword ptr [ebp + 8]);
-
-  ASM_X86(pop edx);
-  ASM_X86(pop ecx);
-
-  ASM_X86(leave);
-  ASM_X86(ret);
-}
 
 struct D2_UnicodeChar* D2_D2Lang_Unicode_AsciiToUnicode(
     struct D2_UnicodeChar* dest,
@@ -98,8 +74,9 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_AsciiToUnicode_1_00(
       "Unicode_AsciiToUnicode"
   );
 
-  return D2Lang_Unicode_AsciiToUnicode_1_00(
+  return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address->raw_address,
+      3,
       dest,
       src,
       count_including_null_terminator

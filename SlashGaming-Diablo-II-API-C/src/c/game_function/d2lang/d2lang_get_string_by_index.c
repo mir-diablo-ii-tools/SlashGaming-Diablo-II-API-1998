@@ -46,28 +46,8 @@
 #include "../../../../include/c/game_function/d2lang/d2lang_get_string_by_index.h"
 
 #include "../../../asm_x86_macro.h"
+#include "../../backend/game_function/fastcall_function.h"
 #include "../../backend/game_address_table.h"
-
-static __declspec(naked) struct D2_UnicodeChar_1_00* __cdecl
-D2Lang_GetStringByIndex_1_00(
-    intptr_t func_ptr,
-    uint32_t id
-) {
-  ASM_X86(push ebp);
-  ASM_X86(mov ebp, esp);
-
-  ASM_X86(push ecx);
-  ASM_X86(push edx);
-
-  ASM_X86(mov ecx, dword ptr [ebp + 12]);
-  ASM_X86(call dword ptr [ebp + 8]);
-
-  ASM_X86(pop edx);
-  ASM_X86(pop ecx);
-
-  ASM_X86(leave);
-  ASM_X86(ret);
-}
 
 const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
     uint32_t id
@@ -86,8 +66,9 @@ const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
       "GetStringByIndex"
   );
 
-  return D2Lang_GetStringByIndex_1_00(
+  return (const struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address->raw_address,
+      1,
       id
   );
 }
