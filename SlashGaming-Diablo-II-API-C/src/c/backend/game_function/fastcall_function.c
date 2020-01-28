@@ -71,7 +71,7 @@ ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
   ASM_X86(cmp ecx, 3);
   ASM_X86(jl CallFastcallFunction_PushStackArgsLoopEnd);
 
-  ASM_X86(push eax);
+  ASM_X86(push dword ptr [eax]);
   ASM_X86(sub ecx, 1);
   ASM_X86(sub eax, 4);
   ASM_X86(jmp CallFastcallFunction_PushStackArgsLoop);
