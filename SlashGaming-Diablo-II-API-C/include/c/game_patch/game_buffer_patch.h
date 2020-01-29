@@ -60,7 +60,8 @@ extern "C" {
 
 /**
  * Initializes a new GameBufferPatch. The patch buffer is specified as an
- * array of 8-bit integrals.
+ * array of 8-bit integrals. The specified game address and buffer are
+ * value copied to this patch.
  */
 DLLEXPORT void MAPI_GamePatch_InitGameBufferPatch(
     struct MAPI_GamePatch* game_patch,
