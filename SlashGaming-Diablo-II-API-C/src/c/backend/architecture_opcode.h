@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_HPP_
-#define SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_HPP_
+#ifndef SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
+#define SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
 
 #include "../../../include/c/game_branch_type.h"
 
@@ -54,6 +54,14 @@ enum MAPI_OpCode {
   OPCODE_NOP = 0x90
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type);
 
-#endif // SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_HPP_
+#ifdef __cplusplus
+}
+#endif // __cplusplus
+
+#endif // SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
