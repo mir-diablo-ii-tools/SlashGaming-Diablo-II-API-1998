@@ -69,8 +69,7 @@ void MAPI_GamePatch_InitGameBackBranchPatch(
   // Set the (last - sizeof(func_ptr)) byte in the buffer to the branch
   // operation opcode byte.
   size_t back_branch_start = patch_size
-      - (sizeof(func_ptr)
-      + sizeof(game_patch->patch_buffer[0]));
+      - (sizeof(func_ptr) + sizeof(game_patch->patch_buffer[0]));
 
   enum MAPI_OpCode opcode_value = MAPI_ToOpcode(branch_type);
 
