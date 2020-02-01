@@ -167,7 +167,7 @@ const struct MAPI_GameLibrary* GetGameLibrary(
     const char* file_path
 ) {
   const struct MAPI_GameLibrary key = {
-      .file_path = file_path
+      .file_path = (char*) file_path
   };
 
   struct MAPI_GameLibrary* search_result = NULL;
