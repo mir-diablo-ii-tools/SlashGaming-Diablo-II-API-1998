@@ -50,7 +50,7 @@
 
 #include "../game_address.h"
 #include "../game_branch_type.h"
-#include "../game_patch.h"
+#include "game_patch_struct.h"
 
 #include "../../dllexport_define.inc"
 
