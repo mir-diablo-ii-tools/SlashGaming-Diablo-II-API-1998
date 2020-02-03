@@ -50,33 +50,76 @@
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_MPQArchiveHandle;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
-struct D2_MPQArchiveHandle_1_00 {
-  struct D2_MPQArchive_1_00* mpq_archive;
-  char mpq_archive_path[260];
+/* sizeof: 0x108 */ struct D2_MPQArchiveHandle_1_00 {
+  /* 0x0 */ struct D2_MPQArchive_1_00* mpq_archive;
+  /* 0x4 */ char mpq_archive_path[260];
 };
 
 #pragma pack(pop)
+
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_MPQArchiveHandle D2_MPQArchiveHandle;
+typedef struct D2_MPQArchiveHandle_1_00 D2_MPQArchiveHandle_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
+ * Function declarations
+ */
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
+/**
+ * Returns the value of the MPQArchiveHandle's MPQ archive pointer member.
+ */
 DLLEXPORT struct D2_MPQArchive* D2_MPQArchiveHandle_GetMPQArchive(
     struct D2_MPQArchiveHandle* mpq_archive_handle
 );
 
+/**
+ * Returns the value of the MPQArchiveHandle's MPQ archive pointer member.
+ */
 DLLEXPORT const struct D2_MPQArchive* D2_MPQArchiveHandle_GetConstMPQArchive(
     const struct D2_MPQArchiveHandle* mpq_archive_handle
 );
 
+/**
+ * Sets the value of the MPQArchiveHandle's MPQ archive pointer member.
+ */
+DLLEXPORT void D2_MPQArchiveHandle_SetConstMPQArchive(
+    struct D2_MPQArchiveHandle* mpq_archive_handle,
+    struct D2_MPQArchive* mpq_archive
+);
+
+/**
+ * Returns a pointer to the MPQArchiveHandle's MPQ archive file path member.
+ */
 DLLEXPORT char* D2_MPQArchiveHandle_GetMPQArchivePath(
     struct D2_MPQArchiveHandle* mpq_archive_handle
 );
 
+/**
+ * Returns a pointer to the MPQArchiveHandle's MPQ archive file path member.
+ */
 DLLEXPORT const char* D2_MPQArchiveHandle_GetConstMPQArchivePath(
     const struct D2_MPQArchiveHandle* mpq_archive_handle
 );

@@ -51,7 +51,7 @@
 #include "../../dllexport_define.inc"
 
 /**
- * Generic struct definition
+ * Generic struct declaration
  */
 
 struct D2_PositionalRectangle;
@@ -62,11 +62,11 @@ struct D2_PositionalRectangle;
 
 #pragma pack(push, 1)
 
-struct D2_PositionalRectangle_1_00 {
-  int32_t left;
-  int32_t right;
-  int32_t top;
-  int32_t bottom;
+/* sizeof: 0x10 */ struct D2_PositionalRectangle_1_00 {
+  /* 0x00 */ int32_t left;
+  /* 0x04 */ int32_t right;
+  /* 0x08 */ int32_t top;
+  /* 0x0C */ int32_t bottom;
 };
 
 #pragma pack(pop)
@@ -110,7 +110,7 @@ DLLEXPORT int D2_PositionalRectangle_GetLeft(
  */
 DLLEXPORT void D2_PositionalRectangle_SetLeft(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int left
 );
 
 /**
@@ -125,11 +125,11 @@ DLLEXPORT int D2_PositionalRectangle_GetRight(
  */
 DLLEXPORT void D2_PositionalRectangle_SetRight(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int right
 );
 
 /**
- * Returns the value of the PositionalRectangle's top member value.
+ * Returns the value of the PositionalRectangle's top member.
  */
 DLLEXPORT int D2_PositionalRectangle_GetTop(
     const struct D2_PositionalRectangle* positional_rectangle
@@ -140,11 +140,11 @@ DLLEXPORT int D2_PositionalRectangle_GetTop(
  */
 DLLEXPORT void D2_PositionalRectangle_SetTop(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int top
 );
 
 /**
- * Returns the value of the PositionalRectangle's bottom member value.
+ * Returns the value of the PositionalRectangle's bottom member.
  */
 DLLEXPORT int D2_PositionalRectangle_GetBottom(
     const struct D2_PositionalRectangle* positional_rectangle
@@ -155,7 +155,7 @@ DLLEXPORT int D2_PositionalRectangle_GetBottom(
  */
 DLLEXPORT void D2_PositionalRectangle_SetBottom(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int bottom
 );
 
 #ifdef __cplusplus

@@ -53,7 +53,15 @@
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_GridLayout;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
@@ -69,10 +77,28 @@ struct D2_GridLayout;
 
 #pragma pack(pop)
 
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_GridLayout D2_GridLayout;
+typedef struct D2_GridLayout_1_00 D2_GridLayout_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
+ * Function declarations
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
+/**
+ * Creates a generic GridLayout with the specified layout.
+ */
 DLLEXPORT struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
     uint_least8_t num_columns,
     uint_least8_t num_rows,
@@ -81,49 +107,82 @@ DLLEXPORT struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
     uint_least8_t height
 );
 
+/**
+ * Destroys the GridLayout, freeing up resources.
+ */
 DLLEXPORT void D2_GridLayout_Destroy(
     struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Returns the value of the GridLayout's number of columns member.
+ */
 DLLEXPORT uint_least8_t D2_GridLayout_GetNumColumns(
     const struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Sets the value of the GridLayout's number of columns member.
+ */
 DLLEXPORT void D2_GridLayout_SetNumColumns(
     struct D2_GridLayout* grid_layout,
     uint_least8_t num_columns
 );
 
+/**
+ * Returns the value of the GridLayout's number of rows member.
+ */
 DLLEXPORT uint_least8_t D2_GridLayout_GetNumRows(
     const struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Sets the value of the GridLayout's number of rows member.
+ */
 DLLEXPORT void D2_GridLayout_SetNumRows(
     struct D2_GridLayout* grid_layout,
     uint_least8_t num_rows
 );
 
+/**
+ * Returns a pointer to the GridLayout's position member.
+ */
 DLLEXPORT struct D2_PositionalRectangle* D2_GridLayout_GetPosition(
     struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Returns a pointer to the GridLayout's position member.
+ */
 DLLEXPORT const struct D2_PositionalRectangle* D2_GridLayout_GetConstPosition(
     const struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Returns the value of the GridLayout's width member.
+ */
 DLLEXPORT uint_least8_t D2_GridLayout_GetWidth(
     const struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Sets the value of the GridLayout's width member.
+ */
 DLLEXPORT void D2_GridLayout_SetWidth(
     struct D2_GridLayout* grid_layout,
     uint_least8_t width
 );
 
+/**
+ * Returns the value of the GridLayout's height member.
+ */
 DLLEXPORT uint_least8_t D2_GridLayout_GetHeight(
     const struct D2_GridLayout* grid_layout
 );
 
+/**
+ * Sets the value of the GridLayout's height member.
+ */
 DLLEXPORT void D2_GridLayout_SetHeight(
     struct D2_GridLayout* grid_layout,
     uint_least8_t height

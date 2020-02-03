@@ -52,7 +52,7 @@
 #include "../../dllexport_define.inc"
 
 /**
- * Generic struct definition
+ * Generic struct declaration
  */
 
 struct D2_UnicodeChar;
@@ -63,8 +63,8 @@ struct D2_UnicodeChar;
 
 #pragma pack(push, 1)
 
-struct D2_UnicodeChar_1_00 {
-  int16_t ch;
+/* sizeof: 0x02 */struct D2_UnicodeChar_1_00 {
+  /* 0x00 */ int16_t ch;
 };
 
 #pragma pack(pop)
@@ -92,7 +92,9 @@ DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiChar(char ch);
  * Creates a generic UnicodeChar string with all characters initialized with
  * the null-terminator character.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithCount(size_t count);
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithCount(
+    size_t count
+);
 
 /**
  * Creates a generic UnicodeChar string with a null-terminated 7-bit ASCII

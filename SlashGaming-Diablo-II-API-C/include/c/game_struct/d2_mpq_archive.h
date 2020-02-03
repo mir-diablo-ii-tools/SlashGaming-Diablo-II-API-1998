@@ -48,13 +48,32 @@
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_MPQArchive;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
 struct D2_MPQArchive_1_00;
 
 #pragma pack(pop)
+
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_MPQArchive D2_MPQArchive;
+typedef struct D2_MPQArchive_1_00 D2_MPQArchive_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
 
 #include "../../dllexport_undefine.inc"
 #endif // SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_

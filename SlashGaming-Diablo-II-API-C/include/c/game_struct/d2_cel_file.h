@@ -52,7 +52,15 @@
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_CelFile;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
@@ -68,35 +76,68 @@ struct D2_CelFile;
 
 #pragma pack(pop)
 
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_CelFile D2_CelFile;
+typedef struct D2_CelFile_1_00 D2_CelFile_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
+ * Function declarations
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
+/**
+ * Returns the value of the CelFile's file format version member.
+ */
 DLLEXPORT unsigned int D2_CelFile_GetVersion(
     const struct D2_CelFile* cel_file
 );
 
+/**
+ * Sets the value of the CelFile's file format version member.
+ */
 DLLEXPORT void D2_CelFile_SetVersion(
     struct D2_CelFile* cel_file,
-    unsigned int value
+    unsigned int version
 );
 
+/**
+ * Returns the value of the CelFile's number of directions member.
+ */
 DLLEXPORT unsigned int D2_CelFile_GetNumDirections(
     const struct D2_CelFile* cel_file
 );
 
+/**
+ * Sets the value of the CelFile's number of directions member.
+ */
 DLLEXPORT void D2_CelFile_SetNumDirections(
     struct D2_CelFile* cel_file,
-    unsigned int value
+    unsigned int num_directions
 );
 
+/**
+ * Returns the value of the CelFile's number of frames member.
+ */
 DLLEXPORT unsigned int D2_CelFile_GetNumFrames(
     const struct D2_CelFile* cel_file
 );
 
+/**
+ * Sets the value of the CelFile's number of frames member.
+ */
 DLLEXPORT void D2_CelFile_SetNumFrames(
     struct D2_CelFile* cel_file,
-    unsigned int value
+    unsigned int num_frames
 );
 
 #ifdef __cplusplus

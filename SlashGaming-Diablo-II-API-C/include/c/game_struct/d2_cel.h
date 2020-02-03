@@ -46,43 +46,92 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 
+#include <stdint.h>
+
 #include "../game_undefined.h"
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_Cel;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
-struct D2_Cel_1_00 {
-  MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
-  int32_t width;
-  int32_t height;
-  int32_t offset_x;
-  int32_t offset_y;
+/* sizeof: 0x?? */struct D2_Cel_1_00 {
+  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
+  /* 0x04 */ int32_t width;
+  /* 0x08 */ int32_t height;
+  /* 0x0C */ int32_t offset_x;
+  /* 0x10 */ int32_t offset_y;
 };
 
 #pragma pack(pop)
+
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_Cel D2_Cel;
+typedef struct D2_Cel_1_00 D2_Cel_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
+ * Function declarations
+ */
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
+/**
+ * Returns the value of the Cel's height member.
+ */
 DLLEXPORT int D2_Cel_GetHeight(const struct D2_Cel* cel);
 
-DLLEXPORT void D2_Cel_SetHeight(struct D2_Cel* cel, int value);
+/**
+ * Sets the value of the Cel's height member.
+ */
+DLLEXPORT void D2_Cel_SetHeight(struct D2_Cel* cel, int height);
 
+/**
+ * Returns the value of the Cel's offset-x member.
+ */
 DLLEXPORT int D2_Cel_GetOffsetX(const struct D2_Cel* cel);
 
-DLLEXPORT void D2_Cel_SetOffsetX(struct D2_Cel* cel, int value);
+/**
+ * Sets the value of the Cel's offset-x member.
+ */
+DLLEXPORT void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x);
 
+/**
+ * Returns the value of the Cel's offset-y member.
+ */
 DLLEXPORT int D2_Cel_GetOffsetY(const struct D2_Cel* cel);
 
-DLLEXPORT void D2_Cel_SetOffsetY(struct D2_Cel* cel, int value);
+/**
+ * Sets the value of the Cel's offset-y member.
+ */
+DLLEXPORT void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y);
 
+/**
+ * Returns the value of the Cel's width member.
+ */
 DLLEXPORT int D2_Cel_GetWidth(const struct D2_Cel* cel);
 
-DLLEXPORT void D2_Cel_SetWidth(struct D2_Cel* cel, int value);
+/**
+ * Sets the value of the Cel's width member.
+ */
+DLLEXPORT void D2_Cel_SetWidth(struct D2_Cel* cel, int width);
 
 #ifdef __cplusplus
 } // extern "C"

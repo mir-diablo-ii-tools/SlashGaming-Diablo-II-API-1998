@@ -53,7 +53,15 @@
 
 #include "../../dllexport_define.inc"
 
+/**
+ * Generic struct declaration
+ */
+
 struct D2_CelContext;
+
+/**
+ * Version-specific struct definitions
+ */
 
 #pragma pack(push, 1)
 
@@ -84,44 +92,83 @@ struct D2_CelContext;
 
 #pragma pack(pop)
 
+/**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_CelContext D2_CelContext;
+typedef struct D2_CelContext_1_00 D2_CelContext_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
+/**
+ * Creates a generic CelContext with the specified cel file, direction, and
+ * frame.
+ */
 DLLEXPORT struct D2_CelContext* D2_CelContext_Create(
     struct D2_CelFile* cel_file,
     unsigned int direction,
     unsigned int frame
 );
 
+/**
+ * Destroys the CelContext, freeing up resources.
+ */
 DLLEXPORT void D2_CelContext_Destroy(struct D2_CelContext* cel_context);
 
+/**
+ * Returns the value of the CelContext's cel file pointer member.
+ */
 DLLEXPORT struct D2_CelFile* D2_CelContext_GetCelFile(
     struct D2_CelContext* cel_context
 );
 
+/**
+ * Returns the value of the CelContext's cel file pointer member.
+ */
 DLLEXPORT const struct D2_CelFile* D2_CelContext_GetConstCelFile(
     const struct D2_CelContext* cel_context
 );
 
+/**
+ * Sets the value of the CelContext's cel file pointer member.
+ */
 DLLEXPORT void D2_CelContext_SetCelFile(
     struct D2_CelContext* cel_context,
     struct D2_CelFile* cel_file
 );
 
+/**
+ * Returns the value of the CelContext's direction member.
+ */
 DLLEXPORT unsigned int D2_CelContext_GetDirection(
     const struct D2_CelContext* cel_context
 );
 
+/**
+ * Sets the value of the CelContext's direction member.
+ */
 DLLEXPORT void D2_CelContext_SetDirection(
     struct D2_CelContext* cel_context,
     unsigned int direction
 );
 
+/**
+ * Returns the value of the CelContext's frame member.
+ */
 DLLEXPORT unsigned int D2_CelContext_GetFrame(
     const struct D2_CelContext* cel_context
 );
 
+/**
+ * Sets the value of the CelContext's frame member.
+ */
 DLLEXPORT void D2_CelContext_SetFrame(
     struct D2_CelContext* cel_context,
     unsigned int frame
