@@ -53,7 +53,7 @@
 #include "../../wide_macro.h"
 
 /**
- * Static assertions
+ * Static assertions (1.00)
  */
 
 static_assert(
@@ -92,11 +92,11 @@ unsigned int D2_CelFile_GetVersion(const struct D2_CelFile* cel_file) {
   return actual_cel_file->version;
 }
 
-void D2_CelFile_SetVersion(struct D2_CelFile* cel_file, unsigned int value) {
+void D2_CelFile_SetVersion(struct D2_CelFile* cel_file, unsigned int version) {
   struct D2_CelFile_1_00* actual_cel_file =
       (struct D2_CelFile_1_00*) cel_file;
 
-  actual_cel_file->version = value;
+  actual_cel_file->version = version;
 }
 
 unsigned int D2_CelFile_GetNumDirections(const struct D2_CelFile* cel_file) {
@@ -108,12 +108,12 @@ unsigned int D2_CelFile_GetNumDirections(const struct D2_CelFile* cel_file) {
 
 void D2_CelFile_SetNumDirections(
     struct D2_CelFile* cel_file,
-    unsigned int value
+    unsigned int num_directions
 ) {
   struct D2_CelFile_1_00* actual_cel_file =
       (struct D2_CelFile_1_00*) cel_file;
 
-  actual_cel_file->num_directions = value;
+  actual_cel_file->num_directions = num_directions;
 }
 
 unsigned int D2_CelFile_GetNumFrames(const struct D2_CelFile* cel_file) {
@@ -125,10 +125,10 @@ unsigned int D2_CelFile_GetNumFrames(const struct D2_CelFile* cel_file) {
 
 void D2_CelFile_SetNumFrames(
     struct D2_CelFile* cel_file,
-    unsigned int value
+    unsigned int num_frames
 ) {
   struct D2_CelFile_1_00* actual_cel_file =
       (struct D2_CelFile_1_00*) cel_file;
 
-  actual_cel_file->num_frames = value;
+  actual_cel_file->num_frames = num_frames;
 }

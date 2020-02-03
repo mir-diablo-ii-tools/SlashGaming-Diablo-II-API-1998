@@ -53,7 +53,7 @@
 #include "../../wide_macro.h"
 
 /**
- * Static assertions
+ * Static assertions (1.00)
  */
 
 static_assert(
@@ -91,10 +91,10 @@ int D2_Cel_GetHeight(const struct D2_Cel* cel) {
   return actual_cel->height;
 }
 
-void D2_Cel_SetHeight(struct D2_Cel* cel, int value) {
+void D2_Cel_SetHeight(struct D2_Cel* cel, int height) {
   struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
 
-  actual_cel->height = value;
+  actual_cel->height = height;
 }
 
 int D2_Cel_GetOffsetX(const struct D2_Cel* cel) {
@@ -103,10 +103,10 @@ int D2_Cel_GetOffsetX(const struct D2_Cel* cel) {
   return actual_cel->offset_x;
 }
 
-void D2_Cel_SetOffsetX(struct D2_Cel* cel, int value) {
+void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x) {
   struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
 
-  actual_cel->offset_x = value;
+  actual_cel->offset_x = offset_x;
 }
 
 int D2_Cel_GetOffsetY(const struct D2_Cel* cel) {
@@ -115,10 +115,10 @@ int D2_Cel_GetOffsetY(const struct D2_Cel* cel) {
   return actual_cel->offset_y;
 }
 
-void D2_Cel_SetOffsetY(struct D2_Cel* cel, int value) {
+void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y) {
   struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
 
-  actual_cel->offset_y = value;
+  actual_cel->offset_y = offset_y;
 }
 
 int D2_Cel_GetWidth(const struct D2_Cel* cel) {
@@ -127,8 +127,8 @@ int D2_Cel_GetWidth(const struct D2_Cel* cel) {
   return actual_cel->width;
 }
 
-void D2_Cel_SetWidth(struct D2_Cel* cel, int value) {
+void D2_Cel_SetWidth(struct D2_Cel* cel, int width) {
   struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
 
-  actual_cel->width = value;
+  actual_cel->width = width;
 }

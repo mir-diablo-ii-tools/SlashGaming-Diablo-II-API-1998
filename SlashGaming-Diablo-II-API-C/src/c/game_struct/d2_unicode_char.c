@@ -57,15 +57,15 @@
 #include "../../wide_macro.h"
 
 /**
- * Static assertions
+ * Static assertions (1.00)
  */
 
 static_assert(
-    offsetof(struct D2_UnicodeChar_1_00, ch) == 0,
+    offsetof(struct D2_UnicodeChar_1_00, ch) == 0x00,
     "Incorrect member alignment."
 );
 
-static_assert(sizeof(struct D2_UnicodeChar_1_00) == 2, "Incorrect size.");
+static_assert(sizeof(struct D2_UnicodeChar_1_00) == 0x02, "Incorrect size.");
 
 /**
  * Function definitions

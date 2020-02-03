@@ -53,21 +53,21 @@
 #include "../../wide_macro.h"
 
 /**
- * Static assertions
+ * Static assertions (1.00)
  */
 
 static_assert(
-    sizeof(struct D2_MPQArchiveHandle_1_00) == 264,
+    sizeof(struct D2_MPQArchiveHandle_1_00) == 0x108,
     "Incorrect size."
 );
 
 static_assert(
-    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive) == 0,
+    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive) == 0x00,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive_path) == 4,
+    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive_path) == 0x04,
     "Incorrect member alignment."
 );
 

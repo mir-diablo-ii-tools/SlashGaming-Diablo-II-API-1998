@@ -52,30 +52,30 @@
 #include "../../wide_macro.h"
 
 /**
- * Static assertions
+ * Static assertions (1.00)
  */
 
 static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, left) == 0,
+    offsetof(struct D2_PositionalRectangle_1_00, left) == 0x00,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, right) == 4,
+    offsetof(struct D2_PositionalRectangle_1_00, right) == 0x04,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, top) == 8,
+    offsetof(struct D2_PositionalRectangle_1_00, top) == 0x08,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, bottom) == 12,
+    offsetof(struct D2_PositionalRectangle_1_00, bottom) == 0x0C,
     "Incorrect member alignment."
 );
 
-static_assert(sizeof(struct D2_PositionalRectangle_1_00) == 16, "Incorrect size.");
+static_assert(sizeof(struct D2_PositionalRectangle_1_00) == 0x10, "Incorrect size.");
 
 /**
  * Function definitions
@@ -118,12 +118,12 @@ int D2_PositionalRectangle_GetLeft(
 
 void D2_PositionalRectangle_SetLeft(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int left
 ) {
   struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
       (struct D2_PositionalRectangle_1_00*) positional_rectangle;
 
-  actual_positional_rectangle->left = value;
+  actual_positional_rectangle->left = left;
 }
 
 int D2_PositionalRectangle_GetRight(
@@ -137,12 +137,12 @@ int D2_PositionalRectangle_GetRight(
 
 void D2_PositionalRectangle_SetRight(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int right
 ) {
   struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
       (struct D2_PositionalRectangle_1_00*) positional_rectangle;
 
-  actual_positional_rectangle->right = value;
+  actual_positional_rectangle->right = right;
 }
 
 int D2_PositionalRectangle_GetTop(
@@ -156,12 +156,12 @@ int D2_PositionalRectangle_GetTop(
 
 void D2_PositionalRectangle_SetTop(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int top
 ) {
   struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
       (struct D2_PositionalRectangle_1_00*) positional_rectangle;
 
-  actual_positional_rectangle->top = value;
+  actual_positional_rectangle->top = top;
 }
 
 int D2_PositionalRectangle_GetBottom(
@@ -175,10 +175,10 @@ int D2_PositionalRectangle_GetBottom(
 
 void D2_PositionalRectangle_SetBottom(
     struct D2_PositionalRectangle* positional_rectangle,
-    int value
+    int bottom
 ) {
   struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
       (struct D2_PositionalRectangle_1_00*) positional_rectangle;
 
-  actual_positional_rectangle->bottom = value;
+  actual_positional_rectangle->bottom = bottom;
 }
