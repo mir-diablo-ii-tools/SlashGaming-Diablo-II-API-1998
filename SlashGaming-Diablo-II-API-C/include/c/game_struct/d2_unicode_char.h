@@ -70,6 +70,17 @@ struct D2_UnicodeChar;
 #pragma pack(pop)
 
 /**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_UnicodeChar D2_UnicodeChar;
+typedef struct D2_UnicodeChar_1_00 D2_UnicodeChar_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
  * Function declarations
  */
 

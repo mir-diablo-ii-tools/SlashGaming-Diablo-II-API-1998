@@ -72,6 +72,17 @@ struct D2_PositionalRectangle;
 #pragma pack(pop)
 
 /**
+ * Struct typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef struct D2_PositionalRectangle D2_PositionalRectangle;
+typedef struct D2_PositionalRectangle_1_00 D2_PositionalRectangle_1_00;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
  * Function declarations
  */
 
