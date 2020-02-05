@@ -81,7 +81,7 @@ static_assert(
  * Function definitions
  */
 
-D2_InventoryRecord* D2_InventoryRecord_CreateWithRecord(
+struct D2_InventoryRecord* D2_InventoryRecord_CreateWithRecord(
     const struct D2_PositionalRectangle* position,
     const struct D2_GridLayout* grid_layout,
     const struct D2_EquipmentLayout* equipment_slots
