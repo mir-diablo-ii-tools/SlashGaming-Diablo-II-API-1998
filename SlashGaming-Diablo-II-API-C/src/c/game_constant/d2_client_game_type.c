@@ -51,7 +51,7 @@
 #include "../backend/error_handling.h"
 #include "../../wide_macro.h"
 
-enum D2_ClientGameType_1_00 ToGameValue_1_00(
+static enum D2_ClientGameType_1_00 ToGameValue_1_00(
     enum D2_ClientGameType api_value
 ) {
   switch (api_value) {
@@ -83,7 +83,7 @@ enum D2_ClientGameType_1_00 ToGameValue_1_00(
   }
 }
 
-enum D2_ClientGameType ToApiValue_1_00(
+static enum D2_ClientGameType ToApiValue_1_00(
     enum D2_ClientGameType_1_00 game_value
 ) {
   switch (game_value) {
@@ -115,7 +115,7 @@ enum D2_ClientGameType ToApiValue_1_00(
   }
 }
 
-enum D2_ClientGameType_1_09D ToGameValue_1_09D(
+static enum D2_ClientGameType_1_09D ToGameValue_1_09D(
     enum D2_ClientGameType api_value
 ) {
   switch (api_value) {
@@ -155,7 +155,7 @@ enum D2_ClientGameType_1_09D ToGameValue_1_09D(
   }
 }
 
-enum D2_ClientGameType ToApiValue_1_09D(
+static enum D2_ClientGameType ToApiValue_1_09D(
     enum D2_ClientGameType_1_09D game_value
 ) {
   switch (game_value) {
