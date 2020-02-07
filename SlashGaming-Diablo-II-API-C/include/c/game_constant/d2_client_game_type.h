@@ -92,7 +92,7 @@ enum D2_ClientGameType_1_09D {
 };
 
 /**
- * Struct typedefs
+ * Typedefs
  */
 
 #ifdef SGD2MAPI_ENABLE_TYPEDEFS
