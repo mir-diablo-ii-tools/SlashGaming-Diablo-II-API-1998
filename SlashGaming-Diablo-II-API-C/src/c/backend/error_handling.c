@@ -61,6 +61,12 @@ static const wchar_t* kGeneralFailErrorFormat =
     L"\n"
     L"%s";
 
+static const wchar_t* kConstantMappingMissingErrorFormat =
+    L"File: %s \n"
+    L"Line: %d \n"
+    L"\n"
+    L"Constant with value %d could not be mapped.";
+
 void ExitOnGeneralFailure(
     const wchar_t* message,
     const wchar_t* caption,
@@ -100,6 +106,34 @@ void ExitOnAllocationFailure(
       file_name,
       line
   );
+}
+
+void ExitOnConstantMappingMissing(
+    int value,
+    const wchar_t* file_name,
+    int line
+) {
+#ifndef NDEBUG
+  wchar_t full_message[512];
+
+  swprintf(
+      full_message,
+      sizeof(full_message) / sizeof(full_message[0]),
+      kConstantMappingMissingErrorFormat,
+      file_name,
+      line,
+      value
+  );
+
+  MessageBoxW(
+      NULL,
+      full_message,
+      L"Constant Error",
+      MB_OK | MB_ICONERROR
+  );
+#endif // NDEBUG
+
+  exit(EXIT_FAILURE);
 }
 
 void ExitOnWindowsFunctionFailureWithLastError(

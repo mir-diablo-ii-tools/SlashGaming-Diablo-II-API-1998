@@ -54,7 +54,15 @@ void ExitOnGeneralFailure(
     const wchar_t* file_name,
     int line
 );
+
 void ExitOnAllocationFailure(const wchar_t* file_name, int line);
+
+void ExitOnConstantMappingMissing(
+    int value,
+    const wchar_t* file_name,
+    int line
+);
+
 void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* function_name,
     DWORD last_error,
