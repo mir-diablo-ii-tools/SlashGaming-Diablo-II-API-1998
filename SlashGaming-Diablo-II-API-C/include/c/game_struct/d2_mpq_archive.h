@@ -52,7 +52,7 @@
  * Generic struct declaration
  */
 
-struct D2_MPQArchive;
+struct D2_MpqArchive;
 
 /**
  * Version-specific struct definitions
@@ -60,7 +60,7 @@ struct D2_MPQArchive;
 
 #pragma pack(push, 1)
 
-struct D2_MPQArchive_1_00;
+struct D2_MpqArchive_1_00;
 
 #pragma pack(pop)
 
@@ -70,8 +70,8 @@ struct D2_MPQArchive_1_00;
 
 #ifdef SGD2MAPI_ENABLE_TYPEDEFS
 
-typedef struct D2_MPQArchive D2_MPQArchive;
-typedef struct D2_MPQArchive_1_00 D2_MPQArchive_1_00;
+typedef struct D2_MpqArchive D2_MpqArchive;
+typedef struct D2_MpqArchive_1_00 D2_MpqArchive_1_00;
 
 #endif // SGD2MAPI_ENABLE_TYPEDEFS
 

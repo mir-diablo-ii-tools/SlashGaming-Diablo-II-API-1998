@@ -57,17 +57,17 @@
  */
 
 static_assert(
-    sizeof(struct D2_MPQArchiveHandle_1_00) == 0x108,
+    sizeof(struct D2_MpqArchiveHandle_1_00) == 0x108,
     "Incorrect size."
 );
 
 static_assert(
-    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive) == 0x00,
+    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive) == 0x00,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_MPQArchiveHandle_1_00, mpq_archive_path) == 0x04,
+    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive_path) == 0x04,
     "Incorrect member alignment."
 );
 
@@ -75,36 +75,36 @@ static_assert(
  * Function definitions
  */
 
-struct D2_MPQArchive* D2_MPQArchiveHandle_GetMPQArchive(
-    struct D2_MPQArchiveHandle* mpq_archive_handle
+struct D2_MpqArchive* D2_MpqArchiveHandle_GetMPQArchive(
+    struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (struct D2_MPQArchive*) D2_MPQArchiveHandle_GetConstMPQArchive(
+  return (struct D2_MpqArchive*) D2_MpqArchiveHandle_GetConstMPQArchive(
       mpq_archive_handle
   );
 }
 
-const struct D2_MPQArchive* D2_MPQArchiveHandle_GetConstMPQArchive(
-    const struct D2_MPQArchiveHandle* mpq_archive_handle
+const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMPQArchive(
+    const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MPQArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MPQArchiveHandle_1_00*) mpq_archive_handle;
+  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
+      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
 
-  return (const struct D2_MPQArchive*) actual_mpq_archive_handle->mpq_archive;
+  return (const struct D2_MpqArchive*) actual_mpq_archive_handle->mpq_archive;
 }
 
-char* D2_MPQArchiveHandle_GetMPQArchivePath(
-    struct D2_MPQArchiveHandle* mpq_archive_handle
+char* D2_MpqArchiveHandle_GetMPQArchivePath(
+    struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (char*) D2_MPQArchiveHandle_GetConstMPQArchivePath(
+  return (char*) D2_MpqArchiveHandle_GetConstMPQArchivePath(
       mpq_archive_handle
   );
 }
 
-const char* D2_MPQArchiveHandle_GetConstMPQArchivePath(
-    const struct D2_MPQArchiveHandle* mpq_archive_handle
+const char* D2_MpqArchiveHandle_GetConstMPQArchivePath(
+    const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MPQArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MPQArchiveHandle_1_00*) mpq_archive_handle;
+  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
+      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
 
   return actual_mpq_archive_handle->mpq_archive_path;
 }
