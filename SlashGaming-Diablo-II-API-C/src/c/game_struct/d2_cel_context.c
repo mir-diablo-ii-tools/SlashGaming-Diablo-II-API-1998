@@ -141,6 +141,10 @@ struct D2_CelContext* D2_CelContext_Create(
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) malloc(sizeof(*actual_cel_context));
 
+    if (actual_cel_context == NULL) {
+      ExitOnAllocationFailure(__FILEW__, __LINE__);
+    }
+
     actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
     actual_cel_context->direction = direction;
     actual_cel_context->frame = frame;
@@ -149,6 +153,10 @@ struct D2_CelContext* D2_CelContext_Create(
   } else if (running_game_version == VERSION_1_12A) {
     struct D2_CelContext_1_12A* actual_cel_context =
         (struct D2_CelContext_1_12A*) malloc(sizeof(*actual_cel_context));
+
+    if (actual_cel_context == NULL) {
+      ExitOnAllocationFailure(__FILEW__, __LINE__);
+    }
 
     actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
     actual_cel_context->direction = direction;
@@ -159,6 +167,10 @@ struct D2_CelContext* D2_CelContext_Create(
       && running_game_version <= LOD_1_14D) */ {
     struct D2_CelContext_1_13C* actual_cel_context =
         (struct D2_CelContext_1_13C*) malloc(sizeof(*actual_cel_context));
+
+    if (actual_cel_context == NULL) {
+      ExitOnAllocationFailure(__FILEW__, __LINE__);
+    }
 
     actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
     actual_cel_context->direction = direction;

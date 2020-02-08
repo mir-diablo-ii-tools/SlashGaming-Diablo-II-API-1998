@@ -91,6 +91,10 @@ struct D2_InventoryRecord* D2_InventoryRecord_CreateWithRecord(
           sizeof(*actual_inventory_record)
       );
 
+  if (actual_inventory_record == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_inventory_record->position =
       *(const struct D2_PositionalRectangle_1_00*) position;
   actual_inventory_record->grid_layout =

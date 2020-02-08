@@ -90,6 +90,10 @@ struct D2_EquipmentLayout* D2_EquipmentLayout_CreateWithLayout(
           sizeof(*actual_equipment_layout)
       );
 
+  if (actual_equipment_layout == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_equipment_layout->position =
       *(struct D2_PositionalRectangle_1_00*) position;
   actual_equipment_layout->width = width;

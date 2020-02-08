@@ -86,6 +86,10 @@ struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
           sizeof(*actual_belt_record)
       );
 
+  if (actual_belt_record == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_belt_record->unknown_0x00 = reserved_00__set_to_nullptr;
   actual_belt_record->num_slots = num_slots;
 

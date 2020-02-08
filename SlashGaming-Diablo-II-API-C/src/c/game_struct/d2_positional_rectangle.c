@@ -93,6 +93,10 @@ D2_PositionalRectangle_CreateWithPositions(
           sizeof(*actual_positional_rectangle)
       );
 
+  if (actual_positional_rectangle == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_positional_rectangle->left = left;
   actual_positional_rectangle->right = right;
   actual_positional_rectangle->top = top;

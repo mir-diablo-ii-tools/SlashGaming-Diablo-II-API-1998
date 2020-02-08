@@ -100,6 +100,10 @@ struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
   struct D2_GridLayout_1_00* actual_grid_layout =
       (struct D2_GridLayout_1_00*) malloc(sizeof(*actual_grid_layout));
 
+  if (actual_grid_layout == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_grid_layout->num_columns = num_columns;
   actual_grid_layout->num_rows = num_rows;
   actual_grid_layout->position =

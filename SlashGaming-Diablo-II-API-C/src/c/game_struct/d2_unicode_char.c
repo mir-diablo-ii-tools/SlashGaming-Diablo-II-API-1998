@@ -79,6 +79,10 @@ struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiChar(char ch) {
   struct D2_UnicodeChar_1_00* actual_unicode_char =
       (struct D2_UnicodeChar_1_00*) malloc(sizeof(*actual_unicode_char));
 
+  if (actual_unicode_char == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   actual_unicode_char->ch = ch;
 
   return (struct D2_UnicodeChar*) actual_unicode_char;
