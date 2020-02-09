@@ -57,6 +57,8 @@ void ExitOnGeneralFailure(
 
 void ExitOnAllocationFailure(const wchar_t* file_name, int line);
 
+void ExitOnCallOnceFailure(const wchar_t* file_name, int line);
+
 void ExitOnConstantMappingMissing(
     int value,
     const wchar_t* file_name,

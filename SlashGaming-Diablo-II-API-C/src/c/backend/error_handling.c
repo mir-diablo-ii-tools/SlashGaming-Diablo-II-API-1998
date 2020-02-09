@@ -136,6 +136,16 @@ void ExitOnConstantMappingMissing(
   exit(EXIT_FAILURE);
 }
 
+
+void ExitOnCallOnceFailure(const wchar_t* file_name, int line) {
+  ExitOnGeneralFailure(
+      L"pthread_once failed.",
+      L"Call Once Failed",
+      file_name,
+      line
+  );
+}
+
 void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* function_name,
     DWORD last_error,
