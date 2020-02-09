@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNC_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_H_
 #define SGD2MAPI_C_GAME_FUNC_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_H_
 
+#include <stdint.h>
+
 #include "../../game_constant/d2_text_color.h"
 #include "../../game_struct/d2_unicode_char.h"
 
