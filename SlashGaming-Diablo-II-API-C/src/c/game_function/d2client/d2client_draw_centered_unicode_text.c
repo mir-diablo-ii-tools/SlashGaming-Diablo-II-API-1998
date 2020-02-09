@@ -45,11 +45,24 @@
 
 #include "../../../../include/c/game_function/d2client/d2client_draw_centered_unicode_text.h"
 
+#include <pthread.h>
 #include <stdint.h>
 
 #include "../../../asm_x86_macro.h"
 #include "../../backend/game_function/fastcall_function.h"
 #include "../../backend/game_address_table.h"
+#include "../../backend/error_handling.h"
+#include "../../../wide_macro.h"
+
+static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static struct MAPI_GameAddress* game_address;
+
+static void InitGameAddress(void) {
+  game_address = GetGameAddress(
+      "D2Client.dll",
+      "DrawCenteredUnicodeText"
+  );
+}
 
 void D2_D2Client_DrawCenteredUnicodeText(
     int left,
@@ -80,10 +93,11 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t right,
     int32_t text_color
 ) {
-  struct MAPI_GameAddress* game_address = GetGameAddress(
-      "D2Client.dll",
-      "DrawCenteredUnicodeText"
-  );
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
 
   CallFastcallFunction(
       game_address->raw_address,

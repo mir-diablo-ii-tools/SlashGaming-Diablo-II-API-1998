@@ -45,9 +45,24 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 
+#include <pthread.h>
+#include <stdint.h>
+
 #include "../../../asm_x86_macro.h"
+#include "../../backend/error_handling.h"
 #include "../../backend/game_function/fastcall_function.h"
 #include "../../backend/game_address_table.h"
+#include "../../../wide_macro.h"
+
+static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static struct MAPI_GameAddress* game_address;
+
+static void InitGameAddress(void) {
+  game_address = GetGameAddress(
+      "D2Lang.dll",
+      "Unicode_UnicodeToUtf8"
+  );
+}
 
 char* D2_D2Lang_Unicode_UnicodeToUtf8(
     char* dest,
@@ -69,10 +84,11 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
     const struct D2_UnicodeChar_1_00* src,
     int32_t count_including_null_terminator
 ) {
-  struct MAPI_GameAddress* game_address = GetGameAddress(
-      "D2Lang.dll",
-      "Unicode_UnicodeToUtf8"
-  );
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
 
   return (char*) CallFastcallFunction(
       game_address->raw_address,
