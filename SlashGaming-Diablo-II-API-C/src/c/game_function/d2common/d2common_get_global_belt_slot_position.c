@@ -51,6 +51,7 @@
 #include "../../../asm_x86_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
+#include "../../../../include/c/game_version.h"
 #include "../../backend/game_function/stdcall_function.h"
 #include "../../../wide_macro.h"
 
@@ -70,18 +71,48 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
     struct D2_PositionalRectangle* out_belt_slot,
     unsigned int belt_slot_index
 ) {
+  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+
   struct D2_PositionalRectangle_1_00* actual_out_belt_slot =
       (struct D2_PositionalRectangle_1_00*) out_belt_slot;
 
-  D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+  if (running_game_version <= VERSION_1_06B) {
+    D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+        belt_record_index,
+        actual_out_belt_slot,
+        belt_slot_index
+    );
+  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+    D2_D2Common_GetGlobalBeltSlotPosition_1_07(
+        belt_record_index,
+        inventory_arrange_mode,
+        actual_out_belt_slot,
+        belt_slot_index
+    );
+  }
+}
+
+void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+    uint32_t belt_record_index,
+    struct D2_PositionalRectangle_1_00* out_belt_slot,
+    uint32_t belt_slot_index
+) {
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
+
+  CallStdcallFunction(
+      game_address->raw_address,
+      3,
       belt_record_index,
-      inventory_arrange_mode,
-      actual_out_belt_slot,
+      out_belt_slot,
       belt_slot_index
   );
 }
 
-void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
     uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_PositionalRectangle_1_00* out_belt_slot,

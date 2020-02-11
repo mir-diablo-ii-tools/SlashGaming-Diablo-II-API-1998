@@ -51,6 +51,7 @@
 #include "../../../asm_x86_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
+#include "../../../../include/c/game_version.h"
 #include "../../backend/game_function/stdcall_function.h"
 #include "../../../wide_macro.h"
 
@@ -69,17 +70,44 @@ void D2_D2Common_GetGlobalBeltRecord(
     unsigned int inventory_arrange_mode,
     struct D2_BeltRecord* out_belt_record
 ) {
+  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+
   struct D2_BeltRecord_1_00* actual_out_belt_record =
       (struct D2_BeltRecord_1_00*) out_belt_record;
 
-  D2_D2Common_GetGlobalBeltRecord_1_00(
-      belt_record_index,
-      inventory_arrange_mode,
-      actual_out_belt_record
-  );
+  if (running_game_version <= VERSION_1_06B) {
+    D2_D2Common_GetGlobalBeltRecord_1_00(
+        belt_record_index,
+        actual_out_belt_record
+    );
+  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+    D2_D2Common_GetGlobalBeltRecord_1_07(
+        belt_record_index,
+        inventory_arrange_mode,
+        actual_out_belt_record
+    );
+  }
 }
 
 void D2_D2Common_GetGlobalBeltRecord_1_00(
+    uint32_t belt_record_index,
+    struct D2_BeltRecord_1_00* out_belt_record
+) {
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
+
+  CallStdcallFunction(
+      game_address->raw_address,
+      2,
+      belt_record_index,
+      out_belt_record
+  );
+}
+
+void D2_D2Common_GetGlobalBeltRecord_1_07(
     uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_BeltRecord_1_00* out_belt_record

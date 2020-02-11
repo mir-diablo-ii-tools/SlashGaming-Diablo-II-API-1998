@@ -65,6 +65,12 @@ DLLEXPORT void D2_D2Common_GetGlobalEquipmentSlotLayout(
 
 DLLEXPORT void D2_D2Common_GetGlobalEquipmentSlotLayout_1_00(
     uint32_t inventory_record_index,
+    struct D2_EquipmentLayout_1_00* out_equipment_slot_layout,
+    uint32_t equipment_slot_index
+);
+
+DLLEXPORT void D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
+    uint32_t inventory_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_EquipmentLayout_1_00* out_equipment_slot_layout,
     uint32_t equipment_slot_index

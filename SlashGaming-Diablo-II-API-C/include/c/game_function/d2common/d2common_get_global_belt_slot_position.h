@@ -65,6 +65,12 @@ DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition(
 
 DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
     uint32_t belt_record_index,
+    struct D2_PositionalRectangle_1_00* out_belt_slot,
+    uint32_t belt_slot_index
+);
+
+DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
+    uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
