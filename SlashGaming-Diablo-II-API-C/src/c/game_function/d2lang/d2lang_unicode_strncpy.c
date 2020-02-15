@@ -65,18 +65,18 @@ static void InitGameAddress(void) {
 }
 
 struct D2_UnicodeChar* D2_D2Lang_Unicode_strncpy(
-    struct D2_UnicodeChar* src,
-    const struct D2_UnicodeChar* dest,
+    struct D2_UnicodeChar* dest,
+    const struct D2_UnicodeChar* src,
     size_t count
 ) {
-  struct D2_UnicodeChar_1_00* actual_src =
-      (struct D2_UnicodeChar_1_00*) src;
-  const struct D2_UnicodeChar_1_00* actual_dest =
-      (const struct D2_UnicodeChar_1_00*) dest;
+  struct D2_UnicodeChar_1_00* actual_dest =
+      (struct D2_UnicodeChar_1_00*) dest;
+  const struct D2_UnicodeChar_1_00* actual_src =
+      (const struct D2_UnicodeChar_1_00*) src;
 
   return (struct D2_UnicodeChar*) D2_D2Lang_Unicode_strncpy_1_00(
-      actual_src,
       actual_dest,
+      actual_src,
       count
   );
 }
@@ -95,8 +95,8 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_strncpy_1_00(
   return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address->raw_address,
       3,
-      src,
       dest,
+      src,
       count
   );
 }
