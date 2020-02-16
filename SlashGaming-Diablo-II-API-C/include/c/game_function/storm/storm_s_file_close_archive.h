@@ -61,7 +61,7 @@ DLLEXPORT bool D2_Storm_SFileCloseArchive(
     struct D2_MpqArchive* mpq_archive
 );
 
-DLLEXPORT bool32 D2_Storm_SFileCloseArchive_1_00(
+DLLEXPORT mapi_bool32 D2_Storm_SFileCloseArchive_1_00(
     struct D2_MpqArchive_1_00* mpq_archive
 );
 

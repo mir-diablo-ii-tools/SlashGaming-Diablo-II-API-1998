@@ -105,7 +105,7 @@ bool D2_D2GFX_DrawCelContext(
   }
 }
 
-bool32 D2_D2GFX_DrawCelContext_1_00(
+mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     struct D2_CelContext_1_00* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -119,7 +119,7 @@ bool32 D2_D2GFX_DrawCelContext_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallStdcallFunction(
+  return (mapi_bool32) CallStdcallFunction(
       game_address->raw_address,
       6,
       cel_context,
@@ -131,7 +131,7 @@ bool32 D2_D2GFX_DrawCelContext_1_00(
   );
 }
 
-bool32 D2_D2GFX_DrawCelContext_1_12A(
+mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     struct D2_CelContext_1_12A* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -145,7 +145,7 @@ bool32 D2_D2GFX_DrawCelContext_1_12A(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallStdcallFunction(
+  return (mapi_bool32) CallStdcallFunction(
       game_address->raw_address,
       6,
       cel_context,
@@ -157,7 +157,7 @@ bool32 D2_D2GFX_DrawCelContext_1_12A(
   );
 }
 
-bool32 D2_D2GFX_DrawCelContext_1_13C(
+mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     struct D2_CelContext_1_13C* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -171,7 +171,7 @@ bool32 D2_D2GFX_DrawCelContext_1_13C(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallStdcallFunction(
+  return (mapi_bool32) CallStdcallFunction(
       game_address->raw_address,
       6,
       cel_context,

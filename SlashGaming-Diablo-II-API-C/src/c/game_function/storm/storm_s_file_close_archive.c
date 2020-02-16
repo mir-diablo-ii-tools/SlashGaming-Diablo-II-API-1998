@@ -73,7 +73,7 @@ bool D2_Storm_SFileCloseArchive(
   );
 }
 
-bool32 D2_Storm_SFileCloseArchive_1_00(
+mapi_bool32 D2_Storm_SFileCloseArchive_1_00(
     struct D2_MpqArchive_1_00* mpq_archive
 ) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
@@ -82,7 +82,7 @@ bool32 D2_Storm_SFileCloseArchive_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallStdcallFunction(
+  return (mapi_bool32) CallStdcallFunction(
       game_address->raw_address,
       1,
       mpq_archive

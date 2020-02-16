@@ -89,7 +89,7 @@ void D2_D2Win_DrawUnicodeText_1_00(
     int32_t position_x,
     int32_t position_y,
     int32_t text_color_id,
-    bool32 is_indented
+    mapi_bool32 is_indented
 ) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 

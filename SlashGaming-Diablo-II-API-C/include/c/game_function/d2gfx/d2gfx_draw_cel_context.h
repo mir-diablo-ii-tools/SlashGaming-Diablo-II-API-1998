@@ -69,7 +69,7 @@ DLLEXPORT bool D2_D2GFX_DrawCelContext(
     struct MAPI_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT bool32 D2_D2GFX_DrawCelContext_1_00(
+DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     struct D2_CelContext_1_00* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -78,7 +78,7 @@ DLLEXPORT bool32 D2_D2GFX_DrawCelContext_1_00(
     struct MAPI_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT bool32 D2_D2GFX_DrawCelContext_1_12A(
+DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     struct D2_CelContext_1_12A* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -87,7 +87,7 @@ DLLEXPORT bool32 D2_D2GFX_DrawCelContext_1_12A(
     struct MAPI_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT bool32 D2_D2GFX_DrawCelContext_1_13C(
+DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     struct D2_CelContext_1_13C* cel_context,
     int32_t position_x,
     int32_t position_y,

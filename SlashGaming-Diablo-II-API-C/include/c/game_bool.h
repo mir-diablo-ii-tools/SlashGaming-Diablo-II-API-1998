@@ -52,10 +52,10 @@
 extern "C" {
 #endif // __cplusplus
 
-typedef int8_t bool8;
-typedef int16_t bool16;
-typedef int32_t bool32;
-typedef int64_t bool64;
+typedef int8_t mapi_bool8;
+typedef int16_t mapi_bool16;
+typedef int32_t mapi_bool32;
+typedef int64_t mapi_bool64;
 
 #ifdef __cplusplus
 } // extern "C"

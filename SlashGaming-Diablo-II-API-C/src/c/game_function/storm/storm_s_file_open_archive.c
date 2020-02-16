@@ -79,7 +79,7 @@ bool D2_Storm_SFileOpenArchive(
   );
 }
 
-bool32 D2_Storm_SFileOpenArchive_1_00(
+mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
     const char* mpq_archive_path,
     int32_t priority,
     uint32_t flags,
@@ -91,7 +91,7 @@ bool32 D2_Storm_SFileOpenArchive_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallStdcallFunction(
+  return (mapi_bool32) CallStdcallFunction(
       game_address->raw_address,
       4,
       mpq_archive_path,

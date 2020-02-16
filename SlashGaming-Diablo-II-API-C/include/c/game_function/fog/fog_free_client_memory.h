@@ -64,7 +64,7 @@ DLLEXPORT bool D2_Fog_FreeClientMemory(
     int unused__set_to_0
 );
 
-DLLEXPORT bool32 D2_Fog_FreeClientMemory_1_00(
+DLLEXPORT mapi_bool32 D2_Fog_FreeClientMemory_1_00(
     void* ptr,
     const char* source_file,
     int32_t line,

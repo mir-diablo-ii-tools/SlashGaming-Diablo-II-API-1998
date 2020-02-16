@@ -64,7 +64,7 @@ DLLEXPORT struct D2_CelFile* D2_D2Win_LoadCelFile(
 
 DLLEXPORT struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
     const char* cel_file_path,
-    bool32 is_dcc_else_dc6
+    mapi_bool32 is_dcc_else_dc6
 );
 
 #ifdef __cplusplus

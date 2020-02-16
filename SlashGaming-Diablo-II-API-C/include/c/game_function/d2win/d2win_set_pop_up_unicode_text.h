@@ -72,7 +72,7 @@ DLLEXPORT void D2_D2Win_SetPopUpUnicodeText_1_00(
     int32_t position_x,
     int32_t position_y,
     int32_t text_color,
-    bool32 is_text_box_centered
+    mapi_bool32 is_text_box_centered
 );
 
 #ifdef __cplusplus

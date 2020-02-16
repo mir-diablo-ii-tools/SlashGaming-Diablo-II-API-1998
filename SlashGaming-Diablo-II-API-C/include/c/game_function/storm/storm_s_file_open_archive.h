@@ -65,7 +65,7 @@ DLLEXPORT bool D2_Storm_SFileOpenArchive(
     struct D2_MpqArchive** mpq_archive_ptr_out
 );
 
-DLLEXPORT bool32 D2_Storm_SFileOpenArchive_1_00(
+DLLEXPORT mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
     const char* mpq_archive_path,
     int32_t priority,
     uint32_t flags,

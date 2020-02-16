@@ -79,7 +79,7 @@ bool D2_Fog_FreeClientMemory(
   );
 }
 
-bool32 D2_Fog_FreeClientMemory_1_00(
+mapi_bool32 D2_Fog_FreeClientMemory_1_00(
     void* ptr,
     const char* source_file,
     int32_t line,
@@ -91,7 +91,7 @@ bool32 D2_Fog_FreeClientMemory_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return (bool32) CallFastcallFunction(
+  return (mapi_bool32) CallFastcallFunction(
       game_address->raw_address,
       4,
       ptr,
