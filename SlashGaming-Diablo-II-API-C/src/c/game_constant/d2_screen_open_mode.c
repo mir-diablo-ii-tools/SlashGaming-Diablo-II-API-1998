@@ -43,15 +43,82 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_CONSTANT_H_
-#define SGD2MAPI_C_GAME_CONSTANT_H_
+#include "../../../include/c/game_constant/d2_screen_open_mode.h"
 
-#include "game_constant/d2_client_game_type.h"
-#include "game_constant/d2_difficulty_level.h"
-#include "game_constant/d2_draw_effect.h"
-#include "game_constant/d2_screen_open_mode.h"
-#include "game_constant/d2_text_color.h"
-#include "game_constant/d2_text_font.h"
-#include "game_constant/d2_video_mode.h"
+#include "../../../include/c/game_version.h"
 
-#endif // SGD2MAPI_C_GAME_CONSTANT_H_
+#include "../backend/encoding.h"
+#include "../backend/error_handling.h"
+#include "../../wide_macro.h"
+
+static enum D2_ScreenOpenMode_1_07 ToGameValue_1_07(
+    enum D2_ScreenOpenMode api_value
+) {
+  switch (api_value) {
+    case SCREEN_OPEN_MODE_NONE: {
+      return SCREEN_OPEN_MODE_1_07_NONE;
+    }
+
+    case SCREEN_OPEN_MODE_RIGHT: {
+      return SCREEN_OPEN_MODE_1_07_RIGHT;
+    }
+
+    case SCREEN_OPEN_MODE_LEFT: {
+      return SCREEN_OPEN_MODE_1_07_LEFT;
+    }
+
+    case SCREEN_OPEN_MODE_BOTH: {
+      return SCREEN_OPEN_MODE_1_07_BOTH;
+    }
+
+    default: {
+      ExitOnConstantMappingMissing(
+          api_value,
+          __FILEW__,
+          __LINE__
+      );
+
+      return 0;
+    }
+  }
+}
+
+static enum D2_ScreenOpenMode ToApiValue_1_07(
+    enum D2_ScreenOpenMode_1_07 game_value
+) {
+  switch (game_value) {
+    case SCREEN_OPEN_MODE_1_07_NONE: {
+      return SCREEN_OPEN_MODE_NONE;
+    }
+
+    case SCREEN_OPEN_MODE_1_07_RIGHT: {
+      return SCREEN_OPEN_MODE_RIGHT;
+    }
+
+    case SCREEN_OPEN_MODE_1_07_LEFT: {
+      return SCREEN_OPEN_MODE_LEFT;
+    }
+
+    case SCREEN_OPEN_MODE_1_07_BOTH: {
+      return SCREEN_OPEN_MODE_BOTH;
+    }
+
+    default: {
+      ExitOnConstantMappingMissing(
+          game_value,
+          __FILEW__,
+          __LINE__
+      );
+
+      return 0;
+    }
+  }
+}
+
+int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value) {
+  return ToGameValue_1_07(api_value);
+}
+
+enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value) {
+  return ToApiValue_1_07(game_value);
+}

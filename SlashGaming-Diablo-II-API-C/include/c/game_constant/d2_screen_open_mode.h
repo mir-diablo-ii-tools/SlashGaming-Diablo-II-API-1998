@@ -43,15 +43,59 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_CONSTANT_H_
-#define SGD2MAPI_C_GAME_CONSTANT_H_
+#ifndef SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
+#define SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
 
-#include "game_constant/d2_client_game_type.h"
-#include "game_constant/d2_difficulty_level.h"
-#include "game_constant/d2_draw_effect.h"
-#include "game_constant/d2_screen_open_mode.h"
-#include "game_constant/d2_text_color.h"
-#include "game_constant/d2_text_font.h"
-#include "game_constant/d2_video_mode.h"
+#include "../../dllexport_define.inc"
 
-#endif // SGD2MAPI_C_GAME_CONSTANT_H_
+/**
+ * Generic enum definitions
+ */
+
+enum D2_ScreenOpenMode {
+  SCREEN_OPEN_MODE_NONE,
+  SCREEN_OPEN_MODE_RIGHT,
+  SCREEN_OPEN_MODE_LEFT,
+  SCREEN_OPEN_MODE_BOTH,
+};
+
+/**
+ * Version-specific enum definitions
+ */
+
+enum D2_ScreenOpenMode_1_07 {
+  SCREEN_OPEN_MODE_1_07_NONE,
+  SCREEN_OPEN_MODE_1_07_RIGHT,
+  SCREEN_OPEN_MODE_1_07_LEFT,
+  SCREEN_OPEN_MODE_1_07_BOTH,
+};
+
+/**
+ * Typedefs
+ */
+
+#ifdef SGD2MAPI_ENABLE_TYPEDEFS
+
+typedef enum D2_ScreenOpenMode D2_ScreenOpenMode;
+typedef enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_1_07;
+
+#endif // SGD2MAPI_ENABLE_TYPEDEFS
+
+/**
+ * Function declarations
+ */
+
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
+DLLEXPORT int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value);
+
+DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif // __cplusplus
+
+#include "../../dllexport_undefine.inc"
+#endif // SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
