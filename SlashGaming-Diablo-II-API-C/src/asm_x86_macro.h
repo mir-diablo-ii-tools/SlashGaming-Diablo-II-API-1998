@@ -59,7 +59,7 @@
 
 #define ASM_X86_FUNC(name) name
 
-#define ASM_X86_LABEL(name) name#:
+#define ASM_X86_LABEL(name) name:
 
 #else
 
