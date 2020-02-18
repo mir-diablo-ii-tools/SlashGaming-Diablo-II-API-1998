@@ -59,7 +59,7 @@ static struct MAPI_GameAddress* game_address;
 
 static void InitGameAddress(void) {
   game_address = GetGameAddress(
-      "D2Client.dll",
+      "D2DDraw.dll",
       "BitBlockWidth"
   );
 }
