@@ -62,7 +62,7 @@ struct MAPI_GamePatch {
   struct MAPI_GameAddress* game_address;
   bool is_patch_applied;
   uint8_t* patch_buffer;
-  uint8_t* old_buffer;
+  uint8_t* unpatched_buffer;
   size_t patch_size;
 };
 

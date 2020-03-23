@@ -82,15 +82,15 @@ void MAPI_GamePatch_InitGameNopPatch(
   memset(game_patch->patch_buffer, OPCODE_NOP, patch_size);
 
   // Init old buffer member.
-  game_patch->old_buffer = (uint8_t*) malloc(
-      patch_size * sizeof(game_patch->old_buffer[0])
+  game_patch->unpatched_buffer = (uint8_t*) malloc(
+      patch_size * sizeof(game_patch->unpatched_buffer[0])
   );
-  if (game_patch->old_buffer == NULL) {
+  if (game_patch->unpatched_buffer == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
 
   memcpy(
-      game_patch->old_buffer,
+      game_patch->unpatched_buffer,
       (void*) game_patch->game_address->raw_address,
       patch_size
   );
