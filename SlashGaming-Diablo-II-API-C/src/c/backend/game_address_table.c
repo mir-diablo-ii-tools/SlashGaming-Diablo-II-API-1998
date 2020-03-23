@@ -87,7 +87,7 @@ static int CompareGameAddressTableEntryByLibraryPathThenAddressName(
   return strcmp(entry1->address_name, entry2->address_name);
 }
 
-struct MAPI_GameAddress* GetGameAddress(
+const struct MAPI_GameAddress* GetGameAddress(
     const char* library_path,
     const char* address_name
 ) {

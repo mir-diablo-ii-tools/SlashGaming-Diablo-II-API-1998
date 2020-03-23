@@ -61,7 +61,7 @@ extern "C" {
 enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type);
 
 #ifdef __cplusplus
-}
+} // extern "C"
 #endif // __cplusplus
 
 #endif // SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_

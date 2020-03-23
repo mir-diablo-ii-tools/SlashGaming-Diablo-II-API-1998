@@ -46,7 +46,11 @@
 #include "../../../include/c/game_address/game_ordinal.h"
 
 #include <windows.h>
+#include <stdlib.h>
+#include <wchar.h>
 
+#include "../backend/encoding.h"
+#include "../backend/error_handling.h"
 #include "../backend/game_library.h"
 
 struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
@@ -67,10 +71,44 @@ struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
     int16_t ordinal
 ) {
   const struct MAPI_GameLibrary* game_library = GetGameLibrary(library_path);
-  game_address->raw_address = (intptr_t) GetProcAddress(
+  FARPROC ordinal_address = GetProcAddress(
       (HMODULE) game_library->base_address,
-      (char*) (0xFFFF & ordinal)
+      (const char*) (0xFFFF & ordinal)
   );
+
+  if (ordinal_address == NULL) {
+    wchar_t* library_path_wide = ConvertUtf8ToWide(
+        NULL,
+        library_path,
+        __FILEW__,
+        __LINE__
+    );
+
+    wchar_t full_message[512];
+
+    const wchar_t* kErrorFormatMessage =
+        L"The data or function with the ordinal %d from %ls could not be "
+        L"found.";
+
+    swprintf(
+        full_message,
+        sizeof(full_message) / sizeof(full_message[0]),
+        kErrorFormatMessage,
+        ordinal,
+        library_path_wide
+    );
+
+    free(library_path_wide);
+
+    ExitOnGeneralFailure(
+        full_message,
+        L"Failed to Locate Address",
+        __FILEW__,
+        __LINE__
+    );
+  }
+
+  game_address->raw_address = (intptr_t) ordinal_address;
 
   return game_address;
 }

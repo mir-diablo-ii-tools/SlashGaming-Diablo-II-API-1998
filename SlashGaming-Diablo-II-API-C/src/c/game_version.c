@@ -70,10 +70,6 @@ struct GameDataInfo {
   uint8_t expected_values;
 };
 
-enum {
-  MAX_FILE_VERSION_LEN = 128
-};
-
 static const char* kVersionIdToName[] = {
     [VERSION_1_00] = "1.00",
     [VERSION_1_01] = "1.01",
@@ -198,6 +194,8 @@ static struct GameVersionInfo sorted_name_game_version_infos[] = {
     { "1.14.3.71", LOD_1_14D },
 };
 
+static enum D2_GameVersion running_game_version;
+
 static int CompareGameVersionInfo(
     const struct GameVersionInfo* info1,
     const struct GameVersionInfo* info2
@@ -205,8 +203,7 @@ static int CompareGameVersionInfo(
   return strcmp(info1->file_version, info2->file_version);
 }
 
-static void ExtractFileVersionString(
-    char* file_version,
+static char* ExtractFileVersionString(
     const char* file_path
 ) {
   // All the code for this function originated from StackOverflow user
@@ -283,9 +280,29 @@ static void ExtractFileVersionString(
   // Doesn't matter if you are on 32 bit or 64 bit,
   // DWORD is always 32 bits, so first two revision numbers
   // come from dwFileVersionMS, last two come from dwFileVersionLS
+
+  // Calculate the string size for allocation.
+  int num_chars_to_write = snprintf(
+      NULL,
+      0,
+      "%lu.%lu.%lu.%lu",
+      (version_info->dwFileVersionMS >> 16) & 0xFFFF,
+      (version_info->dwFileVersionMS >> 0) & 0xFFFF,
+      (version_info->dwFileVersionLS >> 16) & 0xFFFF,
+      (version_info->dwFileVersionLS >> 0) & 0xFFFF
+  ) + 1;
+
+  char* file_version = (char*) malloc(
+      num_chars_to_write * sizeof(file_version[0])
+  );
+
+  if (file_version == NULL) {
+    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  }
+
   snprintf(
       file_version,
-      MAX_FILE_VERSION_LEN,
+      num_chars_to_write,
       "%lu.%lu.%lu.%lu",
       (version_info->dwFileVersionMS >> 16) & 0xFFFF,
       (version_info->dwFileVersionMS >> 0) & 0xFFFF,
@@ -298,6 +315,8 @@ free_file_version_info:
 
 free_file_path_text_wide:
   free(file_path_text_wide);
+
+  return file_version;
 }
 
 static void SortGameVesionInfoByName(void) {
@@ -308,6 +327,32 @@ static void SortGameVesionInfoByName(void) {
       sizeof(sorted_name_game_version_infos[0]),
       (int (*)(const void*, const void*)) &CompareGameVersionInfo
   );
+}
+
+static enum D2_GameVersion DetermineGameVersionByFileVersion(void) {
+  static pthread_once_t sort_once_flag = PTHREAD_ONCE_INIT;
+
+  // Perform first stage game version detection using the executable file
+  // name.
+  char* file_version = ExtractFileVersionString("Game.exe");
+
+  // Sort the game version info so that a bsearch can be done correctly.
+  // Multithread safe.
+  pthread_once(&sort_once_flag, &SortGameVesionInfoByName);
+
+  const struct GameVersionInfo* search_result = bsearch(
+      file_version,
+      sorted_name_game_version_infos,
+      sizeof(sorted_name_game_version_infos)
+          / sizeof(sorted_name_game_version_infos[0]),
+      sizeof(sorted_name_game_version_infos[0]),
+      (int (*)(const void*, const void*)) &CompareGameVersionInfo
+  );
+
+free_file_version:
+  free(file_version);
+
+  return search_result->game_version;
 }
 
 static enum D2_GameVersion DetermineGameVersionByGameData(
@@ -340,6 +385,22 @@ static enum D2_GameVersion DetermineGameVersionByGameData(
       : game_data_info->non_matching_version;
 }
 
+static enum D2_GameVersion DetermineRunningGameVersion(void) {
+  // Perform first stage game version detection using the executable file
+  // name.
+  enum D2_GameVersion game_version = DetermineGameVersionByFileVersion();
+
+  // Perform second stage game version detection by checking the bytes of game
+  // libraries.
+  game_version = DetermineGameVersionByGameData(game_version);
+
+  return game_version;
+}
+
+static void InitRunningGameVersion(void) {
+  running_game_version = DetermineRunningGameVersion();
+}
+
 const char* D2_GetGameVersionName(
     enum D2_GameVersion game_version_id
 ) {
@@ -347,31 +408,10 @@ const char* D2_GetGameVersionName(
 }
 
 int D2_GetRunningGameVersionId(void) {
-  static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+  static pthread_once_t init_once_flag = PTHREAD_ONCE_INIT;
+  pthread_once(&init_once_flag, &InitRunningGameVersion);
 
-  // Perform first stage game version detection using the executable file
-  // name.
-  char file_version[MAX_FILE_VERSION_LEN];
-  ExtractFileVersionString(file_version, "Game.exe");
-
-  // Sort the game version info so that a bsearch can be done correctly.
-  // Multithread safe.
-  pthread_once(&once_flag, &SortGameVesionInfoByName);
-
-  const struct GameVersionInfo* search_result = bsearch(
-      file_version,
-      sorted_name_game_version_infos,
-      sizeof(sorted_name_game_version_infos)
-          / sizeof(sorted_name_game_version_infos[0]),
-      sizeof(sorted_name_game_version_infos[0]),
-      (int (*)(const void*, const void*)) &CompareGameVersionInfo
-  );
-
-  enum D2_GameVersion first_stage_game_version = search_result->game_version;
-
-  // Perform second stage game version detection by checking the bytes of game
-  // libraries.
-  return DetermineGameVersionByGameData(first_stage_game_version);
+  return running_game_version;
 }
 
 const char* D2_GetRunningGameVersionName(void) {

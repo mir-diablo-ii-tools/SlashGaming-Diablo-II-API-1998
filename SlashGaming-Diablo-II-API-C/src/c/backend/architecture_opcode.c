@@ -45,11 +45,25 @@
 
 #include "architecture_opcode.h"
 
-static const enum MAPI_OpCode kBranchTypeToOpCode[] = {
-    [BRANCH_CALL] = OPCODE_CALL,
-    [BRANCH_JUMP] = OPCODE_JUMP,
-};
+#include "error_handling.h"
 
 enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type) {
-  return kBranchTypeToOpCode[branch_type];
+  switch (branch_type) {
+    case BRANCH_CALL: {
+      return OPCODE_CALL;
+    }
+
+    case BRANCH_JUMP: {
+      return OPCODE_JUMP;
+    }
+
+    default: {
+      ExitOnGeneralFailure(
+          L"Unknown branch type specified.",
+          L"Unknown Branch Type",
+          __FILEW__,
+          __LINE__
+      );
+    }
+  }
 }

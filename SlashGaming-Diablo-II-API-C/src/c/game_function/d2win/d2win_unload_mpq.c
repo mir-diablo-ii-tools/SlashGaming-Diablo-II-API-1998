@@ -57,7 +57,7 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static struct MAPI_GameAddress* game_address;
+static const struct MAPI_GameAddress* game_address;
 
 static void InitGameAddress(void) {
   game_address = GetGameAddress(

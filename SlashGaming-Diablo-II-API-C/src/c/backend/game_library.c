@@ -50,7 +50,6 @@
 #include <string.h>
 #include <windows.h>
 
-#include "../../../include/c/default_game_library.h"
 #include "encoding.h"
 #include "error_handling.h"
 #include "../../wide_macro.h"
@@ -81,14 +80,16 @@ static void ResizeGameLibraries(void) {
   game_library_table.capacity = (game_library_table.capacity == 0)
           ? 1
           : game_library_table.capacity * 2;
-  game_library_table.entries = (struct MAPI_GameLibrary**) realloc(
+  struct MAPI_GameLibrary** realloc_entries = (struct MAPI_GameLibrary**) realloc(
       game_library_table.entries,
       game_library_table.capacity * sizeof(game_library_table.entries[0])
   );
 
-  if (game_library_table.entries == NULL) {
+  if (realloc_entries == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
   }
+
+  game_library_table.entries = realloc_entries;
 }
 
 static struct MAPI_GameLibrary* AddGameLibrary(

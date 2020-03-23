@@ -67,10 +67,52 @@ struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryPathAndDecoratedName(
     const char* decorated_name
 ) {
   const struct MAPI_GameLibrary* game_library = GetGameLibrary(library_path);
-  game_address->raw_address = (intptr_t) GetProcAddress(
+  FARPROC ordinal_address = (intptr_t) GetProcAddress(
       (HMODULE) game_library->base_address,
       decorated_name
   );
+
+  if (ordinal_address == NULL) {
+    wchar_t* library_path_wide = ConvertUtf8ToWide(
+        NULL,
+        library_path,
+        __FILEW__,
+        __LINE__
+    );
+
+    wchar_t* decorated_name_wide = ConvertUtf8ToWide(
+        NULL,
+        decorated_name,
+        __FILEW__,
+        __LINE__
+    );
+
+    wchar_t full_message[512];
+
+    const wchar_t* kErrorFormatMessage =
+        L"The data or function with the name %ls from %ls could not be "
+        L"found.";
+
+    swprintf(
+        full_message,
+        sizeof(full_message) / sizeof(full_message[0]),
+        kErrorFormatMessage,
+        decorated_name_wide,
+        library_path_wide
+    );
+
+    free(library_path_wide);
+    free(decorated_name_wide);
+
+    ExitOnGeneralFailure(
+        full_message,
+        L"Failed to Locate Address",
+        __FILEW__,
+        __LINE__
+    );
+  }
+
+  game_address->raw_address = (intptr_t) ordinal_address;
 
   return game_address;
 }

@@ -48,8 +48,6 @@
 
 #include <stdint.h>
 
-#include "../../../include/c/default_game_library.h"
-
 struct MAPI_GameLibrary {
   char* file_path;
   intptr_t base_address;

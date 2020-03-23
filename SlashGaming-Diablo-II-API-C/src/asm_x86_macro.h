@@ -47,8 +47,8 @@
  * Warning: This header should never be used in any public interface!
  */
 
-#ifndef SGD2MAPI_ASM_X86_MACRO_H_
-#define SGD2MAPI_ASM_X86_MACRO_H_
+#ifndef SGMAPI_ASM_X86_MACRO_H_
+#define SGMAPI_ASM_X86_MACRO_H_
 
 #if defined(_MSC_VER)
 
@@ -74,4 +74,4 @@
 
 #endif
 
-#endif /* SGD2MAPI_ASM_X86_MACRO_H_ */
+#endif /* SGMAPI_ASM_X86_MACRO_H_ */

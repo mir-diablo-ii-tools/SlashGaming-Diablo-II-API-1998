@@ -49,6 +49,14 @@
 #include <windows.h>
 #include <wchar.h>
 
+/**
+ * Error string lengths, including null-terminator.
+ */
+enum {
+  ERROR_MESSAGE_LENGTH = 1024,
+  ERROR_CAPTION_LENGTH = 256
+};
+
 static const wchar_t* kFunctionFailErrorFormat =
     L"File: %s \n"
     L"Line: %d \n"
@@ -74,7 +82,7 @@ void ExitOnGeneralFailure(
     int line
 ) {
 #ifndef NDEBUG
-  wchar_t full_message[512];
+  wchar_t full_message[ERROR_MESSAGE_LENGTH];
 
   swprintf(
       full_message,
@@ -114,7 +122,7 @@ void ExitOnConstantMappingMissing(
     int line
 ) {
 #ifndef NDEBUG
-  wchar_t full_message[512];
+  wchar_t full_message[ERROR_MESSAGE_LENGTH];
 
   swprintf(
       full_message,
@@ -136,7 +144,6 @@ void ExitOnConstantMappingMissing(
   exit(EXIT_FAILURE);
 }
 
-
 void ExitOnCallOnceFailure(const wchar_t* file_name, int line) {
   ExitOnGeneralFailure(
       L"pthread_once failed.",
@@ -153,7 +160,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
     int line
 ) {
 #ifndef NDEBUG
-  wchar_t full_message[512];
+  wchar_t full_message[ERROR_MESSAGE_LENGTH];
 
   swprintf(
       full_message,
@@ -165,7 +172,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
       last_error
   );
 
-  wchar_t message_box_caption[128];
+  wchar_t message_box_caption[ERROR_CAPTION_LENGTH];
   swprintf(
       message_box_caption,
       sizeof(message_box_caption) / sizeof(message_box_caption[0]),
