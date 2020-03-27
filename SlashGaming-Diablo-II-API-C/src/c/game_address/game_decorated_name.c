@@ -46,7 +46,11 @@
 #include "../../../include/c/game_address/game_decorated_name.h"
 
 #include <windows.h>
+#include <stdlib.h>
+#include <wchar.h>
 
+#include "../backend/encoding.h"
+#include "../backend/error_handling.h"
 #include "../backend/game_library.h"
 
 struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndDecoratedName(
@@ -67,7 +71,7 @@ struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryPathAndDecoratedName(
     const char* decorated_name
 ) {
   const struct MAPI_GameLibrary* game_library = GetGameLibrary(library_path);
-  FARPROC ordinal_address = (intptr_t) GetProcAddress(
+  FARPROC ordinal_address = GetProcAddress(
       (HMODULE) game_library->base_address,
       decorated_name
   );
