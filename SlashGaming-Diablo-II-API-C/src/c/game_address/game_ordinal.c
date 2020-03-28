@@ -49,6 +49,7 @@
 #include <stdlib.h>
 #include <wchar.h>
 
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
 #include "../backend/game_library.h"

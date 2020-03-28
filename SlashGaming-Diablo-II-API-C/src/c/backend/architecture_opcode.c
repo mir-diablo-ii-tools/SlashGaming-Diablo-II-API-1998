@@ -45,6 +45,7 @@
 
 #include "architecture_opcode.h"
 
+#include "../../wide_macro.h"
 #include "error_handling.h"
 
 enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type) {
