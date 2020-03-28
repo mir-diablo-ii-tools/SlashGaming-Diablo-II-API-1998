@@ -58,19 +58,19 @@ enum {
 };
 
 static const wchar_t* kFunctionFailErrorFormat =
-    L"File: %s \n"
+    L"File: %ls \n"
     L"Line: %d \n"
     L"\n"
-    L"The function %s failed with error code %X.";
+    L"The function %ls failed with error code %X.";
 
 static const wchar_t* kGeneralFailErrorFormat =
-    L"File: %s \n"
+    L"File: %ls \n"
     L"Line: %d \n"
     L"\n"
-    L"%s";
+    L"%ls";
 
 static const wchar_t* kConstantMappingMissingErrorFormat =
-    L"File: %s \n"
+    L"File: %ls \n"
     L"Line: %d \n"
     L"\n"
     L"Constant with value %d could not be mapped.";
@@ -176,7 +176,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
   swprintf(
       message_box_caption,
       sizeof(message_box_caption) / sizeof(message_box_caption[0]),
-      L"%s Failed",
+      L"%ls Failed",
       function_name
   );
 
