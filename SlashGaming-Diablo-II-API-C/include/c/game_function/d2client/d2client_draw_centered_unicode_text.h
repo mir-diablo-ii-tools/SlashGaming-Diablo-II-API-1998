@@ -70,7 +70,15 @@ DLLEXPORT void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t position_y,
     const struct D2_UnicodeChar_1_00* text,
     int32_t right,
-    /* enum D2_TextColor_1_00 */int32_t text_color
+    /* enum D2_TextColor_1_00 */ int32_t text_color
+);
+
+DLLEXPORT void D2_D2Client_DrawCenteredUnicodeText_1_12A(
+    int32_t left,
+    int32_t position_y,
+    const struct D2_UnicodeChar_1_00* text,
+    int32_t right,
+    /* enum D2_TextColor_1_00 */ int32_t text_color
 );
 
 #ifdef __cplusplus

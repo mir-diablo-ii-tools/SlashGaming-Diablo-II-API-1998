@@ -48,11 +48,12 @@
 #include <pthread.h>
 #include <stdint.h>
 
+#include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
+#include "../../../wide_macro.h"
 #include "../../backend/game_function/fastcall_function.h"
 #include "../../backend/game_address_table.h"
 #include "../../backend/error_handling.h"
-#include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
 static const struct MAPI_GameAddress* game_address;
@@ -62,6 +63,43 @@ static void InitGameAddress(void) {
       "D2Client.dll",
       "DrawCenteredUnicodeText"
   );
+}
+
+__declspec(naked) static void* __cdecl
+D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
+    intptr_t func_ptr,
+    int32_t left,
+    int32_t position_y,
+    const struct D2_UnicodeChar_1_00* text,
+    int32_t right,
+    /* enum D2_TextColor_1_00 */ int32_t text_color
+) {
+  ASM_X86(push ebp);
+  ASM_X86(mov ebp, esp);
+
+  ASM_X86(push eax);
+  ASM_X86(push ebx);
+  ASM_X86(push ecx);
+  ASM_X86(push edx);
+
+  // Push the args.
+  ASM_X86(push dword ptr [ebp + 28]);
+  ASM_X86(mov eax, dword ptr [ebp + 24]);
+  ASM_X86(mov ebx, [ebp + 20]);
+  ASM_X86(push dword ptr [ebp + 16]);
+  ASM_X86(mov ecx, [ebp + 12]);
+
+  // Call the function.
+  ASM_X86(call dword ptr [ebp + 8]);
+  ASM_X86(add esp, 20);
+
+  ASM_X86(pop edx);
+  ASM_X86(pop ecx);
+  ASM_X86(pop ebx);
+  ASM_X86(pop eax);
+
+  ASM_X86(leave);
+  ASM_X86(ret);
 }
 
 void D2_D2Client_DrawCenteredUnicodeText(
@@ -77,13 +115,27 @@ void D2_D2Client_DrawCenteredUnicodeText(
   enum D2_TextColor text_color_game_value =
       D2_TextColor_ToGameValue(text_color);
 
-  D2_D2Client_DrawCenteredUnicodeText_1_00(
-      left,
-      position_y,
-      actual_text,
-      right,
-      text_color_game_value
-  );
+  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+
+  if (running_game_version >= VERSION_1_00
+      && running_game_version <= VERSION_1_10) {
+    D2_D2Client_DrawCenteredUnicodeText_1_00(
+        left,
+        position_y,
+        actual_text,
+        right,
+        text_color_game_value
+    );
+  } else /* if (running_game_version >= VERSION_1_11
+      && running_game_version <= LOD_1_14D) */ {
+    D2_D2Client_DrawCenteredUnicodeText_1_12A(
+        left,
+        position_y,
+        actual_text,
+        right,
+        text_color_game_value
+    );
+  }
 }
 
 void D2_D2Client_DrawCenteredUnicodeText_1_00(
@@ -102,6 +154,29 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
   CallFastcallFunction(
       game_address->raw_address,
       5,
+      left,
+      position_y,
+      text,
+      right,
+      text_color
+  );
+}
+
+void D2_D2Client_DrawCenteredUnicodeText_1_12A(
+    int32_t left,
+    int32_t position_y,
+    const struct D2_UnicodeChar_1_00* text,
+    int32_t right,
+    /* enum D2_TextColor_1_00 */ int32_t text_color
+) {
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
+
+  D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
+      game_address->raw_address,
       left,
       position_y,
       text,
