@@ -55,7 +55,9 @@
 #endif /* MAPI_WIDE_LIT */
 
 #ifndef __FILEW__
+#if !defined(_MSC_VER)
 #define __FILEW__ MAPI_WIDE_LIT(__FILE__)
+#endif /* defined(_MSC_VER) */
 #endif /* __FILEW__ */
 
 #endif /* SGMAPI_WIDE_MACRO_H_ */
