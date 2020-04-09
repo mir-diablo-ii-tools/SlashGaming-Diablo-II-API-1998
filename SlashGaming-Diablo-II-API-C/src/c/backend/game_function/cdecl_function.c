@@ -79,7 +79,11 @@ ASM_X86_LABEL(CallCdeclFunction_PushStackArgsLoopEnd);
 
   // Call the function.
   ASM_X86(call dword ptr [ebp + 8]);
-  ASM_X86(add esp, dword ptr [ebp + 12])
+
+  // Clean the stack
+  ASM_X86(mov ecx, dword ptr [ebp + 12]);
+  ASM_X86(sal ecx, 2); // Optimization of: lea ecx, dword ptr [ecx * 4]
+  ASM_X86(add esp, ecx);
 
   ASM_X86(pop edx);
   ASM_X86(pop ecx);
