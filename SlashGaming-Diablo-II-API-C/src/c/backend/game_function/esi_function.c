@@ -55,6 +55,7 @@ __declspec(naked) void* __cdecl CallEsiFunction(
   ASM_X86(push ebp);
   ASM_X86(mov ebp, esp);
 
+  ASM_X86(push esi);
   ASM_X86(push ecx);
   ASM_X86(push edx);
 
@@ -90,6 +91,7 @@ ASM_X86_LABEL(CallEsicallFunction_PushStackArgsLoopEnd);
 
   ASM_X86(pop edx);
   ASM_X86(pop ecx);
+  ASM_X86(pop esi);
 
   ASM_X86(leave);
   ASM_X86(ret);
