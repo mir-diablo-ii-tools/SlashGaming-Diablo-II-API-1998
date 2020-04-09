@@ -48,12 +48,12 @@
 #include <pthread.h>
 #include <stdint.h>
 
+#include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
+#include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
-#include "../../../../include/c/game_version.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
 static const struct MAPI_GameAddress* game_address;
@@ -70,7 +70,8 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version < VERSION_1_11) {
+  if (running_game_version >= VERSION_1_00
+      && running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) cel_context;
 
