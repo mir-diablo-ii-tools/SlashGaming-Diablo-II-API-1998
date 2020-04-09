@@ -117,8 +117,9 @@ void D2_D2Client_DrawCenteredUnicodeText(
 
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if ((running_game_version >= VERSION_1_00
+      && running_game_version <= VERSION_1_10)
+      || running_game_version >= CLASSIC_1_14A) {
     D2_D2Client_DrawCenteredUnicodeText_1_00(
         left,
         position_y,
@@ -127,7 +128,7 @@ void D2_D2Client_DrawCenteredUnicodeText(
         text_color_game_value
     );
   } else /* if (running_game_version >= VERSION_1_11
-      && running_game_version <= LOD_1_14D) */ {
+      && running_game_version <= VERSION_1_13D) */ {
     D2_D2Client_DrawCenteredUnicodeText_1_12A(
         left,
         position_y,
