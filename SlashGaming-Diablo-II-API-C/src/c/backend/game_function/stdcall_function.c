@@ -67,15 +67,15 @@ __declspec(naked) void* __cdecl CallStdcallFunction(
   // pointer of the parameters after it.
   ASM_X86(lea eax, dword ptr [ebp + 12]);
   ASM_X86(lea eax, dword ptr [eax + ecx * 4]);
-ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
+ASM_X86_LABEL(CallStdcallFunction_PushStackArgsLoop);
   ASM_X86(test ecx, ecx);
-  ASM_X86(jz CallFastcallFunction_PushStackArgsLoopEnd);
+  ASM_X86(jz CallStdcallFunction_PushStackArgsLoopEnd);
 
   ASM_X86(push dword ptr [eax]);
   ASM_X86(sub ecx, 1);
   ASM_X86(sub eax, 4);
-  ASM_X86(jmp CallFastcallFunction_PushStackArgsLoop);
-ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoopEnd);
+  ASM_X86(jmp CallStdcallFunction_PushStackArgsLoop);
+ASM_X86_LABEL(CallStdcallFunction_PushStackArgsLoopEnd);
 
   // Call the function.
   ASM_X86(call dword ptr [ebp + 8]);

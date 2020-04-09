@@ -67,17 +67,17 @@ __declspec(naked) void* __cdecl CallThiscallFunction(
   // pointer of the parameters after it.
   ASM_X86(lea eax, dword ptr [ebp + 12]);
   ASM_X86(lea eax, dword ptr [eax + ecx * 4]);
-ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
+ASM_X86_LABEL(CallThiscallFunction_PushStackArgsLoop);
   ASM_X86(cmp ecx, 2);
-  ASM_X86(jl CallFastcallFunction_PushStackArgsLoopEnd);
+  ASM_X86(jl CallThiscallFunction_PushStackArgsLoopEnd);
 
   ASM_X86(push dword ptr [eax]);
   ASM_X86(sub ecx, 1);
   ASM_X86(sub eax, 4);
-  ASM_X86(jmp CallFastcallFunction_PushStackArgsLoop);
-ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoopEnd);
+  ASM_X86(jmp CallThiscallFunction_PushStackArgsLoop);
+ASM_X86_LABEL(CallThiscallFunction_PushStackArgsLoopEnd);
 
-  // We do not conditionally branch when setting the ecx registers, because it
+  // We do not conditionally branch when setting the ecx register, because it
   // incurs additional cost (in readability and execution) with no realistic
   // benefit. the fact that if the called function has no parameters, the
   // register values are overriden anyways.
