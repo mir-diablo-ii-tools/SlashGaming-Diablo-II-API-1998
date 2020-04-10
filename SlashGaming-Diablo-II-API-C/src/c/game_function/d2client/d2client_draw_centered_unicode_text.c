@@ -117,8 +117,7 @@ void D2_D2Client_DrawCenteredUnicodeText(
 
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if ((running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10)
+  if (running_game_version <= VERSION_1_10
       || running_game_version >= CLASSIC_1_14A) {
     D2_D2Client_DrawCenteredUnicodeText_1_00(
         left,

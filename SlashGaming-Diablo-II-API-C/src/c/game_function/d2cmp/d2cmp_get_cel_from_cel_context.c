@@ -70,8 +70,7 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) cel_context;
 
