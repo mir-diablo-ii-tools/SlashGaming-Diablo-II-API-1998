@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2WIN_FUNCTION_H_
-#define SGD2MAPI_C_GAME_FUNC_D2WIN_FUNCTION_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_FUNCTION_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_FUNCTION_H_
 
 #include "d2win/d2win_draw_unicode_text.h"
 #include "d2win/d2win_get_pop_up_unicode_text_width_and_height.h"
@@ -57,4 +57,4 @@
 #include "d2win/d2win_unload_cel_file.h"
 #include "d2win/d2win_unload_mpq.h"
 
-#endif // SGD2MAPI_C_GAME_FUNC_D2WIN_FUNCTION_H_
+#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_FUNCTION_H_

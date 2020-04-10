@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_LOAD_MPQ_H_
-#define SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_LOAD_MPQ_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -113,4 +113,4 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
 #endif // __cplusplus
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_LOAD_MPQ_H_
+#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_

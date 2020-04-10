@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
-#define SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -80,4 +80,4 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText_1_00(
 #endif // __cplusplus
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
