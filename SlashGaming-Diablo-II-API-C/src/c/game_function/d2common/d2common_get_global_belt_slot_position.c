@@ -82,7 +82,7 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
         actual_out_belt_slot,
         belt_slot_index
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
     D2_D2Common_GetGlobalBeltSlotPosition_1_07(
         belt_record_index,
         inventory_arrange_mode,

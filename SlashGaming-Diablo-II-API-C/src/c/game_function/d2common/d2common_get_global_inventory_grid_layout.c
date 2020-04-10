@@ -80,7 +80,7 @@ void D2_D2Common_GetGlobalInventoryGridLayout(
         inventory_record_index,
         actual_out_grid_layout
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
     D2_D2Common_GetGlobalInventoryGridLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,

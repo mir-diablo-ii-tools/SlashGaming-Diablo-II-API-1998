@@ -80,7 +80,7 @@ void D2_D2Common_GetGlobalInventoryPosition(
         inventory_record_index,
         actual_out_position
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
     D2_D2Common_GetGlobalInventoryPosition_1_07(
         inventory_record_index,
         inventory_arrange_mode,

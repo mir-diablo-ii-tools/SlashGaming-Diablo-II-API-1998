@@ -82,7 +82,7 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout(
         actual_out_equipment_slot_layout,
         equipment_slot_index
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
     D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,
