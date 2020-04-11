@@ -50,8 +50,8 @@
 #include <stdint.h>
 
 #include "../../game_bool.h"
-#include "../../game_struct/d2_cel_context.h"
 #include "../../game_constant/d2_draw_effect.h"
+#include "../../game_struct/d2_cel_context.h"
 #include "../../game_undefined.h"
 
 #include "../../../dllexport_define.inc"

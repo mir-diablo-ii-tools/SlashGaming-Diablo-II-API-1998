@@ -48,12 +48,12 @@
 #include <pthread.h>
 #include <stdint.h>
 
+#include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
+#include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
-#include "../../../../include/c/game_version.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
 static const struct MAPI_GameAddress* game_address;
@@ -93,7 +93,7 @@ bool D2_D2GFX_DrawCelContext(
         D2_DrawEffect_ToGameValue(draw_effect),
         unknown_06__set_to_nullptr
     );
-  } else /* if (running_game_version > VERSION_1_13A_BETA) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     return (bool) D2_D2GFX_DrawCelContext_1_13C(
         (struct D2_CelContext_1_13C*) cel_context,
         position_x,
