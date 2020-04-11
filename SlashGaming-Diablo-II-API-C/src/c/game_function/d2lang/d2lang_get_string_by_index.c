@@ -65,7 +65,7 @@ static void InitGameAddress(void) {
 }
 
 const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
-    uint32_t id
+    unsigned int id
 ) {
   const struct D2_UnicodeChar_1_00* actual_return_value =
       D2_D2Lang_GetStringByIndex_1_00(id);
