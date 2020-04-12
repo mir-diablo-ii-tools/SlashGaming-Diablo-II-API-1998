@@ -49,10 +49,10 @@
 #include <stdint.h>
 
 #include "../../../asm_x86_macro.h"
+#include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/thiscall_function.h"
-#include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
 static const struct MAPI_GameAddress* game_address;
