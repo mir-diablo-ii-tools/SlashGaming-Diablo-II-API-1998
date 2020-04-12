@@ -47,13 +47,27 @@
 #define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
 
 #include <stddef.h>
+#include <stdint.h>
 
 #include "../../../include/c/game_address/game_address_struct.h"
+
+enum LocatorType {
+  LOCATOR_TYPE_OFFSET,
+  LOCATOR_TYPE_ORDINAL,
+  LOCATOR_TYPE_DECORATED_NAME
+};
+
+union LocatorValue {
+  ptrdiff_t offset;
+  int16_t ordinal;
+  const char* decorated_name;
+};
 
 struct MAPI_GameAddressTableEntry {
   const char* library_path;
   const char* address_name;
-  struct MAPI_GameAddress game_address;
+  union LocatorValue locator_value;
+  enum LocatorType locator_type;
 };
 
 struct MAPI_GameAddressTable {
