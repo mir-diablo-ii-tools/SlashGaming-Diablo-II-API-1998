@@ -56,10 +56,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Win.dll",
       "DrawUnicodeText"
   );
@@ -98,7 +99,7 @@ void D2_D2Win_DrawUnicodeText_1_00(
   }
 
   CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       5,
       text,
       position_x,

@@ -55,10 +55,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Client.dll",
       "GameType"
   );
@@ -75,7 +76,7 @@ int32_t D2_D2Client_GetGameType_1_00(void) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return *(int32_t*) game_address->raw_address;
+  return *(int32_t*) game_address.raw_address;
 }
 
 void D2_D2Client_SetGameType(
@@ -93,5 +94,5 @@ void D2_D2Client_SetGameType_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  *(int32_t*) game_address->raw_address = game_type;
+  *(int32_t*) game_address.raw_address = game_type;
 }

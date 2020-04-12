@@ -56,10 +56,11 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Common.dll",
       "GetGlobalInventoryGridLayout"
   );
@@ -100,7 +101,7 @@ void D2_D2Common_GetGlobalInventoryGridLayout_1_00(
   }
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       2,
       inventory_record_index,
       out_grid_layout
@@ -119,7 +120,7 @@ void D2_D2Common_GetGlobalInventoryGridLayout_1_07(
   }
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       inventory_record_index,
       inventory_arrange_mode,

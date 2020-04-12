@@ -56,10 +56,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Win.dll",
       "LoadMpq"
   );
@@ -136,7 +137,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
   }
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       5,
       dll_file_name,
       mpq_file_name,
@@ -161,7 +162,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
   }
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       dll_file_name,
       mpq_file_name,
@@ -188,7 +189,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_09D(
   }
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       7,
       dll_file_name,
       mpq_file_name,
@@ -246,7 +247,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
   }
 
   return D2_D2Win_LoadMpq_1_11_Shim(
-      game_address->raw_address,
+      game_address.raw_address,
       dll_file_name,
       mpq_file_name,
       mpq_name,
@@ -269,7 +270,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
   }
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       mpq_file_name,
       is_set_err_on_drive_query_fail,

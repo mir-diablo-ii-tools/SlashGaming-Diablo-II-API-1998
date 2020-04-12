@@ -55,10 +55,11 @@
 #include "../../backend/game_function/fastcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Lang.dll",
       "Unicode_strcmp"
   );
@@ -90,7 +91,7 @@ int32_t D2_D2Lang_Unicode_strcmp_1_00(
   }
 
   return (int32_t) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       2,
       str1,
       str2

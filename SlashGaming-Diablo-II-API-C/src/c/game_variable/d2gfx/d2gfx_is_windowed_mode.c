@@ -55,10 +55,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2GFX.dll",
       "IsWindowedMode"
   );
@@ -75,7 +76,7 @@ mapi_bool32 D2_D2GFX_GetIsWindowedMode_1_00(void) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return *(mapi_bool32*) game_address->raw_address;
+  return *(mapi_bool32*) game_address.raw_address;
 }
 
 void D2_D2GFX_SetIsWindowedMode(bool is_window_mode) {
@@ -89,5 +90,5 @@ void D2_D2GFX_SetIsWindowedMode_1_00(mapi_bool32 is_window_mode) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  *(mapi_bool32*) game_address->raw_address = is_window_mode;
+  *(mapi_bool32*) game_address.raw_address = is_window_mode;
 }

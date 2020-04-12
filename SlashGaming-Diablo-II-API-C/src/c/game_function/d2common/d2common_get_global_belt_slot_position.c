@@ -56,10 +56,11 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Common.dll",
       "GetGlobalBeltSlotPosition"
   );
@@ -104,7 +105,7 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
   }
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       belt_record_index,
       out_belt_slot,
@@ -125,7 +126,7 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
   }
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       belt_record_index,
       inventory_arrange_mode,

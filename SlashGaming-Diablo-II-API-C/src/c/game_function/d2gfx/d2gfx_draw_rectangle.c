@@ -56,10 +56,11 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2GFX.dll",
       "DrawRectangle"
   );
@@ -98,7 +99,7 @@ void D2_D2GFX_DrawRectangle_1_00(
   }
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       left,
       top,

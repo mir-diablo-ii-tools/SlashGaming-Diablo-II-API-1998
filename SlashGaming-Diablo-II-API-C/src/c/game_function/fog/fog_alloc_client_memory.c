@@ -56,10 +56,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "Fog.dll",
       "AllocClientMemory"
   );
@@ -92,7 +93,7 @@ void* D2_Fog_AllocClientMemory_1_00(
   }
 
   return (void*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       size,
       source_file,

@@ -55,10 +55,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Common.dll",
       "GlobalInventoryTxtRecordsCount"
   );
@@ -75,7 +76,7 @@ uint32_t D2_D2Common_GetGlobalInventoryTxtRecordsCount_1_00(void) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return *(uint32_t*) game_address->raw_address;
+  return *(uint32_t*) game_address.raw_address;
 }
 
 void D2_D2Common_SetGlobalInventoryTxtRecordsCount(
@@ -93,5 +94,5 @@ void D2_D2Common_SetGlobalInventoryTxtRecordsCount_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  *(uint32_t*) game_address->raw_address = records_count;
+  *(uint32_t*) game_address.raw_address = records_count;
 }

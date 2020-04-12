@@ -56,10 +56,11 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2CMP.dll",
       "GetCelFromCelContext"
   );
@@ -104,7 +105,7 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_00(
   }
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );
@@ -120,7 +121,7 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_12A(
   }
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );
@@ -136,7 +137,7 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_13C(
   }
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );

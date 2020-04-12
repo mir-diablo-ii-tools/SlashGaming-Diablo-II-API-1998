@@ -55,10 +55,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Client.dll",
       "ScreenOpenMode"
   );
@@ -77,7 +78,7 @@ uint32_t D2_D2Client_GetScreenOpenMode_1_07(void) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return *(uint32_t*) game_address->raw_address;
+  return *(uint32_t*) game_address.raw_address;
 }
 
 void D2_D2Client_SetScreenOpenMode(
@@ -97,5 +98,5 @@ void D2_D2Client_SetScreenOpenMode_1_07(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  *(uint32_t*) game_address->raw_address = screen_open_mode;
+  *(uint32_t*) game_address.raw_address = screen_open_mode;
 }

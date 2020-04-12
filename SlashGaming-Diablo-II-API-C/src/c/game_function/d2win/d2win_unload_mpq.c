@@ -57,10 +57,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Win.dll",
       "UnloadMpq"
   );
@@ -96,7 +97,7 @@ void D2_D2Win_UnloadMpq_1_00(
   }
 
   CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       mpq_archive_handle
   );
@@ -112,7 +113,7 @@ void D2_D2Win_UnloadMpq_1_11(
   }
 
   CallEsiFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       mpq_archive_handle
   );

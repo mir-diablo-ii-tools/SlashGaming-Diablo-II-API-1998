@@ -56,10 +56,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Win.dll",
       "LoadCelFile"
   );
@@ -86,7 +87,7 @@ struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
   }
 
   return (struct D2_CelFile_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       2,
       cel_file_path,
       is_dcc_else_dc6

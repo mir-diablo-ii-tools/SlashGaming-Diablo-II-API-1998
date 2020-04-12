@@ -55,10 +55,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Common.dll",
       "GlobalBeltsTxt"
   );
@@ -75,7 +76,7 @@ struct D2_BeltRecord_1_00* D2_D2Common_GetGlobalBeltsTxt_1_00(void) {
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  return *(struct D2_BeltRecord_1_00**) game_address->raw_address;
+  return *(struct D2_BeltRecord_1_00**) game_address.raw_address;
 }
 
 void D2_D2Common_SetGlobalBeltsTxt(
@@ -95,5 +96,5 @@ void D2_D2Common_SetGlobalBeltsTxt_1_00(
     ExitOnCallOnceFailure(__FILEW__, __LINE__);
   }
 
-  *(struct D2_BeltRecord_1_00**) game_address->raw_address = belt_record;
+  *(struct D2_BeltRecord_1_00**) game_address.raw_address = belt_record;
 }

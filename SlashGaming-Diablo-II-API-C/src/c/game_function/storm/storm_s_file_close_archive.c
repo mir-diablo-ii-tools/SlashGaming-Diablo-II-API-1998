@@ -56,10 +56,11 @@
 #include "../../../wide_macro.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "Storm.dll",
       "SFileCloseArchive"
   );
@@ -83,7 +84,7 @@ mapi_bool32 D2_Storm_SFileCloseArchive_1_00(
   }
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       mpq_archive
   );

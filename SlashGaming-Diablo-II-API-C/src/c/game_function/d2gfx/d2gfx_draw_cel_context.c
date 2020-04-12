@@ -56,10 +56,11 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2GFX.dll",
       "DrawCelContext"
   );
@@ -120,7 +121,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
   }
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,
@@ -146,7 +147,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
   }
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,
@@ -172,7 +173,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
   }
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,

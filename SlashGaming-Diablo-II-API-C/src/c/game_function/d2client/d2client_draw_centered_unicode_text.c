@@ -56,10 +56,11 @@
 #include "../../backend/error_handling.h"
 
 static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
+  LoadGameAddress(
+      &game_address,
       "D2Client.dll",
       "DrawCenteredUnicodeText"
   );
@@ -152,7 +153,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
   }
 
   CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       5,
       left,
       position_y,
@@ -176,7 +177,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_12A(
   }
 
   D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
-      game_address->raw_address,
+      game_address.raw_address,
       left,
       position_y,
       text,
