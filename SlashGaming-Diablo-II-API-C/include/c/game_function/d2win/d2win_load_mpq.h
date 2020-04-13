@@ -69,7 +69,7 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
-    int32_t unused,
+    void* unused_04__set_to_nullptr,
     void* (*on_fail_callback)(void)
 );
 
@@ -77,16 +77,16 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
-    int32_t unused,
+    void* unused_04__set_to_nullptr,
     mapi_bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void)
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_09D(
+DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
-    int32_t unused,
+    void* unused_04__set_to_nullptr,
     mapi_bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void),
     int32_t priority
