@@ -62,10 +62,6 @@ DLLEXPORT void D2_D2Win_UnloadMpq_1_00(
     struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
 );
 
-DLLEXPORT void D2_D2Win_UnloadMpq_1_11(
-    struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
-);
-
 #ifdef __cplusplus
 } // extern "C"
 #endif // __cplusplus
