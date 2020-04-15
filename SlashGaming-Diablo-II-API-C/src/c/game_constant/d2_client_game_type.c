@@ -46,12 +46,11 @@
 #include "../../../include/c/game_constant/d2_client_game_type.h"
 
 #include "../../../include/c/game_version.h"
-
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
-static enum D2_ClientGameType_1_00 ToGameValue_1_00(
+enum D2_ClientGameType_1_00 D2_ClientGameType_ToGameValue_1_00(
     enum D2_ClientGameType api_value
 ) {
   switch (api_value) {
@@ -83,7 +82,7 @@ static enum D2_ClientGameType_1_00 ToGameValue_1_00(
   }
 }
 
-static enum D2_ClientGameType ToApiValue_1_00(
+enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_00(
     enum D2_ClientGameType_1_00 game_value
 ) {
   switch (game_value) {
@@ -115,32 +114,32 @@ static enum D2_ClientGameType ToApiValue_1_00(
   }
 }
 
-static enum D2_ClientGameType_1_09D ToGameValue_1_09D(
+enum D2_ClientGameType_1_07 D2_ClientGameType_ToGameValue_1_07(
     enum D2_ClientGameType api_value
 ) {
   switch (api_value) {
     case CLIENT_GAME_TYPE_SINGLE_PLAYER: {
-      return CLIENT_GAME_TYPE_1_09D_SINGLE_PLAYER;
+      return CLIENT_GAME_TYPE_1_07_SINGLE_PLAYER;
     }
 
     case CLIENT_GAME_TYPE_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_BATTLE_NET_JOIN;
+      return CLIENT_GAME_TYPE_1_07_BATTLE_NET_JOIN;
     }
 
     case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST: {
-      return CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_HOST;
+      return CLIENT_GAME_TYPE_1_07_OPEN_BATTLE_NET_HOST;
     }
 
     case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_JOIN;
+      return CLIENT_GAME_TYPE_1_07_OPEN_BATTLE_NET_JOIN;
     }
 
     case CLIENT_GAME_TYPE_LAN_HOST: {
-      return CLIENT_GAME_TYPE_1_09D_LAN_HOST;
+      return CLIENT_GAME_TYPE_1_07_LAN_HOST;
     }
 
     case CLIENT_GAME_TYPE_LAN_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_LAN_JOIN;
+      return CLIENT_GAME_TYPE_1_07_LAN_JOIN;
     }
 
     default: {
@@ -155,31 +154,31 @@ static enum D2_ClientGameType_1_09D ToGameValue_1_09D(
   }
 }
 
-static enum D2_ClientGameType ToApiValue_1_09D(
-    enum D2_ClientGameType_1_09D game_value
+enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
+    enum D2_ClientGameType_1_07 game_value
 ) {
   switch (game_value) {
-    case CLIENT_GAME_TYPE_1_09D_SINGLE_PLAYER: {
+    case CLIENT_GAME_TYPE_1_07_SINGLE_PLAYER: {
       return CLIENT_GAME_TYPE_SINGLE_PLAYER;
     }
 
-    case CLIENT_GAME_TYPE_1_09D_BATTLE_NET_JOIN: {
+    case CLIENT_GAME_TYPE_1_07_BATTLE_NET_JOIN: {
       return CLIENT_GAME_TYPE_BATTLE_NET_JOIN;
     }
 
-    case CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_HOST: {
+    case CLIENT_GAME_TYPE_1_07_OPEN_BATTLE_NET_HOST: {
       return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST;
     }
 
-    case CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_JOIN: {
+    case CLIENT_GAME_TYPE_1_07_OPEN_BATTLE_NET_JOIN: {
       return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN;
     }
 
-    case CLIENT_GAME_TYPE_1_09D_LAN_HOST: {
+    case CLIENT_GAME_TYPE_1_07_LAN_HOST: {
       return CLIENT_GAME_TYPE_LAN_HOST;
     }
 
-    case CLIENT_GAME_TYPE_1_09D_LAN_JOIN: {
+    case CLIENT_GAME_TYPE_1_07_LAN_JOIN: {
       return CLIENT_GAME_TYPE_LAN_JOIN;
     }
 
@@ -198,19 +197,19 @@ static enum D2_ClientGameType ToApiValue_1_09D(
 int D2_ClientGameType_ToGameValue(enum D2_ClientGameType api_value) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version < VERSION_1_07) {
-    return ToGameValue_1_00(api_value);
-  } else {
-    return ToGameValue_1_09D(api_value);
+  if (running_game_version <= VERSION_1_06B) {
+    return D2_ClientGameType_ToGameValue_1_00(api_value);
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
+    return D2_ClientGameType_ToGameValue_1_07(api_value);
   }
 }
 
 enum D2_ClientGameType D2_ClientGameType_ToApiValue(int game_value) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version < VERSION_1_07) {
-    return ToApiValue_1_00(game_value);
-  } else {
-    return ToApiValue_1_09D(game_value);
+  if (running_game_version <= VERSION_1_06B) {
+    return D2_ClientGameType_ToApiValue_1_00(game_value);
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
+    return D2_ClientGameType_ToApiValue_1_07(game_value);
   }
 }

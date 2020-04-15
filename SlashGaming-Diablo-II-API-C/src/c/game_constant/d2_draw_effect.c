@@ -46,12 +46,11 @@
 #include "../../../include/c/game_constant/d2_draw_effect.h"
 
 #include "../../../include/c/game_version.h"
-
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
-static enum D2_DrawEffect_1_00 ToGameValue_1_00(
+enum D2_DrawEffect_1_00 D2_DrawEffect_ToGameValue_1_00(
     enum D2_DrawEffect api_value
 ) {
   switch (api_value) {
@@ -99,7 +98,7 @@ static enum D2_DrawEffect_1_00 ToGameValue_1_00(
   }
 }
 
-static enum D2_DrawEffect ToApiValue_1_00(
+enum D2_DrawEffect D2_DrawEffect_ToApiValue_1_00(
     enum D2_DrawEffect_1_00 game_value
 ) {
   switch (game_value) {

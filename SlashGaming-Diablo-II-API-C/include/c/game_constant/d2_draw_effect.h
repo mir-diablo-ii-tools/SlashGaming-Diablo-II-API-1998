@@ -99,7 +99,15 @@ extern "C" {
 
 DLLEXPORT int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value);
 
+DLLEXPORT enum D2_DrawEffect_1_00 D2_DrawEffect_ToGameValue_1_00(
+    enum D2_DrawEffect api_value
+);
+
 DLLEXPORT enum D2_DrawEffect D2_DrawEffect_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_DrawEffect D2_DrawEffect_ToApiValue_1_00(
+    enum D2_DrawEffect_1_00 game_value
+);
 
 #ifdef __cplusplus
 } // extern "C"

@@ -46,12 +46,11 @@
 #include "../../../include/c/game_constant/d2_difficulty_level.h"
 
 #include "../../../include/c/game_version.h"
-
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
-static enum D2_DifficultyLevel_1_00 ToGameValue_1_00(
+enum D2_DifficultyLevel_1_00 D2_DifficultyLevel_ToGameValue_1_00(
     enum D2_DifficultyLevel api_value
 ) {
   switch (api_value) {
@@ -79,7 +78,7 @@ static enum D2_DifficultyLevel_1_00 ToGameValue_1_00(
   }
 }
 
-static enum D2_DifficultyLevel ToApiValue_1_00(
+enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue_1_00(
     enum D2_DifficultyLevel_1_00 game_value
 ) {
   switch (game_value) {

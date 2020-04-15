@@ -125,7 +125,15 @@ extern "C" {
 
 DLLEXPORT int D2_TextColor_ToGameValue(enum D2_TextColor api_value);
 
+DLLEXPORT enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(
+    enum D2_TextColor api_value
+);
+
 DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue_1_00(
+    enum D2_TextColor_1_00 game_value
+);
 
 #ifdef __cplusplus
 } // extern "C"

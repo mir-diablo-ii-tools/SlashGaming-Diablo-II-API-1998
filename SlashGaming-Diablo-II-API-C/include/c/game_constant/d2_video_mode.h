@@ -97,7 +97,15 @@ extern "C" {
 
 DLLEXPORT int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value);
 
+DLLEXPORT enum D2_VideoMode_1_00 D2_VideoMode_ToGameValue_1_00(
+    enum D2_VideoMode api_value
+);
+
 DLLEXPORT enum D2_VideoMode D2_VideoMode_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_VideoMode D2_VideoMode_ToApiValue_1_00(
+    enum D2_VideoMode_1_00 game_value
+);
 
 #ifdef __cplusplus
 } // extern "C"

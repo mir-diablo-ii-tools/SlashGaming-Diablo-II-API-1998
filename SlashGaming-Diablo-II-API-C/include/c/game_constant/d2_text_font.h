@@ -116,7 +116,11 @@ extern "C" {
 
 DLLEXPORT int D2_TextFont_ToGameValue(enum D2_TextFont api_value);
 
+DLLEXPORT enum D2_TextFont_1_00 D2_TextFont_ToGameValue_1_00(enum D2_TextFont api_value);
+
 DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue_1_00(enum D2_TextFont_1_00 game_value);
 
 #ifdef __cplusplus
 } // extern "C"

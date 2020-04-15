@@ -56,11 +56,11 @@
 extern "C" {
 #endif // __cplusplus
 
-DLLEXPORT enum D2_ClientGameType D2_D2Client_GetGameType(void);
-DLLEXPORT int32_t D2_D2Client_GetGameType_1_00(void);
+DLLEXPORT enum D2_ClientGameType D2_D2Client_GetGameType_ApiValue(void);
+DLLEXPORT int32_t D2_D2Client_GetGameType_GameValue(void);
 
-DLLEXPORT void D2_D2Client_SetGameType(enum D2_ClientGameType game_type);
-DLLEXPORT void D2_D2Client_SetGameType_1_00(int32_t value);
+DLLEXPORT void D2_D2Client_SetGameType_ApiValue(enum D2_ClientGameType game_type);
+DLLEXPORT void D2_D2Client_SetGameType_GameValue(int32_t game_type);
 
 #ifdef __cplusplus
 } // extern "C"

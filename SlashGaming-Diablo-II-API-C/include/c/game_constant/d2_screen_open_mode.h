@@ -91,7 +91,15 @@ extern "C" {
 
 DLLEXPORT int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value);
 
+DLLEXPORT enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
+    enum D2_ScreenOpenMode api_value
+);
+
 DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
+    enum D2_ScreenOpenMode_1_07 game_value
+);
 
 #ifdef __cplusplus
 } // extern "C"

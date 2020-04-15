@@ -46,12 +46,11 @@
 #include "../../../include/c/game_constant/d2_screen_open_mode.h"
 
 #include "../../../include/c/game_version.h"
-
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
-static enum D2_ScreenOpenMode_1_07 ToGameValue_1_07(
+enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
     enum D2_ScreenOpenMode api_value
 ) {
   switch (api_value) {
@@ -83,7 +82,7 @@ static enum D2_ScreenOpenMode_1_07 ToGameValue_1_07(
   }
 }
 
-static enum D2_ScreenOpenMode ToApiValue_1_07(
+enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
     enum D2_ScreenOpenMode_1_07 game_value
 ) {
   switch (game_value) {
@@ -116,9 +115,9 @@ static enum D2_ScreenOpenMode ToApiValue_1_07(
 }
 
 int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value) {
-  return ToGameValue_1_07(api_value);
+  return D2_ScreenOpenMode_ToGameValue_1_07(api_value);
 }
 
 enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value) {
-  return ToApiValue_1_07(game_value);
+  return D2_ScreenOpenMode_ToApiValue_1_07(game_value);
 }

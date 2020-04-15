@@ -46,12 +46,11 @@
 #include "../../../include/c/game_constant/d2_text_font.h"
 
 #include "../../../include/c/game_version.h"
-
+#include "../../wide_macro.h"
 #include "../backend/encoding.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
-static enum D2_TextFont_1_00 ToGameValue_1_00(
+enum D2_TextFont_1_00 D2_TextFont_ToGameValue_1_00(
     enum D2_TextFont api_value
 ) {
   switch (api_value) {
@@ -119,7 +118,7 @@ static enum D2_TextFont_1_00 ToGameValue_1_00(
   }
 }
 
-static enum D2_TextFont ToApiValue_1_00(
+enum D2_TextFont D2_TextFont_ToApiValue_1_00(
     enum D2_TextFont_1_00 game_value
 ) {
   switch (game_value) {
@@ -192,9 +191,9 @@ static enum D2_TextFont ToApiValue_1_00(
 }
 
 int D2_TextFont_ToGameValue(enum D2_TextFont api_value) {
-  return ToGameValue_1_00(api_value);
+  return D2_TextFont_ToGameValue_1_00(api_value);
 }
 
 enum D2_TextFont D2_TextFont_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_TextFont_ToApiValue_1_00(game_value);
 }
