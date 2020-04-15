@@ -91,8 +91,16 @@ DLLEXPORT int D2_DifficultyLevel_ToGameValue(
     enum D2_DifficultyLevel api_value
 );
 
-DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToAPIValue(
+DLLEXPORT enum D2_DifficultyLevel_1_00 D2_DifficultyLevel_ToGameValue_1_00(
+    enum D2_DifficultyLevel api_value
+);
+
+DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue(
     int game_value
+);
+
+DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue_1_00(
+    enum D2_DifficultyLevel_1_00 game_value
 );
 
 #ifdef __cplusplus
