@@ -66,10 +66,26 @@ static void InitGameAddress(void) {
 }
 
 enum D2_ClientGameType D2_D2Client_GetGameType(void) {
-  return D2_D2Client_GetGameType_1_00();
+  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+
+  if (running_game_version <= VERSION_1_06B) {
+    return D2_ClientGameType_ToApiValue_1_00(D2_D2Client_GetGameType_1_00());
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
+    return D2_ClientGameType_ToApiValue_1_07(D2_D2Client_GetGameType_1_07());
+  }
 }
 
-int32_t D2_D2Client_GetGameType_1_00(void) {
+enum D2_ClientGameType_1_00 D2_D2Client_GetGameType_1_00(void) {
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
+
+  return *(int32_t*) game_address.raw_address;
+}
+
+enum D2_ClientGameType_1_07 D2_D2Client_GetGameType_1_07(void) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
   if (once_return != 0) {
@@ -82,11 +98,33 @@ int32_t D2_D2Client_GetGameType_1_00(void) {
 void D2_D2Client_SetGameType(
     enum D2_ClientGameType game_type
 ) {
-  D2_D2Client_SetGameType_1_00(game_type);
+  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+
+  if (running_game_version <= VERSION_1_06B) {
+    D2_D2Client_SetGameType_1_00(
+        D2_ClientGameType_ToGameValue_1_00(game_type)
+    );
+  } else /* if (running_game_version >= VERSION_1_07_BETA) */ {
+    D2_D2Client_SetGameType_1_07(
+        D2_ClientGameType_ToGameValue_1_07(game_type)
+    );
+  }
 }
 
 void D2_D2Client_SetGameType_1_00(
-    int32_t game_type
+    enum D2_ClientGameType_1_00 game_type
+) {
+  int once_return = pthread_once(&once_flag, &InitGameAddress);
+
+  if (once_return != 0) {
+    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  }
+
+  *(int32_t*) game_address.raw_address = game_type;
+}
+
+void D2_D2Client_SetGameType_1_07(
+    enum D2_ClientGameType_1_07 game_type
 ) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
