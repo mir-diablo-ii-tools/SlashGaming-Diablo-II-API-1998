@@ -147,9 +147,9 @@ enum D2_DrawEffect D2_DrawEffect_ToApiValue_1_00(
 }
 
 int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value) {
-  return ToGameValue_1_00(api_value);
+  return D2_DrawEffect_ToGameValue_1_00(api_value);
 }
 
 enum D2_DrawEffect D2_DrawEffect_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_DrawEffect_ToApiValue_1_00(game_value);
 }

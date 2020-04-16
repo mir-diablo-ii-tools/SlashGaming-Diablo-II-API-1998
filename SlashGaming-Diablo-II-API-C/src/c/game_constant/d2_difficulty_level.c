@@ -107,9 +107,9 @@ enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue_1_00(
 }
 
 int D2_DifficultyLevel_ToGameValue(enum D2_DifficultyLevel api_value) {
-  return ToGameValue_1_00(api_value);
+  return D2_DifficultyLevel_ToGameValue_1_00(api_value);
 }
 
 enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_DifficultyLevel_ToApiValue_1_00(game_value);
 }
