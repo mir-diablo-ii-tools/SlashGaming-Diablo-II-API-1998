@@ -69,7 +69,7 @@ enum D2_DifficultyLevel D2_D2Client_GetDifficultyLevel(void) {
   return D2_D2Client_GetDifficultyLevel_1_00();
 }
 
-int32_t D2_D2Client_GetDifficultyLevel_1_00(void) {
+enum D2_DifficultyLevel_1_00 D2_D2Client_GetDifficultyLevel_1_00(void) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
   if (once_return != 0) {
@@ -82,11 +82,13 @@ int32_t D2_D2Client_GetDifficultyLevel_1_00(void) {
 void D2_D2Client_SetDifficultyLevel(
     enum D2_DifficultyLevel difficulty_level
 ) {
-  D2_D2Client_SetDifficultyLevel_1_00(difficulty_level);
+  D2_D2Client_SetDifficultyLevel_1_00(
+      D2_DifficultyLevel_ToGameValue_1_00(difficulty_level)
+  );
 }
 
 void D2_D2Client_SetDifficultyLevel_1_00(
-    int32_t difficulty_level
+    enum D2_DifficultyLevel_1_00 difficulty_level
 ) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
