@@ -66,12 +66,12 @@ static void InitGameAddress(void) {
 }
 
 enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void) {
-  return D2_ScreenOpenMode_ToApiValue(
+  return D2_ScreenOpenMode_ToApiValue_1_07(
       D2_D2Client_GetScreenOpenMode_1_07()
   );
 }
 
-uint32_t D2_D2Client_GetScreenOpenMode_1_07(void) {
+enum D2_ScreenOpenMode_1_07 D2_D2Client_GetScreenOpenMode_1_07(void) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
   if (once_return != 0) {
@@ -85,12 +85,12 @@ void D2_D2Client_SetScreenOpenMode(
     enum D2_ScreenOpenMode screen_open_mode
 ) {
   D2_D2Client_SetScreenOpenMode_1_07(
-      D2_ScreenOpenMode_ToGameValue(screen_open_mode)
+      D2_ScreenOpenMode_ToGameValue_1_07(screen_open_mode)
   );
 }
 
 void D2_D2Client_SetScreenOpenMode_1_07(
-    uint32_t screen_open_mode
+    enum D2_ScreenOpenMode_1_07 screen_open_mode
 ) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 

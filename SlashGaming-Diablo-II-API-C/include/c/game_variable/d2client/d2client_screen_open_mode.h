@@ -57,12 +57,14 @@ extern "C" {
 #endif // __cplusplus
 
 DLLEXPORT enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void);
-DLLEXPORT uint32_t D2_D2Client_GetScreenOpenMode_1_07(void);
+
+DLLEXPORT enum D2_ScreenOpenMode_1_07 D2_D2Client_GetScreenOpenMode_1_07(void);
 
 DLLEXPORT void D2_D2Client_SetScreenOpenMode(
     enum D2_ScreenOpenMode screen_open_mode
 );
-DLLEXPORT void D2_D2Client_SetScreenOpenMode_1_07(uint32_t screen_open_mode);
+
+DLLEXPORT void D2_D2Client_SetScreenOpenMode_1_07(enum D2_ScreenOpenMode_1_07 screen_open_mode);
 
 #ifdef __cplusplus
 } // extern "C"
