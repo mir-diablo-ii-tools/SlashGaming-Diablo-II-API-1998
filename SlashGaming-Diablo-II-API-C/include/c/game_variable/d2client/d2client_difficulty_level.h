@@ -46,8 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
 
-#include <stdint.h>
-
 #include "../../../../include/c/game_constant/d2_difficulty_level.h"
 
 #include "../../../dllexport_define.inc"
