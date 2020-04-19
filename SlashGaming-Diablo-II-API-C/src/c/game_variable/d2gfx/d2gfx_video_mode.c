@@ -66,12 +66,12 @@ static void InitGameAddress(void) {
 }
 
 enum D2_VideoMode D2_D2GFX_GetVideoMode(void) {
-  return D2_VideoMode_ToApiValue(
+  return D2_VideoMode_ToApiValue_1_00(
       D2_D2GFX_GetVideoMode_1_00()
   );
 }
 
-int32_t D2_D2GFX_GetVideoMode_1_00(void) {
+enum D2_VideoMode_1_00 D2_D2GFX_GetVideoMode_1_00(void) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
   if (once_return != 0) {
@@ -83,11 +83,11 @@ int32_t D2_D2GFX_GetVideoMode_1_00(void) {
 
 void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode) {
   D2_D2GFX_SetVideoMode_1_00(
-      D2_VideoMode_ToGameValue(video_mode)
+      D2_VideoMode_ToGameValue_1_00(video_mode)
   );
 }
 
-void D2_D2GFX_SetVideoMode_1_00(int32_t video_mode) {
+void D2_D2GFX_SetVideoMode_1_00(enum D2_VideoMode_1_00 video_mode) {
   int once_return = pthread_once(&once_flag, &InitGameAddress);
 
   if (once_return != 0) {
