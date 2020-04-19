@@ -149,6 +149,16 @@ uint_least8_t D2_BeltRecord_GetNumSlots(
   return actual_belt_record->num_slots;
 }
 
+void D2_BeltRecord_SetNumSlots(
+    struct D2_BeltRecord* belt_record,
+    int_least8_t num_slots
+) {
+  struct D2_BeltRecord_1_00* actual_belt_record =
+      (struct D2_BeltRecord_1_00*) belt_record;
+
+  actual_belt_record->num_slots = num_slots;
+}
+
 struct D2_PositionalRectangle* D2_BeltRecord_GetSlotPositions(
     struct D2_BeltRecord* belt_record
 ) {
