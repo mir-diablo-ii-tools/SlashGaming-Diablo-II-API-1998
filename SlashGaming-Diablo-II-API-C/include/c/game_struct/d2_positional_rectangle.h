@@ -46,7 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 
+#include <assert.h>
 #include <stdint.h>
+#include <stddef.h>
 
 #include "../../dllexport_define.inc"
 
@@ -172,6 +174,32 @@ DLLEXPORT void D2_PositionalRectangle_SetBottom(
 #ifdef __cplusplus
 } // extern "C"
 #endif // __cplusplus
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, left) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, right) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, top) == 0x08,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, bottom) == 0x0C,
+    "Incorrect member alignment."
+);
+
+static_assert(sizeof(struct D2_PositionalRectangle_1_00) == 0x10, "Incorrect size.");
 
 #include "../../dllexport_undefine.inc"
 #endif // SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_

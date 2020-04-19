@@ -45,37 +45,10 @@
 
 #include "../../../include/c/game_struct/d2_positional_rectangle.h"
 
-#include <assert.h>
 #include <stdlib.h>
 
 #include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, left) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, right) == 0x04,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, top) == 0x08,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_PositionalRectangle_1_00, bottom) == 0x0C,
-    "Incorrect member alignment."
-);
-
-static_assert(sizeof(struct D2_PositionalRectangle_1_00) == 0x10, "Incorrect size.");
 
 /**
  * Function definitions
