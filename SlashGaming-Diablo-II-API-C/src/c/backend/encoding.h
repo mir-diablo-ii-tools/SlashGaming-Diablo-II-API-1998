@@ -62,4 +62,14 @@ char* ConvertWideToUtf8(
     int source_code_line
 );
 
+wchar_t* ConvertMultibyteToWide(
+    wchar_t* wide_string,
+    const char* multibyte_string
+);
+
+char* ConvertWideToMultibyte(
+    char* multibyte_string,
+    const wchar_t* wide_string
+);
+
 #endif // SGMAPI_C_BACKEND_ENCODING_H_
