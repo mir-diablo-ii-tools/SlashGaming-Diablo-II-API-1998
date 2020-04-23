@@ -147,9 +147,7 @@ char* ConvertWideToUtf8(
 
   // Allocate space if the UTF-8 string is NULL.
   if (utf8_string == NULL) {
-    utf8_string = (char*) malloc(
-        num_utf8_chars * sizeof(utf8_string[0])
-    );
+    utf8_string = (char*) malloc(num_utf8_chars * sizeof(utf8_string[0]));
 
     if (utf8_string == NULL) {
       ExitOnAllocationFailure(source_code_file_path, source_code_line);
@@ -163,7 +161,7 @@ char* ConvertWideToUtf8(
       wide_string,
       -1,
       utf8_string,
-      0,
+      num_utf8_chars,
       NULL,
       NULL
   );
