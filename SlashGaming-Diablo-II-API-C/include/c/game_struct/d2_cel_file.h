@@ -51,6 +51,7 @@
 #include <stdint.h>
 
 #include "../game_undefined.h"
+#include "d2_cel.h"
 
 #include "../../dllexport_define.inc"
 
@@ -68,12 +69,13 @@ struct D2_CelFile;
 
 /* sizeof: 0x18 + sizeof(cels) */ struct D2_CelFile_1_00 {
   /* 0x00 */ uint32_t version;
-  /* 0x04 */ MAPI_UndefinedByte unknown_0x04[0x10 - 0x04];
+  /* 0x04 */ uint32_t flags;
+  /* 0x08 */ MAPI_UndefinedByte unknown_0x08[0x10 - 0x08];
   /* 0x10 */ uint32_t num_directions;
   /* 0x14 */ uint32_t num_frames;
 
-  // This field gives the struct variable length.
-  /* 0x18 */ MAPI_UndefinedByte cels[];
+  // This field has variable length.
+  /* 0x18 */ struct D2_Cel_1_00* cels[];
 };
 
 /**
@@ -87,6 +89,11 @@ static_assert(
 
 static_assert(
     offsetof(struct D2_CelFile_1_00, version) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelFile_1_00, flags) == 0x04,
     "Incorrect member alignment."
 );
 
