@@ -48,9 +48,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../../wide_macro.h"
 #include "../backend/architecture_opcode.h"
 #include "../backend/error_handling.h"
-#include "../../wide_macro.h"
 
 void MAPI_GamePatch_InitGameNopPatch(
     struct MAPI_GamePatch* game_patch,

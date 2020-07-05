@@ -47,10 +47,10 @@
 
 #include <stdint.h>
 
-#include "../backend/architecture_opcode.h"
-#include "../backend/error_handling.h"
 #include "../../../include/c/game_patch/game_nop_patch.h"
 #include "../../wide_macro.h"
+#include "../backend/architecture_opcode.h"
+#include "../backend/error_handling.h"
 
 void MAPI_GamePatch_InitGameBranchPatch(
     struct MAPI_GamePatch* game_patch,

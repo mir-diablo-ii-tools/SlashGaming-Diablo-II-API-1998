@@ -49,8 +49,8 @@
 #include <string.h>
 #include <windows.h>
 
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
+#include "../backend/error_handling.h"
 
 void MAPI_GamePatch_Deinit(struct MAPI_GamePatch* game_patch) {
   MAPI_GamePatch_Remove(game_patch);

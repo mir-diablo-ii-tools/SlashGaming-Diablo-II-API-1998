@@ -48,8 +48,8 @@
 
 #include <stdbool.h>
 
-#include "../../game_struct/d2_cel_file.h"
 #include "../../game_bool.h"
+#include "../../game_struct/d2_cel_file.h"
 
 #include "../../../dllexport_define.inc"
 

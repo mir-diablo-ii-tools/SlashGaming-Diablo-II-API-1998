@@ -46,8 +46,9 @@
 #include "../../../include/c/game_patch/game_buffer_patch.h"
 
 #include <stdlib.h>
-#include "../backend/error_handling.h"
+
 #include "../../wide_macro.h"
+#include "../backend/error_handling.h"
 
 void MAPI_GamePatch_InitGameBufferPatch(
     struct MAPI_GamePatch* game_patch,

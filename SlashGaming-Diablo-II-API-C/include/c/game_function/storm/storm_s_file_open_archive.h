@@ -49,8 +49,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "../../game_struct/d2_mpq_archive.h"
 #include "../../game_bool.h"
+#include "../../game_struct/d2_mpq_archive.h"
 
 #include "../../../dllexport_define.inc"
 

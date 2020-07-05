@@ -50,9 +50,9 @@
 #include <string.h>
 #include <windows.h>
 
+#include "../../wide_macro.h"
 #include "encoding.h"
 #include "error_handling.h"
-#include "../../wide_macro.h"
 
 struct MAPI_GameLibraryTable {
   struct MAPI_GameLibrary** entries;

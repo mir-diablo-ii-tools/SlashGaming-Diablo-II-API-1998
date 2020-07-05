@@ -49,10 +49,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "error_handling.h"
 #include "../../../include/c/game_version.h"
-#include "game_address_table_impl.h"
 #include "../../wide_macro.h"
+#include "error_handling.h"
+#include "game_address_table_impl.h"
 
 /**
  * Table of game address entries containing game addresses.

@@ -47,8 +47,8 @@
 
 #include <stdlib.h>
 
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
+#include "../backend/error_handling.h"
 
 /**
  * Function definitions

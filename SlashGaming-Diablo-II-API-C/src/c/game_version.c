@@ -52,10 +52,10 @@
 #include <pthread.h>
 #include <wchar.h>
 
+#include "../wide_macro.h"
 #include "backend/encoding.h"
 #include "backend/error_handling.h"
 #include "backend/game_library.h"
-#include "../wide_macro.h"
 
 struct GameVersionInfo {
   const char* file_version;
