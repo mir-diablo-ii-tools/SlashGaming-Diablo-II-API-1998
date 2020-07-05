@@ -45,85 +45,11 @@
 
 #include "../../../include/c/game_struct/d2_cel_context.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 
 #include "../backend/error_handling.h"
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_CelContext_1_00) == 0x48,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_00, cel_file) == 0x04,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_00, frame) == 0x08,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_00, direction) == 0x0C,
-    "Incorrect member alignment."
-);
-
-/**
- * Static assertions (1.12A)
- */
-
-static_assert(
-    sizeof(struct D2_CelContext_1_12A) == 0x48,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_12A, cel_file) == 0x3C,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_12A, frame) == 0x40,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_12A, direction) == 0x38,
-    "Incorrect member alignment."
-);
-
-/**
- * Static assertions (1.13C)
- */
-
-static_assert(
-    sizeof(struct D2_CelContext_1_13C) == 0x48,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_13C, cel_file) == 0x34,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_13C, frame) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelContext_1_13C, direction) == 0x40,
-    "Incorrect member alignment."
-);
 
 /**
  * Function definitions

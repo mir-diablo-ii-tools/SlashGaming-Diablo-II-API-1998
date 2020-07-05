@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 
+#include <assert.h>
+#include <stddef.h>
 #include <stdint.h>
 
 #include "../game_undefined.h"
@@ -64,13 +66,42 @@ struct D2_Cel;
 
 #pragma pack(push, 1)
 
-/* sizeof: 0x?? */struct D2_Cel_1_00 {
+/* sizeof: 0x?? */ struct D2_Cel_1_00 {
   /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
   /* 0x04 */ int32_t width;
   /* 0x08 */ int32_t height;
   /* 0x0C */ int32_t offset_x;
   /* 0x10 */ int32_t offset_y;
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_Cel_1_00) >= 20,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, width) == 4,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, height) == 8,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, offset_x) == 12,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, offset_y) == 16,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

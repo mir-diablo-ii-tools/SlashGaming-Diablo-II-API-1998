@@ -45,7 +45,6 @@
 
 #include "../../../include/c/game_struct/d2_unicode_char.h"
 
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
@@ -53,19 +52,8 @@
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_utf8_to_unicode.h"
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    offsetof(struct D2_UnicodeChar_1_00, ch) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(sizeof(struct D2_UnicodeChar_1_00) == 0x02, "Incorrect size.");
+#include "../backend/error_handling.h"
 
 /**
  * Function definitions

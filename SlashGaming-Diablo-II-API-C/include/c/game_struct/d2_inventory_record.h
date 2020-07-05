@@ -46,6 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_
 
+#include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -72,6 +73,30 @@ struct D2_InventoryRecord;
   /* 0x10 */ struct D2_GridLayout_1_00 grid_layout;
   /* 0x28 */ struct D2_EquipmentLayout_1_00 equipment_slots[10];
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_InventoryRecord_1_00) == 0xF0,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, position) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, grid_layout) == 0x10,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, equipment_slots) == 0x28,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

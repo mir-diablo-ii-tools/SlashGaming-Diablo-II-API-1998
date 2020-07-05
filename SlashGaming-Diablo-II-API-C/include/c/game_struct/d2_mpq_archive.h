@@ -46,6 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_
 
+#include <assert.h>
+#include <stddef.h>
+
 #include "../../dllexport_define.inc"
 
 /**

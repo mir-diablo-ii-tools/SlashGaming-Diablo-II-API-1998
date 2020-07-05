@@ -45,41 +45,10 @@
 
 #include "../../../include/c/game_struct/d2_cel.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 
 #include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_Cel_1_00) >= 20,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, width) == 4,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, height) == 8,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, offset_x) == 12,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, offset_y) == 16,
-    "Incorrect member alignment."
-);
 
 /**
  * Function definitions

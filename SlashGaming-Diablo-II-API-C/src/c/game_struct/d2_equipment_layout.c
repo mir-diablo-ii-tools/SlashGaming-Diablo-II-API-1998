@@ -45,36 +45,10 @@
 
 #include "../../../include/c/game_struct/d2_equipment_layout.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_EquipmentLayout_1_00) == 0x14,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_EquipmentLayout_1_00, position) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_EquipmentLayout_1_00, width) == 0x10,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_EquipmentLayout_1_00, height) == 0x11,
-    "Incorrect member alignment."
-);
+#include "../backend/error_handling.h"
 
 /**
  * Function definitions

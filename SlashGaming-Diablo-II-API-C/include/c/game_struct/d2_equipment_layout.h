@@ -46,6 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_
 
+#include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -71,6 +72,30 @@ struct D2_EquipmentLayout;
   /* 0x11 */ uint8_t height;
   /* 0x12 */ uint8_t unused__to_align_0x12[2];
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_EquipmentLayout_1_00) == 0x14,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, position) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, width) == 0x10,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, height) == 0x11,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

@@ -46,6 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
 
+#include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -66,6 +67,17 @@ struct D2_UnicodeChar;
 /* sizeof: 0x02 */struct D2_UnicodeChar_1_00 {
   /* 0x00 */ int16_t ch;
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(sizeof(struct D2_UnicodeChar_1_00) == 0x02, "Incorrect size.");
+
+static_assert(
+    offsetof(struct D2_UnicodeChar_1_00, ch) == 0x00,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

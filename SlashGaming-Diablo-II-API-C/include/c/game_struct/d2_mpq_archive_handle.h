@@ -46,6 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_
 
+#include <assert.h>
+#include <stddef.h>
+#include <windows.h>
+
 #include "d2_mpq_archive.h"
 
 #include "../../dllexport_define.inc"
@@ -66,6 +70,25 @@ struct D2_MpqArchiveHandle;
   /* 0x0 */ struct D2_MpqArchive_1_00* mpq_archive;
   /* 0x4 */ char mpq_archive_path[260];
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_MpqArchiveHandle_1_00) == 0x108,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive_path) == 0x04,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

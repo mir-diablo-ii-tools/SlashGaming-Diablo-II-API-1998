@@ -45,32 +45,11 @@
 
 #include "../../../include/c/game_struct/d2_belt_record.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_BeltRecord_1_00) == 0x108,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_BeltRecord_1_00, num_slots) == 0x04,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_BeltRecord_1_00, slot_positions) == 0x08,
-    "Incorrect member alignment."
-);
+#include "../backend/error_handling.h"
 
 /**
  * Function definitions

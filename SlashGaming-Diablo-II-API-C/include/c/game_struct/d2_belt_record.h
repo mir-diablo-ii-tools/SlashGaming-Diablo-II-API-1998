@@ -46,11 +46,12 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_BELT_RECORD_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_BELT_RECORD_H_
 
+#include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
 
-#include "d2_positional_rectangle.h"
 #include "../game_undefined.h"
+#include "d2_positional_rectangle.h"
 
 #include "../../dllexport_define.inc"
 
@@ -72,6 +73,25 @@ struct D2_BeltRecord;
   /* 0x05 */ uint8_t unused__to_align_0x05[3];
   /* 0x08 */ struct D2_PositionalRectangle_1_00 slot_positions[16];
 };
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_BeltRecord_1_00) == 0x108,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_BeltRecord_1_00, num_slots) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_BeltRecord_1_00, slot_positions) == 0x08,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 

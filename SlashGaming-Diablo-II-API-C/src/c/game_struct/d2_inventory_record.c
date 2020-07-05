@@ -45,37 +45,11 @@
 
 #include "../../../include/c/game_struct/d2_inventory_record.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_InventoryRecord_1_00) == 0xF0,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, position) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, grid_layout) == 0x10,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, equipment_slots) == 0x28,
-    "Incorrect member alignment."
-);
+#include "../backend/error_handling.h"
 
 /**
  * Function definitions

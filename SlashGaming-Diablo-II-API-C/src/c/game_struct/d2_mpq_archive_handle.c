@@ -45,31 +45,10 @@
 
 #include "../../../include/c/game_struct/d2_mpq_archive_handle.h"
 
-#include <assert.h>
-#include <stddef.h>
 #include <stdlib.h>
 
 #include "../backend/error_handling.h"
 #include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_MpqArchiveHandle_1_00) == 0x108,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive_path) == 0x04,
-    "Incorrect member alignment."
-);
 
 /**
  * Function definitions

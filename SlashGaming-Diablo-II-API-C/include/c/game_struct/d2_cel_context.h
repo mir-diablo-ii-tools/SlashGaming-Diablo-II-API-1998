@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 
+#include <assert.h>
+#include <stddef.h>
 #include <stdint.h>
 
 #include "d2_cel_file.h"
@@ -73,6 +75,30 @@ struct D2_CelContext;
   /* 0x10 */ MAPI_UndefinedByte unknown_0x10[0x48 - 0x10];
 };
 
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_00) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, cel_file) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, frame) == 0x08,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, direction) == 0x0C,
+    "Incorrect member alignment."
+);
+
 /* sizeof: 0x48 */ struct D2_CelContext_1_12A {
   /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x38 - 0x00];
   /* 0x38 */ uint32_t direction;
@@ -80,6 +106,30 @@ struct D2_CelContext;
   /* 0x40 */ uint32_t frame;
   /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
+
+/**
+ * Static assertions (1.12A)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_12A) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, cel_file) == 0x3C,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, frame) == 0x40,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, direction) == 0x38,
+    "Incorrect member alignment."
+);
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_13C {
   /* 0x00 */ uint32_t frame;
@@ -89,6 +139,30 @@ struct D2_CelContext;
   /* 0x40 */ uint32_t direction;
   /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
+
+/**
+ * Static assertions (1.13C)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_13C) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, cel_file) == 0x34,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, frame) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, direction) == 0x40,
+    "Incorrect member alignment."
+);
 
 #pragma pack(pop)
 
