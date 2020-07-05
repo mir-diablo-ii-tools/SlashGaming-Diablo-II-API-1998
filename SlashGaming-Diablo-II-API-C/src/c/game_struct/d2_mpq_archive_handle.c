@@ -54,15 +54,15 @@
  * Function definitions
  */
 
-struct D2_MpqArchive* D2_MpqArchiveHandle_GetMPQArchive(
+struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (struct D2_MpqArchive*) D2_MpqArchiveHandle_GetConstMPQArchive(
+  return (struct D2_MpqArchive*) D2_MpqArchiveHandle_GetConstMpqArchive(
       mpq_archive_handle
   );
 }
 
-const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMPQArchive(
+const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMpqArchive(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
   const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
@@ -71,15 +71,28 @@ const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMPQArchive(
   return (const struct D2_MpqArchive*) actual_mpq_archive_handle->mpq_archive;
 }
 
-char* D2_MpqArchiveHandle_GetMPQArchivePath(
+void D2_MpqArchiveHandle_SetMpqArchive(
+    struct D2_MpqArchiveHandle* mpq_archive_handle,
+    struct D2_MpqArchive* mpq_archive
+) {
+  struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
+      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  struct D2_MpqArchive_1_00* actual_mpq_archive =
+      (struct D2_MpqArchive_1_00*) mpq_archive;
+
+  actual_mpq_archive_handle->mpq_archive = actual_mpq_archive;
+}
+
+char* D2_MpqArchiveHandle_GetMpqArchivePath(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (char*) D2_MpqArchiveHandle_GetConstMPQArchivePath(
+  return (char*) D2_MpqArchiveHandle_GetConstMpqArchivePath(
       mpq_archive_handle
   );
 }
 
-const char* D2_MpqArchiveHandle_GetConstMPQArchivePath(
+const char* D2_MpqArchiveHandle_GetConstMpqArchivePath(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
   const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
