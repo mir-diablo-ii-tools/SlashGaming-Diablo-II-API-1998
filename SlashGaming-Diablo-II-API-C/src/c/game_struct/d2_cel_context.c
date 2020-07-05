@@ -62,8 +62,7 @@ struct D2_CelContext* D2_CelContext_Create(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) malloc(sizeof(*actual_cel_context));
 
@@ -89,8 +88,7 @@ struct D2_CelContext* D2_CelContext_Create(
     actual_cel_context->frame = frame;
 
     return (struct D2_CelContext*) actual_cel_context;
-  } else /* if (running_game_version >= VERSION_1_13A_BETA
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     struct D2_CelContext_1_13C* actual_cel_context =
         (struct D2_CelContext_1_13C*) malloc(sizeof(*actual_cel_context));
 
