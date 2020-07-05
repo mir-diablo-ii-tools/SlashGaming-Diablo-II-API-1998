@@ -119,8 +119,7 @@ const struct D2_CelFile* D2_CelContext_GetConstCelFile(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     const struct D2_CelContext_1_00* actual_cel_context =
         (const struct D2_CelContext_1_00*) cel_context;
 
@@ -130,8 +129,7 @@ const struct D2_CelFile* D2_CelContext_GetConstCelFile(
         (const struct D2_CelContext_1_12A*) cel_context;
 
     return (const struct D2_CelFile*) actual_cel_context->cel_file;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     const struct D2_CelContext_1_13C* actual_cel_context =
         (const struct D2_CelContext_1_13C*) cel_context;
 
@@ -145,8 +143,7 @@ void D2_CelContext_SetCelFile(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) cel_context;
 
@@ -162,8 +159,7 @@ void D2_CelContext_SetCelFile(
         (struct D2_CelFile_1_00*) cel_file;
 
     actual_cel_context->cel_file = actual_cel_file;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     struct D2_CelContext_1_13C* actual_cel_context =
         (struct D2_CelContext_1_13C*) cel_context;
 
@@ -179,8 +175,7 @@ unsigned int D2_CelContext_GetDirection(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     const struct D2_CelContext_1_00* actual_cel_context =
         (const struct D2_CelContext_1_00*) cel_context;
 
@@ -190,8 +185,7 @@ unsigned int D2_CelContext_GetDirection(
         (const struct D2_CelContext_1_12A*) cel_context;
 
     return actual_cel_context->direction;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     const struct D2_CelContext_1_13C* actual_cel_context =
         (const struct D2_CelContext_1_13C*) cel_context;
 
@@ -205,8 +199,7 @@ void D2_CelContext_SetDirection(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) cel_context;
 
@@ -216,8 +209,7 @@ void D2_CelContext_SetDirection(
         (struct D2_CelContext_1_12A*) cel_context;
 
     actual_cel_context->direction = direction;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     struct D2_CelContext_1_13C* actual_cel_context =
         (struct D2_CelContext_1_13C*) cel_context;
 
@@ -230,8 +222,7 @@ unsigned int D2_CelContext_GetFrame(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     const struct D2_CelContext_1_00* actual_cel_context =
         (const struct D2_CelContext_1_00*) cel_context;
 
@@ -241,8 +232,7 @@ unsigned int D2_CelContext_GetFrame(
         (const struct D2_CelContext_1_12A*) cel_context;
 
     return actual_cel_context->frame;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     const struct D2_CelContext_1_13C* actual_cel_context =
         (const struct D2_CelContext_1_13C*) cel_context;
 
@@ -256,8 +246,7 @@ void D2_CelContext_SetFrame(
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
-  if (running_game_version >= VERSION_1_00
-      && running_game_version <= VERSION_1_10) {
+  if (running_game_version <= VERSION_1_10) {
     struct D2_CelContext_1_00* actual_cel_context =
         (struct D2_CelContext_1_00*) cel_context;
 
@@ -267,8 +256,7 @@ void D2_CelContext_SetFrame(
         (struct D2_CelContext_1_12A*) cel_context;
 
     actual_cel_context->frame = frame;
-  } else /* if (running_game_version >= VERSION_1_13C
-      && running_game_version <= LOD_1_14D) */ {
+  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
     struct D2_CelContext_1_13C* actual_cel_context =
         (struct D2_CelContext_1_13C*) cel_context;
 
