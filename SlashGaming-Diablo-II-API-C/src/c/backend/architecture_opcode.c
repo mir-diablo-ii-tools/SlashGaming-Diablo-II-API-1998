@@ -65,6 +65,8 @@ enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type) {
           __FILEW__,
           __LINE__
       );
+
+      return 0;
     }
   }
 }
