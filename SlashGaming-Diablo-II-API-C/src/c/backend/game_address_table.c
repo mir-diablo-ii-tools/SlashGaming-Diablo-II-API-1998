@@ -45,10 +45,10 @@
 
 #include "game_address_table.h"
 
-#include <pthread.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include <mdc/std/threads.h>
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
 #include "error_handling.h"
@@ -92,15 +92,8 @@ struct MAPI_GameAddress* LoadGameAddress(
     const char* library_path,
     const char* address_name
 ) {
-  static pthread_once_t load_table_once = PTHREAD_ONCE_INIT;
-  if (pthread_once(&load_table_once, &InitGameAddressTable) != 0) {
-    ExitOnGeneralFailure(
-        L"pthread_once function failed.",
-        L"Initialization Failure",
-        __FILEW__,
-        __LINE__
-    );
-  }
+  static once_flag load_table_once = ONCE_FLAG_INIT;
+  call_once(&load_table_once, &InitGameAddressTable);
 
   struct MAPI_GameAddressTableEntry key = {
     .library_path = library_path,

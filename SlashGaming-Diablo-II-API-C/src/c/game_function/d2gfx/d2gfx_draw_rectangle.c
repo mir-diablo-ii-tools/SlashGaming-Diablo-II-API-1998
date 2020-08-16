@@ -45,9 +45,9 @@
 
 #include "../../../../include/c/game_function/d2gfx/d2gfx_draw_rectangle.h"
 
-#include <pthread.h>
 #include <stdint.h>
 
+#include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
@@ -55,7 +55,7 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static once_flag init_flag = ONCE_FLAG_INIT;
 static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
@@ -92,11 +92,7 @@ void D2_D2GFX_DrawRectangle_1_00(
     int32_t primitive_color_id,
     int32_t draw_effect_id
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   CallStdcallFunction(
       game_address.raw_address,

@@ -45,16 +45,16 @@
 
 #include "../../../../include/c/game_variable/d2gfx/d2gfx_is_windowed_mode.h"
 
-#include <pthread.h>
 #include <stdint.h>
 
+#include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static once_flag init_flag = ONCE_FLAG_INIT;
 static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
@@ -70,11 +70,7 @@ bool D2_D2GFX_GetIsWindowedMode(void) {
 }
 
 mapi_bool32 D2_D2GFX_GetIsWindowedMode_1_00(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   return *(mapi_bool32*) game_address.raw_address;
 }
@@ -84,11 +80,7 @@ void D2_D2GFX_SetIsWindowedMode(bool is_window_mode) {
 }
 
 void D2_D2GFX_SetIsWindowedMode_1_00(mapi_bool32 is_window_mode) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   *(mapi_bool32*) game_address.raw_address = is_window_mode;
 }

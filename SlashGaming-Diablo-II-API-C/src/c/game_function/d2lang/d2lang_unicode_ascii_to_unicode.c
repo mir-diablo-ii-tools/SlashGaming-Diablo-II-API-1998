@@ -45,16 +45,16 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 
-#include <pthread.h>
 #include <stdint.h>
 
+#include <mdc/std/threads.h>
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static once_flag init_flag = ONCE_FLAG_INIT;
 static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
@@ -85,11 +85,7 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_AsciiToUnicode_1_00(
     const char* src,
     int32_t count_including_null_terminator
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address.raw_address,

@@ -45,16 +45,16 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_inventory_arrange_mode.h"
 
-#include <pthread.h>
 #include <stdint.h>
 
+#include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static once_flag init_flag = ONCE_FLAG_INIT;
 static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
@@ -70,11 +70,7 @@ unsigned int D2_D2Client_GetInventoryArrangeMode(void) {
 }
 
 uint32_t D2_D2Client_GetInventoryArrangeMode_1_07(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   return *(uint32_t*) game_address.raw_address;
 }
@@ -88,11 +84,7 @@ void D2_D2Client_SetInventoryArrangeMode(
 void D2_D2Client_SetInventoryArrangeMode_1_07(
     uint32_t inventory_arrange_mode
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   *(uint32_t*) game_address.raw_address = inventory_arrange_mode;
 }

@@ -45,9 +45,9 @@
 
 #include "../../../../include/c/game_function/d2client/d2client_draw_centered_unicode_text.h"
 
-#include <pthread.h>
 #include <stdint.h>
 
+#include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
@@ -55,7 +55,7 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/error_handling.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
+static once_flag init_flag = ONCE_FLAG_INIT;
 static struct MAPI_GameAddress game_address;
 
 static void InitGameAddress(void) {
@@ -146,11 +146,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t right,
     int32_t text_color
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   CallFastcallFunction(
       game_address.raw_address,
@@ -170,11 +166,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_12A(
     int32_t right,
     /* enum D2_TextColor_1_00 */ int32_t text_color
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  call_once(&init_flag, &InitGameAddress);
 
   D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
       game_address.raw_address,
