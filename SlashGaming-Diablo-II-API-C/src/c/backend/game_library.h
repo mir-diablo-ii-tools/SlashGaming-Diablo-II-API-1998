@@ -46,12 +46,7 @@
 #ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 
-#include <stdint.h>
-
-struct MAPI_GameLibrary {
-  char* file_path;
-  intptr_t base_address;
-};
+#include "game_library/game_library_struct.h"
 
 /**
  * Gets the game library from a global table, loading it into the global table

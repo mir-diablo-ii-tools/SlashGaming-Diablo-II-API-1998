@@ -43,40 +43,20 @@
  *  work.
  */
 
-#include "game_library.h"
+#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_INFO_H_
+#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_INFO_H_
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
+#include <wchar.h>
 #include <windows.h>
 
-#include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "encoding.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
+void ExtractFileInfo(
+    VS_FIXEDFILEINFO* file_info,
+    const wchar_t* file_path
+);
 
-static struct MAPI_GameLibraryTable game_library_table;
-static once_flag game_library_table_once_flag = ONCE_FLAG_INIT;
+wchar_t* ExtractFileStringValue(
+    const wchar_t* game_path,
+    const wchar_t* string_name
+);
 
-static void InitGameLibraryTable(void) {
-  MAPI_GameLibraryTable_Init(&game_library_table);
-}
-
-const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
-  const struct MAPI_GameLibrary* game_library;
-
-  call_once(&game_library_table_once_flag, &InitGameLibraryTable);
-
-  game_library = MAPI_GameLibraryTable_AtConst(
-      &game_library_table,
-      file_path
-  );
-
-  // If not found, then add the game library.
-  if (game_library == NULL) {
-    return MAPI_GameLibraryTable_Emplace(&game_library_table, file_path);
-  }
-
-  return game_library;
-}
+#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_INFO_H_ */

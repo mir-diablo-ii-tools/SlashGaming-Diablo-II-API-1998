@@ -43,40 +43,67 @@
  *  work.
  */
 
-#include "game_library.h"
+#include "game_library_struct.h"
 
-#include <stddef.h>
-#include <stdlib.h>
 #include <string.h>
 #include <windows.h>
 
-#include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "encoding.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
+#include "../encoding.h"
+#include "../error_handling.h"
 
-static struct MAPI_GameLibraryTable game_library_table;
-static once_flag game_library_table_once_flag = ONCE_FLAG_INIT;
+struct MAPI_GameLibrary* MAPI_GameLibrary_Init(
+    struct MAPI_GameLibrary* game_library,
+    const char* file_path
+) {
+  size_t file_path_len;
+  size_t file_path_size;
 
-static void InitGameLibraryTable(void) {
-  MAPI_GameLibraryTable_Init(&game_library_table);
-}
+  wchar_t* wide_file_path;
 
-const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
-  const struct MAPI_GameLibrary* game_library;
+  /* Copy the file path. */
+  file_path_len = strlen(file_path);
+  file_path_size = (file_path_len + 1) * sizeof(game_library->file_path[0]);
 
-  call_once(&game_library_table_once_flag, &InitGameLibraryTable);
+  game_library->file_path = malloc(file_path_size);
+  strcpy(game_library->file_path, file_path);
 
-  game_library = MAPI_GameLibraryTable_AtConst(
-      &game_library_table,
-      file_path
+  /* Load the library. */
+  wide_file_path = ConvertUtf8ToWide(
+      NULL,
+      file_path,
+      __FILEW__,
+      __LINE__
   );
 
-  // If not found, then add the game library.
-  if (game_library == NULL) {
-    return MAPI_GameLibraryTable_Emplace(&game_library_table, file_path);
+  game_library->base_address = LoadLibraryW(wide_file_path);
+
+  if (game_library->base_address == NULL) {
+    ExitOnWindowsFunctionFailureWithLastError(
+        L"LoadLibraryW",
+        GetLastError(),
+        __FILEW__,
+        __LINE__
+    );
   }
 
+free_wide_file_path:
+  free(wide_file_path);
+
   return game_library;
+}
+
+void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library) {
+  BOOL is_free_library_success;
+
+  is_free_library_success = FreeLibrary(game_library->base_address);
+  if (!is_free_library_success) {
+    ExitOnWindowsFunctionFailureWithLastError(
+        L"FreeLibrary",
+        GetLastError(),
+        __FILEW__,
+        __LINE__
+    );
+  }
+
+  free(game_library->file_path);
 }

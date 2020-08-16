@@ -43,40 +43,147 @@
  *  work.
  */
 
-#include "game_library.h"
+#include "version_name.h"
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
+#include "file_version.h"
 
-#include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "encoding.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
+const char* D2_SearchGameVersionName(enum D2_GameVersion game_version) {
+  switch (game_version) {
+    case VERSION_BETA_1_02: {
+      return "Beta 1.02";
+    }
 
-static struct MAPI_GameLibraryTable game_library_table;
-static once_flag game_library_table_once_flag = ONCE_FLAG_INIT;
+    case VERSION_BETA_STRESS_TEST_1_02: {
+      return "Beta Stress Test 1.02";
+    }
 
-static void InitGameLibraryTable(void) {
-  MAPI_GameLibraryTable_Init(&game_library_table);
-}
+    case VERSION_1_00: {
+      return "1.00";
+    }
 
-const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
-  const struct MAPI_GameLibrary* game_library;
+    case VERSION_1_01: {
+      return "1.01";
+    }
 
-  call_once(&game_library_table_once_flag, &InitGameLibraryTable);
+    case VERSION_1_02: {
+      return "1.02";
+    }
 
-  game_library = MAPI_GameLibraryTable_AtConst(
-      &game_library_table,
-      file_path
-  );
+    case VERSION_1_03: {
+      return "1.03";
+    }
 
-  // If not found, then add the game library.
-  if (game_library == NULL) {
-    return MAPI_GameLibraryTable_Emplace(&game_library_table, file_path);
+    // 1.04B and 1.04C use the same DLLs.
+    case VERSION_1_04B_C: {
+      return "1.04B/C";
+    }
+
+    case VERSION_1_05: {
+      return "1.05";
+    }
+
+    case VERSION_1_05B: {
+      return "1.05B";
+    }
+
+    case VERSION_1_06: {
+      return "1.06";
+    }
+
+    case VERSION_1_06B: {
+      return "1.06B";
+    }
+
+    case VERSION_1_07_BETA: {
+      return "1.07 Beta";
+    }
+
+    case VERSION_1_07: {
+      return "1.07";
+    }
+
+    case VERSION_1_08: {
+      return "1.08";
+    }
+
+    case VERSION_1_09: {
+      return "1.09";
+    }
+
+    case VERSION_1_09B: {
+      return "1.09B";
+    }
+
+    case VERSION_1_09D: {
+      return "1.09D";
+    }
+
+    case VERSION_1_10_BETA: {
+      return "1.10 Beta";
+    }
+
+    case VERSION_1_10S_BETA: {
+      return "1.10S Beta";
+    }
+
+    case VERSION_1_10: {
+      return "1.10";
+    }
+
+    case VERSION_1_11: {
+      return "1.11";
+    }
+
+    case VERSION_1_11B: {
+      return "1.11B";
+    }
+
+    case VERSION_1_12A: {
+      return "1.12A";
+    }
+
+    case VERSION_1_13A_PTR: {
+      return "1.13A PTR";
+    }
+
+    case VERSION_1_13C: {
+      return "1.13C";
+    }
+
+    case VERSION_1_13D: {
+      return "1.13D";
+    }
+
+    case CLASSIC_1_14A: {
+      return "Classic 1.14A";
+    }
+
+    case LOD_1_14A: {
+      return "LoD 1.14A";
+    }
+
+    case CLASSIC_1_14B: {
+      return "Classic 1.14B";
+    }
+
+    case LOD_1_14B: {
+      return "LoD 1.14B";
+    }
+
+    case CLASSIC_1_14C: {
+      return "Classic 1.14C";
+    }
+
+    case LOD_1_14C: {
+      return "LoD 1.14C";
+    }
+
+    case CLASSIC_1_14D: {
+      return "Classic 1.14D";
+    }
+
+    case LOD_1_14D: {
+      return "LoD 1.14D";
+    }
   }
-
-  return game_library;
 }

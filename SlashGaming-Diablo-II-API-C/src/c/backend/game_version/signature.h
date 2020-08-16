@@ -43,40 +43,13 @@
  *  work.
  */
 
-#include "game_library.h"
+#ifndef SGMAPI_C_BACKEND_GAME_VERSION_SIGNATURE_H_
+#define SGMAPI_C_BACKEND_GAME_VERSION_SIGNATURE_H_
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
+#include "../../../../include/c/game_version.h"
 
-#include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "encoding.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
+enum D2_GameVersion Signature_CorrectVersionGuess(
+    enum D2_GameVersion guess_game_version
+);
 
-static struct MAPI_GameLibraryTable game_library_table;
-static once_flag game_library_table_once_flag = ONCE_FLAG_INIT;
-
-static void InitGameLibraryTable(void) {
-  MAPI_GameLibraryTable_Init(&game_library_table);
-}
-
-const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
-  const struct MAPI_GameLibrary* game_library;
-
-  call_once(&game_library_table_once_flag, &InitGameLibraryTable);
-
-  game_library = MAPI_GameLibraryTable_AtConst(
-      &game_library_table,
-      file_path
-  );
-
-  // If not found, then add the game library.
-  if (game_library == NULL) {
-    return MAPI_GameLibraryTable_Emplace(&game_library_table, file_path);
-  }
-
-  return game_library;
-}
+#endif /* SGMAPI_C_BACKEND_GAME_VERSION_SIGNATURE_H_ */
