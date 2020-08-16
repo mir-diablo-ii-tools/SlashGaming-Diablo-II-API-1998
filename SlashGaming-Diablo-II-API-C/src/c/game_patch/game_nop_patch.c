@@ -62,14 +62,7 @@ void MAPI_GamePatch_InitGameNopPatch(
   game_patch->patch_size = patch_size;
 
   // Init game address member.
-  game_patch->game_address = (struct MAPI_GameAddress*) malloc(
-      sizeof(game_patch->game_address)
-  );
-  if (game_patch->game_address == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
-  }
-
-  *game_patch->game_address = *game_address;
+  game_patch->game_address = *game_address;
 
   // Init patch buffer member.
   game_patch->patch_buffer = (uint8_t*) malloc(
@@ -91,7 +84,7 @@ void MAPI_GamePatch_InitGameNopPatch(
 
   memcpy(
       game_patch->unpatched_buffer,
-      (void*) game_patch->game_address->raw_address,
+      (void*) game_patch->game_address.raw_address,
       patch_size
   );
 }

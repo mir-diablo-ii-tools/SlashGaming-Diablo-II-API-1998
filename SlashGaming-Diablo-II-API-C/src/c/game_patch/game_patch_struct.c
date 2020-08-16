@@ -64,7 +64,7 @@ void MAPI_GamePatch_Apply(struct MAPI_GamePatch* game_patch) {
     return;
   }
 
-  intptr_t raw_address = game_patch->game_address->raw_address;
+  intptr_t raw_address = game_patch->game_address.raw_address;
 
   // Replace the data at the destination with the values in the patch buffer.
   BOOL write_success = WriteProcessMemory(
@@ -92,7 +92,7 @@ void MAPI_GamePatch_Remove(struct MAPI_GamePatch* game_patch) {
     return;
   }
 
-  intptr_t raw_address = game_patch->game_address->raw_address;
+  intptr_t raw_address = game_patch->game_address.raw_address;
 
   // Restore the old state of the destination.
   BOOL write_success = WriteProcessMemory(
