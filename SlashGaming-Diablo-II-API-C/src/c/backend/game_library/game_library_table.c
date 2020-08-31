@@ -48,15 +48,42 @@
 #include <mdc/container/map.h>
 #include <mdc/std/threads.h>
 
-static struct Mdc_Map game_library_map = MDC_MAP_UNINIT;
-static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
-
 static struct Mdc_MapMetadata map_metadata;
-static once_flag map_metadata_once_flag =
-    ONCE_FLAG_INIT;
+static once_flag map_metadata_once_flag = ONCE_FLAG_INIT;
 
 static struct Mdc_PairMetadata pair_metadata;
 static once_flag pair_metadata_once_flag = ONCE_FLAG_INIT;
+
+static void* Mdc_BasicString_InitCopyAsVoid(void* dest, const void* src) {
+  return Mdc_BasicString_InitCopy(dest, src);
+}
+
+static void* Mdc_BasicString_InitMoveAsVoid(void* dest, void* src) {
+  return Mdc_BasicString_InitMove(dest, src);
+}
+
+static void Mdc_BasicString_DeinitAsVoid(void* str) {
+  Mdc_BasicString_Deinit(str);
+}
+
+static int Mdc_BasicString_CompareStrAsVoid(const void* str1, const void* str2) {
+  return Mdc_BasicString_CompareStr(str1, str2);
+}
+
+static void* Mapi_GameLibrary_InitMoveAsVoid(void* dest, const void* src) {
+  return Mapi_GameLibrary_InitMove(dest, src);
+}
+
+static void Mapi_GameLibrary_DeinitAsVoid(void* game_library) {
+  Mapi_GameLibrary_Deinit(game_library);
+}
+
+static int Mapi_GameLibrary_CompareAsVoid(
+    const void* game_library1,
+    const void* game_library2
+) {
+  return Mapi_GameLibrary_Compare(game_library1, game_library2);
+}
 
 static void InitPairMetadata(void) {
   struct Mdc_PairSize* const size = &pair_metadata.size;
@@ -71,14 +98,14 @@ static void InitPairMetadata(void) {
   size->first_size = sizeof(struct Mdc_BasicString);
   size->second_size = sizeof(struct Mapi_GameLibrary);
 
-  first_functions->init_copy = &Mdc_BasicString_InitCopy;
-  first_functions->init_move = &Mdc_BasicString_InitMove;
-  first_functions->deinit = &Mdc_BasicString_Deinit;
-  first_functions->compare = &Mdc_BasicString_CompareStr;
+  first_functions->init_copy = &Mdc_BasicString_InitCopyAsVoid;
+  first_functions->init_move = &Mdc_BasicString_InitMoveAsVoid;
+  first_functions->deinit = &Mdc_BasicString_DeinitAsVoid;
+  first_functions->compare = &Mdc_BasicString_CompareStrAsVoid;
 
-  second_functions->init_move = &Mapi_GameLibrary_InitMove;
-  second_functions->deinit = &Mapi_GameLibrary_Deinit;
-  second_functions->compare = &Mapi_GameLibrary_Compare;
+  second_functions->init_move = &Mapi_GameLibrary_InitMoveAsVoid;
+  second_functions->deinit = &Mapi_GameLibrary_DeinitAsVoid;
+  second_functions->compare = &Mapi_GameLibrary_CompareAsVoid;
 }
 
 static void InitMapMetadata(void) {
@@ -97,5 +124,5 @@ struct Mdc_Map* Mapi_InitGameLibraryMap(
 ) {
   InitStatic();
 
-  Mdc_Map_Init(&game_library_map, &map_metadata);
+  return Mdc_Map_Init(game_library_map, &map_metadata);
 }
