@@ -68,11 +68,11 @@ struct D2_CelContext;
 #pragma pack(push, 1)
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_00 {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x04 - 0x00];
   /* 0x04 */ struct D2_CelFile_1_00* cel_file;
   /* 0x08 */ uint32_t frame;
   /* 0x0C */ uint32_t direction;
-  /* 0x10 */ MAPI_UndefinedByte unknown_0x10[0x48 - 0x10];
+  /* 0x10 */ Mapi_UndefinedByte unknown_0x10[0x48 - 0x10];
 };
 
 /**
@@ -100,11 +100,11 @@ static_assert(
 );
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_12A {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x38 - 0x00];
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x38 - 0x00];
   /* 0x38 */ uint32_t direction;
   /* 0x3C */ struct D2_CelFile_1_00* cel_file;
   /* 0x40 */ uint32_t frame;
-  /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
+  /* 0x44 */ Mapi_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
 
 /**
@@ -133,11 +133,11 @@ static_assert(
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_13C {
   /* 0x00 */ uint32_t frame;
-  /* 0x04 */ MAPI_UndefinedByte unknown_0x04[0x34 - 0x04];
+  /* 0x04 */ Mapi_UndefinedByte unknown_0x04[0x34 - 0x04];
   /* 0x34 */ struct D2_CelFile_1_00* cel_file;
-  /* 0x38 */ MAPI_UndefinedByte unknown_0x38[0x40 - 0x38];
+  /* 0x38 */ Mapi_UndefinedByte unknown_0x38[0x40 - 0x38];
   /* 0x40 */ uint32_t direction;
-  /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
+  /* 0x44 */ Mapi_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
 
 /**

@@ -52,11 +52,11 @@
 #include "../encoding.h"
 #include "../error_handling.h"
 
-const struct MAPI_GameLibrary Mapi_GameLibrary_kUninit =
+const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
     MAPI_GAME_LIBRARY_UNINIT;
 
-struct MAPI_GameLibrary* MAPI_GameLibrary_Init(
-    struct MAPI_GameLibrary* game_library,
+struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
+    struct Mapi_GameLibrary* game_library,
     const char* file_path
 ) {
   struct Mdc_BasicStringMetadata string_metadata;
@@ -104,14 +104,14 @@ return_bad:
   return NULL;
 }
 
-struct MAPI_GameLibrary* MAPI_GameLibrary_InitMove(
-    struct MAPI_GameLibrary* dest,
-    struct MAPI_GameLibrary* src
+struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
+    struct Mapi_GameLibrary* dest,
+    struct Mapi_GameLibrary* src
 ) {
   *dest = *src;
 }
 
-void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library) {
+void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
   BOOL is_free_library_success;
 
   is_free_library_success = FreeLibrary((HMODULE) game_library->base_address);
@@ -127,9 +127,9 @@ void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library) {
   Mdc_BasicString_Deinit(&game_library->file_path);
 }
 
-int MAPI_GameLibrary_Compare(
-    const struct MAPI_GameLibrary* game_library1,
-    const struct MAPI_GameLibrary* game_library2
+int Mapi_GameLibrary_Compare(
+    const struct Mapi_GameLibrary* game_library1,
+    const struct Mapi_GameLibrary* game_library2
 ) {
   return Mdc_BasicString_CompareStr(
       &game_library1->file_path,

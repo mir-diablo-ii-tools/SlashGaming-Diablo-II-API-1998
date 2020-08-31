@@ -67,7 +67,7 @@ struct D2_Cel;
 #pragma pack(push, 1)
 
 /* sizeof: 0x?? */ struct D2_Cel_1_00 {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x04 - 0x00];
   /* 0x04 */ int32_t width;
   /* 0x08 */ int32_t height;
   /* 0x0C */ int32_t offset_x;

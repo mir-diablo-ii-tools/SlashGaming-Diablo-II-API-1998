@@ -58,8 +58,8 @@
 extern "C" {
 #endif // __cplusplus
 
-struct MAPI_GamePatch {
-  struct MAPI_GameAddress game_address;
+struct Mapi_GamePatch {
+  struct Mapi_GameAddress game_address;
   bool is_patch_applied;
   uint8_t* patch_buffer;
   uint8_t* unpatched_buffer;
@@ -69,24 +69,24 @@ struct MAPI_GamePatch {
 /**
  * Deinitializes the specified game patch.
  */
-DLLEXPORT void MAPI_GamePatch_Deinit(
-  struct MAPI_GamePatch* game_patch
+DLLEXPORT void Mapi_GamePatch_Deinit(
+  struct Mapi_GamePatch* game_patch
 );
 
 /**
  * Applies the game patch by replacing the bytes at its target address with the
  * bytes stored in its buffer.
  */
-DLLEXPORT void MAPI_GamePatch_Apply(
-  struct MAPI_GamePatch* game_patch
+DLLEXPORT void Mapi_GamePatch_Apply(
+  struct Mapi_GamePatch* game_patch
 );
 
 /**
  * Removes the effects of the game patch by restoring the original state of the
  * bytes at its target address.
  */
-DLLEXPORT void MAPI_GamePatch_Remove(
-  struct MAPI_GamePatch* game_patch
+DLLEXPORT void Mapi_GamePatch_Remove(
+  struct Mapi_GamePatch* game_patch
 );
 
 #ifdef __cplusplus

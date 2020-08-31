@@ -56,7 +56,7 @@
 #include "../../backend/game_function/stdcall_function.h"
 
 static once_flag init_flag = ONCE_FLAG_INIT;
-static struct MAPI_GameAddress game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
   LoadGameAddress(
@@ -72,7 +72,7 @@ bool D2_D2GFX_DrawCelContext(
     int position_y,
     unsigned int bgrt_color,
     enum D2_DrawEffect draw_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
   enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
 
@@ -112,7 +112,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
   call_once(&init_flag, &InitGameAddress);
 
@@ -134,7 +134,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
   call_once(&init_flag, &InitGameAddress);
 
@@ -156,7 +156,7 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
   call_once(&init_flag, &InitGameAddress);
 

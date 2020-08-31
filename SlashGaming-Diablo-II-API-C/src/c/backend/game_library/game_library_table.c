@@ -69,16 +69,16 @@ static void InitPairMetadata(void) {
       &functions->second_functions;
 
   size->first_size = sizeof(struct Mdc_BasicString);
-  size->second_size = sizeof(struct MAPI_GameLibrary);
+  size->second_size = sizeof(struct Mapi_GameLibrary);
 
   first_functions->init_copy = &Mdc_BasicString_InitCopy;
   first_functions->init_move = &Mdc_BasicString_InitMove;
   first_functions->deinit = &Mdc_BasicString_Deinit;
   first_functions->compare = &Mdc_BasicString_CompareStr;
 
-  second_functions->init_move = &MAPI_GameLibrary_InitMove;
-  second_functions->deinit = &MAPI_GameLibrary_Deinit;
-  second_functions->compare = &MAPI_GameLibrary_Compare;
+  second_functions->init_move = &Mapi_GameLibrary_InitMove;
+  second_functions->deinit = &Mapi_GameLibrary_Deinit;
+  second_functions->compare = &Mapi_GameLibrary_Compare;
 }
 
 static void InitMapMetadata(void) {

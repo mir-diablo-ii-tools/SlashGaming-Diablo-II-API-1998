@@ -60,9 +60,9 @@ extern "C" {
  * game address locator is specified as a string encoded in 7-bit ASCII, which
  * represents the address's decorated name.
  */
-DLLEXPORT struct MAPI_GameAddress*
-MAPI_GameAddress_InitFromLibraryIdAndDecoratedName(
-    struct MAPI_GameAddress* game_address,
+DLLEXPORT struct Mapi_GameAddress*
+Mapi_GameAddress_InitFromLibraryIdAndDecoratedName(
+    struct Mapi_GameAddress* game_address,
     enum D2_DefaultLibrary library_id,
     const char* decorated_name
 );
@@ -73,9 +73,9 @@ MAPI_GameAddress_InitFromLibraryIdAndDecoratedName(
  * specified as a null-terminated string encoded in 7-bit ASCII, which
  * represents the address's decorated name.
  */
-DLLEXPORT struct MAPI_GameAddress*
-MAPI_GameAddress_InitFromLibraryPathAndDecoratedName(
-    struct MAPI_GameAddress* game_address,
+DLLEXPORT struct Mapi_GameAddress*
+Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     const char* decorated_name
 );

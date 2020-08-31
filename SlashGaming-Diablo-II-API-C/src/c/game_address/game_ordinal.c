@@ -54,24 +54,24 @@
 #include "../backend/error_handling.h"
 #include "../backend/game_library.h"
 
-struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOrdinal(
+    struct Mapi_GameAddress* game_address,
     enum D2_DefaultLibrary library_id,
     int16_t ordinal
 ) {
-  return MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
+  return Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
       game_address,
-      MAPI_GetDefaultLibraryPathWithRedirect(library_id),
+      Mapi_GetDefaultLibraryPathWithRedirect(library_id),
       ordinal
   );
 }
 
-struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     int16_t ordinal
 ) {
-  const struct MAPI_GameLibrary* game_library = GetGameLibrary(library_path);
+  const struct Mapi_GameLibrary* game_library = GetGameLibrary(library_path);
   FARPROC ordinal_address = GetProcAddress(
       (HMODULE) game_library->base_address,
       (const char*) (0xFFFF & ordinal)

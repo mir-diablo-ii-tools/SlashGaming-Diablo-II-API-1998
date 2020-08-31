@@ -61,9 +61,9 @@ extern "C" {
  * Initializes a new GameNopPatch. The patch buffer is filled with no-op
  * instructions to fill at most the specified number of bytes.
  */
-DLLEXPORT void MAPI_GamePatch_InitGameNopPatch(
-    struct MAPI_GamePatch* game_patch,
-    const struct MAPI_GameAddress* game_address,
+DLLEXPORT void Mapi_GamePatch_InitGameNopPatch(
+    struct Mapi_GamePatch* game_patch,
+    const struct Mapi_GameAddress* game_address,
     size_t patch_size
 );
 

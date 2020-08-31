@@ -57,7 +57,7 @@
 #include "../../backend/game_function/fastcall_function.h"
 
 static once_flag init_flag = ONCE_FLAG_INIT;
-static struct MAPI_GameAddress game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
   LoadGameAddress(

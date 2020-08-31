@@ -45,8 +45,8 @@
 
 #include "../../../include/c/game_address/game_address_struct.h"
 
-void MAPI_GameAddress_Deinit(
-    struct MAPI_GameAddress* game_address
+void Mapi_GameAddress_Deinit(
+    struct Mapi_GameAddress* game_address
 ) {
   // Do nothing, as there is nothing to free.
 }

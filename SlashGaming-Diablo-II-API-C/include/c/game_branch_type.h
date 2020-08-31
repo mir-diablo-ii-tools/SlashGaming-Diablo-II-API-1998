@@ -51,7 +51,7 @@
  * some state defined by the architecture, with the purpose of returning to the
  * calling function. A jump does not save any state information.
  */
-enum MAPI_BranchType {
+enum Mapi_BranchType {
   BRANCH_CALL,
   BRANCH_JUMP,
 };

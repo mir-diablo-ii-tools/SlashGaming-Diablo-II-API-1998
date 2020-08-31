@@ -76,9 +76,9 @@ static void InitStatic(void) {
   call_once(&string_metadata_once_flag, &InitStringMetadata);
 }
 
-const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
+const struct Mapi_GameLibrary* GetGameLibrary(const char* file_path) {
   struct Mdc_BasicString file_path_str = MDC_BASIC_STRING_UNINIT;
-  const struct MAPI_GameLibrary* game_library;
+  const struct Mapi_GameLibrary* game_library;
 
   struct Mdc_BasicString* init_file_path_str;
 
@@ -100,7 +100,7 @@ const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
     Mdc_Map_EmplaceKeyCopy(
         &game_library_map,
         &file_path_str,
-        &MAPI_GameLibrary_Init,
+        &Mapi_GameLibrary_Init,
         Mdc_BasicString_Data(&file_path_str)
     );
   }

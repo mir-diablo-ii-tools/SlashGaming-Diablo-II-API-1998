@@ -54,12 +54,12 @@
 extern "C" {
 #endif // __cplusplus
 
-struct MAPI_GameAddress {
+struct Mapi_GameAddress {
   intptr_t raw_address;
 };
 
-DLLEXPORT void MAPI_GameAddress_Deinit(
-    struct MAPI_GameAddress* game_address
+DLLEXPORT void Mapi_GameAddress_Deinit(
+    struct Mapi_GameAddress* game_address
 );
 
 #ifdef __cplusplus

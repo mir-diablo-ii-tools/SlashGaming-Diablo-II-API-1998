@@ -52,15 +52,15 @@
 #include "../backend/architecture_opcode.h"
 #include "../backend/error_handling.h"
 
-void MAPI_GamePatch_InitGameBackBranchPatch(
-    struct MAPI_GamePatch* game_patch,
-    const struct MAPI_GameAddress* game_address,
-    enum MAPI_BranchType branch_type,
+void Mapi_GamePatch_InitGameBackBranchPatch(
+    struct Mapi_GamePatch* game_patch,
+    const struct Mapi_GameAddress* game_address,
+    enum Mapi_BranchType branch_type,
     void (*func_ptr)(void),
     size_t patch_size
 ) {
   // Fill the buffer with NOPs.
-  MAPI_GamePatch_InitGameNopPatch(
+  Mapi_GamePatch_InitGameNopPatch(
       game_patch,
       game_address,
       patch_size
@@ -71,7 +71,7 @@ void MAPI_GamePatch_InitGameBackBranchPatch(
   size_t back_branch_start = patch_size
       - (sizeof(func_ptr) + sizeof(game_patch->patch_buffer[0]));
 
-  enum MAPI_OpCode opcode_value = MAPI_ToOpcode(branch_type);
+  enum Mapi_OpCode opcode_value = Mapi_ToOpcode(branch_type);
 
   game_patch->patch_buffer[back_branch_start] =
       (uint8_t) (0xFF & opcode_value);

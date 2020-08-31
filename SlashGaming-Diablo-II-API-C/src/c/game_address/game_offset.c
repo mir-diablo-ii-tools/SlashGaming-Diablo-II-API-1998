@@ -47,24 +47,24 @@
 
 #include "../backend/game_library.h"
 
-struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryIdAndOffset(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOffset(
+    struct Mapi_GameAddress* game_address,
     enum D2_DefaultLibrary library_id,
     ptrdiff_t offset
 ) {
-  return MAPI_GameAddress_InitFromLibraryPathAndOffset(
+  return Mapi_GameAddress_InitFromLibraryPathAndOffset(
       game_address,
-      MAPI_GetDefaultLibraryPathWithRedirect(library_id),
+      Mapi_GetDefaultLibraryPathWithRedirect(library_id),
       offset
   );
 }
 
-struct MAPI_GameAddress* MAPI_GameAddress_InitFromLibraryPathAndOffset(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOffset(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     ptrdiff_t offset
 ) {
-  const struct MAPI_GameLibrary* game_library = GetGameLibrary(library_path);
+  const struct Mapi_GameLibrary* game_library = GetGameLibrary(library_path);
   game_address->raw_address = game_library->base_address + offset;
 
   return game_address;

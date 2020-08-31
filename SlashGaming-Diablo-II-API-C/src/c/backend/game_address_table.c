@@ -57,7 +57,7 @@
 /**
  * Table of game address entries containing game addresses.
  */
-static struct MAPI_GameAddressTable* game_address_table;
+static struct Mapi_GameAddressTable* game_address_table;
 
 /**
  * Initializes the game address table.
@@ -72,8 +72,8 @@ static void InitGameAddressTable(void) {
  * lexicographical compare of the address name.
  */
 static int CompareGameAddressTableEntryByLibraryPathThenAddressName(
-    const struct MAPI_GameAddressTableEntry* entry1,
-    const struct MAPI_GameAddressTableEntry* entry2
+    const struct Mapi_GameAddressTableEntry* entry1,
+    const struct Mapi_GameAddressTableEntry* entry2
 ) {
   int first_compare_result = strcmp(
       entry1->library_path,
@@ -87,21 +87,21 @@ static int CompareGameAddressTableEntryByLibraryPathThenAddressName(
   return strcmp(entry1->address_name, entry2->address_name);
 }
 
-struct MAPI_GameAddress* LoadGameAddress(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* LoadGameAddress(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     const char* address_name
 ) {
   static once_flag load_table_once = ONCE_FLAG_INIT;
   call_once(&load_table_once, &InitGameAddressTable);
 
-  struct MAPI_GameAddressTableEntry key = {
+  struct Mapi_GameAddressTableEntry key = {
     .library_path = library_path,
     .address_name = address_name
   };
 
-  struct MAPI_GameAddressTableEntry* search_result =
-      (struct MAPI_GameAddressTableEntry*) bsearch(
+  struct Mapi_GameAddressTableEntry* search_result =
+      (struct Mapi_GameAddressTableEntry*) bsearch(
           (const void*) &key,
           (void*) game_address_table->entries,
           game_address_table->num_elements,
@@ -113,7 +113,7 @@ struct MAPI_GameAddress* LoadGameAddress(
   // Initialize the game address based on the determined locator type.
   switch (search_result->locator_type) {
     case LOCATOR_TYPE_OFFSET: {
-      MAPI_GameAddress_InitFromLibraryPathAndOffset(
+      Mapi_GameAddress_InitFromLibraryPathAndOffset(
           game_address,
           search_result->library_path,
           search_result->locator_value.offset
@@ -123,7 +123,7 @@ struct MAPI_GameAddress* LoadGameAddress(
     }
 
     case LOCATOR_TYPE_ORDINAL: {
-      MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
+      Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
           game_address,
           search_result->library_path,
           search_result->locator_value.ordinal
@@ -133,7 +133,7 @@ struct MAPI_GameAddress* LoadGameAddress(
     }
 
     case LOCATOR_TYPE_DECORATED_NAME: {
-      MAPI_GameAddress_InitFromLibraryPathAndDecoratedName(
+      Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
           game_address,
           search_result->library_path,
           search_result->locator_value.decorated_name

@@ -48,8 +48,8 @@
 
 #include "../../../include/c/game_address.h"
 
-struct MAPI_GameAddress* LoadGameAddress(
-    struct MAPI_GameAddress* game_address,
+struct Mapi_GameAddress* LoadGameAddress(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     const char* address_name
 );

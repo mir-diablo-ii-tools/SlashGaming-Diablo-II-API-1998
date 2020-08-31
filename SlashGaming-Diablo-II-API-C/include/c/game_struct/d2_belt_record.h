@@ -68,7 +68,7 @@ struct D2_BeltRecord;
 #pragma pack(push, 1)
 
 /* sizeof: 0x108 */ struct D2_BeltRecord_1_00 {
-  /* 0x00 */ struct MAPI_Undefined* unknown_0x00;
+  /* 0x00 */ struct Mapi_Undefined* unknown_0x00;
   /* 0x04 */ uint8_t num_slots;
   /* 0x05 */ uint8_t unused__to_align_0x05[3];
   /* 0x08 */ struct D2_PositionalRectangle_1_00 slot_positions[16];
@@ -119,7 +119,7 @@ extern "C" {
  * positions.
  */
 DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
-    struct MAPI_Undefined* reserved_00__set_to_nullptr,
+    struct Mapi_Undefined* reserved_00__set_to_nullptr,
     uint_least8_t num_slots,
     const struct D2_PositionalRectangle* slot_positions
 );

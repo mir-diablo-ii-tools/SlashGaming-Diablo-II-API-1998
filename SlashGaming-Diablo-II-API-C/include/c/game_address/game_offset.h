@@ -62,9 +62,9 @@ extern "C" {
  * game address locator is specified as the offset from the module base
  * address to the target address.
  */
-DLLEXPORT struct MAPI_GameAddress*
-MAPI_GameAddress_InitFromLibraryIdAndOffset(
-    struct MAPI_GameAddress* game_address,
+DLLEXPORT struct Mapi_GameAddress*
+Mapi_GameAddress_InitFromLibraryIdAndOffset(
+    struct Mapi_GameAddress* game_address,
     enum D2_DefaultLibrary library_id,
     ptrdiff_t offset
 );
@@ -74,9 +74,9 @@ MAPI_GameAddress_InitFromLibraryIdAndOffset(
  * a UTF-8 encoded null-terminated string. The game address locator is
  * specified as the offset from the module base address to the target address.
  */
-DLLEXPORT struct MAPI_GameAddress*
-MAPI_GameAddress_InitFromLibraryPathAndOffset(
-    struct MAPI_GameAddress* game_address,
+DLLEXPORT struct Mapi_GameAddress*
+Mapi_GameAddress_InitFromLibraryPathAndOffset(
+    struct Mapi_GameAddress* game_address,
     const char* library_path,
     ptrdiff_t offset
 );

@@ -56,7 +56,7 @@
  */
 
 struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
-    struct MAPI_Undefined* reserved_00__set_to_nullptr,
+    struct Mapi_Undefined* reserved_00__set_to_nullptr,
     uint_least8_t num_slots,
     const struct D2_PositionalRectangle* slot_positions
 ) {

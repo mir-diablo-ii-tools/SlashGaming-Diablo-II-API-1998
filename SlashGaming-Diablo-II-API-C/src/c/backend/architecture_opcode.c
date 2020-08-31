@@ -48,7 +48,7 @@
 #include "../../wide_macro.h"
 #include "error_handling.h"
 
-enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type) {
+enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type) {
   switch (branch_type) {
     case BRANCH_CALL: {
       return OPCODE_CALL;

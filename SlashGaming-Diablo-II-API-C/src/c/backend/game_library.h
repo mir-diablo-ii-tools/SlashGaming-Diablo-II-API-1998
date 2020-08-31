@@ -52,7 +52,7 @@
  * Gets the game library from a global table, loading it into the global table
  * if it is not found.
  */
-const struct MAPI_GameLibrary* GetGameLibrary(
+const struct Mapi_GameLibrary* GetGameLibrary(
     const char* file_path
 );
 

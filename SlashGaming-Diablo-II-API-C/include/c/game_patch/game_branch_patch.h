@@ -63,10 +63,10 @@ extern "C" {
  * the specified branch type to branch to the specified function. The
  * remaining bytes are filled with no-op instructions.
  */
-DLLEXPORT void MAPI_GamePatch_InitGameBranchPatch(
-    struct MAPI_GamePatch* game_patch,
-    const struct MAPI_GameAddress* game_address,
-    enum MAPI_BranchType branch_type,
+DLLEXPORT void Mapi_GamePatch_InitGameBranchPatch(
+    struct Mapi_GamePatch* game_patch,
+    const struct Mapi_GameAddress* game_address,
+    enum Mapi_BranchType branch_type,
     void (*func_ptr)(void),
     size_t patch_size
 );

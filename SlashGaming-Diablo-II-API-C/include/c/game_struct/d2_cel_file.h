@@ -70,7 +70,7 @@ struct D2_CelFile;
 /* sizeof: 0x18 + sizeof(cels) */ struct D2_CelFile_1_00 {
   /* 0x00 */ uint32_t version;
   /* 0x04 */ uint32_t flags;
-  /* 0x08 */ MAPI_UndefinedByte unknown_0x08[0x10 - 0x08];
+  /* 0x08 */ Mapi_UndefinedByte unknown_0x08[0x10 - 0x08];
   /* 0x10 */ uint32_t num_directions;
   /* 0x14 */ uint32_t num_frames;
 

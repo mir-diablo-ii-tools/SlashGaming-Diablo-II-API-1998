@@ -52,14 +52,14 @@
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
-void MAPI_GamePatch_Deinit(struct MAPI_GamePatch* game_patch) {
-  MAPI_GamePatch_Remove(game_patch);
+void Mapi_GamePatch_Deinit(struct Mapi_GamePatch* game_patch) {
+  Mapi_GamePatch_Remove(game_patch);
 
   free(game_patch->unpatched_buffer);
   free(game_patch->patch_buffer);
 }
 
-void MAPI_GamePatch_Apply(struct MAPI_GamePatch* game_patch) {
+void Mapi_GamePatch_Apply(struct Mapi_GamePatch* game_patch) {
   if (game_patch->is_patch_applied) {
     return;
   }
@@ -87,7 +87,7 @@ void MAPI_GamePatch_Apply(struct MAPI_GamePatch* game_patch) {
   game_patch->is_patch_applied = true;
 }
 
-void MAPI_GamePatch_Remove(struct MAPI_GamePatch* game_patch) {
+void Mapi_GamePatch_Remove(struct Mapi_GamePatch* game_patch) {
   if (!game_patch->is_patch_applied) {
     return;
   }

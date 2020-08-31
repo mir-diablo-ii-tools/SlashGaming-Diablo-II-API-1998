@@ -65,9 +65,9 @@ enum D2_DefaultLibrary {
   LIBRARY_D2SOUND, LIBRARY_D2WIN, LIBRARY_FOG, LIBRARY_STORM,
 };
 
-DLLEXPORT const char* MAPI_GetGameExecutablePath(void);
+DLLEXPORT const char* Mapi_GetGameExecutablePath(void);
 
-DLLEXPORT const char* MAPI_GetDefaultLibraryPathWithRedirect(
+DLLEXPORT const char* Mapi_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
 );
 

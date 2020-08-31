@@ -64,10 +64,10 @@ extern "C" {
  * last bytes are used for the branch operations while the first remaining
  * bytes are filled with no-op instructions.
  */
-DLLEXPORT void MAPI_GamePatch_InitGameBackBranchPatch(
-    struct MAPI_GamePatch* game_patch,
-    const struct MAPI_GameAddress* game_address,
-    enum MAPI_BranchType branch_type,
+DLLEXPORT void Mapi_GamePatch_InitGameBackBranchPatch(
+    struct Mapi_GamePatch* game_patch,
+    const struct Mapi_GameAddress* game_address,
+    enum Mapi_BranchType branch_type,
     void (*func_ptr)(void),
     size_t patch_size
 );

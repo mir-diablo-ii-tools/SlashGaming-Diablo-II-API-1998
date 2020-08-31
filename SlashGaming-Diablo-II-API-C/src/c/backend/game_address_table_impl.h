@@ -63,19 +63,19 @@ union LocatorValue {
   const char* decorated_name;
 };
 
-struct MAPI_GameAddressTableEntry {
+struct Mapi_GameAddressTableEntry {
   const char* library_path;
   const char* address_name;
   union LocatorValue locator_value;
   enum LocatorType locator_type;
 };
 
-struct MAPI_GameAddressTable {
-  struct MAPI_GameAddressTableEntry** entries;
+struct Mapi_GameAddressTable {
+  struct Mapi_GameAddressTableEntry** entries;
   size_t num_elements;
   size_t capacity;
 };
 
-struct MAPI_GameAddressTable* LoadGameAddressTable(void);
+struct Mapi_GameAddressTable* LoadGameAddressTable(void);
 
 #endif // SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_

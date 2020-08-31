@@ -137,16 +137,16 @@ static const char* GetLibraryName(enum D2_DefaultLibrary library) {
   return NULL;
 }
 
-const char* MAPI_GetGameExecutablePath(void) {
+const char* Mapi_GetGameExecutablePath(void) {
   return "Game.exe";
 }
 
-const char* MAPI_GetDefaultLibraryPathWithRedirect(
+const char* Mapi_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
 ) {
   // Redirect if the game version is 1.14 or higher.
   if (D2_IsRunningGameVersionAtLeast1_14()) {
-    return MAPI_GetGameExecutablePath();
+    return Mapi_GetGameExecutablePath();
   }
 
   if (library_id < 0 || library_id > LIBRARY_STORM) {

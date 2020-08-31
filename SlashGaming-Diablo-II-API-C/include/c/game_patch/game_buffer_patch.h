@@ -63,9 +63,9 @@ extern "C" {
  * array of 8-bit integrals. The specified game address and buffer are
  * value copied to this patch.
  */
-DLLEXPORT void MAPI_GamePatch_InitGameBufferPatch(
-    struct MAPI_GamePatch* game_patch,
-    const struct MAPI_GameAddress* game_address,
+DLLEXPORT void Mapi_GamePatch_InitGameBufferPatch(
+    struct Mapi_GamePatch* game_patch,
+    const struct Mapi_GameAddress* game_address,
     const uint8_t* buffer,
     size_t patch_size
 );
