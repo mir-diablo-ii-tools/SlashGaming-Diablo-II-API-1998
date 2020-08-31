@@ -50,33 +50,65 @@
 #include <string.h>
 #include <windows.h>
 
+#include <mdc/container/map.h>
 #include <mdc/std/threads.h>
 #include "../../wide_macro.h"
 #include "encoding.h"
 #include "error_handling.h"
 #include "game_library/game_library_table.h"
 
-static struct MAPI_GameLibraryTable game_library_table;
-static once_flag game_library_table_once_flag = ONCE_FLAG_INIT;
+static struct Mdc_Map game_library_map = MDC_MAP_UNINIT;
+static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
 
-static void InitGameLibraryTable(void) {
-  MAPI_GameLibraryTable_Init(&game_library_table);
+static struct Mdc_BasicStringMetadata string_metadata;
+static once_flag string_metadata_once_flag = ONCE_FLAG_INIT;
+
+static void InitGameLibraryMap(void) {
+  Mapi_InitGameLibraryMap(&game_library_map);
+}
+
+static void InitStringMetadata(void) {
+  Mdc_StringMetadata_InitMetadata(&string_metadata);
+}
+
+static void InitStatic(void) {
+  call_once(&game_library_map_once_flag, &InitGameLibraryMap);
+  call_once(&string_metadata_once_flag, &InitStringMetadata);
 }
 
 const struct MAPI_GameLibrary* GetGameLibrary(const char* file_path) {
+  struct Mdc_BasicString file_path_str = MDC_BASIC_STRING_UNINIT;
   const struct MAPI_GameLibrary* game_library;
 
-  call_once(&game_library_table_once_flag, &InitGameLibraryTable);
+  struct Mdc_BasicString* init_file_path_str;
 
-  game_library = MAPI_GameLibraryTable_AtConst(
-      &game_library_table,
+  InitStatic();
+
+  init_file_path_str = Mdc_BasicString_InitFromCStr(
+      &file_path_str,
+      &string_metadata,
       file_path
   );
 
-  // If not found, then add the game library.
-  if (game_library == NULL) {
-    return MAPI_GameLibraryTable_Emplace(&game_library_table, file_path);
+  game_library = Mdc_Map_Contains(
+      &game_library_map,
+      file_path
+  );
+
+  /* If not found, then add the game library. */
+  if (!Mdc_Map_Contains(&game_library_map, &file_path_str)) {
+    Mdc_Map_EmplaceKeyCopy(
+        &game_library_map,
+        &file_path_str,
+        &MAPI_GameLibrary_Init,
+        Mdc_BasicString_Data(&file_path_str)
+    );
   }
+
+  game_library = Mdc_Map_AtConst(&game_library_map, &file_path_str);
+
+deinit_file_path_str:
+  Mdc_BasicString_Deinit(&file_path_str);
 
   return game_library;
 }

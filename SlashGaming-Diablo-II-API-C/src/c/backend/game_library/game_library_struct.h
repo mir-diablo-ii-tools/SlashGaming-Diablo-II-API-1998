@@ -48,10 +48,16 @@
 
 #include <stdint.h>
 
+#include <mdc/string/basic_string.h>
+
 struct MAPI_GameLibrary {
-  char* file_path;
+  struct Mdc_BasicString file_path;
   intptr_t base_address;
 };
+
+#define MAPI_GAME_LIBRARY_UNINIT { 0 }
+
+const struct MAPI_GameLibrary Mapi_GameLibrary_kUninit;
 
 /**
  * Initializes a GameLibrary, value copying the specified file path,
@@ -62,6 +68,16 @@ struct MAPI_GameLibrary* MAPI_GameLibrary_Init(
     const char* file_path
 );
 
+struct MAPI_GameLibrary* MAPI_GameLibrary_InitMove(
+    struct MAPI_GameLibrary* dest,
+    struct MAPI_GameLibrary* src
+);
+
 void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library);
+
+int MAPI_GameLibrary_Compare(
+    const struct MAPI_GameLibrary* game_library1,
+    const struct MAPI_GameLibrary* game_library2
+);
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_ */

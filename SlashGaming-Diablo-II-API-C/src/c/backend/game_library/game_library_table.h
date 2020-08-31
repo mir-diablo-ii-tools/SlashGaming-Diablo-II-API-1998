@@ -50,32 +50,8 @@
 
 #include "game_library_struct.h"
 
-struct MAPI_GameLibraryTable {
-  struct MAPI_GameLibrary** entries;
-  size_t num_elements;
-  size_t capacity;
-};
-
-struct MAPI_GameLibraryTable* MAPI_GameLibraryTable_Init(
-    struct MAPI_GameLibraryTable* game_library_table
-);
-
-void MAPI_GameLibraryTable_Deinit(
-    struct MAPI_GameLibraryTable* game_library_table
-);
-
-const struct MAPI_GameLibrary* MAPI_GameLibraryTable_AtConst(
-    const struct MAPI_GameLibraryTable* game_library_table,
-    const char* file_path
-);
-
-struct MAPI_GameLibrary* MAPI_GameLibraryTable_Emplace(
-    struct MAPI_GameLibraryTable* game_library_table,
-    const char* file_path
-);
-
-void MAPI_GameLibraryTable_Clear(
-    struct MAPI_GameLibraryTable* game_library_table
+struct Mdc_Map* Mapi_InitGameLibraryMap(
+    struct Mdc_Map* game_library_map
 );
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_TABLE_H_ */

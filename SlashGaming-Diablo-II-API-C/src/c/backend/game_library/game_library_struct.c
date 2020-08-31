@@ -48,24 +48,31 @@
 #include <string.h>
 #include <windows.h>
 
+#include <mdc/std/threads.h>
 #include "../encoding.h"
 #include "../error_handling.h"
+
+const struct MAPI_GameLibrary Mapi_GameLibrary_kUninit =
+    MAPI_GAME_LIBRARY_UNINIT;
 
 struct MAPI_GameLibrary* MAPI_GameLibrary_Init(
     struct MAPI_GameLibrary* game_library,
     const char* file_path
 ) {
+  struct Mdc_BasicStringMetadata string_metadata;
+
   size_t file_path_len;
   size_t file_path_size;
 
   wchar_t* wide_file_path;
 
   /* Copy the file path. */
-  file_path_len = strlen(file_path);
-  file_path_size = (file_path_len + 1) * sizeof(game_library->file_path[0]);
-
-  game_library->file_path = malloc(file_path_size);
-  strcpy(game_library->file_path, file_path);
+  Mdc_StringMetadata_InitMetadata(&string_metadata);
+  Mdc_BasicString_InitFromCStr(
+      &game_library->file_path,
+      &string_metadata,
+      file_path
+  );
 
   /* Load the library. */
   wide_file_path = ConvertUtf8ToWide(
@@ -75,7 +82,7 @@ struct MAPI_GameLibrary* MAPI_GameLibrary_Init(
       __LINE__
   );
 
-  game_library->base_address = LoadLibraryW(wide_file_path);
+  game_library->base_address = (intptr_t) LoadLibraryW(wide_file_path);
 
   if (game_library->base_address == NULL) {
     ExitOnWindowsFunctionFailureWithLastError(
@@ -90,12 +97,24 @@ free_wide_file_path:
   free(wide_file_path);
 
   return game_library;
+
+return_bad:
+  *game_library = Mapi_GameLibrary_kUninit;
+
+  return NULL;
+}
+
+struct MAPI_GameLibrary* MAPI_GameLibrary_InitMove(
+    struct MAPI_GameLibrary* dest,
+    struct MAPI_GameLibrary* src
+) {
+  *dest = *src;
 }
 
 void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library) {
   BOOL is_free_library_success;
 
-  is_free_library_success = FreeLibrary(game_library->base_address);
+  is_free_library_success = FreeLibrary((HMODULE) game_library->base_address);
   if (!is_free_library_success) {
     ExitOnWindowsFunctionFailureWithLastError(
         L"FreeLibrary",
@@ -105,5 +124,15 @@ void MAPI_GameLibrary_Deinit(struct MAPI_GameLibrary* game_library) {
     );
   }
 
-  free(game_library->file_path);
+  Mdc_BasicString_Deinit(&game_library->file_path);
+}
+
+int MAPI_GameLibrary_Compare(
+    const struct MAPI_GameLibrary* game_library1,
+    const struct MAPI_GameLibrary* game_library2
+) {
+  return Mdc_BasicString_CompareStr(
+      &game_library1->file_path,
+      &game_library2->file_path
+  );
 }

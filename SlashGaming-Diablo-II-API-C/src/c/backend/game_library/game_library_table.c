@@ -45,175 +45,57 @@
 
 #include "game_library_table.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
+#include <mdc/container/map.h>
+#include <mdc/std/threads.h>
 
-#include"../../../wide_macro.h"
-#include "../error_handling.h"
+static struct Mdc_Map game_library_map = MDC_MAP_UNINIT;
+static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
 
-static int MAPI_GameLibraryTable_CompareKeys(
-    const struct MAPI_GameLibrary** game_library1,
-    const struct MAPI_GameLibrary** game_library2
-) {
-  return strcmp((*game_library1)->file_path, (*game_library2)->file_path);
+static struct Mdc_MapMetadata map_metadata;
+static once_flag map_metadata_once_flag =
+    ONCE_FLAG_INIT;
+
+static struct Mdc_PairMetadata pair_metadata;
+static once_flag pair_metadata_once_flag = ONCE_FLAG_INIT;
+
+static void InitPairMetadata(void) {
+  struct Mdc_PairSize* const size = &pair_metadata.size;
+
+  struct Mdc_PairFunctions* const functions =
+      &pair_metadata.functions;
+  struct Mdc_PairFirstFunctions* const first_functions =
+      &functions->first_functions;
+  struct Mdc_PairSecondFunctions* const second_functions =
+      &functions->second_functions;
+
+  size->first_size = sizeof(struct Mdc_BasicString);
+  size->second_size = sizeof(struct MAPI_GameLibrary);
+
+  first_functions->init_copy = &Mdc_BasicString_InitCopy;
+  first_functions->init_move = &Mdc_BasicString_InitMove;
+  first_functions->deinit = &Mdc_BasicString_Deinit;
+  first_functions->compare = &Mdc_BasicString_CompareStr;
+
+  second_functions->init_move = &MAPI_GameLibrary_InitMove;
+  second_functions->deinit = &MAPI_GameLibrary_Deinit;
+  second_functions->compare = &MAPI_GameLibrary_Compare;
 }
 
-static int MAPI_GameLibraryTable_CompareAsVoidKeys(
-    const void* game_library1,
-    const void* game_library2
-) {
-  return MAPI_GameLibraryTable_CompareKeys(
-      (const struct MAPI_GameLibrary**) game_library1,
-      (const struct MAPI_GameLibrary**) game_library2
-  );
+static void InitMapMetadata(void) {
+  call_once(&pair_metadata_once_flag, &InitPairMetadata);
+
+  map_metadata.pair_metadata = pair_metadata;
 }
 
-static void MAPI_GameLibraryTable_Resize(
-    struct MAPI_GameLibraryTable* game_library_table,
-    size_t new_capacity
-) {
-  void* realloc_result;
-  size_t realloc_size;
-
-  size_t i;
-
-  /* Do nothing if the new capacity is the same. */
-  if (game_library_table->capacity == new_capacity) {
-    return;
-  }
-
-  /*
-  * Shrink away elements if new size is smaller than number of
-  * elements.
-  */
-  if (new_capacity < game_library_table->num_elements) {
-    for (i = new_capacity; i < game_library_table->num_elements; i += 1) {
-      MAPI_GameLibrary_Deinit(game_library_table->entries[i]);
-      free(game_library_table->entries[i]);
-    }
-
-    game_library_table->num_elements = new_capacity;
-  }
-
-  realloc_size = new_capacity * sizeof(game_library_table->entries[0]);
-
-  realloc_result = realloc(
-      game_library_table->entries,
-      realloc_size
-  );
-
-  if (realloc_result == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
-  }
-
-  game_library_table->entries = (struct MAPI_GameLibrary**) realloc_result;
-  game_library_table->capacity = new_capacity;
+static void InitStatic(void) {
+  call_once(&map_metadata_once_flag, &InitMapMetadata);
+  call_once(&pair_metadata_once_flag, &InitPairMetadata);
 }
 
-static void MAPI_GameLibraryTable_DoubleCapacity(
-    struct MAPI_GameLibraryTable* game_library_table
+struct Mdc_Map* Mapi_InitGameLibraryMap(
+    struct Mdc_Map* game_library_map
 ) {
-  MAPI_GameLibraryTable_Resize(
-      game_library_table,
-      game_library_table->capacity * 2
-  );
-}
+  InitStatic();
 
-struct MAPI_GameLibraryTable* MAPI_GameLibraryTable_Init(
-    struct MAPI_GameLibraryTable* game_library_table
-) {
-  game_library_table->num_elements = 0;
-  game_library_table->capacity = 4;
-  game_library_table->entries = malloc(
-      game_library_table->capacity * sizeof(game_library_table->entries[0])
-  );
-
-  if (game_library_table->entries == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
-  }
-
-  return game_library_table;
-}
-
-void MAPI_GameLibraryTable_Deinit(
-    struct MAPI_GameLibraryTable* game_library_table
-) {
-  MAPI_GameLibraryTable_Clear(game_library_table);
-
-  free(game_library_table->entries);
-
-  game_library_table->entries = NULL;
-  game_library_table->num_elements = 0;
-  game_library_table->capacity = 0;
-}
-
-const struct MAPI_GameLibrary* MAPI_GameLibraryTable_AtConst(
-    const struct MAPI_GameLibraryTable* game_library_table,
-    const char* file_path
-) {
-  struct MAPI_GameLibrary search_game_library;
-  struct MAPI_GameLibrary* search_game_library_ptr;
-  struct MAPI_GameLibrary** game_library_search_result;
-
-  search_game_library_ptr = &search_game_library;
-
-  search_game_library.file_path = file_path;
-
-  game_library_search_result = bsearch(
-      &search_game_library_ptr,
-      game_library_table->entries,
-      game_library_table->num_elements,
-      sizeof(game_library_table->entries[0]),
-      &MAPI_GameLibraryTable_CompareAsVoidKeys
-  );
-
-  if (game_library_search_result == NULL) {
-    return NULL;
-  }
-
-  return *game_library_search_result;
-}
-
-struct MAPI_GameLibrary* MAPI_GameLibraryTable_Emplace(
-    struct MAPI_GameLibraryTable* game_library_table,
-    const char* file_path
-) {
-  while (game_library_table->num_elements >= game_library_table->capacity) {
-    MAPI_GameLibraryTable_DoubleCapacity(game_library_table);
-  }
-
-  game_library_table->entries[game_library_table->num_elements] = malloc(
-      sizeof(*game_library_table->entries[0])
-  );
-
-  MAPI_GameLibrary_Init(
-      game_library_table->entries[game_library_table->num_elements],
-      file_path
-  );
-
-  game_library_table->num_elements += 1;
-
-  qsort(
-      game_library_table->entries,
-      game_library_table->num_elements,
-      sizeof(game_library_table->entries[0]),
-      &MAPI_GameLibraryTable_CompareAsVoidKeys
-  );
-
-  return game_library_table->entries[game_library_table->num_elements - 1];
-}
-
-void MAPI_GameLibraryTable_Clear(
-    struct MAPI_GameLibraryTable* game_library_table
-) {
-  if (game_library_table->entries == NULL) {
-    return;
-  }
-
-  for (size_t i = 0; i < game_library_table->num_elements; i += 1) {
-    MAPI_GameLibrary_Deinit(game_library_table->entries[i]);
-  }
-
-  game_library_table->num_elements = 0;
+  Mdc_Map_Init(&game_library_map, &map_metadata);
 }
