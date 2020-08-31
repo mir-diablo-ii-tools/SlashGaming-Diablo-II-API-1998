@@ -51,28 +51,91 @@
 #include "../wide_macro.h"
 #include "backend/error_handling.h"
 
-static const char* kLibraryIdToName[] = {
-    [LIBRARY_BNCLIENT] = "BNClient.dll",
-    [LIBRARY_D2CLIENT] = "D2Client.dll",
-    [LIBRARY_D2CMP] = "D2CMP.dll",
-    [LIBRARY_D2COMMON] = "D2Common.dll",
-    [LIBRARY_D2DDRAW] = "D2DDraw.dll",
-    [LIBRARY_D2DIRECT3D] = "D2Direct3D.dll",
-    [LIBRARY_D2GAME] = "D2Game.dll",
-    [LIBRARY_D2GDI] = "D2GDI.dll",
-    [LIBRARY_D2GFX] = "D2GFX.dll",
-    [LIBRARY_D2GLIDE] = "D2Glide.dll",
-    [LIBRARY_D2LANG] = "D2Lang.dll",
-    [LIBRARY_D2LAUNCH] = "D2Launch.dll",
-    [LIBRARY_D2MCPCLIENT] = "D2MCPClient.dll",
-    [LIBRARY_D2MULTI] = "D2Multi.dll",
-    [LIBRARY_D2NET] = "D2Net.dll",
-    [LIBRARY_D2SERVER] = "D2Server.dll",
-    [LIBRARY_D2SOUND] = "D2Sound.dll",
-    [LIBRARY_D2WIN] = "D2Win.dll",
-    [LIBRARY_FOG] = "Fog.dll",
-    [LIBRARY_STORM] = "Storm.dll",
-};
+static const char* GetLibraryName(enum D2_DefaultLibrary library) {
+  switch (library) {
+    case LIBRARY_BNCLIENT: {
+      return "BNClient.dll";
+    }
+
+    case LIBRARY_D2CLIENT: {
+      return "D2Client.dll";
+    }
+
+    case LIBRARY_D2CMP: {
+      return "D2CMP.dll";
+    }
+
+    case LIBRARY_D2COMMON: {
+      return "D2Common.dll";
+    }
+
+    case LIBRARY_D2DDRAW: {
+      return "D2DDraw.dll";
+    }
+
+    case LIBRARY_D2DIRECT3D: {
+      return "D2Direct3D.dll";
+    }
+
+    case LIBRARY_D2GAME: {
+      return "D2Game.dll";
+    }
+
+    case LIBRARY_D2GDI: {
+      return "D2GDI.dll";
+    }
+
+    case LIBRARY_D2GFX: {
+      return "D2GFX.dll";
+    }
+
+    case LIBRARY_D2GLIDE: {
+      return "D2Glide.dll";
+    }
+
+    case LIBRARY_D2LANG: {
+      return "D2Lang.dll";
+    }
+
+    case LIBRARY_D2LAUNCH: {
+      return "D2Launch.dll";
+    }
+
+    case LIBRARY_D2MCPCLIENT: {
+      return "D2MCPClient.dll";
+    }
+
+    case LIBRARY_D2MULTI: {
+      return "D2Multi.dll";
+    }
+
+    case LIBRARY_D2NET: {
+      return "D2Net.dll";
+    }
+
+    case LIBRARY_D2SERVER: {
+      return "D2Server.dll";
+    }
+
+    case LIBRARY_D2SOUND: {
+      return "D2Sound.dll";
+    }
+
+    case LIBRARY_D2WIN: {
+      return "D2Win.dll";
+    }
+
+    case LIBRARY_FOG: {
+      return "Fog.dll";
+    }
+
+    case LIBRARY_STORM: {
+      return "Storm.dll";
+    }
+  }
+
+  return NULL;
+}
 
 const char* MAPI_GetGameExecutablePath(void) {
   return "Game.exe";
@@ -86,8 +149,7 @@ const char* MAPI_GetDefaultLibraryPathWithRedirect(
     return MAPI_GetGameExecutablePath();
   }
 
-  if (library_id < 0
-      || library_id > (sizeof(kLibraryIdToName) / sizeof(kLibraryIdToName[0]))) {
+  if (library_id < 0 || library_id > LIBRARY_STORM) {
     wchar_t error_message[128];
     swprintf(
         error_message,
@@ -104,5 +166,5 @@ const char* MAPI_GetDefaultLibraryPathWithRedirect(
     );
   }
 
-  return kLibraryIdToName[library_id];
+  return GetLibraryName(library_id);
 }
