@@ -70,7 +70,7 @@ static int Mdc_BasicString_CompareStrAsVoid(const void* str1, const void* str2) 
   return Mdc_BasicString_CompareStr(str1, str2);
 }
 
-static void* Mapi_GameLibrary_InitMoveAsVoid(void* dest, const void* src) {
+static void* Mapi_GameLibrary_InitMoveAsVoid(void* dest, void* src) {
   return Mapi_GameLibrary_InitMove(dest, src);
 }
 
