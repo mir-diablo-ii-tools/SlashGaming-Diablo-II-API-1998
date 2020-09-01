@@ -108,7 +108,28 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
     struct Mapi_GameLibrary* dest,
     struct Mapi_GameLibrary* src
 ) {
-  *dest = *src;
+  const struct Mdc_BasicString* init_file_path_move;
+
+  init_file_path_move = Mdc_BasicString_InitMove(
+      &dest->file_path,
+      &src->file_path
+  );
+
+  if (init_file_path_move != &dest->file_path) {
+    goto return_bad;
+  }
+
+  src->file_path = Mdc_BasicString_kUninit;
+
+  dest->base_address = src->base_address;
+  src->base_address = 0;
+
+  return dest;
+
+return_bad:
+  *dest = Mapi_GameLibrary_kUninit;
+
+  return NULL;
 }
 
 void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
@@ -125,6 +146,8 @@ void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
   }
 
   Mdc_BasicString_Deinit(&game_library->file_path);
+
+  *game_library = Mapi_GameLibrary_kUninit;
 }
 
 int Mapi_GameLibrary_Compare(
