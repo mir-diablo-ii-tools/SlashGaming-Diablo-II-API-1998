@@ -47,7 +47,6 @@
 
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
-#include "../backend/encoding.h"
 #include "../backend/error_handling.h"
 
 enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(

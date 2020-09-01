@@ -47,7 +47,6 @@
 
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
-#include "../backend/encoding.h"
 #include "../backend/error_handling.h"
 
 enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(

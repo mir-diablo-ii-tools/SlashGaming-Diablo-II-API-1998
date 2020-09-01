@@ -53,7 +53,6 @@
 
 #include <mdc/std/threads.h>
 #include "../wide_macro.h"
-#include "backend/encoding.h"
 #include "backend/error_handling.h"
 #include "backend/game_library.h"
 #include "backend/game_version/file_info.h"

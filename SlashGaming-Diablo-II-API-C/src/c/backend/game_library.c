@@ -53,7 +53,6 @@
 #include <mdc/container/map.h>
 #include <mdc/std/threads.h>
 #include "../../wide_macro.h"
-#include "encoding.h"
 #include "error_handling.h"
 #include "game_library/game_library_table.h"
 

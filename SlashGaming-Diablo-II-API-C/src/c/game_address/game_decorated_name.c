@@ -49,8 +49,9 @@
 #include <stdlib.h>
 #include <wchar.h>
 
+#include <mdc/string/basic_string.h>
+#include <mdc/wchar_t/wide_decoding.h>
 #include "../../wide_macro.h"
-#include "../backend/encoding.h"
 #include "../backend/error_handling.h"
 #include "../backend/game_library.h"
 
@@ -71,26 +72,21 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
     const char* library_path,
     const char* decorated_name
 ) {
-  const struct Mapi_GameLibrary* game_library = GetGameLibrary(library_path);
-  FARPROC ordinal_address = GetProcAddress(
+  struct Mdc_BasicString library_path_wide = MDC_BASIC_STRING_UNINIT;
+  struct Mdc_BasicString decorated_name_wide = MDC_BASIC_STRING_UNINIT;
+
+  const struct Mapi_GameLibrary* game_library;
+  FARPROC ordinal_address;
+
+  game_library = GetGameLibrary(library_path);
+  ordinal_address = GetProcAddress(
       (HMODULE) game_library->base_address,
       decorated_name
   );
 
   if (ordinal_address == NULL) {
-    wchar_t* library_path_wide = ConvertUtf8ToWide(
-        NULL,
-        library_path,
-        __FILEW__,
-        __LINE__
-    );
-
-    wchar_t* decorated_name_wide = ConvertUtf8ToWide(
-        NULL,
-        decorated_name,
-        __FILEW__,
-        __LINE__
-    );
+    library_path_wide = Mdc_Wide_DecodeUtf8(library_path);
+    decorated_name_wide = Mdc_Wide_DecodeUtf8(decorated_name);
 
     wchar_t full_message[512];
 
@@ -102,12 +98,12 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
         full_message,
         sizeof(full_message) / sizeof(full_message[0]),
         kErrorFormatMessage,
-        decorated_name_wide,
-        library_path_wide
+        Mdc_BasicString_Data(&decorated_name_wide),
+        Mdc_BasicString_Data(&library_path_wide)
     );
 
-    free(library_path_wide);
-    free(decorated_name_wide);
+    Mdc_BasicString_Deinit(&decorated_name_wide);
+    Mdc_BasicString_Deinit(&library_path_wide);
 
     ExitOnGeneralFailure(
         full_message,

@@ -49,7 +49,7 @@
 #include <windows.h>
 
 #include <mdc/std/threads.h>
-#include "../encoding.h"
+#include <mdc/wchar_t/wide_decoding.h>
 #include "../error_handling.h"
 
 const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
@@ -61,10 +61,10 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
 ) {
   struct Mdc_BasicStringMetadata string_metadata;
 
+  struct Mdc_BasicString wide_file_path;
+
   size_t file_path_len;
   size_t file_path_size;
-
-  wchar_t* wide_file_path;
 
   /* Copy the file path. */
   Mdc_StringMetadata_InitMetadata(&string_metadata);
@@ -75,14 +75,11 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
   );
 
   /* Load the library. */
-  wide_file_path = ConvertUtf8ToWide(
-      NULL,
-      file_path,
-      __FILEW__,
-      __LINE__
-  );
+  wide_file_path = Mdc_Wide_DecodeUtf8(file_path);
 
-  game_library->base_address = (intptr_t) LoadLibraryW(wide_file_path);
+  game_library->base_address = (intptr_t) LoadLibraryW(
+      Mdc_BasicString_Data(&wide_file_path)
+  );
 
   if (game_library->base_address == NULL) {
     ExitOnWindowsFunctionFailureWithLastError(
@@ -93,8 +90,8 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
     );
   }
 
-free_wide_file_path:
-  free(wide_file_path);
+deinit_wide_file_path:
+  Mdc_BasicString_Deinit(&wide_file_path);
 
   return game_library;
 
