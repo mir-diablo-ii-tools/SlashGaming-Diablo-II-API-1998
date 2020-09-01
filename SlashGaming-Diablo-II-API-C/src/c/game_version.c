@@ -65,7 +65,7 @@ static once_flag running_game_version_once_flag = ONCE_FLAG_INIT;
 
 static wchar_t* GetCurrentProcessFilePath(void) {
   wchar_t* realloc_file_path;
-  wchar_t* realloc_file_path_size;
+  size_t realloc_file_path_size;
   wchar_t* current_process_file_path;
   size_t current_process_file_path_capacity;
 
