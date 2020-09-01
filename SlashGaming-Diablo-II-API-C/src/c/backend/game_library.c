@@ -90,11 +90,6 @@ const struct Mapi_GameLibrary* GetGameLibrary(const char* file_path) {
       file_path
   );
 
-  game_library = Mdc_Map_Contains(
-      &game_library_map,
-      file_path
-  );
-
   /* If not found, then add the game library. */
   if (!Mdc_Map_Contains(&game_library_map, &file_path_str)) {
     Mdc_Map_EmplaceKeyCopy(
