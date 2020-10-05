@@ -43,67 +43,37 @@
  *  work.
  */
 
-#include "game_library.h"
+#include "pair_string_game_library.h"
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
-
-#include <mdc/string/basic_string.h>
-#include <mdc/container/map.h>
 #include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
-#include "game_library/map_string_game_library.h"
+#include <mdc/string/basic_string.h>
+#include "game_library_struct.h"
 
-static struct Mdc_Map game_library_map;
-static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
+/**
+ * Static functions
+ */
 
-static void InitGameLibraryMap(void) {
-  Mdc_Map_InitEmpty(
-      &game_library_map,
-      Mapi_MapStringGameLibrary_GetGlobalMapMetadata()
+static struct Mdc_PairMetadata global_pair_metadata;
+static once_flag global_pair_metadata_init_flag = ONCE_FLAG_INIT;
+
+static void Mapi_PairStringGameLibrary_InitGlobalPairMetadata(void) {
+  Mdc_PairMetadata_Init(
+      &global_pair_metadata,
+      Mdc_String_GetObjectMetadata(),
+      Mapi_GameLibrary_GetGlobalObjectMetadata()
   );
 }
 
-static void InitStatic(void) {
-  call_once(&game_library_map_once_flag, &InitGameLibraryMap);
-}
+/**
+ * External functions
+ */
 
-const struct Mapi_GameLibrary* GetGameLibrary(const char* file_path) {
-  struct Mdc_BasicString file_path_str;
-  struct Mdc_BasicString* init_file_path_str;
-
-  const struct Mapi_GameLibrary* game_library;
-
-  InitStatic();
-
-  init_file_path_str = Mdc_BasicString_InitFromCStr(
-      &file_path_str,
-      Mdc_CharTraitsChar_GetCharTraits(),
-      file_path
+const struct Mdc_PairMetadata*
+Mapi_PairStringGameLibrary_GetGlobalPairMetadata(void) {
+  call_once(
+      &global_pair_metadata_init_flag,
+      &Mdc_PairStringGameLibrary_InitGlobalPairMetadata
   );
 
-  if (init_file_path_str != &file_path_str) {
-    goto return_bad;
-  }
-
-  /* If not found, then add the game library. */
-  Mdc_Map_EmplaceKeyCopy(
-      &game_library_map,
-      &file_path_str,
-      &Mapi_GameLibrary_InitFromFilePath,
-      Mdc_BasicString_Data(&file_path_str)
-  );
-
-  game_library = Mdc_Map_AtConst(&game_library_map, &file_path_str);
-
-  Mdc_BasicString_Deinit(&file_path_str);
-
-  return game_library;
-
-return_bad:
-  return NULL;
+  return &global_pair_metadata;
 }

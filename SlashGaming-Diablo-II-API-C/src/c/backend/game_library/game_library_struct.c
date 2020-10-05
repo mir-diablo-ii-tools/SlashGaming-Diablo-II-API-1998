@@ -52,30 +52,38 @@
 #include <mdc/wchar_t/wide_decoding.h>
 #include "../error_handling.h"
 
-const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
+#define MAPI_GAME_LIBRARY_UNINIT { 0 }
+
+static const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
     MAPI_GAME_LIBRARY_UNINIT;
 
-struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
+struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
     const char* file_path
 ) {
-  struct Mdc_BasicStringMetadata string_metadata;
+  struct Mdc_BasicString* init_file_path;
 
   struct Mdc_BasicString wide_file_path;
+  struct Mdc_BasicString* init_wide_file_path;
 
   size_t file_path_len;
   size_t file_path_size;
 
   /* Copy the file path. */
-  Mdc_StringMetadata_InitMetadata(&string_metadata);
-  Mdc_BasicString_InitFromCStr(
+  init_file_path = Mdc_BasicString_InitFromCStr(
       &game_library->file_path,
-      &string_metadata,
+      Mdc_CharTraitsChar_GetCharTraits(),
       file_path
   );
+  if (init_file_path != &game_library->file_path) {
+    goto return_bad;
+  }
 
   /* Load the library. */
-  wide_file_path = Mdc_Wide_DecodeUtf8(file_path);
+  init_wide_file_path = Mdc_Wide_DecodeUtf8(&wide_file_path, file_path);
+  if (init_wide_file_path != &wide_file_path) {
+    goto deinit_file_path;
+  }
 
   game_library->base_address = (intptr_t) LoadLibraryW(
       Mdc_BasicString_Data(&wide_file_path)
@@ -90,10 +98,12 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
     );
   }
 
-deinit_wide_file_path:
   Mdc_BasicString_Deinit(&wide_file_path);
 
   return game_library;
+
+deinit_file_path:
+  Mdc_BasicString_Deinit(&game_library->file_path);
 
 return_bad:
   *game_library = Mapi_GameLibrary_kUninit;
@@ -147,6 +157,26 @@ void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
   *game_library = Mapi_GameLibrary_kUninit;
 }
 
+struct Mapi_GameLibrary* Mapi_GameLibrary_AssignMove(
+    struct Mapi_GameLibrary* dest,
+    struct Mapi_GameLibrary* src
+) {
+  Mdc_BasicString_AssignMove(&dest->file_path, &src->file_path);
+
+  dest->base_address = src->base_address;
+  src->base_address = 0;
+}
+
+bool Mapi_GameLibrary_Equal(
+    const struct Mapi_GameLibrary* game_library1,
+    const struct Mapi_GameLibrary* game_library2
+) {
+  return Mdc_BasicString_EqualStr(
+      &game_library1->file_path,
+      &game_library2->file_path
+  );
+}
+
 int Mapi_GameLibrary_Compare(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
@@ -155,4 +185,59 @@ int Mapi_GameLibrary_Compare(
       &game_library1->file_path,
       &game_library2->file_path
   );
+}
+
+void Mapi_GameLibrary_Swap(
+    struct Mapi_GameLibrary* game_library1,
+    struct Mapi_GameLibrary* game_library2
+) {
+  struct Mapi_GameLibrary temp_game_library;
+  struct Mapi_GameLibrary* init_temp_game_library;
+
+  struct Mapi_GameLibrary* assign_game_library1;
+  struct Mapi_GameLibrary* assign_game_library2;
+
+  /* Init-move temp. */
+  init_temp_game_library = Mapi_GameLibrary_InitMove(
+      &temp_game_library,
+      game_library1
+  );
+
+  if (init_temp_game_library != &temp_game_library) {
+    goto return_bad;
+  }
+
+  /* Assign-move first game library. */
+  assign_game_library1 = Mapi_GameLibrary_AssignMove(
+      game_library1,
+      game_library2
+  );
+
+  if (assign_game_library1 != game_library1) {
+    goto deinit_temp_game_library;
+  }
+
+  /* Assign-move second game library. */
+  assign_game_library2 = Mapi_GameLibrary_AssignMove(
+      game_library2,
+      &temp_game_library
+  );
+
+  if (assign_game_library2 != game_library2) {
+    goto deassign_game_library1;
+  }
+
+  Mapi_GameLibrary_Deinit(&temp_game_library);
+
+  return;
+
+deassign_game_library1:
+  Mapi_GameLibrary_AssignMove(game_library2, game_library1);
+
+deinit_temp_game_library:
+  Mapi_GameLibrary_AssignMove(game_library1, &temp_game_library);
+  Mapi_GameLibrary_Deinit(&temp_game_library);
+
+return_bad:
+  return;
 }

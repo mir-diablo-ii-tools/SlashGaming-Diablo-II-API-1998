@@ -43,67 +43,14 @@
  *  work.
  */
 
-#include "game_library.h"
+#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_
+#define SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
-
-#include <mdc/string/basic_string.h>
 #include <mdc/container/map.h>
-#include <mdc/std/threads.h>
-#include "../../wide_macro.h"
-#include "error_handling.h"
-#include "game_library/game_library_table.h"
-#include "game_library/map_string_game_library.h"
+#include <mdc/string/basic_string.h>
+#include "game_library_struct.h"
 
-static struct Mdc_Map game_library_map;
-static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
+const struct Mdc_MapMetadata*
+Mapi_MapStringGameLibrary_GetGlobalMapMetadata(void);
 
-static void InitGameLibraryMap(void) {
-  Mdc_Map_InitEmpty(
-      &game_library_map,
-      Mapi_MapStringGameLibrary_GetGlobalMapMetadata()
-  );
-}
-
-static void InitStatic(void) {
-  call_once(&game_library_map_once_flag, &InitGameLibraryMap);
-}
-
-const struct Mapi_GameLibrary* GetGameLibrary(const char* file_path) {
-  struct Mdc_BasicString file_path_str;
-  struct Mdc_BasicString* init_file_path_str;
-
-  const struct Mapi_GameLibrary* game_library;
-
-  InitStatic();
-
-  init_file_path_str = Mdc_BasicString_InitFromCStr(
-      &file_path_str,
-      Mdc_CharTraitsChar_GetCharTraits(),
-      file_path
-  );
-
-  if (init_file_path_str != &file_path_str) {
-    goto return_bad;
-  }
-
-  /* If not found, then add the game library. */
-  Mdc_Map_EmplaceKeyCopy(
-      &game_library_map,
-      &file_path_str,
-      &Mapi_GameLibrary_InitFromFilePath,
-      Mdc_BasicString_Data(&file_path_str)
-  );
-
-  game_library = Mdc_Map_AtConst(&game_library_map, &file_path_str);
-
-  Mdc_BasicString_Deinit(&file_path_str);
-
-  return game_library;
-
-return_bad:
-  return NULL;
-}
+#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_ */

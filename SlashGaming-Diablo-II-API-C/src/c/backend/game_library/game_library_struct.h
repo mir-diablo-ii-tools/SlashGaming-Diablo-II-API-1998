@@ -48,6 +48,7 @@
 
 #include <stdint.h>
 
+#include <mdc/object_metadata/object_metadata.h>
 #include <mdc/string/basic_string.h>
 
 struct Mapi_GameLibrary {
@@ -55,15 +56,11 @@ struct Mapi_GameLibrary {
   intptr_t base_address;
 };
 
-#define MAPI_GAME_LIBRARY_UNINIT { 0 }
-
-const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit;
-
 /**
  * Initializes a GameLibrary, value copying the specified file path,
  * loading the module, and storing the module handle.
  */
-struct Mapi_GameLibrary* Mapi_GameLibrary_Init(
+struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
     const char* file_path
 );
@@ -75,9 +72,27 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
 
 void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library);
 
+const struct Mdc_ObjectMetadata*
+Mapi_GameLibrary_GetGlobalObjectMetadata(void);
+
+struct Mapi_GameLibrary* Mapi_GameLibrary_AssignMove(
+    struct Mapi_GameLibrary* dest,
+    struct Mapi_GameLibrary* src
+);
+
+bool Mapi_GameLibrary_Equal(
+    const struct Mapi_GameLibrary* game_library1,
+    const struct Mapi_GameLibrary* game_library2
+);
+
 int Mapi_GameLibrary_Compare(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
+);
+
+void Mapi_GameLibrary_Swap(
+    struct Mapi_GameLibrary* game_library1,
+    struct Mapi_GameLibrary* game_library2
 );
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_ */

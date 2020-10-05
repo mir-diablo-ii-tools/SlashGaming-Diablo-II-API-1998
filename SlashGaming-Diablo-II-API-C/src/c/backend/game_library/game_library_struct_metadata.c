@@ -43,32 +43,9 @@
  *  work.
  */
 
-#include "game_library_table.h"
+#include "game_library_struct.h"
 
-#include <mdc/container/map.h>
 #include <mdc/std/threads.h>
-
-static struct Mdc_MapMetadata map_metadata;
-static once_flag map_metadata_once_flag = ONCE_FLAG_INIT;
-
-static struct Mdc_PairMetadata pair_metadata;
-static once_flag pair_metadata_once_flag = ONCE_FLAG_INIT;
-
-static void* Mdc_BasicString_InitCopyAsVoid(void* dest, const void* src) {
-  return Mdc_BasicString_InitCopy(dest, src);
-}
-
-static void* Mdc_BasicString_InitMoveAsVoid(void* dest, void* src) {
-  return Mdc_BasicString_InitMove(dest, src);
-}
-
-static void Mdc_BasicString_DeinitAsVoid(void* str) {
-  Mdc_BasicString_Deinit(str);
-}
-
-static int Mdc_BasicString_CompareStrAsVoid(const void* str1, const void* str2) {
-  return Mdc_BasicString_CompareStr(str1, str2);
-}
 
 static void* Mapi_GameLibrary_InitMoveAsVoid(void* dest, void* src) {
   return Mapi_GameLibrary_InitMove(dest, src);
@@ -78,6 +55,17 @@ static void Mapi_GameLibrary_DeinitAsVoid(void* game_library) {
   Mapi_GameLibrary_Deinit(game_library);
 }
 
+static void* Mapi_GameLibrary_AssignMoveAsVoid(void* dest, void* src) {
+  return Mapi_GameLibrary_AssignMove(dest, src);
+}
+
+static bool Mapi_GameLibrary_EqualAsVoid(
+    const void* game_library1,
+    const void* game_library2
+) {
+  return Mapi_GameLibrary_Equal(game_library1, game_library2);
+}
+
 static int Mapi_GameLibrary_CompareAsVoid(
     const void* game_library1,
     const void* game_library2
@@ -85,44 +73,42 @@ static int Mapi_GameLibrary_CompareAsVoid(
   return Mapi_GameLibrary_Compare(game_library1, game_library2);
 }
 
-static void InitPairMetadata(void) {
-  struct Mdc_PairSize* const size = &pair_metadata.size;
-
-  struct Mdc_PairFunctions* const functions =
-      &pair_metadata.functions;
-  struct Mdc_PairFirstFunctions* const first_functions =
-      &functions->first_functions;
-  struct Mdc_PairSecondFunctions* const second_functions =
-      &functions->second_functions;
-
-  size->first_size = sizeof(struct Mdc_BasicString);
-  size->second_size = sizeof(struct Mapi_GameLibrary);
-
-  first_functions->init_copy = &Mdc_BasicString_InitCopyAsVoid;
-  first_functions->init_move = &Mdc_BasicString_InitMoveAsVoid;
-  first_functions->deinit = &Mdc_BasicString_DeinitAsVoid;
-  first_functions->compare = &Mdc_BasicString_CompareStrAsVoid;
-
-  second_functions->init_move = &Mapi_GameLibrary_InitMoveAsVoid;
-  second_functions->deinit = &Mapi_GameLibrary_DeinitAsVoid;
-  second_functions->compare = &Mapi_GameLibrary_CompareAsVoid;
-}
-
-static void InitMapMetadata(void) {
-  call_once(&pair_metadata_once_flag, &InitPairMetadata);
-
-  map_metadata.pair_metadata = pair_metadata;
-}
-
-static void InitStatic(void) {
-  call_once(&map_metadata_once_flag, &InitMapMetadata);
-  call_once(&pair_metadata_once_flag, &InitPairMetadata);
-}
-
-struct Mdc_Map* Mapi_InitGameLibraryMap(
-    struct Mdc_Map* game_library_map
+static void Mapi_GameLibrary_SwapAsVoid(
+    void* game_library1,
+    void* game_library2
 ) {
-  InitStatic();
+  Mapi_GameLibrary_Swap(game_library1, game_library2);
+}
 
-  return Mdc_Map_Init(game_library_map, &map_metadata);
+static struct Mdc_ObjectMetadata* Mapi_GameLibrary_InitObjectMetadata(
+    struct Mdc_ObjectMetadata* metadata
+) {
+  metadata->size = sizeof(struct Mapi_GameLibrary);
+
+  metadata->functions.init_move = &Mapi_GameLibrary_InitMoveAsVoid;
+  metadata->functions.deinit = &Mapi_GameLibrary_DeinitAsVoid;
+
+  metadata->functions.init_move = &Mapi_GameLibrary_AssignMoveAsVoid;
+
+  metadata->functions.equal = &Mapi_GameLibrary_Equal;
+  metadata->functions.compare = &Mapi_GameLibrary_Compare;
+
+  metadata->functions.swap = &Mapi_GameLibrary_SwapAsVoid;
+}
+
+static struct Mdc_ObjectMetadata global_metadata;
+static once_flag global_metadata_init_flag = ONCE_FLAG_INIT;
+
+static void Mapi_GameLibrary_InitGlobalObjectMetadata(void) {
+  Mapi_GameLibrary_InitObjectMetadata(&global_metadata);
+}
+
+const struct Mdc_ObjectMetadata*
+Mapi_GameLibrary_GetGlobalObjectMetadata(void) {
+  call_once(
+      &global_metadata_init_flag,
+      &Mapi_GameLibrary_InitGlobalObjectMetadata
+  );
+
+  return &global_metadata;
 }
