@@ -72,7 +72,7 @@ const struct Mdc_PairMetadata*
 Mapi_PairStringGameLibrary_GetGlobalPairMetadata(void) {
   call_once(
       &global_pair_metadata_init_flag,
-      &Mdc_PairStringGameLibrary_InitGlobalPairMetadata
+      &Mapi_PairStringGameLibrary_InitGlobalPairMetadata
   );
 
   return &global_pair_metadata;

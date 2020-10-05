@@ -55,7 +55,6 @@
 #include <mdc/std/threads.h>
 #include "../../wide_macro.h"
 #include "error_handling.h"
-#include "game_library/game_library_table.h"
 #include "game_library/map_string_game_library.h"
 
 static struct Mdc_Map game_library_map;
