@@ -50,7 +50,15 @@
 #include <mdc/string/basic_string.h>
 #include "game_library_struct.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 const struct Mdc_MapMetadata*
 Mapi_MapStringGameLibrary_GetGlobalMapMetadata(void);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_ */
