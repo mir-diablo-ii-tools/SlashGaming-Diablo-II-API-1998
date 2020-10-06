@@ -54,7 +54,7 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata global_map_metadata;
+static struct Mdc_MapMetadata global_map_metadata;
 static once_flag global_map_metadata_init_flag = ONCE_FLAG_INIT;
 
 static void Mapi_MapStringGameLibrary_InitGlobalMapMetadata(void) {
