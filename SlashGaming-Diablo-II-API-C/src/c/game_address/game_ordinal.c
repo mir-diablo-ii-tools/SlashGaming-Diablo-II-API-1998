@@ -78,7 +78,7 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
 
   game_library = GetGameLibrary(library_path);
   ordinal_address = GetProcAddress(
-      (HMODULE) game_library->base_address,
+      (HMODULE) game_library->base_address_,
       (const char*) (0xFFFF & ordinal)
   );
 

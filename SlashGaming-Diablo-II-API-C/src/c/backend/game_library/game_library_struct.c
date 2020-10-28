@@ -57,6 +57,25 @@
 static const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
     MAPI_GAME_LIBRARY_UNINIT;
 
+static intptr_t Mapi_GameLibrary_LoadBaseAddress(
+    const struct Mdc_Fs_Path* file_path
+) {
+  HMODULE base_address;
+
+  base_address = LoadLibraryW(Mdc_Fs_Path_CStr(file_path));
+
+  if (base_address == NULL) {
+    ExitOnWindowsFunctionFailureWithLastError(
+        L"LoadLibraryW",
+        GetLastError(),
+        __FILEW__,
+        __LINE__
+    );
+  }
+
+  return (intptr_t) base_address;
+}
+
 struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
     struct Mdc_Fs_Path* file_path
@@ -65,26 +84,18 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
 
   /* Move the file path. */
   init_file_path = Mdc_BasicString_InitMove(
-      &game_library->file_path,
+      &game_library->file_path_,
       file_path
   );
-  if (init_file_path != &game_library->file_path) {
+
+  if (init_file_path != &game_library->file_path_) {
     goto return_bad;
   }
 
   /* Load the library. */
-  game_library->base_address = (intptr_t) LoadLibraryW(
-      Mdc_Fs_Path_CStr(&game_library->file_path)
+  game_library->base_address_ = Mapi_GameLibrary_LoadBaseAddress(
+      &game_library->file_path_
   );
-
-  if (game_library->base_address == NULL) {
-    ExitOnWindowsFunctionFailureWithLastError(
-        L"LoadLibraryW",
-        GetLastError(),
-        __FILEW__,
-        __LINE__
-    );
-  }
 
   return game_library;
 
@@ -102,26 +113,18 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePathCopy(
 
   /* Copy the file path. */
   init_file_path = Mdc_BasicString_InitCopy(
-      &game_library->file_path,
+      &game_library->file_path_,
       file_path
   );
-  if (init_file_path != &game_library->file_path) {
+
+  if (init_file_path != &game_library->file_path_) {
     goto return_bad;
   }
 
   /* Load the library. */
-  game_library->base_address = (intptr_t) LoadLibraryW(
-      Mdc_Fs_Path_CStr(&game_library->file_path)
+  game_library->base_address_ = Mapi_GameLibrary_LoadBaseAddress(
+      &game_library->file_path_
   );
-
-  if (game_library->base_address == NULL) {
-    ExitOnWindowsFunctionFailureWithLastError(
-        L"LoadLibraryW",
-        GetLastError(),
-        __FILEW__,
-        __LINE__
-    );
-  }
 
   return game_library;
 
@@ -135,19 +138,19 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
     struct Mapi_GameLibrary* dest,
     struct Mapi_GameLibrary* src
 ) {
-  const struct Mdc_BasicString* init_file_path_move;
+  const struct Mdc_BasicString* init_file_path;
 
-  init_file_path_move = Mdc_Fs_Path_InitMove(
-      &dest->file_path,
-      &src->file_path
+  init_file_path = Mdc_Fs_Path_InitMove(
+      &dest->file_path_,
+      &src->file_path_
   );
 
-  if (init_file_path_move != &dest->file_path) {
+  if (init_file_path != &dest->file_path_) {
     goto return_bad;
   }
 
-  dest->base_address = src->base_address;
-  src->base_address = 0;
+  dest->base_address_ = src->base_address_;
+  src->base_address_ = (intptr_t) NULL;
 
   return dest;
 
@@ -160,7 +163,10 @@ return_bad:
 void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
   BOOL is_free_library_success;
 
-  is_free_library_success = FreeLibrary((HMODULE) game_library->base_address);
+  is_free_library_success = FreeLibrary(
+      (HMODULE) game_library->base_address_
+  );
+
   if (!is_free_library_success) {
     ExitOnWindowsFunctionFailureWithLastError(
         L"FreeLibrary",
@@ -170,7 +176,7 @@ void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
     );
   }
 
-  Mdc_Fs_Path_Deinit(&game_library->file_path);
+  Mdc_Fs_Path_Deinit(&game_library->file_path_);
 
   *game_library = Mapi_GameLibrary_kUninit;
 }
@@ -179,30 +185,60 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_AssignMove(
     struct Mapi_GameLibrary* dest,
     struct Mapi_GameLibrary* src
 ) {
-  Mdc_Fs_Path_AssignMove(&dest->file_path, &src->file_path);
+  if (dest == src) {
+    return dest;
+  }
 
-  dest->base_address = src->base_address;
-  src->base_address = 0;
+  Mdc_Fs_Path_AssignMove(&dest->file_path_, &src->file_path_);
+
+  dest->base_address_ = src->base_address_;
+  src->base_address_ = (intptr_t) NULL;
+
+  return dest;
 }
 
 bool Mapi_GameLibrary_Equal(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
 ) {
-  return Mdc_Fs_Path_EqualPath(
-      &game_library1->file_path,
-      &game_library2->file_path
+  bool path_equal;
+  bool module_equal;
+
+  module_equal = Mapi_GameLibrary_GetBaseAddress(&game_library1)
+      == Mapi_GameLibrary_GetBaseAddress(&game_library2);
+
+  if (module_equal) {
+    return true;
+  }
+
+  path_equal = Mdc_Fs_Path_EqualPath(
+      Mapi_GameLibrary_GetFilePath(&game_library1),
+      Mapi_GameLibrary_GetFilePath(&game_library2)
   );
+
+  return path_equal;
 }
 
 int Mapi_GameLibrary_Compare(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
 ) {
-  return Mdc_Fs_Path_ComparePath(
-      &game_library1->file_path,
-      &game_library2->file_path
+  int path_compare_result;
+  intptr_t module_compare_result;
+
+  module_compare_result = Mapi_GameLibrary_GetBaseAddress(&game_library1)
+      - Mapi_GameLibrary_GetBaseAddress(&game_library2);
+
+  if (module_compare_result == 0) {
+    return 0;
+  }
+
+  path_compare_result = Mdc_Fs_Path_ComparePath(
+      Mapi_GameLibrary_GetFilePath(&game_library1),
+      Mapi_GameLibrary_GetFilePath(&game_library2)
   );
+
+  return path_compare_result;
 }
 
 void Mapi_GameLibrary_Swap(
@@ -258,4 +294,16 @@ deinit_temp_game_library:
 
 return_bad:
   return;
+}
+
+intptr_t Mapi_GameLibrary_GetBaseAddress(
+    struct Mapi_GameLibrary* game_library
+) {
+  return game_library->base_address_;
+}
+
+const struct Mdc_Fs_Path* Mapi_GameLibrary_GetFilePath(
+    struct Mapi_GameLibrary* game_library
+) {
+  return &game_library->file_path_;
 }

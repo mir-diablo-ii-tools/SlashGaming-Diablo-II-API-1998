@@ -52,8 +52,8 @@
 #include <mdc/object_metadata/object_metadata.h>
 
 struct Mapi_GameLibrary {
-  struct Mdc_Fs_Path file_path;
-  intptr_t base_address;
+  struct Mdc_Fs_Path file_path_;
+  intptr_t base_address_;
 };
 
 /**
@@ -102,6 +102,14 @@ int Mapi_GameLibrary_Compare(
 void Mapi_GameLibrary_Swap(
     struct Mapi_GameLibrary* game_library1,
     struct Mapi_GameLibrary* game_library2
+);
+
+intptr_t Mapi_GameLibrary_GetBaseAddress(
+    struct Mapi_GameLibrary* game_library
+);
+
+const struct Mdc_Fs_Path* Mapi_GameLibrary_GetFilePath(
+    struct Mapi_GameLibrary* game_library
 );
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_ */

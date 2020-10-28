@@ -80,7 +80,7 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
 
   game_library = GetGameLibrary(library_path);
   ordinal_address = GetProcAddress(
-      (HMODULE) game_library->base_address,
+      (HMODULE) game_library->base_address_,
       decorated_name
   );
 

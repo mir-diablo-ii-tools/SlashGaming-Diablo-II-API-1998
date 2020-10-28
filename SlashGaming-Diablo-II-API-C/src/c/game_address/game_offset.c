@@ -65,7 +65,7 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOffset(
     ptrdiff_t offset
 ) {
   const struct Mapi_GameLibrary* game_library = GetGameLibrary(library_path);
-  game_address->raw_address = game_library->base_address + offset;
+  game_address->raw_address = game_library->base_address_ + offset;
 
   return game_address;
 }
