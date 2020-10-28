@@ -48,11 +48,11 @@
 
 #include <stdint.h>
 
+#include <mdc/filesystem/filesystem.h>
 #include <mdc/object_metadata/object_metadata.h>
-#include <mdc/string/basic_string.h>
 
 struct Mapi_GameLibrary {
-  struct Mdc_BasicString file_path;
+  struct Mdc_Fs_Path file_path;
   intptr_t base_address;
 };
 
@@ -62,7 +62,16 @@ struct Mapi_GameLibrary {
  */
 struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
-    const char* file_path
+    struct Mdc_Fs_Path* file_path
+);
+
+/**
+ * Initializes a GameLibrary, value copying the specified file path,
+ * loading the module, and storing the module handle.
+ */
+struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePathCopy(
+    struct Mapi_GameLibrary* game_library,
+    const struct Mdc_Fs_Path* file_path
 );
 
 struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(

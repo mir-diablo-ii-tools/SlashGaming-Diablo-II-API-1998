@@ -59,20 +59,13 @@ static const struct Mapi_GameLibrary Mapi_GameLibrary_kUninit =
 
 struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
-    const char* file_path
+    struct Mdc_Fs_Path* file_path
 ) {
   struct Mdc_BasicString* init_file_path;
 
-  struct Mdc_BasicString wide_file_path;
-  struct Mdc_BasicString* init_wide_file_path;
-
-  size_t file_path_len;
-  size_t file_path_size;
-
-  /* Copy the file path. */
-  init_file_path = Mdc_BasicString_InitFromCStr(
+  /* Move the file path. */
+  init_file_path = Mdc_BasicString_InitMove(
       &game_library->file_path,
-      Mdc_CharTraitsChar_GetCharTraits(),
       file_path
   );
   if (init_file_path != &game_library->file_path) {
@@ -80,13 +73,8 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
   }
 
   /* Load the library. */
-  init_wide_file_path = Mdc_Wide_DecodeUtf8(&wide_file_path, file_path);
-  if (init_wide_file_path != &wide_file_path) {
-    goto deinit_file_path;
-  }
-
   game_library->base_address = (intptr_t) LoadLibraryW(
-      Mdc_BasicString_Data(&wide_file_path)
+      Mdc_Fs_Path_CStr(&game_library->file_path)
   );
 
   if (game_library->base_address == NULL) {
@@ -98,12 +86,44 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     );
   }
 
-  Mdc_BasicString_Deinit(&wide_file_path);
-
   return game_library;
 
-deinit_file_path:
-  Mdc_BasicString_Deinit(&game_library->file_path);
+return_bad:
+  *game_library = Mapi_GameLibrary_kUninit;
+
+  return NULL;
+}
+
+struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePathCopy(
+    struct Mapi_GameLibrary* game_library,
+    const struct Mdc_Fs_Path* file_path
+) {
+  struct Mdc_BasicString* init_file_path;
+
+  /* Copy the file path. */
+  init_file_path = Mdc_BasicString_InitCopy(
+      &game_library->file_path,
+      file_path
+  );
+  if (init_file_path != &game_library->file_path) {
+    goto return_bad;
+  }
+
+  /* Load the library. */
+  game_library->base_address = (intptr_t) LoadLibraryW(
+      Mdc_Fs_Path_CStr(&game_library->file_path)
+  );
+
+  if (game_library->base_address == NULL) {
+    ExitOnWindowsFunctionFailureWithLastError(
+        L"LoadLibraryW",
+        GetLastError(),
+        __FILEW__,
+        __LINE__
+    );
+  }
+
+  return game_library;
 
 return_bad:
   *game_library = Mapi_GameLibrary_kUninit;
@@ -117,7 +137,7 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
 ) {
   const struct Mdc_BasicString* init_file_path_move;
 
-  init_file_path_move = Mdc_BasicString_InitMove(
+  init_file_path_move = Mdc_Fs_Path_InitMove(
       &dest->file_path,
       &src->file_path
   );
@@ -125,8 +145,6 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
   if (init_file_path_move != &dest->file_path) {
     goto return_bad;
   }
-
-  src->file_path = Mdc_BasicString_kUninit;
 
   dest->base_address = src->base_address;
   src->base_address = 0;
@@ -152,7 +170,7 @@ void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library) {
     );
   }
 
-  Mdc_BasicString_Deinit(&game_library->file_path);
+  Mdc_Fs_Path_Deinit(&game_library->file_path);
 
   *game_library = Mapi_GameLibrary_kUninit;
 }
@@ -161,7 +179,7 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_AssignMove(
     struct Mapi_GameLibrary* dest,
     struct Mapi_GameLibrary* src
 ) {
-  Mdc_BasicString_AssignMove(&dest->file_path, &src->file_path);
+  Mdc_Fs_Path_AssignMove(&dest->file_path, &src->file_path);
 
   dest->base_address = src->base_address;
   src->base_address = 0;
@@ -171,7 +189,7 @@ bool Mapi_GameLibrary_Equal(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
 ) {
-  return Mdc_BasicString_EqualStr(
+  return Mdc_Fs_Path_EqualPath(
       &game_library1->file_path,
       &game_library2->file_path
   );
@@ -181,7 +199,7 @@ int Mapi_GameLibrary_Compare(
     const struct Mapi_GameLibrary* game_library1,
     const struct Mapi_GameLibrary* game_library2
 ) {
-  return Mdc_BasicString_CompareStr(
+  return Mdc_Fs_Path_ComparePath(
       &game_library1->file_path,
       &game_library2->file_path
   );
