@@ -90,8 +90,8 @@ static struct Mdc_ObjectMetadata* Mapi_GameLibrary_InitObjectMetadata(
 
   metadata->functions.assign_move = &Mapi_GameLibrary_AssignMoveAsVoid;
 
-  metadata->functions.equal = &Mapi_GameLibrary_Equal;
-  metadata->functions.compare = &Mapi_GameLibrary_Compare;
+  metadata->functions.equal = &Mapi_GameLibrary_EqualAsVoid;
+  metadata->functions.compare = &Mapi_GameLibrary_CompareAsVoid;
 
   metadata->functions.swap = &Mapi_GameLibrary_SwapAsVoid;
 
