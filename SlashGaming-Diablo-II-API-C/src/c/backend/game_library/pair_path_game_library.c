@@ -43,24 +43,24 @@
  *  work.
  */
 
-#include "map_string_game_library.h"
+#include "pair_path_game_library.h"
 
 #include <mdc/std/threads.h>
 #include <mdc/string/basic_string.h>
 #include "game_library_struct.h"
-#include "pair_string_game_library.h"
 
 /**
  * Static functions
  */
 
-static struct Mdc_MapMetadata global_map_metadata;
-static once_flag global_map_metadata_init_flag = ONCE_FLAG_INIT;
+static struct Mdc_PairMetadata global_pair_metadata;
+static once_flag global_pair_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_MapStringGameLibrary_InitGlobalMapMetadata(void) {
-  Mdc_MapMetadata_Init(
-      &global_map_metadata,
-      Mapi_PairStringGameLibrary_GetGlobalPairMetadata()
+static void Mapi_PairPathGameLibrary_InitGlobalPairMetadata(void) {
+  Mdc_PairMetadata_Init(
+      &global_pair_metadata,
+      Mdc_Fs_Path_GetObjectMetadata(),
+      Mapi_GameLibrary_GetGlobalObjectMetadata()
   );
 }
 
@@ -68,12 +68,12 @@ static void Mapi_MapStringGameLibrary_InitGlobalMapMetadata(void) {
  * External functions
  */
 
-const struct Mdc_MapMetadata*
-Mapi_MapStringGameLibrary_GetGlobalMapMetadata(void) {
+const struct Mdc_PairMetadata*
+Mapi_PairPathGameLibrary_GetGlobalPairMetadata(void) {
   call_once(
-      &global_map_metadata_init_flag,
-      &Mapi_MapStringGameLibrary_InitGlobalMapMetadata
+      &global_pair_metadata_init_flag,
+      &Mapi_PairPathGameLibrary_InitGlobalPairMetadata
   );
 
-  return &global_map_metadata;
+  return &global_pair_metadata;
 }

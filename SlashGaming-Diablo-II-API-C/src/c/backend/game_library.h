@@ -46,6 +46,7 @@
 #ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 
+#include <mdc/filesystem/filesystem.h>
 #include "game_library/game_library_struct.h"
 
 /**
@@ -53,7 +54,7 @@
  * if it is not found.
  */
 const struct Mapi_GameLibrary* GetGameLibrary(
-    const char* file_path
+    const struct Mdc_Fs_Path* file_path
 );
 
 #endif // SGMAPI_C_BACKEND_GAME_LIBRARY_H_

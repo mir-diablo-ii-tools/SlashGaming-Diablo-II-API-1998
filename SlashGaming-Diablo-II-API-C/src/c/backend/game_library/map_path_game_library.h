@@ -43,10 +43,10 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_STRING_GAME_LIBRARY_H_
-#define SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_STRING_GAME_LIBRARY_H_
+#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_PATH_GAME_LIBRARY_H_
+#define SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_PATH_GAME_LIBRARY_H_
 
-#include <mdc/container/pair.h>
+#include <mdc/container/map.h>
 #include <mdc/string/basic_string.h>
 #include "game_library_struct.h"
 
@@ -54,11 +54,11 @@
 extern "C" {
 #endif /* __cplusplus */
 
-const struct Mdc_PairMetadata*
-Mapi_PairStringGameLibrary_GetGlobalPairMetadata(void);
+const struct Mdc_MapMetadata*
+Mapi_MapPathGameLibrary_GetGlobalMapMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_STRING_GAME_LIBRARY_H_ */
+#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_PATH_GAME_LIBRARY_H_ */

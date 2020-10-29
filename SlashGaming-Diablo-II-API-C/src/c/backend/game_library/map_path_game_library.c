@@ -43,22 +43,37 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_
-#define SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_
+#include "map_path_game_library.h"
 
-#include <mdc/container/map.h>
+#include <mdc/std/threads.h>
 #include <mdc/string/basic_string.h>
 #include "game_library_struct.h"
+#include "pair_path_game_library.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+/**
+ * Static functions
+ */
+
+static struct Mdc_MapMetadata global_map_metadata;
+static once_flag global_map_metadata_init_flag = ONCE_FLAG_INIT;
+
+static void Mapi_MapStringGameLibrary_InitGlobalMapMetadata(void) {
+  Mdc_MapMetadata_Init(
+      &global_map_metadata,
+      Mapi_PairPathGameLibrary_GetGlobalPairMetadata()
+  );
+}
+
+/**
+ * External functions
+ */
 
 const struct Mdc_MapMetadata*
-Mapi_MapStringGameLibrary_GetGlobalMapMetadata(void);
+Mapi_MapPathGameLibrary_GetGlobalMapMetadata(void) {
+  call_once(
+      &global_map_metadata_init_flag,
+      &Mapi_MapStringGameLibrary_InitGlobalMapMetadata
+  );
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
-
-#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_STRING_GAME_LIBRARY_H_ */
+  return &global_map_metadata;
+}

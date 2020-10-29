@@ -43,37 +43,22 @@
  *  work.
  */
 
-#include "pair_string_game_library.h"
+#ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_PATH_GAME_LIBRARY_H_
+#define SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_PATH_GAME_LIBRARY_H_
 
-#include <mdc/std/threads.h>
+#include <mdc/container/pair.h>
 #include <mdc/string/basic_string.h>
 #include "game_library_struct.h"
 
-/**
- * Static functions
- */
-
-static struct Mdc_PairMetadata global_pair_metadata;
-static once_flag global_pair_metadata_init_flag = ONCE_FLAG_INIT;
-
-static void Mapi_PairStringGameLibrary_InitGlobalPairMetadata(void) {
-  Mdc_PairMetadata_Init(
-      &global_pair_metadata,
-      Mdc_String_GetObjectMetadata(),
-      Mapi_GameLibrary_GetGlobalObjectMetadata()
-  );
-}
-
-/**
- * External functions
- */
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 const struct Mdc_PairMetadata*
-Mapi_PairStringGameLibrary_GetGlobalPairMetadata(void) {
-  call_once(
-      &global_pair_metadata_init_flag,
-      &Mapi_PairStringGameLibrary_InitGlobalPairMetadata
-  );
+Mapi_PairPathGameLibrary_GetGlobalPairMetadata(void);
 
-  return &global_pair_metadata;
-}
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_PATH_GAME_LIBRARY_H_ */
