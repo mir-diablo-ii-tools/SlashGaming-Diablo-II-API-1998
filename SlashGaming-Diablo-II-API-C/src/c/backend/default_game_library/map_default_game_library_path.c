@@ -43,37 +43,61 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
-#define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+#include "map_default_game_library_path.h"
 
-#include <stddef.h>
+#include <mdc/std/threads.h>
+#include <mdc/filesystem/filesystem.h>
+#include <mdc/object/integer_object.h>
 
-#include "../dllexport_define.inc"
-
-#ifdef __cplusplus
-extern "C" {
-#endif // __cplusplus
+#include "pair_default_game_library_path.h"
 
 /**
- * The default libraries that are used by Diablo II.
+ * Static functions
  */
-enum D2_DefaultLibrary {
-  LIBRARY_BNCLIENT, LIBRARY_D2CLIENT, LIBRARY_D2CMP, LIBRARY_D2COMMON,
-  LIBRARY_D2DDRAW, LIBRARY_D2DIRECT3D, LIBRARY_D2GAME, LIBRARY_D2GDI,
-  LIBRARY_D2GFX, LIBRARY_D2GLIDE, LIBRARY_D2LANG, LIBRARY_D2LAUNCH,
-  LIBRARY_D2MCPCLIENT, LIBRARY_D2MULTI, LIBRARY_D2NET, LIBRARY_D2SERVER,
-  LIBRARY_D2SOUND, LIBRARY_D2WIN, LIBRARY_FOG, LIBRARY_STORM,
-};
 
-DLLEXPORT const wchar_t* Mapi_GetGameExecutablePath(void);
+static struct Mdc_MapMetadata global_map_metadata;
+static once_flag global_map_metadata_init_flag = ONCE_FLAG_INIT;
 
-DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
-);
+static void Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
+  Mdc_MapMetadata_Init(
+      &global_map_metadata,
+      Mapi_PairDefaultGameLibraryPath_GetGlobalPairMetadata()
+  );
+}
 
-#ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+/**
+ * External functions
+ */
 
-#include "../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+const struct Mdc_MapMetadata*
+Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata(void) {
+  call_once(
+      &global_map_metadata_init_flag,
+      &Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata
+  );
+
+  return &global_map_metadata;
+}
+
+void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+    struct Mdc_Map* map,
+    enum D2_DefaultLibrary default_library_id,
+    const wchar_t* path_cstr
+) {
+  struct Mdc_Integer default_library;
+  struct Mdc_Integer* init_default_library;
+
+  init_default_library = Mdc_Integer_InitFromValue(
+      &default_library,
+      default_library_id
+  );
+
+  Mdc_Map_Emplace(
+      map,
+      &default_library,
+      &Mdc_Fs_Path_InitFromCWStr,
+      path_cstr
+  );
+
+  Mdc_Integer_Deinit(&default_library);
+}

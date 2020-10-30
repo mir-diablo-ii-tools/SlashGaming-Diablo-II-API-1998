@@ -47,113 +47,255 @@
 
 #include <wchar.h>
 
+#include <mdc/container/map.h>
+#include <mdc/filesystem/filesystem.h>
+#include <mdc/malloc/malloc.h>
+#include <mdc/object/integer_object.h>
+#include <mdc/std/threads.h>
 #include "../../include/c/game_version.h"
 #include "../wide_macro.h"
 #include "backend/error_handling.h"
+#include "backend/default_game_library/map_default_game_library_path.h"
 
-static const char* GetLibraryName(enum D2_DefaultLibrary library) {
-  switch (library) {
-    case LIBRARY_BNCLIENT: {
-      return "BNClient.dll";
+static struct Mdc_Map paths_by_default_libraries;
+static once_flag paths_by_default_libraries_init_flag;
+
+static struct Mdc_Fs_Path game_executable_path;
+static once_flag game_executable_path_init_flag;
+
+static void InitPathsByDefaultLibraries(void) {
+  struct Mdc_Map* init_paths_by_default_libraries;
+
+  init_paths_by_default_libraries = Mdc_Map_InitEmpty(
+      &paths_by_default_libraries,
+      Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata()
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_BNCLIENT,
+      L"BNClient.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2CLIENT,
+      L"D2Client.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2CMP,
+      L"D2CMP.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2COMMON,
+      L"D2Common.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2DDRAW,
+      L"D2DDraw.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2DIRECT3D,
+      L"D2Direct3D.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2GAME,
+      L"D2Game.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2GDI,
+      L"D2GDI.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2GFX,
+      L"D2GFX.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2GLIDE,
+      L"D2Glide.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2LANG,
+      L"D2Lang.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2LAUNCH,
+      L"D2Launch.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2MCPCLIENT,
+      L"D2MCPClient.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2MULTI,
+      L"D2Multi.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2NET,
+      L"D2Net.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2SERVER,
+      L"D2Server.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2SOUND,
+      L"D2Sound.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_D2WIN,
+      L"D2Win.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_FOG,
+      L"Fog.dll"
+  );
+
+  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+      &paths_by_default_libraries,
+      LIBRARY_STORM,
+      L"Storm.dll"
+  );
+}
+
+static void InitGameExecutablePath(void) {
+  enum {
+    kGameExecutablePathInitialCapacity = 8
+  };
+
+  void* realloc_result;
+
+  struct Mdc_Fs_Path* init_game_executable_path;
+  wchar_t* game_executable_path_cstr;
+  size_t game_executable_path_cap;
+  size_t game_executable_path_new_cap;
+
+  /* Copy the game executable path into the C string. */
+  game_executable_path_cstr = NULL;
+  game_executable_path_new_cap = kGameExecutablePathInitialCapacity;
+
+  do {
+    game_executable_path_cap = game_executable_path_new_cap;
+
+    realloc_result = Mdc_realloc(
+        game_executable_path_cstr,
+        game_executable_path_cap * sizeof(game_executable_path_cstr[0])
+    );
+
+    if (realloc_result == NULL) {
+      ExitOnAllocationFailure(__FILEW__, __LINE__);
+      goto free_game_executable_path_cstr;
     }
 
-    case LIBRARY_D2CLIENT: {
-      return "D2Client.dll";
-    }
+    game_executable_path_cstr = realloc_result;
+    game_executable_path_cstr[game_executable_path_cap - 2] = L'\0';
 
-    case LIBRARY_D2CMP: {
-      return "D2CMP.dll";
-    }
+    GetModuleFileNameW(
+        NULL,
+        game_executable_path_cstr,
+        game_executable_path_cap
+    );
 
-    case LIBRARY_D2COMMON: {
-      return "D2Common.dll";
-    }
+    game_executable_path_new_cap *= 2;
+  } while (game_executable_path_cstr[game_executable_path_cap - 2] != L'\0');
 
-    case LIBRARY_D2DDRAW: {
-      return "D2DDraw.dll";
-    }
+  /* The C string now contains the exectuable path. Init the path. */
+  init_game_executable_path = Mdc_Fs_Path_InitFromCWStr(
+      &game_executable_path,
+      game_executable_path_cstr
+  );
 
-    case LIBRARY_D2DIRECT3D: {
-      return "D2Direct3D.dll";
-    }
-
-    case LIBRARY_D2GAME: {
-      return "D2Game.dll";
-    }
-
-    case LIBRARY_D2GDI: {
-      return "D2GDI.dll";
-    }
-
-    case LIBRARY_D2GFX: {
-      return "D2GFX.dll";
-    }
-
-    case LIBRARY_D2GLIDE: {
-      return "D2Glide.dll";
-    }
-
-    case LIBRARY_D2LANG: {
-      return "D2Lang.dll";
-    }
-
-    case LIBRARY_D2LAUNCH: {
-      return "D2Launch.dll";
-    }
-
-    case LIBRARY_D2MCPCLIENT: {
-      return "D2MCPClient.dll";
-    }
-
-    case LIBRARY_D2MULTI: {
-      return "D2Multi.dll";
-    }
-
-    case LIBRARY_D2NET: {
-      return "D2Net.dll";
-    }
-
-    case LIBRARY_D2SERVER: {
-      return "D2Server.dll";
-    }
-
-    case LIBRARY_D2SOUND: {
-      return "D2Sound.dll";
-    }
-
-    case LIBRARY_D2WIN: {
-      return "D2Win.dll";
-    }
-
-    case LIBRARY_FOG: {
-      return "Fog.dll";
-    }
-
-    case LIBRARY_STORM: {
-      return "Storm.dll";
-    }
+  if (init_game_executable_path != &game_executable_path) {
+    goto free_game_executable_path_cstr;
   }
 
-  return NULL;
+  Mdc_free(game_executable_path_cstr);
+
+  return;
+
+free_game_executable_path_cstr:
+  free(game_executable_path_cstr);
+
+  return;
 }
 
-const char* Mapi_GetGameExecutablePath(void) {
-  return "Game.exe";
+static void InitStatic(void) {
+  call_once(
+      &paths_by_default_libraries_init_flag,
+      &InitPathsByDefaultLibraries
+  );
 }
 
-const char* Mapi_GetDefaultLibraryPathWithRedirect(
+const wchar_t* Mapi_GetGameExecutablePath(void) {
+  InitStatic();
+
+  return Mdc_Fs_Path_CStr(&game_executable_path);
+}
+
+const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
 ) {
+  enum {
+    kErrorMessageCapacity = 128
+  };
+
+  wchar_t error_message[kErrorMessageCapacity];
+
+  struct Mdc_Integer default_library;
+  struct Mdc_Integer* init_default_library;
+
+  const struct Mdc_Fs_Path* mapped_path;
+
+  InitStatic();
+
   // Redirect if the game version is 1.14 or higher.
   if (D2_IsRunningGameVersionAtLeast1_14()) {
     return Mapi_GetGameExecutablePath();
   }
 
-  if (library_id < 0 || library_id > LIBRARY_STORM) {
-    wchar_t error_message[128];
+  init_default_library = Mdc_Integer_InitFromValue(
+      &default_library,
+      library_id
+  );
+
+  if (!Mdc_Map_Contains(&paths_by_default_libraries, &default_library)) {
     swprintf(
         error_message,
-        sizeof(error_message) / sizeof(error_message[0]),
+        kErrorMessageCapacity,
         L"Could not determine the game library path from the library ID: %d",
         library_id
     );
@@ -166,5 +308,12 @@ const char* Mapi_GetDefaultLibraryPathWithRedirect(
     );
   }
 
-  return GetLibraryName(library_id);
+  mapped_path = Mdc_Map_AtConst(
+      &paths_by_default_libraries,
+      &default_library
+  );
+
+  Mdc_Integer_Deinit(&default_library);
+
+  return Mdc_Fs_Path_CStr(mapped_path);
 }

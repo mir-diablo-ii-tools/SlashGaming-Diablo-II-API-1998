@@ -43,37 +43,36 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
-#define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+#include "pair_default_game_library_path.h"
 
-#include <stddef.h>
-
-#include "../dllexport_define.inc"
-
-#ifdef __cplusplus
-extern "C" {
-#endif // __cplusplus
+#include <mdc/object/integer_object.h>
+#include <mdc/std/threads.h>
 
 /**
- * The default libraries that are used by Diablo II.
+ * Static functions
  */
-enum D2_DefaultLibrary {
-  LIBRARY_BNCLIENT, LIBRARY_D2CLIENT, LIBRARY_D2CMP, LIBRARY_D2COMMON,
-  LIBRARY_D2DDRAW, LIBRARY_D2DIRECT3D, LIBRARY_D2GAME, LIBRARY_D2GDI,
-  LIBRARY_D2GFX, LIBRARY_D2GLIDE, LIBRARY_D2LANG, LIBRARY_D2LAUNCH,
-  LIBRARY_D2MCPCLIENT, LIBRARY_D2MULTI, LIBRARY_D2NET, LIBRARY_D2SERVER,
-  LIBRARY_D2SOUND, LIBRARY_D2WIN, LIBRARY_FOG, LIBRARY_STORM,
-};
 
-DLLEXPORT const wchar_t* Mapi_GetGameExecutablePath(void);
+static struct Mdc_PairMetadata global_pair_metadata;
+static once_flag global_pair_metadata_init_flag = ONCE_FLAG_INIT;
 
-DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
-);
+static void Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
+  Mdc_PairMetadata_Init(
+      &global_pair_metadata,
+      Mdc_Integer_GetObjectMetadata(),
+      Mdc_Fs_Path_GetObjectMetadata()
+  );
+}
 
-#ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+/**
+ * External functions
+ */
 
-#include "../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+const struct Mdc_PairMetadata*
+Mapi_PairDefaultGameLibraryPath_GetGlobalPairMetadata(void) {
+  call_once(
+      &global_pair_metadata_init_flag,
+      &Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata
+  );
+
+  return &global_pair_metadata;
+}

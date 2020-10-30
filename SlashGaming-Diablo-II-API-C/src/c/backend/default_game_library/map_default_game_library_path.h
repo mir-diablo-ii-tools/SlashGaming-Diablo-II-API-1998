@@ -43,37 +43,27 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
-#define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+#ifndef SGMAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_MAP_DEFAULT_GAME_LIBRARY_PATH_H_
+#define SGMAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_MAP_DEFAULT_GAME_LIBRARY_PATH_H_
 
-#include <stddef.h>
-
-#include "../dllexport_define.inc"
+#include <mdc/container/map.h>
+#include <mdc/filesystem/filesystem.h>
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
-/**
- * The default libraries that are used by Diablo II.
- */
-enum D2_DefaultLibrary {
-  LIBRARY_BNCLIENT, LIBRARY_D2CLIENT, LIBRARY_D2CMP, LIBRARY_D2COMMON,
-  LIBRARY_D2DDRAW, LIBRARY_D2DIRECT3D, LIBRARY_D2GAME, LIBRARY_D2GDI,
-  LIBRARY_D2GFX, LIBRARY_D2GLIDE, LIBRARY_D2LANG, LIBRARY_D2LAUNCH,
-  LIBRARY_D2MCPCLIENT, LIBRARY_D2MULTI, LIBRARY_D2NET, LIBRARY_D2SERVER,
-  LIBRARY_D2SOUND, LIBRARY_D2WIN, LIBRARY_FOG, LIBRARY_STORM,
-};
+const struct Mdc_MapMetadata*
+Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata(void);
 
-DLLEXPORT const wchar_t* Mapi_GetGameExecutablePath(void);
-
-DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
+void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
+    struct Mdc_Map* map,
+    enum D2_DefaultLibrary default_library_id,
+    const wchar_t* path_cstr
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-#include "../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+#endif /* SGMAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_MAP_DEFAULT_GAME_LIBRARY_PATH_H_ */
