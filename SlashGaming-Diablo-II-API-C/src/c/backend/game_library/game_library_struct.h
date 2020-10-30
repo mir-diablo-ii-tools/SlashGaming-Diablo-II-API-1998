@@ -105,11 +105,11 @@ void Mapi_GameLibrary_Swap(
 );
 
 intptr_t Mapi_GameLibrary_GetBaseAddress(
-    struct Mapi_GameLibrary* game_library
+    const struct Mapi_GameLibrary* game_library
 );
 
 const struct Mdc_Fs_Path* Mapi_GameLibrary_GetFilePath(
-    struct Mapi_GameLibrary* game_library
+    const struct Mapi_GameLibrary* game_library
 );
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_ */

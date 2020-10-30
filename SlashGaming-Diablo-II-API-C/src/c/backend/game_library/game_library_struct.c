@@ -80,10 +80,10 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePath(
     struct Mapi_GameLibrary* game_library,
     struct Mdc_Fs_Path* file_path
 ) {
-  struct Mdc_BasicString* init_file_path;
+  struct Mdc_Fs_Path* init_file_path;
 
   /* Move the file path. */
-  init_file_path = Mdc_BasicString_InitMove(
+  init_file_path = Mdc_Fs_Path_InitMove(
       &game_library->file_path_,
       file_path
   );
@@ -109,10 +109,10 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitFromFilePathCopy(
     struct Mapi_GameLibrary* game_library,
     const struct Mdc_Fs_Path* file_path
 ) {
-  struct Mdc_BasicString* init_file_path;
+  struct Mdc_Fs_Path* init_file_path;
 
   /* Copy the file path. */
-  init_file_path = Mdc_BasicString_InitCopy(
+  init_file_path = Mdc_Fs_Path_InitCopy(
       &game_library->file_path_,
       file_path
   );
@@ -138,7 +138,7 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
     struct Mapi_GameLibrary* dest,
     struct Mapi_GameLibrary* src
 ) {
-  const struct Mdc_BasicString* init_file_path;
+  const struct Mdc_Fs_Path* init_file_path;
 
   init_file_path = Mdc_Fs_Path_InitMove(
       &dest->file_path_,
@@ -204,16 +204,16 @@ bool Mapi_GameLibrary_Equal(
   bool path_equal;
   bool module_equal;
 
-  module_equal = Mapi_GameLibrary_GetBaseAddress(&game_library1)
-      == Mapi_GameLibrary_GetBaseAddress(&game_library2);
+  module_equal = Mapi_GameLibrary_GetBaseAddress(game_library1)
+      == Mapi_GameLibrary_GetBaseAddress(game_library2);
 
   if (module_equal) {
     return true;
   }
 
   path_equal = Mdc_Fs_Path_EqualPath(
-      Mapi_GameLibrary_GetFilePath(&game_library1),
-      Mapi_GameLibrary_GetFilePath(&game_library2)
+      Mapi_GameLibrary_GetFilePath(game_library1),
+      Mapi_GameLibrary_GetFilePath(game_library2)
   );
 
   return path_equal;
@@ -226,16 +226,16 @@ int Mapi_GameLibrary_Compare(
   int path_compare_result;
   intptr_t module_compare_result;
 
-  module_compare_result = Mapi_GameLibrary_GetBaseAddress(&game_library1)
-      - Mapi_GameLibrary_GetBaseAddress(&game_library2);
+  module_compare_result = Mapi_GameLibrary_GetBaseAddress(game_library1)
+      - Mapi_GameLibrary_GetBaseAddress(game_library2);
 
   if (module_compare_result == 0) {
     return 0;
   }
 
   path_compare_result = Mdc_Fs_Path_ComparePath(
-      Mapi_GameLibrary_GetFilePath(&game_library1),
-      Mapi_GameLibrary_GetFilePath(&game_library2)
+      Mapi_GameLibrary_GetFilePath(game_library1),
+      Mapi_GameLibrary_GetFilePath(game_library2)
   );
 
   return path_compare_result;
@@ -297,13 +297,13 @@ return_bad:
 }
 
 intptr_t Mapi_GameLibrary_GetBaseAddress(
-    struct Mapi_GameLibrary* game_library
+    const struct Mapi_GameLibrary* game_library
 ) {
   return game_library->base_address_;
 }
 
 const struct Mdc_Fs_Path* Mapi_GameLibrary_GetFilePath(
-    struct Mapi_GameLibrary* game_library
+    const struct Mapi_GameLibrary* game_library
 ) {
   return &game_library->file_path_;
 }
