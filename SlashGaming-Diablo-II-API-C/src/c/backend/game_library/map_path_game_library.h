@@ -47,7 +47,7 @@
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_MAP_PATH_GAME_LIBRARY_H_
 
 #include <mdc/container/map.h>
-#include <mdc/string/basic_string.h>
+#include <mdc/filesystem/filesystem.h>
 #include "game_library_struct.h"
 
 #ifdef __cplusplus
