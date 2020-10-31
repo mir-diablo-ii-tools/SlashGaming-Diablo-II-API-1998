@@ -56,7 +56,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 const struct Mdc_PairMetadata*
-Mapi_PairDefaultGameLibraryPath_GetGlobalPairMetadata(void);
+Mapi_PairDefaultGameLibraryPath_GetPairMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

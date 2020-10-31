@@ -82,7 +82,7 @@ struct Mapi_GameLibrary* Mapi_GameLibrary_InitMove(
 void Mapi_GameLibrary_Deinit(struct Mapi_GameLibrary* game_library);
 
 const struct Mdc_ObjectMetadata*
-Mapi_GameLibrary_GetGlobalObjectMetadata(void);
+Mapi_GameLibrary_GetObjectMetadata(void);
 
 struct Mapi_GameLibrary* Mapi_GameLibrary_AssignMove(
     struct Mapi_GameLibrary* dest,

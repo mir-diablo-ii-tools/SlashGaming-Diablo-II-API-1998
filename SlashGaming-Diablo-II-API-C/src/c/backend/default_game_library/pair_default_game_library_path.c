@@ -52,12 +52,12 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata global_pair_metadata;
-static once_flag global_pair_metadata_init_flag = ONCE_FLAG_INIT;
+static struct Mdc_PairMetadata pair_metadata;
+static once_flag pair_metadata_init_flag = ONCE_FLAG_INIT;
 
 static void Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
   Mdc_PairMetadata_Init(
-      &global_pair_metadata,
+      &pair_metadata,
       Mdc_Integer_GetObjectMetadata(),
       Mdc_Fs_Path_GetObjectMetadata()
   );
@@ -68,11 +68,11 @@ static void Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
  */
 
 const struct Mdc_PairMetadata*
-Mapi_PairDefaultGameLibraryPath_GetGlobalPairMetadata(void) {
+Mapi_PairDefaultGameLibraryPath_GetPairMetadata(void) {
   call_once(
-      &global_pair_metadata_init_flag,
+      &pair_metadata_init_flag,
       &Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata
   );
 
-  return &global_pair_metadata;
+  return &pair_metadata;
 }

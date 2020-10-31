@@ -68,7 +68,7 @@ static void InitPathsByDefaultLibraries(void) {
 
   init_paths_by_default_libraries = Mdc_Map_InitEmpty(
       &paths_by_default_libraries,
-      Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata()
+      Mapi_MapDefaultGameLibraryPath_GetMapMetadata()
   );
 
   if (init_paths_by_default_libraries != &paths_by_default_libraries) {

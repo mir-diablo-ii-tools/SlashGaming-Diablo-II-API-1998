@@ -47,7 +47,7 @@
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_PAIR_PATH_GAME_LIBRARY_H_
 
 #include <mdc/container/pair.h>
-#include <mdc/string/basic_string.h>
+#include <mdc/filesystem/filesystem.h>
 #include "game_library_struct.h"
 
 #ifdef __cplusplus
@@ -55,7 +55,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 const struct Mdc_PairMetadata*
-Mapi_PairPathGameLibrary_GetGlobalPairMetadata(void);
+Mapi_PairPathGameLibrary_GetPairMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

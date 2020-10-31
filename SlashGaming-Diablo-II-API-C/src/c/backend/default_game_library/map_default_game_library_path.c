@@ -45,23 +45,24 @@
 
 #include "map_default_game_library_path.h"
 
-#include <mdc/std/threads.h>
-#include <mdc/filesystem/filesystem.h>
 #include <mdc/object/integer_object.h>
+#include <mdc/std/threads.h>
 
+#include "../../../wide_macro.h"
+#include "../error_handling.h"
 #include "pair_default_game_library_path.h"
 
 /**
  * Static functions
  */
 
-static struct Mdc_MapMetadata global_map_metadata;
-static once_flag global_map_metadata_init_flag = ONCE_FLAG_INIT;
+static struct Mdc_MapMetadata map_metadata;
+static once_flag map_metadata_init_flag = ONCE_FLAG_INIT;
 
 static void Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
   Mdc_MapMetadata_Init(
-      &global_map_metadata,
-      Mapi_PairDefaultGameLibraryPath_GetGlobalPairMetadata()
+      &map_metadata,
+      Mapi_PairDefaultGameLibraryPath_GetPairMetadata()
   );
 }
 
@@ -70,13 +71,13 @@ static void Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
  */
 
 const struct Mdc_MapMetadata*
-Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata(void) {
+Mapi_MapDefaultGameLibraryPath_GetMapMetadata(void) {
   call_once(
-      &global_map_metadata_init_flag,
+      &map_metadata_init_flag,
       &Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata
   );
 
-  return &global_map_metadata;
+  return &map_metadata;
 }
 
 void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
@@ -92,6 +93,16 @@ void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
       default_library_id
   );
 
+  if (init_default_library != &default_library) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_Integer_InitFromValue",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
   Mdc_Map_Emplace(
       map,
       &default_library,
@@ -100,4 +111,9 @@ void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
   );
 
   Mdc_Integer_Deinit(&default_library);
+
+  return;
+
+return_bad:
+  return;
 }

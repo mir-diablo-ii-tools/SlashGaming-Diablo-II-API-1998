@@ -48,13 +48,17 @@
 
 #include <mdc/container/map.h>
 #include <mdc/filesystem/filesystem.h>
+#include <mdc/std/wchar.h>
+
+#include "../../../../include/c/default_game_library.h"
+#include "pair_default_game_library_path.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
 const struct Mdc_MapMetadata*
-Mapi_MapDefaultGameLibraryPath_GetGlobalMapMetadata(void);
+Mapi_MapDefaultGameLibraryPath_GetMapMetadata(void);
 
 void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
     struct Mdc_Map* map,

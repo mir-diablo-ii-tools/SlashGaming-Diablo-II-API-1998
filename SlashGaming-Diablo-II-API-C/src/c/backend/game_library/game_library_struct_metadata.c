@@ -98,19 +98,19 @@ static struct Mdc_ObjectMetadata* Mapi_GameLibrary_InitObjectMetadata(
   return metadata;
 }
 
-static struct Mdc_ObjectMetadata global_metadata;
-static once_flag global_metadata_init_flag = ONCE_FLAG_INIT;
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
 
 static void Mapi_GameLibrary_InitGlobalObjectMetadata(void) {
-  Mapi_GameLibrary_InitObjectMetadata(&global_metadata);
+  Mapi_GameLibrary_InitObjectMetadata(&object_metadata);
 }
 
 const struct Mdc_ObjectMetadata*
-Mapi_GameLibrary_GetGlobalObjectMetadata(void) {
+Mapi_GameLibrary_GetObjectMetadata(void) {
   call_once(
-      &global_metadata_init_flag,
+      &object_metadata_init_flag,
       &Mapi_GameLibrary_InitGlobalObjectMetadata
   );
 
-  return &global_metadata;
+  return &object_metadata;
 }
