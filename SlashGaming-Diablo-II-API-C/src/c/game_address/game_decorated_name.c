@@ -118,7 +118,7 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
         __LINE__,
         kErrorMessageFormat,
         Mdc_BasicString_Data(&decorated_name_wide),
-        Mdc_Fs_Path_CStr(&library_path_cstr)
+        library_path_cstr
     );
 
     goto return_bad;
