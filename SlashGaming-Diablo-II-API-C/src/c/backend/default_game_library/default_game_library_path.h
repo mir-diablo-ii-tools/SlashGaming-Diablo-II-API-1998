@@ -43,26 +43,15 @@
  *  work.
  */
 
-#include "../../include/c/default_game_library.h"
+#ifndef SGD2MAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_DEFAULT_GAME_LIBRARY_PATH_H_
+#define SGD2MAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_DEFAULT_GAME_LIBRARY_PATH_H_
 
 #include <mdc/filesystem/filesystem.h>
-#include "backend/default_game_library/default_game_library_path.h"
 
-const wchar_t* Mapi_GetGameExecutablePath(void) {
-  const struct Mdc_Fs_Path* game_executable_path;
+const struct Mdc_Fs_Path* Mapi_Impl_GetGameExecutablePath(void);
 
-  game_executable_path = Mapi_Impl_GetGameExecutablePath();
-
-  return Mdc_Fs_Path_CStr(game_executable_path);
-}
-
-const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
+const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
-) {
-  const struct Mdc_Fs_Path* default_library_path_or_game_executable;
+);
 
-  default_library_path_or_game_executable =
-      Mapi_Impl_GetDefaultLibraryPathWithRedirect(library_id);
-
-  return Mdc_Fs_Path_CStr(default_library_path_or_game_executable);
-}
+#endif /* SGD2MAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_DEFAULT_GAME_LIBRARY_PATH_H_ */
