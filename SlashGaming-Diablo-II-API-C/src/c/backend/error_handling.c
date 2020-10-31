@@ -168,6 +168,20 @@ void ExitOnCallOnceFailure(const wchar_t* file_name, int line) {
   );
 }
 
+void ExitOnMdcFunctionFailure(
+    const wchar_t* function_name,
+    const wchar_t* file_name,
+    int line
+) {
+  ExitFormattedOnGeneralFailure(
+      L"Error",
+      file_name,
+      line,
+      L"The MDC function %ls failed.",
+      function_name
+  );
+}
+
 void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* function_name,
     DWORD last_error,

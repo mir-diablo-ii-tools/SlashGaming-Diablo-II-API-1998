@@ -73,6 +73,12 @@ void ExitOnConstantMappingMissing(
     int line
 );
 
+void ExitOnMdcFunctionFailure(
+    const wchar_t* function_name,
+    const wchar_t* file_name,
+    int line
+);
+
 void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* function_name,
     DWORD last_error,
