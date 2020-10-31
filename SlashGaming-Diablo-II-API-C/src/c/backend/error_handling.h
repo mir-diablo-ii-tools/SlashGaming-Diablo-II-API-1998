@@ -48,6 +48,14 @@
 
 #include <windows.h>
 
+void ExitFormattedOnGeneralFailure(
+    const wchar_t* caption,
+    const wchar_t* file_name,
+    int line,
+    const wchar_t* text_format,
+    ...
+);
+
 void ExitOnGeneralFailure(
     const wchar_t* message,
     const wchar_t* caption,

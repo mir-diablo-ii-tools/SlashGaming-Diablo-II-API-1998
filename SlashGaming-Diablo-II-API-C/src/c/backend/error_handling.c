@@ -45,6 +45,7 @@
 
 #include "error_handling.h"
 
+#include <stdarg.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <wchar.h>
@@ -53,27 +54,59 @@
  * Error string lengths, including null-terminator.
  */
 enum {
-  ERROR_MESSAGE_LENGTH = 1024,
-  ERROR_CAPTION_LENGTH = 256
+  kErrorMessageFormatCapacity = 512,
+  kFullErrorMessageCapacity = 1024,
 };
 
-static const wchar_t* kFunctionFailErrorFormat =
-    L"File: %ls \n"
-    L"Line: %d \n"
-    L"\n"
-    L"The function %ls failed with error code %X.";
-
-static const wchar_t* kGeneralFailErrorFormat =
+static const wchar_t* const kGeneralFailErrorFormat =
     L"File: %ls \n"
     L"Line: %d \n"
     L"\n"
     L"%ls";
 
-static const wchar_t* kConstantMappingMissingErrorFormat =
-    L"File: %ls \n"
-    L"Line: %d \n"
-    L"\n"
-    L"Constant with value %d could not be mapped.";
+static wchar_t error_message_format[kFullErrorMessageCapacity];
+static wchar_t full_error_message[kFullErrorMessageCapacity];
+
+void ExitFormattedOnGeneralFailure(
+    const wchar_t* caption,
+    const wchar_t* file_name,
+    int line,
+    const wchar_t* text_format,
+    ...
+) {
+  va_list args;
+
+  _snwprintf(
+      error_message_format,
+      kErrorMessageFormatCapacity,
+      kGeneralFailErrorFormat,
+      file_name,
+      line,
+      text_format
+  );
+
+  error_message_format[kErrorMessageFormatCapacity - 1] = L'\0';
+
+  va_start(args, text_format);
+  _vsnwprintf(
+      full_error_message,
+      kFullErrorMessageCapacity,
+      error_message_format,
+      args
+  );
+  va_end(args);
+
+  full_error_message[kFullErrorMessageCapacity - 1] = L'\0';
+
+  MessageBoxW(
+      NULL,
+      full_error_message,
+      caption,
+      MB_OK | MB_ICONERROR
+  );
+
+  exit(EXIT_FAILURE);
+}
 
 void ExitOnGeneralFailure(
     const wchar_t* message,
@@ -81,12 +114,9 @@ void ExitOnGeneralFailure(
     const wchar_t* file_name,
     int line
 ) {
-#ifndef NDEBUG
-  wchar_t full_message[ERROR_MESSAGE_LENGTH];
-
   swprintf(
-      full_message,
-      sizeof(full_message) / sizeof(full_message[0]),
+      full_error_message,
+      kFullErrorMessageCapacity,
       kGeneralFailErrorFormat,
       file_name,
       line,
@@ -95,11 +125,10 @@ void ExitOnGeneralFailure(
 
   MessageBoxW(
       NULL,
-      full_message,
+      full_error_message,
       caption,
       MB_OK | MB_ICONERROR
   );
-#endif // NDEBUG
 
   exit(EXIT_FAILURE);
 }
@@ -108,11 +137,11 @@ void ExitOnAllocationFailure(
     const wchar_t* file_name,
     int line
 ) {
-  ExitOnGeneralFailure(
-      L"Allocation function failed.",
-      L"Memory Allocation Failed",
+  ExitFormattedOnGeneralFailure(
+      L"Error",
       file_name,
-      line
+      line,
+      L"Memory allocation function failed."
   );
 }
 
@@ -121,35 +150,21 @@ void ExitOnConstantMappingMissing(
     const wchar_t* file_name,
     int line
 ) {
-#ifndef NDEBUG
-  wchar_t full_message[ERROR_MESSAGE_LENGTH];
-
-  swprintf(
-      full_message,
-      sizeof(full_message) / sizeof(full_message[0]),
-      kConstantMappingMissingErrorFormat,
+  ExitFormattedOnGeneralFailure(
+      L"Error",
       file_name,
       line,
+      L"Constant with value %d could not be mapped.",
       value
   );
-
-  MessageBoxW(
-      NULL,
-      full_message,
-      L"Constant Error",
-      MB_OK | MB_ICONERROR
-  );
-#endif // NDEBUG
-
-  exit(EXIT_FAILURE);
 }
 
 void ExitOnCallOnceFailure(const wchar_t* file_name, int line) {
-  ExitOnGeneralFailure(
-      L"pthread_once failed.",
-      L"Call Once Failed",
+  ExitFormattedOnGeneralFailure(
+      L"Error",
       file_name,
-      line
+      line,
+      L"call_once failed"
   );
 }
 
@@ -159,34 +174,12 @@ void ExitOnWindowsFunctionFailureWithLastError(
     const wchar_t* file_name,
     int line
 ) {
-#ifndef NDEBUG
-  wchar_t full_message[ERROR_MESSAGE_LENGTH];
-
-  swprintf(
-      full_message,
-      sizeof(full_message) / sizeof(full_message[0]),
-      kFunctionFailErrorFormat,
+  ExitFormattedOnGeneralFailure(
+      L"Error",
       file_name,
       line,
+      L"The function %ls failed with error code 0x%X.",
       function_name,
       last_error
   );
-
-  wchar_t message_box_caption[ERROR_CAPTION_LENGTH];
-  swprintf(
-      message_box_caption,
-      sizeof(message_box_caption) / sizeof(message_box_caption[0]),
-      L"%ls Failed",
-      function_name
-  );
-
-  MessageBoxW(
-      NULL,
-      full_message,
-      message_box_caption,
-      MB_OK | MB_ICONERROR
-  );
-#endif // NDEBUG
-
-  exit(EXIT_FAILURE);
 }
