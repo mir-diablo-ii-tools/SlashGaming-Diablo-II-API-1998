@@ -47,12 +47,14 @@
 
 #include <windows.h>
 #include <stdlib.h>
-#include <wchar.h>
 
-#include <mdc/wchar_t/wide_decoding.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 #include "../backend/game_library.h"
+
+static const wchar_t* const kErrorMessageFormat =
+    L"The data or function with the ordinal %hd from %ls could not be "
+    L"found.";
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOrdinal(
     struct Mapi_GameAddress* game_address,
@@ -68,48 +70,53 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOrdinal(
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     int16_t ordinal
 ) {
-  struct Mdc_BasicString library_path_wide = MDC_BASIC_STRING_UNINIT;
+  struct Mdc_Fs_Path library_path;
+  struct Mdc_Fs_Path* init_library_path;
 
   const struct Mapi_GameLibrary* game_library;
   FARPROC ordinal_address;
 
-  game_library = GetGameLibrary(library_path);
+  init_library_path = Mdc_Fs_Path_InitFromCWStr(
+      &library_path,
+      library_path_cstr
+  );
+
+  if (init_library_path != &library_path) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_Fs_Path_InitFromCWStr",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  game_library = GetGameLibrary(&library_path);
   ordinal_address = GetProcAddress(
       (HMODULE) game_library->base_address_,
       (const char*) (0xFFFF & ordinal)
   );
 
   if (ordinal_address == NULL) {
-    library_path_wide = Mdc_Wide_DecodeUtf8(library_path);
-
-    wchar_t full_message[512];
-
-    const wchar_t* kErrorFormatMessage =
-        L"The data or function with the ordinal %d from %ls could not be "
-        L"found.";
-
-    swprintf(
-        full_message,
-        sizeof(full_message) / sizeof(full_message[0]),
-        kErrorFormatMessage,
-        ordinal,
-        Mdc_BasicString_Data(&library_path_wide)
-    );
-
-    Mdc_BasicString_Deinit(&library_path_wide);
-
-    ExitOnGeneralFailure(
-        full_message,
-        L"Failed to Locate Address",
+    ExitFormattedOnGeneralFailure(
+        L"Error",
         __FILEW__,
-        __LINE__
+        __LINE__,
+        kErrorMessageFormat,
+        ordinal,
+        library_path_cstr
     );
+
+    goto return_bad;
   }
 
   game_address->raw_address = (intptr_t) ordinal_address;
 
   return game_address;
+
+return_bad:
+  return NULL;
 }

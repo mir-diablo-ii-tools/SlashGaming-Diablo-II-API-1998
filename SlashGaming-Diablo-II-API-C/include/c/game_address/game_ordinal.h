@@ -47,6 +47,7 @@
 #define SGMAPI_C_GAME_ADDRESS_GAME_ORDINAL_H_
 
 #include <stdint.h>
+#include <wchar.h>
 
 #include "../default_game_library.h"
 #include "game_address_struct.h"
@@ -76,7 +77,7 @@ Mapi_GameAddress_InitFromLibraryIdAndOrdinal(
 DLLEXPORT struct Mapi_GameAddress*
 Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     int16_t ordinal
 );
 

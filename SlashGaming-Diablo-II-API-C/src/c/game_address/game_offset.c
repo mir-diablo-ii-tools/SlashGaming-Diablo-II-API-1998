@@ -45,6 +45,8 @@
 
 #include "../../../include/c/game_address/game_offset.h"
 
+#include "../../wide_macro.h"
+#include "../backend/error_handling.h"
 #include "../backend/game_library.h"
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOffset(
@@ -61,11 +63,36 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndOffset(
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndOffset(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     ptrdiff_t offset
 ) {
-  const struct Mapi_GameLibrary* game_library = GetGameLibrary(library_path);
-  game_address->raw_address = game_library->base_address_ + offset;
+  struct Mdc_Fs_Path library_path;
+  struct Mdc_Fs_Path* init_library_path;
+
+  const struct Mapi_GameLibrary* game_library;
+  intptr_t base_address;
+
+  init_library_path = Mdc_Fs_Path_InitFromCWStr(
+      &library_path,
+      library_path_cstr
+  );
+
+  if (init_library_path != &library_path) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_Fs_Path_InitFromCWStr",
+        __FILEW__,
+        __LINE__
+    );
+    goto return_bad;
+  }
+
+  game_library = GetGameLibrary(&library_path);
+
+  base_address = Mapi_GameLibrary_GetBaseAddress(game_library);
+  game_address->raw_address = base_address + offset;
 
   return game_address;
+
+return_bad:
+  return NULL;
 }

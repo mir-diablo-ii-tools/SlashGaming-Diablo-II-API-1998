@@ -47,6 +47,7 @@
 #define SGMAPI_C_GAME_ADDRESS_GAME_OFFSET_H_
 
 #include <stddef.h>
+#include <wchar.h>
 
 #include "../default_game_library.h"
 #include "game_address_struct.h"
@@ -77,7 +78,7 @@ Mapi_GameAddress_InitFromLibraryIdAndOffset(
 DLLEXPORT struct Mapi_GameAddress*
 Mapi_GameAddress_InitFromLibraryPathAndOffset(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     ptrdiff_t offset
 );
 

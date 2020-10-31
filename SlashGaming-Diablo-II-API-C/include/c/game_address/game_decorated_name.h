@@ -46,6 +46,8 @@
 #ifndef SGMAPI_C_GAME_ADDRESS_GAME_DECORATED_NAME_H_
 #define SGMAPI_C_GAME_ADDRESS_GAME_DECORATED_NAME_H_
 
+#include <wchar.h>
+
 #include "../default_game_library.h"
 #include "game_address_struct.h"
 
@@ -76,7 +78,7 @@ Mapi_GameAddress_InitFromLibraryIdAndDecoratedName(
 DLLEXPORT struct Mapi_GameAddress*
 Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     const char* decorated_name
 );
 

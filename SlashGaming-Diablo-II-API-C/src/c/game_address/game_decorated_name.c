@@ -46,14 +46,18 @@
 #include "../../../include/c/game_address/game_decorated_name.h"
 
 #include <windows.h>
-#include <stdlib.h>
-#include <wchar.h>
 
+#include <mdc/filesystem/filesystem.h>
 #include <mdc/string/basic_string.h>
+#include <mdc/std/wchar.h>
 #include <mdc/wchar_t/wide_decoding.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 #include "../backend/game_library.h"
+
+static const wchar_t* const kErrorMessageFormat =
+    L"The data or function with the name %ls from %ls could not be "
+    L"found.";
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndDecoratedName(
     struct Mapi_GameAddress* game_address,
@@ -69,51 +73,63 @@ struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryIdAndDecoratedName(
 
 struct Mapi_GameAddress* Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const wchar_t* library_path_cstr,
     const char* decorated_name
 ) {
-  struct Mdc_BasicString library_path_wide = MDC_BASIC_STRING_UNINIT;
-  struct Mdc_BasicString decorated_name_wide = MDC_BASIC_STRING_UNINIT;
+  struct Mdc_Fs_Path library_path;
+  struct Mdc_Fs_Path* init_library_path;
+
+  struct Mdc_BasicString decorated_name_wide;
+  struct Mdc_BasicString* init_decorated_name_wide;
 
   const struct Mapi_GameLibrary* game_library;
   FARPROC ordinal_address;
 
-  game_library = GetGameLibrary(library_path);
+  init_library_path = Mdc_Fs_Path_InitFromCWStr(
+      &library_path,
+      library_path_cstr
+  );
+
+  if (init_library_path != &library_path) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_Fs_Path_InitFromCWStr",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  game_library = GetGameLibrary(&library_path);
   ordinal_address = GetProcAddress(
-      (HMODULE) game_library->base_address_,
+      (HMODULE) Mapi_GameLibrary_GetBaseAddress(game_library),
       decorated_name
   );
 
   if (ordinal_address == NULL) {
-    library_path_wide = Mdc_Wide_DecodeUtf8(library_path);
-    decorated_name_wide = Mdc_Wide_DecodeUtf8(decorated_name);
-
-    wchar_t full_message[512];
-
-    const wchar_t* kErrorFormatMessage =
-        L"The data or function with the name %ls from %ls could not be "
-        L"found.";
-
-    swprintf(
-        full_message,
-        sizeof(full_message) / sizeof(full_message[0]),
-        kErrorFormatMessage,
-        Mdc_BasicString_Data(&decorated_name_wide),
-        Mdc_BasicString_Data(&library_path_wide)
+    init_decorated_name_wide = Mdc_Wide_DecodeUtf8(
+        &decorated_name_wide,
+        decorated_name
     );
 
-    Mdc_BasicString_Deinit(&decorated_name_wide);
-    Mdc_BasicString_Deinit(&library_path_wide);
-
-    ExitOnGeneralFailure(
-        full_message,
-        L"Failed to Locate Address",
+    ExitFormattedOnGeneralFailure(
+        L"Error",
         __FILEW__,
-        __LINE__
+        __LINE__,
+        kErrorMessageFormat,
+        Mdc_BasicString_Data(&decorated_name_wide),
+        Mdc_Fs_Path_CStr(&library_path_cstr)
     );
+
+    goto return_bad;
   }
 
   game_address->raw_address = (intptr_t) ordinal_address;
 
+  Mdc_Fs_Path_Deinit(&library_path);
+
   return game_address;
+
+return_bad:
+  return NULL;
 }
