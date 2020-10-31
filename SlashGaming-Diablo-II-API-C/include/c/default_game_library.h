@@ -47,6 +47,7 @@
 #define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
 
 #include <stddef.h>
+#include <wchar.h>
 
 #include "../dllexport_define.inc"
 
