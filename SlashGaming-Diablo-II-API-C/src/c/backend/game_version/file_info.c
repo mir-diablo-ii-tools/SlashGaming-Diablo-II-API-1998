@@ -47,7 +47,7 @@
 
 #include "../error_handling.h"
 
-#include <stdlib.h>
+#include <mdc/malloc/malloc.h>
 
 /* Struct taken from Microsoft's example. */
 struct LANGANDCODEPAGE {
@@ -57,9 +57,11 @@ struct LANGANDCODEPAGE {
 
 void ExtractFileInfo(
     VS_FIXEDFILEINFO* file_info,
-    const wchar_t* file_path
+    const struct Mdc_Fs_Path* file_path
 ) {
   DWORD ignored;
+
+  const wchar_t* file_path_cstr;
 
   void* file_version_info;
   DWORD file_version_info_size;
@@ -71,8 +73,10 @@ void ExtractFileInfo(
   UINT temp_file_info_size;
 
   /* Check version size. */
+  file_path_cstr = Mdc_Fs_Path_CStr(file_path);
+
   file_version_info_size = GetFileVersionInfoSizeW(
-      file_path,
+      file_path_cstr,
       &ignored
   );
 
@@ -83,17 +87,20 @@ void ExtractFileInfo(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Get the file version info.*/
-  file_version_info = malloc(file_version_info_size);
+  file_version_info = Mdc_malloc(file_version_info_size);
 
   if (file_version_info == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   is_get_file_version_info_success = GetFileVersionInfoW(
-      file_path,
+      file_path_cstr,
       ignored,
       file_version_info_size,
       file_version_info
@@ -106,6 +113,8 @@ void ExtractFileInfo(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Gather all of the information into the specified buffer. */
@@ -123,20 +132,32 @@ void ExtractFileInfo(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Copy the file info into the parameter. */
   *file_info = *temp_file_info;
 
-free_file_version_info:
-  free(file_version_info);
+  Mdc_free(file_version_info);
+
+  return;
+
+return_bad:
+  return;
 }
 
-wchar_t* ExtractFileStringValue(
-    const wchar_t* game_path,
+struct Mdc_BasicString* ExtractFileStringValue(
+    struct Mdc_BasicString* string_value,
+    const struct Mdc_Fs_Path* file_path,
     const wchar_t* string_name
 ) {
+  void* realloc_result;
   DWORD ignored;
+
+  struct Mdc_BasicString* init_string_value;
+
+  const wchar_t* file_path_cstr;
 
   BOOL is_get_file_version_info_success;
   BOOL is_ver_query_value_success;
@@ -150,15 +171,17 @@ wchar_t* ExtractFileStringValue(
 
   wchar_t* temp_file_string_value;
 
-  wchar_t* file_string_value;
   UINT file_string_value_size;
 
   wchar_t* file_string_sub_block;
   size_t file_string_sub_block_capacity;
+  size_t file_string_sub_block_new_capacity;
 
   /* Check version size. */
+  file_path_cstr = Mdc_Fs_Path_CStr(file_path);
+
   file_version_info_size = GetFileVersionInfoSizeW(
-      game_path,
+      file_path_cstr,
       &ignored
   );
 
@@ -169,17 +192,20 @@ wchar_t* ExtractFileStringValue(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Get the file version info.*/
-  file_version_info = malloc(file_version_info_size);
+  file_version_info = Mdc_malloc(file_version_info_size);
 
   if (file_version_info == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   is_get_file_version_info_success = GetFileVersionInfoW(
-      game_path,
+      file_path_cstr,
       ignored,
       file_version_info_size,
       file_version_info
@@ -192,6 +218,8 @@ wchar_t* ExtractFileStringValue(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Gather all of the information into the specified buffer. */
@@ -209,24 +237,28 @@ wchar_t* ExtractFileStringValue(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Format text into the file string sub block. */
-  file_string_sub_block_capacity = 1;
+  file_string_sub_block_new_capacity = 1;
   file_string_sub_block = NULL;
 
-
   do {
-    file_string_sub_block_capacity *= 2;
-    file_string_sub_block = realloc(
+    file_string_sub_block_capacity = file_string_sub_block_new_capacity;
+
+    realloc_result = Mdc_realloc(
         file_string_sub_block,
         file_string_sub_block_capacity * sizeof(file_string_sub_block[0])
     );
 
-
-    if (file_string_sub_block == NULL) {
+    if (realloc_result == NULL) {
       ExitOnAllocationFailure(__FILEW__, __LINE__);
+      goto return_bad;
     }
+
+    file_string_sub_block = realloc_result;
 
     snwprintf_result = _snwprintf(
         file_string_sub_block,
@@ -236,6 +268,8 @@ wchar_t* ExtractFileStringValue(
         lang_buffer[0].wCodePage,
         string_name
     );
+
+    file_string_sub_block_new_capacity *= 2;
   } while (snwprintf_result == -1
       || snwprintf_result == file_string_sub_block_capacity);
 
@@ -254,22 +288,32 @@ wchar_t* ExtractFileStringValue(
         __FILEW__,
         __LINE__
     );
+
+    goto return_bad;
   }
 
   /* Return a copy of the file string value. */
-  file_string_value = malloc(file_string_value_size * sizeof(temp_file_string_value[0]));
+  init_string_value = Mdc_BasicString_InitFromCStr(
+      string_value,
+      Mdc_CharTraitsWChar_GetCharTraits(),
+      temp_file_string_value
+  );
 
-  if (file_string_value == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  if (init_string_value != string_value) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_BasicString_InitFromCStr",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
   }
 
-  wcscpy(file_string_value, temp_file_string_value);
+  Mdc_free(file_string_sub_block);
+  Mdc_free(file_version_info);
 
-free_file_string_sub_block:
-  free(file_string_sub_block);
+  return string_value;
 
-free_file_version_info:
-  free(file_version_info);
-
-  return file_string_value;
+return_bad:
+  return NULL;
 }
