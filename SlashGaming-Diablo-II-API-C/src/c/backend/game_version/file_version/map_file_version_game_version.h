@@ -43,16 +43,23 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
+#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_MAP_FILE_VERSION_GAME_VERSION_H_
+#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_MAP_FILE_VERSION_GAME_VERSION_H_
 
-#include <windows.h>
+#include <mdc/container/map.h>
 
-#include "../../../../include/c/game_version.h"
-#include "file_version/file_version_struct.h"
+#include "../../../../../include/c/game_version.h"
+#include "file_version_struct.h"
 
-enum D2_GameVersion Mapi_FileVersion_GetGameVersion(
-    const struct Mapi_FileVersion* file_version
-);
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_ */
+const struct Mdc_MapMetadata*
+Mapi_MapFileVersionGameVersion_GetMapMetadata(void);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_MAP_FILE_VERSION_GAME_VERSION_H_ */

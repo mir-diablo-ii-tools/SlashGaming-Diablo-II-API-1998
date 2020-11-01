@@ -45,12 +45,17 @@
 
 #include "file_version.h"
 
-struct GameVersionTableEntry {
-  struct FileVersion file_version;
-  enum D2_GameVersion game_version;
-};
+#include <mdc/container/map.h>
+#include <mdc/object/integer_object.h>
+#include <mdc/std/threads.h>
+#include "../../../wide_macro.h"
+#include "../error_handling.h"
+#include "file_version/map_file_version_game_version.h"
 
-static const struct GameVersionTableEntry kGameVersionTable[] = {
+static const struct {
+  struct Mapi_FileVersion file_version;
+  enum D2_GameVersion game_version;
+} kGameVersionsByFileVersionsSrc[] = {
     /* 1.0.0.1 */
     { { 1, 0, 0, 1 }, VERSION_1_01 },
 
@@ -133,85 +138,62 @@ static const struct GameVersionTableEntry kGameVersionTable[] = {
     { { 1, 14, 3, 71 }, LOD_1_14D }
 };
 
-enum FILE_SCOPE_CONSTANTS_02 {
-  kGameVersionTableCount = sizeof(kGameVersionTable)
-      / sizeof(kGameVersionTable[0])
+enum {
+  kGameVersionsByFileVersionsCount = sizeof(kGameVersionsByFileVersionsSrc)
+      / sizeof(kGameVersionsByFileVersionsSrc[0])
 };
 
-static int FileVersion_CompareAll(
-    const struct FileVersion* version1,
-    const struct FileVersion* version2
-) {
-  int diff;
+static struct Mdc_Map game_versions_by_file_versions;
+static once_flag game_versions_by_file_versions_init_flag = ONCE_FLAG_INIT;
 
-  diff = version1->major_left - version2->major_left;
-  if (diff != 0) {
-    return diff;
+static void InitGameVersionsByFileVersions(void) {
+  size_t i;
+
+  struct Mdc_Map* init_map;
+
+  struct Mdc_Pair pair;
+  struct Mdc_Pair* init_pair;
+
+  init_map = Mdc_Map_InitEmpty(
+      &game_versions_by_file_versions,
+      Mapi_MapFileVersionGameVersion_GetMapMetadata()
+  );
+
+  if (init_map != &game_versions_by_file_versions) {
+    ExitOnMdcFunctionFailure(L"Mdc_Map_InitEmpty", __FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  diff = version1->major_right - version2->major_right;
-  if (diff != 0) {
-    return diff;
+  for (i = 0; i < kGameVersionsByFileVersionsCount; i += 1) {
+    Mdc_Map_EmplaceKeyCopy(
+        &game_versions_by_file_versions,
+        &kGameVersionsByFileVersionsSrc[i].file_version,
+        &Mdc_Integer_InitCopy,
+        &kGameVersionsByFileVersionsSrc[i].game_version
+    );
   }
 
-  diff = version1->minor_left - version2->minor_left;
-  if (diff != 0) {
-    return diff;
-  }
+  return;
 
-  diff = version1->minor_right - version2->minor_right;
-  if (diff != 0) {
-    return diff;
-  }
-
-  return 0;
+return_bad:
+  return;
 }
 
-static int FileVersion_CompareAsVoidAll(
-    const void* version1,
-    const void* version2
-) {
-  return FileVersion_CompareAll(
-      (const struct FileVersion*) version1,
-      (const struct FileVersion*) version2
+static void InitStatic(void) {
+  call_once(
+      &game_versions_by_file_versions_init_flag,
+      &InitGameVersionsByFileVersions
   );
 }
 
-static int GameVersionTableEntry_CompareKey(
-    const struct GameVersionTableEntry* entry1,
-    const struct GameVersionTableEntry* entry2
+enum D2_GameVersion Mapi_FileVersion_GetGameVersion(
+    const struct Mapi_FileVersion* file_version
 ) {
-  return FileVersion_CompareAll(
-      &entry1->file_version,
-      &entry2->file_version
-  );
-}
+  enum D2_GameVersion* game_version;
 
-static int GameVersionTableEntry_CompareAsVoidKey(
-    const void* entry1,
-    const void* entry2
-) {
-  return GameVersionTableEntry_CompareKey(
-      (const struct GameVersionTableEntry*) entry1,
-      (const struct GameVersionTableEntry*) entry2
-  );
-}
+  InitStatic();
 
-enum D2_GameVersion FileVersion_SearchGameVersionTable(
-    const struct FileVersion* file_version
-) {
-  struct GameVersionTableEntry search_entry;
-  struct GameVersionTableEntry* search_result;
+  game_version = Mdc_Map_At(&game_versions_by_file_versions, file_version);
 
-  search_entry.file_version = *file_version;
-
-  search_result = bsearch(
-      &search_entry,
-      kGameVersionTable,
-      kGameVersionTableCount,
-      sizeof(kGameVersionTable[0]),
-      &GameVersionTableEntry_CompareAsVoidKey
-  );
-
-  return search_result->game_version;
+  return *game_version;
 }

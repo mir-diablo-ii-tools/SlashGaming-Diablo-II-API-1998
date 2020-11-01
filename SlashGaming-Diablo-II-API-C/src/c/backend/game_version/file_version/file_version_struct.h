@@ -43,16 +43,64 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
+#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_FILE_VERSION_STRUCT_H_
+#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_FILE_VERSION_STRUCT_H_
 
 #include <windows.h>
 
-#include "../../../../include/c/game_version.h"
-#include "file_version/file_version_struct.h"
+#include <mdc/object_metadata/object_metadata.h>
+#include <mdc/std/stdbool.h>
 
-enum D2_GameVersion Mapi_FileVersion_GetGameVersion(
-    const struct Mapi_FileVersion* file_version
+struct Mapi_FileVersion {
+  DWORD major_left;
+  DWORD major_right;
+  DWORD minor_left;
+  DWORD minor_right;
+};
+
+struct Mapi_FileVersion* Mapi_FileVersion_InitDefault(
+    struct Mapi_FileVersion* file_version
 );
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_ */
+struct Mapi_FileVersion* Mapi_FileVersion_InitCopy(
+    struct Mapi_FileVersion* dest,
+    const struct Mapi_FileVersion* src
+);
+
+struct Mapi_FileVersion* Mapi_FileVersion_InitMove(
+    struct Mapi_FileVersion* dest,
+    struct Mapi_FileVersion* src
+);
+
+void Mapi_FileVersion_Deinit(
+    struct Mapi_FileVersion* file_version
+);
+
+const struct Mdc_ObjectMetadata* Mapi_FileVersion_GetObjectMetadata(void);
+
+struct Mapi_FileVersion* Mapi_FileVersion_AssignCopy(
+    struct Mapi_FileVersion* dest,
+    const struct Mapi_FileVersion* src
+);
+
+struct Mapi_FileVersion* Mapi_FileVersion_AssignMove(
+    struct Mapi_FileVersion* dest,
+    struct Mapi_FileVersion* src
+);
+
+bool Mapi_FileVersion_Equal(
+    const struct Mapi_FileVersion* file_version1,
+    const struct Mapi_FileVersion* file_version2
+);
+
+int Mapi_FileVersion_Compare(
+    const struct Mapi_FileVersion* file_version1,
+    const struct Mapi_FileVersion* file_version2
+);
+
+void Mapi_FileVersion_Swap(
+    struct Mapi_FileVersion* file_version1,
+    struct Mapi_FileVersion* file_version2
+);
+
+#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_FILE_VERSION_STRUCT_H_ */

@@ -43,16 +43,36 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
+#include "map_file_version_game_version.h"
 
-#include <windows.h>
+#include <mdc/std/threads.h>
 
-#include "../../../../include/c/game_version.h"
-#include "file_version/file_version_struct.h"
+#include "pair_file_version_game_version.h"
 
-enum D2_GameVersion Mapi_FileVersion_GetGameVersion(
-    const struct Mapi_FileVersion* file_version
-);
+/**
+ * Static functions
+ */
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_ */
+static struct Mdc_MapMetadata map_metadata;
+static once_flag map_metadata_init_flag = ONCE_FLAG_INIT;
+
+static void Mapi_MapFileVersionGameVersion_InitPairMetadata(void) {
+  Mdc_MapMetadata_Init(
+      &map_metadata,
+      Mapi_PairFileVersionGameVersion_GetPairMetadata()
+  );
+}
+
+/**
+ * External functions
+ */
+
+const struct Mdc_MapMetadata*
+Mapi_MapFileVersionGameVersion_GetPairMetadata(void) {
+  call_once(
+      &map_metadata_init_flag,
+      &Mapi_MapFileVersionGameVersion_InitPairMetadata
+  );
+
+  return &map_metadata;
+}
