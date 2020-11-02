@@ -154,13 +154,17 @@ static void InitGameVersionsByFileVersions(void) {
   struct Mdc_Pair pair;
   struct Mdc_Pair* init_pair;
 
-  init_map = Mdc_Map_InitEmpty(
-      &game_versions_by_file_versions,
-      Mapi_MapFileVersionGameVersion_GetMapMetadata()
+  init_map = Mdc_MapFileVersionGameVersion_InitEmpty(
+      &game_versions_by_file_versions
   );
 
   if (init_map != &game_versions_by_file_versions) {
-    ExitOnMdcFunctionFailure(L"Mdc_Map_InitEmpty", __FILEW__, __LINE__);
+    ExitOnMdcFunctionFailure(
+        L"Mdc_MapFileVersionGameVersion_InitEmpty",
+        __FILEW__,
+        __LINE__
+    );
+
     goto return_bad;
   }
 

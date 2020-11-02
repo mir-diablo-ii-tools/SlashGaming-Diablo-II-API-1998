@@ -52,14 +52,40 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata pair_metadata;
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
+
+static struct Mdc_PairMetadata map_metadata;
 static once_flag pair_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_PairFileVersionGameVersion_InitPairMetadata(void) {
+void* Mdc_PairFileVersionGameVersion_InitDefaultAsVoid(void* obj) {
+  return Mdc_PairFileVersionGameVersion_InitDefault(obj);
+}
+
+static void Mdc_PairFileVersionGameVersion_InitObjectMetadata(void) {
+  object_metadata = *Mdc_Pair_GetObjectMetadataTemplate();
+
+  object_metadata.functions.init_default =
+      &Mdc_PairFileVersionGameVersion_InitDefaultAsVoid;
+}
+
+static void Mdc_PairFileVersionGameVersion_InitPairMetadata(void) {
   Mdc_PairMetadata_Init(
-      &pair_metadata,
+      &map_metadata,
       Mapi_FileVersion_GetObjectMetadata(),
       Mdc_Integer_GetObjectMetadata()
+  );
+}
+
+static void InitStatic(void) {
+  call_once(
+      &object_metadata_init_flag,
+      &Mdc_PairFileVersionGameVersion_InitObjectMetadata
+  );
+
+  call_once(
+      &pair_metadata_init_flag,
+      &Mdc_PairFileVersionGameVersion_InitPairMetadata
   );
 }
 
@@ -67,12 +93,25 @@ static void Mapi_PairFileVersionGameVersion_InitPairMetadata(void) {
  * External functions
  */
 
-const struct Mdc_PairMetadata*
-Mapi_PairFileVersionGameVersion_GetPairMetadata(void) {
-  call_once(
-      &pair_metadata_init_flag,
-      &Mapi_PairFileVersionGameVersion_InitPairMetadata
+struct Mdc_Pair* Mdc_PairFileVersionGameVersion_InitDefault(
+    struct Mdc_Pair* pair
+) {
+  return Mdc_Pair_InitDefault(
+      pair,
+      Mdc_PairFileVersionGameVersion_GetPairMetadata()
   );
+}
 
-  return &pair_metadata;
+const struct Mdc_ObjectMetadata*
+Mdc_PairFileVersionGameVersion_GetObjectMetadata(void) {
+  InitStatic();
+
+  return &object_metadata;
+}
+
+const struct Mdc_PairMetadata*
+Mdc_PairFileVersionGameVersion_GetPairMetadata(void) {
+  InitStatic();
+
+  return &map_metadata;
 }

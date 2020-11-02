@@ -55,8 +55,15 @@
 extern "C" {
 #endif /* __cplusplus */
 
+struct Mdc_Pair* Mdc_PairFileVersionGameVersion_InitDefault(
+    struct Mdc_Pair* pair
+);
+
+const struct Mdc_ObjectMetadata*
+Mdc_PairFileVersionGameVersion_GetObjectMetadata(void);
+
 const struct Mdc_PairMetadata*
-Mapi_PairFileVersionGameVersion_GetPairMetadata(void);
+Mdc_PairFileVersionGameVersion_GetPairMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

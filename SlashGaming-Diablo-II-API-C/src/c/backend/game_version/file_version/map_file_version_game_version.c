@@ -53,13 +53,39 @@
  * Static functions
  */
 
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
+
 static struct Mdc_MapMetadata map_metadata;
 static once_flag map_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_MapFileVersionGameVersion_InitPairMetadata(void) {
+static void* Mdc_MapFileVersionGameVersion_InitEmptyAsVoid(void* obj) {
+  return Mdc_MapFileVersionGameVersion_InitEmpty(obj);
+}
+
+static void Mdc_MapFileVersionGameVersion_InitObjectMetadata(void) {
+  object_metadata = *Mdc_Map_GetObjectMetadataTemplate();
+
+  object_metadata.functions.init_default =
+      &Mdc_MapFileVersionGameVersion_InitEmptyAsVoid;
+}
+
+static void Mdc_MapFileVersionGameVersion_InitPairMetadata(void) {
   Mdc_MapMetadata_Init(
       &map_metadata,
-      Mapi_PairFileVersionGameVersion_GetPairMetadata()
+      Mdc_PairFileVersionGameVersion_GetPairMetadata()
+  );
+}
+
+static void InitStatic(void) {
+  call_once(
+      &object_metadata_init_flag,
+      &Mdc_MapFileVersionGameVersion_InitObjectMetadata
+  );
+
+  call_once(
+      &map_metadata_init_flag,
+      &Mdc_MapFileVersionGameVersion_InitPairMetadata
   );
 }
 
@@ -67,12 +93,25 @@ static void Mapi_MapFileVersionGameVersion_InitPairMetadata(void) {
  * External functions
  */
 
-const struct Mdc_MapMetadata*
-Mapi_MapFileVersionGameVersion_GetPairMetadata(void) {
-  call_once(
-      &map_metadata_init_flag,
-      &Mapi_MapFileVersionGameVersion_InitPairMetadata
+struct Mdc_Map* Mdc_MapFileVersionGameVersion_InitEmpty(
+    struct Mdc_Map* map
+) {
+  return Mdc_Map_InitEmpty(
+      map,
+      Mdc_MapFileVersionGameVersion_GetMapMetadata()
   );
+}
+
+const struct Mdc_ObjectMetadata*
+Mdc_MapFileVersionGameVersion_GetObjectMetadata(void) {
+  InitStatic();
+
+  return &object_metadata;
+}
+
+const struct Mdc_MapMetadata*
+Mdc_MapFileVersionGameVersion_GetMapMetadata(void) {
+  InitStatic();
 
   return &map_metadata;
 }
