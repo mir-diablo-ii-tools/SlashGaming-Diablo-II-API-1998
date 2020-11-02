@@ -52,14 +52,42 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata pair_metadata;
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
+
+static struct Mdc_PairMetadata map_metadata;
 static once_flag pair_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
+static void* Mdc_PairDefaultGameLibraryPath_InitDefaultAsVoid(
+    void* obj
+) {
+  return Mdc_PairDefaultGameLibraryPath_InitDefault(obj);
+}
+
+static void Mdc_PairDefaultGameLibraryPath_InitGlobalObjectMetadata(void) {
+  object_metadata = *Mdc_Pair_GetObjectMetadataTemplate();
+
+  object_metadata.functions.init_default =
+      &Mdc_PairDefaultGameLibraryPath_InitDefaultAsVoid;
+}
+
+static void Mdc_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
   Mdc_PairMetadata_Init(
-      &pair_metadata,
+      &map_metadata,
       Mdc_Integer_GetObjectMetadata(),
       Mdc_Fs_Path_GetObjectMetadata()
+  );
+}
+
+static void InitStatic(void) {
+  call_once(
+      &object_metadata_init_flag,
+      &Mdc_PairDefaultGameLibraryPath_InitGlobalObjectMetadata
+  );
+
+  call_once(
+      &pair_metadata_init_flag,
+      &Mdc_PairDefaultGameLibraryPath_InitGlobalPairMetadata
   );
 }
 
@@ -67,12 +95,27 @@ static void Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata(void) {
  * External functions
  */
 
-const struct Mdc_PairMetadata*
-Mapi_PairDefaultGameLibraryPath_GetPairMetadata(void) {
-  call_once(
-      &pair_metadata_init_flag,
-      &Mapi_PairDefaultGameLibraryPath_InitGlobalPairMetadata
-  );
+struct Mdc_Pair* Mdc_PairDefaultGameLibraryPath_InitDefault(
+    struct Mdc_Pair* pair
+) {
+  InitStatic();
 
-  return &pair_metadata;
+  return Mdc_Pair_InitDefault(
+      pair,
+      Mdc_PairDefaultGameLibraryPath_GetPairMetadata()
+  );
+}
+
+const struct Mdc_ObjectMetadata*
+Mdc_PairDefaultGameLibraryPath_GetObjectMetadata(void) {
+  InitStatic();
+
+  return &object_metadata;
+}
+
+const struct Mdc_PairMetadata*
+Mdc_PairDefaultGameLibraryPath_GetPairMetadata(void) {
+  InitStatic();
+
+  return &map_metadata;
 }

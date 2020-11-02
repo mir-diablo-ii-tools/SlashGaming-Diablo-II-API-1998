@@ -68,7 +68,7 @@ static void InitPathsByDefaultLibraries(void) {
 
   init_paths_by_default_libraries = Mdc_Map_InitEmpty(
       &paths_by_default_libraries,
-      Mapi_MapDefaultGameLibraryPath_GetMapMetadata()
+      Mdc_MapDefaultGameLibraryPath_GetMapMetadata()
   );
 
   if (init_paths_by_default_libraries != &paths_by_default_libraries) {
@@ -288,9 +288,6 @@ const struct Mdc_Fs_Path* Mapi_Impl_GetGameExecutablePath(void) {
 const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
 ) {
-  struct Mdc_Integer default_library;
-  struct Mdc_Integer* init_default_library;
-
   const struct Mdc_Fs_Path* mapped_path;
 
   InitStatic();
@@ -299,22 +296,7 @@ const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
     return Mapi_Impl_GetGameExecutablePath();
   }
 
-  init_default_library = Mdc_Integer_InitFromValue(
-      &default_library,
-      library_id
-  );
-
-  if (init_default_library != &default_library) {
-    ExitOnMdcFunctionFailure(
-        L"Mdc_Integer_InitFromValue",
-        __FILEW__,
-        __LINE__
-    );
-
-    goto return_bad;
-  }
-
-  if (!Mdc_Map_Contains(&paths_by_default_libraries, &default_library)) {
+  if (!Mdc_Map_Contains(&paths_by_default_libraries, &library_id)) {
     ExitFormattedOnGeneralFailure(
         L"Error",
         __FILEW__,
@@ -328,10 +310,8 @@ const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
 
   mapped_path = Mdc_Map_AtConst(
       &paths_by_default_libraries,
-      &default_library
+      &library_id
   );
-
-  Mdc_Integer_Deinit(&default_library);
 
   return mapped_path;
 

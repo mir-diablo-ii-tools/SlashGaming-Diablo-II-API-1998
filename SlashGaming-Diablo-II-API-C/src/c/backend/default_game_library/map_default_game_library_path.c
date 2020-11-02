@@ -59,10 +59,36 @@
 static struct Mdc_MapMetadata map_metadata;
 static once_flag map_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
+
+static void* Mdc_MapDefaultGameLibraryPath_InitEmptyAsVoid(void* obj) {
+  return Mdc_MapDefaultGameLibraryPath_InitEmpty(obj);
+}
+
+static void Mdc_MapDefaultGameLibraryPath_InitGlobalObjectMetadata(void) {
+  object_metadata = *Mdc_Map_GetObjectMetadataTemplate();
+
+  object_metadata.functions.init_default =
+      &Mdc_MapDefaultGameLibraryPath_InitEmptyAsVoid;
+}
+
+static void Mdc_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
   Mdc_MapMetadata_Init(
       &map_metadata,
-      Mapi_PairDefaultGameLibraryPath_GetPairMetadata()
+      Mdc_PairDefaultGameLibraryPath_GetPairMetadata()
+  );
+}
+
+static void InitStatic(void) {
+  call_once(
+      &object_metadata_init_flag,
+      &Mdc_MapDefaultGameLibraryPath_InitGlobalObjectMetadata
+  );
+
+  call_once(
+      &map_metadata_init_flag,
+      &Mdc_MapDefaultGameLibraryPath_InitGlobalMapMetadata
   );
 }
 
@@ -70,50 +96,27 @@ static void Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata(void) {
  * External functions
  */
 
-const struct Mdc_MapMetadata*
-Mapi_MapDefaultGameLibraryPath_GetMapMetadata(void) {
-  call_once(
-      &map_metadata_init_flag,
-      &Mapi_MapDefaultGameLibraryPath_InitGlobalMapMetadata
-  );
+struct Mdc_Map* Mdc_MapDefaultGameLibraryPath_InitEmpty(
+    struct Mdc_Map* map
+) {
+  InitStatic();
 
-  return &map_metadata;
+  return Mdc_Map_InitEmpty(
+      map,
+      Mdc_MapDefaultGameLibraryPath_GetMapMetadata()
+  );
 }
 
-void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-    struct Mdc_Map* map,
-    enum D2_DefaultLibrary default_library_id,
-    const wchar_t* path_cstr
-) {
-  struct Mdc_Integer default_library;
-  struct Mdc_Integer* init_default_library;
+const struct Mdc_ObjectMetadata*
+Mdc_MapDefaultGameLibraryPath_GetObjectMetadata(void) {
+  InitStatic();
 
-  init_default_library = Mdc_Integer_InitFromValue(
-      &default_library,
-      default_library_id
-  );
+  return &object_metadata;
+}
 
-  if (init_default_library != &default_library) {
-    ExitOnMdcFunctionFailure(
-        L"Mdc_Integer_InitFromValue",
-        __FILEW__,
-        __LINE__
-    );
+const struct Mdc_MapMetadata*
+Mdc_MapDefaultGameLibraryPath_GetMapMetadata(void) {
+  InitStatic();
 
-    goto return_bad;
-  }
-
-  Mdc_Map_Emplace(
-      map,
-      &default_library,
-      &Mdc_Fs_Path_InitFromCWStr,
-      path_cstr
-  );
-
-  Mdc_Integer_Deinit(&default_library);
-
-  return;
-
-return_bad:
-  return;
+  return &map_metadata;
 }

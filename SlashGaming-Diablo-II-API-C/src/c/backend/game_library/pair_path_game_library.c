@@ -52,12 +52,12 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata pair_metadata;
+static struct Mdc_PairMetadata map_metadata;
 static once_flag pair_metadata_init_flag = ONCE_FLAG_INIT;
 
 static void Mapi_PairPathGameLibrary_InitPairMetadata(void) {
   Mdc_PairMetadata_Init(
-      &pair_metadata,
+      &map_metadata,
       Mdc_Fs_Path_GetObjectMetadata(),
       Mapi_GameLibrary_GetObjectMetadata()
   );
@@ -74,5 +74,5 @@ Mapi_PairPathGameLibrary_GetPairMetadata(void) {
       &Mapi_PairPathGameLibrary_InitPairMetadata
   );
 
-  return &pair_metadata;
+  return &map_metadata;
 }

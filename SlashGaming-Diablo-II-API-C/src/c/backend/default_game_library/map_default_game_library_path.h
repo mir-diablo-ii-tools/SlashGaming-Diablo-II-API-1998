@@ -48,7 +48,6 @@
 
 #include <mdc/container/map.h>
 #include <mdc/filesystem/filesystem.h>
-#include <mdc/std/wchar.h>
 
 #include "../../../../include/c/default_game_library.h"
 #include "pair_default_game_library_path.h"
@@ -57,14 +56,15 @@
 extern "C" {
 #endif /* __cplusplus */
 
-const struct Mdc_MapMetadata*
-Mapi_MapDefaultGameLibraryPath_GetMapMetadata(void);
-
-void Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-    struct Mdc_Map* map,
-    enum D2_DefaultLibrary default_library_id,
-    const wchar_t* path_cstr
+struct Mdc_Map* Mdc_MapDefaultGameLibraryPath_InitEmpty(
+    struct Mdc_Map* map
 );
+
+const struct Mdc_ObjectMetadata*
+Mdc_MapDefaultGameLibraryPath_GetObjectMetadata(void);
+
+const struct Mdc_MapMetadata*
+Mdc_MapDefaultGameLibraryPath_GetMapMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
