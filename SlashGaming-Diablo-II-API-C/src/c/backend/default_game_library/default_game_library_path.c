@@ -104,7 +104,11 @@ static void InitPathsByDefaultLibraries(void) {
   );
 
   if (init_paths_by_default_libraries != &paths_by_default_libraries) {
-    ExitOnMdcFunctionFailure(L"Mdc_Map_InitEmpty", __FILEW__, __LINE__);
+    ExitOnMdcFunctionFailure(
+        L"Mdc_MapDefaultGameLibraryPath_InitEmpty",
+        __FILEW__,
+        __LINE__
+    );
     goto return_bad;
   }
 
