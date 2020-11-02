@@ -63,12 +63,44 @@ static once_flag paths_by_default_libraries_init_flag;
 static struct Mdc_Fs_Path game_executable_path;
 static once_flag game_executable_path_init_flag;
 
+static const struct {
+  enum D2_DefaultLibrary default_library_id;
+  const wchar_t* library_path_cstr;
+} kPathsByDefaultLibrariesSrc[] = {
+    { LIBRARY_BNCLIENT, L"BNClient.dll" },
+    { LIBRARY_D2CLIENT, L"D2Client.dll" },
+    { LIBRARY_D2CMP, L"D2CMP.dll" },
+    { LIBRARY_D2COMMON, L"D2Common.dll" },
+    { LIBRARY_D2DDRAW, L"D2DDraw.dll" },
+    { LIBRARY_D2DIRECT3D, L"D2Direct3D.dll" },
+    { LIBRARY_D2GAME, L"D2Game.dll" },
+    { LIBRARY_D2GDI, L"D2GDI.dll" },
+    { LIBRARY_D2GFX, L"D2GFX.dll" },
+    { LIBRARY_D2GLIDE, L"D2Glide.dll"},
+    { LIBRARY_D2LANG, L"D2Lang.dll"},
+    { LIBRARY_D2LAUNCH, L"D2Launch.dll"},
+    { LIBRARY_D2MCPCLIENT, L"D2MCPClient.dll"},
+    { LIBRARY_D2MULTI, L"D2Multi.dll" },
+    { LIBRARY_D2NET, L"D2Net.dll" },
+    { LIBRARY_D2SERVER, L"D2Server.dll" },
+    { LIBRARY_D2SOUND, L"D2Sound.dll" },
+    { LIBRARY_D2WIN, L"D2Win.dll" },
+    { LIBRARY_FOG, L"Fog.dll"},
+    { LIBRARY_STORM, L"Storm.dll" }
+};
+
+enum {
+  kPathsByDefaultLibrariesCount = sizeof(kPathsByDefaultLibrariesSrc) /
+      sizeof(kPathsByDefaultLibrariesSrc[0]),
+};
+
 static void InitPathsByDefaultLibraries(void) {
+  size_t i;
+
   struct Mdc_Map* init_paths_by_default_libraries;
 
-  init_paths_by_default_libraries = Mdc_Map_InitEmpty(
-      &paths_by_default_libraries,
-      Mdc_MapDefaultGameLibraryPath_GetMapMetadata()
+  init_paths_by_default_libraries = Mdc_MapDefaultGameLibraryPath_InitEmpty(
+      &paths_by_default_libraries
   );
 
   if (init_paths_by_default_libraries != &paths_by_default_libraries) {
@@ -76,125 +108,14 @@ static void InitPathsByDefaultLibraries(void) {
     goto return_bad;
   }
 
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_BNCLIENT,
-      L"BNClient.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2CLIENT,
-      L"D2Client.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2CMP,
-      L"D2CMP.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2COMMON,
-      L"D2Common.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2DDRAW,
-      L"D2DDraw.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2DIRECT3D,
-      L"D2Direct3D.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2GAME,
-      L"D2Game.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2GDI,
-      L"D2GDI.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2GFX,
-      L"D2GFX.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2GLIDE,
-      L"D2Glide.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2LANG,
-      L"D2Lang.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2LAUNCH,
-      L"D2Launch.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2MCPCLIENT,
-      L"D2MCPClient.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2MULTI,
-      L"D2Multi.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2NET,
-      L"D2Net.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2SERVER,
-      L"D2Server.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2SOUND,
-      L"D2Sound.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_D2WIN,
-      L"D2Win.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_FOG,
-      L"Fog.dll"
-  );
-
-  Mapi_MapDefaultGameLibraryPath_EmplaceKeyValue(
-      &paths_by_default_libraries,
-      LIBRARY_STORM,
-      L"Storm.dll"
-  );
+  for (i = 0; i < kPathsByDefaultLibrariesCount; i += 1) {
+    Mdc_Map_EmplaceKeyCopy(
+        &paths_by_default_libraries,
+        &kPathsByDefaultLibrariesSrc[i].default_library_id,
+        &Mdc_Fs_Path_InitFromCWStr,
+        kPathsByDefaultLibrariesSrc[i].library_path_cstr
+    );
+  }
 
   return;
 
