@@ -109,6 +109,7 @@ static void InitPathsByDefaultLibraries(void) {
         __FILEW__,
         __LINE__
     );
+
     goto return_bad;
   }
 

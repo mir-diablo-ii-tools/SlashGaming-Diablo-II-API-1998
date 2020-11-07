@@ -49,99 +49,84 @@
 #include <string.h>
 
 #include <mdc/std/threads.h>
+#include <mdc/std/wchar.h>
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
 #include "error_handling.h"
-#include "game_address_table_impl.h"
+#include "game_address_table/game_address_table_impl.h"
+#include "game_address_table/game_address_locator.h"
 
 /**
  * Table of game address entries containing game addresses.
  */
-static struct Mapi_GameAddressTable* game_address_table;
+static struct Mdc_Map* game_address_table;
+static once_flag game_address_table_init_flag = ONCE_FLAG_INIT;
 
 /**
  * Initializes the game address table.
  */
 static void InitGameAddressTable(void) {
-  game_address_table = LoadGameAddressTable();
+  game_address_table = Mapi_Impl_GetGameAddressTable();
 }
 
-/**
- * Returns the compare results of game address table entries by
- * lexicographical compare of the library path, then a
- * lexicographical compare of the address name.
- */
-static int CompareGameAddressTableEntryByLibraryPathThenAddressName(
-    const struct Mapi_GameAddressTableEntry* entry1,
-    const struct Mapi_GameAddressTableEntry* entry2
-) {
-  int first_compare_result = strcmp(
-      entry1->library_path,
-      entry2->library_path
-  );
-
-  if (first_compare_result != 0) {
-    return first_compare_result;
-  }
-
-  return strcmp(entry1->address_name, entry2->address_name);
+static void InitStatic(void) {
+  call_once(&game_address_table_init_flag, &InitGameAddressTable);
 }
 
-struct Mapi_GameAddress* LoadGameAddress(
+struct Mapi_GameAddress* Mapi_Impl_LoadGameAddress(
     struct Mapi_GameAddress* game_address,
-    const char* library_path,
+    const struct Mdc_Fs_Path* library_path,
     const char* address_name
 ) {
-  static once_flag load_table_once = ONCE_FLAG_INIT;
-  call_once(&load_table_once, &InitGameAddressTable);
+  struct Mapi_GameAddress* init_game_address;
 
-  struct Mapi_GameAddressTableEntry key = {
-    .library_path = library_path,
-    .address_name = address_name
-  };
+  struct Mdc_BasicString address_name_str;
+  struct Mdc_BasicString* init_address_name_str;
 
-  struct Mapi_GameAddressTableEntry* search_result =
-      (struct Mapi_GameAddressTableEntry*) bsearch(
-          (const void*) &key,
-          (void*) game_address_table->entries,
-          game_address_table->num_elements,
-          sizeof(*(game_address_table->entries)[0]),
-          (int (*)(const void*, const void*))
-              &CompareGameAddressTableEntryByLibraryPathThenAddressName
-      );
+  struct Mapi_Impl_GameAddressLocator* game_address_locator;
 
-  // Initialize the game address based on the determined locator type.
-  switch (search_result->locator_type) {
-    case LOCATOR_TYPE_OFFSET: {
-      Mapi_GameAddress_InitFromLibraryPathAndOffset(
-          game_address,
-          search_result->library_path,
-          search_result->locator_value.offset
-      );
+  InitStatic();
 
-      break;
-    }
+  init_address_name_str = Mdc_BasicString_InitFromCStr(
+      &address_name_str,
+      Mdc_CharTraitsChar_GetCharTraits(),
+      address_name
+  );
 
-    case LOCATOR_TYPE_ORDINAL: {
-      Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
-          game_address,
-          search_result->library_path,
-          search_result->locator_value.ordinal
-      );
+  if (init_address_name_str != &address_name_str) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_BasicString_InitFromCStr",
+        __FILEW__,
+        __LINE__
+    );
 
-      break;
-    }
+    goto return_bad;
+  }
 
-    case LOCATOR_TYPE_DECORATED_NAME: {
-      Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
-          game_address,
-          search_result->library_path,
-          search_result->locator_value.decorated_name
-      );
+  game_address_locator = Mdc_Map_At(
+      Mdc_Map_At(
+          game_address_table,
+          library_path
+      ),
+      &address_name_str
+  );
 
-      break;
-    }
+  if (game_address_locator == NULL) {
+    ExitOnMdcFunctionFailure(L"Mdc_Map_At", __FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  init_game_address = Mapi_Impl_GameAddressLocator_LocateGameAddress(
+      game_address,
+      game_address_locator
+  );
+
+  if (init_game_address != game_address) {
+    goto return_bad;
   }
 
   return game_address;
+
+return_bad:
+  return NULL;
 }

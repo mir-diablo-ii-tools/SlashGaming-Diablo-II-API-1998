@@ -47,76 +47,80 @@
 
 #include <mdc/std/threads.h>
 
-static void* Mapi_GameAddressLocator_InitCopyAsVoid(
+static void* Mapi_Impl_GameAddressLocator_InitCopyAsVoid(
     void* dest,
     const void* src
 ) {
-  return Mapi_GameAddressLocator_InitCopy(dest, src);
+  return Mapi_Impl_GameAddressLocator_InitCopy(dest, src);
 }
 
-static void* Mapi_GameAddressLocator_InitMoveAsVoid(
+static void* Mapi_Impl_GameAddressLocator_InitMoveAsVoid(
     void* dest,
     void* src
 ) {
-  return Mapi_GameAddressLocator_InitMove(dest, src);
+  return Mapi_Impl_GameAddressLocator_InitMove(dest, src);
 }
 
-static void Mapi_GameAddressLocator_DeinitAsVoid(void* obj) {
-  Mapi_GameAddressLocator_Deinit(obj);
+static void Mapi_Impl_GameAddressLocator_DeinitAsVoid(void* obj) {
+  Mapi_Impl_GameAddressLocator_Deinit(obj);
 }
 
-static void* Mapi_GameAddressLocator_AssignCopyAsVoid(
+static void* Mapi_Impl_GameAddressLocator_AssignCopyAsVoid(
     void* dest,
     const void* src
 ) {
-  return Mapi_GameAddressLocator_AssignCopy(dest, src);
+  return Mapi_Impl_GameAddressLocator_AssignCopy(dest, src);
 }
 
-static void* Mapi_GameAddressLocator_AssignMoveAsVoid(
+static void* Mapi_Impl_GameAddressLocator_AssignMoveAsVoid(
     void* dest,
     void* src
 ) {
-  return Mapi_GameAddressLocator_AssignMove(dest, src);
+  return Mapi_Impl_GameAddressLocator_AssignMove(dest, src);
 }
 
-static bool Mapi_GameAddressLocator_EqualAsVoid(
+static bool Mapi_Impl_GameAddressLocator_EqualAsVoid(
     const void* obj1,
     const void* obj2
 ) {
-  return Mapi_GameAddressLocator_Equal(obj1, obj2);
+  return Mapi_Impl_GameAddressLocator_Equal(obj1, obj2);
 }
 
-static int Mapi_GameAddressLocator_CompareAsVoid(
+static int Mapi_Impl_GameAddressLocator_CompareAsVoid(
     const void* obj1,
     const void* obj2
 ) {
-  return Mapi_GameAddressLocator_Compare(obj1, obj2);
+  return Mapi_Impl_GameAddressLocator_Compare(obj1, obj2);
 }
 
-static void Mapi_GameAddressLocator_SwapAsVoid(
+static void Mapi_Impl_GameAddressLocator_SwapAsVoid(
     void* game_library1,
     void* game_library2
 ) {
-  Mapi_GameAddressLocator_Swap(game_library1, game_library2);
+  Mapi_Impl_GameAddressLocator_Swap(game_library1, game_library2);
 }
 
 static struct Mdc_ObjectMetadata*
-Mapi_GameAddressLocator_InitObjectMetadata(
+Mapi_Impl_GameAddressLocator_InitObjectMetadata(
     struct Mdc_ObjectMetadata* metadata
 ) {
-  metadata->size = sizeof(struct Mapi_GameAddressLocator);
+  metadata->size = sizeof(struct Mapi_Impl_GameAddressLocator);
 
-  metadata->functions.init_copy = &Mapi_GameAddressLocator_InitCopyAsVoid;
-  metadata->functions.init_move = &Mapi_GameAddressLocator_InitMoveAsVoid;
-  metadata->functions.deinit = &Mapi_GameAddressLocator_DeinitAsVoid;
+  metadata->functions.init_copy =
+      &Mapi_Impl_GameAddressLocator_InitCopyAsVoid;
+  metadata->functions.init_move =
+      &Mapi_Impl_GameAddressLocator_InitMoveAsVoid;
+  metadata->functions.deinit = &Mapi_Impl_GameAddressLocator_DeinitAsVoid;
 
-  metadata->functions.assign_copy = &Mapi_GameAddressLocator_AssignCopyAsVoid;
-  metadata->functions.assign_move = &Mapi_GameAddressLocator_AssignMoveAsVoid;
+  metadata->functions.assign_copy =
+      &Mapi_Impl_GameAddressLocator_AssignCopyAsVoid;
+  metadata->functions.assign_move =
+      &Mapi_Impl_GameAddressLocator_AssignMoveAsVoid;
 
-  metadata->functions.equal = &Mapi_GameAddressLocator_EqualAsVoid;
-  metadata->functions.compare = &Mapi_GameAddressLocator_CompareAsVoid;
+  metadata->functions.equal = &Mapi_Impl_GameAddressLocator_EqualAsVoid;
+  metadata->functions.compare = &Mapi_Impl_GameAddressLocator_CompareAsVoid;
 
-  metadata->functions.swap = &Mapi_GameAddressLocator_SwapAsVoid;
+  metadata->functions.swap = &Mapi_Impl_GameAddressLocator_SwapAsVoid;
 
   return metadata;
 }
@@ -124,19 +128,19 @@ Mapi_GameAddressLocator_InitObjectMetadata(
 static struct Mdc_ObjectMetadata object_metadata;
 static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_GameAddressLocator_InitGlobalObjectMetadata(void) {
-  Mapi_GameAddressLocator_InitObjectMetadata(&object_metadata);
+static void Mapi_Impl_GameAddressLocator_InitGlobalObjectMetadata(void) {
+  Mapi_Impl_GameAddressLocator_InitObjectMetadata(&object_metadata);
 }
 
 static void InitStatic(void) {
   call_once(
       &object_metadata_init_flag,
-      &Mapi_GameAddressLocator_InitGlobalObjectMetadata
+      &Mapi_Impl_GameAddressLocator_InitGlobalObjectMetadata
   );
 }
 
 const struct Mdc_ObjectMetadata*
-Mapi_GameAddressLocator_GetObjectMetadata(void) {
+Mapi_Impl_GameAddressLocator_GetObjectMetadata(void) {
   InitStatic();
 
   return &object_metadata;

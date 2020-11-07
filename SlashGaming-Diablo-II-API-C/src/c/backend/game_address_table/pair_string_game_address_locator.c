@@ -76,7 +76,7 @@ static void Mdc_PairStringGameAddressLocator_InitGlobalPairMetadata(void) {
   Mdc_PairMetadata_Init(
       &map_metadata,
       Mdc_String_GetObjectMetadata(),
-      Mapi_GameAddressLocator_GetObjectMetadata()
+      Mapi_Impl_GameAddressLocator_GetObjectMetadata()
   );
 }
 

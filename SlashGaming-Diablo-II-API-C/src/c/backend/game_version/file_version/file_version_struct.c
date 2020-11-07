@@ -51,6 +51,7 @@ struct Mapi_FileVersion* Mapi_FileVersion_InitDefault(
     struct Mapi_FileVersion* file_version
 ){
   /* This is empty on purpose. */
+  return file_version;
 }
 
 struct Mapi_FileVersion* Mapi_FileVersion_InitCopy(

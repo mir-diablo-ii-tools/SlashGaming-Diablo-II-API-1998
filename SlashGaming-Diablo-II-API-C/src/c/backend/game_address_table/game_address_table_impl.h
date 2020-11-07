@@ -43,39 +43,12 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
-#define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
+#ifndef SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_IMPL_H_
+#define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_IMPL_H_
 
-#include <stddef.h>
-#include <stdint.h>
+#include <mdc/container/map.h>
+#include "../../../../include/c/game_address/game_address_struct.h"
 
-#include "../../../include/c/game_address/game_address_struct.h"
+struct Mdc_Map* Mapi_Impl_GetGameAddressTable(void);
 
-enum LocatorType {
-  LOCATOR_TYPE_OFFSET,
-  LOCATOR_TYPE_ORDINAL,
-  LOCATOR_TYPE_DECORATED_NAME
-};
-
-union LocatorValue {
-  ptrdiff_t offset;
-  int16_t ordinal;
-  const char* decorated_name;
-};
-
-struct Mapi_GameAddressTableEntry {
-  const char* library_path;
-  const char* address_name;
-  union LocatorValue locator_value;
-  enum LocatorType locator_type;
-};
-
-struct Mapi_GameAddressTable {
-  struct Mapi_GameAddressTableEntry** entries;
-  size_t num_elements;
-  size_t capacity;
-};
-
-struct Mapi_GameAddressTable* LoadGameAddressTable(void);
-
-#endif // SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
+#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_IMPL_H_ */

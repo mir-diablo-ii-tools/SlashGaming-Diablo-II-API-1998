@@ -151,9 +151,6 @@ static void InitGameVersionsByFileVersions(void) {
 
   struct Mdc_Map* init_map;
 
-  struct Mdc_Pair pair;
-  struct Mdc_Pair* init_pair;
-
   init_map = Mdc_MapFileVersionGameVersion_InitEmpty(
       &game_versions_by_file_versions
   );

@@ -49,9 +49,111 @@
 #include "../../../wide_macro.h"
 #include "../error_handling.h"
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitDecoratedNameLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+union Mapi_Impl_LocatorValue* Mapi_Impl_LocatorValue_InitFromLiteral(
+    union Mapi_Impl_LocatorValue* locator_value,
+    enum Mapi_Impl_LocatorType locator_type,
+    union Mapi_Impl_LocatorValueLiteral* literal_locator_value
+) {
+  struct Mdc_BasicString* init_decorated_name;
+
+  switch (locator_type) {
+    case Mapi_Impl_LocatorType_kOffset: {
+      locator_value->offset = literal_locator_value->offset;
+      break;
+    }
+
+    case Mapi_Impl_LocatorType_kOrdinal: {
+      locator_value->ordinal = literal_locator_value->ordinal;
+      break;
+    }
+
+    case Mapi_Impl_LocatorType_kDecoratedName: {
+      init_decorated_name = Mdc_BasicString_InitFromCStr(
+          &locator_value->decorated_name,
+          Mdc_CharTraitsChar_GetCharTraits(),
+          literal_locator_value->decorated_name
+      );
+
+      if (init_decorated_name != &locator_value->decorated_name) {
+        ExitOnMdcFunctionFailure(
+            L"Mdc_BasicString_InitFromCStr",
+            __FILEW__,
+            __LINE__
+        );
+
+        goto return_bad;
+      }
+
+      break;
+    }
+  }
+
+  return locator_value;
+
+return_bad:
+  return NULL;
+}
+
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitFromLocatorType(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
+    const struct Mdc_Fs_Path* library_path,
+    enum Mapi_Impl_LocatorType locator_type,
+    union Mapi_Impl_LocatorValue locator_value
+) {
+  struct Mapi_Impl_GameAddressLocator* init_game_address_locator;
+
+  switch (locator_type) {
+    case Mapi_Impl_LocatorType_kOffset: {
+      init_game_address_locator = Mapi_Impl_GameAddressLocator_InitOffsetLocator(
+          game_address_locator,
+          library_path,
+          locator_value.offset
+      );
+
+      break;
+    }
+
+    case Mapi_Impl_LocatorType_kOrdinal: {
+      init_game_address_locator = Mapi_Impl_GameAddressLocator_InitOrdinalLocator(
+          game_address_locator,
+          library_path,
+          locator_value.ordinal
+      );
+
+      break;
+    }
+
+    case Mapi_Impl_LocatorType_kDecoratedName: {
+      init_game_address_locator =
+          Mapi_Impl_GameAddressLocator_InitDecoratedNameLocator(
+              game_address_locator,
+              library_path,
+              Mdc_BasicString_DataConst(&locator_value.decorated_name)
+          );
+
+      break;
+    }
+
+    default: {
+      ExitOnConstantMappingMissing(locator_type, __FILEW__, __LINE__);
+      goto return_bad;
+    }
+  }
+
+  if (init_game_address_locator != game_address_locator) {
+    goto return_bad;
+  }
+
+  return game_address_locator;
+
+return_bad:
+  return NULL;
+}
+
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitDecoratedNameLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     const char* decorated_name_cstr
 ) {
@@ -70,7 +172,7 @@ Mapi_GameAddressLocator_InitDecoratedNameLocator(
     goto return_bad;
   }
 
-  game_address_locator->locator_type = Mapi_LocatorType_kDecoratedName;
+  game_address_locator->locator_type = Mapi_Impl_LocatorType_kDecoratedName;
 
   decorated_name = &game_address_locator->locator_value.decorated_name;
 
@@ -96,9 +198,9 @@ return_bad:
   return NULL;
 }
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitOffsetLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitOffsetLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     ptrdiff_t offset
 ) {
@@ -114,7 +216,7 @@ Mapi_GameAddressLocator_InitOffsetLocator(
     goto return_bad;
   }
 
-  game_address_locator->locator_type = Mapi_LocatorType_kOffset;
+  game_address_locator->locator_type = Mapi_Impl_LocatorType_kOffset;
   game_address_locator->locator_value.offset = offset;
 
   return game_address_locator;
@@ -123,9 +225,9 @@ return_bad:
   return NULL;
 }
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitOrdinalLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitOrdinalLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     int16_t ordinal
 ) {
@@ -141,7 +243,7 @@ Mapi_GameAddressLocator_InitOrdinalLocator(
     goto return_bad;
   }
 
-  game_address_locator->locator_type = Mapi_LocatorType_kOffset;
+  game_address_locator->locator_type = Mapi_Impl_LocatorType_kOffset;
   game_address_locator->locator_value.ordinal = ordinal;
 
   return game_address_locator;
@@ -150,9 +252,9 @@ return_bad:
   return NULL;
 }
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitCopy(
-    struct Mapi_GameAddressLocator* dest,
-    const struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_InitCopy(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    const struct Mapi_Impl_GameAddressLocator* src
 ) {
   struct Mdc_Fs_Path* init_library_path;
   struct Mdc_BasicString* init_decorated_name;
@@ -170,7 +272,7 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitCopy(
   dest->locator_type = src->locator_type;
 
   switch (dest->locator_type) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       init_decorated_name = Mdc_BasicString_InitCopy(
           &dest->locator_value.decorated_name,
           &src->locator_value.decorated_name
@@ -189,12 +291,12 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitCopy(
       break;
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       dest->locator_value.offset = src->locator_value.offset;
       break;
     }
 
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       dest->locator_value.ordinal = src->locator_value.ordinal;
       break;
     }
@@ -206,9 +308,9 @@ return_bad:
   return NULL;
 }
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitMove(
-    struct Mapi_GameAddressLocator* dest,
-    struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_InitMove(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    struct Mapi_Impl_GameAddressLocator* src
 ) {
   struct Mdc_Fs_Path* init_library_path;
   struct Mdc_BasicString* init_decorated_name;
@@ -226,7 +328,7 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitMove(
   dest->locator_type = src->locator_type;
 
   switch (dest->locator_type) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       init_decorated_name = Mdc_BasicString_InitMove(
           &dest->locator_value.decorated_name,
           &src->locator_value.decorated_name
@@ -245,12 +347,12 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitMove(
       break;
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       dest->locator_value.offset = src->locator_value.offset;
       break;
     }
 
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       dest->locator_value.ordinal = src->locator_value.ordinal;
       break;
     }
@@ -262,11 +364,11 @@ return_bad:
   return NULL;
 }
 
-void Mapi_GameAddressLocator_Deinit(
-    struct Mapi_GameAddressLocator* game_address_locator
+void Mapi_Impl_GameAddressLocator_Deinit(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator
 ) {
   switch (game_address_locator->locator_type) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       Mdc_BasicString_Deinit(
           &game_address_locator->locator_value.decorated_name
       );
@@ -274,8 +376,8 @@ void Mapi_GameAddressLocator_Deinit(
       break;
     }
 
-    case Mapi_LocatorType_kOffset:
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOffset:
+    case Mapi_Impl_LocatorType_kOrdinal: {
       break;
     }
 
@@ -298,20 +400,20 @@ return_bad:
   return;
 }
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignCopy(
-    struct Mapi_GameAddressLocator* dest,
-    const struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_AssignCopy(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    const struct Mapi_Impl_GameAddressLocator* src
 ) {
-  struct Mapi_GameAddressLocator temp_game_address_locator;
-  struct Mapi_GameAddressLocator* init_temp_game_address_locator;
+  struct Mapi_Impl_GameAddressLocator temp_game_address_locator;
+  struct Mapi_Impl_GameAddressLocator* init_temp_game_address_locator;
 
-  struct Mapi_GameAddressLocator* assign_dest;
+  struct Mapi_Impl_GameAddressLocator* assign_dest;
 
   if (dest == src) {
     return dest;
   }
 
-  init_temp_game_address_locator = Mapi_GameAddressLocator_InitCopy(
+  init_temp_game_address_locator = Mapi_Impl_GameAddressLocator_InitCopy(
       &temp_game_address_locator,
       src
   );
@@ -320,7 +422,7 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignCopy(
     goto return_bad;
   }
 
-  assign_dest = Mapi_GameAddressLocator_AssignMove(
+  assign_dest = Mapi_Impl_GameAddressLocator_AssignMove(
       dest,
       &temp_game_address_locator
   );
@@ -329,20 +431,20 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignCopy(
     goto deinit_temp_game_address_locator;
   }
 
-  Mapi_GameAddressLocator_Deinit(&temp_game_address_locator);
+  Mapi_Impl_GameAddressLocator_Deinit(&temp_game_address_locator);
 
   return dest;
 
 deinit_temp_game_address_locator:
-  Mapi_GameAddressLocator_Deinit(&temp_game_address_locator);
+  Mapi_Impl_GameAddressLocator_Deinit(&temp_game_address_locator);
 
 return_bad:
   return NULL;
 }
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignMove(
-    struct Mapi_GameAddressLocator* dest,
-    struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_AssignMove(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    struct Mapi_Impl_GameAddressLocator* src
 ) {
   struct Mdc_Fs_Path* assign_library_path;
   struct Mdc_BasicString* assign_decorated_name;
@@ -369,7 +471,7 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignMove(
   dest->locator_type = src->locator_type;
 
   switch (dest->locator_type) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       assign_decorated_name = Mdc_BasicString_AssignMove(
           &dest->locator_value.decorated_name,
           &src->locator_value.decorated_name
@@ -388,12 +490,12 @@ struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignMove(
       break;
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       dest->locator_value.offset = src->locator_value.offset;
       break;
     }
 
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       dest->locator_value.ordinal = src->locator_value.ordinal;
       break;
     }
@@ -405,17 +507,17 @@ return_bad:
   return NULL;
 }
 
-bool Mapi_GameAddressLocator_Equal(
-    const struct Mapi_GameAddressLocator* game_address_locator1,
-    const struct Mapi_GameAddressLocator* game_address_locator2
+bool Mapi_Impl_GameAddressLocator_Equal(
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator2
 ) {
   bool is_library_path_equal;
 
-  enum Mapi_LocatorType locator_type1;
-  enum Mapi_LocatorType locator_type2;
+  enum Mapi_Impl_LocatorType locator_type1;
+  enum Mapi_Impl_LocatorType locator_type2;
 
-  const union Mapi_LocatorValue* locator_value1;
-  const union Mapi_LocatorValue* locator_value2;
+  const union Mapi_Impl_LocatorValue* locator_value1;
+  const union Mapi_Impl_LocatorValue* locator_value2;
 
   if (game_address_locator1 == game_address_locator2) {
     return true;
@@ -441,18 +543,18 @@ bool Mapi_GameAddressLocator_Equal(
   locator_value2 = &game_address_locator2->locator_value;
 
   switch (locator_type1) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       return Mdc_BasicString_EqualStr(
           &locator_value1->decorated_name,
           &locator_value2->decorated_name
       );
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       return locator_value1->offset == locator_value2->offset;
     }
 
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       return locator_value1->ordinal == locator_value2->ordinal;
     }
 
@@ -466,17 +568,17 @@ return_bad:
   return false;
 }
 
-int Mapi_GameAddressLocator_Compare(
-    const struct Mapi_GameAddressLocator* game_address_locator1,
-    const struct Mapi_GameAddressLocator* game_address_locator2
+int Mapi_Impl_GameAddressLocator_Compare(
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator2
 ) {
   int compare_library_path;
 
-  enum Mapi_LocatorType locator_type1;
-  enum Mapi_LocatorType locator_type2;
+  enum Mapi_Impl_LocatorType locator_type1;
+  enum Mapi_Impl_LocatorType locator_type2;
 
-  const union Mapi_LocatorValue* locator_value1;
-  const union Mapi_LocatorValue* locator_value2;
+  const union Mapi_Impl_LocatorValue* locator_value1;
+  const union Mapi_Impl_LocatorValue* locator_value2;
 
   if (game_address_locator1 == game_address_locator2) {
     return 0;
@@ -502,14 +604,14 @@ int Mapi_GameAddressLocator_Compare(
   locator_value2 = &game_address_locator2->locator_value;
 
   switch (locator_type1) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       return Mdc_BasicString_CompareStr(
           &locator_value1->decorated_name,
           &locator_value2->decorated_name
       );
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       if (locator_value1->offset < locator_value2->offset) {
         return -1;
       } else if (locator_value1->offset > locator_value2->offset) {
@@ -519,7 +621,7 @@ int Mapi_GameAddressLocator_Compare(
       }
     }
 
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       return locator_value1->ordinal - locator_value2->ordinal;
     }
 
@@ -533,20 +635,20 @@ return_bad:
   return -1;
 }
 
-struct Mapi_GameAddress* Mapi_GameAddressLocator_LocateGameAddress(
+struct Mapi_GameAddress* Mapi_Impl_GameAddressLocator_LocateGameAddress(
     struct Mapi_GameAddress* game_address,
-    const struct Mapi_GameAddressLocator* game_address_locator
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator
 ) {
   struct Mapi_GameAddress* init_game_address;
 
   const wchar_t* library_path_cstr;
-  const union Mapi_LocatorValue* locator_value;
+  const union Mapi_Impl_LocatorValue* locator_value;
 
   library_path_cstr = Mdc_Fs_Path_CStr(&game_address_locator->library_path);
   locator_value = &game_address_locator->locator_value;
 
   switch (game_address_locator->locator_type) {
-    case Mapi_LocatorType_kDecoratedName: {
+    case Mapi_Impl_LocatorType_kDecoratedName: {
       init_game_address =
           Mapi_GameAddress_InitFromLibraryPathAndDecoratedName(
               game_address,
@@ -557,7 +659,7 @@ struct Mapi_GameAddress* Mapi_GameAddressLocator_LocateGameAddress(
       break;
     }
 
-    case Mapi_LocatorType_kOffset: {
+    case Mapi_Impl_LocatorType_kOffset: {
       init_game_address = Mapi_GameAddress_InitFromLibraryPathAndOffset(
           game_address,
           library_path_cstr,
@@ -566,7 +668,7 @@ struct Mapi_GameAddress* Mapi_GameAddressLocator_LocateGameAddress(
 
       break;
     }
-    case Mapi_LocatorType_kOrdinal: {
+    case Mapi_Impl_LocatorType_kOrdinal: {
       init_game_address = Mapi_GameAddress_InitFromLibraryPathAndOrdinal(
           game_address,
           library_path_cstr,
@@ -603,21 +705,30 @@ return_bad:
   return NULL;
 }
 
-void Mapi_GameAddressLocator_Swap(
-    struct Mapi_GameAddressLocator* game_address_locator1,
-    struct Mapi_GameAddressLocator* game_address_locator2
+void Mapi_Impl_GameAddressLocator_Swap(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    struct Mapi_Impl_GameAddressLocator* game_address_locator2
 ) {
-  union Mapi_LocatorValue temp_locator_value;
+  union Mapi_Impl_LocatorValue temp_locator_value;
+
+  int locator_type1;
+  int locator_type2;
 
   Mdc_Fs_Path_Swap(
       &game_address_locator1->library_path,
       &game_address_locator2->library_path
   );
 
+  locator_type1 = game_address_locator1->locator_type;
+  locator_type2 = game_address_locator2->locator_type;
+
   Mdc_Integer_Swap(
-      &game_address_locator1->locator_type,
-      &game_address_locator2->locator_type
+      &locator_type1,
+      &locator_type2
   );
+
+  game_address_locator1->locator_type = locator_type1;
+  game_address_locator2->locator_type = locator_type2;
 
   temp_locator_value = game_address_locator1->locator_value;
   game_address_locator1->locator_value =

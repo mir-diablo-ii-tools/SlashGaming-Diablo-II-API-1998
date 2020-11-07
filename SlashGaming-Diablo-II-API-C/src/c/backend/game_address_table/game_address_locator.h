@@ -54,90 +54,110 @@
 #include <mdc/string/basic_string.h>
 #include "../../../../include/c/game_address.h"
 
-enum Mapi_LocatorType {
-  Mapi_LocatorType_kOffset,
-  Mapi_LocatorType_kOrdinal,
-  Mapi_LocatorType_kDecoratedName,
+enum Mapi_Impl_LocatorType {
+  Mapi_Impl_LocatorType_kOffset,
+  Mapi_Impl_LocatorType_kOrdinal,
+  Mapi_Impl_LocatorType_kDecoratedName,
 };
 
-union Mapi_LocatorValue {
+union Mapi_Impl_LocatorValue {
   ptrdiff_t offset;
   int16_t ordinal;
   struct Mdc_BasicString decorated_name;
 };
 
-struct Mapi_GameAddressLocator {
-  struct Mdc_Fs_Path library_path;
-  enum LocatorType locator_type;
-  union Mapi_LocatorValue locator_value;
+union Mapi_Impl_LocatorValueLiteral {
+  ptrdiff_t offset;
+  int16_t ordinal;
+  const char* decorated_name;
 };
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitDecoratedNameLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+union Mapi_Impl_LocatorValue* Mapi_Impl_LocatorValue_InitFromLiteral(
+    union Mapi_Impl_LocatorValue* locator_value,
+    enum Mapi_Impl_LocatorType locator_type,
+    union Mapi_Impl_LocatorValueLiteral* literal_locator_value
+);
+
+struct Mapi_Impl_GameAddressLocator {
+  struct Mdc_Fs_Path library_path;
+  enum Mapi_Impl_LocatorType locator_type;
+  union Mapi_Impl_LocatorValue locator_value;
+};
+
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitFromLocatorType(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
+    const struct Mdc_Fs_Path* library_path,
+    enum Mapi_Impl_LocatorType locator_type,
+    union Mapi_Impl_LocatorValue locator_value
+);
+
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitDecoratedNameLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     const char* decorated_name_cstr
 );
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitOffsetLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitOffsetLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     ptrdiff_t offset
 );
 
-struct Mapi_GameAddressLocator*
-Mapi_GameAddressLocator_InitOrdinalLocator(
-    struct Mapi_GameAddressLocator* game_address_locator,
+struct Mapi_Impl_GameAddressLocator*
+Mapi_Impl_GameAddressLocator_InitOrdinalLocator(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator,
     const struct Mdc_Fs_Path* library_path,
     int16_t ordinal
 );
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitCopy(
-    struct Mapi_GameAddressLocator* dest,
-    const struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_InitCopy(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    const struct Mapi_Impl_GameAddressLocator* src
 );
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_InitMove(
-    struct Mapi_GameAddressLocator* dest,
-    struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_InitMove(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    struct Mapi_Impl_GameAddressLocator* src
 );
 
-void Mapi_GameAddressLocator_Deinit(
-    struct Mapi_GameAddressLocator* game_address_locator
+void Mapi_Impl_GameAddressLocator_Deinit(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator
 );
 
 const struct Mdc_ObjectMetadata*
-Mapi_GameAddressLocator_GetObjectMetadata(void);
+Mapi_Impl_GameAddressLocator_GetObjectMetadata(void);
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignCopy(
-    struct Mapi_GameAddressLocator* dest,
-    const struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_AssignCopy(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    const struct Mapi_Impl_GameAddressLocator* src
 );
 
-struct Mapi_GameAddressLocator* Mapi_GameAddressLocator_AssignMove(
-    struct Mapi_GameAddressLocator* dest,
-    struct Mapi_GameAddressLocator* src
+struct Mapi_Impl_GameAddressLocator* Mapi_Impl_GameAddressLocator_AssignMove(
+    struct Mapi_Impl_GameAddressLocator* dest,
+    struct Mapi_Impl_GameAddressLocator* src
 );
 
-bool Mapi_GameAddressLocator_Equal(
-    const struct Mapi_GameAddressLocator* game_address_locator1,
-    const struct Mapi_GameAddressLocator* game_address_locator2
+bool Mapi_Impl_GameAddressLocator_Equal(
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator2
 );
 
-int Mapi_GameAddressLocator_Compare(
-    const struct Mapi_GameAddressLocator* game_address_locator1,
-    const struct Mapi_GameAddressLocator* game_address_locator2
+int Mapi_Impl_GameAddressLocator_Compare(
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator2
 );
 
-struct Mapi_GameAddress* Mapi_GameAddressLocator_LocateGameAddress(
+struct Mapi_GameAddress* Mapi_Impl_GameAddressLocator_LocateGameAddress(
     struct Mapi_GameAddress* game_address,
-    const struct Mapi_GameAddressLocator* game_address_locator
+    const struct Mapi_Impl_GameAddressLocator* game_address_locator
 );
 
-void Mapi_GameAddressLocator_Swap(
-    struct Mapi_GameAddressLocator* game_address_locator1,
-    struct Mapi_GameAddressLocator* game_address_locator2
+void Mapi_Impl_GameAddressLocator_Swap(
+    struct Mapi_Impl_GameAddressLocator* game_address_locator1,
+    struct Mapi_Impl_GameAddressLocator* game_address_locator2
 );
 
 #endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_LOCATOR_H_ */
