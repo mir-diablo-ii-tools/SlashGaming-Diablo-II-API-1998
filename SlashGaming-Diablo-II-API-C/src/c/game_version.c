@@ -51,9 +51,11 @@
 #include <stdio.h>
 #include <wchar.h>
 
+#include <mdc/filesystem/filesystem.h>
 #include <mdc/std/threads.h>
 #include "../wide_macro.h"
 #include "backend/error_handling.h"
+#include "backend/default_game_library/default_game_library_path.h"
 #include "backend/game_library.h"
 #include "backend/game_version/file_info.h"
 #include "backend/game_version/file_version.h"
@@ -63,71 +65,24 @@
 static enum D2_GameVersion running_game_version;
 static once_flag running_game_version_once_flag = ONCE_FLAG_INIT;
 
-static wchar_t* GetCurrentProcessFilePath(void) {
-  wchar_t* realloc_file_path;
-  size_t realloc_file_path_size;
-  wchar_t* current_process_file_path;
-  size_t current_process_file_path_capacity;
-
-  DWORD get_module_file_name_result;
-
-  current_process_file_path = NULL;
-  current_process_file_path_capacity = 1;
-
-  do {
-    current_process_file_path_capacity *= 2;
-
-    realloc_file_path_size = current_process_file_path_capacity
-        * sizeof(current_process_file_path[0]);
-
-    realloc_file_path = realloc(
-        current_process_file_path,
-        realloc_file_path_size
-    );
-
-    if (realloc_file_path == NULL) {
-      ExitOnAllocationFailure(__FILEW__, __LINE__);
-    }
-
-    current_process_file_path = realloc_file_path;
-
-    get_module_file_name_result = GetModuleFileNameW(
-        NULL,
-        current_process_file_path,
-        current_process_file_path_capacity
-    );
-
-    if (get_module_file_name_result == 0) {
-      ExitOnWindowsFunctionFailureWithLastError(
-          L"GetModuleFileNameW",
-          GetLastError(),
-          __FILEW__,
-          __LINE__
-      );
-    }
-  } while (get_module_file_name_result == current_process_file_path_capacity);
-
-  return current_process_file_path;
-}
-
 static enum GameVersion SearchGameFileInfoTable(
     const VS_FIXEDFILEINFO* game_file_info
 ) {
-  struct FileVersion file_version;
+  struct Mapi_FileVersion file_version;
   file_version.major_left = (game_file_info->dwFileVersionMS >> 16) & 0xFFFF;
   file_version.major_right = (game_file_info->dwFileVersionMS >> 0) & 0xFFFF;
   file_version.minor_left = (game_file_info->dwFileVersionLS >> 16) & 0xFFFF;
   file_version.minor_right = (game_file_info->dwFileVersionLS >> 0) & 0xFFFF;
 
-  return FileVersion_SearchGameVersionTable(&file_version);
+  return Mapi_FileVersion_GetGameVersion(&file_version);
 }
 
 static void InitRunningGameVersion(void) {
   VS_FIXEDFILEINFO game_file_info;
-  wchar_t* current_process_file_path;
+  struct Mdc_Fs_Path* current_process_file_path;
 
   /* Extract the file info from the game executable. */
-  current_process_file_path = GetCurrentProcessFilePath();
+  current_process_file_path = Mapi_Impl_GetGameExecutablePath();
   ExtractFileInfo(&game_file_info, current_process_file_path);
 
   /*
@@ -141,8 +96,7 @@ static void InitRunningGameVersion(void) {
   */
   running_game_version = Signature_CorrectVersionGuess(running_game_version);
 
-free_current_process_file_path:
-  free(current_process_file_path);
+  Mdc_Fs_Path_Deinit(current_process_file_path);
 }
 
 const char* D2_GetGameVersionName(
