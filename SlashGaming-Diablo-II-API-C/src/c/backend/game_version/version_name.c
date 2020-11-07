@@ -45,6 +45,8 @@
 
 #include "version_name.h"
 
+#include "../../../wide_macro.h"
+#include "../error_handling.h"
 #include "file_version.h"
 
 const char* D2_SearchGameVersionName(enum D2_GameVersion game_version) {
@@ -185,5 +187,18 @@ const char* D2_SearchGameVersionName(enum D2_GameVersion game_version) {
     case LOD_1_14D: {
       return "LoD 1.14D";
     }
+
+    default: {
+      ExitOnConstantMappingMissing(
+          game_version,
+          __FILEW__,
+          __LINE__
+      );
+
+      goto return_bad;
+    }
   }
+
+return_bad:
+  return NULL;
 }
