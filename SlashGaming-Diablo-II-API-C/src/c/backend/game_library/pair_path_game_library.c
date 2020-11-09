@@ -52,14 +52,40 @@
  * Static functions
  */
 
-static struct Mdc_PairMetadata map_metadata;
+static struct Mdc_ObjectMetadata object_metadata;
+static once_flag object_metadata_init_flag = ONCE_FLAG_INIT;
+
+static struct Mdc_PairMetadata pair_metadata;
 static once_flag pair_metadata_init_flag = ONCE_FLAG_INIT;
 
-static void Mapi_PairPathGameLibrary_InitPairMetadata(void) {
+static void* Mdc_PairPathGameLibrary_InitDefaultAsVoid(void* obj) {
+  return Mdc_PairPathGameLibrary_InitDefault(obj);
+}
+
+static void Mdc_PairPathGameLibrary_InitObjectMetadata(void) {
+  object_metadata = *Mdc_Pair_GetObjectMetadataTemplate();
+
+  object_metadata.functions.init_default =
+      &Mdc_PairPathGameLibrary_InitDefaultAsVoid;
+}
+
+static void Mdc_PairPathGameLibrary_InitPairMetadata(void) {
   Mdc_PairMetadata_Init(
-      &map_metadata,
+      &pair_metadata,
       Mdc_Fs_Path_GetObjectMetadata(),
       Mapi_GameLibrary_GetObjectMetadata()
+  );
+}
+
+static void InitStatic(void) {
+  call_once(
+      &object_metadata_init_flag,
+      &Mdc_PairPathGameLibrary_InitObjectMetadata
+  );
+
+  call_once(
+      &pair_metadata_init_flag,
+      &Mdc_PairPathGameLibrary_InitPairMetadata
   );
 }
 
@@ -67,12 +93,25 @@ static void Mapi_PairPathGameLibrary_InitPairMetadata(void) {
  * External functions
  */
 
-const struct Mdc_PairMetadata*
-Mapi_PairPathGameLibrary_GetPairMetadata(void) {
-  call_once(
-      &pair_metadata_init_flag,
-      &Mapi_PairPathGameLibrary_InitPairMetadata
+struct Mdc_Pair* Mdc_PairPathGameLibrary_InitDefault(
+    struct Mdc_Pair* pair
+) {
+  return Mdc_Pair_InitDefault(
+      pair,
+      Mdc_PairPathGameLibrary_GetPairMetadata()
   );
+}
 
-  return &map_metadata;
+const struct Mdc_ObjectMetadata*
+Mdc_PairPathGameLibrary_GetObjectMetadata(void) {
+  InitStatic();
+
+  return &object_metadata;
+}
+
+const struct Mdc_PairMetadata*
+Mdc_PairPathGameLibrary_GetPairMetadata(void) {
+  InitStatic();
+
+  return &pair_metadata;
 }

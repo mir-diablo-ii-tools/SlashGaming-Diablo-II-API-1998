@@ -62,7 +62,7 @@ static once_flag game_library_map_once_flag = ONCE_FLAG_INIT;
 static void InitGameLibraryMap(void) {
   Mdc_Map_InitEmpty(
       &game_library_map,
-      Mapi_MapPathGameLibrary_GetGlobalMapMetadata()
+      Mdc_MapPathGameLibrary_GetMapMetadata()
   );
 }
 

@@ -48,14 +48,22 @@
 
 #include <mdc/container/pair.h>
 #include <mdc/filesystem/filesystem.h>
+#include <mdc/object_metadata/object_metadata.h>
 #include "game_library_struct.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+struct Mdc_Pair* Mdc_PairPathGameLibrary_InitDefault(
+    struct Mdc_Pair* pair
+);
+
+const struct Mdc_ObjectMetadata*
+Mdc_PairPathGameLibrary_GetObjectMetadata(void);
+
 const struct Mdc_PairMetadata*
-Mapi_PairPathGameLibrary_GetPairMetadata(void);
+Mdc_PairPathGameLibrary_GetPairMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

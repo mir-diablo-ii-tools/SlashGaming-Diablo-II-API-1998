@@ -48,14 +48,22 @@
 
 #include <mdc/container/map.h>
 #include <mdc/filesystem/filesystem.h>
+#include <mdc/object_metadata/object_metadata.h>
 #include "game_library_struct.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+struct Mdc_Map* Mdc_MapPathGameLibrary_InitEmpty(
+    struct Mdc_Map* map
+);
+
+const struct Mdc_ObjectMetadata*
+Mdc_MapPathGameLibrary_GetObjectMetadata(void);
+
 const struct Mdc_MapMetadata*
-Mapi_MapPathGameLibrary_GetGlobalMapMetadata(void);
+Mdc_MapPathGameLibrary_GetMapMetadata(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
