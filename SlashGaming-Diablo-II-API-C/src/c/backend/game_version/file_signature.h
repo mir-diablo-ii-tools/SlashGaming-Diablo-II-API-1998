@@ -48,7 +48,7 @@
 
 #include "../../../../include/c/game_version.h"
 
-enum D2_GameVersion Signature_CorrectVersionGuess(
+enum D2_GameVersion Mapi_Signature_CorrectVersionGuess(
     enum D2_GameVersion guess_game_version
 );
 

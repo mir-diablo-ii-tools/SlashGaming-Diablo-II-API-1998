@@ -45,6 +45,7 @@
 
 #include "file_signature_struct.h"
 
+#include <stdio.h>
 #include <string.h>
 
 #include "../../../../wide_macro.h"
@@ -57,7 +58,7 @@ Mapi_Impl_FileSignature_kUninit = MAPI_IMPL_FILE_SIGNATURE_UNINIT;
 
 struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitFromLiteral(
     struct Mapi_Impl_FileSignature* file_signature,
-    struct Mapi_Impl_FileSignatureLiteral* lit
+    const struct Mapi_Impl_FileSignatureLiteral* lit
 ) {
   struct Mdc_Fs_Path* init_file_path;
 
@@ -92,6 +93,79 @@ return_bad:
   return NULL;
 }
 
+struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitFromPath(
+    struct Mapi_Impl_FileSignature* file_signature,
+    struct Mdc_Fs_Path* file_path,
+    ptrdiff_t offset
+) {
+  struct Mdc_Fs_Path* init_file_path;
+
+  init_file_path = Mdc_Fs_Path_InitMove(
+      &file_signature->file_path_,
+      file_path
+  );
+
+  if (init_file_path != &file_signature->file_path_) {
+    ExitOnMdcFunctionFailure(L"Mdc_Fs_Path_InitMove", __FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  file_signature->offset_ = offset;
+
+  return file_signature;
+
+return_bad:
+  return NULL;
+}
+
+struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitFromPathCopy(
+    struct Mapi_Impl_FileSignature* file_signature,
+    const struct Mdc_Fs_Path* file_path,
+    ptrdiff_t offset
+) {
+  struct Mdc_Fs_Path file_path_copy;
+  struct Mdc_Fs_Path* init_file_path_copy;
+
+  struct Mapi_Impl_FileSignature* init_file_signature;
+
+  init_file_path_copy = Mdc_Fs_Path_InitCopy(
+      &file_path_copy,
+      file_path
+  );
+
+  if (init_file_path_copy != &file_path_copy) {
+    ExitOnMdcFunctionFailure(L"Mdc_Fs_Path_InitCopy", __FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  init_file_signature = Mapi_Impl_FileSignature_InitFromPath(
+      file_signature,
+      &file_path_copy,
+      offset
+  );
+
+  if (init_file_signature != file_signature) {
+    ExitFormattedOnGeneralFailure(
+        L"Error",
+        __FILEW__,
+        __LINE__,
+        L"Mapi_Impl_FileSignature_InitFromPath failed"
+    );
+
+    goto deinit_file_path_copy;
+  }
+
+  Mdc_Fs_Path_Deinit(&file_path_copy);
+
+  return file_signature;
+
+deinit_file_path_copy:
+  Mdc_Fs_Path_Deinit(&file_path_copy);
+
+return_bad:
+  return NULL;
+}
+
 struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitCopy(
     struct Mapi_Impl_FileSignature* dest,
     const struct Mapi_Impl_FileSignature* src
@@ -115,11 +189,7 @@ struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitCopy(
 
   dest->offset_ = src->offset_;
 
-  memcpy(
-      dest->signature_,
-      src->signature_,
-      sizeof(dest->signature_)
-  );
+  memcpy(dest->signature_, src->signature_, sizeof(dest->signature_));
 
   return dest;
 
@@ -152,11 +222,7 @@ struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitMove(
 
   dest->offset_ = src->offset_;
 
-  memcpy(
-      dest->signature_,
-      src->signature_,
-      sizeof(dest->signature_)
-  );
+  memcpy(dest->signature_, src->signature_, sizeof(dest->signature_));
 
   return dest;
 
@@ -327,6 +393,88 @@ bool Mapi_Impl_FileSignature_Compare(
   );
 
   return signature_compare_result;
+}
+
+struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_ReadFileSignature(
+    struct Mapi_Impl_FileSignature* file_signature,
+    const struct Mdc_Fs_Path* file_path,
+    ptrdiff_t offset
+) {
+  struct Mdc_Fs_Path* init_file_path;
+
+  FILE* file;
+  int fseek_result;
+  size_t fread_result;
+
+  init_file_path = Mdc_Fs_Path_InitCopy(
+      &file_signature->file_path_,
+      file_path
+  );
+
+  if (init_file_path != &file_signature->file_path_) {
+    ExitOnMdcFunctionFailure(L"Mdc_Fs_Path_InitCopy", __FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  file_signature->offset_ = offset;
+
+  file = _wfopen(Mdc_Fs_Path_CStr(&file_signature->file_path_), L"rb");
+  if (file == NULL) {
+    ExitFormattedOnGeneralFailure(
+        L"Error",
+        __FILEW__,
+        __LINE__,
+        L"_wfopen failed"
+    );
+
+    goto deinit_file_path;
+  }
+
+  fseek_result = fseek(file, offset, SEEK_SET);
+  if (fseek_result != 0) {
+    fclose(file);
+
+    ExitFormattedOnGeneralFailure(
+        L"Error",
+        __FILEW__,
+        __LINE__,
+        L"fseek failed"
+    );
+
+    goto deinit_file_path;
+  }
+
+  fread_result = fread(
+      file_signature->signature_,
+      sizeof(file_signature->signature_[0]),
+      Mapi_Impl_FileSignature_kSignatureByteCount,
+      file
+  );
+
+  if (fread_result < Mapi_Impl_FileSignature_kSignatureByteCount) {
+    fclose(file);
+
+    ExitFormattedOnGeneralFailure(
+        L"Error",
+        __FILEW__,
+        __LINE__,
+        L"fread failed"
+    );
+
+    goto deinit_file_path;
+  }
+
+  fclose(file);
+
+  return file_signature;
+
+deinit_file_path:
+  Mdc_Fs_Path_Deinit(&file_signature->file_path_);
+
+return_bad:
+  *file_signature = Mapi_Impl_FileSignature_kUninit;
+
+  return NULL;
 }
 
 void Mapi_Impl_FileSignature_Swap(

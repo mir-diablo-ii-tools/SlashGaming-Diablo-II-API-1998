@@ -97,7 +97,7 @@ void Mapi_Impl_FileSignature_SwapAsVoid(
     void* obj1,
     void* obj2
 ) {
-  return Mapi_Impl_FileSignature_Swap(obj1, obj2);
+  Mapi_Impl_FileSignature_Swap(obj1, obj2);
 }
 
 static struct Mdc_ObjectMetadata object_metadata;

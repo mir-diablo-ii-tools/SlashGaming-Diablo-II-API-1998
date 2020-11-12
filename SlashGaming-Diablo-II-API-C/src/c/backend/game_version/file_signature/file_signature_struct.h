@@ -76,7 +76,7 @@ struct Mapi_Impl_FileSignatureLiteral {
 
 struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitFromLiteral(
     struct Mapi_Impl_FileSignature* file_signature,
-    struct Mapi_Impl_FileSignatureLiteral* lit
+    const struct Mapi_Impl_FileSignatureLiteral* lit
 );
 
 struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_InitCopy(
@@ -114,6 +114,12 @@ bool Mapi_Impl_FileSignature_Equal(
 bool Mapi_Impl_FileSignature_Compare(
     const struct Mapi_Impl_FileSignature* file_signature1,
     const struct Mapi_Impl_FileSignature* file_signature2
+);
+
+struct Mapi_Impl_FileSignature* Mapi_Impl_FileSignature_ReadFileSignature(
+    struct Mapi_Impl_FileSignature* file_signature,
+    const struct Mdc_Fs_Path* file_path,
+    ptrdiff_t offset
 );
 
 void Mapi_Impl_FileSignature_Swap(

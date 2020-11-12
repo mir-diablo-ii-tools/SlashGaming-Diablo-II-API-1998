@@ -59,7 +59,7 @@
 #include "backend/game_library.h"
 #include "backend/game_version/file_info.h"
 #include "backend/game_version/file_version.h"
-#include "backend/game_version/signature.h"
+#include "backend/game_version/file_signature.h"
 #include "backend/game_version/version_name.h"
 
 static enum D2_GameVersion running_game_version;
@@ -94,7 +94,7 @@ static void InitRunningGameVersion(void) {
   /*
   * Correct the initial guess using the a predetermined signature.
   */
-  running_game_version = Signature_CorrectVersionGuess(running_game_version);
+  running_game_version = Mapi_Signature_CorrectVersionGuess(running_game_version);
 
   Mdc_Fs_Path_Deinit(current_process_file_path);
 }
