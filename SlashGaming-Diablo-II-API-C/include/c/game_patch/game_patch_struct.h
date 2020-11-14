@@ -70,7 +70,7 @@ struct Mapi_GamePatch {
  * Deinitializes the specified game patch.
  */
 DLLEXPORT void Mapi_GamePatch_Deinit(
-  struct Mapi_GamePatch* game_patch
+    struct Mapi_GamePatch* game_patch
 );
 
 /**
@@ -78,7 +78,7 @@ DLLEXPORT void Mapi_GamePatch_Deinit(
  * bytes stored in its buffer.
  */
 DLLEXPORT void Mapi_GamePatch_Apply(
-  struct Mapi_GamePatch* game_patch
+    struct Mapi_GamePatch* game_patch
 );
 
 /**
@@ -86,11 +86,12 @@ DLLEXPORT void Mapi_GamePatch_Apply(
  * bytes at its target address.
  */
 DLLEXPORT void Mapi_GamePatch_Remove(
-  struct Mapi_GamePatch* game_patch
+    struct Mapi_GamePatch* game_patch
 );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
+#include "../../dllexport_undefine.inc"
 #endif /* SGMAPI_C_GAME_PATCH_GAME_PATCH_STRUCT_H_ */
