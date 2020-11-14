@@ -50,7 +50,7 @@
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
-void Mapi_GamePatch_InitGameBufferPatch(
+struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
     struct Mapi_GamePatch* game_patch,
     const struct Mapi_GameAddress* game_address,
     const uint8_t* buffer,

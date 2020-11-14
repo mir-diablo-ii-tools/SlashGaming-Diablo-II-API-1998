@@ -51,7 +51,7 @@
 #include "../backend/architecture_opcode.h"
 #include "../backend/error_handling.h"
 
-void Mapi_GamePatch_InitGameBackBranchPatch(
+struct Mapi_GamePatch* Mapi_GamePatch_InitGameBackBranchPatch(
     struct Mapi_GamePatch* game_patch,
     const struct Mapi_GameAddress* game_address,
     enum Mapi_BranchType branch_type,
