@@ -46,7 +46,7 @@
 #include "../../../include/c/game_patch/game_buffer_patch.h"
 
 #include <stdlib.h>
-
+#include <mdc/malloc/malloc.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
@@ -64,7 +64,7 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
   game_patch->game_address = *game_address;
 
   /* Init patch buffer member. */
-  game_patch->patch_buffer = (uint8_t*) malloc(
+  game_patch->patch_buffer = (uint8_t*) Mdc_malloc(
       patch_size * sizeof(game_patch->patch_buffer[0])
   );
   if (game_patch->patch_buffer == NULL) {
@@ -75,7 +75,7 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
   memcpy(game_patch->patch_buffer, buffer, patch_size);
 
   /* Init old buffer member. */
-  game_patch->unpatched_buffer = (uint8_t*) malloc(
+  game_patch->unpatched_buffer = (uint8_t*) Mdc_malloc(
       patch_size * sizeof(game_patch->unpatched_buffer[0])
   );
   if (game_patch->unpatched_buffer == NULL) {

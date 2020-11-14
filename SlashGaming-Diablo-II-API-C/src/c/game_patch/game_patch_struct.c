@@ -49,14 +49,15 @@
 #include <string.h>
 #include <windows.h>
 
+#include <mdc/malloc/malloc.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
 void Mapi_GamePatch_Deinit(struct Mapi_GamePatch* game_patch) {
   Mapi_GamePatch_Remove(game_patch);
 
-  free(game_patch->unpatched_buffer);
-  free(game_patch->patch_buffer);
+  Mdc_free(game_patch->unpatched_buffer);
+  Mdc_free(game_patch->patch_buffer);
 }
 
 void Mapi_GamePatch_Apply(struct Mapi_GamePatch* game_patch) {
