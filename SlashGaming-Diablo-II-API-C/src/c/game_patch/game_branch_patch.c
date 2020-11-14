@@ -81,4 +81,9 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBranchPatch(
 
     game_patch->patch_buffer[i + 1] = (func_buffer >> shift_amount) & 0xFF;
   }
+
+  return game_patch;
+
+return_bad:
+  return NULL;
 }

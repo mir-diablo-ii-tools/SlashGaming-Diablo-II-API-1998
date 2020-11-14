@@ -69,6 +69,7 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
   );
   if (game_patch->patch_buffer == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   memcpy(game_patch->patch_buffer, buffer, patch_size);
@@ -79,6 +80,7 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
   );
   if (game_patch->unpatched_buffer == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   memcpy(
@@ -86,4 +88,9 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBufferPatch(
       (void*) game_patch->game_address.raw_address,
       patch_size
   );
+
+  return game_patch;
+
+return_bad:
+  return NULL;
 }
