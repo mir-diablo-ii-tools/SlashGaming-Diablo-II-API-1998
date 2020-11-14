@@ -73,6 +73,12 @@ void ExitOnConstantMappingMissing(
     int line
 );
 
+void ExitOnMapiFunctionFailure(
+    const wchar_t* function_name,
+    const wchar_t* file_name,
+    int line
+);
+
 void ExitOnMdcFunctionFailure(
     const wchar_t* function_name,
     const wchar_t* file_name,

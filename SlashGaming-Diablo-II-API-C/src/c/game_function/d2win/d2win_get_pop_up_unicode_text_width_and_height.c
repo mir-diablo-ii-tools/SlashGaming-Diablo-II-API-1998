@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_get_pop_up_unicode_text_width_and_height.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,15 +53,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "GetPopUpUnicodeTextWidthAndHeight"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2Win_GetPopUpUnicodeTextWidthAndHeight(
@@ -71,11 +90,10 @@ void D2_D2Win_GetPopUpUnicodeTextWidthAndHeight(
     int* width,
     int* height
 ) {
-  const struct D2_UnicodeChar_1_00* actual_text =
-      (const struct D2_UnicodeChar_1_00*) text;
+  InitStatic();
 
   D2_D2Win_GetPopUpUnicodeTextWidthAndHeight_1_00(
-      actual_text,
+      (const struct D2_UnicodeChar_1_00*) text,
       width,
       height
   );
@@ -86,7 +104,7 @@ void D2_D2Win_GetPopUpUnicodeTextWidthAndHeight_1_00(
     int32_t* width,
     int32_t* height
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   CallFastcallFunction(
       game_address.raw_address,

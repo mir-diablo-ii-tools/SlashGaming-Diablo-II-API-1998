@@ -47,12 +47,19 @@
 #define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_
 
 #include <mdc/filesystem/filesystem.h>
+#include "../../../include/c/default_game_library.h"
 #include "../../../include/c/game_address.h"
 
-struct Mapi_GameAddress* Mapi_Impl_LoadGameAddress(
+struct Mapi_GameAddress* Mapi_Impl_LoadGameAddressByLibraryId(
     struct Mapi_GameAddress* game_address,
-    const struct Mdc_Fs_Path* library_path,
-    const char* address_name
+    enum D2_DefaultLibrary library_id,
+    const char* address_name_cstr
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_
+struct Mapi_GameAddress* Mapi_Impl_LoadGameAddressByLibraryPath(
+    struct Mapi_GameAddress* game_address,
+    const struct Mdc_Fs_Path* library_path,
+    const char* address_name_cstr
+);
+
+#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_ */

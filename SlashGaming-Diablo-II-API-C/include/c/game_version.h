@@ -46,10 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_VERSION_H_
 #define SGD2MAPI_C_GAME_VERSION_H_
 
-#include <stdbool.h>
-#include <stdint.h>
 #include <stddef.h>
 
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../dllexport_define.inc"
 
 #ifdef __cplusplus

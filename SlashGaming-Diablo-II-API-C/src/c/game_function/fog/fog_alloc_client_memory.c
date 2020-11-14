@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/fog/fog_alloc_client_memory.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,15 +53,36 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "Fog.dll",
+      LIBRARY_FOG,
       "AllocClientMemory"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void* D2_Fog_AllocClientMemory(
@@ -72,6 +91,8 @@ void* D2_Fog_AllocClientMemory(
     int line,
     int unused__set_to_0
 ) {
+  InitStatic();
+
   return D2_Fog_AllocClientMemory_1_00(
       size,
       source_file,
@@ -86,7 +107,7 @@ void* D2_Fog_AllocClientMemory_1_00(
     int32_t line,
     int32_t unused__set_to_0
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (void*) CallFastcallFunction(
       game_address.raw_address,

@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2win/d2win_main_menu_mouse_position_y.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,33 +52,58 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "MainMenuMousePositionY"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 int D2_D2Win_GetMainMenuMousePositionY(void) {
+  InitStatic();
+
   return D2_D2Win_GetMainMenuMousePositionY_1_00();
 }
 
 int32_t D2_D2Win_GetMainMenuMousePositionY_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
 
 void D2_D2Win_SetMainMenuMousePositionY(int mouse_position_y) {
+  InitStatic();
+
   D2_D2Win_SetMainMenuMousePositionY_1_00(mouse_position_y);
 }
 
 void D2_D2Win_SetMainMenuMousePositionY_1_00(int32_t mouse_position_y) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = mouse_position_y;
 }

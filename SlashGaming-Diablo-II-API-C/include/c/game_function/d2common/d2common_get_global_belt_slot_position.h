@@ -46,15 +46,14 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_SLOT_POSITION_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_SLOT_POSITION_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_struct/d2_positional_rectangle.h"
 
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition(
     unsigned int belt_record_index,
@@ -77,8 +76,8 @@ DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_SLOT_POSITION_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_SLOT_POSITION_H_ */

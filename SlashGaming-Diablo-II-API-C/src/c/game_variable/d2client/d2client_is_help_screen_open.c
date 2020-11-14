@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_is_help_screen_open.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,23 +52,46 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Client.dll",
+      LIBRARY_D2CLIENT,
       "IsHelpScreenOpen"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 bool D2_D2Client_GetIsHelpScreenOpen(void) {
+  InitStatic();
+
   return D2_D2Client_GetIsHelpScreenOpen_1_00();
 }
 
 mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(mapi_bool32*) game_address.raw_address;
 }
@@ -78,13 +99,15 @@ mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void) {
 void D2_D2Client_SetIsHelpScreenOpen(
     bool is_help_screen_open
 ) {
+  InitStatic();
+
   D2_D2Client_SetIsHelpScreenOpen_1_00(is_help_screen_open);
 }
 
 void D2_D2Client_SetIsHelpScreenOpen_1_00(
     mapi_bool32 is_help_screen_open
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(mapi_bool32*) game_address.raw_address = is_help_screen_open;
 }

@@ -49,4 +49,4 @@
 #include "bnclient/bnclient_gateway_domain_name.h"
 #include "bnclient/bnclient_gateway_ip_v4_address.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_VARIABLE_H_ */

@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/storm/storm_s_file_close_archive.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,20 +53,43 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "Storm.dll",
+      LIBRARY_STORM,
       "SFileCloseArchive"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 bool D2_Storm_SFileCloseArchive(
     struct D2_MpqArchive* mpq_archive
 ) {
+  InitStatic();
+
   return (bool) D2_Storm_SFileCloseArchive_1_00(
       (struct D2_MpqArchive_1_00*) mpq_archive
   );
@@ -77,7 +98,7 @@ bool D2_Storm_SFileCloseArchive(
 mapi_bool32 D2_Storm_SFileCloseArchive_1_00(
     struct D2_MpqArchive_1_00* mpq_archive
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (mapi_bool32) CallStdcallFunction(
       game_address.raw_address,

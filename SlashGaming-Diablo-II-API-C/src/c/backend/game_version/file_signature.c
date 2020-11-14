@@ -476,7 +476,7 @@ enum D2_GameVersion Mapi_Signature_CorrectVersionGuess(
     enum D2_GameVersion guess_game_version
 ) {
   struct Mdc_Map* signature_table;
-  enum D2_GameVersion* corrected_game_version;
+  const enum D2_GameVersion* corrected_game_version;
 
   struct Mapi_Impl_FileSignature key;
   struct Mapi_Impl_FileSignature* init_key;

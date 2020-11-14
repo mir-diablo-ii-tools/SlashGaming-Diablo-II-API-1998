@@ -46,15 +46,14 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_constant/d2_text_font.h"
 
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT enum D2_TextFont D2_D2Win_SetTextFont(
     enum D2_TextFont text_font
@@ -65,8 +64,8 @@ DLLEXPORT int32_t D2_D2Win_SetTextFont_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_ */

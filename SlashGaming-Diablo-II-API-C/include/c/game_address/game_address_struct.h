@@ -46,7 +46,7 @@
 #ifndef SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
 #define SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../dllexport_define.inc"
 

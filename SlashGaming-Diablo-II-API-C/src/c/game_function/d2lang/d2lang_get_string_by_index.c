@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_get_string_by_index.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
@@ -54,30 +52,51 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Lang.dll",
+      LIBRARY_D2LANG,
       "GetStringByIndex"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
     unsigned int id
 ) {
-  const struct D2_UnicodeChar_1_00* actual_return_value =
-      D2_D2Lang_GetStringByIndex_1_00(id);
+  InitStatic();
 
-  return (const struct D2_UnicodeChar*) actual_return_value;
+  return (const struct D2_UnicodeChar*)
+      D2_D2Lang_GetStringByIndex_1_00(id);
 }
 
 const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
     uint32_t id
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (const struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address.raw_address,

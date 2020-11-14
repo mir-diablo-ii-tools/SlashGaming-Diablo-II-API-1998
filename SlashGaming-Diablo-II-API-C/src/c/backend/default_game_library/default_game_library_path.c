@@ -211,16 +211,12 @@ const struct Mdc_Fs_Path* Mapi_Impl_GetGameExecutablePath(void) {
   return &game_executable_path;
 }
 
-const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
+const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithoutRedirect(
     enum D2_DefaultLibrary library_id
 ) {
   const struct Mdc_Fs_Path* mapped_path;
 
   InitStatic();
-
-  if (D2_IsRunningGameVersionAtLeast1_14()) {
-    return Mapi_Impl_GetGameExecutablePath();
-  }
 
   if (!Mdc_Map_Contains(&paths_by_default_libraries, &library_id)) {
     ExitFormattedOnGeneralFailure(
@@ -243,4 +239,16 @@ const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
 
 return_bad:
   return NULL;
+}
+
+const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
+    enum D2_DefaultLibrary library_id
+) {
+  InitStatic();
+
+  if (D2_IsRunningGameVersionAtLeast1_14()) {
+    return Mapi_Impl_GetGameExecutablePath();
+  }
+
+  return Mapi_Impl_GetDefaultLibraryPathWithoutRedirect(library_id);
 }

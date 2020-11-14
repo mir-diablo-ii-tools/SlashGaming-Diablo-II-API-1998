@@ -46,9 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_constant/d2_draw_effect.h"
 #include "../../game_struct/d2_cel_context.h"
@@ -58,7 +57,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT bool D2_D2GFX_DrawCelContext(
     struct D2_CelContext* cel_context,
@@ -97,8 +96,8 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} / extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_ */

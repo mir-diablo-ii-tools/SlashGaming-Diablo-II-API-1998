@@ -46,10 +46,9 @@
 #ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_GAME_LIBRARY_STRUCT_H_
 
-#include <stdint.h>
-
 #include <mdc/filesystem/filesystem.h>
 #include <mdc/object_metadata/object_metadata.h>
+#include <mdc/std/stdint.h>
 
 struct Mapi_GameLibrary {
   struct Mdc_Fs_Path file_path_;

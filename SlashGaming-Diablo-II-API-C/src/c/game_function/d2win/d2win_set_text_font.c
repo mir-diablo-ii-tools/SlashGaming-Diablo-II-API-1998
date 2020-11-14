@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_set_text_font.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,20 +53,43 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "SetTextFont"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 enum D2_TextFont D2_D2Win_SetTextFont(
     enum D2_TextFont text_font
 ) {
+  InitStatic();
+
   return D2_TextFont_ToApiValue(
       D2_D2Win_SetTextFont_1_00(D2_TextFont_ToGameValue(text_font))
   );
@@ -77,7 +98,7 @@ enum D2_TextFont D2_D2Win_SetTextFont(
 int32_t D2_D2Win_SetTextFont_1_00(
     int32_t text_font
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (int32_t) CallFastcallFunction(
       game_address.raw_address,

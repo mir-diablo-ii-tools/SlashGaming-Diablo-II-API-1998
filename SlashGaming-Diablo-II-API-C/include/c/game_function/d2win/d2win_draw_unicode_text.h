@@ -46,9 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_constant/d2_text_color.h"
 #include "../../game_struct/d2_unicode_char.h"
@@ -57,7 +56,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Win_DrawUnicodeText(
     const struct D2_UnicodeChar* text,
@@ -76,8 +75,8 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_ */

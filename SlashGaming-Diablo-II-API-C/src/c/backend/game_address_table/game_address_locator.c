@@ -52,7 +52,7 @@
 union Mapi_Impl_LocatorValue* Mapi_Impl_LocatorValue_InitFromLiteral(
     union Mapi_Impl_LocatorValue* locator_value,
     enum Mapi_Impl_LocatorType locator_type,
-    union Mapi_Impl_LocatorValueLiteral* literal_locator_value
+    const union Mapi_Impl_LocatorValueLiteral* literal_locator_value
 ) {
   struct Mdc_BasicString* init_decorated_name;
 

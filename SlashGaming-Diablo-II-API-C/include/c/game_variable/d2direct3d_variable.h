@@ -49,4 +49,4 @@
 #include "d2direct3d/d2direct3d_display_height.h"
 #include "d2direct3d/d2direct3d_display_width.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2DIRECT3D_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2DIRECT3D_VARIABLE_H_ */

@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_screen_open_mode.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,25 +52,48 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Client.dll",
+      LIBRARY_D2CLIENT,
       "ScreenOpenMode"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void) {
+  InitStatic();
+
   return D2_ScreenOpenMode_ToApiValue_1_07(
       D2_D2Client_GetScreenOpenMode_1_07()
   );
 }
 
 enum D2_ScreenOpenMode_1_07 D2_D2Client_GetScreenOpenMode_1_07(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(uint32_t*) game_address.raw_address;
 }
@@ -80,6 +101,8 @@ enum D2_ScreenOpenMode_1_07 D2_D2Client_GetScreenOpenMode_1_07(void) {
 void D2_D2Client_SetScreenOpenMode(
     enum D2_ScreenOpenMode screen_open_mode
 ) {
+  InitStatic();
+
   D2_D2Client_SetScreenOpenMode_1_07(
       D2_ScreenOpenMode_ToGameValue_1_07(screen_open_mode)
   );
@@ -88,7 +111,7 @@ void D2_D2Client_SetScreenOpenMode(
 void D2_D2Client_SetScreenOpenMode_1_07(
     enum D2_ScreenOpenMode_1_07 screen_open_mode
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(uint32_t*) game_address.raw_address = screen_open_mode;
 }

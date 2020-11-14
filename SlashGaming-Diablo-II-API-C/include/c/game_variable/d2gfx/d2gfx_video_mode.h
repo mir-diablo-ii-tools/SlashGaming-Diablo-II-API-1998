@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT enum D2_VideoMode D2_D2GFX_GetVideoMode(void);
 DLLEXPORT enum D2_VideoMode_1_00 D2_D2GFX_GetVideoMode_1_00(void);
@@ -61,8 +61,8 @@ DLLEXPORT void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode);
 DLLEXPORT void D2_D2GFX_SetVideoMode_1_00(enum D2_VideoMode_1_00 video_mode);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_H_ */

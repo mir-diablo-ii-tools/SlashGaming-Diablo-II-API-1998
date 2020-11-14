@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Win_UnloadMpq(
     struct D2_MpqArchiveHandle* mpq_archive_handle
@@ -63,8 +63,8 @@ DLLEXPORT void D2_D2Win_UnloadMpq_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_MPQ_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_MPQ_H_ */

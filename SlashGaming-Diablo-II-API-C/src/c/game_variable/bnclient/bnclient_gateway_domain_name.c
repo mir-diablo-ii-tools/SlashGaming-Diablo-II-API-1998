@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/bnclient/bnclient_gateway_domain_name.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,23 +52,46 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "BNClient.dll",
+      LIBRARY_BNCLIENT,
       "GatewayDomainName"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 char* D2_BNClient_GetGatewayDomainName(void) {
+  InitStatic();
+
   return D2_BNClient_GetGatewayDomainName_1_00();
 }
 
 char* D2_BNClient_GetGatewayDomainName_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (char*) game_address.raw_address;
 }

@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_strncat.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
@@ -54,15 +52,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Lang.dll",
+      LIBRARY_D2LANG,
       "Unicode_strncat"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 struct D2_UnicodeChar* D2_D2Lang_Unicode_strncat(
@@ -70,19 +89,13 @@ struct D2_UnicodeChar* D2_D2Lang_Unicode_strncat(
     const struct D2_UnicodeChar* src,
     size_t count
 ) {
-  struct D2_UnicodeChar_1_00* actual_dest =
-      (struct D2_UnicodeChar_1_00*) dest;
-  const struct D2_UnicodeChar_1_00* actual_src =
-      (const struct D2_UnicodeChar_1_00*) src;
+  InitStatic();
 
-  struct D2_UnicodeChar_1_00* actual_return_result =
-      D2_D2Lang_Unicode_strncat_1_00(
-          actual_dest,
-          actual_src,
-          count
-      );
-
-  return (struct D2_UnicodeChar*) actual_return_result;
+  return (struct D2_UnicodeChar*) D2_D2Lang_Unicode_strncat_1_00(
+      (struct D2_UnicodeChar_1_00*) dest,
+      (const struct D2_UnicodeChar_1_00*) src,
+      count
+  );
 }
 
 struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_strncat_1_00(
@@ -90,7 +103,7 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_strncat_1_00(
     const struct D2_UnicodeChar_1_00* src,
     uint32_t count
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address.raw_address,

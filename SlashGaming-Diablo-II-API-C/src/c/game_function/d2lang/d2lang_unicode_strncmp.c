@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_strncmp.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,15 +53,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Lang.dll",
+      LIBRARY_D2LANG,
       "Unicode_strncmp"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 static int32_t D2_D2Lang_Unicode_strncmp_1_10(
@@ -77,23 +96,22 @@ int D2_D2Lang_Unicode_strncmp(
     const struct D2_UnicodeChar* str2,
     size_t count
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  const struct D2_UnicodeChar_1_00* actual_str1 =
-      (const struct D2_UnicodeChar_1_00*) str1;
-  const struct D2_UnicodeChar_1_00* actual_str2 =
-      (const struct D2_UnicodeChar_1_00*) str2;
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_09D) {
     return D2_D2Lang_Unicode_strncmp_1_00(
-        actual_str1,
-        actual_str2,
+        (const struct D2_UnicodeChar_1_00*) str1,
+        (const struct D2_UnicodeChar_1_00*) str2,
         count
     );
   } else /* if (running_game_version > VERSION_1_09D) */ {
     return D2_D2Lang_Unicode_strncmp_1_10(
-        actual_str1,
-        actual_str2,
+        (const struct D2_UnicodeChar_1_00*) str1,
+        (const struct D2_UnicodeChar_1_00*) str2,
         count
     );
   }
@@ -108,14 +126,17 @@ int32_t D2_D2Lang_Unicode_strncmp_1_00(
     const struct D2_UnicodeChar_1_00* str2,
     uint32_t count
 ) {
-  for (size_t i = 0; i < count; i += 1) {
-    int diff = str1[i].ch - str2[i].ch;
+  size_t i;
+  int diff;
+
+  for (i = 0; i < count; i += 1) {
+    diff = str1[i].ch - str2[i].ch;
 
     if (diff != 0) {
       return diff;
     }
 
-    if (str1[i].ch == u'\0') {
+    if (str1[i].ch == '\0') {
       return 0;
     }
   }
@@ -128,7 +149,7 @@ int32_t D2_D2Lang_Unicode_strncmp_1_10(
     const struct D2_UnicodeChar_1_00* str2,
     uint32_t count
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (int32_t) CallFastcallFunction(
       game_address.raw_address,

@@ -46,15 +46,14 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_struct/d2_grid_layout.h"
 
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Common_GetGlobalInventoryGridLayout(
     unsigned int inventory_record_index,
@@ -74,8 +73,8 @@ DLLEXPORT void D2_D2Common_GetGlobalInventoryGridLayout_1_07(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_ */

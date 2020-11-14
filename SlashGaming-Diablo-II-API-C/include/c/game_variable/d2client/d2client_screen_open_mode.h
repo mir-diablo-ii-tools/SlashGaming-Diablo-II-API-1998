@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../game_constant/d2_screen_open_mode.h"
 
@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void);
 
@@ -67,8 +67,8 @@ DLLEXPORT void D2_D2Client_SetScreenOpenMode(
 DLLEXPORT void D2_D2Client_SetScreenOpenMode_1_07(enum D2_ScreenOpenMode_1_07 screen_open_mode);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_ */

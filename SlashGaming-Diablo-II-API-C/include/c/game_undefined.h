@@ -46,7 +46,7 @@
 #ifndef SGMAPI_C_GAME_UNDEFINED_H_
 #define SGMAPI_C_GAME_UNDEFINED_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

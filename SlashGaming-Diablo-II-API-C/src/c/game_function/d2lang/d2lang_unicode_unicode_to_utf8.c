@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
@@ -54,15 +52,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Lang.dll",
+      LIBRARY_D2LANG,
       "Unicode_UnicodeToUtf8"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 char* D2_D2Lang_Unicode_UnicodeToUtf8(
@@ -70,12 +89,11 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8(
     const struct D2_UnicodeChar* src,
     int count_including_null_terminator
 ) {
-  const struct D2_UnicodeChar_1_00* actual_src =
-      (const struct D2_UnicodeChar_1_00*) src;
+  InitStatic();
 
   return D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
       dest,
-      actual_src,
+      (const struct D2_UnicodeChar_1_00*) src,
       count_including_null_terminator
   );
 }
@@ -85,7 +103,7 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
     const struct D2_UnicodeChar_1_00* src,
     int32_t count_including_null_terminator
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (char*) CallFastcallFunction(
       game_address.raw_address,

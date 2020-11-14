@@ -47,8 +47,8 @@
 #define SGMAPI_C_GAME_PATCH_GAME_BUFFER_PATCH_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/stdint.h>
 #include "../game_address/game_address_struct.h"
 #include "../game_patch/game_patch_struct.h"
 

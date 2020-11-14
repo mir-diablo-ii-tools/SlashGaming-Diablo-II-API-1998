@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_H_
 
-#include <stdbool.h>
-
+#include <mdc/std/stdbool.h>
 #include "../../game_bool.h"
 #include "../../game_struct/d2_mpq_archive.h"
 
@@ -55,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT bool D2_Storm_SFileCloseArchive(
     struct D2_MpqArchive* mpq_archive
@@ -66,8 +65,8 @@ DLLEXPORT mapi_bool32 D2_Storm_SFileCloseArchive_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_H_ */

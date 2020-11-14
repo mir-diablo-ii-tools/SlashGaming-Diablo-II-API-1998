@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2gfx/d2gfx_draw_rectangle.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,15 +53,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2GFX.dll",
+      LIBRARY_D2GFX,
       "DrawRectangle"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2GFX_DrawRectangle(
@@ -74,6 +93,8 @@ void D2_D2GFX_DrawRectangle(
     int primitive_color_id,
     enum D2_DrawEffect draw_effect_id
 ) {
+  InitStatic();
+
   D2_D2GFX_DrawRectangle_1_00(
       left,
       top,
@@ -92,7 +113,7 @@ void D2_D2GFX_DrawRectangle_1_00(
     int32_t primitive_color_id,
     int32_t draw_effect_id
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   CallStdcallFunction(
       game_address.raw_address,

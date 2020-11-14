@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_load_cel_file.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,21 +53,44 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "LoadCelFile"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 struct D2_CelFile* D2_D2Win_LoadCelFile(
     const char* cel_file_path,
     bool is_dcc_else_dc6
 ) {
+  InitStatic();
+
   return (struct D2_CelFile*) D2_D2Win_LoadCelFile_1_00(
       cel_file_path,
       is_dcc_else_dc6
@@ -80,7 +101,7 @@ struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
     const char* cel_file_path,
     mapi_bool32 is_dcc_else_dc6
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_CelFile_1_00*) CallFastcallFunction(
       game_address.raw_address,

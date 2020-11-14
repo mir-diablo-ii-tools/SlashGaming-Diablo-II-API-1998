@@ -46,9 +46,8 @@
 #ifndef SGMAPI_C_GAME_ADDRESS_GAME_ORDINAL_H_
 #define SGMAPI_C_GAME_ADDRESS_GAME_ORDINAL_H_
 
-#include <stdint.h>
-#include <wchar.h>
-
+#include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 #include "../default_game_library.h"
 #include "game_address_struct.h"
 

@@ -52,6 +52,7 @@
 #include <mdc/std/wchar.h>
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
+#include "default_game_library/default_game_library_path.h"
 #include "error_handling.h"
 #include "game_address_table/game_address_table_impl.h"
 #include "game_address_table/game_address_locator.h"
@@ -73,10 +74,75 @@ static void InitStatic(void) {
   call_once(&game_address_table_init_flag, &InitGameAddressTable);
 }
 
-struct Mapi_GameAddress* Mapi_Impl_LoadGameAddress(
+struct Mapi_GameAddress* Mapi_Impl_LoadGameAddressByLibraryId(
+    struct Mapi_GameAddress* game_address,
+    enum D2_DefaultLibrary library_id,
+    const char* address_name_cstr
+) {
+  struct Mapi_GameAddress* init_game_address;
+  struct Mapi_Impl_GameAddressLocator* game_address_locator;
+
+  const struct Mdc_Fs_Path* library_path;
+
+  struct Mdc_BasicString address_name;
+  struct Mdc_BasicString* init_address_name;
+
+  InitStatic();
+
+  library_path = Mapi_Impl_GetDefaultLibraryPathWithoutRedirect(
+      library_id
+  );
+
+  init_address_name = Mdc_BasicString_InitFromCStr(
+      &address_name,
+      Mdc_CharTraitsChar_GetCharTraits(),
+      address_name_cstr
+  );
+
+  if (init_address_name != &address_name) {
+    ExitOnMdcFunctionFailure(
+        L"Mdc_BasicString_InitFromCStr",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  game_address_locator = Mdc_Map_At(
+      Mdc_Map_At(
+          game_address_table,
+          library_path
+      ),
+      &address_name
+  );
+
+  if (game_address_locator == NULL) {
+    ExitOnMdcFunctionFailure(L"Mdc_Map_At", __FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  init_game_address = Mapi_Impl_GameAddressLocator_LocateGameAddress(
+      game_address,
+      game_address_locator
+  );
+
+  if (init_game_address != game_address) {
+    goto return_bad;
+  }
+
+  Mdc_BasicString_Deinit(&address_name);
+
+  return game_address;
+
+return_bad:
+  return NULL;
+}
+
+struct Mapi_GameAddress* Mapi_Impl_LoadGameAddressByLibraryPath(
     struct Mapi_GameAddress* game_address,
     const struct Mdc_Fs_Path* library_path,
-    const char* address_name
+    const char* address_name_cstr
 ) {
   struct Mapi_GameAddress* init_game_address;
 
@@ -90,7 +156,7 @@ struct Mapi_GameAddress* Mapi_Impl_LoadGameAddress(
   init_address_name_str = Mdc_BasicString_InitFromCStr(
       &address_name_str,
       Mdc_CharTraitsChar_GetCharTraits(),
-      address_name
+      address_name_cstr
   );
 
   if (init_address_name_str != &address_name_str) {
@@ -124,6 +190,8 @@ struct Mapi_GameAddress* Mapi_Impl_LoadGameAddress(
   if (init_game_address != game_address) {
     goto return_bad;
   }
+
+  Mdc_BasicString_Deinit(&address_name_str);
 
   return game_address;
 

@@ -45,25 +45,45 @@
 
 #include "../../../../include/c/game_function/d2client/d2client_draw_centered_unicode_text.h"
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
 #include "../../../wide_macro.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
 #include "../../backend/error_handling.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Client.dll",
+      LIBRARY_D2CLIENT,
       "DrawCenteredUnicodeText"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 __declspec(naked) static void* __cdecl
@@ -110,20 +130,22 @@ void D2_D2Client_DrawCenteredUnicodeText(
     int right,
     enum D2_TextColor text_color
 ) {
-  struct D2_UnicodeChar_1_00* actual_text =
-      (struct D2_UnicodeChar_1_00*) text;
+  enum D2_TextColor text_color_game_value;
 
-  enum D2_TextColor text_color_game_value =
-      D2_TextColor_ToGameValue(text_color);
+  enum D2_GameVersion running_game_version;
 
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  InitStatic();
+
+  text_color_game_value = D2_TextColor_ToGameValue(text_color);
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10
       || running_game_version >= CLASSIC_1_14A) {
     D2_D2Client_DrawCenteredUnicodeText_1_00(
         left,
         position_y,
-        actual_text,
+        (struct D2_UnicodeChar_1_00*) text,
         right,
         text_color_game_value
     );
@@ -132,7 +154,7 @@ void D2_D2Client_DrawCenteredUnicodeText(
     D2_D2Client_DrawCenteredUnicodeText_1_12A(
         left,
         position_y,
-        actual_text,
+        (struct D2_UnicodeChar_1_00*) text,
         right,
         text_color_game_value
     );
@@ -146,7 +168,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t right,
     int32_t text_color
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   CallFastcallFunction(
       game_address.raw_address,
@@ -166,7 +188,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_12A(
     int32_t right,
     /* enum D2_TextColor_1_00 */ int32_t text_color
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
       game_address.raw_address,

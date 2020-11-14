@@ -46,10 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 
-#include <assert.h>
-#include <stdint.h>
 #include <stddef.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "../../dllexport_define.inc"
 
 /**

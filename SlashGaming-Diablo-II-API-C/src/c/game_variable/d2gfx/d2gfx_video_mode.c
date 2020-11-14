@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2gfx/d2gfx_video_mode.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,37 +52,62 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2GFX.dll",
+      LIBRARY_D2GFX,
       "VideoMode"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 enum D2_VideoMode D2_D2GFX_GetVideoMode(void) {
+  InitStatic();
+
   return D2_VideoMode_ToApiValue_1_00(
       D2_D2GFX_GetVideoMode_1_00()
   );
 }
 
 enum D2_VideoMode_1_00 D2_D2GFX_GetVideoMode_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
 
 void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode) {
+  InitStatic();
+
   D2_D2GFX_SetVideoMode_1_00(
       D2_VideoMode_ToGameValue_1_00(video_mode)
   );
 }
 
 void D2_D2GFX_SetVideoMode_1_00(enum D2_VideoMode_1_00 video_mode) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = video_mode;
 }

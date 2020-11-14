@@ -56,7 +56,7 @@ static void* Mapi_Impl_FileSignature_InitCopyAsVoid(
 
 static void* Mapi_Impl_FileSignature_InitMoveAsVoid(
     void* dest,
-    const void* src
+    void* src
 ) {
   return Mapi_Impl_FileSignature_InitMove(dest, src);
 }

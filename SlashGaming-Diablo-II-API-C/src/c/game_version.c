@@ -79,7 +79,7 @@ static enum GameVersion SearchGameFileInfoTable(
 
 static void InitRunningGameVersion(void) {
   VS_FIXEDFILEINFO game_file_info;
-  struct Mdc_Fs_Path* current_process_file_path;
+  const struct Mdc_Fs_Path* current_process_file_path;
 
   /* Extract the file info from the game executable. */
   current_process_file_path = Mapi_Impl_GetGameExecutablePath();
@@ -95,8 +95,6 @@ static void InitRunningGameVersion(void) {
   * Correct the initial guess using the a predetermined signature.
   */
   running_game_version = Mapi_Signature_CorrectVersionGuess(running_game_version);
-
-  Mdc_Fs_Path_Deinit(current_process_file_path);
 }
 
 const char* D2_GetGameVersionName(

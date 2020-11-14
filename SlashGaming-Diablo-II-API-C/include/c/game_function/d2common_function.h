@@ -52,4 +52,4 @@
 #include "d2common/d2common_get_global_inventory_grid_layout.h"
 #include "d2common/d2common_get_global_inventory_position.h"
 
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2COMMON_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2COMMON_FUNCTION_H_ */

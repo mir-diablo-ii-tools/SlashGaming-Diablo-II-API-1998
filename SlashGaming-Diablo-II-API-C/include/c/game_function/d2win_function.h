@@ -57,4 +57,4 @@
 #include "d2win/d2win_unload_cel_file.h"
 #include "d2win/d2win_unload_mpq.h"
 
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_FUNCTION_H_ */

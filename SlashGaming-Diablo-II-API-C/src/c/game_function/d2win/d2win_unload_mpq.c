@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_unload_mpq.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -56,34 +54,56 @@
 #include "../../backend/game_function/esi_function.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "UnloadMpq"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2Win_UnloadMpq(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  InitStatic();
 
   D2_D2Win_UnloadMpq_1_00(
-      actual_mpq_archive_handle
+      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle
   );
 }
 
 void D2_D2Win_UnloadMpq_1_00(
     struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  enum D2_GameVersion running_game_version;
 
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10
       || running_game_version >= CLASSIC_1_14A) {

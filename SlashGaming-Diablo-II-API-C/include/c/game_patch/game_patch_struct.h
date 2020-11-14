@@ -46,10 +46,10 @@
 #ifndef SGMAPI_C_GAME_PATCH_GAME_PATCH_STRUCT_H_
 #define SGMAPI_C_GAME_PATCH_GAME_PATCH_STRUCT_H_
 
-#include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../game_address/game_address_struct.h"
 
 #include "../../dllexport_define.inc"

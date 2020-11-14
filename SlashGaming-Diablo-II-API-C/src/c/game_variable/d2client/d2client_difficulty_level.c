@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_difficulty_level.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,23 +52,46 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Client.dll",
+      LIBRARY_D2CLIENT,
       "DifficultyLevel"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 enum D2_DifficultyLevel D2_D2Client_GetDifficultyLevel(void) {
+  InitStatic();
+
   return D2_D2Client_GetDifficultyLevel_1_00();
 }
 
 enum D2_DifficultyLevel_1_00 D2_D2Client_GetDifficultyLevel_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
@@ -78,6 +99,8 @@ enum D2_DifficultyLevel_1_00 D2_D2Client_GetDifficultyLevel_1_00(void) {
 void D2_D2Client_SetDifficultyLevel(
     enum D2_DifficultyLevel difficulty_level
 ) {
+  InitStatic();
+
   D2_D2Client_SetDifficultyLevel_1_00(
       D2_DifficultyLevel_ToGameValue_1_00(difficulty_level)
   );
@@ -86,7 +109,7 @@ void D2_D2Client_SetDifficultyLevel(
 void D2_D2Client_SetDifficultyLevel_1_00(
     enum D2_DifficultyLevel_1_00 difficulty_level
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = difficulty_level;
 }

@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_load_mpq.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,15 +53,36 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Win.dll",
+      LIBRARY_D2WIN,
       "LoadMpq"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 __declspec(naked) static struct D2_MpqArchiveHandle_1_00* __cdecl
@@ -103,7 +122,11 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     void* (*on_fail_callback)(void),
     int priority
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
+
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_02) {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_00(
@@ -161,7 +184,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
     void* unused_04__set_to_nullptr,
     void* (*on_fail_callback)(void)
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
       game_address.raw_address,
@@ -182,7 +205,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
     mapi_bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void)
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
       game_address.raw_address,
@@ -205,7 +228,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
       game_address.raw_address,
@@ -228,7 +251,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return D2_D2Win_LoadMpq_1_11_Shim(
       game_address.raw_address,
@@ -247,7 +270,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
       game_address.raw_address,

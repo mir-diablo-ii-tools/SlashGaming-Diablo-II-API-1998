@@ -46,10 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
 
-#include <assert.h>
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "../../dllexport_define.inc"
 
 /**

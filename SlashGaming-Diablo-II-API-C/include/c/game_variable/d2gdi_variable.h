@@ -51,4 +51,4 @@
 #include "d2gdi/d2gdi_cel_display_left.h"
 #include "d2gdi/d2gdi_cel_display_right.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GDI_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GDI_VARIABLE_H_ */

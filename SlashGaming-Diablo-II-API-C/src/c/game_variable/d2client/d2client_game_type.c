@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_game_type.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,19 +52,44 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2Client.dll",
+      LIBRARY_D2CLIENT,
       "GameType"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 enum D2_ClientGameType D2_D2Client_GetGameType(void) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
+
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_06B) {
     return D2_ClientGameType_ToApiValue_1_00(D2_D2Client_GetGameType_1_00());
@@ -76,13 +99,13 @@ enum D2_ClientGameType D2_D2Client_GetGameType(void) {
 }
 
 enum D2_ClientGameType_1_00 D2_D2Client_GetGameType_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
 
 enum D2_ClientGameType_1_07 D2_D2Client_GetGameType_1_07(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
@@ -90,7 +113,11 @@ enum D2_ClientGameType_1_07 D2_D2Client_GetGameType_1_07(void) {
 void D2_D2Client_SetGameType(
     enum D2_ClientGameType game_type
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
+
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_06B) {
     D2_D2Client_SetGameType_1_00(
@@ -106,7 +133,7 @@ void D2_D2Client_SetGameType(
 void D2_D2Client_SetGameType_1_00(
     enum D2_ClientGameType_1_00 game_type
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = game_type;
 }
@@ -114,7 +141,7 @@ void D2_D2Client_SetGameType_1_00(
 void D2_D2Client_SetGameType_1_07(
     enum D2_ClientGameType_1_07 game_type
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = game_type;
 }

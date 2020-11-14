@@ -46,13 +46,13 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_LEFT_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_LEFT_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_D2GDI_GetCelDisplayLeft(void);
 DLLEXPORT int32_t D2_D2GDI_GetCelDisplayLeft_1_00(void);
@@ -61,8 +61,8 @@ DLLEXPORT void D2_D2GDI_SetCelDisplayLeft(int left);
 DLLEXPORT void D2_D2GDI_SetCelDisplayLeft_1_00(int32_t left);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_LEFT_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_LEFT_H_ */

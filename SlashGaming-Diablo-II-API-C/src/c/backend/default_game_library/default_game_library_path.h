@@ -47,8 +47,13 @@
 #define SGD2MAPI_C_BACKEND_DEFAULT_GAME_LIBRARY_DEFAULT_GAME_LIBRARY_PATH_H_
 
 #include <mdc/filesystem/filesystem.h>
+#include "../../../../include/c/default_game_library.h"
 
 const struct Mdc_Fs_Path* Mapi_Impl_GetGameExecutablePath(void);
+
+const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithoutRedirect(
+    enum D2_DefaultLibrary library_id
+);
 
 const struct Mdc_Fs_Path* Mapi_Impl_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id

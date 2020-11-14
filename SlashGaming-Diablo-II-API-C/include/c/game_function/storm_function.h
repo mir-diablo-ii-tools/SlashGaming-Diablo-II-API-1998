@@ -49,4 +49,4 @@
 #include "storm/storm_s_file_close_archive.h"
 #include "storm/storm_s_file_open_archive.h"
 
-#endif // SGD2MAPI_C_GAME_FUNCTION_STORM_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_STORM_FUNCTION_H_ */

@@ -45,8 +45,7 @@
 
 #include "../../../../include/c/game_function/d2cmp/d2cmp_get_cel_from_cel_context.h"
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -55,42 +54,58 @@
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2CMP.dll",
+      LIBRARY_D2CMP,
       "GetCelFromCelContext"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
     struct D2_CelContext* cel_context
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
+
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_00(
-        actual_cel_context
+        (struct D2_CelContext_1_00*) cel_context
     );
   } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_12A(
-        actual_cel_context
+        (struct D2_CelContext_1_12A*) cel_context
     );
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
-        (struct D2_CelContext_1_13C*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_13C(
-        actual_cel_context
+        (struct D2_CelContext_1_13C*) cel_context
     );
   }
 }
@@ -98,7 +113,7 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_00(
     struct D2_CelContext_1_00* cel_context
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
       game_address.raw_address,
@@ -110,7 +125,7 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_00(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_12A(
     struct D2_CelContext_1_12A* cel_context
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
       game_address.raw_address,
@@ -122,7 +137,7 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_12A(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_13C(
     struct D2_CelContext_1_13C* cel_context
 ) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
       game_address.raw_address,

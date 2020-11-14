@@ -45,8 +45,6 @@
 
 #include "../../../../include/c/game_variable/d2ddraw/d2ddraw_cel_display_left.h"
 
-#include <stdint.h>
-
 #include <mdc/std/threads.h>
 #include "../../../../include/c/game_version.h"
 #include "../../../asm_x86_macro.h"
@@ -54,33 +52,58 @@
 #include "../../backend/error_handling.h"
 #include "../../backend/game_address_table.h"
 
-static once_flag init_flag = ONCE_FLAG_INIT;
 static struct Mapi_GameAddress game_address;
+static once_flag game_address_init_flag = ONCE_FLAG_INIT;
 
 static void InitGameAddress(void) {
-  LoadGameAddress(
+  struct Mapi_GameAddress* init_game_address;
+
+  init_game_address = Mapi_Impl_LoadGameAddressByLibraryId(
       &game_address,
-      "D2DDraw.dll",
+      LIBRARY_D2DDRAW,
       "CelDisplayLeft"
   );
+
+  if (init_game_address != &game_address) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_Impl_LoadGameAddressByLibraryId",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
+  return;
+
+return_bad:
+  return;
+}
+
+static void InitStatic(void) {
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 int D2_D2DDraw_GetCelDisplayLeft(void) {
+  InitStatic();
+
   return D2_D2DDraw_GetCelDisplayLeft_1_00();
 }
 
 int32_t D2_D2DDraw_GetCelDisplayLeft_1_00(void) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   return *(int32_t*) game_address.raw_address;
 }
 
 void D2_D2DDraw_SetCelDisplayLeft(int left) {
+  InitStatic();
+
   D2_D2DDraw_SetCelDisplayLeft_1_00(left);
 }
 
 void D2_D2DDraw_SetCelDisplayLeft_1_00(int32_t left) {
-  call_once(&init_flag, &InitGameAddress);
+  InitStatic();
 
   *(int32_t*) game_address.raw_address = left;
 }

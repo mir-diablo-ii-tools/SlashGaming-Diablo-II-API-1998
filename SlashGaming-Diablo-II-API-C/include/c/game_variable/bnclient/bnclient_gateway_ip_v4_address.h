@@ -50,15 +50,15 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT char* D2_BNClient_GetGatewayIpV4Address(void);
 
 DLLEXPORT char* D2_BNClient_GetGatewayIpV4Address_1_00(void);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_IPV4_ADDRESS_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_IPV4_ADDRESS_H_ */

@@ -45,8 +45,7 @@
 
 #include "../../../include/c/game_patch/game_back_branch_patch.h"
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../../include/c/game_patch/game_nop_patch.h"
 #include "../../wide_macro.h"
 #include "../backend/architecture_opcode.h"

@@ -46,9 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_struct/d2_mpq_archive_handle.h"
 
@@ -56,7 +55,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     const char* mpq_file_name,
@@ -109,8 +108,8 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_ */

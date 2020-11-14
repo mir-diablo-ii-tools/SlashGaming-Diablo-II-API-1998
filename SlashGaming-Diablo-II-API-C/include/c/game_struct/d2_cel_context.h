@@ -46,10 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 
-#include <assert.h>
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "d2_cel_file.h"
 #include "../game_undefined.h"
 

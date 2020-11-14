@@ -46,15 +46,14 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_UTF8_TO_UNICODE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_UTF8_TO_UNICODE_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_struct/d2_unicode_char.h"
 
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT struct D2_UnicodeChar* D2_D2Lang_Unicode_Utf8ToUnicode(
     struct D2_UnicodeChar* dest,
@@ -69,8 +68,8 @@ DLLEXPORT struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_Utf8ToUnicode_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_UTF8_TO_UNICODE_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_UTF8_TO_UNICODE_H_ */

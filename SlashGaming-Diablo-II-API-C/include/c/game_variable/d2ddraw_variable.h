@@ -53,4 +53,4 @@
 #include "d2ddraw/d2ddraw_display_height.h"
 #include "d2ddraw/d2ddraw_display_width.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_VARIABLE_H_ */
