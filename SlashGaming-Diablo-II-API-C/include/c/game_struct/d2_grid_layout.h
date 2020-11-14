@@ -121,7 +121,7 @@ static_assert(
 typedef struct D2_GridLayout D2_GridLayout;
 typedef struct D2_GridLayout_1_00 D2_GridLayout_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -129,7 +129,7 @@ typedef struct D2_GridLayout_1_00 D2_GridLayout_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic GridLayout with the specified layout.
@@ -224,8 +224,8 @@ DLLEXPORT void D2_GridLayout_SetHeight(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_GRID_LAYOUT_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_GRID_LAYOUT_H_ */

@@ -81,7 +81,7 @@ DLLEXPORT void D2_D2Client_DrawCenteredUnicodeText_1_12A(
 );
 
 #ifdef __cplusplus
-} // extern "C"
+} /* extern "C" */
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"

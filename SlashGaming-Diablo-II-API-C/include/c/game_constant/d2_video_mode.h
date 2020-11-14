@@ -85,7 +85,7 @@ enum D2_VideoMode_1_00 {
 typedef enum D2_VideoMode D2_VideoMode;
 typedef enum D2_VideoMode_1_00 D2_VideoMode_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -93,7 +93,7 @@ typedef enum D2_VideoMode_1_00 D2_VideoMode_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value);
 
@@ -108,8 +108,8 @@ DLLEXPORT enum D2_VideoMode D2_VideoMode_ToApiValue_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_CONSTANT_D2_VIDEO_MODE_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_D2_VIDEO_MODE_H_ */

@@ -68,7 +68,7 @@ DLLEXPORT char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
+} /* extern "C" */
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"

@@ -55,7 +55,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Initializes a new GameNopPatch. The patch buffer is filled with no-op
@@ -68,8 +68,8 @@ DLLEXPORT void Mapi_GamePatch_InitGameNopPatch(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_PATCH_GAME_NOP_PATCH_H_
+#endif /* SGMAPI_C_GAME_PATCH_GAME_NOP_PATCH_H_ */

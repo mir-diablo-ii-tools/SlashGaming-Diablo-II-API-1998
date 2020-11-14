@@ -79,7 +79,7 @@ enum D2_ScreenOpenMode_1_07 {
 typedef enum D2_ScreenOpenMode D2_ScreenOpenMode;
 typedef enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_1_07;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -87,7 +87,7 @@ typedef enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_1_07;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value);
 
@@ -102,8 +102,8 @@ DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_ */

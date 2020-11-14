@@ -56,7 +56,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Initializes a new GameBackBranchPatch. The patch buffer is configured to
@@ -73,8 +73,8 @@ DLLEXPORT void Mapi_GamePatch_InitGameBackBranchPatch(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_PATCH_GAME_BACK_BRANCH_PATCH_H_
+#endif /* SGMAPI_C_GAME_PATCH_GAME_BACK_BRANCH_PATCH_H_ */

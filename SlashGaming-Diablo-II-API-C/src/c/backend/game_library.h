@@ -57,4 +57,4 @@ const struct Mapi_GameLibrary* GetGameLibrary(
     const struct Mdc_Fs_Path* file_path
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_LIBRARY_H_
+#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_H_ */

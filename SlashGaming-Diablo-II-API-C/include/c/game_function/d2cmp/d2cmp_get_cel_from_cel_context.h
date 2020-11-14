@@ -72,7 +72,7 @@ DLLEXPORT struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_13C(
 );
 
 #ifdef __cplusplus
-} // extern "C"
+} /* extern "C" */
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"

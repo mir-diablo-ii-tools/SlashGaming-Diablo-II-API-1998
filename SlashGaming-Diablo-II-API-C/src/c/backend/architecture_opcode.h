@@ -56,12 +56,12 @@ enum Mapi_OpCode {
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-#endif // SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
+#endif /* SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_ */

@@ -66,4 +66,4 @@
 #include "game_function/fog_function.h"
 #include "game_function/storm_function.h"
 
-#endif // SGD2MAPI_C_GAME_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNCTION_H_ */

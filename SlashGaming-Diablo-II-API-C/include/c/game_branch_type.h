@@ -56,4 +56,4 @@ enum Mapi_BranchType {
   BRANCH_JUMP,
 };
 
-#endif // SGMAPI_C_GAME_BRANCH_TYPE_H_
+#endif /* SGMAPI_C_GAME_BRANCH_TYPE_H_ */

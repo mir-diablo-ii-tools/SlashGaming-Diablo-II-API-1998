@@ -66,7 +66,10 @@ void Mapi_GamePatch_Apply(struct Mapi_GamePatch* game_patch) {
 
   intptr_t raw_address = game_patch->game_address.raw_address;
 
-  // Replace the data at the destination with the values in the patch buffer.
+  /*
+  * Replace the data at the destination with the values in the patch
+  * buffer.
+  */
   BOOL write_success = WriteProcessMemory(
       GetCurrentProcess(),
       (void*) raw_address,
@@ -94,7 +97,7 @@ void Mapi_GamePatch_Remove(struct Mapi_GamePatch* game_patch) {
 
   intptr_t raw_address = game_patch->game_address.raw_address;
 
-  // Restore the old state of the destination.
+  /* Restore the old state of the destination. */
   BOOL write_success = WriteProcessMemory(
       GetCurrentProcess(),
       (void*) raw_address,

@@ -75,7 +75,7 @@ const char* D2_SearchGameVersionName(enum D2_GameVersion game_version) {
       return "1.03";
     }
 
-    // 1.04B and 1.04C use the same DLLs.
+    /* 1.04B and 1.04C use the same DLLs. */
     case VERSION_1_04B_C: {
       return "1.04B/C";
     }

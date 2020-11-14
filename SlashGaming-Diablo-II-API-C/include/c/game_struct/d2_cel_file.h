@@ -74,7 +74,7 @@ struct D2_CelFile;
   /* 0x10 */ uint32_t num_directions;
   /* 0x14 */ uint32_t num_frames;
 
-  // This field has variable length.
+  /* This field has variable length. */
   /* 0x18 */ struct D2_Cel_1_00* cels[];
 };
 
@@ -123,7 +123,7 @@ static_assert(
 typedef struct D2_CelFile D2_CelFile;
 typedef struct D2_CelFile_1_00 D2_CelFile_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -131,7 +131,7 @@ typedef struct D2_CelFile_1_00 D2_CelFile_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Returns the value of the CelFile's file format version member.
@@ -179,8 +179,8 @@ DLLEXPORT void D2_CelFile_SetNumFrames(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_ */

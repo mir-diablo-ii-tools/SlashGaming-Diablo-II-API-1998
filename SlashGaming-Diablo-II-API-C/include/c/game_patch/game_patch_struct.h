@@ -56,7 +56,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 struct Mapi_GamePatch {
   struct Mapi_GameAddress game_address;
@@ -90,7 +90,7 @@ DLLEXPORT void Mapi_GamePatch_Remove(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-#endif // SGMAPI_C_GAME_PATCH_GAME_PATCH_STRUCT_H_
+#endif /* SGMAPI_C_GAME_PATCH_GAME_PATCH_STRUCT_H_ */

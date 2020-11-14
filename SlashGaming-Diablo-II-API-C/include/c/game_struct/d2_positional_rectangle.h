@@ -111,7 +111,7 @@ static_assert(
 typedef struct D2_PositionalRectangle D2_PositionalRectangle;
 typedef struct D2_PositionalRectangle_1_00 D2_PositionalRectangle_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -119,7 +119,7 @@ typedef struct D2_PositionalRectangle_1_00 D2_PositionalRectangle_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic PositionalRectangle initialized with the specified
@@ -201,8 +201,8 @@ DLLEXPORT void D2_PositionalRectangle_SetBottom(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_ */

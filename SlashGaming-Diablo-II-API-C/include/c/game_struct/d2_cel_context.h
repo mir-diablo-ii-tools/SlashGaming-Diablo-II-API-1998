@@ -175,11 +175,11 @@ static_assert(
 typedef struct D2_CelContext D2_CelContext;
 typedef struct D2_CelContext_1_00 D2_CelContext_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic CelContext with the specified cel file, direction, and
@@ -249,8 +249,8 @@ DLLEXPORT void D2_CelContext_SetFrame(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_ */

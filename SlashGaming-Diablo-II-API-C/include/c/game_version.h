@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * The Diablo II game versions supported and recognized.
@@ -105,8 +105,8 @@ DLLEXPORT bool D2_IsGameVersionAtLeast1_14(
 DLLEXPORT bool D2_IsRunningGameVersionAtLeast1_14(void);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VERSION_H_
+#endif /* SGD2MAPI_C_GAME_VERSION_H_ */

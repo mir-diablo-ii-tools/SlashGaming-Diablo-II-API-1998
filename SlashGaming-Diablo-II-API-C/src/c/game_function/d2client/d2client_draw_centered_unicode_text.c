@@ -103,14 +103,14 @@ D2_D2Client_DrawCenteredUnicodeText_1_12A_Shim(
   ASM_X86(push ecx);
   ASM_X86(push edx);
 
-  // Push the args.
+  /* Push the args. */
   ASM_X86(push dword ptr [ebp + 28]);
   ASM_X86(mov eax, dword ptr [ebp + 24]);
   ASM_X86(mov ebx, dword ptr [ebp + 20]);
   ASM_X86(push dword ptr [ebp + 16]);
   ASM_X86(mov ecx, dword ptr [ebp + 12]);
 
-  // Call the function.
+  /* Call the function. */
   ASM_X86(call dword ptr [ebp + 8]);
   ASM_X86(add esp, 20);
 

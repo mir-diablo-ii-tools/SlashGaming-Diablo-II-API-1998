@@ -52,4 +52,4 @@
 #include "game_patch/game_nop_patch.h"
 #include "game_patch/game_patch_struct.h"
 
-#endif // SGMAPI_C_GAME_PATCH_H_
+#endif /* SGMAPI_C_GAME_PATCH_H_ */

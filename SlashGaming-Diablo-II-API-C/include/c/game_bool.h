@@ -50,7 +50,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 typedef int8_t mapi_bool8;
 typedef int16_t mapi_bool16;
@@ -58,7 +58,7 @@ typedef int32_t mapi_bool32;
 typedef int64_t mapi_bool64;
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-#endif // SGMAPI_C_GAME_BOOL_H_
+#endif /* SGMAPI_C_GAME_BOOL_H_ */

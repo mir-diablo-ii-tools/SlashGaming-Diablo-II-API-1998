@@ -114,7 +114,7 @@ static_assert(
 typedef struct D2_Cel D2_Cel;
 typedef struct D2_Cel_1_00 D2_Cel_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -122,7 +122,7 @@ typedef struct D2_Cel_1_00 D2_Cel_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Returns the value of the Cel's height member.
@@ -165,8 +165,8 @@ DLLEXPORT int D2_Cel_GetWidth(const struct D2_Cel* cel);
 DLLEXPORT void D2_Cel_SetWidth(struct D2_Cel* cel, int width);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_ */

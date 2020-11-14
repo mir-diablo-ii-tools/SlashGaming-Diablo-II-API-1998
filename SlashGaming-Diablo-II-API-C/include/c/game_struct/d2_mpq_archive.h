@@ -76,7 +76,7 @@ struct D2_MpqArchive_1_00;
 typedef struct D2_MpqArchive D2_MpqArchive;
 typedef struct D2_MpqArchive_1_00 D2_MpqArchive_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_ */

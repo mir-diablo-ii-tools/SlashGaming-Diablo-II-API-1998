@@ -51,4 +51,4 @@
 #include "game_address/game_offset.h"
 #include "game_address/game_ordinal.h"
 
-#endif // SGMAPI_C_GAME_ADDRESS_H_
+#endif /* SGMAPI_C_GAME_ADDRESS_H_ */

@@ -90,7 +90,7 @@ enum D2_TextFont_1_00 {
   TEXT_FONT_1_00_EXOCET_BLACK_9,
   TEXT_FONT_1_00_EXOCET_8,
 
-  // TEXT_FONT_1_00_FORMAL_6 (same as 6) = 12
+  /* TEXT_FONT_1_00_FORMAL_6 (same as 6) = 12 */
 
   TEXT_FONT_1_00_FORMAL_11 = 13
 };
@@ -104,7 +104,7 @@ enum D2_TextFont_1_00 {
 typedef enum D2_TextFont D2_TextFont;
 typedef enum D2_TextFont_1_00 D2_TextFont_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -112,7 +112,7 @@ typedef enum D2_TextFont_1_00 D2_TextFont_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_TextFont_ToGameValue(enum D2_TextFont api_value);
 
@@ -123,8 +123,8 @@ DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue(int game_value);
 DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue_1_00(enum D2_TextFont_1_00 game_value);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_FONT_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_FONT_H_ */
