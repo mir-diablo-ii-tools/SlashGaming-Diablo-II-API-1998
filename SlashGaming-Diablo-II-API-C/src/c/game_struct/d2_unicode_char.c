@@ -47,138 +47,184 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <wchar.h>
 
+#include <mdc/malloc/malloc.h>
+#include <mdc/std/wchar.h>
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_utf8_to_unicode.h"
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
+union D2_UnicodeChar_View {
+  const struct D2_UnicodeChar_1_00* _1_00;
+};
+
+union D2_UnicodeChar_Wrapper {
+  struct D2_UnicodeChar_1_00* _1_00;
+};
+
 /**
  * Function definitions
  */
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateDefault(void) {
-  return D2_UnicodeChar_CreateWithAsciiChar('\0');
+struct D2_UnicodeChar* D2_UnicodeChar_CreateEmpty(void) {
+  return D2_UnicodeChar_CreateFromAsciiChar('\0');
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiChar(char ch) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(sizeof(*actual_unicode_char));
+struct D2_UnicodeChar* D2_UnicodeChar_CreateFromAsciiChar(char ch) {
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
 
-  if (actual_unicode_char == NULL) {
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*)
+      Mdc_malloc(sizeof(*actual_unicode_char._1_00));
+
+  if (actual_unicode_char._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  actual_unicode_char->ch = ch;
+  actual_unicode_char._1_00->ch = ch;
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) actual_unicode_char._1_00;
+
+return_bad:
+  return NULL;
 }
 
 struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithCount(size_t count) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          count * sizeof(*actual_unicode_char)
-      );
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
 
-  if (actual_unicode_char == NULL) {
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*)
+      Mdc_malloc(count * sizeof(*actual_unicode_char._1_00));
+
+  if (actual_unicode_char._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   for (size_t i = 0; i < count; i += 1) {
-    actual_unicode_char[i].ch = '\0';
+    actual_unicode_char._1_00[i].ch = '\0';
   }
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) actual_unicode_char._1_00;
+
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithAsciiString(const char* str) {
-  size_t str_len = strlen(str);
+struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromAsciiCStr(
+    const char* str
+) {
+  size_t str_len;
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
 
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
+  str_len = strlen(str);
 
-  if (actual_unicode_char == NULL) {
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*)
+      Mdc_malloc((str_len + 1) * sizeof(*actual_unicode_char._1_00));
+
+  if (actual_unicode_char._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   D2_D2Lang_Unicode_AsciiToUnicode_1_00(
-      actual_unicode_char,
+      actual_unicode_char._1_00,
       str,
       str_len + 1
   );
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) actual_unicode_char._1_00;
+
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithUtf8String(const char* str) {
-  size_t str_len = strlen(str);
+struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromUtf8String(
+    const char* str
+) {
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
+  size_t str_len;
 
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
+  str_len = strlen(str);
 
-  if (actual_unicode_char == NULL) {
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*)
+      Mdc_malloc((str_len + 1) * sizeof(*actual_unicode_char._1_00));
+
+  if (actual_unicode_char._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   D2_D2Lang_Unicode_Utf8ToUnicode_1_00(
-      actual_unicode_char,
+      actual_unicode_char._1_00,
       str,
       str_len + 1
   );
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) actual_unicode_char._1_00;
+
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithWideString(
+struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromWideString(
     const wchar_t* str
 ) {
-  size_t str_len = wcslen(str);
+  size_t i;
 
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
+  size_t str_len;
 
-  if (actual_unicode_char == NULL) {
+  str_len = wcslen(str);
+
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*)
+      Mdc_malloc((str_len + 1) * sizeof(*actual_unicode_char._1_00));
+
+  if (actual_unicode_char._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  for (size_t i = 0; i < str_len; i += 1) {
-    actual_unicode_char[i].ch = str[i];
+  for (i = 0; i < str_len; i += 1) {
+    actual_unicode_char._1_00[i].ch = str[i];
   }
 
-  actual_unicode_char[str_len].ch = '\0';
+  actual_unicode_char._1_00[str_len].ch = '\0';
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) actual_unicode_char._1_00;
+
+return_bad:
+  return NULL;
 }
 
 void D2_UnicodeChar_Destroy(struct D2_UnicodeChar* unicode_char) {
-  free(unicode_char);
+  union D2_UnicodeChar_Wrapper actual_unicode_char;
+
+  actual_unicode_char._1_00 = (struct D2_UnicodeChar_1_00*) unicode_char;
+  Mdc_free(actual_unicode_char._1_00);
 }
 
 void D2_UnicodeChar_SetCharWithAsciiChar(
     struct D2_UnicodeChar* unicode_char,
     char ch
 ) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) unicode_char;
+  union D2_UnicodeChar_Wrapper wrapper;
 
-  actual_unicode_char->ch = ch;
+  wrapper._1_00 = (struct D2_UnicodeChar_1_00*) unicode_char;
+
+  wrapper._1_00->ch = ch;
 }
 
 void D2_UnicodeChar_CopyChar(
     struct D2_UnicodeChar* ptr,
     const struct D2_UnicodeChar* src
 ) {
-  struct D2_UnicodeChar_1_00* actual_ptr = (struct D2_UnicodeChar_1_00*) ptr;
-  const struct D2_UnicodeChar_1_00* actual_src =
-      (const struct D2_UnicodeChar_1_00*) src;
+  union D2_UnicodeChar_Wrapper ptr_wrapper;
+  union D2_UnicodeChar_View src_wrapper;
 
-  actual_ptr->ch = actual_src->ch;
+  ptr_wrapper._1_00 = (struct D2_UnicodeChar_1_00*) ptr;
+  src_wrapper._1_00 = (const struct D2_UnicodeChar_1_00*) src;
+
+  ptr_wrapper._1_00->ch = src_wrapper._1_00->ch;
 }

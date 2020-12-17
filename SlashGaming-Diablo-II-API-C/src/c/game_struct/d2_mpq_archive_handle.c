@@ -50,6 +50,14 @@
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
+union D2_MpqArchiveHandle_View {
+  const struct D2_MpqArchiveHandle_1_00* _1_00;
+};
+
+union D2_MpqArchiveHandle_Wrapper {
+  struct D2_MpqArchiveHandle_1_00* _1_00;
+};
+
 /**
  * Function definitions
  */
@@ -65,23 +73,21 @@ struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
 const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMpqArchive(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  union D2_MpqArchiveHandle_View view;
 
-  return (const struct D2_MpqArchive*) actual_mpq_archive_handle->mpq_archive;
+  view._1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  return (const struct D2_MpqArchive*) view._1_00->mpq_archive;
 }
 
 void D2_MpqArchiveHandle_SetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle,
     struct D2_MpqArchive* mpq_archive
 ) {
-  struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  union D2_MpqArchiveHandle_Wrapper wrapper;
 
-  struct D2_MpqArchive_1_00* actual_mpq_archive =
-      (struct D2_MpqArchive_1_00*) mpq_archive;
-
-  actual_mpq_archive_handle->mpq_archive = actual_mpq_archive;
+  wrapper._1_00 = (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  wrapper._1_00->mpq_archive = (struct D2_MpqArchive_1_00*) mpq_archive;
 }
 
 char* D2_MpqArchiveHandle_GetMpqArchivePath(
@@ -95,8 +101,9 @@ char* D2_MpqArchiveHandle_GetMpqArchivePath(
 const char* D2_MpqArchiveHandle_GetConstMpqArchivePath(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  union D2_MpqArchiveHandle_View view;
 
-  return actual_mpq_archive_handle->mpq_archive_path;
+  view._1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  return view._1_00->mpq_archive_path;
 }

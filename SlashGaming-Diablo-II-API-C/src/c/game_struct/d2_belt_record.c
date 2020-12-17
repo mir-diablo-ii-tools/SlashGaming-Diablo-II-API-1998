@@ -48,6 +48,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <mdc/malloc/malloc.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
@@ -61,12 +62,13 @@ struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
     const struct D2_PositionalRectangle* slot_positions
 ) {
   struct D2_BeltRecord_1_00* actual_belt_record =
-      (struct D2_BeltRecord_1_00*) malloc(
+      (struct D2_BeltRecord_1_00*) Mdc_malloc(
           sizeof(*actual_belt_record)
       );
 
   if (actual_belt_record == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   actual_belt_record->unknown_0x00 = reserved_00__set_to_nullptr;
@@ -79,12 +81,15 @@ struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
   );
 
   return (struct D2_BeltRecord*) actual_belt_record;
+
+return_bad:
+  return NULL;
 }
 
 void D2_BeltRecord_Destroy(
     struct D2_BeltRecord* belt_record
 ) {
-  free(belt_record);
+  Mdc_free(belt_record);
 }
 
 struct D2_BeltRecord* D2_BeltRecord_GetAt(

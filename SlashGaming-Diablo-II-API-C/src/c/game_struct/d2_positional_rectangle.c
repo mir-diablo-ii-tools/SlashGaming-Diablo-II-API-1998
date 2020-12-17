@@ -47,8 +47,17 @@
 
 #include <stdlib.h>
 
+#include <mdc/malloc/malloc.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
+
+union D2_PositionalRectangle_View {
+  const struct D2_PositionalRectangle_1_00* _1_00;
+};
+
+union D2_PositionalRectangle_Wrapper {
+  struct D2_PositionalRectangle_1_00* _1_00;
+};
 
 /**
  * Function definitions
@@ -61,101 +70,125 @@ D2_PositionalRectangle_CreateWithPositions(
     int top,
     int bottom
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) malloc(
-          sizeof(*actual_positional_rectangle)
-      );
+  union D2_PositionalRectangle_Wrapper actual_positional_rectangle;
 
-  if (actual_positional_rectangle == NULL) {
+  actual_positional_rectangle._1_00 = (struct D2_PositionalRectangle_1_00*)
+      Mdc_malloc(sizeof(*actual_positional_rectangle._1_00));
+
+  if (actual_positional_rectangle._1_00 == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  actual_positional_rectangle->left = left;
-  actual_positional_rectangle->right = right;
-  actual_positional_rectangle->top = top;
-  actual_positional_rectangle->bottom = bottom;
+  actual_positional_rectangle._1_00->left = left;
+  actual_positional_rectangle._1_00->right = right;
+  actual_positional_rectangle._1_00->top = top;
+  actual_positional_rectangle._1_00->bottom = bottom;
 
-  return (struct D2_PositionalRectangle*) actual_positional_rectangle;
+  return (struct D2_PositionalRectangle*) actual_positional_rectangle._1_00;
+
+return_bad:
+  return NULL;
 }
 
 void D2_PositionalRectangle_Destroy(
     struct D2_PositionalRectangle* positional_rectangle
 ) {
-  free(positional_rectangle);
+  union D2_PositionalRectangle_Wrapper actual_positional_rectangle;
+
+  actual_positional_rectangle._1_00 = (struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+  Mdc_free(actual_positional_rectangle._1_00);
 }
 
 int D2_PositionalRectangle_GetLeft(
     const struct D2_PositionalRectangle* positional_rectangle
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_View view;
 
-  return actual_positional_rectangle->left;
+  view._1_00 = (const struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  return view._1_00->left;
 }
 
 void D2_PositionalRectangle_SetLeft(
     struct D2_PositionalRectangle* positional_rectangle,
     int left
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_Wrapper wrapper;
 
-  actual_positional_rectangle->left = left;
+  wrapper._1_00 = (struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  wrapper._1_00->left = left;
 }
 
 int D2_PositionalRectangle_GetRight(
     const struct D2_PositionalRectangle* positional_rectangle
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_View view;
 
-  return actual_positional_rectangle->right;
+  view._1_00 = (const struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  return view._1_00->right;
 }
 
 void D2_PositionalRectangle_SetRight(
     struct D2_PositionalRectangle* positional_rectangle,
     int right
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_Wrapper wrapper;
 
-  actual_positional_rectangle->right = right;
+  wrapper._1_00 = (struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  wrapper._1_00->right = right;
 }
 
 int D2_PositionalRectangle_GetTop(
     const struct D2_PositionalRectangle* positional_rectangle
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_View view;
 
-  return actual_positional_rectangle->top;
+  view._1_00 = (const struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  return view._1_00->top;
 }
 
 void D2_PositionalRectangle_SetTop(
     struct D2_PositionalRectangle* positional_rectangle,
     int top
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_Wrapper wrapper;
 
-  actual_positional_rectangle->top = top;
+  wrapper._1_00 = (struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  wrapper._1_00->top = top;
 }
 
 int D2_PositionalRectangle_GetBottom(
     const struct D2_PositionalRectangle* positional_rectangle
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_View view;
 
-  return actual_positional_rectangle->bottom;
+  view._1_00 = (const struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  return view._1_00->bottom;
 }
 
 void D2_PositionalRectangle_SetBottom(
     struct D2_PositionalRectangle* positional_rectangle,
     int bottom
 ) {
-  struct D2_PositionalRectangle_1_00* actual_positional_rectangle =
-      (struct D2_PositionalRectangle_1_00*) positional_rectangle;
+  union D2_PositionalRectangle_Wrapper wrapper;
 
-  actual_positional_rectangle->bottom = bottom;
+  wrapper._1_00 = (struct D2_PositionalRectangle_1_00*)
+      positional_rectangle;
+
+  wrapper._1_00->bottom = bottom;
 }

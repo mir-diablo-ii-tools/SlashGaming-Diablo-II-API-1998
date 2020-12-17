@@ -47,9 +47,22 @@
 
 #include <stdlib.h>
 
+#include <mdc/malloc/malloc.h>
 #include "../../../include/c/game_version.h"
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
+
+union D2_CelContext_View {
+  const struct D2_CelContext_1_00* _1_00;
+  const struct D2_CelContext_1_12A* _1_12a;
+  const struct D2_CelContext_1_13C* _1_13c;
+};
+
+union D2_CelContext_Wrapper {
+  struct D2_CelContext_1_00* _1_00;
+  struct D2_CelContext_1_12A* _1_12a;
+  struct D2_CelContext_1_13C* _1_13c;
+};
 
 /**
  * Function definitions
@@ -60,52 +73,64 @@ struct D2_CelContext* D2_CelContext_Create(
     unsigned int direction,
     unsigned int frame
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
+  union D2_CelContext_Wrapper actual_cel_context;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) malloc(sizeof(*actual_cel_context));
+    actual_cel_context._1_00 = (struct D2_CelContext_1_00*)
+        Mdc_malloc(sizeof(*actual_cel_context._1_00));
 
-    if (actual_cel_context == NULL) {
+    if (actual_cel_context._1_00 == NULL) {
       ExitOnAllocationFailure(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
-    actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
-    actual_cel_context->direction = direction;
-    actual_cel_context->frame = frame;
+    actual_cel_context._1_00->cel_file =
+        (struct D2_CelFile_1_00*) cel_file;
+    actual_cel_context._1_00->direction = direction;
+    actual_cel_context._1_00->frame = frame;
 
-    return (struct D2_CelContext*) actual_cel_context;
+    return (struct D2_CelContext*) actual_cel_context._1_00;
   } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) malloc(sizeof(*actual_cel_context));
+    actual_cel_context._1_12a = (struct D2_CelContext_1_12A*)
+        Mdc_malloc(sizeof(*actual_cel_context._1_12a));
 
-    if (actual_cel_context == NULL) {
+    if (actual_cel_context._1_12a == NULL) {
       ExitOnAllocationFailure(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
-    actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
-    actual_cel_context->direction = direction;
-    actual_cel_context->frame = frame;
+    actual_cel_context._1_12a->cel_file =
+        (struct D2_CelFile_1_00*) cel_file;
+    actual_cel_context._1_12a->direction = direction;
+    actual_cel_context._1_12a->frame = frame;
 
-    return (struct D2_CelContext*) actual_cel_context;
+    return (struct D2_CelContext*) actual_cel_context._1_12a;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
-        (struct D2_CelContext_1_13C*) malloc(sizeof(*actual_cel_context));
+    actual_cel_context._1_13c = (struct D2_CelContext_1_13C*)
+        Mdc_malloc(sizeof(*actual_cel_context._1_13c));
 
-    if (actual_cel_context == NULL) {
+    if (actual_cel_context._1_13c == NULL) {
       ExitOnAllocationFailure(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
-    actual_cel_context->cel_file = (struct D2_CelFile_1_00*) cel_file;
-    actual_cel_context->direction = direction;
-    actual_cel_context->frame = frame;
+    actual_cel_context._1_13c->cel_file =
+        (struct D2_CelFile_1_00*) cel_file;
+    actual_cel_context._1_13c->direction = direction;
+    actual_cel_context._1_13c->frame = frame;
 
-    return (struct D2_CelContext*) actual_cel_context;
+    return (struct D2_CelContext*) actual_cel_context._1_13c;
   }
+
+return_bad:
+  return NULL;
 }
 
 void D2_CelContext_Destroy(struct D2_CelContext* cel_context) {
-  free(cel_context);
+  Mdc_free(cel_context);
 }
 
 struct D2_CelFile* D2_CelContext_GetCelFile(
@@ -117,23 +142,23 @@ struct D2_CelFile* D2_CelContext_GetCelFile(
 const struct D2_CelFile* D2_CelContext_GetConstCelFile(
     const struct D2_CelContext* cel_context
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_View view;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    const struct D2_CelContext_1_00* actual_cel_context =
-        (const struct D2_CelContext_1_00*) cel_context;
+    view._1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return (const struct D2_CelFile*) actual_cel_context->cel_file;
+    return (const struct D2_CelFile*) view._1_00->cel_file;
   } else if (running_game_version == VERSION_1_12A) {
-    const struct D2_CelContext_1_12A* actual_cel_context =
-        (const struct D2_CelContext_1_12A*) cel_context;
+    view._1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return (const struct D2_CelFile*) actual_cel_context->cel_file;
+    return (const struct D2_CelFile*) view._1_12a->cel_file;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    const struct D2_CelContext_1_13C* actual_cel_context =
-        (const struct D2_CelContext_1_13C*) cel_context;
+    view._1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return (const struct D2_CelFile*) actual_cel_context->cel_file;
+    return (const struct D2_CelFile*) view._1_13c->cel_file;
   }
 }
 
@@ -141,55 +166,43 @@ void D2_CelContext_SetCelFile(
     struct D2_CelContext* cel_context,
     struct D2_CelFile* cel_file
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_Wrapper wrapper;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) cel_context;
-
-    struct D2_CelFile_1_00* actual_cel_file =
-        (struct D2_CelFile_1_00*) cel_file;
-
-    actual_cel_context->cel_file = actual_cel_file;
+    wrapper._1_00 = (struct D2_CelContext_1_00*) cel_context;
+    wrapper._1_00->cel_file = (struct D2_CelFile_1_00*) cel_file;
   } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) cel_context;
-
-    struct D2_CelFile_1_00* actual_cel_file =
-        (struct D2_CelFile_1_00*) cel_file;
-
-    actual_cel_context->cel_file = actual_cel_file;
+    wrapper._1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    wrapper._1_12a->cel_file = (struct D2_CelFile_1_00*) cel_file;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
-        (struct D2_CelContext_1_13C*) cel_context;
-
-    struct D2_CelFile_1_00* actual_cel_file =
-        (struct D2_CelFile_1_00*) cel_file;
-
-    actual_cel_context->cel_file = actual_cel_file;
+    wrapper._1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    wrapper._1_13c->cel_file = (struct D2_CelFile_1_00*) cel_file;
   }
 }
 
 unsigned int D2_CelContext_GetDirection(
     const struct D2_CelContext* cel_context
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_View view;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    const struct D2_CelContext_1_00* actual_cel_context =
-        (const struct D2_CelContext_1_00*) cel_context;
+    view._1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return actual_cel_context->direction;
+    return view._1_00->direction;
   } else if (running_game_version == VERSION_1_12A) {
-    const struct D2_CelContext_1_12A* actual_cel_context =
-        (const struct D2_CelContext_1_12A*) cel_context;
+    view._1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return actual_cel_context->direction;
+    return view._1_12a->direction;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    const struct D2_CelContext_1_13C* actual_cel_context =
-        (const struct D2_CelContext_1_13C*) cel_context;
+    view._1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return actual_cel_context->direction;
+    return view._1_13c->direction;
   }
 }
 
@@ -197,46 +210,43 @@ void D2_CelContext_SetDirection(
     struct D2_CelContext* cel_context,
     unsigned int direction
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_Wrapper wrapper;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) cel_context;
-
-    actual_cel_context->direction = direction;
+    wrapper._1_00 = (struct D2_CelContext_1_00*) cel_context;
+    wrapper._1_00->direction = direction;
   } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) cel_context;
-
-    actual_cel_context->direction = direction;
+    wrapper._1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    wrapper._1_12a->direction = direction;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
-        (struct D2_CelContext_1_13C*) cel_context;
-
-    actual_cel_context->direction = direction;
+    wrapper._1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    wrapper._1_13c->direction = direction;
   }
 }
 
 unsigned int D2_CelContext_GetFrame(
     const struct D2_CelContext* cel_context
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_View view;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    const struct D2_CelContext_1_00* actual_cel_context =
-        (const struct D2_CelContext_1_00*) cel_context;
+    view._1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return actual_cel_context->frame;
+    return view._1_00->frame;
   } else if (running_game_version == VERSION_1_12A) {
-    const struct D2_CelContext_1_12A* actual_cel_context =
-        (const struct D2_CelContext_1_12A*) cel_context;
+    view._1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return actual_cel_context->frame;
+    return view._1_12a->frame;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    const struct D2_CelContext_1_13C* actual_cel_context =
-        (const struct D2_CelContext_1_13C*) cel_context;
+    view._1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return actual_cel_context->frame;
+    return view._1_13c->frame;
   }
 }
 
@@ -244,22 +254,19 @@ void D2_CelContext_SetFrame(
     struct D2_CelContext* cel_context,
     unsigned int frame
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_Wrapper wrapper;
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GetRunningGameVersionId();
 
   if (running_game_version <= VERSION_1_10) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) cel_context;
-
-    actual_cel_context->frame = frame;
+    wrapper._1_00 = (struct D2_CelContext_1_00*) cel_context;
+    wrapper._1_00->frame = frame;
   } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) cel_context;
-
-    actual_cel_context->frame = frame;
+    wrapper._1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    wrapper._1_12a->frame = frame;
   } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
-        (struct D2_CelContext_1_13C*) cel_context;
-
-    actual_cel_context->frame = frame;
+    wrapper._1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    wrapper._1_13c->frame = frame;
   }
 }

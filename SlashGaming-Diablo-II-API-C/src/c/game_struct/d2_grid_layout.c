@@ -47,6 +47,7 @@
 
 #include <stdlib.h>
 
+#include <mdc/malloc/malloc.h>
 #include "../../wide_macro.h"
 #include "../backend/error_handling.h"
 
@@ -62,7 +63,7 @@ struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
     uint_least8_t height
 ) {
   struct D2_GridLayout_1_00* actual_grid_layout =
-      (struct D2_GridLayout_1_00*) malloc(sizeof(*actual_grid_layout));
+      (struct D2_GridLayout_1_00*) Mdc_malloc(sizeof(*actual_grid_layout));
 
   if (actual_grid_layout == NULL) {
     ExitOnAllocationFailure(__FILEW__, __LINE__);
@@ -81,7 +82,7 @@ struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
 void D2_GridLayout_Destroy(
     struct D2_GridLayout* grid_layout
 ) {
-  free(grid_layout);
+  Mdc_free(grid_layout);
 }
 
 uint_least8_t D2_GridLayout_GetNumColumns(

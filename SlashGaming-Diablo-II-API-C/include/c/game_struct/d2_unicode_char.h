@@ -103,12 +103,12 @@ extern "C" {
 /**
  * Creates a generic UnicodeChar initialized as the null-terminator character.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateDefault(void);
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateEmpty(void);
 
 /**
  * Creates a generic UnicodeChar with a 7-bit ASCII character.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiChar(char ch);
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateFromAsciiChar(char ch);
 
 
 /**
@@ -123,7 +123,7 @@ DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithCount(
  * Creates a generic UnicodeChar string with a null-terminated 7-bit ASCII
  * character string.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithAsciiString(
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromAsciiCStr(
     const char* str
 );
 
@@ -131,7 +131,7 @@ DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithAsciiString(
  * Creates a generic UnicodeChar string with a null-terminated UTF-8 character
  * string.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithUtf8String(
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromUtf8String(
     const char* str
 );
 
@@ -139,7 +139,7 @@ DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithUtf8String(
  * Creates a generic UnicodeChar string with a null-terminated wide character
  * string.
  */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringWithWideString(
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromWideString(
     const wchar_t* str
 );
 

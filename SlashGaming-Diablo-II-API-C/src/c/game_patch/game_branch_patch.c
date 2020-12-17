@@ -58,26 +58,43 @@ struct Mapi_GamePatch* Mapi_GamePatch_InitGameBranchPatch(
     void (*func_ptr)(void),
     size_t patch_size
 ) {
+  size_t i;
+
+  struct Mapi_GamePatch* init_game_nop_patch;
+  enum Mapi_OpCode opcode_value;
+  intptr_t func_buffer;
+  size_t shift_amount;
+
   /* Fill the buffer with NOPs. */
-  Mapi_GamePatch_InitGameNopPatch(
+  init_game_nop_patch = Mapi_GamePatch_InitGameNopPatch(
       game_patch,
       game_address,
       patch_size
   );
 
+  if (init_game_nop_patch != game_patch) {
+    ExitOnMapiFunctionFailure(
+        L"Mapi_GamePatch_InitGameNopPatch",
+        __FILEW__,
+        __LINE__
+    );
+
+    goto return_bad;
+  }
+
   /* Set the first byte in the buffer to the branch operation opcode byte. */
-  enum Mapi_OpCode opcode_value = Mapi_ToOpcode(branch_type);
+  opcode_value = Mapi_ToOpcode(branch_type);
 
   game_patch->patch_buffer[0] = (uint8_t) (0xFF & opcode_value);
 
   /* Set the next bytes to the address of the inserted function. */
-  intptr_t func_buffer = ((intptr_t) func_ptr)
+  func_buffer = ((intptr_t) func_ptr)
       - (game_address->raw_address)
       - sizeof(game_patch->patch_buffer[0])
       - sizeof(func_ptr);
 
-  for (size_t i = 0; i < sizeof(func_buffer); i += 1) {
-    size_t shift_amount = i * (sizeof(game_patch->patch_buffer[0]) * 8);
+  for (i = 0; i < sizeof(func_buffer); i += 1) {
+    shift_amount = i * (sizeof(game_patch->patch_buffer[0]) * 8);
 
     game_patch->patch_buffer[i + 1] = (func_buffer >> shift_amount) & 0xFF;
   }
