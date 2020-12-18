@@ -58,7 +58,7 @@ wchar_t* ConvertUtf8ToWide(
     const wchar_t* source_code_file_path,
     int source_code_line
 ) {
-  // Determine the number of characters needed.
+  /* Determine the number of characters needed. */
   size_t num_wide_chars = MultiByteToWideChar(
       CP_UTF8,
       MB_ERR_INVALID_CHARS,
@@ -77,7 +77,7 @@ wchar_t* ConvertUtf8ToWide(
     );
   }
 
-  // Allocate space if the wide_string is NULL.
+  /* Allocate space if the wide_string is NULL. */
   if (wide_string == NULL) {
     wide_string = (wchar_t*) malloc(
         num_wide_chars * sizeof(wide_string[0])
@@ -88,7 +88,10 @@ wchar_t* ConvertUtf8ToWide(
     }
   }
 
-  // Convert the UTF-8 string to wide string. Check that there was no failure.
+  /*
+  * Convert the UTF-8 string to wide string. Check that there was no
+  * failure.
+  */
   size_t converted_chars = MultiByteToWideChar(
       CP_UTF8,
       MB_ERR_INVALID_CHARS,
@@ -124,7 +127,7 @@ char* ConvertWideToUtf8(
     const wchar_t* source_code_file_path,
     int source_code_line
 ) {
-  // Determine the number of characters needed.
+  /* Determine the number of characters needed. */
   size_t num_utf8_chars = WideCharToMultiByte(
       CP_UTF8,
       WC_ERR_INVALID_CHARS,
@@ -145,7 +148,7 @@ char* ConvertWideToUtf8(
     );
   }
 
-  // Allocate space if the UTF-8 string is NULL.
+  /* Allocate space if the UTF-8 string is NULL. */
   if (utf8_string == NULL) {
     utf8_string = (char*) malloc(
         num_utf8_chars * sizeof(utf8_string[0])
@@ -156,7 +159,10 @@ char* ConvertWideToUtf8(
     }
   }
 
-  // Convert the UTF-8 string to wide string. Check that there was no failure.
+  /*
+  * Convert the UTF-8 string to wide string. Check that there was no
+  * failure.
+  */
   size_t converted_chars = WideCharToMultiByte(
       CP_UTF8,
       WC_ERR_INVALID_CHARS,

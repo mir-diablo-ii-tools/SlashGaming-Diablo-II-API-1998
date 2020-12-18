@@ -54,4 +54,4 @@ void* __cdecl CallStdcallFunction(
     ...
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_FUNCTION_STDCALL_FUNCTION_H_
+#endif /* SGMAPI_C_BACKEND_GAME_FUNCTION_STDCALL_FUNCTION_H_ */

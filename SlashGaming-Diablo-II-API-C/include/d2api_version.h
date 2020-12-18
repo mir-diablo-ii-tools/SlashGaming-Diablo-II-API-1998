@@ -50,17 +50,17 @@
 #ifndef SGD2MAPI_D2API_VERSION_H_
 #define SGD2MAPI_D2API_VERSION_H_
 
-// Requires manual version selection for conflicting APIs across versions.
+/* Requires manual version selection for conflicting APIs across versions. */
 #define D2API_VERSION_ALL 42L
 
-// Or use the API of the specified version.
+/* Or use the API of the specified version. */
 #define D2API_VERSION_1_00 20000629L
 #define D2API_VERSION_1_07 20010627L
 #define D2API_VERSION_1_11 20050726L
 
-// Set the default version to be API All.
+/* Set the default version to be API All. */
 #ifndef D2API_VERSION
 #define D2API_VERSION D2API_VERSION_ALL
-#endif // D2API_VERSION
+#endif /* D2API_VERSION */
 
-#endif // SGD2MAPI_D2API_VERSION_H_
+#endif /* SGD2MAPI_D2API_VERSION_H_ */

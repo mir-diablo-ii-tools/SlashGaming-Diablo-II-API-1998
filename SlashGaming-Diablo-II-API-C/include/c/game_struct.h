@@ -58,4 +58,4 @@
 #include "game_struct/d2_positional_rectangle.h"
 #include "game_struct/d2_unicode_char.h"
 
-#endif // SGD2MAPI_C_GAME_STRUCT_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_H_ */

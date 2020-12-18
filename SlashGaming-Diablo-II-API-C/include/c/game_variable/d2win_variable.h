@@ -49,4 +49,4 @@
 #include "d2win/d2win_main_menu_mouse_position_x.h"
 #include "d2win/d2win_main_menu_mouse_position_y.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2WIN_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2WIN_VARIABLE_H_ */

@@ -78,7 +78,7 @@ struct D2_UnicodeChar;
 typedef struct D2_UnicodeChar D2_UnicodeChar;
 typedef struct D2_UnicodeChar_1_00 D2_UnicodeChar_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -86,7 +86,7 @@ typedef struct D2_UnicodeChar_1_00 D2_UnicodeChar_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic UnicodeChar initialized as the null-terminator character.
@@ -153,8 +153,8 @@ DLLEXPORT void D2_UnicodeChar_CopyChar(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_ */

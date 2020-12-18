@@ -72,4 +72,4 @@ void ExitOnWindowsFunctionFailureWithLastError(
     int line
 );
 
-#endif // SGMAPI_C_BACKEND_ERROR_HANDLING_H_
+#endif /* SGMAPI_C_BACKEND_ERROR_HANDLING_H_ */

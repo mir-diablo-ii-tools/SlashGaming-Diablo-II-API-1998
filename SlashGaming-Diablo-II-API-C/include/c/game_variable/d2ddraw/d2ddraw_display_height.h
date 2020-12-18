@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_D2DDraw_GetDisplayHeight(void);
 DLLEXPORT int32_t D2_D2DDraw_GetDisplayHeight_1_00(void);
@@ -61,8 +61,8 @@ DLLEXPORT void D2_D2DDraw_SetDisplayHeight(int height);
 DLLEXPORT void D2_D2DDraw_SetDisplayHeight_1_00(int32_t height);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_DISPLAY_HEIGHT_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_DISPLAY_HEIGHT_H_ */

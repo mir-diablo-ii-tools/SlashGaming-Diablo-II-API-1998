@@ -101,7 +101,7 @@ static struct MAPI_GameLibrary* AddGameLibrary(
 
   wchar_t* wide_file_path = ConvertUtf8ToWide(NULL, file_path, __FILEW__, __LINE__);
 
-  // Insert the new game library to the correct position.
+  /* Insert the new game library to the correct position. */
   struct MAPI_GameLibrary* new_game_library =
       (struct MAPI_GameLibrary*) malloc(sizeof(*new_game_library));
 
@@ -122,7 +122,7 @@ static struct MAPI_GameLibrary* AddGameLibrary(
 
   game_library_table.num_elements += 1;
 
-  // Insert the element into the sorted part of the array.
+  /* Insert the element into the sorted part of the array. */
   size_t insertion_index = game_library_table.num_elements;
   for (insertion_index = game_library_table.num_elements;
       insertion_index > 0;
@@ -183,7 +183,7 @@ const struct MAPI_GameLibrary* GetGameLibrary(
     );
   }
 
-  // If not found, then add the game library.
+  /* If not found, then add the game library. */
   if (search_result == NULL) {
     return AddGameLibrary(file_path);
   }

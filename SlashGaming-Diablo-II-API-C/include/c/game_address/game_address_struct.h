@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 struct MAPI_GameAddress {
   intptr_t raw_address;
@@ -63,8 +63,8 @@ DLLEXPORT void MAPI_GameAddress_Deinit(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_
+#endif /* SGMAPI_C_GAME_ADDRESS_GAME_ADDRESS_GAME_ADDRESS_STRUCT_H_ */

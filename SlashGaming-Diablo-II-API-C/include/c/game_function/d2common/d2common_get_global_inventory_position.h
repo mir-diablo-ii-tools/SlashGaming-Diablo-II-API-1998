@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Common_GetGlobalInventoryPosition(
     unsigned int inventory_record_index,
@@ -74,8 +74,8 @@ DLLEXPORT void D2_D2Common_GetGlobalInventoryPosition_1_07(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_POSITION_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_POSITION_H_ */

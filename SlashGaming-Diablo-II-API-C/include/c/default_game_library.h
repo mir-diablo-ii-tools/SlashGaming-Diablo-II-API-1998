@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * The default libraries that are used by Diablo II.
@@ -72,8 +72,8 @@ DLLEXPORT const char* MAPI_GetDefaultLibraryPathWithRedirect(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
+#endif /* SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_ */

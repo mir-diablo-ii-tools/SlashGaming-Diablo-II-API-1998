@@ -75,7 +75,7 @@ static const char* kVersionIdToName[] = {
     [VERSION_1_01] = "1.01",
     [VERSION_1_02] = "1.02",
     [VERSION_1_03] = "1.03",
-    // 1.04B and 1.04C use the same DLLs.
+    /* 1.04B and 1.04C use the same DLLs. */
     [VERSION_1_04B_C] = "1.04B/C",
     [VERSION_1_05] = "1.05",
     [VERSION_1_05B] = "1.05B",
@@ -159,21 +159,27 @@ static const struct GameDataInfo kVersionIdToGameDataInfo[] = {
 };
 
 static struct GameVersionInfo sorted_name_game_version_infos[] = {
-    // 1.00 & 1.01 have the same version #, but use completely different
-    // DLLs.
+    /*
+    * 1.00 & 1.01 have the same version #, but use completely
+    * different DLLs.
+    */
     { "1.0.0.1", VERSION_1_01 },
     { "1.0.2.0", VERSION_1_02 },
     { "1.0.3.0", VERSION_1_03 },
-    // 1.04B and 1.04C use the same DLLs.
+    /* 1.04B and 1.04C use the same DLLs. */
     { "1.0.4.1", VERSION_1_04B_C },
     { "1.0.4.2", VERSION_1_04B_C },
     { "1.0.5.0", VERSION_1_05 },
     { "1.0.5.1", VERSION_1_05B },
-    // 1.06 & 1.06B have the same version #, but use completely different
-    // DLLs.
+    /*
+    * 1.06 & 1.06B have the same version #, but use completely
+    * different DLLs.
+    */
     { "1.0.6.0", VERSION_1_06 },
-    // 1.07 Beta & 1.07 have the same version #, but use completely
-    // different DLLs.
+    /*
+    * 1.07 Beta & 1.07 have the same version #, but use completely
+    * different DLLs.
+    */
     { "1.0.7.0", VERSION_1_07 },
     { "1.0.8.28", VERSION_1_08 },
     { "1.0.9.19", VERSION_1_09 },
@@ -206,9 +212,11 @@ static int CompareGameVersionInfo(
 static char* ExtractFileVersionString(
     const char* file_path
 ) {
-  // All the code for this function originated from StackOverflow user
-  // crashmstr. Some parts were refactored and altered for clarity and
-  // correctness.
+  /*
+  * All the code for this function originated from StackOverflow user
+  * crashmstr. Some parts were refactored and altered for clarity and
+  * correctness.
+  */
 
   wchar_t* file_path_text_wide = ConvertUtf8ToWide(
       NULL,
@@ -217,7 +225,7 @@ static char* ExtractFileVersionString(
       __LINE__
   );
 
-  // Check version size.
+  /* Check version size. */
   DWORD ignored;
   DWORD file_version_info_size = GetFileVersionInfoSizeW(
       file_path_text_wide,
@@ -233,7 +241,7 @@ static char* ExtractFileVersionString(
     );
   }
 
-  // Get the file version info.
+  /* Get the file version info. */
   void* file_version_info = (void*) malloc(file_version_info_size);
 
   if (file_version_info == NULL) {
@@ -256,8 +264,10 @@ static char* ExtractFileVersionString(
     );
   }
 
-  // Gather all of the information into the specified buffer, then check
-  // version info signature.
+  /*
+  * Gather all of the information into the specified buffer, then
+  * check version info signature.
+  */
   UINT version_info_size;
   VS_FIXEDFILEINFO* version_info;
 
@@ -277,11 +287,13 @@ static char* ExtractFileVersionString(
     );
   }
 
-  // Doesn't matter if you are on 32 bit or 64 bit,
-  // DWORD is always 32 bits, so first two revision numbers
-  // come from dwFileVersionMS, last two come from dwFileVersionLS
+  /*
+  * Doesn't matter if you are on 32 bit or 64 bit, DWORD is always 32
+  * bits, so first two revision numbers come from dwFileVersionMS,
+  * last two come from dwFileVersionLS
+  */
 
-  // Calculate the string size for allocation.
+  /* Calculate the string size for allocation. */
   int num_chars_to_write = snprintf(
       NULL,
       0,
@@ -332,12 +344,16 @@ static void SortGameVesionInfoByName(void) {
 static enum D2_GameVersion DetermineGameVersionByFileVersion(void) {
   static pthread_once_t sort_once_flag = PTHREAD_ONCE_INIT;
 
-  // Perform first stage game version detection using the executable file
-  // name.
+  /*
+  * Perform first stage game version detection using the executable file
+  * name.
+  */
   char* file_version = ExtractFileVersionString("Game.exe");
 
-  // Sort the game version info so that a bsearch can be done correctly.
-  // Multithread safe.
+  /*
+  * Sort the game version info so that a bsearch can be done correctly.
+  * Multithread safe.
+  */
   pthread_once(&sort_once_flag, &SortGameVesionInfoByName);
 
   const struct GameVersionInfo* search_result = bsearch(
@@ -361,14 +377,18 @@ static enum D2_GameVersion DetermineGameVersionByGameData(
   const struct GameDataInfo* game_data_info =
       &kVersionIdToGameDataInfo[guess_game_version];
 
-  // The guessed game version is the sufficient in determining the running
-  // game version, so return the guess.
+  /*
+  * The guessed game version is the sufficient in determining the running
+  * game version, so return the guess.
+  */
   if (game_data_info->library_path == NULL) {
     return guess_game_version;
   }
 
-  // Determine if values at the specified offset match with the expected
-  // values.
+  /*
+  * Determine if values at the specified offset match with the expected
+  * values.
+  */
   const struct MAPI_GameLibrary* game_library = GetGameLibrary(
       game_data_info->library_path
   );
@@ -386,12 +406,16 @@ static enum D2_GameVersion DetermineGameVersionByGameData(
 }
 
 static enum D2_GameVersion DetermineRunningGameVersion(void) {
-  // Perform first stage game version detection using the executable file
-  // name.
+  /*
+  * Perform first stage game version detection using the executable
+  * file name.
+  */
   enum D2_GameVersion game_version = DetermineGameVersionByFileVersion();
 
-  // Perform second stage game version detection by checking the bytes of game
-  // libraries.
+  /*
+  * Perform second stage game version detection by checking the bytes
+  * of game libraries.
+  */
   game_version = DetermineGameVersionByGameData(game_version);
 
   return game_version;

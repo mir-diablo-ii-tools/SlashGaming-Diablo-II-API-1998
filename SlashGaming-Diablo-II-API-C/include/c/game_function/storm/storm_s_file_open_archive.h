@@ -56,7 +56,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT bool D2_Storm_SFileOpenArchive(
     const char* mpq_archive_path,
@@ -73,8 +73,8 @@ DLLEXPORT mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_ */

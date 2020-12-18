@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT bool D2_D2Client_GetIsHelpScreenOpen(void);
 DLLEXPORT mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void);
@@ -65,8 +65,8 @@ DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_H_ */

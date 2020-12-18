@@ -50,4 +50,4 @@
 #include "d2common/d2common_global_inventory_txt.h"
 #include "d2common/d2common_global_inventory_txt_records_count.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2COMMON_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2COMMON_VARIABLE_H_ */

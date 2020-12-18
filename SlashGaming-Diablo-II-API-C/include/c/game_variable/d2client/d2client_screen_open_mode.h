@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void);
 DLLEXPORT uint32_t D2_D2Client_GetScreenOpenMode_1_07(void);
@@ -65,8 +65,8 @@ DLLEXPORT void D2_D2Client_SetScreenOpenMode(
 DLLEXPORT void D2_D2Client_SetScreenOpenMode_1_07(uint32_t screen_open_mode);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_ */

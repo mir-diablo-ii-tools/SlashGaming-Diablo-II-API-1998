@@ -78,7 +78,7 @@ struct D2_MpqArchiveHandle;
 typedef struct D2_MpqArchiveHandle D2_MpqArchiveHandle;
 typedef struct D2_MpqArchiveHandle_1_00 D2_MpqArchiveHandle_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -86,7 +86,7 @@ typedef struct D2_MpqArchiveHandle_1_00 D2_MpqArchiveHandle_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Returns the value of the MPQArchiveHandle's MPQ archive pointer member.
@@ -125,8 +125,8 @@ DLLEXPORT const char* D2_MpqArchiveHandle_GetConstMPQArchivePath(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_ */

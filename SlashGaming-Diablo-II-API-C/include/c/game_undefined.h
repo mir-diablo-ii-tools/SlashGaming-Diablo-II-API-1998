@@ -50,14 +50,14 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 struct MAPI_Undefined;
 
 typedef uint8_t MAPI_UndefinedByte;
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-#endif // SGMAPI_C_GAME_UNDEFINED_H_
+#endif /* SGMAPI_C_GAME_UNDEFINED_H_ */

@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT struct D2_BeltRecord* D2_D2Common_GetGlobalBeltsTxt(void);
 DLLEXPORT struct D2_BeltRecord_1_00* D2_D2Common_GetGlobalBeltsTxt_1_00(void);
@@ -65,8 +65,8 @@ DLLEXPORT void D2_D2Common_SetGlobalBeltsTxt_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_BELTS_TXT_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_BELTS_TXT_H_ */

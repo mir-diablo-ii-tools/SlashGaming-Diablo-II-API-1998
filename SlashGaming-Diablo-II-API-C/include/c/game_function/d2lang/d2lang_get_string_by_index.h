@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
     unsigned int id
@@ -65,8 +65,8 @@ DLLEXPORT const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_GET_STRING_BY_INDEX_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_GET_STRING_BY_INDEX_H_ */

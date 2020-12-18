@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT void* D2_Fog_AllocClientMemory(
     int size,
@@ -69,8 +69,8 @@ DLLEXPORT void* D2_Fog_AllocClientMemory_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_FOG_FOG_ALLOC_CLIENT_MEMORY_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_FOG_FOG_ALLOC_CLIENT_MEMORY_H_ */

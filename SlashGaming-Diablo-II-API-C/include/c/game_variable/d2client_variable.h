@@ -63,4 +63,4 @@
 #include "d2client/d2client_screen_shift_x.h"
 #include "d2client/d2client_screen_shift_y.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_VARIABLE_H_ */

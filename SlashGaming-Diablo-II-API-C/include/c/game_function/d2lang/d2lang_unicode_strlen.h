@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Lang_Unicode_strlen(
     const struct D2_UnicodeChar* buffer
@@ -65,8 +65,8 @@ DLLEXPORT int32_t D2_D2Lang_Unicode_strlen_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRLEN_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRLEN_H_ */

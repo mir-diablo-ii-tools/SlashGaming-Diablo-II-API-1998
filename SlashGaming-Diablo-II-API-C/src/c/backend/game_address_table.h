@@ -53,4 +53,4 @@ const struct MAPI_GameAddress* GetGameAddress(
     const char* address_name
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_
+#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_ */

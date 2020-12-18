@@ -53,7 +53,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Initializes a GameAddress. The base library is specified using its ID. The
@@ -81,8 +81,8 @@ MAPI_GameAddress_InitFromLibraryPathAndDecoratedName(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_ADDRESS_GAME_DECORATED_NAME_H_
+#endif /* SGMAPI_C_GAME_ADDRESS_GAME_DECORATED_NAME_H_ */

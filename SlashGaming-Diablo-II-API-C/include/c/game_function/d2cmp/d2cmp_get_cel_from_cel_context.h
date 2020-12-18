@@ -53,7 +53,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
     struct D2_CelContext* cel_context
@@ -72,8 +72,8 @@ DLLEXPORT struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_13C(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_H_ */

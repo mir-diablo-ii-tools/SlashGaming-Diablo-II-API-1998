@@ -66,4 +66,4 @@
 #include "game_variable/fog_variable.h"
 #include "game_variable/storm_variable.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_H_ */

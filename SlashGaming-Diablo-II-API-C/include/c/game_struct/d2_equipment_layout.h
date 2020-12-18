@@ -83,7 +83,7 @@ struct D2_EquipmentLayout;
 typedef struct D2_EquipmentLayout D2_EquipmentLayout;
 typedef struct D2_EquipmentLayout_1_00 D2_EquipmentLayout_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -91,7 +91,7 @@ typedef struct D2_EquipmentLayout_1_00 D2_EquipmentLayout_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic EquipmentLayout with the specified position, width, and
@@ -156,8 +156,8 @@ DLLEXPORT void D2_EquipmentLayout_SetHeight(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_ */

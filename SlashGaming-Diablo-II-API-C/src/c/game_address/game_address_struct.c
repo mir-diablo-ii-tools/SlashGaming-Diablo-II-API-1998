@@ -48,5 +48,5 @@
 void MAPI_GameAddress_Deinit(
     struct MAPI_GameAddress* game_address
 ) {
-  // Do nothing, as there is nothing to free.
+  /* Do nothing, as there is nothing to free. */
 }

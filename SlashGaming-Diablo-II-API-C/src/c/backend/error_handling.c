@@ -99,7 +99,7 @@ void ExitOnGeneralFailure(
       caption,
       MB_OK | MB_ICONERROR
   );
-#endif // NDEBUG
+#endif /* NDEBUG */
 
   exit(EXIT_FAILURE);
 }
@@ -139,7 +139,7 @@ void ExitOnConstantMappingMissing(
       L"Constant Error",
       MB_OK | MB_ICONERROR
   );
-#endif // NDEBUG
+#endif /* NDEBUG */
 
   exit(EXIT_FAILURE);
 }
@@ -186,7 +186,7 @@ void ExitOnWindowsFunctionFailureWithLastError(
       message_box_caption,
       MB_OK | MB_ICONERROR
   );
-#endif // NDEBUG
+#endif /* NDEBUG */
 
   exit(EXIT_FAILURE);
 }

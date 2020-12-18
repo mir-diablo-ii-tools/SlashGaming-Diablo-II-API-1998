@@ -60,4 +60,4 @@
 #include "d2lang/d2lang_unicode_unicode_to_utf8.h"
 #include "d2lang/d2lang_unicode_utf8_to_unicode.h"
 
-#endif // SGD2MAPI_C_GAME_FUNC_D2LANG_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2LANG_FUNCTION_H_ */

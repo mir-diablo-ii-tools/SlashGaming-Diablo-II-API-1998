@@ -59,19 +59,19 @@ void MAPI_GamePatch_InitGameBranchPatch(
     void (*func_ptr)(void),
     size_t patch_size
 ) {
-  // Fill the buffer with NOPs.
+  /* Fill the buffer with NOPs. */
   MAPI_GamePatch_InitGameNopPatch(
       game_patch,
       game_address,
       patch_size
   );
 
-  // Set the first byte in the buffer to the branch operation opcode byte.
+  /* Set the first byte in the buffer to the branch operation opcode byte. */
   enum MAPI_OpCode opcode_value = MAPI_ToOpcode(branch_type);
 
   game_patch->patch_buffer[0] = (uint8_t) (0xFF & opcode_value);
 
-  // Set the next bytes to the address of the inserted function.
+  /* Set the next bytes to the address of the inserted function. */
   intptr_t func_buffer = ((intptr_t) func_ptr)
       - (game_address->raw_address)
       - sizeof(game_patch->patch_buffer[0])

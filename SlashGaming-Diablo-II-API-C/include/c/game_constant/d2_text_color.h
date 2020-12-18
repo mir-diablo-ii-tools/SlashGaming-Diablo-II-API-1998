@@ -93,8 +93,10 @@ enum D2_TextColor_1_00 {
   TEXT_COLOR_1_00_PURPLE,
   TEXT_COLOR_1_00_DARK_GREEN,
 
-  // TEXT_COLOR_1_00_WHITE (same as 1) = 13,
-  // TEXT_COLOR_1_00_BLACK (same as 6),
+  /*
+  * TEXT_COLOR_1_00_WHITE (same as 1) = 13,
+  * TEXT_COLOR_1_00_BLACK (same as 6),
+  */
 
   TEXT_COLOR_1_00_METALLIC = 15,
   TEXT_COLOR_1_00_LIGHT_GREY,
@@ -113,7 +115,7 @@ enum D2_TextColor_1_00 {
 typedef enum D2_TextColor D2_TextColor;
 typedef enum D2_TextColor_1_00 D2_TextColor_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -121,15 +123,15 @@ typedef enum D2_TextColor_1_00 D2_TextColor_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_TextColor_ToGameValue(enum D2_TextColor api_value);
 
 DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue(int game_value);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_COLOR_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_COLOR_H_ */

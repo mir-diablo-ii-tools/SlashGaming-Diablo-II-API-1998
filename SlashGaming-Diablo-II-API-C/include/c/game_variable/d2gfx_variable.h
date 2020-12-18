@@ -51,4 +51,4 @@
 #include "d2gfx/d2gfx_video_mode.h"
 #include "d2gfx/d2gfx_window_handle.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GFX_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_VARIABLE_H_ */

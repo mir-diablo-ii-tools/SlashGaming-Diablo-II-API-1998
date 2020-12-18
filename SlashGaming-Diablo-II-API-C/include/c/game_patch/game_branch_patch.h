@@ -56,7 +56,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Initializes a new GameBranchPatch. The patch buffer is configured to use
@@ -72,8 +72,8 @@ DLLEXPORT void MAPI_GamePatch_InitGameBranchPatch(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGMAPI_C_GAME_PATCH_GAME_BRANCH_PATCH_H_
+#endif /* SGMAPI_C_GAME_PATCH_GAME_BRANCH_PATCH_H_ */

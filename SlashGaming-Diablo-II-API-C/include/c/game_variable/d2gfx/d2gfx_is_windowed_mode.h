@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT bool D2_D2GFX_GetIsWindowedMode(void);
 DLLEXPORT mapi_bool32 D2_D2GFX_GetIsWindowedMode_1_00(void);
@@ -63,8 +63,8 @@ DLLEXPORT void D2_D2GFX_SetIsWindowedMode(bool is_window_mode);
 DLLEXPORT void D2_D2GFX_SetIsWindowedMode_1_00(mapi_bool32 is_window_mode);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_H_ */

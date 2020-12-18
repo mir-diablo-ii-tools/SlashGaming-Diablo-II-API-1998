@@ -55,11 +55,11 @@ void MAPI_GamePatch_InitGameBufferPatch(
     const uint8_t* buffer,
     size_t patch_size
 ) {
-  // Init all simple members.
+  /* Init all simple members. */
   game_patch->is_patch_applied = false;
   game_patch->patch_size = patch_size;
 
-  // Init game address member.
+  /* Init game address member. */
   game_patch->game_address = (struct MAPI_GameAddress*) malloc(
       sizeof(game_patch->game_address)
   );
@@ -69,7 +69,7 @@ void MAPI_GamePatch_InitGameBufferPatch(
 
   *game_patch->game_address = *game_address;
 
-  // Init patch buffer member.
+  /* Init patch buffer member. */
   game_patch->patch_buffer = (uint8_t*) malloc(
       patch_size * sizeof(game_patch->patch_buffer[0])
   );
@@ -79,7 +79,7 @@ void MAPI_GamePatch_InitGameBufferPatch(
 
   memcpy(game_patch->patch_buffer, buffer, patch_size);
 
-  // Init old buffer member.
+  /* Init old buffer member. */
   game_patch->unpatched_buffer = (uint8_t*) malloc(
       patch_size * sizeof(game_patch->unpatched_buffer[0])
   );

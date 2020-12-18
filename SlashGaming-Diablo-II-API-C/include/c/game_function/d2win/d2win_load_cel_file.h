@@ -55,7 +55,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT struct D2_CelFile* D2_D2Win_LoadCelFile(
     const char* cel_file_path,
@@ -68,8 +68,8 @@ DLLEXPORT struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_LOAD_CEL_FILE_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_LOAD_CEL_FILE_H_ */

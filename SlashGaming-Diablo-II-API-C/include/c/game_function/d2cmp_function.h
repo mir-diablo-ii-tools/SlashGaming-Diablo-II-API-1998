@@ -48,4 +48,4 @@
 
 #include "d2cmp/d2cmp_get_cel_from_cel_context.h"
 
-#endif // SGD2MAPI_C_GAME_FUNC_D2CMP_FUNCTION_H_
+#endif /* SGD2MAPI_C_GAME_FUNC_D2CMP_FUNCTION_H_ */

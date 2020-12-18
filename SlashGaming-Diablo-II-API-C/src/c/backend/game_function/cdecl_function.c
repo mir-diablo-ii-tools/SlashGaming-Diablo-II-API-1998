@@ -58,13 +58,15 @@ __declspec(naked) void* __cdecl CallCdeclFunction(
   ASM_X86(push ecx);
   ASM_X86(push edx);
 
-  // Push all the stack arguments.
+  /* Push all the stack arguments. */
 
-  // Load num_params into ecx.
+  /* Load num_params into ecx. */
   ASM_X86(mov ecx, dword ptr [ebp + 12]);
 
-  // Load pointer of num_params into eax, which will be used to get the
-  // pointer of the parameters after it.
+  /*
+  * Load pointer of num_params into eax, which will be used to get
+  * the pointer of the parameters after it.
+  */
   ASM_X86(lea eax, dword ptr [ebp + 12]);
   ASM_X86(lea eax, dword ptr [eax + ecx * 4]);
 ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
@@ -77,7 +79,7 @@ ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoop);
   ASM_X86(jmp CallFastcallFunction_PushStackArgsLoop);
 ASM_X86_LABEL(CallFastcallFunction_PushStackArgsLoopEnd);
 
-  // Call the function.
+  /* Call the function. */
   ASM_X86(call dword ptr [ebp + 8]);
   ASM_X86(add esp, dword ptr [ebp + 12])
 

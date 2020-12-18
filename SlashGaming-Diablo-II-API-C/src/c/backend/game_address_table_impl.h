@@ -64,4 +64,4 @@ struct MAPI_GameAddressTable {
 
 struct MAPI_GameAddressTable* LoadGameAddressTable(void);
 
-#endif // SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
+#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_ */

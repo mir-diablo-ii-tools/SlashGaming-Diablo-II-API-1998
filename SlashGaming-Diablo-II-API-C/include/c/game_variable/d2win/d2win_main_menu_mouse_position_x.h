@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Win_GetMainMenuMousePositionX(void);
 DLLEXPORT int32_t D2_D2Win_GetMainMenuMousePositionX_1_00(void);
@@ -63,8 +63,8 @@ DLLEXPORT void D2_D2Win_SetMainMenuMousePositionX_1_00(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2WIN_D2WIN_MAIN_MENU_MOUSE_POSITION_X_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2WIN_D2WIN_MAIN_MENU_MOUSE_POSITION_X_H_ */

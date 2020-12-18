@@ -81,7 +81,7 @@ const char* MAPI_GetGameExecutablePath(void) {
 const char* MAPI_GetDefaultLibraryPathWithRedirect(
     enum D2_DefaultLibrary library_id
 ) {
-  // Redirect if the game version is 1.14 or higher.
+  /* Redirect if the game version is 1.14 or higher. */
   if (D2_IsRunningGameVersionAtLeast1_14()) {
     return MAPI_GetGameExecutablePath();
   }

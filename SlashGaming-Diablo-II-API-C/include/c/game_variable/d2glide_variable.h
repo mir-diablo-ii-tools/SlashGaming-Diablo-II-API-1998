@@ -49,4 +49,4 @@
 #include "d2glide/d2glide_display_height.h"
 #include "d2glide/d2glide_display_width.h"
 
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GLIDE_VARIABLE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GLIDE_VARIABLE_H_ */

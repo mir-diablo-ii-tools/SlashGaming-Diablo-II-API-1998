@@ -84,7 +84,7 @@ struct D2_InventoryRecord;
 typedef struct D2_InventoryRecord D2_InventoryRecord;
 typedef struct D2_InventoryRecord_1_00 D2_InventoryRecord_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -92,7 +92,7 @@ typedef struct D2_InventoryRecord_1_00 D2_InventoryRecord_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * Creates a generic InventoryRecord with the specified record.
@@ -180,8 +180,8 @@ D2_InventoryRecord_GetConstEquipmentSlots(
 );
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_ */

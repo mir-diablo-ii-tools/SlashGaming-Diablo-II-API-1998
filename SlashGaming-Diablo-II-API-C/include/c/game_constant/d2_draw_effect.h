@@ -87,7 +87,7 @@ enum D2_DrawEffect_1_00 {
 typedef enum D2_DrawEffect D2_DrawEffect;
 typedef enum D2_DrawEffect_1_00 D2_DrawEffect_1_00;
 
-#endif // SGD2MAPI_ENABLE_TYPEDEFS
+#endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 /**
  * Function declarations
@@ -95,15 +95,15 @@ typedef enum D2_DrawEffect_1_00 D2_DrawEffect_1_00;
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value);
 
 DLLEXPORT enum D2_DrawEffect D2_DrawEffect_ToApiValue(int game_value);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_CONSTANT_D2_DRAW_EFFECT_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_D2_DRAW_EFFECT_H_ */

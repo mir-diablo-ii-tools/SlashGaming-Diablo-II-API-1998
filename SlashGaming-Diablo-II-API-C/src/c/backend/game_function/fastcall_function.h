@@ -54,4 +54,4 @@ void* __cdecl CallFastcallFunction(
     ...
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_FUNCTION_FASTCALL_FUNCTION_H_
+#endif /* SGMAPI_C_BACKEND_GAME_FUNCTION_FASTCALL_FUNCTION_H_ */

@@ -54,4 +54,4 @@
 #include "game_constant/d2_text_font.h"
 #include "game_constant/d2_video_mode.h"
 
-#endif // SGD2MAPI_C_GAME_CONSTANT_H_
+#endif /* SGD2MAPI_C_GAME_CONSTANT_H_ */

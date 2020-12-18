@@ -61,4 +61,4 @@ const struct MAPI_GameLibrary* GetGameLibrary(
     const char* file_path
 );
 
-#endif // SGMAPI_C_BACKEND_GAME_LIBRARY_H_
+#endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_H_ */

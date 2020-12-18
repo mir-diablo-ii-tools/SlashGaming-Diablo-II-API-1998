@@ -54,7 +54,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT enum D2_ClientGameType D2_D2Client_GetGameType(void);
 DLLEXPORT int32_t D2_D2Client_GetGameType_1_00(void);
@@ -63,8 +63,8 @@ DLLEXPORT void D2_D2Client_SetGameType(enum D2_ClientGameType game_type);
 DLLEXPORT void D2_D2Client_SetGameType_1_00(int32_t value);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_ */

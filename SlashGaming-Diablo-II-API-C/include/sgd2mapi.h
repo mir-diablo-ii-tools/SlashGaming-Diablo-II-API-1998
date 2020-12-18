@@ -57,4 +57,4 @@
 #include "c/game_variable.h"
 #include "c/game_version.h"
 
-#endif // SGD2MAPI_SGD2MAPI_H_
+#endif /* SGD2MAPI_SGD2MAPI_H_ */

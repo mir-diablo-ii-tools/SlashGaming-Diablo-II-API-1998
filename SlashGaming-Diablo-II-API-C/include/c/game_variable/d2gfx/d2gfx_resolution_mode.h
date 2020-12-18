@@ -52,7 +52,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 DLLEXPORT unsigned int D2_D2GFX_GetResolutionMode(void);
 DLLEXPORT uint32_t D2_D2GFX_GetResolutionMode_1_00(void);
@@ -61,8 +61,8 @@ DLLEXPORT void D2_D2GFX_SetResolutionMode(unsigned int resolution_mode);
 DLLEXPORT void D2_D2GFX_SetResolutionMode_1_00(uint32_t resolution_mode);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif // SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_RESOLUTION_MODE_H_
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_RESOLUTION_MODE_H_ */
