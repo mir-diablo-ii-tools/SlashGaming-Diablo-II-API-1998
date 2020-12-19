@@ -45,25 +45,26 @@
 
 #include "architecture_opcode.h"
 
-#include "error_handling.h"
+#include <mdc/error/exit_on_error.h>
 
-enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type) {
+enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type) {
   switch (branch_type) {
-    case BRANCH_CALL: {
-      return OPCODE_CALL;
+    case Mapi_BranchType_kCall: {
+      return Mapi_OpCode_kCall;
     }
 
-    case BRANCH_JUMP: {
-      return OPCODE_JUMP;
+    case Mapi_BranchType_kJump: {
+      return Mapi_OpCode_kJump;
     }
 
     default: {
-      ExitOnGeneralFailure(
-          L"Unknown branch type specified.",
-          L"Unknown Branch Type",
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          branch_type
       );
+
+      return -1;
     }
   }
 }

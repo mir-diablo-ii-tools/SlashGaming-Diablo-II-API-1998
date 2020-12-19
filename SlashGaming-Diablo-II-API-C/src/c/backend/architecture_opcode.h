@@ -48,17 +48,17 @@
 
 #include "../../../include/c/game_branch_type.h"
 
-enum MAPI_OpCode {
-  OPCODE_CALL = 0xE8,
-  OPCODE_JUMP = 0xE9,
-  OPCODE_NOP = 0x90
+enum Mapi_OpCode {
+  Mapi_OpCode_kCall = 0xE8,
+  Mapi_OpCode_kJump = 0xE9,
+  Mapi_OpCode_kNop = 0x90
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-enum MAPI_OpCode MAPI_ToOpcode(enum MAPI_BranchType branch_type);
+enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type);
 
 #ifdef __cplusplus
 } /* extern "C" */
