@@ -46,19 +46,28 @@
 #ifndef SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 #define SGMAPI_C_BACKEND_GAME_LIBRARY_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 
-struct MAPI_GameLibrary {
-  char* file_path;
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+struct Mapi_GameLibrary {
+  const wchar_t* file_path;
   intptr_t base_address;
 };
 
 /**
- * Gets the game library from a global table, loading it into the global table
- * if it is not found.
+ * Gets the game library from a global table, loading it into the
+ * global table if it is not found.
  */
-const struct MAPI_GameLibrary* GetGameLibrary(
-    const char* file_path
+const struct Mapi_GameLibrary* Mapi_GameLibrary_GetFromPath(
+    const wchar_t* file_path
 );
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #endif /* SGMAPI_C_BACKEND_GAME_LIBRARY_H_ */
