@@ -46,7 +46,7 @@
 #ifndef SGMAPI_C_BACKEND_GAME_FUNCTION_CDECL_FUNCTION_H_
 #define SGMAPI_C_BACKEND_GAME_FUNCTION_CDECL_FUNCTION_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 void* __cdecl CallCdeclFunction(
     intptr_t func_ptr,
