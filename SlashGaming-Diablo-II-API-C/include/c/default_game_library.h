@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
 #define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
 
-#include <stddef.h>
+#include <mdc/std/wchar.h>
 
 #include "../dllexport_define.inc"
 
@@ -58,15 +58,24 @@ extern "C" {
  * The default libraries that are used by Diablo II.
  */
 enum D2_DefaultLibrary {
-  LIBRARY_BNCLIENT, LIBRARY_D2CLIENT, LIBRARY_D2CMP, LIBRARY_D2COMMON,
-  LIBRARY_D2DDRAW, LIBRARY_D2DIRECT3D, LIBRARY_D2GAME, LIBRARY_D2GDI,
-  LIBRARY_D2GFX, LIBRARY_D2GLIDE, LIBRARY_D2LANG, LIBRARY_D2LAUNCH,
-  LIBRARY_D2MCPCLIENT, LIBRARY_D2MULTI, LIBRARY_D2NET, LIBRARY_D2SERVER,
-  LIBRARY_D2SOUND, LIBRARY_D2WIN, LIBRARY_FOG, LIBRARY_STORM,
+  D2_DefaultLibrary_kBNClient, D2_DefaultLibrary_kD2Client,
+  D2_DefaultLibrary_kD2CMP, D2_DefaultLibrary_kD2Common,
+  D2_DefaultLibrary_kD2DDraw, D2_DefaultLibrary_kD2Direct3D,
+  D2_DefaultLibrary_kD2Game, D2_DefaultLibrary_kD2GDI,
+  D2_DefaultLibrary_kD2GFX, D2_DefaultLibrary_kD2Glide,
+  D2_DefaultLibrary_kD2Lang,  D2_DefaultLibrary_kD2Launch,
+  D2_DefaultLibrary_kD2MCPClient, D2_DefaultLibrary_kD2Multi,
+  D2_DefaultLibrary_kD2Net, D2_DefaultLibrary_kD2Server,
+  D2_DefaultLibrary_kD2Sound, D2_DefaultLibrary_kD2Win,
+  D2_DefaultLibrary_kFog, D2_DefaultLibrary_kStorm,
 };
 
-DLLEXPORT const char* MAPI_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
+DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
+    enum D2_DefaultLibrary library
+);
+
+DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithoutRedirect(
+    enum D2_DefaultLibrary library
 );
 
 #ifdef __cplusplus

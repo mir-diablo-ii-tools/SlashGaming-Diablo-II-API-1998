@@ -45,61 +45,114 @@
 
 #include "../../include/c/default_game_library.h"
 
-#include <wchar.h>
-
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../include/c/game_executable.h"
 #include "../../include/c/game_version.h"
-#include "../wide_macro.h"
-#include "backend/error_handling.h"
 
-static const char* kLibraryIdToName[] = {
-    [LIBRARY_BNCLIENT] = "BNClient.dll",
-    [LIBRARY_D2CLIENT] = "D2Client.dll",
-    [LIBRARY_D2CMP] = "D2CMP.dll",
-    [LIBRARY_D2COMMON] = "D2Common.dll",
-    [LIBRARY_D2DDRAW] = "D2DDraw.dll",
-    [LIBRARY_D2DIRECT3D] = "D2Direct3D.dll",
-    [LIBRARY_D2GAME] = "D2Game.dll",
-    [LIBRARY_D2GDI] = "D2GDI.dll",
-    [LIBRARY_D2GFX] = "D2GFX.dll",
-    [LIBRARY_D2GLIDE] = "D2Glide.dll",
-    [LIBRARY_D2LANG] = "D2Lang.dll",
-    [LIBRARY_D2LAUNCH] = "D2Launch.dll",
-    [LIBRARY_D2MCPCLIENT] = "D2MCPClient.dll",
-    [LIBRARY_D2MULTI] = "D2Multi.dll",
-    [LIBRARY_D2NET] = "D2Net.dll",
-    [LIBRARY_D2SERVER] = "D2Server.dll",
-    [LIBRARY_D2SOUND] = "D2Sound.dll",
-    [LIBRARY_D2WIN] = "D2Win.dll",
-    [LIBRARY_FOG] = "Fog.dll",
-    [LIBRARY_STORM] = "Storm.dll",
-};
-
-const char* MAPI_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
+const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
+    enum D2_DefaultLibrary library
 ) {
   /* Redirect if the game version is 1.14 or higher. */
   if (D2_IsRunningGameVersionAtLeast1_14()) {
     return Mapi_GetGameExecutablePath();
   }
 
-  if (library_id < 0
-      || library_id > (sizeof(kLibraryIdToName) / sizeof(kLibraryIdToName[0]))) {
-    wchar_t error_message[128];
-    swprintf(
-        error_message,
-        sizeof(error_message) / sizeof(error_message[0]),
-        L"Could not determine the game library path from the library ID: %d",
-        library_id
-    );
+  return Mapi_GetDefaultLibraryPathWithoutRedirect(library);
+}
 
-    ExitOnGeneralFailure(
-        error_message,
-        L"Failed to Determine Game Library Path",
-        __FILEW__,
-        __LINE__
-    );
+const wchar_t* Mapi_GetDefaultLibraryPathWithoutRedirect(
+    enum D2_DefaultLibrary library
+) {
+  switch (library) {
+    case D2_DefaultLibrary_kBNClient: {
+      return L"BNClient.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Client: {
+      return L"D2Client.dll";
+    }
+
+    case D2_DefaultLibrary_kD2CMP: {
+      return L"D2CMP.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Common: {
+      return L"D2Common.dll";
+    }
+
+    case D2_DefaultLibrary_kD2DDraw: {
+      return L"D2DDraw.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Direct3D: {
+      return L"D2Direct3D.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Game: {
+      return L"D2Game.dll";
+    }
+
+    case D2_DefaultLibrary_kD2GDI: {
+      return L"D2GDI.dll";
+    }
+
+    case D2_DefaultLibrary_kD2GFX: {
+      return L"D2GFX.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Glide: {
+      return L"D2Glide.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Lang: {
+      return L"D2Lang.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Launch: {
+      return L"D2Launch.dll";
+    }
+
+    case D2_DefaultLibrary_kD2MCPClient: {
+      return L"D2MCPClient.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Multi: {
+      return L"D2Multi.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Net: {
+      return L"D2Net.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Server: {
+      return L"D2Server.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Sound: {
+      return L"D2Sound.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Win: {
+      return L"D2Win.dll";
+    }
+
+    case D2_DefaultLibrary_kFog: {
+      return L"Fog.dll";
+    }
+
+    case D2_DefaultLibrary_kStorm: {
+      return L"Storm.dll";
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          library
+      );
+
+      return NULL;
+    }
   }
-
-  return kLibraryIdToName[library_id];
 }
