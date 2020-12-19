@@ -84,7 +84,6 @@ kFileVersionSortedTable[] = {
     */
     { { 1, 0, 6, 0 }, D2_GameVersion_k1_06B },
 
-
     /*
     * 1.07 Beta & 1.07 have the same version #, but use completely
     * different DLLs.
