@@ -46,15 +46,15 @@
 #ifndef SGMAPI_C_GAME_UNDEFINED_H_
 #define SGMAPI_C_GAME_UNDEFINED_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-struct MAPI_Undefined;
+struct Mapi_Undefined;
 
-typedef uint8_t MAPI_UndefinedByte;
+typedef uint8_t Mapi_UndefinedByte;
 
 #ifdef __cplusplus
 } /* extern "C" */
