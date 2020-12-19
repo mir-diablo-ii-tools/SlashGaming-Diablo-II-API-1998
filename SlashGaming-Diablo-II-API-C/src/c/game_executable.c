@@ -43,63 +43,92 @@
  *  work.
  */
 
-#include "../../include/c/default_game_library.h"
-
-#include <wchar.h>
-
 #include "../../include/c/game_executable.h"
-#include "../../include/c/game_version.h"
-#include "../wide_macro.h"
-#include "backend/error_handling.h"
 
-static const char* kLibraryIdToName[] = {
-    [LIBRARY_BNCLIENT] = "BNClient.dll",
-    [LIBRARY_D2CLIENT] = "D2Client.dll",
-    [LIBRARY_D2CMP] = "D2CMP.dll",
-    [LIBRARY_D2COMMON] = "D2Common.dll",
-    [LIBRARY_D2DDRAW] = "D2DDraw.dll",
-    [LIBRARY_D2DIRECT3D] = "D2Direct3D.dll",
-    [LIBRARY_D2GAME] = "D2Game.dll",
-    [LIBRARY_D2GDI] = "D2GDI.dll",
-    [LIBRARY_D2GFX] = "D2GFX.dll",
-    [LIBRARY_D2GLIDE] = "D2Glide.dll",
-    [LIBRARY_D2LANG] = "D2Lang.dll",
-    [LIBRARY_D2LAUNCH] = "D2Launch.dll",
-    [LIBRARY_D2MCPCLIENT] = "D2MCPClient.dll",
-    [LIBRARY_D2MULTI] = "D2Multi.dll",
-    [LIBRARY_D2NET] = "D2Net.dll",
-    [LIBRARY_D2SERVER] = "D2Server.dll",
-    [LIBRARY_D2SOUND] = "D2Sound.dll",
-    [LIBRARY_D2WIN] = "D2Win.dll",
-    [LIBRARY_FOG] = "Fog.dll",
-    [LIBRARY_STORM] = "Storm.dll",
+#include <windows.h>
+
+#include <mdc/malloc/malloc.h>
+#include <mdc/std/stdbool.h>
+#include <mdc/std/threads.h>
+
+static wchar_t game_executable_path[MAX_PATH + 1];
+static size_t game_executable_path_len = 0;
+
+static wchar_t* long_game_executable_path = NULL;
+
+enum {
+  kInitialCapacity = 512
 };
 
-const char* MAPI_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
+static wchar_t* GetMemoryAllocGameExecutable(
+    size_t* path_len
 ) {
-  /* Redirect if the game version is 1.14 or higher. */
-  if (D2_IsRunningGameVersionAtLeast1_14()) {
-    return Mapi_GetGameExecutablePath();
+  void* realloc_result;
+
+  wchar_t* path;
+  size_t path_capacity;
+  size_t path_new_capacity;
+
+  path = NULL;
+  path_new_capacity = kInitialCapacity;
+
+  do {
+    realloc_result = Mdc_realloc(path, path_new_capacity * sizeof(path[0]));
+    if (realloc_result == NULL) {
+      goto free_path;
+    }
+
+    path = realloc_result;
+    path_capacity = path_new_capacity;
+    path[path_capacity - 2] = '\0';
+
+    *path_len = GetModuleFileNameW(NULL, path, path_capacity);
+
+    path_new_capacity *= 2;
+  } while (*path_len >= path_capacity);
+
+  return path;
+
+free_path:
+  Mdc_free(path);
+
+  return NULL;
+}
+
+static void InitGameExecutable(void) {
+  /* Simple case: Paths within the MAX_PATH limit. */
+  game_executable_path_len = GetModuleFileNameW(
+      NULL,
+      game_executable_path,
+      MAX_PATH + 1
+  );
+
+  if (game_executable_path_len < MAX_PATH) {
+    return;
   }
 
-  if (library_id < 0
-      || library_id > (sizeof(kLibraryIdToName) / sizeof(kLibraryIdToName[0]))) {
-    wchar_t error_message[128];
-    swprintf(
-        error_message,
-        sizeof(error_message) / sizeof(error_message[0]),
-        L"Could not determine the game library path from the library ID: %d",
-        library_id
-    );
+  /* Complex case: Paths beyond the MAX_PATH limit. */
+  long_game_executable_path = GetMemoryAllocGameExecutable(
+      &game_executable_path_len
+  );
+}
 
-    ExitOnGeneralFailure(
-        error_message,
-        L"Failed to Determine Game Library Path",
-        __FILEW__,
-        __LINE__
-    );
+static void InitStatic(void) {
+  static once_flag game_executable_path_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_executable_path_init_flag, &InitGameExecutable);
+}
+
+/**
+ * External functions
+ */
+
+const wchar_t* Mapi_GetGameExecutablePath(void) {
+  InitStatic();
+
+  if (game_executable_path_len < MAX_PATH) {
+    return game_executable_path;
   }
 
-  return kLibraryIdToName[library_id];
+  return long_game_executable_path;
 }

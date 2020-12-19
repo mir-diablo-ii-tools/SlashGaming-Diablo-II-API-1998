@@ -43,63 +43,19 @@
  *  work.
  */
 
-#include "../../include/c/default_game_library.h"
+#ifndef SGMAPI_C_GAME_EXECUTABLE_H_
+#define SGMAPI_C_GAME_EXECUTABLE_H_
 
 #include <wchar.h>
 
-#include "../../include/c/game_executable.h"
-#include "../../include/c/game_version.h"
-#include "../wide_macro.h"
-#include "backend/error_handling.h"
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
-static const char* kLibraryIdToName[] = {
-    [LIBRARY_BNCLIENT] = "BNClient.dll",
-    [LIBRARY_D2CLIENT] = "D2Client.dll",
-    [LIBRARY_D2CMP] = "D2CMP.dll",
-    [LIBRARY_D2COMMON] = "D2Common.dll",
-    [LIBRARY_D2DDRAW] = "D2DDraw.dll",
-    [LIBRARY_D2DIRECT3D] = "D2Direct3D.dll",
-    [LIBRARY_D2GAME] = "D2Game.dll",
-    [LIBRARY_D2GDI] = "D2GDI.dll",
-    [LIBRARY_D2GFX] = "D2GFX.dll",
-    [LIBRARY_D2GLIDE] = "D2Glide.dll",
-    [LIBRARY_D2LANG] = "D2Lang.dll",
-    [LIBRARY_D2LAUNCH] = "D2Launch.dll",
-    [LIBRARY_D2MCPCLIENT] = "D2MCPClient.dll",
-    [LIBRARY_D2MULTI] = "D2Multi.dll",
-    [LIBRARY_D2NET] = "D2Net.dll",
-    [LIBRARY_D2SERVER] = "D2Server.dll",
-    [LIBRARY_D2SOUND] = "D2Sound.dll",
-    [LIBRARY_D2WIN] = "D2Win.dll",
-    [LIBRARY_FOG] = "Fog.dll",
-    [LIBRARY_STORM] = "Storm.dll",
-};
+const wchar_t* Mapi_GetGameExecutablePath(void);
 
-const char* MAPI_GetDefaultLibraryPathWithRedirect(
-    enum D2_DefaultLibrary library_id
-) {
-  /* Redirect if the game version is 1.14 or higher. */
-  if (D2_IsRunningGameVersionAtLeast1_14()) {
-    return Mapi_GetGameExecutablePath();
-  }
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-  if (library_id < 0
-      || library_id > (sizeof(kLibraryIdToName) / sizeof(kLibraryIdToName[0]))) {
-    wchar_t error_message[128];
-    swprintf(
-        error_message,
-        sizeof(error_message) / sizeof(error_message[0]),
-        L"Could not determine the game library path from the library ID: %d",
-        library_id
-    );
-
-    ExitOnGeneralFailure(
-        error_message,
-        L"Failed to Determine Game Library Path",
-        __FILEW__,
-        __LINE__
-    );
-  }
-
-  return kLibraryIdToName[library_id];
-}
+#endif /* SGMAPI_C_GAME_EXECUTABLE_H_ */
