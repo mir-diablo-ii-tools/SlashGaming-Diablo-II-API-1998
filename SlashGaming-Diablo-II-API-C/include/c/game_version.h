@@ -46,9 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VERSION_H_
 #define SGD2MAPI_C_GAME_VERSION_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-#include <stddef.h>
+#include <mdc/std/stdbool.h>
 
 #include "../dllexport_define.inc"
 
@@ -60,15 +58,22 @@ extern "C" {
  * The Diablo II game versions supported and recognized.
  */
 enum D2_GameVersion {
-  VERSION_1_00, VERSION_1_01, VERSION_1_02, VERSION_1_03, VERSION_1_04B_C,
-  VERSION_1_05, VERSION_1_05B, VERSION_1_06, VERSION_1_06B, VERSION_1_07_BETA,
-  VERSION_1_07, VERSION_1_08, VERSION_1_09, VERSION_1_09B, VERSION_1_09D,
-  VERSION_1_10_BETA, VERSION_1_10S_BETA, VERSION_1_10, VERSION_1_11,
-  VERSION_1_11B, VERSION_1_12A, VERSION_1_13A_BETA, VERSION_1_13C,
-  VERSION_1_13D,
+  D2_GameVersion_kBeta1_02, D2_GameVersion_kBeta1_02StressTest,
 
-  CLASSIC_1_14A, LOD_1_14A, CLASSIC_1_14B, LOD_1_14B, CLASSIC_1_14C,
-  LOD_1_14C, CLASSIC_1_14D, LOD_1_14D,
+  D2_GameVersion_k1_00, D2_GameVersion_k1_01, D2_GameVersion_k1_02,
+  D2_GameVersion_k1_03, D2_GameVersion_k1_04B_C, D2_GameVersion_k1_05,
+  D2_GameVersion_k1_05B, D2_GameVersion_k1_06, D2_GameVersion_k1_06B,
+
+  D2_GameVersion_k1_07Beta, D2_GameVersion_k1_07, D2_GameVersion_k1_08,
+  D2_GameVersion_k1_09, D2_GameVersion_k1_09B, D2_GameVersion_k1_09D,
+  D2_GameVersion_k1_10Beta, D2_GameVersion_k1_10SBeta, D2_GameVersion_k1_10,
+  D2_GameVersion_k1_11, D2_GameVersion_k1_11B, D2_GameVersion_k1_12A,
+  D2_GameVersion_k1_13ABeta, D2_GameVersion_k1_13C, D2_GameVersion_k1_13D,
+
+  D2_GameVersion_kClassic1_14A, D2_GameVersion_kLod1_14A,
+  D2_GameVersion_kClassic1_14B, D2_GameVersion_kLod1_14B,
+  D2_GameVersion_kClassic1_14C, D2_GameVersion_kLod1_14C,
+  D2_GameVersion_kClassic1_14D, D2_GameVersion_kLod1_14D,
 };
 
 /**
@@ -76,13 +81,13 @@ enum D2_GameVersion {
  * specified game version.
  */
 DLLEXPORT const char* D2_GetGameVersionName(
-    enum D2_GameVersion game_version_id
+    enum D2_GameVersion game_version
 );
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT int D2_GetRunningGameVersionId(void);
+DLLEXPORT enum D2_GameVersion D2_GetRunningGameVersion(void);
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
