@@ -46,7 +46,7 @@
 #ifndef SGMAPI_C_GAME_EXECUTABLE_H_
 #define SGMAPI_C_GAME_EXECUTABLE_H_
 
-#include <wchar.h>
+#include <mdc/std/wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
