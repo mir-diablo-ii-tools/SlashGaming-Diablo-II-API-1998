@@ -146,6 +146,7 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBackBranchPatch(
 ) {
   struct Mapi_GamePatch game_patch;
   size_t func_patch_pos;
+  ptrdiff_t func_ptr_offset;
 
   if (patch_size < kBranchPatchMinSize) {
     Mdc_Error_ExitOnGeneralError(
@@ -165,9 +166,11 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBackBranchPatch(
   game_patch = Mapi_GamePatch_InitGameNopPatch(game_address, patch_size);
 
   func_patch_pos = patch_size - sizeof(func_ptr);
+  func_ptr_offset = ((intptr_t) func_ptr)
+      - (game_address->raw_address + patch_size);
 
   game_patch.patch_buffer[func_patch_pos - 1] = Mapi_ToOpcode(branch_type);
-  *((void (**)(void)) &game_patch.patch_buffer[func_patch_pos]) = func_ptr;
+  *((ptrdiff_t*) &game_patch.patch_buffer[func_patch_pos]) = func_ptr_offset;
 
   return game_patch;
 
@@ -182,6 +185,7 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBranchPatch(
     size_t patch_size
 ) {
   struct Mapi_GamePatch game_patch;
+  ptrdiff_t func_ptr_offset;
 
   if (patch_size < kBranchPatchMinSize) {
     Mdc_Error_ExitOnGeneralError(
@@ -200,8 +204,11 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBranchPatch(
 
   game_patch = Mapi_GamePatch_InitGameNopPatch(game_address, patch_size);
 
+  func_ptr_offset = (intptr_t) func_ptr -
+      (game_address->raw_address + kBranchPatchMinSize);
+
   game_patch.patch_buffer[0] = Mapi_ToOpcode(branch_type);
-  *((void (**)(void)) &game_patch.patch_buffer[1]) = func_ptr;
+  *((ptrdiff_t*) &game_patch.patch_buffer[1]) = func_ptr_offset;
 
   return game_patch;
 
