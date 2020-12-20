@@ -50,7 +50,7 @@
 #include "../../include/c/game_executable.h"
 #include "../../include/c/game_version.h"
 
-const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
+const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
     enum D2_DefaultLibrary library
 ) {
   /* Redirect if the game version is 1.14 or higher. */
@@ -58,10 +58,10 @@ const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
     return Mapi_GetGameExecutablePath();
   }
 
-  return Mapi_GetDefaultLibraryPathWithoutRedirect(library);
+  return D2_DefaultLibrary_GetPathWithoutRedirect(library);
 }
 
-const wchar_t* Mapi_GetDefaultLibraryPathWithoutRedirect(
+const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
     enum D2_DefaultLibrary library
 ) {
   switch (library) {

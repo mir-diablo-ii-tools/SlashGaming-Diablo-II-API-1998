@@ -70,11 +70,11 @@ enum D2_DefaultLibrary {
   D2_DefaultLibrary_kFog, D2_DefaultLibrary_kStorm,
 };
 
-DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithRedirect(
+DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
     enum D2_DefaultLibrary library
 );
 
-DLLEXPORT const wchar_t* Mapi_GetDefaultLibraryPathWithoutRedirect(
+DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
     enum D2_DefaultLibrary library
 );
 
