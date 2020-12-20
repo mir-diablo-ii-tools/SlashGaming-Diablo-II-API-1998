@@ -123,8 +123,31 @@ Mapi_GameAddress_InitFromPathAndOrdinal(
     int16_t ordinal
 );
 
+DLLEXPORT struct Mapi_GameAddress Mapi_GameAddress_InitCopy(
+    const struct Mapi_GameAddress* src
+);
+
+DLLEXPORT struct Mapi_GameAddress Mapi_GameAddress_InitMove(
+    struct Mapi_GameAddress* src
+);
+
 DLLEXPORT void Mapi_GameAddress_Deinit(
     struct Mapi_GameAddress* game_address
+);
+
+DLLEXPORT struct Mapi_GameAddress* Mapi_GameAddress_AssignCopy(
+    struct Mapi_GameAddress* dest,
+    const struct Mapi_GameAddress* src
+);
+
+DLLEXPORT struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
+    struct Mapi_GameAddress* dest,
+    struct Mapi_GameAddress* src
+);
+
+DLLEXPORT void Mapi_GameAddress_Swap(
+    struct Mapi_GameAddress* game_address1,
+    struct Mapi_GameAddress* game_address2
 );
 
 #ifdef __cplusplus

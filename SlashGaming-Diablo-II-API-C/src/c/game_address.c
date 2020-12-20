@@ -204,8 +204,63 @@ return_bad:
   return Mapi_GameAddress_kUninit;
 }
 
+struct Mapi_GameAddress Mapi_GameAddress_InitCopy(
+    const struct Mapi_GameAddress* src
+) {
+  struct Mapi_GameAddress game_address;
+
+  game_address.raw_address = src->raw_address;
+
+  return game_address;
+}
+
+struct Mapi_GameAddress Mapi_GameAddress_InitMove(
+    struct Mapi_GameAddress* src
+) {
+  return Mapi_GameAddress_InitCopy(src);
+}
+
 void Mapi_GameAddress_Deinit(
     struct Mapi_GameAddress* game_address
 ) {
   /* Do nothing, as there is nothing to free. */
+}
+
+struct Mapi_GameAddress* Mapi_GameAddress_AssignCopy(
+    struct Mapi_GameAddress* dest,
+    const struct Mapi_GameAddress* src
+) {
+  if (dest == src) {
+    return dest;
+  }
+
+  dest->raw_address = src->raw_address;
+
+  return dest;
+}
+
+struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
+    struct Mapi_GameAddress* dest,
+    struct Mapi_GameAddress* src
+) {
+  if (dest == src) {
+    return dest;
+  }
+
+  return Mapi_GameAddress_AssignCopy(dest, src);
+}
+
+void Mapi_GameAddress_Swap(
+    struct Mapi_GameAddress* game_address1,
+    struct Mapi_GameAddress* game_address2
+) {
+  struct Mapi_GameAddress temp_game_address;
+
+  if (game_address1 == game_address2) {
+    return;
+  }
+
+  temp_game_address = *game_address1;
+  *game_address1 = *game_address2;
+  *game_address2 = temp_game_address;
 }
