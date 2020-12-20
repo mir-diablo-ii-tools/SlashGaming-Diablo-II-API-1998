@@ -46,9 +46,90 @@
 #ifndef SGMAPI_C_GAME_ADDRESS_H_
 #define SGMAPI_C_GAME_ADDRESS_H_
 
-#include "game_address/game_address_struct.h"
-#include "game_address/game_decorated_name.h"
-#include "game_address/game_offset.h"
-#include "game_address/game_ordinal.h"
+#include <stddef.h>
 
+#include <mdc/std/stdint.h>
+#include "default_game_library.h"
+
+#include "../dllexport_define.inc"
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+struct Mapi_GameAddress {
+  intptr_t raw_address;
+};
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as a string encoded in 7-bit ASCII, which represents the address's
+ * exported name.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromLibraryAndExportedName(
+    enum D2_DefaultLibrary library,
+    const char* decorated_name
+);
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as a null-terminated string encoded in 7-bit ASCII, which
+ * represents the address's exported name.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromPathAndExportedName(
+    const wchar_t* path,
+    const char* decorated_name
+);
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as the offset from the module base address to the target address.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromLibraryAndOffset(
+    enum D2_DefaultLibrary library,
+    ptrdiff_t offset
+);
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as the offset from the module base address to the target address.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromPathAndOffset(
+    const wchar_t* path,
+    ptrdiff_t offset
+);
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as the address's ordinal value.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromLibraryAndOrdinal(
+    enum D2_DefaultLibrary library,
+    int16_t ordinal
+);
+
+/**
+ * Initializes a GameAddress. The game address locator is specified
+ * as the address's ordinal value.
+ */
+DLLEXPORT struct Mapi_GameAddress
+Mapi_GameAddress_InitFromPathAndOrdinal(
+    const wchar_t* path,
+    int16_t ordinal
+);
+
+DLLEXPORT void Mapi_GameAddress_Deinit(
+    struct Mapi_GameAddress* game_address
+);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_C_GAME_ADDRESS_H_ */
