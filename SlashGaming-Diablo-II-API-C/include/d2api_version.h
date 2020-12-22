@@ -51,11 +51,12 @@
 #define SGD2MAPI_D2API_VERSION_H_
 
 /* Requires manual version selection for conflicting APIs across versions. */
-#define D2API_VERSION_ALL 42L
+#define D2API_VERSION_ALL 999999999L
 
 /* Or use the API of the specified version. */
 #define D2API_VERSION_1_00 20000629L
 #define D2API_VERSION_1_07 20010627L
+#define D2API_VERSION_1_09D 20011205L
 #define D2API_VERSION_1_11 20050726L
 
 /* Set the default version to be API All. */
