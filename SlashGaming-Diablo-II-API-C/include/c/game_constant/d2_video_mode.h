@@ -53,13 +53,13 @@
  */
 
 enum D2_VideoMode {
-  VIDEO_MODE_GDI,
-  VIDEO_MODE_SOFTWARE,
-  VIDEO_MODE_DIRECT_DRAW,
-  VIDEO_MODE_GLIDE,
-  VIDEO_MODE_OPENGL,
-  VIDEO_MODE_DIRECT3D,
-  VIDEO_MODE_RAVE
+  D2_VideoMode_kGdi,
+  D2_VideoMode_kSoftware,
+  D2_VideoMode_kDirectDraw,
+  D2_VideoMode_kGlide,
+  D2_VideoMode_kOpenGl,
+  D2_VideoMode_kDirect3D,
+  D2_VideoMode_kRave,
 };
 
 /**
@@ -67,13 +67,13 @@ enum D2_VideoMode {
  */
 
 enum D2_VideoMode_1_00 {
-  VIDEO_MODE_1_00_GDI = 1,
-  VIDEO_MODE_1_00_SOFTWARE,
-  VIDEO_MODE_1_00_DIRECT_DRAW,
-  VIDEO_MODE_1_00_GLIDE,
-  VIDEO_MODE_1_00_OPENGL,
-  VIDEO_MODE_1_00_DIRECT3D,
-  VIDEO_MODE_1_00_RAVE
+  D2_VideoMode_1_00_kGdi = 1,
+  D2_VideoMode_1_00_kSoftware,
+  D2_VideoMode_1_00_kDirectDraw,
+  D2_VideoMode_1_00_kGlide,
+  D2_VideoMode_1_00_kOpenGl,
+  D2_VideoMode_1_00_kDirect3D,
+  D2_VideoMode_1_00_kRave,
 };
 
 /**
@@ -97,7 +97,15 @@ extern "C" {
 
 DLLEXPORT int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value);
 
+DLLEXPORT enum D2_VideoMode_1_00 D2_VideoMode_ToGameValue_1_00(
+    enum D2_VideoMode api_value
+);
+
 DLLEXPORT enum D2_VideoMode D2_VideoMode_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_VideoMode D2_VideoMode_ToApiValue_1_00(
+    enum D2_VideoMode_1_00 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

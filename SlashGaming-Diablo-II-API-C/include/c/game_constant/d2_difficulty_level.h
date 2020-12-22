@@ -53,9 +53,9 @@
  */
 
 enum D2_DifficultyLevel {
-  DIFFICULTY_LEVEL_NORMAL,
-  DIFFICULTY_LEVEL_NIGHTMARE,
-  DIFFICULTY_LEVEL_HELL
+  D2_DifficultyLevel_kNormal,
+  D2_DifficultyLevel_kNightmare,
+  D2_DifficultyLevel_kHell
 };
 
 /**
@@ -63,9 +63,9 @@ enum D2_DifficultyLevel {
  */
 
 enum D2_DifficultyLevel_1_00 {
-  DIFFICULTY_LEVEL_1_00_NORMAL,
-  DIFFICULTY_LEVEL_1_00_NIGHTMARE,
-  DIFFICULTY_LEVEL_1_00_HELL
+  D2_DifficultyLevel_1_00_kNormal,
+  D2_DifficultyLevel_1_00_kNightmare,
+  D2_DifficultyLevel_1_00_kHell
 };
 
 /**
@@ -91,8 +91,16 @@ DLLEXPORT int D2_DifficultyLevel_ToGameValue(
     enum D2_DifficultyLevel api_value
 );
 
-DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToAPIValue(
+DLLEXPORT enum D2_DifficultyLevel_1_00 D2_DifficultyLevel_ToGameValue_1_00(
+    enum D2_DifficultyLevel api_value
+);
+
+DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue(
     int game_value
+);
+
+DLLEXPORT enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue_1_00(
+    enum D2_DifficultyLevel_1_00 game_value
 );
 
 #ifdef __cplusplus

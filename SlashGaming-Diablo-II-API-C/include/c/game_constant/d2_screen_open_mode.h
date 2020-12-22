@@ -53,10 +53,10 @@
  */
 
 enum D2_ScreenOpenMode {
-  SCREEN_OPEN_MODE_NONE,
-  SCREEN_OPEN_MODE_RIGHT,
-  SCREEN_OPEN_MODE_LEFT,
-  SCREEN_OPEN_MODE_BOTH,
+  D2_ScreenOpenMode_kNone,
+  D2_ScreenOpenMode_kRight,
+  D2_ScreenOpenMode_kLeft,
+  D2_ScreenOpenMode_kBoth,
 };
 
 /**
@@ -64,10 +64,10 @@ enum D2_ScreenOpenMode {
  */
 
 enum D2_ScreenOpenMode_1_07 {
-  SCREEN_OPEN_MODE_1_07_NONE,
-  SCREEN_OPEN_MODE_1_07_RIGHT,
-  SCREEN_OPEN_MODE_1_07_LEFT,
-  SCREEN_OPEN_MODE_1_07_BOTH,
+  D2_ScreenOpenMode_1_07_kNone,
+  D2_ScreenOpenMode_1_07_kRight,
+  D2_ScreenOpenMode_1_07_kLeft,
+  D2_ScreenOpenMode_1_07_kBoth,
 };
 
 /**
@@ -89,9 +89,21 @@ typedef enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_1_07;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value);
+DLLEXPORT int D2_ScreenOpenMode_ToGameValue(
+    enum D2_ScreenOpenMode api_value
+);
 
-DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value);
+DLLEXPORT enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
+    enum D2_ScreenOpenMode api_value
+);
+
+DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(
+    int game_value
+);
+
+DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
+    enum D2_ScreenOpenMode_1_07 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

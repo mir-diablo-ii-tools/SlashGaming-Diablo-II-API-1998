@@ -53,14 +53,14 @@
  */
 
 enum D2_DrawEffect {
-  DRAW_EFFECT_ONE_FOURTH_OPAQUE,
-  DRAW_EFFECT_HALF_OPAQUE,
-  DRAW_EFFECT_THREE_FOURTHS_OPAQUE,
-  DRAW_EFFECT_UNKNOWN_03,
-  DRAW_EFFECT_UNKNOWN_04,
-  DRAW_EFFECT_NONE,
-  DRAW_EFFECT_UNKNOWN_06,
-  DRAW_EFFECT_UNKNOWN_07
+  D2_DrawEffect_kOneFourthOpaque,
+  D2_DrawEffect_kHalfOpaque,
+  D2_DrawEffect_kThreeFourthsOpaque,
+  D2_DrawEffect_kUnknown03,
+  D2_DrawEffect_kUnknown04,
+  D2_DrawEffect_kNone,
+  D2_DrawEffect_kUnknown06,
+  D2_DrawEffect_kUnknown07
 };
 
 /**
@@ -68,14 +68,14 @@ enum D2_DrawEffect {
  */
 
 enum D2_DrawEffect_1_00 {
-  DRAW_EFFECT_1_00_ONE_FOURTH_OPAQUE,
-  DRAW_EFFECT_1_00_HALF_OPAQUE,
-  DRAW_EFFECT_1_00_THREE_FOURTHS_OPAQUE,
-  DRAW_EFFECT_1_00_UNKNOWN_03,
-  DRAW_EFFECT_1_00_UNKNOWN_04,
-  DRAW_EFFECT_1_00_NONE,
-  DRAW_EFFECT_1_00_UNKNOWN_06,
-  DRAW_EFFECT_1_00_UNKNOWN_07
+  D2_DrawEffect_1_00_kOneFourthOpaque,
+  D2_DrawEffect_1_00_kHalfOpaque,
+  D2_DrawEffect_1_00_kThreeFourthsOpaque,
+  D2_DrawEffect_1_00_kUnknown03,
+  D2_DrawEffect_1_00_kUnknown04,
+  D2_DrawEffect_1_00_kNone,
+  D2_DrawEffect_1_00_kUnknown06,
+  D2_DrawEffect_1_00_kUnknown07
 };
 
 /**
@@ -99,7 +99,15 @@ extern "C" {
 
 DLLEXPORT int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value);
 
+DLLEXPORT enum D2_DrawEffect_1_00 D2_DrawEffect_ToGameValue_1_00(
+    enum D2_DrawEffect api_value
+);
+
 DLLEXPORT enum D2_DrawEffect D2_DrawEffect_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_DrawEffect D2_DrawEffect_ToApiValue_1_00(
+    enum D2_DrawEffect_1_00 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -45,172 +45,186 @@
 
 #include "../../../include/c/game_constant/d2_client_game_type.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-static enum D2_ClientGameType_1_00 ToGameValue_1_00(
-    enum D2_ClientGameType api_value
-) {
-  switch (api_value) {
-    case CLIENT_GAME_TYPE_SINGLE_PLAYER: {
-      return CLIENT_GAME_TYPE_1_00_SINGLE_PLAYER;
-    }
-
-    case CLIENT_GAME_TYPE_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_1_00_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST_OR_LAN_HOST: {
-      return CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_HOST_OR_LAN_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN: {
-      return CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_ClientGameType ToApiValue_1_00(
-    enum D2_ClientGameType_1_00 game_value
-) {
-  switch (game_value) {
-    case CLIENT_GAME_TYPE_1_00_SINGLE_PLAYER: {
-      return CLIENT_GAME_TYPE_SINGLE_PLAYER;
-    }
-
-    case CLIENT_GAME_TYPE_1_00_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_HOST_OR_LAN_HOST: {
-      return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST_OR_LAN_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN: {
-      return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          game_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_ClientGameType_1_09D ToGameValue_1_09D(
-    enum D2_ClientGameType api_value
-) {
-  switch (api_value) {
-    case CLIENT_GAME_TYPE_SINGLE_PLAYER: {
-      return CLIENT_GAME_TYPE_1_09D_SINGLE_PLAYER;
-    }
-
-    case CLIENT_GAME_TYPE_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST: {
-      return CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_LAN_HOST: {
-      return CLIENT_GAME_TYPE_1_09D_LAN_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_LAN_JOIN: {
-      return CLIENT_GAME_TYPE_1_09D_LAN_JOIN;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_ClientGameType ToApiValue_1_09D(
-    enum D2_ClientGameType_1_09D game_value
-) {
-  switch (game_value) {
-    case CLIENT_GAME_TYPE_1_09D_SINGLE_PLAYER: {
-      return CLIENT_GAME_TYPE_SINGLE_PLAYER;
-    }
-
-    case CLIENT_GAME_TYPE_1_09D_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_HOST: {
-      return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_JOIN: {
-      return CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN;
-    }
-
-    case CLIENT_GAME_TYPE_1_09D_LAN_HOST: {
-      return CLIENT_GAME_TYPE_LAN_HOST;
-    }
-
-    case CLIENT_GAME_TYPE_1_09D_LAN_JOIN: {
-      return CLIENT_GAME_TYPE_LAN_JOIN;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          game_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
 int D2_ClientGameType_ToGameValue(enum D2_ClientGameType api_value) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version < VERSION_1_07) {
-    return ToGameValue_1_00(api_value);
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version < D2_GameVersion_k1_07) {
+    return D2_ClientGameType_ToGameValue_1_00(api_value);
   } else {
-    return ToGameValue_1_09D(api_value);
+    return D2_ClientGameType_ToGameValue_1_07(api_value);
   }
+}
+
+enum D2_ClientGameType_1_00 D2_ClientGameType_ToGameValue_1_00(
+    enum D2_ClientGameType api_value
+) {
+  switch (api_value) {
+    case D2_ClientGameType_kSinglePlayer: {
+      return D2_ClientGameType_1_00_kSinglePlayer;
+    }
+
+    case D2_ClientGameType_kBattleNetJoin: {
+      return D2_ClientGameType_1_00_kBattleNetJoin;
+    }
+
+    case D2_ClientGameType_kOpenBattleNetHostOrLanHost: {
+      return D2_ClientGameType_1_00_kOpenBattleNetHostOrLanHost;
+    }
+
+    case D2_ClientGameType_kOpenBattleNetJoinOrLanJoin: {
+      return D2_ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          api_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
+}
+
+enum D2_ClientGameType_1_07 D2_ClientGameType_ToGameValue_1_07(
+    enum D2_ClientGameType api_value
+) {
+  switch (api_value) {
+    case D2_ClientGameType_kSinglePlayer: {
+      return D2_ClientGameType_1_07_kSinglePlayer;
+    }
+
+    case D2_ClientGameType_kBattleNetJoin: {
+      return D2_ClientGameType_1_07_kBattleNetJoin;
+    }
+
+    case D2_ClientGameType_kOpenBattleNetHost: {
+      return D2_ClientGameType_1_07_kOpenBattleNetHost;
+    }
+
+    case D2_ClientGameType_kOpenBattleNetJoin: {
+      return D2_ClientGameType_1_07_kOpenBattleNetJoin;
+    }
+
+    case D2_ClientGameType_kLanHost: {
+      return D2_ClientGameType_1_07_kLanHost;
+    }
+
+    case D2_ClientGameType_kLanJoin: {
+      return D2_ClientGameType_1_07_kLanJoin;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          api_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }
 
 enum D2_ClientGameType D2_ClientGameType_ToApiValue(int game_value) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version < VERSION_1_07) {
-    return ToApiValue_1_00(game_value);
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version < D2_GameVersion_k1_07) {
+    return D2_ClientGameType_ToApiValue_1_00(game_value);
   } else {
-    return ToApiValue_1_09D(game_value);
+    return D2_ClientGameType_ToApiValue_1_07(game_value);
   }
+}
+
+enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_00(
+    enum D2_ClientGameType_1_00 game_value
+) {
+  switch (game_value) {
+    case D2_ClientGameType_1_00_kSinglePlayer: {
+      return D2_ClientGameType_kSinglePlayer;
+    }
+
+    case D2_ClientGameType_1_00_kBattleNetJoin: {
+      return D2_ClientGameType_kBattleNetJoin;
+    }
+
+    case D2_ClientGameType_1_00_kOpenBattleNetHostOrLanHost: {
+      return D2_ClientGameType_kOpenBattleNetHostOrLanHost;
+    }
+
+    case D2_ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin: {
+      return D2_ClientGameType_kOpenBattleNetJoinOrLanJoin;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
+}
+
+enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
+    enum D2_ClientGameType_1_07 game_value
+) {
+  switch (game_value) {
+    case D2_ClientGameType_1_07_kSinglePlayer: {
+      return D2_ClientGameType_kSinglePlayer;
+    }
+
+    case D2_ClientGameType_1_07_kBattleNetJoin: {
+      return D2_ClientGameType_kBattleNetJoin;
+    }
+
+    case D2_ClientGameType_1_07_kOpenBattleNetHost: {
+      return D2_ClientGameType_kOpenBattleNetHost;
+    }
+
+    case D2_ClientGameType_1_07_kOpenBattleNetJoin: {
+      return D2_ClientGameType_kOpenBattleNetJoin;
+    }
+
+    case D2_ClientGameType_1_07_kLanHost: {
+      return D2_ClientGameType_kLanHost;
+    }
+
+    case D2_ClientGameType_1_07_kLanJoin: {
+      return D2_ClientGameType_kLanJoin;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }

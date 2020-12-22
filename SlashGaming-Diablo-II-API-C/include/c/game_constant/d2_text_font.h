@@ -53,23 +53,23 @@
  */
 
 enum D2_TextFont {
-  TEXT_FONT_DIABLO_MENU_24,
-  TEXT_FONT_DIABLO_MENU_30,
-  TEXT_FONT_DIABLO_MENU_42,
+  D2_TextFont_kDiabloMenu_24,
+  D2_TextFont_kDiabloMenu_30,
+  D2_TextFont_kDiabloMenu_42,
 
-  TEXT_FONT_EXOCET_8,
-  TEXT_FONT_EXOCET_16,
+  D2_TextFont_kExocet_8,
+  D2_TextFont_kExocet_16,
 
-  TEXT_FONT_EXOCET_BLACK_9,
-  TEXT_FONT_EXOCET_BLACK_10,
+  D2_TextFont_kExocetBlack_9,
+  D2_TextFont_kExocetBlack_10,
 
-  TEXT_FONT_FORMAL_6,
-  TEXT_FONT_FORMAL_8,
-  TEXT_FONT_FORMAL_10,
-  TEXT_FONT_FORMAL_11,
-  TEXT_FONT_FORMAL_12,
+  D2_TextFont_kFormal_6,
+  D2_TextFont_kFormal_8,
+  D2_TextFont_kFormal_10,
+  D2_TextFont_kFormal_11,
+  D2_TextFont_kFormal_12,
 
-  TEXT_FONT_FORMAL_WIDE_11,
+  D2_TextFont_kFormalWide_11,
 };
 
 /**
@@ -77,22 +77,22 @@ enum D2_TextFont {
  */
 
 enum D2_TextFont_1_00 {
-  TEXT_FONT_1_00_FORMAL_8,
-  TEXT_FONT_1_00_EXOCET_16,
-  TEXT_FONT_1_00_DIABLO_MENU_30,
-  TEXT_FONT_1_00_DIABLO_MENU_42,
-  TEXT_FONT_1_00_FORMAL_10,
-  TEXT_FONT_1_00_FORMAL_12,
-  TEXT_FONT_1_00_FORMAL_6,
-  TEXT_FONT_1_00_DIABLO_MENU_24,
-  TEXT_FONT_1_00_FORMAL_WIDE_11,
-  TEXT_FONT_1_00_EXOCET_BLACK_10,
-  TEXT_FONT_1_00_EXOCET_BLACK_9,
-  TEXT_FONT_1_00_EXOCET_8,
+  D2_TextFont_1_00_kFormal_8,
+  D2_TextFont_1_00_kExocet_16,
+  D2_TextFont_1_00_kDiabloMenu_30,
+  D2_TextFont_1_00_kDiabloMenu_42,
+  D2_TextFont_1_00_kFormal_10,
+  D2_TextFont_1_00_kFormal_12,
+  D2_TextFont_1_00_kFormal_6,
+  D2_TextFont_1_00_kDiabloMenu_24,
+  D2_TextFont_1_00_kFormalWide_11,
+  D2_TextFont_1_00_kExocetBlack_10,
+  D2_TextFont_1_00_kExocetBlack_9,
+  D2_TextFont_1_00_kExocet_8,
 
-  /* TEXT_FONT_1_00_FORMAL_6 (same as 6) = 12 */
+  /* D2_TextFont_1_00_kFormal_6 (same as 6) = 12 */
 
-  TEXT_FONT_1_00_FORMAL_11 = 13
+  D2_TextFont_1_00_kFormal_11 = 13
 };
 
 /**
@@ -116,7 +116,15 @@ extern "C" {
 
 DLLEXPORT int D2_TextFont_ToGameValue(enum D2_TextFont api_value);
 
+DLLEXPORT enum D2_TextFont_1_00 D2_TextFont_ToGameValue_1_00(
+    enum D2_TextFont api_value
+);
+
 DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue_1_00(
+    enum D2_TextFont_1_00 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

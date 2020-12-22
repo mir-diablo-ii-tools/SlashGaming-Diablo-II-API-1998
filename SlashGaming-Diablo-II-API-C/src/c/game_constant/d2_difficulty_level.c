@@ -45,72 +45,76 @@
 
 #include "../../../include/c/game_constant/d2_difficulty_level.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
+int D2_DifficultyLevel_ToGameValue(enum D2_DifficultyLevel api_value) {
+  return D2_DifficultyLevel_ToGameValue_1_00(api_value);
+}
 
-static enum D2_DifficultyLevel_1_00 ToGameValue_1_00(
+enum D2_DifficultyLevel_1_00 D2_DifficultyLevel_ToGameValue_1_00(
     enum D2_DifficultyLevel api_value
 ) {
   switch (api_value) {
-    case DIFFICULTY_LEVEL_NORMAL: {
-      return DIFFICULTY_LEVEL_1_00_NORMAL;
+    case D2_DifficultyLevel_kNormal: {
+      return D2_DifficultyLevel_1_00_kNormal;
     }
 
-    case DIFFICULTY_LEVEL_NIGHTMARE: {
-      return DIFFICULTY_LEVEL_1_00_NIGHTMARE;
+    case D2_DifficultyLevel_kNightmare: {
+      return D2_DifficultyLevel_1_00_kNightmare;
     }
 
-    case DIFFICULTY_LEVEL_HELL: {
-      return DIFFICULTY_LEVEL_1_00_HELL;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_DifficultyLevel ToApiValue_1_00(
-    enum D2_DifficultyLevel_1_00 game_value
-) {
-  switch (game_value) {
-    case DIFFICULTY_LEVEL_1_00_NORMAL: {
-      return DIFFICULTY_LEVEL_NORMAL;
-    }
-
-    case DIFFICULTY_LEVEL_1_00_NIGHTMARE: {
-      return DIFFICULTY_LEVEL_NIGHTMARE;
-    }
-
-    case DIFFICULTY_LEVEL_1_00_HELL: {
-      return DIFFICULTY_LEVEL_HELL;
+    case D2_DifficultyLevel_kHell: {
+      return D2_DifficultyLevel_1_00_kHell;
     }
 
     default: {
-      ExitOnConstantMappingMissing(
-          game_value,
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          api_value
       );
 
-      return 0;
+      goto return_bad;
     }
   }
-}
 
-int D2_DifficultyLevel_ToGameValue(enum D2_DifficultyLevel api_value) {
-  return ToGameValue_1_00(api_value);
+return_bad:
+  return -1;
 }
 
 enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_DifficultyLevel_ToApiValue_1_00(game_value);
+}
+
+enum D2_DifficultyLevel D2_DifficultyLevel_ToApiValue_1_00(
+    enum D2_DifficultyLevel_1_00 game_value
+) {
+  switch (game_value) {
+    case D2_DifficultyLevel_1_00_kNormal: {
+      return D2_DifficultyLevel_kNormal;
+    }
+
+    case D2_DifficultyLevel_1_00_kNightmare: {
+      return D2_DifficultyLevel_kNightmare;
+    }
+
+    case D2_DifficultyLevel_1_00_kHell: {
+      return D2_DifficultyLevel_kHell;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }

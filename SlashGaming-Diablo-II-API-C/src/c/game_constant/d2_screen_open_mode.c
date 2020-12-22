@@ -45,80 +45,84 @@
 
 #include "../../../include/c/game_constant/d2_screen_open_mode.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
+int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value) {
+  return D2_ScreenOpenMode_ToGameValue_1_07(api_value);
+}
 
-static enum D2_ScreenOpenMode_1_07 ToGameValue_1_07(
+enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
     enum D2_ScreenOpenMode api_value
 ) {
   switch (api_value) {
-    case SCREEN_OPEN_MODE_NONE: {
-      return SCREEN_OPEN_MODE_1_07_NONE;
+    case D2_ScreenOpenMode_kNone: {
+      return D2_ScreenOpenMode_1_07_kNone;
     }
 
-    case SCREEN_OPEN_MODE_RIGHT: {
-      return SCREEN_OPEN_MODE_1_07_RIGHT;
+    case D2_ScreenOpenMode_kRight: {
+      return D2_ScreenOpenMode_1_07_kRight;
     }
 
-    case SCREEN_OPEN_MODE_LEFT: {
-      return SCREEN_OPEN_MODE_1_07_LEFT;
+    case D2_ScreenOpenMode_kLeft: {
+      return D2_ScreenOpenMode_1_07_kLeft;
     }
 
-    case SCREEN_OPEN_MODE_BOTH: {
-      return SCREEN_OPEN_MODE_1_07_BOTH;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_ScreenOpenMode ToApiValue_1_07(
-    enum D2_ScreenOpenMode_1_07 game_value
-) {
-  switch (game_value) {
-    case SCREEN_OPEN_MODE_1_07_NONE: {
-      return SCREEN_OPEN_MODE_NONE;
-    }
-
-    case SCREEN_OPEN_MODE_1_07_RIGHT: {
-      return SCREEN_OPEN_MODE_RIGHT;
-    }
-
-    case SCREEN_OPEN_MODE_1_07_LEFT: {
-      return SCREEN_OPEN_MODE_LEFT;
-    }
-
-    case SCREEN_OPEN_MODE_1_07_BOTH: {
-      return SCREEN_OPEN_MODE_BOTH;
+    case D2_ScreenOpenMode_kBoth: {
+      return D2_ScreenOpenMode_1_07_kBoth;
     }
 
     default: {
-      ExitOnConstantMappingMissing(
-          game_value,
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          api_value
       );
 
-      return 0;
+      goto return_bad;
     }
   }
-}
 
-int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value) {
-  return ToGameValue_1_07(api_value);
+return_bad:
+  return -1;
 }
 
 enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(int game_value) {
-  return ToApiValue_1_07(game_value);
+  return D2_ScreenOpenMode_ToApiValue_1_07(game_value);
+}
+
+enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
+    enum D2_ScreenOpenMode_1_07 game_value
+) {
+  switch (game_value) {
+    case D2_ScreenOpenMode_1_07_kNone: {
+      return D2_ScreenOpenMode_kNone;
+    }
+
+    case D2_ScreenOpenMode_1_07_kRight: {
+      return D2_ScreenOpenMode_kRight;
+    }
+
+    case D2_ScreenOpenMode_1_07_kLeft: {
+      return D2_ScreenOpenMode_kLeft;
+    }
+
+    case D2_ScreenOpenMode_1_07_kBoth: {
+      return D2_ScreenOpenMode_kBoth;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }

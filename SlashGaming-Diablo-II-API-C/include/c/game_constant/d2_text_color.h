@@ -53,25 +53,25 @@
  */
 
 enum D2_TextColor {
-  TEXT_COLOR_WHITE,
-  TEXT_COLOR_RED,
-  TEXT_COLOR_GREEN,
-  TEXT_COLOR_BLUE,
-  TEXT_COLOR_GOLD,
-  TEXT_COLOR_DARK_GREY,
-  TEXT_COLOR_BLACK,
-  TEXT_COLOR_TAN,
-  TEXT_COLOR_ORANGE,
-  TEXT_COLOR_YELLOW,
-  TEXT_COLOR_DARKER_GREEN,
-  TEXT_COLOR_PURPLE,
-  TEXT_COLOR_DARK_GREEN,
-  TEXT_COLOR_METALLIC,
-  TEXT_COLOR_LIGHT_GREY,
-  TEXT_COLOR_CORRUPT,
-  TEXT_COLOR_BRIGHT_WHITE,
-  TEXT_COLOR_DARK_RED,
-  TEXT_COLOR_BROWN,
+  D2_TextColor_kWhite,
+  D2_TextColor_kRed,
+  D2_TextColor_kGreen,
+  D2_TextColor_kBlue,
+  D2_TextColor_kGold,
+  D2_TextColor_kDarkGrey,
+  D2_TextColor_kBlack,
+  D2_TextColor_kTan,
+  D2_TextColor_kOrange,
+  D2_TextColor_kYellow,
+  D2_TextColor_kDarkerGreen,
+  D2_TextColor_kPurple,
+  D2_TextColor_kDarkGreen,
+  D2_TextColor_kMetallic,
+  D2_TextColor_kLightGrey,
+  D2_TextColor_kCorrupt,
+  D2_TextColor_kBrightWhite,
+  D2_TextColor_kDarkRed,
+  D2_TextColor_kBrown,
 };
 
 /**
@@ -79,31 +79,31 @@ enum D2_TextColor {
  */
 
 enum D2_TextColor_1_00 {
-  TEXT_COLOR_1_00_WHITE,
-  TEXT_COLOR_1_00_RED,
-  TEXT_COLOR_1_00_GREEN,
-  TEXT_COLOR_1_00_BLUE,
-  TEXT_COLOR_1_00_GOLD,
-  TEXT_COLOR_1_00_DARK_GREY,
-  TEXT_COLOR_1_00_BLACK,
-  TEXT_COLOR_1_00_TAN,
-  TEXT_COLOR_1_00_ORANGE,
-  TEXT_COLOR_1_00_YELLOW,
-  TEXT_COLOR_1_00_DARKER_GREEN,
-  TEXT_COLOR_1_00_PURPLE,
-  TEXT_COLOR_1_00_DARK_GREEN,
+  D2_TextColor_1_00_kWhite,
+  D2_TextColor_1_00_kRed,
+  D2_TextColor_1_00_kGreen,
+  D2_TextColor_1_00_kBlue,
+  D2_TextColor_1_00_kGold,
+  D2_TextColor_1_00_kDarkGrey,
+  D2_TextColor_1_00_kBlack,
+  D2_TextColor_1_00_kTan,
+  D2_TextColor_1_00_kOrange,
+  D2_TextColor_1_00_kYellow,
+  D2_TextColor_1_00_kDarkerGreen,
+  D2_TextColor_1_00_kPurple,
+  D2_TextColor_1_00_kDarkGreen,
 
   /*
-  * TEXT_COLOR_1_00_WHITE (same as 1) = 13,
-  * TEXT_COLOR_1_00_BLACK (same as 6),
+  * D2_TextColor_1_00_kWhite (same as 1) = 13,
+  * D2_TextColor_1_00_kBlack (same as 6),
   */
 
-  TEXT_COLOR_1_00_METALLIC = 15,
-  TEXT_COLOR_1_00_LIGHT_GREY,
-  TEXT_COLOR_1_00_CORRUPT,
-  TEXT_COLOR_1_00_BRIGHT_WHITE,
-  TEXT_COLOR_1_00_DARK_RED,
-  TEXT_COLOR_1_00_BROWN,
+  D2_TextColor_1_00_kMetallic = 15,
+  D2_TextColor_1_00_kLightGrey,
+  D2_TextColor_1_00_kCorrupt,
+  D2_TextColor_1_00_kBrightWhite,
+  D2_TextColor_1_00_kDarkRed,
+  D2_TextColor_1_00_kBrown,
 };
 
 /**
@@ -127,7 +127,15 @@ extern "C" {
 
 DLLEXPORT int D2_TextColor_ToGameValue(enum D2_TextColor api_value);
 
+DLLEXPORT enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(
+    enum D2_TextColor api_value
+);
+
 DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue(int game_value);
+
+DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue_1_00(
+    enum D2_TextColor_1_00 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

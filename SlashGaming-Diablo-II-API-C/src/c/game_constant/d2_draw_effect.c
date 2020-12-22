@@ -45,112 +45,116 @@
 
 #include "../../../include/c/game_constant/d2_draw_effect.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
+int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value) {
+  return D2_DrawEffect_ToGameValue_1_00(api_value);
+}
 
-static enum D2_DrawEffect_1_00 ToGameValue_1_00(
+enum D2_DrawEffect_1_00 D2_DrawEffect_ToGameValue_1_00(
     enum D2_DrawEffect api_value
 ) {
   switch (api_value) {
-    case DRAW_EFFECT_ONE_FOURTH_OPAQUE: {
-      return DRAW_EFFECT_1_00_ONE_FOURTH_OPAQUE;
+    case D2_DrawEffect_kOneFourthOpaque: {
+      return D2_DrawEffect_1_00_kOneFourthOpaque;
     }
 
-    case DRAW_EFFECT_HALF_OPAQUE: {
-      return DRAW_EFFECT_1_00_HALF_OPAQUE;
+    case D2_DrawEffect_kHalfOpaque: {
+      return D2_DrawEffect_1_00_kHalfOpaque;
     }
 
-    case DRAW_EFFECT_THREE_FOURTHS_OPAQUE: {
-      return DRAW_EFFECT_1_00_THREE_FOURTHS_OPAQUE;
+    case D2_DrawEffect_kThreeFourthsOpaque: {
+      return D2_DrawEffect_1_00_kThreeFourthsOpaque;
     }
 
-    case DRAW_EFFECT_UNKNOWN_03: {
-      return DRAW_EFFECT_1_00_UNKNOWN_03;
+    case D2_DrawEffect_kUnknown03: {
+      return D2_DrawEffect_1_00_kUnknown03;
     }
 
-    case DRAW_EFFECT_UNKNOWN_04: {
-      return DRAW_EFFECT_1_00_UNKNOWN_04;
+    case D2_DrawEffect_kUnknown04: {
+      return D2_DrawEffect_1_00_kUnknown04;
     }
 
-    case DRAW_EFFECT_NONE: {
-      return DRAW_EFFECT_1_00_NONE;
+    case D2_DrawEffect_kNone: {
+      return D2_DrawEffect_1_00_kNone;
     }
 
-    case DRAW_EFFECT_UNKNOWN_06: {
-      return DRAW_EFFECT_1_00_UNKNOWN_06;
+    case D2_DrawEffect_kUnknown06: {
+      return D2_DrawEffect_1_00_kUnknown06;
     }
 
-    case DRAW_EFFECT_UNKNOWN_07: {
-      return DRAW_EFFECT_1_00_UNKNOWN_07;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_DrawEffect ToApiValue_1_00(
-    enum D2_DrawEffect_1_00 game_value
-) {
-  switch (game_value) {
-    case DRAW_EFFECT_1_00_ONE_FOURTH_OPAQUE: {
-      return DRAW_EFFECT_ONE_FOURTH_OPAQUE;
-    }
-
-    case DRAW_EFFECT_1_00_HALF_OPAQUE: {
-      return DRAW_EFFECT_HALF_OPAQUE;
-    }
-
-    case DRAW_EFFECT_1_00_THREE_FOURTHS_OPAQUE: {
-      return DRAW_EFFECT_THREE_FOURTHS_OPAQUE;
-    }
-
-    case DRAW_EFFECT_1_00_UNKNOWN_03: {
-      return DRAW_EFFECT_UNKNOWN_03;
-    }
-
-    case DRAW_EFFECT_1_00_UNKNOWN_04: {
-      return DRAW_EFFECT_UNKNOWN_04;
-    }
-
-    case DRAW_EFFECT_1_00_NONE: {
-      return DRAW_EFFECT_NONE;
-    }
-
-    case DRAW_EFFECT_1_00_UNKNOWN_06: {
-      return DRAW_EFFECT_UNKNOWN_06;
-    }
-
-    case DRAW_EFFECT_1_00_UNKNOWN_07: {
-      return DRAW_EFFECT_UNKNOWN_07;
+    case D2_DrawEffect_kUnknown07: {
+      return D2_DrawEffect_1_00_kUnknown07;
     }
 
     default: {
-      ExitOnConstantMappingMissing(
-          game_value,
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          api_value
       );
 
-      return 0;
+      goto return_bad;
     }
   }
-}
 
-int D2_DrawEffect_ToGameValue(enum D2_DrawEffect api_value) {
-  return ToGameValue_1_00(api_value);
+return_bad:
+  return -1;
 }
 
 enum D2_DrawEffect D2_DrawEffect_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_DrawEffect_ToApiValue_1_00(game_value);
+}
+
+enum D2_DrawEffect D2_DrawEffect_ToApiValue_1_00(
+    enum D2_DrawEffect_1_00 game_value
+) {
+  switch (game_value) {
+    case D2_DrawEffect_1_00_kOneFourthOpaque: {
+      return D2_DrawEffect_kOneFourthOpaque;
+    }
+
+    case D2_DrawEffect_1_00_kHalfOpaque: {
+      return D2_DrawEffect_kHalfOpaque;
+    }
+
+    case D2_DrawEffect_1_00_kThreeFourthsOpaque: {
+      return D2_DrawEffect_kThreeFourthsOpaque;
+    }
+
+    case D2_DrawEffect_1_00_kUnknown03: {
+      return D2_DrawEffect_kUnknown03;
+    }
+
+    case D2_DrawEffect_1_00_kUnknown04: {
+      return D2_DrawEffect_kUnknown04;
+    }
+
+    case D2_DrawEffect_1_00_kNone: {
+      return D2_DrawEffect_kNone;
+    }
+
+    case D2_DrawEffect_1_00_kUnknown06: {
+      return D2_DrawEffect_kUnknown06;
+    }
+
+    case D2_DrawEffect_1_00_kUnknown07: {
+      return D2_DrawEffect_kUnknown07;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }

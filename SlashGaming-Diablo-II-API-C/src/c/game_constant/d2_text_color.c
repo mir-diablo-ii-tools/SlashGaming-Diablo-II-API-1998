@@ -45,208 +45,212 @@
 
 #include "../../../include/c/game_constant/d2_text_color.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
+int D2_TextColor_ToGameValue(enum D2_TextColor api_value) {
+  return D2_TextColor_ToGameValue_1_00(api_value);
+}
 
-static enum D2_TextColor_1_00 ToGameValue_1_00(
+enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(
     enum D2_TextColor api_value
 ) {
   switch (api_value) {
-    case TEXT_COLOR_WHITE: {
-      return TEXT_COLOR_1_00_WHITE;
+    case D2_TextColor_kWhite: {
+      return D2_TextColor_1_00_kWhite;
     }
 
-    case TEXT_COLOR_RED: {
-      return TEXT_COLOR_1_00_RED;
+    case D2_TextColor_kRed: {
+      return D2_TextColor_1_00_kRed;
     }
 
-    case TEXT_COLOR_GREEN: {
-      return TEXT_COLOR_1_00_GREEN;
+    case D2_TextColor_kGreen: {
+      return D2_TextColor_1_00_kGreen;
     }
 
-    case TEXT_COLOR_BLUE: {
-      return TEXT_COLOR_1_00_BLUE;
+    case D2_TextColor_kBlue: {
+      return D2_TextColor_1_00_kBlue;
     }
 
-    case TEXT_COLOR_GOLD: {
-      return TEXT_COLOR_1_00_GOLD;
+    case D2_TextColor_kGold: {
+      return D2_TextColor_1_00_kGold;
     }
 
-    case TEXT_COLOR_DARK_GREY: {
-      return TEXT_COLOR_1_00_DARK_GREY;
+    case D2_TextColor_kDarkGrey: {
+      return D2_TextColor_1_00_kDarkGrey;
     }
 
-    case TEXT_COLOR_BLACK: {
-      return TEXT_COLOR_1_00_BLACK;
+    case D2_TextColor_kBlack: {
+      return D2_TextColor_1_00_kBlack;
     }
 
-    case TEXT_COLOR_TAN: {
-      return TEXT_COLOR_1_00_TAN;
+    case D2_TextColor_kTan: {
+      return D2_TextColor_1_00_kTan;
     }
 
-    case TEXT_COLOR_ORANGE: {
-      return TEXT_COLOR_1_00_ORANGE;
+    case D2_TextColor_kOrange: {
+      return D2_TextColor_1_00_kOrange;
     }
 
-    case TEXT_COLOR_YELLOW: {
-      return TEXT_COLOR_1_00_YELLOW;
+    case D2_TextColor_kYellow: {
+      return D2_TextColor_1_00_kYellow;
     }
 
-    case TEXT_COLOR_DARKER_GREEN: {
-      return TEXT_COLOR_1_00_DARKER_GREEN;
+    case D2_TextColor_kDarkerGreen: {
+      return D2_TextColor_1_00_kDarkerGreen;
     }
 
-    case TEXT_COLOR_PURPLE: {
-      return TEXT_COLOR_1_00_PURPLE;
+    case D2_TextColor_kPurple: {
+      return D2_TextColor_1_00_kPurple;
     }
 
-    case TEXT_COLOR_DARK_GREEN: {
-      return TEXT_COLOR_1_00_DARK_GREEN;
+    case D2_TextColor_kDarkGreen: {
+      return D2_TextColor_1_00_kDarkGreen;
     }
 
-    case TEXT_COLOR_METALLIC: {
-      return TEXT_COLOR_1_00_METALLIC;
+    case D2_TextColor_kMetallic: {
+      return D2_TextColor_1_00_kMetallic;
     }
 
-    case TEXT_COLOR_LIGHT_GREY: {
-      return TEXT_COLOR_1_00_LIGHT_GREY;
+    case D2_TextColor_kLightGrey: {
+      return D2_TextColor_1_00_kLightGrey;
     }
 
-    case TEXT_COLOR_CORRUPT: {
-      return TEXT_COLOR_1_00_CORRUPT;
+    case D2_TextColor_kCorrupt: {
+      return D2_TextColor_1_00_kCorrupt;
     }
 
-    case TEXT_COLOR_BRIGHT_WHITE: {
-      return TEXT_COLOR_1_00_BRIGHT_WHITE;
+    case D2_TextColor_kBrightWhite: {
+      return D2_TextColor_1_00_kBrightWhite;
     }
 
-    case TEXT_COLOR_DARK_RED: {
-      return TEXT_COLOR_1_00_DARK_RED;
+    case D2_TextColor_kDarkRed: {
+      return D2_TextColor_1_00_kDarkRed;
     }
 
-    case TEXT_COLOR_BROWN: {
-      return TEXT_COLOR_1_00_BROWN;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_TextColor ToApiValue_1_00(
-    enum D2_TextColor_1_00 game_value
-) {
-  switch (game_value) {
-    case TEXT_COLOR_1_00_WHITE: {
-      return TEXT_COLOR_WHITE;
-    }
-
-    case TEXT_COLOR_1_00_RED: {
-      return TEXT_COLOR_RED;
-    }
-
-    case TEXT_COLOR_1_00_GREEN: {
-      return TEXT_COLOR_GREEN;
-    }
-
-    case TEXT_COLOR_1_00_BLUE: {
-      return TEXT_COLOR_BLUE;
-    }
-
-    case TEXT_COLOR_1_00_GOLD: {
-      return TEXT_COLOR_GOLD;
-    }
-
-    case TEXT_COLOR_1_00_DARK_GREY: {
-      return TEXT_COLOR_DARK_GREY;
-    }
-
-    case TEXT_COLOR_1_00_BLACK: {
-      return TEXT_COLOR_BLACK;
-    }
-
-    case TEXT_COLOR_1_00_TAN: {
-      return TEXT_COLOR_TAN;
-    }
-
-    case TEXT_COLOR_1_00_ORANGE: {
-      return TEXT_COLOR_ORANGE;
-    }
-
-    case TEXT_COLOR_1_00_YELLOW: {
-      return TEXT_COLOR_YELLOW;
-    }
-
-    case TEXT_COLOR_1_00_DARKER_GREEN: {
-      return TEXT_COLOR_DARKER_GREEN;
-    }
-
-    case TEXT_COLOR_1_00_PURPLE: {
-      return TEXT_COLOR_PURPLE;
-    }
-
-    case TEXT_COLOR_1_00_DARK_GREEN: {
-      return TEXT_COLOR_DARK_GREEN;
-    }
-
-    case 13: {
-      return TEXT_COLOR_WHITE;
-    }
-
-    case 14: {
-      return TEXT_COLOR_BLACK;
-    }
-
-    case TEXT_COLOR_1_00_METALLIC: {
-      return TEXT_COLOR_METALLIC;
-    }
-
-    case TEXT_COLOR_1_00_LIGHT_GREY: {
-      return TEXT_COLOR_LIGHT_GREY;
-    }
-
-    case TEXT_COLOR_1_00_CORRUPT: {
-      return TEXT_COLOR_CORRUPT;
-    }
-
-    case TEXT_COLOR_1_00_BRIGHT_WHITE: {
-      return TEXT_COLOR_BRIGHT_WHITE;
-    }
-
-    case TEXT_COLOR_1_00_DARK_RED: {
-      return TEXT_COLOR_DARK_RED;
-    }
-
-    case TEXT_COLOR_1_00_BROWN: {
-      return TEXT_COLOR_BROWN;
+    case D2_TextColor_kBrown: {
+      return D2_TextColor_1_00_kBrown;
     }
 
     default: {
-      ExitOnConstantMappingMissing(
-          game_value,
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          api_value
       );
 
-      return 0;
+      goto return_bad;
     }
   }
-}
 
-int D2_TextColor_ToGameValue(enum D2_TextColor api_value) {
-  return ToGameValue_1_00(api_value);
+return_bad:
+  return -1;
 }
 
 enum D2_TextColor D2_TextColor_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_TextColor_ToApiValue_1_00(game_value);
+}
+
+enum D2_TextColor D2_TextColor_ToApiValue_1_00(
+    enum D2_TextColor_1_00 game_value
+) {
+  switch (game_value) {
+    case D2_TextColor_1_00_kWhite: {
+      return D2_TextColor_kWhite;
+    }
+
+    case D2_TextColor_1_00_kRed: {
+      return D2_TextColor_kRed;
+    }
+
+    case D2_TextColor_1_00_kGreen: {
+      return D2_TextColor_kGreen;
+    }
+
+    case D2_TextColor_1_00_kBlue: {
+      return D2_TextColor_kBlue;
+    }
+
+    case D2_TextColor_1_00_kGold: {
+      return D2_TextColor_kGold;
+    }
+
+    case D2_TextColor_1_00_kDarkGrey: {
+      return D2_TextColor_kDarkGrey;
+    }
+
+    case D2_TextColor_1_00_kBlack: {
+      return D2_TextColor_kBlack;
+    }
+
+    case D2_TextColor_1_00_kTan: {
+      return D2_TextColor_kTan;
+    }
+
+    case D2_TextColor_1_00_kOrange: {
+      return D2_TextColor_kOrange;
+    }
+
+    case D2_TextColor_1_00_kYellow: {
+      return D2_TextColor_kYellow;
+    }
+
+    case D2_TextColor_1_00_kDarkerGreen: {
+      return D2_TextColor_kDarkerGreen;
+    }
+
+    case D2_TextColor_1_00_kPurple: {
+      return D2_TextColor_kPurple;
+    }
+
+    case D2_TextColor_1_00_kDarkGreen: {
+      return D2_TextColor_kDarkGreen;
+    }
+
+    case 13: {
+      return D2_TextColor_kWhite;
+    }
+
+    case 14: {
+      return D2_TextColor_kBlack;
+    }
+
+    case D2_TextColor_1_00_kMetallic: {
+      return D2_TextColor_kMetallic;
+    }
+
+    case D2_TextColor_1_00_kLightGrey: {
+      return D2_TextColor_kLightGrey;
+    }
+
+    case D2_TextColor_1_00_kCorrupt: {
+      return D2_TextColor_kCorrupt;
+    }
+
+    case D2_TextColor_1_00_kBrightWhite: {
+      return D2_TextColor_kBrightWhite;
+    }
+
+    case D2_TextColor_1_00_kDarkRed: {
+      return D2_TextColor_kDarkRed;
+    }
+
+    case D2_TextColor_1_00_kBrown: {
+      return D2_TextColor_kBrown;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }

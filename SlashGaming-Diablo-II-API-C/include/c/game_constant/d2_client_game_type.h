@@ -55,19 +55,21 @@
  */
 
 enum D2_ClientGameType {
-  CLIENT_GAME_TYPE_SINGLE_PLAYER,
-  CLIENT_GAME_TYPE_BATTLE_NET_JOIN,
+  D2_ClientGameType_kSinglePlayer,
+  D2_ClientGameType_kBattleNetJoin,
 
-#if D2API_VERSION == D2API_VERSION_1_00 || D2API_VERSION == D2API_VERSION_ALL
-  CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST_OR_LAN_HOST = 2,
-  CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN,
+#if D2API_VERSION == D2API_VERSION_ALL \
+    || D2API_VERSION < D2API_VERSION_1_07
+  D2_ClientGameType_kOpenBattleNetHostOrLanHost = 2,
+  D2_ClientGameType_kOpenBattleNetJoinOrLanJoin,
 #endif
 
-#if D2API_VERSION == D2API_VERSION_1_09D || D2API_VERSION == D2API_VERSION_ALL
-  CLIENT_GAME_TYPE_OPEN_BATTLE_NET_HOST = 4,
-  CLIENT_GAME_TYPE_OPEN_BATTLE_NET_JOIN,
-  CLIENT_GAME_TYPE_LAN_HOST,
-  CLIENT_GAME_TYPE_LAN_JOIN
+#if D2API_VERSION == D2API_VERSION_ALL \
+    || D2API_VERSION >= D2API_VERSION_1_07
+  D2_ClientGameType_kOpenBattleNetHost = 4,
+  D2_ClientGameType_kOpenBattleNetJoin,
+  D2_ClientGameType_kLanHost,
+  D2_ClientGameType_kLanJoin,
 #endif
 };
 
@@ -76,19 +78,19 @@ enum D2_ClientGameType {
  */
 
 enum D2_ClientGameType_1_00 {
-  CLIENT_GAME_TYPE_1_00_SINGLE_PLAYER = 0,
-  CLIENT_GAME_TYPE_1_00_BATTLE_NET_JOIN = 3,
-  CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_HOST_OR_LAN_HOST = 6,
-  CLIENT_GAME_TYPE_1_00_OPEN_BATTLE_NET_JOIN_OR_LAN_JOIN,
+  D2_ClientGameType_1_00_kSinglePlayer = 0,
+  D2_ClientGameType_1_00_kBattleNetJoin = 3,
+  D2_ClientGameType_1_00_kOpenBattleNetHostOrLanHost = 6,
+  D2_ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin,
 };
 
-enum D2_ClientGameType_1_09D {
-  CLIENT_GAME_TYPE_1_09D_SINGLE_PLAYER = 0,
-  CLIENT_GAME_TYPE_1_09D_BATTLE_NET_JOIN = 3,
-  CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_HOST = 6,
-  CLIENT_GAME_TYPE_1_09D_OPEN_BATTLE_NET_JOIN,
-  CLIENT_GAME_TYPE_1_09D_LAN_HOST,
-  CLIENT_GAME_TYPE_1_09D_LAN_JOIN,
+enum D2_ClientGameType_1_07 {
+  D2_ClientGameType_1_07_kSinglePlayer = 0,
+  D2_ClientGameType_1_07_kBattleNetJoin = 3,
+  D2_ClientGameType_1_07_kOpenBattleNetHost = 6,
+  D2_ClientGameType_1_07_kOpenBattleNetJoin,
+  D2_ClientGameType_1_07_kLanHost,
+  D2_ClientGameType_1_07_kLanJoin,
 };
 
 /**
@@ -99,7 +101,7 @@ enum D2_ClientGameType_1_09D {
 
 typedef enum D2_ClientGameType D2_ClientGameType;
 typedef enum D2_ClientGameType_1_00 D2_ClientGameType_1_00;
-typedef enum D2_ClientGameType_1_09D D2_ClientGameType_1_09D;
+typedef enum D2_ClientGameType_1_07 D2_ClientGameType_1_07;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -111,8 +113,29 @@ typedef enum D2_ClientGameType_1_09D D2_ClientGameType_1_09D;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_ClientGameType_ToGameValue(enum D2_ClientGameType api_value);
-DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue(int game_value);
+DLLEXPORT int D2_ClientGameType_ToGameValue(
+    enum D2_ClientGameType api_value
+);
+
+DLLEXPORT enum D2_ClientGameType_1_00 D2_ClientGameType_ToGameValue_1_00(
+    enum D2_ClientGameType api_value
+);
+
+DLLEXPORT enum D2_ClientGameType_1_07 D2_ClientGameType_ToGameValue_1_07(
+    enum D2_ClientGameType api_value
+);
+
+DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue(
+    int game_value
+);
+
+DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_00(
+    enum D2_ClientGameType_1_00 game_value
+);
+
+DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
+    enum D2_ClientGameType_1_07 game_value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

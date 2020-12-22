@@ -45,104 +45,108 @@
 
 #include "../../../include/c/game_constant/d2_video_mode.h"
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
-#include "../backend/encoding.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
+int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value) {
+  return D2_VideoMode_ToGameValue_1_00(api_value);
+}
 
-static enum D2_VideoMode_1_00 ToGameValue_1_00(
+enum D2_VideoMode_1_00 D2_VideoMode_ToGameValue_1_00(
     enum D2_VideoMode api_value
 ) {
   switch (api_value) {
-    case VIDEO_MODE_GDI: {
-      return VIDEO_MODE_1_00_GDI;
+    case D2_VideoMode_kGdi: {
+      return D2_VideoMode_1_00_kGdi;
     }
 
-    case VIDEO_MODE_SOFTWARE: {
-      return VIDEO_MODE_1_00_SOFTWARE;
+    case D2_VideoMode_kSoftware: {
+      return D2_VideoMode_1_00_kSoftware;
     }
 
-    case VIDEO_MODE_DIRECT_DRAW: {
-      return VIDEO_MODE_1_00_DIRECT_DRAW;
+    case D2_VideoMode_kDirectDraw: {
+      return D2_VideoMode_1_00_kDirectDraw;
     }
 
-    case VIDEO_MODE_GLIDE: {
-      return VIDEO_MODE_1_00_GLIDE;
+    case D2_VideoMode_kGlide: {
+      return D2_VideoMode_1_00_kGlide;
     }
 
-    case VIDEO_MODE_OPENGL: {
-      return VIDEO_MODE_1_00_OPENGL;
+    case D2_VideoMode_kOpenGl: {
+      return D2_VideoMode_1_00_kOpenGl;
     }
 
-    case VIDEO_MODE_DIRECT3D: {
-      return VIDEO_MODE_1_00_DIRECT3D;
+    case D2_VideoMode_kDirect3D: {
+      return D2_VideoMode_1_00_kDirect3D;
     }
 
-    case VIDEO_MODE_RAVE: {
-      return VIDEO_MODE_1_00_RAVE;
-    }
-
-    default: {
-      ExitOnConstantMappingMissing(
-          api_value,
-          __FILEW__,
-          __LINE__
-      );
-
-      return 0;
-    }
-  }
-}
-
-static enum D2_VideoMode ToApiValue_1_00(
-    enum D2_VideoMode_1_00 game_value
-) {
-  switch (game_value) {
-    case VIDEO_MODE_1_00_GDI: {
-      return VIDEO_MODE_GDI;
-    }
-
-    case VIDEO_MODE_1_00_SOFTWARE: {
-      return VIDEO_MODE_SOFTWARE;
-    }
-
-    case VIDEO_MODE_1_00_DIRECT_DRAW: {
-      return VIDEO_MODE_DIRECT_DRAW;
-    }
-
-    case VIDEO_MODE_1_00_GLIDE: {
-      return VIDEO_MODE_GLIDE;
-    }
-
-    case VIDEO_MODE_1_00_OPENGL: {
-      return VIDEO_MODE_OPENGL;
-    }
-
-    case VIDEO_MODE_1_00_DIRECT3D: {
-      return VIDEO_MODE_DIRECT3D;
-    }
-
-    case VIDEO_MODE_1_00_RAVE: {
-      return VIDEO_MODE_RAVE;
+    case D2_VideoMode_kRave: {
+      return D2_VideoMode_1_00_kRave;
     }
 
     default: {
-      ExitOnConstantMappingMissing(
-          game_value,
+      Mdc_Error_ExitOnConstantMappingError(
           __FILEW__,
-          __LINE__
+          __LINE__,
+          api_value
       );
 
-      return 0;
+      goto return_bad;
     }
   }
-}
 
-int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value) {
-  return ToGameValue_1_00(api_value);
+return_bad:
+  return -1;
 }
 
 enum D2_VideoMode D2_VideoMode_ToApiValue(int game_value) {
-  return ToApiValue_1_00(game_value);
+  return D2_VideoMode_ToApiValue_1_00(game_value);
+}
+
+enum D2_VideoMode D2_VideoMode_ToApiValue_1_00(
+    enum D2_VideoMode_1_00 game_value
+) {
+  switch (game_value) {
+    case D2_VideoMode_1_00_kGdi: {
+      return D2_VideoMode_kGdi;
+    }
+
+    case D2_VideoMode_1_00_kSoftware: {
+      return D2_VideoMode_kSoftware;
+    }
+
+    case D2_VideoMode_1_00_kDirectDraw: {
+      return D2_VideoMode_kDirectDraw;
+    }
+
+    case D2_VideoMode_1_00_kGlide: {
+      return D2_VideoMode_kGlide;
+    }
+
+    case D2_VideoMode_1_00_kOpenGl: {
+      return D2_VideoMode_kOpenGl;
+    }
+
+    case D2_VideoMode_1_00_kDirect3D: {
+      return D2_VideoMode_kDirect3D;
+    }
+
+    case D2_VideoMode_1_00_kRave: {
+      return D2_VideoMode_kRave;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          game_value
+      );
+
+      goto return_bad;
+    }
+  }
+
+return_bad:
+  return -1;
 }
