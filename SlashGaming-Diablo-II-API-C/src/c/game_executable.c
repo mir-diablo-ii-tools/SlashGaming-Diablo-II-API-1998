@@ -80,7 +80,6 @@ static wchar_t* GetMemoryAllocGameExecutable(
 
     path = realloc_result;
     path_capacity = path_new_capacity;
-    path[path_capacity - 2] = '\0';
 
     *path_len = GetModuleFileNameW(NULL, path, path_capacity);
 
