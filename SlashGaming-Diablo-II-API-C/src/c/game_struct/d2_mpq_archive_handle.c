@@ -45,66 +45,88 @@
 
 #include "../../../include/c/game_struct/d2_mpq_archive_handle.h"
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
-
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_MpqArchiveHandle_1_00) == 0x108,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_MpqArchiveHandle_1_00, mpq_archive_path) == 0x04,
-    "Incorrect member alignment."
-);
-
 /**
  * Function definitions
  */
 
-struct D2_MpqArchive* D2_MpqArchiveHandle_GetMPQArchive(
+struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_Access(
+    struct D2_MpqArchiveHandle* mpq_archive_handle,
+    size_t index
+) {
+  return (struct D2_MpqArchiveHandle*)
+      D2_MpqArchiveHandle_AccessConst(mpq_archive_handle, index);
+}
+
+const struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AccessConst(
+    const struct D2_MpqArchiveHandle* mpq_archive_handle,
+    size_t index
+) {
+  union D2_MpqArchiveHandle_View view;
+
+  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*)
+      mpq_archive_handle;
+
+  return (const struct D2_MpqArchiveHandle*) &view.ptr_1_00[index];
+}
+
+struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AssignMembers(
+    struct D2_MpqArchiveHandle* dest,
+    const struct D2_MpqArchiveHandle* src
+) {
+  union D2_MpqArchiveHandle_Wrapper dest_wrapper;
+  union D2_MpqArchiveHandle_View src_view;
+
+  dest_wrapper.ptr_1_00 = (struct D2_MpqArchiveHandle_1_00*) dest;
+  src_view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) src;
+
+  *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+
+  return dest;
+}
+
+struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (struct D2_MpqArchive*) D2_MpqArchiveHandle_GetConstMPQArchive(
+  return (struct D2_MpqArchive*) D2_MpqArchiveHandle_GetMpqArchiveConst(
       mpq_archive_handle
   );
 }
 
-const struct D2_MpqArchive* D2_MpqArchiveHandle_GetConstMPQArchive(
+const struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchiveConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  union D2_MpqArchiveHandle_View view;
 
-  return (const struct D2_MpqArchive*) actual_mpq_archive_handle->mpq_archive;
+  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  return (const struct D2_MpqArchive*) view.ptr_1_00->mpq_archive;
 }
 
-char* D2_MpqArchiveHandle_GetMPQArchivePath(
+void D2_MpqArchiveHandle_SetMpqArchive(
+    struct D2_MpqArchiveHandle* mpq_archive_handle,
+    struct D2_MpqArchive* mpq_archive
+) {
+  union D2_MpqArchiveHandle_Wrapper wrapper;
+
+  wrapper.ptr_1_00 = (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  wrapper.ptr_1_00->mpq_archive = (struct D2_MpqArchive_1_00*) mpq_archive;
+}
+
+char* D2_MpqArchiveHandle_GetMpqArchivePath(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  return (char*) D2_MpqArchiveHandle_GetConstMPQArchivePath(
+  return (char*) D2_MpqArchiveHandle_GetMpqArchivePathConst(
       mpq_archive_handle
   );
 }
 
-const char* D2_MpqArchiveHandle_GetConstMPQArchivePath(
+const char* D2_MpqArchiveHandle_GetMpqArchivePathConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  const struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  union D2_MpqArchiveHandle_View view;
 
-  return actual_mpq_archive_handle->mpq_archive_path;
+  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+
+  return view.ptr_1_00->mpq_archive_path;
 }

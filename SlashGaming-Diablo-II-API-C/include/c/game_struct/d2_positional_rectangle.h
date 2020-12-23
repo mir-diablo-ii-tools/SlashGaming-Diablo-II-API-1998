@@ -46,7 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_
 
-#include <stdint.h>
+#include <stddef.h>
+
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 
 #include "../../dllexport_define.inc"
 
@@ -72,6 +75,18 @@ struct D2_PositionalRectangle;
 #pragma pack(pop)
 
 /**
+ * View and wrapper declarations
+ */
+
+union D2_PositionalRectangle_View {
+  const struct D2_PositionalRectangle_1_00* ptr_1_00;
+};
+
+union D2_PositionalRectangle_Wrapper {
+  struct D2_PositionalRectangle_1_00* ptr_1_00;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -95,7 +110,7 @@ extern "C" {
  * positions.
  */
 DLLEXPORT struct D2_PositionalRectangle*
-D2_PositionalRectangle_CreateWithPositions(
+D2_PositionalRectangle_CreateFromPositions(
     int left,
     int right,
     int top,
@@ -107,6 +122,34 @@ D2_PositionalRectangle_CreateWithPositions(
  */
 DLLEXPORT void D2_PositionalRectangle_Destroy(
     struct D2_PositionalRectangle* positional_rectangle
+);
+
+/**
+ * Assigns each PositionalRectangle member the values of the source
+ * PositionalRectangle. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
+    struct D2_PositionalRectangle* dest,
+    const struct D2_PositionalRectangle* src
+);
+
+/**
+ * Returns the element of the PositionalRectangle array at the specified
+ * index.
+ */
+DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_Access(
+    struct D2_PositionalRectangle* positional_rectangle,
+    size_t index
+);
+
+/**
+ * Returns the element of the PositionalRectangle array at the specified
+ * index.
+ */
+DLLEXPORT const struct D2_PositionalRectangle*
+D2_PositionalRectangle_AccessConst(
+    const struct D2_PositionalRectangle* positional_rectangle,
+    size_t index
 );
 
 /**
@@ -173,5 +216,34 @@ DLLEXPORT void D2_PositionalRectangle_SetBottom(
 } /* extern "C" */
 #endif /* __cplusplus */
 
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, left) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, right) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, top) == 0x08,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_PositionalRectangle_1_00, bottom) == 0x0C,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    sizeof(struct D2_PositionalRectangle_1_00) == 0x10,
+    "Incorrect size."
+);
+
 #include "../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_STRUCT_D2_UNICODE_CHAR_H_ */
+#endif /* SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_ */

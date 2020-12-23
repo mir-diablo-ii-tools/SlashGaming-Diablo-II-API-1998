@@ -46,6 +46,11 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_
 
+#include <stddef.h>
+
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
+
 #include "../../dllexport_define.inc"
 
 /**
@@ -65,6 +70,18 @@ struct D2_MpqArchive_1_00;
 #pragma pack(pop)
 
 /**
+ * View and wrapper declarations
+ */
+
+union D2_MpqArchive_View {
+  const struct D2_MpqArchive_1_00* ptr_1_00;
+};
+
+union D2_MpqArchive_Wrapper {
+  struct D2_MpqArchive_1_00* ptr_1_00;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -74,6 +91,22 @@ typedef struct D2_MpqArchive D2_MpqArchive;
 typedef struct D2_MpqArchive_1_00 D2_MpqArchive_1_00;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
+
+/**
+ * Function declarations
+ */
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_ */

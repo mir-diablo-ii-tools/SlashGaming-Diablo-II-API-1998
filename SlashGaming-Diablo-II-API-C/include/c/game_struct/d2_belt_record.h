@@ -47,10 +47,11 @@
 #define SGD2MAPI_C_GAME_STRUCT_D2_BELT_RECORD_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
-#include "d2_positional_rectangle.h"
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "../game_undefined.h"
+#include "d2_positional_rectangle.h"
 
 #include "../../dllexport_define.inc"
 
@@ -67,13 +68,25 @@ struct D2_BeltRecord;
 #pragma pack(push, 1)
 
 /* sizeof: 0x108 */ struct D2_BeltRecord_1_00 {
-  /* 0x00 */ struct MAPI_Undefined* unknown_0x00;
+  /* 0x00 */ struct Mapi_Undefined* unknown_0x00;
   /* 0x04 */ uint8_t num_slots;
   /* 0x05 */ uint8_t unused__to_align_0x05[3];
   /* 0x08 */ struct D2_PositionalRectangle_1_00 slot_positions[16];
 };
 
 #pragma pack(pop)
+
+/**
+ * View and wrapper declarations
+ */
+
+union D2_BeltRecord_View {
+  const struct D2_BeltRecord_1_00* ptr_1_00;
+};
+
+union D2_BeltRecord_Wrapper {
+  struct D2_BeltRecord_1_00* ptr_1_00;
+};
 
 /**
  * Struct typedefs
@@ -98,8 +111,8 @@ extern "C" {
  * Creates a generic BeltRecord with the specified number of slots and slot
  * positions.
  */
-DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_CreateWithRecord(
-    struct MAPI_Undefined* reserved_00__set_to_nullptr,
+DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_CreateFromRecord(
+    struct Mapi_Undefined* reserved_00__set_to_nullptr,
     uint_least8_t num_slots,
     const struct D2_PositionalRectangle* slot_positions
 );
@@ -112,34 +125,36 @@ DLLEXPORT void D2_BeltRecord_Destroy(
 );
 
 /**
- * Returns the element of the BeltRecord array at the specified index.
+ * Assigns each BeltRecord member the values of the source BeltRecord.
+ * This is a shallow copy operation.
  */
-DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_GetAt(
-    struct D2_BeltRecord* belt_record,
-    size_t index
-);
-
-/**
- * Returns the element of the BeltRecord array at the specified index.
- */
-DLLEXPORT const struct D2_BeltRecord* D2_BeltRecord_GetConstAt(
-    const struct D2_BeltRecord* belt_record,
-    size_t index
-);
-
-/**
- * Copies the values of each member of a BeltRecord into a specified
- * destination.
- */
-DLLEXPORT void D2_BeltRecord_Copy(
+DLLEXPORT void D2_BeltRecord_AssignMembers(
     struct D2_BeltRecord* dest,
     const struct D2_BeltRecord* src
 );
 
 /**
+ * Returns the element of the BeltRecord array at the specified
+ * index.
+ */
+DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_Access(
+    struct D2_BeltRecord* belt_record,
+    size_t index
+);
+
+/**
+ * Returns the element of the BeltRecord array at the specified
+ * index.
+ */
+DLLEXPORT const struct D2_BeltRecord* D2_BeltRecord_AccessConst(
+    const struct D2_BeltRecord* belt_record,
+    size_t index
+);
+
+/**
  * Returns the value of the BeltRecord's number of slot positions member.
  */
-DLLEXPORT uint_least8_t D2_BeltRecord_GetNumSlots(
+DLLEXPORT unsigned char D2_BeltRecord_GetNumSlots(
     const struct D2_BeltRecord* belt_record
 );
 
@@ -148,7 +163,7 @@ DLLEXPORT uint_least8_t D2_BeltRecord_GetNumSlots(
  */
 DLLEXPORT void D2_BeltRecord_SetNumSlots(
     struct D2_BeltRecord* belt_record,
-    int_least8_t num_slots
+    unsigned char num_slots
 );
 
 /**
@@ -162,8 +177,27 @@ DLLEXPORT struct D2_PositionalRectangle* D2_BeltRecord_GetSlotPositions(
  * Returns a pointer to the BeltRecord's slot positions array member.
  */
 DLLEXPORT const struct D2_PositionalRectangle*
-D2_BeltRecord_GetConstSlotPositions(
+D2_BeltRecord_GetSlotPositionsConst(
     const struct D2_BeltRecord* belt_record
+);
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_BeltRecord_1_00) == 0x108,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_BeltRecord_1_00, num_slots) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_BeltRecord_1_00, slot_positions) == 0x08,
+    "Incorrect member alignment."
 );
 
 #ifdef __cplusplus

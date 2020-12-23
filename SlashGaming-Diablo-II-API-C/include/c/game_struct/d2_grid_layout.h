@@ -47,8 +47,9 @@
 #define SGD2MAPI_C_GAME_STRUCT_D2_GRID_LAYOUT_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "d2_positional_rectangle.h"
 
 #include "../../dllexport_define.inc"
@@ -78,6 +79,18 @@ struct D2_GridLayout;
 #pragma pack(pop)
 
 /**
+ * View and wrapper declarations
+ */
+
+union D2_GridLayout_View {
+  const struct D2_GridLayout_1_00* ptr_1_00;
+};
+
+union D2_GridLayout_Wrapper {
+  struct D2_GridLayout_1_00* ptr_1_00;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -99,12 +112,12 @@ extern "C" {
 /**
  * Creates a generic GridLayout with the specified layout.
  */
-DLLEXPORT struct D2_GridLayout* D2_GridLayout_CreateWithLayout(
-    uint_least8_t num_columns,
-    uint_least8_t num_rows,
+DLLEXPORT struct D2_GridLayout* D2_GridLayout_CreateFromLayout(
+    unsigned char num_columns,
+    unsigned char num_rows,
     const struct D2_PositionalRectangle* position,
-    uint_least8_t width,
-    uint_least8_t height
+    unsigned char width,
+    unsigned char height
 );
 
 /**
@@ -115,9 +128,36 @@ DLLEXPORT void D2_GridLayout_Destroy(
 );
 
 /**
+ * Assigns each GridLayout member the values of the source
+ * GridLayout. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_GridLayout* D2_GridLayout_AssignMembers(
+    struct D2_GridLayout* dest,
+    const struct D2_GridLayout* src
+);
+
+/**
+ * Returns the element of the MpqArchiveHandle array at the specified
+ * index.
+ */
+DLLEXPORT struct D2_GridLayout* D2_GridLayout_Access(
+    struct D2_GridLayout* grid_layout,
+    size_t index
+);
+
+/**
+ * Returns the element of the MpqArchiveHandle array at the specified
+ * index.
+ */
+DLLEXPORT const struct D2_GridLayout* D2_GridLayout_AccessConst(
+    const struct D2_GridLayout* grid_layout,
+    size_t index
+);
+
+/**
  * Returns the value of the GridLayout's number of columns member.
  */
-DLLEXPORT uint_least8_t D2_GridLayout_GetNumColumns(
+DLLEXPORT unsigned char D2_GridLayout_GetNumColumns(
     const struct D2_GridLayout* grid_layout
 );
 
@@ -126,13 +166,13 @@ DLLEXPORT uint_least8_t D2_GridLayout_GetNumColumns(
  */
 DLLEXPORT void D2_GridLayout_SetNumColumns(
     struct D2_GridLayout* grid_layout,
-    uint_least8_t num_columns
+    unsigned char num_columns
 );
 
 /**
  * Returns the value of the GridLayout's number of rows member.
  */
-DLLEXPORT uint_least8_t D2_GridLayout_GetNumRows(
+DLLEXPORT unsigned char D2_GridLayout_GetNumRows(
     const struct D2_GridLayout* grid_layout
 );
 
@@ -141,7 +181,7 @@ DLLEXPORT uint_least8_t D2_GridLayout_GetNumRows(
  */
 DLLEXPORT void D2_GridLayout_SetNumRows(
     struct D2_GridLayout* grid_layout,
-    uint_least8_t num_rows
+    unsigned char num_rows
 );
 
 /**
@@ -154,14 +194,14 @@ DLLEXPORT struct D2_PositionalRectangle* D2_GridLayout_GetPosition(
 /**
  * Returns a pointer to the GridLayout's position member.
  */
-DLLEXPORT const struct D2_PositionalRectangle* D2_GridLayout_GetConstPosition(
+DLLEXPORT const struct D2_PositionalRectangle* D2_GridLayout_GetPositionConst(
     const struct D2_GridLayout* grid_layout
 );
 
 /**
  * Returns the value of the GridLayout's width member.
  */
-DLLEXPORT uint_least8_t D2_GridLayout_GetWidth(
+DLLEXPORT unsigned char D2_GridLayout_GetWidth(
     const struct D2_GridLayout* grid_layout
 );
 
@@ -170,13 +210,13 @@ DLLEXPORT uint_least8_t D2_GridLayout_GetWidth(
  */
 DLLEXPORT void D2_GridLayout_SetWidth(
     struct D2_GridLayout* grid_layout,
-    uint_least8_t width
+    unsigned char width
 );
 
 /**
  * Returns the value of the GridLayout's height member.
  */
-DLLEXPORT uint_least8_t D2_GridLayout_GetHeight(
+DLLEXPORT unsigned char D2_GridLayout_GetHeight(
     const struct D2_GridLayout* grid_layout
 );
 
@@ -185,12 +225,46 @@ DLLEXPORT uint_least8_t D2_GridLayout_GetHeight(
  */
 DLLEXPORT void D2_GridLayout_SetHeight(
     struct D2_GridLayout* grid_layout,
-    uint_least8_t height
+    unsigned char height
 );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_GridLayout_1_00) >= 0x18,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_GridLayout_1_00, num_columns) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_GridLayout_1_00, num_rows) == 0x01,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_GridLayout_1_00, position) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_GridLayout_1_00, width) == 0x14,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_GridLayout_1_00, height) == 0x15,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_GRID_LAYOUT_H_ */

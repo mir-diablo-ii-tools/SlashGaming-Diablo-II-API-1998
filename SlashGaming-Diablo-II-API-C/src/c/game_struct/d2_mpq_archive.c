@@ -45,17 +45,6 @@
 
 #include "../../../include/c/game_struct/d2_mpq_archive.h"
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
-
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions
- */
-
 /**
  * Function definitions
  */
