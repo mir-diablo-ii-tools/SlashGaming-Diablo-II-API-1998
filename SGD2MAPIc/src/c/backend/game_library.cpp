@@ -146,9 +146,13 @@ const Mapi_GameLibrary* Mapi_GameLibrary_GetFromPath(
   );
 
   if (find_result == game_library_table.end()) {
-    std::pair success_pair = game_library_table.insert(
-        std::make_pair(file_path_str, mapi::GameLibrary(file_path))
-    );
+    std::pair<GameLibraryTable::iterator, bool> success_pair =
+        game_library_table.insert(
+            std::make_pair(
+                file_path_str,
+                mapi::GameLibrary(file_path)
+            )
+        );
 
     if (!success_pair.second) {
       Mdc_Error_ExitOnGeneralError(
