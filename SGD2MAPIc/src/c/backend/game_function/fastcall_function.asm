@@ -86,8 +86,8 @@ _CallFastcallFunction:
     ; with no realistic benefit. If the called function has no
     ; parameters, the register values are overwritten anyways.
 
-    ; Set the first parameter.
-    mov ecx, dword [ebp + 20]
+    ; Set the second parameter.
+    mov edx, dword [ebp + 20]
 
     ; Set the first parameter.
     mov ecx, dword [ebp + 16]
