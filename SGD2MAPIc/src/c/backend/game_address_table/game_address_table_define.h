@@ -43,25 +43,44 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
-#define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_
+#ifndef SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_DEFINE_H_
+#define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_DEFINE_H_
 
-#include <stddef.h>
+#if !defined(MAPI_GAME_ADDRESS_TABLE_1_00) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_01) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_02) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_03) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_04B_AND_C) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_05) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_05B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_06) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_06B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_07_BETA) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_07) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_08) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_09) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_09B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_09D) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_10_BETA) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_10S_BETA) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_10) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_11) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_11B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_12A) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_13A_BETA) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_13C) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_1_13D) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_CLASSIC_1_14A) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_LOD_1_14A) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_CLASSIC_1_14B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_LOD_1_14B) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_CLASSIC_1_14C) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_LOD_1_14C) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_CLASSIC_1_14D) \
+    || !defined(MAPI_GAME_ADDRESS_TABLE_LOD_1_14D)
 
-#include "../../../include/c/game_address/game_address_struct.h"
+  #error "Game address table needs to be defined using the Diablo II Address Table Hardcode Tool, with the output file replacing this file."
 
-struct MAPI_GameAddressTableEntry {
-  const char* library_path;
-  const char* address_name;
-  struct MAPI_GameAddress game_address;
-};
+#endif
 
-struct MAPI_GameAddressTable {
-  struct MAPI_GameAddressTableEntry** entries;
-  size_t num_elements;
-  size_t capacity;
-};
-
-struct MAPI_GameAddressTable* LoadGameAddressTable(void);
-
-#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_IMPL_H_ */
+#endif /* SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_GAME_ADDRESS_TABLE_DEFINE_H_ */
