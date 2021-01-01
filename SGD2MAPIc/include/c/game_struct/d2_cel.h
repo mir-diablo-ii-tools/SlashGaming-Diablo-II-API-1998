@@ -46,8 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_
 
-#include <stdint.h>
+#include <stddef.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "../game_undefined.h"
 
 #include "../../dllexport_define.inc"
@@ -64,8 +66,8 @@ struct D2_Cel;
 
 #pragma pack(push, 1)
 
-/* sizeof: 0x?? */struct D2_Cel_1_00 {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
+/* sizeof: 0x?? */ struct D2_Cel_1_00 {
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x04 - 0x00];
   /* 0x04 */ int32_t width;
   /* 0x08 */ int32_t height;
   /* 0x0C */ int32_t offset_x;
@@ -73,6 +75,18 @@ struct D2_Cel;
 };
 
 #pragma pack(pop)
+
+/**
+ * View and wrapper declarations
+ */
+
+union D2_Cel_View {
+  const struct D2_Cel_1_00* ptr_1_00;
+};
+
+union D2_Cel_Wrapper {
+  struct D2_Cel_1_00* ptr_1_00;
+};
 
 /**
  * Struct typedefs
@@ -136,6 +150,35 @@ DLLEXPORT void D2_Cel_SetWidth(struct D2_Cel* cel, int width);
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_Cel_1_00) >= 20,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, width) == 4,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, height) == 8,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, offset_x) == 12,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_Cel_1_00, offset_y) == 16,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_ */

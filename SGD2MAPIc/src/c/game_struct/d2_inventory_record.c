@@ -45,161 +45,140 @@
 
 #include "../../../include/c/game_struct/d2_inventory_record.h"
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_InventoryRecord_1_00) == 0xF0,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, position) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, grid_layout) == 0x10,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_InventoryRecord_1_00, equipment_slots) == 0x28,
-    "Incorrect member alignment."
-);
+#include <mdc/error/exit_on_error.h>
+#include <mdc/malloc/malloc.h>
+#include <mdc/wchar_t/filew.h>
 
 /**
  * Function definitions
  */
 
-struct D2_InventoryRecord* D2_InventoryRecord_CreateWithRecord(
+struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
     const struct D2_PositionalRectangle* position,
     const struct D2_GridLayout* grid_layout,
     const struct D2_EquipmentLayout* equipment_slots
 ) {
-  struct D2_InventoryRecord_1_00* actual_inventory_record =
-      (struct D2_InventoryRecord_1_00*) malloc(
-          sizeof(*actual_inventory_record)
-      );
+  union D2_InventoryRecord_Wrapper wrapper;
 
-  if (actual_inventory_record == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  union D2_PositionalRectangle_View position_view;
+  union D2_GridLayout_View grid_layout_view;
+  union D2_EquipmentLayout_View equipment_slots_view;
+
+  wrapper.ptr_1_00 = Mdc_malloc(sizeof(*wrapper.ptr_1_00));
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
   }
 
-  actual_inventory_record->position =
-      *(const struct D2_PositionalRectangle_1_00*) position;
-  actual_inventory_record->grid_layout =
-      *(const struct D2_GridLayout_1_00*) grid_layout;
+  position_view.ptr_1_00 = (const struct D2_PositionalRectangle_1_00*)
+      position;
+  grid_layout_view.ptr_1_00 = (const struct D2_GridLayout_1_00*) grid_layout;
+  equipment_slots_view.ptr_1_00 = (const struct D2_EquipmentLayout_1_00*)
+      equipment_slots;
+
+  wrapper.ptr_1_00->position = *position_view.ptr_1_00;
+  wrapper.ptr_1_00->grid_layout = *grid_layout_view.ptr_1_00;
 
   memcpy(
-      actual_inventory_record->equipment_slots,
-      equipment_slots,
-      sizeof(actual_inventory_record->equipment_slots)
+      wrapper.ptr_1_00->equipment_slots,
+      equipment_slots_view.ptr_1_00,
+      sizeof(wrapper.ptr_1_00->equipment_slots)
   );
 
-  return (struct D2_InventoryRecord*) actual_inventory_record;
+  return (struct D2_InventoryRecord*) wrapper.ptr_1_00;
 }
 
 void D2_InventoryRecord_Destroy(
     struct D2_InventoryRecord* inventory_record
 ) {
-  free(inventory_record);
+  Mdc_free(inventory_record);
 }
 
-struct D2_InventoryRecord* D2_InventoryRecord_GetAt(
+struct D2_InventoryRecord* D2_InventoryRecord_AssignMembers(
+    struct D2_InventoryRecord* dest,
+    const struct D2_InventoryRecord* src
+) {
+  union D2_InventoryRecord_Wrapper dest_wrapper;
+  union D2_InventoryRecord_View src_view;
+
+  dest_wrapper.ptr_1_00 = (struct D2_InventoryRecord_1_00*) dest;
+  src_view.ptr_1_00 = (const struct D2_InventoryRecord_1_00*) src;
+
+  *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+
+  return dest;
+}
+
+struct D2_InventoryRecord* D2_InventoryRecord_Access(
     struct D2_InventoryRecord* inventory_record,
     size_t index
 ) {
-  return (struct D2_InventoryRecord*) D2_InventoryRecord_GetConstAt(
+  return (struct D2_InventoryRecord*) D2_InventoryRecord_AccessConst(
       inventory_record,
       index
   );
 }
 
-const struct D2_InventoryRecord* D2_InventoryRecord_GetConstAt(
+const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
     const struct D2_InventoryRecord* inventory_record,
     size_t index
 ) {
-  const struct D2_InventoryRecord_1_00* actual_inventory_record =
-      (const struct D2_InventoryRecord_1_00*) inventory_record;
+  union D2_InventoryRecord_View view;
 
-  return (const struct D2_InventoryRecord*) &actual_inventory_record[index];
-}
+  view.ptr_1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
 
-void D2_InventoryRecord_Copy(
-    struct D2_InventoryRecord* dest,
-    const struct D2_InventoryRecord* src
-) {
-  struct D2_InventoryRecord_1_00* actual_dest =
-      (struct D2_InventoryRecord_1_00*) dest;
-  const struct D2_InventoryRecord_1_00* actual_src =
-      (const struct D2_InventoryRecord_1_00*) src;
-
-  *actual_dest = *actual_src;
+  return (const struct D2_InventoryRecord*) &view.ptr_1_00[index];
 }
 
 struct D2_PositionalRectangle* D2_InventoryRecord_GetPosition(
     struct D2_InventoryRecord* inventory_record
 ) {
-  return (struct D2_PositionalRectangle*) D2_InventoryRecord_GetConstPosition(
-      inventory_record
-  );
+  return (struct D2_PositionalRectangle*)
+      D2_InventoryRecord_GetPositionConst(inventory_record);
 }
 
 const struct D2_PositionalRectangle*
-D2_InventoryRecord_GetConstPosition(
+D2_InventoryRecord_GetPositionConst(
     const struct D2_InventoryRecord* inventory_record
 ) {
-  const struct D2_InventoryRecord_1_00* actual_inventory_record =
-      (const struct D2_InventoryRecord_1_00*) inventory_record;
+  union D2_InventoryRecord_View view;
 
-  return (const struct D2_PositionalRectangle*)
-      &actual_inventory_record->position;
+  view.ptr_1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
+
+  return (const struct D2_PositionalRectangle*) &view.ptr_1_00->position;
 }
 
 struct D2_GridLayout* D2_InventoryRecord_GetGridLayout(
     struct D2_InventoryRecord* inventory_record
 ) {
-  return (struct D2_GridLayout*) D2_InventoryRecord_GetConstGridLayout(
+  return (struct D2_GridLayout*) D2_InventoryRecord_GetGridLayoutConst(
       inventory_record
   );
 }
 
-const struct D2_GridLayout* D2_InventoryRecord_GetConstGridLayout(
+const struct D2_GridLayout* D2_InventoryRecord_GetGridLayoutConst(
     const struct D2_InventoryRecord* inventory_record
 ) {
-  const struct D2_InventoryRecord_1_00* actual_inventory_record =
-      (const struct D2_InventoryRecord_1_00*) inventory_record;
+  union D2_InventoryRecord_View view;
 
-  return (const struct D2_GridLayout*)
-      &actual_inventory_record->grid_layout;
+  view.ptr_1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
+
+  return (const struct D2_GridLayout*) &view.ptr_1_00->grid_layout;
 }
 
 struct D2_EquipmentLayout* D2_InventoryRecord_GetEquipmentSlots(
     struct D2_InventoryRecord* inventory_record
 ) {
   return (struct D2_EquipmentLayout*)
-      D2_InventoryRecord_GetConstEquipmentSlots(
-          inventory_record
-      );
+      D2_InventoryRecord_GetEquipmentSlotsConst(inventory_record);
 }
 
 const struct D2_EquipmentLayout*
-D2_InventoryRecord_GetConstEquipmentSlots(
+D2_InventoryRecord_GetEquipmentSlotsConst(
     const struct D2_InventoryRecord* inventory_record
 ) {
-  const struct D2_InventoryRecord_1_00* actual_inventory_record =
-      (const struct D2_InventoryRecord_1_00*) inventory_record;
+  union D2_InventoryRecord_View view;
 
-  return (const struct D2_EquipmentLayout*)
-      actual_inventory_record->equipment_slots;
+  view.ptr_1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
+
+  return (const struct D2_EquipmentLayout*) &view.ptr_1_00->equipment_slots;
 }

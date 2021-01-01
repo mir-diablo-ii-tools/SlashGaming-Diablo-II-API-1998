@@ -45,90 +45,63 @@
 
 #include "../../../include/c/game_struct/d2_cel_file.h"
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
-
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_CelFile_1_00) >= 0x18,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_CelFile_1_00, version) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelFile_1_00, num_directions) == 0x10,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelFile_1_00, num_frames) == 0x14,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_CelFile_1_00, cels) == 0x18,
-    "Incorrect member alignment."
-);
-
 /**
  * Function definitions
  */
 
 unsigned int D2_CelFile_GetVersion(const struct D2_CelFile* cel_file) {
-  const struct D2_CelFile_1_00* actual_cel_file =
-      (const struct D2_CelFile_1_00*) cel_file;
+  union D2_CelFile_View view;
 
-  return actual_cel_file->version;
+  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+
+  return view.ptr_1_00->version;
 }
 
-void D2_CelFile_SetVersion(struct D2_CelFile* cel_file, unsigned int version) {
-  struct D2_CelFile_1_00* actual_cel_file =
-      (struct D2_CelFile_1_00*) cel_file;
+void D2_CelFile_SetVersion(
+    struct D2_CelFile* cel_file,
+    unsigned int version
+) {
+  union D2_CelFile_Wrapper wrapper;
 
-  actual_cel_file->version = version;
+  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+
+  wrapper.ptr_1_00->version = version;
 }
 
 unsigned int D2_CelFile_GetNumDirections(const struct D2_CelFile* cel_file) {
-  const struct D2_CelFile_1_00* actual_cel_file =
-      (const struct D2_CelFile_1_00*) cel_file;
+  union D2_CelFile_View view;
 
-  return actual_cel_file->num_directions;
+  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+
+  return view.ptr_1_00->num_directions;
 }
 
 void D2_CelFile_SetNumDirections(
     struct D2_CelFile* cel_file,
     unsigned int num_directions
 ) {
-  struct D2_CelFile_1_00* actual_cel_file =
-      (struct D2_CelFile_1_00*) cel_file;
+  union D2_CelFile_Wrapper wrapper;
 
-  actual_cel_file->num_directions = num_directions;
+  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+
+  wrapper.ptr_1_00->num_directions = num_directions;
 }
 
 unsigned int D2_CelFile_GetNumFrames(const struct D2_CelFile* cel_file) {
-  const struct D2_CelFile_1_00* actual_cel_file =
-      (const struct D2_CelFile_1_00*) cel_file;
+  union D2_CelFile_View view;
 
-  return actual_cel_file->num_frames;
+  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+
+  return view.ptr_1_00->num_frames;
 }
 
 void D2_CelFile_SetNumFrames(
     struct D2_CelFile* cel_file,
     unsigned int num_frames
 ) {
-  struct D2_CelFile_1_00* actual_cel_file =
-      (struct D2_CelFile_1_00*) cel_file;
+  union D2_CelFile_Wrapper wrapper;
 
-  actual_cel_file->num_frames = num_frames;
+  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+
+  wrapper.ptr_1_00->num_frames = num_frames;
 }

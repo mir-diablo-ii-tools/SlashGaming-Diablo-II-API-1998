@@ -46,8 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_
 
-#include <stdint.h>
+#include <stddef.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "../game_undefined.h"
 
 #include "../../dllexport_define.inc"
@@ -66,15 +68,27 @@ struct D2_CelFile;
 
 /* sizeof: 0x18 + sizeof(cels) */ struct D2_CelFile_1_00 {
   /* 0x00 */ uint32_t version;
-  /* 0x04 */ MAPI_UndefinedByte unknown_0x04[0x10 - 0x04];
+  /* 0x04 */ Mapi_UndefinedByte unknown_0x04[0x10 - 0x04];
   /* 0x10 */ uint32_t num_directions;
   /* 0x14 */ uint32_t num_frames;
 
   /* This field gives the struct variable length. */
-  /* 0x18 */ MAPI_UndefinedByte cels[];
+  /* 0x18 */ Mapi_UndefinedByte cels[];
 };
 
 #pragma pack(pop)
+
+/**
+ * View and wrapper declarations
+ */
+
+union D2_CelFile_View {
+  const struct D2_CelFile_1_00* ptr_1_00;
+};
+
+union D2_CelFile_Wrapper {
+  struct D2_CelFile_1_00* ptr_1_00;
+};
 
 /**
  * Struct typedefs
@@ -143,6 +157,35 @@ DLLEXPORT void D2_CelFile_SetNumFrames(
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_CelFile_1_00) >= 0x18,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelFile_1_00, version) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelFile_1_00, num_directions) == 0x10,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelFile_1_00, num_frames) == 0x14,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelFile_1_00, cels) == 0x18,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_ */

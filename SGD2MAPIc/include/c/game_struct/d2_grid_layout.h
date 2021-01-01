@@ -137,7 +137,7 @@ DLLEXPORT struct D2_GridLayout* D2_GridLayout_AssignMembers(
 );
 
 /**
- * Returns the element of the MpqArchiveHandle array at the specified
+ * Returns the element of the GridLayout array at the specified
  * index.
  */
 DLLEXPORT struct D2_GridLayout* D2_GridLayout_Access(
@@ -146,7 +146,7 @@ DLLEXPORT struct D2_GridLayout* D2_GridLayout_Access(
 );
 
 /**
- * Returns the element of the MpqArchiveHandle array at the specified
+ * Returns the element of the GridLayout array at the specified
  * index.
  */
 DLLEXPORT const struct D2_GridLayout* D2_GridLayout_AccessConst(
@@ -194,7 +194,8 @@ DLLEXPORT struct D2_PositionalRectangle* D2_GridLayout_GetPosition(
 /**
  * Returns a pointer to the GridLayout's position member.
  */
-DLLEXPORT const struct D2_PositionalRectangle* D2_GridLayout_GetPositionConst(
+DLLEXPORT const struct D2_PositionalRectangle*
+D2_GridLayout_GetPositionConst(
     const struct D2_GridLayout* grid_layout
 );
 

@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_
 
-#include <stdint.h>
-
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "d2_cel_file.h"
 #include "../game_undefined.h"
 
@@ -66,31 +66,47 @@ struct D2_CelContext;
 #pragma pack(push, 1)
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_00 {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x04 - 0x00];
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x04 - 0x00];
   /* 0x04 */ struct D2_CelFile_1_00* cel_file;
-  /* 0x08 */ uint32_t frame;
-  /* 0x0C */ uint32_t direction;
-  /* 0x10 */ MAPI_UndefinedByte unknown_0x10[0x48 - 0x10];
+  /* 0x08 */ uint32_t frame_index;
+  /* 0x0C */ uint32_t direction_index;
+  /* 0x10 */ Mapi_UndefinedByte unknown_0x10[0x48 - 0x10];
 };
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_12A {
-  /* 0x00 */ MAPI_UndefinedByte unknown_0x00[0x38 - 0x00];
-  /* 0x38 */ uint32_t direction;
+  /* 0x00 */ Mapi_UndefinedByte unknown_0x00[0x38 - 0x00];
+  /* 0x38 */ uint32_t direction_index;
   /* 0x3C */ struct D2_CelFile_1_00* cel_file;
-  /* 0x40 */ uint32_t frame;
-  /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
+  /* 0x40 */ uint32_t frame_index;
+  /* 0x44 */ Mapi_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
 
 /* sizeof: 0x48 */ struct D2_CelContext_1_13C {
-  /* 0x00 */ uint32_t frame;
-  /* 0x04 */ MAPI_UndefinedByte unknown_0x04[0x34 - 0x04];
+  /* 0x00 */ uint32_t frame_index;
+  /* 0x04 */ Mapi_UndefinedByte unknown_0x04[0x34 - 0x04];
   /* 0x34 */ struct D2_CelFile_1_00* cel_file;
-  /* 0x38 */ MAPI_UndefinedByte unknown_0x38[0x40 - 0x38];
-  /* 0x40 */ uint32_t direction;
-  /* 0x44 */ MAPI_UndefinedByte unknown_0x44[0x48 - 0x44];
+  /* 0x38 */ Mapi_UndefinedByte unknown_0x38[0x40 - 0x38];
+  /* 0x40 */ uint32_t direction_index;
+  /* 0x44 */ Mapi_UndefinedByte unknown_0x44[0x48 - 0x44];
 };
 
 #pragma pack(pop)
+
+/**
+ * View and wrapper declarations
+ */
+
+union D2_CelContext_View {
+  const struct D2_CelContext_1_00* ptr_1_00;
+  const struct D2_CelContext_1_12A* ptr_1_12a;
+  const struct D2_CelContext_1_13C* ptr_1_13c;
+};
+
+union D2_CelContext_Wrapper {
+  struct D2_CelContext_1_00* ptr_1_00;
+  struct D2_CelContext_1_12A* ptr_1_12a;
+  struct D2_CelContext_1_13C* ptr_1_13c;
+};
 
 /**
  * Struct typedefs
@@ -113,14 +129,41 @@ extern "C" {
  */
 DLLEXPORT struct D2_CelContext* D2_CelContext_Create(
     struct D2_CelFile* cel_file,
-    unsigned int direction,
-    unsigned int frame
+    unsigned int direction_index,
+    unsigned int frame_index
 );
 
 /**
  * Destroys the CelContext, freeing up resources.
  */
 DLLEXPORT void D2_CelContext_Destroy(struct D2_CelContext* cel_context);
+
+/**
+ * Assigns each CelContext member the values of the source
+ * CelContext. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_CelContext* D2_CelContext_AssignMembers(
+    struct D2_CelContext* dest,
+    const struct D2_CelContext* src
+);
+
+/**
+ * Returns the element of the CelContext array at the specified
+ * index.
+ */
+DLLEXPORT struct D2_CelContext* D2_CelContext_Access(
+    struct D2_CelContext* cel_context,
+    size_t index
+);
+
+/**
+ * Returns the element of the CelContext array at the specified
+ * index.
+ */
+DLLEXPORT const struct D2_CelContext* D2_CelContext_AccessConst(
+    const struct D2_CelContext* cel_context,
+    size_t index
+);
 
 /**
  * Returns the value of the CelContext's cel file pointer member.
@@ -132,7 +175,7 @@ DLLEXPORT struct D2_CelFile* D2_CelContext_GetCelFile(
 /**
  * Returns the value of the CelContext's cel file pointer member.
  */
-DLLEXPORT const struct D2_CelFile* D2_CelContext_GetConstCelFile(
+DLLEXPORT const struct D2_CelFile* D2_CelContext_GetCelFileConst(
     const struct D2_CelContext* cel_context
 );
 
@@ -147,36 +190,108 @@ DLLEXPORT void D2_CelContext_SetCelFile(
 /**
  * Returns the value of the CelContext's direction member.
  */
-DLLEXPORT unsigned int D2_CelContext_GetDirection(
+DLLEXPORT unsigned int D2_CelContext_GetDirectionIndex(
     const struct D2_CelContext* cel_context
 );
 
 /**
  * Sets the value of the CelContext's direction member.
  */
-DLLEXPORT void D2_CelContext_SetDirection(
+DLLEXPORT void D2_CelContext_SetDirectionIndex(
     struct D2_CelContext* cel_context,
-    unsigned int direction
+    unsigned int direction_index
 );
 
 /**
- * Returns the value of the CelContext's frame member.
+ * Returns the value of the CelContext's frame index member.
  */
-DLLEXPORT unsigned int D2_CelContext_GetFrame(
+DLLEXPORT unsigned int D2_CelContext_GetFrameIndex(
     const struct D2_CelContext* cel_context
 );
 
 /**
- * Sets the value of the CelContext's frame member.
+ * Sets the value of the CelContext's frame index member.
  */
-DLLEXPORT void D2_CelContext_SetFrame(
+DLLEXPORT void D2_CelContext_SetFrameIndex(
     struct D2_CelContext* cel_context,
-    unsigned int frame
+    unsigned int frame_index
 );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_00) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, cel_file) == 0x04,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, frame) == 0x08,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_00, direction) == 0x0C,
+    "Incorrect member alignment."
+);
+
+/**
+ * Static assertions (1.12A)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_12A) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, cel_file) == 0x3C,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, frame) == 0x40,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_12A, direction) == 0x38,
+    "Incorrect member alignment."
+);
+
+/**
+ * Static assertions (1.13C)
+ */
+
+static_assert(
+    sizeof(struct D2_CelContext_1_13C) == 0x48,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, cel_file) == 0x34,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, frame) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_CelContext_1_13C, direction) == 0x40,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_ */

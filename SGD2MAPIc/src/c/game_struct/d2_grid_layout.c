@@ -123,7 +123,7 @@ const struct D2_GridLayout* D2_GridLayout_AccessConst(
 ) {
   union D2_GridLayout_View view;
 
-  view.ptr_1_00 = grid_layout;
+  view.ptr_1_00 = (struct D2_GridLayout_1_00*) grid_layout;
 
   return (const struct D2_GridLayout*) &view.ptr_1_00[index];
 }

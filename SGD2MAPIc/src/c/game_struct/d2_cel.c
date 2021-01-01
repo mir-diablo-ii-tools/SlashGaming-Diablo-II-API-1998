@@ -45,90 +45,70 @@
 
 #include "../../../include/c/game_struct/d2_cel.h"
 
-#include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
-
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    sizeof(struct D2_Cel_1_00) >= 20,
-    "Incorrect size."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, width) == 4,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, height) == 8,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, offset_x) == 12,
-    "Incorrect member alignment."
-);
-
-static_assert(
-    offsetof(struct D2_Cel_1_00, offset_y) == 16,
-    "Incorrect member alignment."
-);
-
 /**
  * Function definitions
  */
 
 int D2_Cel_GetHeight(const struct D2_Cel* cel) {
-  const struct D2_Cel_1_00* actual_cel = (const struct D2_Cel_1_00*) cel;
+  union D2_Cel_View view;
 
-  return actual_cel->height;
+  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+
+  return view.ptr_1_00->height;
 }
 
 void D2_Cel_SetHeight(struct D2_Cel* cel, int height) {
-  struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
+  union D2_Cel_Wrapper wrapper;
 
-  actual_cel->height = height;
+  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+
+  wrapper.ptr_1_00->height = height;
 }
 
 int D2_Cel_GetOffsetX(const struct D2_Cel* cel) {
-  const struct D2_Cel_1_00* actual_cel = (const struct D2_Cel_1_00*) cel;
+  union D2_Cel_View view;
 
-  return actual_cel->offset_x;
+  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+
+  return view.ptr_1_00->offset_x;
 }
 
 void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x) {
-  struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
+  union D2_Cel_Wrapper wrapper;
 
-  actual_cel->offset_x = offset_x;
+  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+
+  wrapper.ptr_1_00->offset_x = offset_x;
 }
 
 int D2_Cel_GetOffsetY(const struct D2_Cel* cel) {
-  const struct D2_Cel_1_00* actual_cel = (const struct D2_Cel_1_00*) cel;
+  union D2_Cel_View view;
 
-  return actual_cel->offset_y;
+  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+
+  return view.ptr_1_00->offset_y;
 }
 
 void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y) {
-  struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
+  union D2_Cel_Wrapper wrapper;
 
-  actual_cel->offset_y = offset_y;
+  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+
+  wrapper.ptr_1_00->offset_y = offset_y;
 }
 
 int D2_Cel_GetWidth(const struct D2_Cel* cel) {
-  const struct D2_Cel_1_00* actual_cel = (const struct D2_Cel_1_00*) cel;
+  union D2_Cel_View view;
 
-  return actual_cel->width;
+  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+
+  return view.ptr_1_00->width;
 }
 
 void D2_Cel_SetWidth(struct D2_Cel* cel, int width) {
-  struct D2_Cel_1_00* actual_cel = (struct D2_Cel_1_00*) cel;
+  union D2_Cel_Wrapper wrapper;
 
-  actual_cel->width = width;
+  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+
+  wrapper.ptr_1_00->width = width;
 }

@@ -47,8 +47,9 @@
 #define SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/assert.h>
+#include <mdc/std/stdint.h>
 #include "d2_positional_rectangle.h"
 
 #include "../../dllexport_define.inc"
@@ -75,6 +76,18 @@ struct D2_EquipmentLayout;
 #pragma pack(pop)
 
 /**
+ * View and wrapper declarations
+ */
+
+union D2_EquipmentLayout_View {
+  const struct D2_EquipmentLayout_1_00* ptr_1_00;
+};
+
+union D2_EquipmentLayout_Wrapper {
+  struct D2_EquipmentLayout_1_00* ptr_1_00;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -94,13 +107,13 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * Creates a generic EquipmentLayout with the specified position, width, and
- * height.
+ * Creates a generic EquipmentLayout with the specified position,
+ * width, and height.
  */
-DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_CreateWithLayout(
+DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_CreateFromLayout(
     const struct D2_PositionalRectangle* position,
-    uint_least8_t width,
-    uint_least8_t height
+    unsigned char width,
+    unsigned char height
 );
 
 /**
@@ -108,6 +121,33 @@ DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_CreateWithLayout(
  */
 DLLEXPORT void D2_EquipmentLayout_Destroy(
     struct D2_EquipmentLayout* equipment_layout
+);
+
+/**
+ * Assigns each EquipmentLayout member the values of the source
+ * EquipmentLayout. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_AssignMembers(
+    struct D2_EquipmentLayout* dest,
+    const struct D2_EquipmentLayout* src
+);
+
+/**
+ * Returns the element of the EquipmentLayout array at the specified
+ * index.
+ */
+DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
+    struct D2_EquipmentLayout* equipment_layout,
+    size_t index
+);
+
+/**
+ * Returns the element of the EquipmentLayout array at the specified
+ * index.
+ */
+DLLEXPORT const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
+    const struct D2_EquipmentLayout* equipment_layout,
+    size_t index
 );
 
 /**
@@ -121,14 +161,14 @@ DLLEXPORT struct D2_PositionalRectangle* D2_EquipmentLayout_GetPosition(
  * Returns a pointer to the EquipmentLayout's position member.
  */
 DLLEXPORT const struct D2_PositionalRectangle*
-D2_EquipmentLayout_GetConstPosition(
+D2_EquipmentLayout_GetPositionConst(
     const struct D2_EquipmentLayout* equipment_layout
 );
 
 /**
  * Returns the value of the EquipmentLayout's width member.
  */
-DLLEXPORT uint_least8_t D2_EquipmentLayout_GetWidth(
+DLLEXPORT unsigned char D2_EquipmentLayout_GetWidth(
     const struct D2_EquipmentLayout* equipment_layout
 );
 
@@ -137,13 +177,13 @@ DLLEXPORT uint_least8_t D2_EquipmentLayout_GetWidth(
  */
 DLLEXPORT void D2_EquipmentLayout_SetWidth(
     struct D2_EquipmentLayout* equipment_layout,
-    uint_least8_t width
+    unsigned char width
 );
 
 /**
  * Returns the value of the EquipmentLayout's height member.
  */
-DLLEXPORT uint_least8_t D2_EquipmentLayout_GetHeight(
+DLLEXPORT unsigned char D2_EquipmentLayout_GetHeight(
     const struct D2_EquipmentLayout* equipment_layout
 );
 
@@ -152,12 +192,36 @@ DLLEXPORT uint_least8_t D2_EquipmentLayout_GetHeight(
  */
 DLLEXPORT void D2_EquipmentLayout_SetHeight(
     struct D2_EquipmentLayout* equipment_layout,
-    uint_least8_t height
+    unsigned char height
 );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_EquipmentLayout_1_00) == 0x14,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, position) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, width) == 0x10,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_EquipmentLayout_1_00, height) == 0x11,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_ */

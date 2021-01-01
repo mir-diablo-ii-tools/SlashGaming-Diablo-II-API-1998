@@ -45,152 +45,195 @@
 
 #include "../../../include/c/game_struct/d2_unicode_char.h"
 
-#include <assert.h>
-#include <stdlib.h>
 #include <string.h>
-#include <wchar.h>
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/malloc/malloc.h>
+#include <mdc/std/wchar.h>
+#include <mdc/wchar_t/filew.h>
+#include <mdc/wchar_t/wide_decoding.h>
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 #include "../../../include/c/game_function/d2lang/d2lang_unicode_utf8_to_unicode.h"
-#include "../backend/error_handling.h"
-#include "../../wide_macro.h"
-
-/**
- * Static assertions (1.00)
- */
-
-static_assert(
-    offsetof(struct D2_UnicodeChar_1_00, ch) == 0x00,
-    "Incorrect member alignment."
-);
-
-static_assert(sizeof(struct D2_UnicodeChar_1_00) == 0x02, "Incorrect size.");
 
 /**
  * Function definitions
  */
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateDefault(void) {
-  return D2_UnicodeChar_CreateWithAsciiChar('\0');
+struct D2_UnicodeChar* D2_UnicodeChar_CreateEmpty(void) {
+  return D2_UnicodeChar_CreateFromAsciiChar('\0');
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiChar(char ch) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(sizeof(*actual_unicode_char));
+struct D2_UnicodeChar* D2_UnicodeChar_CreateFromAsciiChar(char ch) {
+  union D2_UnicodeChar_Wrapper wrapper;
 
-  if (actual_unicode_char == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  wrapper.ptr_1_00 = Mdc_malloc(sizeof(*wrapper.ptr_1_00));
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  actual_unicode_char->ch = ch;
+  wrapper.ptr_1_00->ch = ch;
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  return (struct D2_UnicodeChar*) wrapper.ptr_1_00;
+
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateWithAsciiString(const char* str) {
-  size_t str_len = strlen(str);
+struct D2_UnicodeChar* D2_UnicodeChar_CreateFromAsciiString(const char* str) {
+  size_t i;
 
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
+  union D2_UnicodeChar_Wrapper wrapper; 
+  size_t str_len;
 
-  if (actual_unicode_char == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
-  }
+  str_len = strlen(str);
 
-  D2_D2Lang_Unicode_AsciiToUnicode_1_00(
-      actual_unicode_char,
-      str,
-      str_len + 1
+  wrapper.ptr_1_00 = Mdc_malloc(
+      (str_len + 1) * sizeof(wrapper.ptr_1_00[0])
   );
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
-}
-
-struct D2_UnicodeChar* D2_UnicodeChar_CreateWithUtf8String(const char* str) {
-  size_t str_len = strlen(str);
-
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
-
-  if (actual_unicode_char == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  D2_D2Lang_Unicode_Utf8ToUnicode_1_00(
-      actual_unicode_char,
-      str,
-      str_len + 1
-  );
+  for (i = 0; i < str_len; i += 1) {
+    wrapper.ptr_1_00[i].ch = str[i];
+  }
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+  wrapper.ptr_1_00[i].ch = '\0'; 
+
+  return (struct D2_UnicodeChar*) wrapper.ptr_1_00;
+
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateWithWideString(
+struct D2_UnicodeChar* D2_UnicodeChar_CreateFromUtf8String(const char* str) {
+  union D2_UnicodeChar_Wrapper wrapper;
+  size_t str_len;
+  wchar_t* decode_result;
+
+  str_len = Mdc_Wide_DecodeUtf8Length(str);
+
+  wrapper.ptr_1_00 = Mdc_malloc((str_len + 1) * sizeof(wrapper.ptr_1_00[0]));
+
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
+  }
+
+  decode_result = Mdc_Wide_DecodeUtf8((wchar_t*) wrapper.ptr_1_00, str);
+  if (decode_result != (wchar_t*) wrapper.ptr_1_00) {
+    Mdc_Error_ExitOnGeneralError(
+        L"Error",
+        L"%ls failed.",
+        __FILEW__,
+        __LINE__,
+        L"Mdc_Wide_DecodeUtf8"
+    );
+
+    goto free_wrapper;
+  }
+
+  return (struct D2_UnicodeChar*) wrapper.ptr_1_00;
+
+free_wrapper:
+  Mdc_free(*(void**) &wrapper);
+
+return_bad:
+  return NULL;
+}
+
+struct D2_UnicodeChar* D2_UnicodeChar_CreateFromWideString(
     const wchar_t* str
 ) {
-  size_t str_len = wcslen(str);
+  union D2_UnicodeChar_Wrapper wrapper;
 
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          (str_len + 1) * sizeof(*actual_unicode_char)
-      );
+  size_t str_len;
 
-  if (actual_unicode_char == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  str_len = wcslen(str);
+
+  wrapper.ptr_1_00 = Mdc_malloc(
+      (str_len + 1) * sizeof(*wrapper.ptr_1_00)
+  );
+
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  for (size_t i = 0; i < str_len; i += 1) {
-    actual_unicode_char[i].ch = str[i];
-  }
+  wcscpy((wchar_t*) wrapper.ptr_1_00, str);
 
-  actual_unicode_char[str_len].ch = '\0';
+  return (struct D2_UnicodeChar*) wrapper.ptr_1_00;
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+return_bad:
+  return NULL;
 }
 
-struct D2_UnicodeChar* D2_UnicodeChar_CreateArray(size_t count) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) malloc(
-          count * sizeof(*actual_unicode_char)
-      );
+struct D2_UnicodeChar* D2_UnicodeChar_CreateArray(size_t count) { 
+  union D2_UnicodeChar_Wrapper wrapper;
 
-  if (actual_unicode_char == NULL) {
-    ExitOnAllocationFailure(__FILEW__, __LINE__);
+  wrapper.ptr_1_00 = Mdc_malloc(count * sizeof(wrapper.ptr_1_00[0]));
+  if (wrapper.ptr_1_00 == NULL) {
+    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
-  for (size_t i = 0; i < count; i += 1) {
-    actual_unicode_char[i].ch = '\0';
-  }
+  return (struct D2_UnicodeChar*) wrapper.ptr_1_00;
 
-  return (struct D2_UnicodeChar*) actual_unicode_char;
+return_bad:
+  return NULL;
 }
 
 void D2_UnicodeChar_Destroy(struct D2_UnicodeChar* unicode_char) {
-  free(unicode_char);
+  Mdc_free(unicode_char);
 }
 
-void D2_UnicodeChar_SetCharWithAsciiChar(
+struct D2_UnicodeChar* D2_UnicodeChar_AssignMembers(
+    struct D2_UnicodeChar* dest,
+    const struct D2_UnicodeChar* src
+) {
+  union D2_UnicodeChar_Wrapper dest_wrapper;
+  union D2_UnicodeChar_View src_view;
+
+  dest_wrapper.ptr_1_00 = (struct D2_UnicodeChar_1_00*) dest;
+  src_view.ptr_1_00 = (const struct D2_UnicodeChar_1_00*) src;
+
+  *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+
+  return dest;
+}
+
+struct D2_UnicodeChar* D2_UnicodeChar_Access(
+    struct D2_UnicodeChar* unicode_char,
+    size_t index
+) {
+  return (struct D2_UnicodeChar*) D2_UnicodeChar_AccessConst(
+      unicode_char,
+      index
+  );
+}
+
+const struct D2_UnicodeChar* D2_UnicodeChar_AccessConst(
+    const struct D2_UnicodeChar* unicode_char,
+    size_t index
+) {
+  union D2_UnicodeChar_View view;
+
+  view.ptr_1_00 = (const struct D2_UnicodeChar_1_00*) unicode_char;
+
+  return (const struct D2_UnicodeChar*) &view.ptr_1_00[index];
+}
+
+void D2_UnicodeChar_SetCharFromAsciiChar(
     struct D2_UnicodeChar* unicode_char,
     char ch
 ) {
-  struct D2_UnicodeChar_1_00* actual_unicode_char =
-      (struct D2_UnicodeChar_1_00*) unicode_char;
+  union D2_UnicodeChar_Wrapper wrapper;
 
-  actual_unicode_char->ch = ch;
-}
+  wrapper.ptr_1_00 = (struct D2_UnicodeChar_1_00*) unicode_char;
 
-void D2_UnicodeChar_CopyChar(
-    struct D2_UnicodeChar* ptr,
-    const struct D2_UnicodeChar* src
-) {
-  struct D2_UnicodeChar_1_00* actual_ptr = (struct D2_UnicodeChar_1_00*) ptr;
-  const struct D2_UnicodeChar_1_00* actual_src =
-      (const struct D2_UnicodeChar_1_00*) src;
-
-  actual_ptr->ch = actual_src->ch;
+  wrapper.ptr_1_00->ch = ch;
 }

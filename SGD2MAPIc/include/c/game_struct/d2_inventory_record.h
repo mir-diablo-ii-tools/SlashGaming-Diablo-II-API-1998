@@ -47,8 +47,8 @@
 #define SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/assert.h>
 #include "d2_equipment_layout.h"
 #include "d2_grid_layout.h"
 #include "d2_positional_rectangle.h"
@@ -76,6 +76,18 @@ struct D2_InventoryRecord;
 #pragma pack(pop)
 
 /**
+ * View and wrapper declarations
+ */
+
+union D2_InventoryRecord_View {
+  const struct D2_InventoryRecord_1_00* ptr_1_00;
+};
+
+union D2_InventoryRecord_Wrapper {
+  struct D2_InventoryRecord_1_00* ptr_1_00;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -97,7 +109,7 @@ extern "C" {
 /**
  * Creates a generic InventoryRecord with the specified record.
  */
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_CreateWithRecord(
+DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
     const struct D2_PositionalRectangle* position,
     const struct D2_GridLayout* grid_layout,
     const struct D2_EquipmentLayout* equipment_slots
@@ -111,9 +123,18 @@ DLLEXPORT void D2_InventoryRecord_Destroy(
 );
 
 /**
+ * Assigns each InventoryRecord member the values of the source
+ * InventoryRecord. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_AssignMembers(
+    struct D2_InventoryRecord* dest,
+    const struct D2_InventoryRecord* src
+);
+
+/**
  * Returns the element of the InventoryRecord array at the specified index.
  */
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_GetAt(
+DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Access(
     struct D2_InventoryRecord* inventory_record,
     size_t index
 );
@@ -121,18 +142,9 @@ DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_GetAt(
 /**
  * Returns the element of the InventoryRecord array at the specified index.
  */
-DLLEXPORT const struct D2_InventoryRecord* D2_InventoryRecord_GetConstAt(
+DLLEXPORT const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
     const struct D2_InventoryRecord* inventory_record,
     size_t index
-);
-
-/**
- * Copies the values of each member of a InventoryRecord into a specified
- * destination.
- */
-DLLEXPORT void D2_InventoryRecord_Copy(
-    struct D2_InventoryRecord* dest,
-    const struct D2_InventoryRecord* src
 );
 
 /**
@@ -146,7 +158,7 @@ DLLEXPORT struct D2_PositionalRectangle* D2_InventoryRecord_GetPosition(
  * Returns a pointer to the InventoryRecord's position member.
  */
 DLLEXPORT const struct D2_PositionalRectangle*
-D2_InventoryRecord_GetConstPosition(
+D2_InventoryRecord_GetPositionConst(
     const struct D2_InventoryRecord* inventory_record
 );
 
@@ -160,7 +172,7 @@ DLLEXPORT struct D2_GridLayout* D2_InventoryRecord_GetGridLayout(
 /**
  * Returns a pointer to the InventoryRecord's grid layout member.
  */
-DLLEXPORT const struct D2_GridLayout* D2_InventoryRecord_GetConstGridLayout(
+DLLEXPORT const struct D2_GridLayout* D2_InventoryRecord_GetGridLayoutConst(
     const struct D2_InventoryRecord* inventory_record
 );
 
@@ -175,13 +187,37 @@ DLLEXPORT struct D2_EquipmentLayout* D2_InventoryRecord_GetEquipmentSlots(
  * Returns a pointer to the InventoryRecord's equipment slots array member.
  */
 DLLEXPORT const struct D2_EquipmentLayout*
-D2_InventoryRecord_GetConstEquipmentSlots(
+D2_InventoryRecord_GetEquipmentSlotsConst(
     const struct D2_InventoryRecord* inventory_record
 );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
+/**
+ * Static assertions (1.00)
+ */
+
+static_assert(
+    sizeof(struct D2_InventoryRecord_1_00) == 0xF0,
+    "Incorrect size."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, position) == 0x00,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, grid_layout) == 0x10,
+    "Incorrect member alignment."
+);
+
+static_assert(
+    offsetof(struct D2_InventoryRecord_1_00, equipment_slots) == 0x28,
+    "Incorrect member alignment."
+);
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_ */
