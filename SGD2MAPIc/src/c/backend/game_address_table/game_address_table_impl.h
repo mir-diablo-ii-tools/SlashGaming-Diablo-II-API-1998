@@ -50,7 +50,7 @@
 
 #include <mdc/std/stdint.h>
 #include <mdc/std/wchar.h>
-#include "../../../include/c/game_address.h"
+#include "../../../../include/c/game_address.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,8 +75,19 @@ struct Mapi_GameAddressTableEntry {
   union Mapi_GameAddressLocator address_locator_value;
 };
 
+int Mapi_GameAddressTableEntry_CompareKeys(
+    const struct Mapi_GameAddressTableEntry* entry1,
+    const struct Mapi_GameAddressTableEntry* entry2
+);
+
+/**
+ * Returns the pointer to array of GameAddressTableEntry, sorted by
+ * library, and then address name. This 
+ */
 const struct Mapi_GameAddressTableEntry*
 Mapi_GameAddressTable_Get(void);
+
+size_t Mapi_GameAddressTable_Size(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
