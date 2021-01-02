@@ -436,6 +436,39 @@ SOURCE=.\src\c\game_constant\d2_video_mode.c
 
 SOURCE=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text.c
 # End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+
+!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2client
+IntDir=.\Release
+InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputName=d2client_draw_centered_unicode_text_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2client
+IntDir=.\Debug
+InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputName=d2client_draw_centered_unicode_text_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ENDIF 
+
+# End Source File
 # End Group
 # End Group
 # Begin Group "game_struct_c"
