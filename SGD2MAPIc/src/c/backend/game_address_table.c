@@ -45,76 +45,100 @@
 
 #include "game_address_table.h"
 
-#include <pthread.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "error_handling.h"
-#include "../../../include/c/game_version.h"
-#include "game_address_table_impl.h"
-#include "../../wide_macro.h"
+#include <mdc/error/exit_on_error.h>
+#include <mdc/std/threads.h>
+#include <mdc/wchar_t/filew.h>
+#include "game_address_table/game_address_table_impl.h"
+#include "game_library.h"
 
-/**
- * Table of game address entries containing game addresses.
- */
-static struct MAPI_GameAddressTable* game_address_table;
+static const struct Mapi_GameAddressTableEntry* game_address_table;
 
-/**
- * Initializes the game address table.
- */
-static void InitGameAddressTable(void) {
-  game_address_table = LoadGameAddressTable();
+static int Mapi_GameAddressTableEntry_CompareKeysAsVoid(
+    const void* entry1,
+    const void* entry2
+) {
+  return Mapi_GameAddressTableEntry_CompareKeys(entry1, entry2);
 }
 
-/**
- * Returns the compare results of game address table entries by
- * lexicographical compare of the library path, then a
- * lexicographical compare of the address name.
- */
-static int CompareGameAddressTableEntryByLibraryPathThenAddressName(
-    const struct MAPI_GameAddressTableEntry* entry1,
-    const struct MAPI_GameAddressTableEntry* entry2
+static struct Mapi_GameAddress ResolveAddress(
+    const struct Mapi_GameAddressTableEntry* locator
 ) {
-  int first_compare_result = strcmp(
-      entry1->library_path,
-      entry2->library_path
-  );
+  struct Mapi_GameAddress game_address = { 0 };
 
-  if (first_compare_result != 0) {
-    return first_compare_result;
-  }
+  switch (locator->address_locator_type) {
+    case Mapi_GameAddressLocatorType_kOffset: {
+      game_address = Mapi_GameAddress_InitFromLibraryAndOffset(
+          locator->library,
+          locator->address_locator_value.offset
+      );
+    }
 
-  return strcmp(entry1->address_name, entry2->address_name);
-}
+    case Mapi_GameAddressLocatorType_kOrdinal: {
+      game_address = Mapi_GameAddress_InitFromLibraryAndOrdinal(
+          locator->library,
+          locator->address_locator_value.ordinal
+      );
+    }
 
-const struct MAPI_GameAddress* GetGameAddress(
-    const char* library_path,
-    const char* address_name
-) {
-  static pthread_once_t load_table_once = PTHREAD_ONCE_INIT;
-  if (pthread_once(&load_table_once, &InitGameAddressTable) != 0) {
-    ExitOnGeneralFailure(
-        L"pthread_once function failed.",
-        L"Initialization Failure",
-        __FILEW__,
-        __LINE__
-    );
-  }
+    case Mapi_GameAddressLocatorType_kExportedName: {
+      game_address = Mapi_GameAddress_InitFromLibraryAndExportedName(
+          locator->library,
+          locator->address_locator_value.exported_name
+      );
+    }
 
-  struct MAPI_GameAddressTableEntry key = {
-    .library_path = library_path,
-    .address_name = address_name
-  };
-
-  struct MAPI_GameAddressTableEntry* search_result =
-      (struct MAPI_GameAddressTableEntry*) bsearch(
-          (const void*) &key,
-          (void*) game_address_table->entries,
-          game_address_table->num_elements,
-          sizeof(*(game_address_table->entries)[0]),
-          (int (*)(const void*, const void*))
-              &CompareGameAddressTableEntryByLibraryPathThenAddressName
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          locator->address_locator_type
       );
 
-  return &search_result->game_address;
+      goto return_bad;
+    }
+  }
+
+  return game_address;
+
+return_bad:
+  return game_address;
+}
+
+static void InitGameAddressTable(void) {
+  game_address_table = Mapi_GameAddressTable_Get();
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_table_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_table_init_flag, &InitGameAddressTable);
+}
+
+/**
+ * External
+ */
+
+const struct Mapi_GameAddress Mapi_GameAddressTable_GetFromLibrary(
+    enum D2_DefaultLibrary library,
+    const char* address_name
+) {
+  struct Mapi_GameAddressTableEntry search_entry;
+  const struct Mapi_GameAddressTableEntry* search_result;
+
+  InitStatic();
+
+  search_entry.library = library;
+  search_entry.address_name = address_name;
+
+  search_result = bsearch(
+      &search_entry,
+      game_address_table,
+      Mapi_GameAddressTable_Size(),
+      sizeof(game_address_table[0]),
+      &Mapi_GameAddressTableEntry_CompareKeysAsVoid
+  );
+
+  return ResolveAddress(search_result);
 }

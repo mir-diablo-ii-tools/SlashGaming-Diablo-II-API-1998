@@ -46,10 +46,11 @@
 #ifndef SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_
 #define SGMAPI_C_BACKEND_GAME_ADDRESS_TABLE_H_
 
+#include "../../../include/c/default_game_library.h"
 #include "../../../include/c/game_address.h"
 
-const struct MAPI_GameAddress* GetGameAddress(
-    const char* library_path,
+const struct Mapi_GameAddress Mapi_GameAddressTable_GetFromLibrary(
+    enum D2_DefaultLibrary library,
     const char* address_name
 );
 
