@@ -45,24 +45,43 @@
 
 #include "../../../../include/c/game_function/d2client/d2client_draw_centered_unicode_text.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/game_function/fastcall_function.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_version.h"
 #include "../../backend/game_address_table.h"
-#include "../../backend/error_handling.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Client.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Client,
       "DrawCenteredUnicodeText"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * Shims
+ */
+
+void __cdecl D2_D2Client_DrawCenteredUnicodeText_1_11_Shim(
+    intptr_t func_ptr,
+    int32_t left,
+    int32_t position_y,
+    const struct D2_UnicodeChar_1_00* text,
+    int32_t right,
+    /* enum D2_TextColor_1_00 */ int32_t text_color
+);
+
+/**
+ * External
+ */
 
 void D2_D2Client_DrawCenteredUnicodeText(
     int left,
@@ -71,16 +90,18 @@ void D2_D2Client_DrawCenteredUnicodeText(
     int right,
     enum D2_TextColor text_color
 ) {
-  struct D2_UnicodeChar_1_00* actual_text =
-      (struct D2_UnicodeChar_1_00*) text;
+  union D2_UnicodeChar_View text_view;
+  int text_color_game_value;
 
-  enum D2_TextColor text_color_game_value =
-      D2_TextColor_ToGameValue(text_color);
+  InitStatic();
+
+  text_view.ptr_1_00 = (struct D2_UnicodeChar_1_00*) text;
+  text_color_game_value = D2_TextColor_ToGameValue(text_color);
 
   D2_D2Client_DrawCenteredUnicodeText_1_00(
       left,
       position_y,
-      actual_text,
+      text_view.ptr_1_00,
       right,
       text_color_game_value
   );
@@ -91,21 +112,34 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t position_y,
     const struct D2_UnicodeChar_1_00* text,
     int32_t right,
-    int32_t text_color
+    /* enum D2_TextColor_1_00 */ int32_t text_color
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  enum D2_GameVersion running_game_version;
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_10
+      || running_game_version >= D2_GameVersion_kClassic1_14A) {
+    CallFastcallFunction(
+        game_address.raw_address,
+        5,
+        left,
+        position_y,
+        text,
+        right,
+        text_color
+    );
+  } else /* if (running_game_version >= D2_GameVersion_k1_11
+      && running_game_version <= D2_GameVersion_k1_13D) */ {
+    D2_D2Client_DrawCenteredUnicodeText_1_11_Shim(
+        game_address.raw_address,
+        left,
+        position_y,
+        text,
+        right,
+        text_color
+    );
   }
-
-  CallFastcallFunction(
-      game_address->raw_address,
-      5,
-      left,
-      position_y,
-      text,
-      right,
-      text_color
-  );
 }

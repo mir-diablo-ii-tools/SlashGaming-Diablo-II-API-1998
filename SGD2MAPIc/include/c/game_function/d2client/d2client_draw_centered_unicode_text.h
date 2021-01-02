@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_constant/d2_text_color.h"
 #include "../../game_struct/d2_unicode_char.h"
 
@@ -70,7 +69,7 @@ DLLEXPORT void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t position_y,
     const struct D2_UnicodeChar_1_00* text,
     int32_t right,
-    /* enum D2_TextColor_1_00 */int32_t text_color
+    /* enum D2_TextColor_1_00 */ int32_t text_color
 );
 
 #ifdef __cplusplus
