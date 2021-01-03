@@ -52,9 +52,6 @@
 #include <mdc/std/wchar.h>
 #include <mdc/wchar_t/filew.h>
 #include <mdc/wchar_t/wide_decoding.h>
-#include "../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
-#include "../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
-#include "../../../include/c/game_function/d2lang/d2lang_unicode_utf8_to_unicode.h"
 
 /**
  * Function definitions
