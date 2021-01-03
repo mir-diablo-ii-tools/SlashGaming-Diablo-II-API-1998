@@ -43,12 +43,12 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRNCMP_H_
-#define SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRNCMP_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRNCMP_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRNCMP_H_
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <mdc/std/stdint.h>
 #include "../../game_struct/d2_unicode_char.h"
 
 #include "../../../dllexport_define.inc"
@@ -63,7 +63,7 @@ DLLEXPORT int D2_D2Lang_Unicode_strncmp(
     size_t count
 );
 
-DLLEXPORT int D2_D2Lang_Unicode_strncmp_1_00(
+DLLEXPORT int32_t D2_D2Lang_Unicode_strncmp_1_00(
     const struct D2_UnicodeChar_1_00* str1,
     const struct D2_UnicodeChar_1_00* str2,
     uint32_t count
@@ -74,4 +74,4 @@ DLLEXPORT int D2_D2Lang_Unicode_strncmp_1_00(
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRNCMP_H_ */
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRNCMP_H_ */

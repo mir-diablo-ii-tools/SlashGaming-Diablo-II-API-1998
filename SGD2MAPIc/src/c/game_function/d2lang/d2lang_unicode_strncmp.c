@@ -45,54 +45,69 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_strncmp.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Lang.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Lang,
       "Unicode_strncmp"
   );
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 static int32_t D2_D2Lang_Unicode_strncmp_1_10(
     const struct D2_UnicodeChar_1_00* str1,
     const struct D2_UnicodeChar_1_00* str2,
     uint32_t count
-);
+) {
+  InitStatic();
+
+  return (int32_t) CallFastcallFunction(
+      game_address.raw_address,
+      3,
+      str1,
+      str2,
+      count
+  );
+}
+
+/**
+ * External
+ */
 
 int D2_D2Lang_Unicode_strncmp(
     const struct D2_UnicodeChar* str1,
     const struct D2_UnicodeChar* str2,
     size_t count
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  const struct D2_UnicodeChar_1_00* actual_str1 =
-      (const struct D2_UnicodeChar_1_00*) str1;
-  const struct D2_UnicodeChar_1_00* actual_str2 =
-      (const struct D2_UnicodeChar_1_00*) str2;
+  InitStatic();
 
-  if (running_game_version <= VERSION_1_09D) {
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_09D) {
     return D2_D2Lang_Unicode_strncmp_1_00(
-        actual_str1,
-        actual_str2,
+        (const struct D2_UnicodeChar_1_00*) str1,
+        (const struct D2_UnicodeChar_1_00*) str2,
         count
     );
-  } else /* if (running_game_version > VERSION_1_09D) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_09D) */ {
     return D2_D2Lang_Unicode_strncmp_1_10(
-        actual_str1,
-        actual_str2,
+        (const struct D2_UnicodeChar_1_00*) str1,
+        (const struct D2_UnicodeChar_1_00*) str2,
         count
     );
   }
@@ -107,37 +122,20 @@ int32_t D2_D2Lang_Unicode_strncmp_1_00(
     const struct D2_UnicodeChar_1_00* str2,
     uint32_t count
 ) {
-  for (size_t i = 0; i < count; i += 1) {
-    int diff = str1[i].ch - str2[i].ch;
+  size_t i;
+  int32_t diff;
+
+  for (i = 0; i < count; i += 1) {
+    diff = str1[i].ch - str2[i].ch;
 
     if (diff != 0) {
       return diff;
     }
 
-    if (str1[i].ch == u'\0') {
+    if (str1[i].ch == '\0') {
       return 0;
     }
   }
 
   return 0;
-}
-
-int32_t D2_D2Lang_Unicode_strncmp_1_10(
-    const struct D2_UnicodeChar_1_00* str1,
-    const struct D2_UnicodeChar_1_00* str2,
-    uint32_t count
-) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return (int32_t) CallFastcallFunction(
-      game_address->raw_address,
-      3,
-      str1,
-      str2,
-      count
-  );
 }
