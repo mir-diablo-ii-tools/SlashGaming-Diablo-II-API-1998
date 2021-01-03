@@ -45,24 +45,26 @@
 
 #include "../../../../include/c/game_function/d2gfx/d2gfx_draw_rectangle.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2GFX.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2GFX,
       "DrawRectangle"
   );
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2GFX_DrawRectangle(
@@ -71,15 +73,17 @@ void D2_D2GFX_DrawRectangle(
     int right,
     int bottom,
     int primitive_color_id,
-    enum D2_DrawEffect draw_effect_id
+    enum D2_DrawEffect draw_effect
 ) {
+  InitStatic();
+
   D2_D2GFX_DrawRectangle_1_00(
       left,
       top,
       right,
       bottom,
       primitive_color_id,
-      draw_effect_id
+      D2_DrawEffect_ToGameValue(draw_effect)
   );
 }
 
@@ -89,22 +93,18 @@ void D2_D2GFX_DrawRectangle_1_00(
     int32_t right,
     int32_t bottom,
     int32_t primitive_color_id,
-    int32_t draw_effect_id
+    /* enum D2_DrawEffect_1_00 */ int32_t draw_effect
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       left,
       top,
       right,
       bottom,
       primitive_color_id,
-      draw_effect_id
+      draw_effect
   );
 }

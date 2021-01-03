@@ -43,11 +43,10 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2GFX_D2GFX_DRAW_RECTANGLE_H_
-#define SGD2MAPI_C_GAME_FUNC_D2GFX_D2GFX_DRAW_RECTANGLE_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_constant/d2_draw_effect.h"
 
 #include "../../../dllexport_define.inc"
@@ -62,7 +61,7 @@ DLLEXPORT void D2_D2GFX_DrawRectangle(
     int right,
     int bottom,
     int primitive_color_id,
-    enum D2_DrawEffect draw_effect_id
+    enum D2_DrawEffect draw_effect
 );
 
 DLLEXPORT void D2_D2GFX_DrawRectangle_1_00(
@@ -71,7 +70,7 @@ DLLEXPORT void D2_D2GFX_DrawRectangle_1_00(
     int32_t right,
     int32_t bottom,
     int32_t primitive_color_id,
-    int32_t draw_effect_id
+    /* enum D2_DrawEffect_1_00 */ int32_t draw_effect
 );
 
 #ifdef __cplusplus
@@ -79,4 +78,4 @@ DLLEXPORT void D2_D2GFX_DrawRectangle_1_00(
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_FUNC_D2GFX_D2GFX_DRAW_RECTANGLE_H_ */
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_ */
