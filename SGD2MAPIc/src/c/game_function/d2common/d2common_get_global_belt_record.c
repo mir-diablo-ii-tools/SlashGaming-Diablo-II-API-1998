@@ -45,46 +45,56 @@
 
 #include "../../../../include/c/game_function/d2common/d2common_get_global_belt_record.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Common.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Common,
       "GetGlobalBeltRecord"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 void D2_D2Common_GetGlobalBeltRecord(
     unsigned int belt_record_index,
     unsigned int inventory_arrange_mode,
     struct D2_BeltRecord* out_belt_record
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_BeltRecord_Wrapper out_belt_record_wrapper;
 
-  struct D2_BeltRecord_1_00* actual_out_belt_record =
-      (struct D2_BeltRecord_1_00*) out_belt_record;
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version <= VERSION_1_06B) {
+  running_game_version = D2_GetRunningGameVersion();
+
+  out_belt_record_wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*)
+      out_belt_record;
+
+  if (running_game_version <= D2_GameVersion_k1_06B) {
     D2_D2Common_GetGlobalBeltRecord_1_00(
         belt_record_index,
-        actual_out_belt_record
+        out_belt_record_wrapper.ptr_1_00
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
     D2_D2Common_GetGlobalBeltRecord_1_07(
         belt_record_index,
         inventory_arrange_mode,
-        actual_out_belt_record
+        out_belt_record_wrapper.ptr_1_00
     );
   }
 }
@@ -93,14 +103,8 @@ void D2_D2Common_GetGlobalBeltRecord_1_00(
     uint32_t belt_record_index,
     struct D2_BeltRecord_1_00* out_belt_record
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       2,
       belt_record_index,
       out_belt_record
@@ -112,14 +116,8 @@ void D2_D2Common_GetGlobalBeltRecord_1_07(
     uint32_t inventory_arrange_mode,
     struct D2_BeltRecord_1_00* out_belt_record
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       belt_record_index,
       inventory_arrange_mode,
