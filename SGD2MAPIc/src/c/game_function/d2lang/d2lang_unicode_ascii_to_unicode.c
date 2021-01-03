@@ -45,21 +45,18 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_ascii_to_unicode.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
+#include "../../../../include/c/game_version.h"
 #include "../../backend/game_address_table.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Lang.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Lang,
       "Unicode_AsciiToUnicode"
   );
 }
@@ -69,14 +66,11 @@ struct D2_UnicodeChar* D2_D2Lang_Unicode_AsciiToUnicode(
     const char* src,
     int count_including_null_terminator
 ) {
-  struct D2_UnicodeChar_1_00* actual_return_value =
-      D2_D2Lang_Unicode_AsciiToUnicode_1_00(
-          (struct D2_UnicodeChar_1_00*) dest,
-          src,
-          count_including_null_terminator
-      );
-
-  return (struct D2_UnicodeChar*) actual_return_value;
+  return (struct D2_UnicodeChar*) D2_D2Lang_Unicode_AsciiToUnicode_1_00(
+      (struct D2_UnicodeChar_1_00*) dest,
+      src,
+      count_including_null_terminator
+  );
 }
 
 struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_AsciiToUnicode_1_00(
@@ -84,14 +78,8 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_AsciiToUnicode_1_00(
     const char* src,
     int32_t count_including_null_terminator
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
   return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       dest,
       src,
