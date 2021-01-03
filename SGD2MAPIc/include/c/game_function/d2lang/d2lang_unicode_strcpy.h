@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRCPY_H_
-#define SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRCPY_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRCPY_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRCPY_H_
 
 #include "../../game_struct/d2_unicode_char.h"
 
@@ -69,4 +69,4 @@ DLLEXPORT struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_strcpy_1_00(
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_FUNC_D2LANG_D2LANG_UNICODE_STRCPY_H_ */
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_UNICODE_STRCPY_H_ */
