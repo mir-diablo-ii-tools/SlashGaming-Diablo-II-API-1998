@@ -45,24 +45,26 @@
 
 #include "../../../../include/c/game_function/d2gfx/d2gfx_draw_cel_context.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2GFX.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2GFX,
       "DrawCelContext"
   );
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 bool D2_D2GFX_DrawCelContext(
@@ -71,11 +73,15 @@ bool D2_D2GFX_DrawCelContext(
     int position_y,
     unsigned int bgrt_color,
     enum D2_DrawEffect draw_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version <= VERSION_1_10) {
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_10) {
     return (bool) D2_D2GFX_DrawCelContext_1_00(
         (struct D2_CelContext_1_00*) cel_context,
         position_x,
@@ -84,7 +90,7 @@ bool D2_D2GFX_DrawCelContext(
         D2_DrawEffect_ToGameValue(draw_effect),
         unknown_06__set_to_nullptr
     );
-  } else if (running_game_version == VERSION_1_12A) {
+  } else if (running_game_version == D2_GameVersion_k1_12A) {
     return (bool) D2_D2GFX_DrawCelContext_1_12A(
         (struct D2_CelContext_1_12A*) cel_context,
         position_x,
@@ -93,7 +99,7 @@ bool D2_D2GFX_DrawCelContext(
         D2_DrawEffect_ToGameValue(draw_effect),
         unknown_06__set_to_nullptr
     );
-  } else /* if (running_game_version > VERSION_1_13A_BETA) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_13ABeta) */ {
     return (bool) D2_D2GFX_DrawCelContext_1_13C(
         (struct D2_CelContext_1_13C*) cel_context,
         position_x,
@@ -111,16 +117,12 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,
@@ -137,16 +139,12 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,
@@ -163,16 +161,12 @@ mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     int32_t position_y,
     uint32_t bgrt_color,
     int32_t draw_cel_context_effect,
-    struct MAPI_Undefined* unknown_06__set_to_nullptr
+    struct Mapi_Undefined* unknown_06__set_to_nullptr
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       cel_context,
       position_x,
