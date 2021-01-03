@@ -45,51 +45,60 @@
 
 #include "../../../../include/c/game_function/d2cmp/d2cmp_get_cel_from_cel_context.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2CMP.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2CMP,
       "GetCelFromCelContext"
   );
 }
 
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
+
 struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
     struct D2_CelContext* cel_context
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_CelContext_Wrapper cel_context_wrapper;
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version < VERSION_1_11) {
-    struct D2_CelContext_1_00* actual_cel_context =
-        (struct D2_CelContext_1_00*) cel_context;
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version < D2_GameVersion_k1_11) {
+    cel_context_wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) cel_context;
 
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_00(
-        actual_cel_context
+        cel_context_wrapper.ptr_1_00
     );
-  } else if (running_game_version == VERSION_1_12A) {
-    struct D2_CelContext_1_12A* actual_cel_context =
-        (struct D2_CelContext_1_12A*) cel_context;
+  } else if (running_game_version == D2_GameVersion_k1_12A) {
+    cel_context_wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) cel_context;
 
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_12A(
-        actual_cel_context
+        cel_context_wrapper.ptr_1_12a
     );
-  } else /* if (running_game_version >= VERSION_1_13A_BETA) */ {
-    struct D2_CelContext_1_13C* actual_cel_context =
+  } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta) */ {
+    cel_context_wrapper.ptr_1_13c =
         (struct D2_CelContext_1_13C*) cel_context;
 
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_13C(
-        actual_cel_context
+        cel_context_wrapper.ptr_1_13c
     );
   }
 }
@@ -97,14 +106,10 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_00(
     struct D2_CelContext_1_00* cel_context
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );
@@ -113,14 +118,10 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_00(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_12A(
     struct D2_CelContext_1_12A* cel_context
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );
@@ -129,14 +130,10 @@ struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_12A(
 struct D2_Cel_1_00* D2_D2CMP_GetCelFromCelContext_1_13C(
     struct D2_CelContext_1_13C* cel_context
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_Cel_1_00*) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       cel_context
   );

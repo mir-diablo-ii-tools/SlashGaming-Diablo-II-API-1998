@@ -144,17 +144,7 @@ InputName=cdecl_function
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_function\cdecl_function.h
-
-!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -192,17 +182,7 @@ InputName=esi_function
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_function\esi_function.h
-
-!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -240,17 +220,7 @@ InputName=fastcall_function
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_function\fastcall_function.h
-
-!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -288,17 +258,7 @@ InputName=stdcall_function
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_function\stdcall_function.h
-
-!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -336,17 +296,7 @@ InputName=thiscall_function
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_function\thiscall_function.h
-
-!IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # End Group
 # Begin Group "backend_game_version_c"
@@ -468,6 +418,14 @@ InputName=d2client_draw_centered_unicode_text_shim
 
 !ENDIF 
 
+# End Source File
+# End Group
+# Begin Group "d2cmp_function_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.c
 # End Source File
 # End Group
 # End Group
