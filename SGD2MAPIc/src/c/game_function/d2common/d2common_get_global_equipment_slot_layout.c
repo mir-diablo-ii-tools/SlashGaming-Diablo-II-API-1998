@@ -45,24 +45,26 @@
 
 #include "../../../../include/c/game_function/d2common/d2common_get_global_equipment_slot_layout.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Common.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Common,
       "GetGlobalEquipmentSlotLayout"
   );
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2Common_GetGlobalEquipmentSlotLayout(
@@ -71,22 +73,31 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout(
     struct D2_EquipmentLayout* out_equipment_slot_layout,
     unsigned int equipment_slot_index
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_EquipmentLayout_Wrapper out_equipment_slot_layout_wrapper;
 
-  struct D2_EquipmentLayout_1_00* actual_out_equipment_slot_layout =
-      (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout;
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version <= VERSION_1_06B) {
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_06B) {
+    out_equipment_slot_layout_wrapper.ptr_1_00 =
+        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout;
+
     D2_D2Common_GetGlobalEquipmentSlotLayout_1_00(
         inventory_record_index,
-        actual_out_equipment_slot_layout,
+        out_equipment_slot_layout_wrapper.ptr_1_00,
         equipment_slot_index
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
+    out_equipment_slot_layout_wrapper.ptr_1_00 =
+        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout;
+
     D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,
-        actual_out_equipment_slot_layout,
+        out_equipment_slot_layout_wrapper.ptr_1_00,
         equipment_slot_index
     );
   }
@@ -97,14 +108,10 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout_1_00(
     struct D2_EquipmentLayout_1_00* out_equipment_slot_layout,
     uint32_t equipment_slot_index
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       inventory_record_index,
       out_equipment_slot_layout,
@@ -118,14 +125,10 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
     struct D2_EquipmentLayout_1_00* out_equipment_slot_layout,
     uint32_t equipment_slot_index
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       inventory_record_index,
       inventory_arrange_mode,
