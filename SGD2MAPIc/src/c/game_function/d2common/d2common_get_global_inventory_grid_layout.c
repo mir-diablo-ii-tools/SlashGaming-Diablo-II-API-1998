@@ -45,46 +45,61 @@
 
 #include "../../../../include/c/game_function/d2common/d2common_get_global_inventory_grid_layout.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Common.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Common,
       "GetGlobalInventoryGridLayout"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 void D2_D2Common_GetGlobalInventoryGridLayout(
     unsigned int inventory_record_index,
     unsigned int inventory_arrange_mode,
     struct D2_GridLayout* out_grid_layout
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_GridLayout_Wrapper out_grid_layout_wrapper;
 
-  struct D2_GridLayout_1_00* actual_out_grid_layout =
-      (struct D2_GridLayout_1_00*) out_grid_layout;
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version <= VERSION_1_06B) {
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_06B) {
+    out_grid_layout_wrapper.ptr_1_00 = (struct D2_GridLayout_1_00*)
+        out_grid_layout;
+
     D2_D2Common_GetGlobalInventoryGridLayout_1_00(
         inventory_record_index,
-        actual_out_grid_layout
+        out_grid_layout_wrapper.ptr_1_00
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
+    out_grid_layout_wrapper.ptr_1_00 = (struct D2_GridLayout_1_00*)
+        out_grid_layout;
+
     D2_D2Common_GetGlobalInventoryGridLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,
-        actual_out_grid_layout
+        out_grid_layout_wrapper.ptr_1_00
     );
   }
 }
@@ -93,14 +108,10 @@ void D2_D2Common_GetGlobalInventoryGridLayout_1_00(
     uint32_t inventory_record_index,
     struct D2_GridLayout_1_00* out_grid_layout
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       2,
       inventory_record_index,
       out_grid_layout
@@ -112,14 +123,10 @@ void D2_D2Common_GetGlobalInventoryGridLayout_1_07(
     uint32_t inventory_arrange_mode,
     struct D2_GridLayout_1_00* out_grid_layout
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       inventory_record_index,
       inventory_arrange_mode,
