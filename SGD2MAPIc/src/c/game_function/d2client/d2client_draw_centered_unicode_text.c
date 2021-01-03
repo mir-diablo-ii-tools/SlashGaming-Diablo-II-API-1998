@@ -47,6 +47,7 @@
 
 #include <mdc/std/threads.h>
 #include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/fastcall_function.h"
