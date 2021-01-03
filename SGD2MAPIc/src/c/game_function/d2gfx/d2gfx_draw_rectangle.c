@@ -67,6 +67,10 @@ static void InitStatic(void) {
   call_once(&game_address_init_flag, &InitGameAddress);
 }
 
+/**
+ * External
+ */
+
 void D2_D2GFX_DrawRectangle(
     int left,
     int top,

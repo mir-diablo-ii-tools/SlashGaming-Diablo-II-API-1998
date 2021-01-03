@@ -67,6 +67,10 @@ static void InitStatic(void) {
   call_once(&game_address_init_flag, &InitGameAddress);
 }
 
+/**
+ * External
+ */
+
 bool D2_D2GFX_DrawCelContext(
     struct D2_CelContext* cel_context,
     int position_x,
