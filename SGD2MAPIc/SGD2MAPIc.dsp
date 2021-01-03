@@ -428,6 +428,62 @@ InputName=d2client_draw_centered_unicode_text_shim
 SOURCE=.\src\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.c
 # End Source File
 # End Group
+# Begin Group "d2common_function_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2common\d2common_get_global_belt_record.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2common\d2common_get_global_belt_slot_position.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2common\d2common_get_global_equipment_slot_layout.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2common\d2common_get_global_inventory_grid_layout.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2common\d2common_get_global_inventory_position.c
+# End Source File
+# End Group
+# Begin Group "d2gfx_function_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_cel_context.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_rectangle.c
+# End Source File
+# End Group
+# Begin Group "d2lang_function_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\game_function\d2lang\d2lang_get_string_by_index.c
+# End Source File
+# End Group
+# Begin Group "d2win_function_c"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "fog_function_c"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "storm_function_c"
+
+# PROP Default_Filter ""
+# End Group
 # End Group
 # Begin Group "game_struct_c"
 
