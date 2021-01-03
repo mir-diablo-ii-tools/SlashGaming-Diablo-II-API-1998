@@ -80,6 +80,8 @@ void D2_D2Common_GetGlobalBeltRecord(
 
   enum D2_GameVersion running_game_version;
 
+  InitStatic();
+
   running_game_version = D2_GetRunningGameVersion();
 
   out_belt_record_wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*)
@@ -103,6 +105,8 @@ void D2_D2Common_GetGlobalBeltRecord_1_00(
     uint32_t belt_record_index,
     struct D2_BeltRecord_1_00* out_belt_record
 ) {
+  InitStatic();
+
   CallStdcallFunction(
       game_address.raw_address,
       2,
@@ -116,6 +120,8 @@ void D2_D2Common_GetGlobalBeltRecord_1_07(
     uint32_t inventory_arrange_mode,
     struct D2_BeltRecord_1_00* out_belt_record
 ) {
+  InitStatic();
+
   CallStdcallFunction(
       game_address.raw_address,
       3,

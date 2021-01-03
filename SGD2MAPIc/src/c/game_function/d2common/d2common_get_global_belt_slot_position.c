@@ -77,6 +77,8 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
 
   enum D2_GameVersion running_game_version;
 
+  InitStatic();
+
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
@@ -106,6 +108,8 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
 ) {
+  InitStatic();
+
   CallStdcallFunction(
       game_address.raw_address,
       3,
@@ -121,6 +125,8 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
 ) {
+  InitStatic();
+
   CallStdcallFunction(
       game_address.raw_address,
       4,
