@@ -45,24 +45,26 @@
 
 #include "../../../../include/c/game_function/d2common/d2common_get_global_belt_slot_position.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Common.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Common,
       "GetGlobalBeltSlotPosition"
   );
+}
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
 }
 
 void D2_D2Common_GetGlobalBeltSlotPosition(
@@ -71,22 +73,29 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
     struct D2_PositionalRectangle* out_belt_slot,
     unsigned int belt_slot_index
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  union D2_PositionalRectangle_Wrapper out_belt_slot_wrapper;
 
-  struct D2_PositionalRectangle_1_00* actual_out_belt_slot =
-      (struct D2_PositionalRectangle_1_00*) out_belt_slot;
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version <= VERSION_1_06B) {
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_06B) {
+    out_belt_slot_wrapper.ptr_1_00 =
+        (struct D2_PositionalRectangle_1_00*) out_belt_slot;
+
     D2_D2Common_GetGlobalBeltSlotPosition_1_00(
         belt_record_index,
-        actual_out_belt_slot,
+        out_belt_slot_wrapper.ptr_1_00,
         belt_slot_index
     );
-  } else /* if (running_game_version > VERSION_1_07_BETA) */ {
+  } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
+    out_belt_slot_wrapper.ptr_1_00 =
+        (struct D2_PositionalRectangle_1_00*) out_belt_slot;
+
     D2_D2Common_GetGlobalBeltSlotPosition_1_07(
         belt_record_index,
         inventory_arrange_mode,
-        actual_out_belt_slot,
+        out_belt_slot_wrapper.ptr_1_00,
         belt_slot_index
     );
   }
@@ -97,14 +106,8 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       belt_record_index,
       out_belt_slot,
@@ -118,14 +121,8 @@ void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
   CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       belt_record_index,
       inventory_arrange_mode,
