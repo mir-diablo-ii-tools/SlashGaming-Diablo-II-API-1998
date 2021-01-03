@@ -61,9 +61,21 @@ static void InitGameAddress(void) {
   );
 }
 
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
+
 const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
     unsigned int id
 ) {
+  InitStatic();
+
   return (const struct D2_UnicodeChar*) D2_D2Lang_GetStringByIndex_1_00(
       id
   );
@@ -72,6 +84,8 @@ const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
 const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
     uint32_t id
 ) {
+  InitStatic();
+
   return (const struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address.raw_address,
       1,

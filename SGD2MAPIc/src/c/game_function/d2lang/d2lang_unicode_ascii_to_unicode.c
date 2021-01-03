@@ -61,11 +61,23 @@ static void InitGameAddress(void) {
   );
 }
 
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
+
 struct D2_UnicodeChar* D2_D2Lang_Unicode_AsciiToUnicode(
     struct D2_UnicodeChar* dest,
     const char* src,
     int count_including_null_terminator
 ) {
+  InitStatic();
+
   return (struct D2_UnicodeChar*) D2_D2Lang_Unicode_AsciiToUnicode_1_00(
       (struct D2_UnicodeChar_1_00*) dest,
       src,
@@ -78,6 +90,8 @@ struct D2_UnicodeChar_1_00* D2_D2Lang_Unicode_AsciiToUnicode_1_00(
     const char* src,
     int32_t count_including_null_terminator
 ) {
+  InitStatic();
+
   return (struct D2_UnicodeChar_1_00*) CallFastcallFunction(
       game_address.raw_address,
       3,
