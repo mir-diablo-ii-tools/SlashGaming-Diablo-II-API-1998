@@ -45,36 +45,42 @@
 
 #include "../../../../include/c/game_function/d2lang/d2lang_unicode_unicode_to_utf8.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
+#include "../../../../include/c/game_version.h"
 #include "../../backend/game_address_table.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Lang.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Lang,
       "Unicode_UnicodeToUtf8"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 char* D2_D2Lang_Unicode_UnicodeToUtf8(
     char* dest,
     const struct D2_UnicodeChar* src,
     int count_including_null_terminator
 ) {
-  const struct D2_UnicodeChar_1_00* actual_src =
-      (const struct D2_UnicodeChar_1_00*) src;
+  InitStatic();
 
   return D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
       dest,
-      actual_src,
+      (const struct D2_UnicodeChar_1_00*) src,
       count_including_null_terminator
   );
 }
@@ -84,14 +90,10 @@ char* D2_D2Lang_Unicode_UnicodeToUtf8_1_00(
     const struct D2_UnicodeChar_1_00* src,
     int32_t count_including_null_terminator
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (char*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       3,
       dest,
       src,
