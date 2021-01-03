@@ -76,8 +76,6 @@ void D2_D2Common_GetGlobalInventoryPosition(
     unsigned int inventory_arrange_mode,
     struct D2_PositionalRectangle* out_position
 ) {
-  union D2_PositionalRectangle_Wrapper out_position_wrapper;
-
   enum D2_GameVersion running_game_version;
 
   InitStatic();
@@ -85,21 +83,15 @@ void D2_D2Common_GetGlobalInventoryPosition(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
-    out_position_wrapper.ptr_1_00 = (struct D2_PositionalRectangle_1_00*)
-        out_position;
-
     D2_D2Common_GetGlobalInventoryPosition_1_00(
         inventory_record_index,
-        out_position_wrapper.ptr_1_00
+        (struct D2_PositionalRectangle_1_00*) out_position
     );
   } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
-    out_position_wrapper.ptr_1_00 = (struct D2_PositionalRectangle_1_00*)
-        out_position;
-
     D2_D2Common_GetGlobalInventoryPosition_1_07(
         inventory_record_index,
         inventory_arrange_mode,
-        out_position_wrapper.ptr_1_00
+        (struct D2_PositionalRectangle_1_00*) out_position
     );
   }
 }

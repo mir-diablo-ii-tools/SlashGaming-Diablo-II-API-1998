@@ -74,7 +74,6 @@ static void InitStatic(void) {
 struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
     struct D2_CelContext* cel_context
 ) {
-  union D2_CelContext_Wrapper cel_context_wrapper;
   enum D2_GameVersion running_game_version;
 
   InitStatic();
@@ -82,23 +81,16 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version < D2_GameVersion_k1_11) {
-    cel_context_wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_00(
-        cel_context_wrapper.ptr_1_00
+        (struct D2_CelContext_1_00*) cel_context
     );
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    cel_context_wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_12A(
-        cel_context_wrapper.ptr_1_12a
+        (struct D2_CelContext_1_12A*) cel_context
     );
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta) */ {
-    cel_context_wrapper.ptr_1_13c =
-        (struct D2_CelContext_1_13C*) cel_context;
-
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_13C(
-        cel_context_wrapper.ptr_1_13c
+        (struct D2_CelContext_1_13C*) cel_context
     );
   }
 }

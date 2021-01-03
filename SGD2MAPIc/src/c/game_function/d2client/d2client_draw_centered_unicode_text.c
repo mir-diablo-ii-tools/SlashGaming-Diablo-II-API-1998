@@ -91,20 +91,14 @@ void D2_D2Client_DrawCenteredUnicodeText(
     int right,
     enum D2_TextColor text_color
 ) {
-  union D2_UnicodeChar_View text_view;
-  int text_color_game_value;
-
   InitStatic();
-
-  text_view.ptr_1_00 = (struct D2_UnicodeChar_1_00*) text;
-  text_color_game_value = D2_TextColor_ToGameValue(text_color);
 
   D2_D2Client_DrawCenteredUnicodeText_1_00(
       left,
       position_y,
-      text_view.ptr_1_00,
+      (const struct D2_UnicodeChar_1_00*) text,
       right,
-      text_color_game_value
+      D2_TextColor_ToGameValue(text_color)
   );
 }
 

@@ -73,8 +73,6 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
     struct D2_PositionalRectangle* out_belt_slot,
     unsigned int belt_slot_index
 ) {
-  union D2_PositionalRectangle_Wrapper out_belt_slot_wrapper;
-
   enum D2_GameVersion running_game_version;
 
   InitStatic();
@@ -82,22 +80,16 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
-    out_belt_slot_wrapper.ptr_1_00 =
-        (struct D2_PositionalRectangle_1_00*) out_belt_slot;
-
     D2_D2Common_GetGlobalBeltSlotPosition_1_00(
         belt_record_index,
-        out_belt_slot_wrapper.ptr_1_00,
+        (struct D2_PositionalRectangle_1_00*) out_belt_slot,
         belt_slot_index
     );
   } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
-    out_belt_slot_wrapper.ptr_1_00 =
-        (struct D2_PositionalRectangle_1_00*) out_belt_slot;
-
     D2_D2Common_GetGlobalBeltSlotPosition_1_07(
         belt_record_index,
         inventory_arrange_mode,
-        out_belt_slot_wrapper.ptr_1_00,
+        (struct D2_PositionalRectangle_1_00*) out_belt_slot,
         belt_slot_index
     );
   }

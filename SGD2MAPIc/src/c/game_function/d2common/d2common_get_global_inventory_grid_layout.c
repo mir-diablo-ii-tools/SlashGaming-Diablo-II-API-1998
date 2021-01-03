@@ -76,8 +76,6 @@ void D2_D2Common_GetGlobalInventoryGridLayout(
     unsigned int inventory_arrange_mode,
     struct D2_GridLayout* out_grid_layout
 ) {
-  union D2_GridLayout_Wrapper out_grid_layout_wrapper;
-
   enum D2_GameVersion running_game_version;
 
   InitStatic();
@@ -85,21 +83,15 @@ void D2_D2Common_GetGlobalInventoryGridLayout(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
-    out_grid_layout_wrapper.ptr_1_00 = (struct D2_GridLayout_1_00*)
-        out_grid_layout;
-
     D2_D2Common_GetGlobalInventoryGridLayout_1_00(
         inventory_record_index,
-        out_grid_layout_wrapper.ptr_1_00
+        (struct D2_GridLayout_1_00*) out_grid_layout
     );
   } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
-    out_grid_layout_wrapper.ptr_1_00 = (struct D2_GridLayout_1_00*)
-        out_grid_layout;
-
     D2_D2Common_GetGlobalInventoryGridLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,
-        out_grid_layout_wrapper.ptr_1_00
+        (struct D2_GridLayout_1_00*) out_grid_layout
     );
   }
 }

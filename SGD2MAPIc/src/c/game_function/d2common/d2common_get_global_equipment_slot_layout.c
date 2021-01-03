@@ -73,8 +73,6 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout(
     struct D2_EquipmentLayout* out_equipment_slot_layout,
     unsigned int equipment_slot_index
 ) {
-  union D2_EquipmentLayout_Wrapper out_equipment_slot_layout_wrapper;
-
   enum D2_GameVersion running_game_version;
 
   InitStatic();
@@ -82,22 +80,16 @@ void D2_D2Common_GetGlobalEquipmentSlotLayout(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
-    out_equipment_slot_layout_wrapper.ptr_1_00 =
-        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout;
-
     D2_D2Common_GetGlobalEquipmentSlotLayout_1_00(
         inventory_record_index,
-        out_equipment_slot_layout_wrapper.ptr_1_00,
+        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout,
         equipment_slot_index
     );
   } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
-    out_equipment_slot_layout_wrapper.ptr_1_00 =
-        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout;
-
     D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
         inventory_record_index,
         inventory_arrange_mode,
-        out_equipment_slot_layout_wrapper.ptr_1_00,
+        (struct D2_EquipmentLayout_1_00*) out_equipment_slot_layout,
         equipment_slot_index
     );
   }

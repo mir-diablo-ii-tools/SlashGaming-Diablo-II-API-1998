@@ -76,27 +76,22 @@ void D2_D2Common_GetGlobalBeltRecord(
     unsigned int inventory_arrange_mode,
     struct D2_BeltRecord* out_belt_record
 ) {
-  union D2_BeltRecord_Wrapper out_belt_record_wrapper;
-
   enum D2_GameVersion running_game_version;
 
   InitStatic();
 
   running_game_version = D2_GetRunningGameVersion();
 
-  out_belt_record_wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*)
-      out_belt_record;
-
   if (running_game_version <= D2_GameVersion_k1_06B) {
     D2_D2Common_GetGlobalBeltRecord_1_00(
         belt_record_index,
-        out_belt_record_wrapper.ptr_1_00
+        (struct D2_BeltRecord_1_00*) out_belt_record
     );
   } else /* if (running_game_version > D2_GameVersion_k1_07Beta) */ {
     D2_D2Common_GetGlobalBeltRecord_1_07(
         belt_record_index,
         inventory_arrange_mode,
-        out_belt_record_wrapper.ptr_1_00
+        (struct D2_BeltRecord_1_00*) out_belt_record
     );
   }
 }
