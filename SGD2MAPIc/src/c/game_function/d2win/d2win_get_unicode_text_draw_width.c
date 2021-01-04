@@ -45,48 +45,49 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_get_unicode_text_draw_width.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Win.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Win,
       "GetUnicodeTextDrawWidth"
   );
 }
 
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
+
 int D2_D2Win_GetUnicodeTextDrawWidth(
     const struct D2_UnicodeChar* text
 ) {
-  const struct D2_UnicodeChar_1_00* actual_text =
-      (const struct D2_UnicodeChar_1_00*) text;
+  InitStatic();
 
   return D2_D2Win_GetUnicodeTextDrawWidth_1_00(
-      actual_text
+      (const struct D2_UnicodeChar_1_00*) text
   );
 }
 
 int32_t D2_D2Win_GetUnicodeTextDrawWidth_1_00(
     const struct D2_UnicodeChar_1_00* text
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (int32_t) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       1,
       text
   );
