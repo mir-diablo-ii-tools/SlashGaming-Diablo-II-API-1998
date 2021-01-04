@@ -45,25 +45,45 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_load_mpq.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Win.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Win,
       "LoadMpq"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * Shims
+ */
+
+struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11_Shim(
+    intptr_t func_ptr,
+    const char* dll_file_name,
+    const char* mpq_file_name,
+    const char* mpq_name,
+    mapi_bool32 is_set_err_on_drive_query_fail,
+    void* (*on_fail_callback)(void),
+    int32_t priority
+);
+
+/**
+ * External
+ */
 
 struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     const char* mpq_file_name,
@@ -71,9 +91,13 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     void* (*on_fail_callback)(void),
     int priority
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
+  enum D2_GameVersion running_game_version;
 
-  if (running_game_version == VERSION_1_00) {
+  InitStatic();
+
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version <= D2_GameVersion_k1_02) {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_00(
         "sgd2mapi.DLL",
         mpq_file_name,
@@ -81,8 +105,8 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
         0,
         on_fail_callback
     );
-  } else if (running_game_version >= VERSION_1_03
-      && running_game_version <= VERSION_1_06B) {
+  } else if (running_game_version >= D2_GameVersion_k1_03
+      && running_game_version <= D2_GameVersion_k1_06B) {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_03(
         "sgd2mapi.DLL",
         mpq_file_name,
@@ -91,9 +115,9 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
         is_set_err_on_drive_query_fail,
         on_fail_callback
     );
-  } else if (running_game_version >= VERSION_1_07
-      && running_game_version <= VERSION_1_10) {
-    return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_09D(
+  } else if (running_game_version >= D2_GameVersion_k1_07Beta
+      && running_game_version <= D2_GameVersion_k1_10) {
+    return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_07(
         "sgd2mapi.DLL",
         mpq_file_name,
         "SGD2MAPI",
@@ -102,8 +126,8 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
         on_fail_callback,
         priority
     );
-  } else if (running_game_version >= VERSION_1_11
-      && running_game_version <= VERSION_1_13D) {
+  } else if (running_game_version >= D2_GameVersion_k1_11
+      && running_game_version <= D2_GameVersion_k1_13D) {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_11(
         "sgd2mapi.DLL",
         mpq_file_name,
@@ -112,7 +136,7 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
         on_fail_callback,
         priority
     );
-  } else /* if (running_game_version >= CLASSIC_1_14A) */ {
+  } else /* if (running_game_version >= D2_GameVersion_kClassic1_14A) */ {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_14A(
         mpq_file_name,
         is_set_err_on_drive_query_fail,
@@ -129,14 +153,10 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
     int32_t unused,
     void* (*on_fail_callback)(void)
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       5,
       dll_file_name,
       mpq_file_name,
@@ -154,14 +174,10 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
     mapi_bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void)
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       6,
       dll_file_name,
       mpq_file_name,
@@ -172,7 +188,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
   );
 }
 
-struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_09D(
+struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -181,14 +197,10 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_09D(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       7,
       dll_file_name,
       mpq_file_name,
@@ -200,37 +212,6 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_09D(
   );
 }
 
-static __declspec(naked) struct D2_MpqArchiveHandle_1_00*
-D2_D2Win_LoadMpq_1_11_Shim(
-    intptr_t func_ptr,
-    const char* dll_file_name,
-    const char* mpq_file_name,
-    const char* mpq_name,
-    mapi_bool32 is_set_err_on_drive_query_fail,
-    void* (*on_fail_callback)(void),
-    int32_t priority
-) {
-  ASM_X86(push ebp);
-  ASM_X86(mov ebp, esp);
-
-  ASM_X86(push ecx);
-  ASM_X86(push edx);
-
-  ASM_X86(mov eax, dword ptr [ebp + 32]);
-  ASM_X86(push dword ptr [ebp + 28]);
-  ASM_X86(push dword ptr [ebp + 24]);
-  ASM_X86(push dword ptr [ebp + 20]);
-  ASM_X86(push dword ptr [ebp + 16]);
-  ASM_X86(push dword ptr [ebp + 12]);
-  ASM_X86(call dword ptr [ebp + 8]);
-
-  ASM_X86(pop edx);
-  ASM_X86(pop ecx);
-
-  ASM_X86(leave);
-  ASM_X86(ret);
-}
-
 struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
     const char* dll_file_name,
     const char* mpq_file_name,
@@ -239,14 +220,10 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return D2_D2Win_LoadMpq_1_11_Shim(
-      game_address->raw_address,
+      game_address.raw_address,
       dll_file_name,
       mpq_file_name,
       mpq_name,
@@ -262,14 +239,10 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
     void* (*on_fail_callback)(void),
     int32_t priority
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (struct D2_MpqArchiveHandle_1_00*) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       mpq_file_name,
       is_set_err_on_drive_query_fail,
