@@ -45,25 +45,31 @@
 
 #include "../../../../include/c/game_function/storm/storm_s_file_open_archive.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "Storm.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kStorm,
       "SFileOpenArchive"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 bool D2_Storm_SFileOpenArchive(
     const char* mpq_archive_path,
@@ -71,6 +77,8 @@ bool D2_Storm_SFileOpenArchive(
     unsigned int flags,
     struct D2_MpqArchive** mpq_archive_ptr_out
 ) {
+  InitStatic();
+
   return (bool) D2_Storm_SFileOpenArchive_1_00(
       mpq_archive_path,
       priority,
@@ -85,14 +93,10 @@ mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
     uint32_t flags,
     struct D2_MpqArchive_1_00** mpq_archive_ptr_out
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (mapi_bool32) CallStdcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       mpq_archive_path,
       priority,
