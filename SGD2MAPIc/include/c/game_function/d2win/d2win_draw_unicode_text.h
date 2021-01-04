@@ -43,12 +43,11 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
-#define SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-
+#include <mdc/std/stdbool.h>
+#include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_constant/d2_text_color.h"
 #include "../../game_struct/d2_unicode_char.h"
@@ -63,7 +62,7 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText(
     const struct D2_UnicodeChar* text,
     int position_x,
     int position_y,
-    enum D2_TextColor text_color_id,
+    enum D2_TextColor text_color,
     bool is_indented
 );
 
@@ -71,7 +70,7 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText_1_00(
     const struct D2_UnicodeChar_1_00* text,
     int32_t position_x,
     int32_t position_y,
-    int32_t text_color_id,
+    /* enum D2_TextColor_1_00 */ int32_t text_color,
     mapi_bool32 is_indented
 );
 
@@ -80,4 +79,4 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText_1_00(
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_FUNC_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_ */
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_ */

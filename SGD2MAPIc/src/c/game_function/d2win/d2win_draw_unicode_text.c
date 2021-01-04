@@ -45,41 +45,46 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_draw_unicode_text.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Win.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Win,
       "DrawUnicodeText"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 void D2_D2Win_DrawUnicodeText(
     const struct D2_UnicodeChar* text,
     int position_x,
     int position_y,
-    enum D2_TextColor text_color_id,
+    enum D2_TextColor text_color,
     bool is_indented
 ) {
-  const struct D2_UnicodeChar_1_00* actual_text =
-      (const struct D2_UnicodeChar_1_00*) text;
+  InitStatic();
 
   D2_D2Win_DrawUnicodeText_1_00(
-      actual_text,
+      (const struct D2_UnicodeChar_1_00*) text,
       position_x,
       position_y,
-      D2_TextColor_ToGameValue(text_color_id),
+      D2_TextColor_ToGameValue(text_color),
       is_indented
   );
 }
@@ -88,22 +93,18 @@ void D2_D2Win_DrawUnicodeText_1_00(
     const struct D2_UnicodeChar_1_00* text,
     int32_t position_x,
     int32_t position_y,
-    int32_t text_color_id,
+    /* enum D2_TextColor_1_00 */ int32_t text_color,
     mapi_bool32 is_indented
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       5,
       text,
       position_x,
       position_y,
-      text_color_id,
+      text_color,
       is_indented
   );
 }
