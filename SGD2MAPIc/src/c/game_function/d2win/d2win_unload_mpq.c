@@ -45,75 +45,61 @@
 
 #include "../../../../include/c/game_function/d2win/d2win_unload_mpq.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
+#include "../../../../include/c/game_version.h"
+#include "../../backend/game_address_table.h"
 #include "../../backend/game_function/esi_function.h"
 #include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
-#include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Win.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Win,
       "UnloadMpq"
   );
 }
 
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
+
 void D2_D2Win_UnloadMpq(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  enum D2_GameVersion running_game_version = D2_GetRunningGameVersionId();
-
-  struct D2_MpqArchiveHandle_1_00* actual_mpq_archive_handle =
-      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
-
-  if (running_game_version >= VERSION_1_11
-      && running_game_version <= VERSION_1_13D) {
-    D2_D2Win_UnloadMpq_1_11(
-        actual_mpq_archive_handle
-    );
-  } else {
-    D2_D2Win_UnloadMpq_1_00(
-        actual_mpq_archive_handle
-    );
-  }
+  D2_D2Win_UnloadMpq_1_00(
+      (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle
+  );
 }
 
 void D2_D2Win_UnloadMpq_1_00(
     struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  enum D2_GameVersion running_game_version;
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
+  running_game_version = D2_GetRunningGameVersion();
+
+  if (running_game_version < D2_GameVersion_k1_11
+      || running_game_version > D2_GameVersion_k1_13D) { 
+    CallFastcallFunction(
+        game_address.raw_address,
+        1,
+        mpq_archive_handle
+    );
+  } else /* if (running_game_version >= D2_GameVersion_k1_11
+      || running_game_version <= D2_GameVersion_k1_13D) */ {
+    CallEsiFunction(
+        game_address.raw_address,
+        1,
+        mpq_archive_handle
+    );
   }
-
-  CallFastcallFunction(
-      game_address->raw_address,
-      1,
-      mpq_archive_handle
-  );
-}
-
-void D2_D2Win_UnloadMpq_1_11(
-    struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
-) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  CallEsiFunction(
-      game_address->raw_address,
-      1,
-      mpq_archive_handle
-  );
 }
