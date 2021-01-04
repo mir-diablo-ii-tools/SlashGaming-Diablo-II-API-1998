@@ -75,6 +75,8 @@ static void InitStatic(void) {
 void D2_D2Win_UnloadMpq(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
+  InitStatic();
+
   D2_D2Win_UnloadMpq_1_00(
       (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle
   );
@@ -84,6 +86,8 @@ void D2_D2Win_UnloadMpq_1_00(
     struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
 ) {
   enum D2_GameVersion running_game_version;
+
+  InitStatic();
 
   running_game_version = D2_GetRunningGameVersion();
 
