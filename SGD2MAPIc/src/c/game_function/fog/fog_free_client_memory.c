@@ -45,25 +45,31 @@
 
 #include "../../../../include/c/game_function/fog/fog_free_client_memory.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_function/fastcall_function.h"
-#include "../../backend/game_address_table.h"
+#include <mdc/std/threads.h>
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
+#include "../../backend/game_function/fastcall_function.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "Fog.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kFog,
       "FreeClientMemory"
   );
 }
+
+static void InitStatic(void) {
+  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+
+  call_once(&game_address_init_flag, &InitGameAddress);
+}
+
+/**
+ * External
+ */
 
 bool D2_Fog_FreeClientMemory(
     void* ptr,
@@ -71,7 +77,9 @@ bool D2_Fog_FreeClientMemory(
     int line,
     int unused__set_to_0
 ) {
-  return D2_Fog_FreeClientMemory_1_00(
+  InitStatic();
+
+  return (bool) D2_Fog_FreeClientMemory_1_00(
       ptr,
       source_file,
       line,
@@ -85,14 +93,10 @@ mapi_bool32 D2_Fog_FreeClientMemory_1_00(
     int32_t line,
     int32_t unused__set_to_0
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
-
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
+  InitStatic();
 
   return (mapi_bool32) CallFastcallFunction(
-      game_address->raw_address,
+      game_address.raw_address,
       4,
       ptr,
       source_file,
