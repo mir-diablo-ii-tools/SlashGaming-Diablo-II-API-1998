@@ -45,53 +45,58 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_inventory_arrange_mode.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Client.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Client,
       "InventoryArrangeMode"
   );
 }
 
+static void InitStatic(void) {
+  static int is_game_address_init = 0;
+
+  if (is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
+}
+
+/**
+ * External
+ */
+
 unsigned int D2_D2Client_GetInventoryArrangeMode(void) {
+  InitStatic();
+
   return D2_D2Client_GetInventoryArrangeMode_1_07();
 }
 
 uint32_t D2_D2Client_GetInventoryArrangeMode_1_07(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return *(uint32_t*) game_address->raw_address;
+  return *(uint32_t*) game_address.raw_address;
 }
 
 void D2_D2Client_SetInventoryArrangeMode(
     unsigned int inventory_arrange_mode
 ) {
+  InitStatic();
+
   D2_D2Client_SetInventoryArrangeMode_1_07(inventory_arrange_mode);
 }
 
 void D2_D2Client_SetInventoryArrangeMode_1_07(
     uint32_t inventory_arrange_mode
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  *(uint32_t*) game_address->raw_address = inventory_arrange_mode;
+  *(uint32_t*) game_address.raw_address = inventory_arrange_mode;
 }
