@@ -45,36 +45,42 @@
 
 #include "../../../../include/c/game_variable/bnclient/bnclient_gateway_ip_v4_address.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../backend/game_function/stdcall_function.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "BNClient.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kBNClient,
       "GatewayIpV4Address"
   );
 }
 
+static void InitStatic(void) {
+  static int is_game_address_init = 0;
+
+  if (is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
+}
+
+/**
+ * External
+ */
+
 char* D2_BNClient_GetGatewayIpV4Address(void) {
+  InitStatic();
+
   return D2_BNClient_GetGatewayIpV4Address_1_00();
 }
 
 char* D2_BNClient_GetGatewayIpV4Address_1_00(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return (char*) game_address->raw_address;
+  return (char*) game_address.raw_address;
 }
