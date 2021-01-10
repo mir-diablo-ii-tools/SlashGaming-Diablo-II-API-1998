@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../game_constant/d2_client_game_type.h"
 
 #include "../../../dllexport_define.inc"
@@ -57,10 +56,15 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT enum D2_ClientGameType D2_D2Client_GetGameType(void);
-DLLEXPORT int32_t D2_D2Client_GetGameType_1_00(void);
+
+DLLEXPORT /* enum D2_ClientGameType_1_00 */ int32_t
+D2_D2Client_GetGameType_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetGameType(enum D2_ClientGameType game_type);
-DLLEXPORT void D2_D2Client_SetGameType_1_00(int32_t value);
+
+DLLEXPORT void D2_D2Client_SetGameType_1_00(
+    /* enum D2_ClientGameType_1_00 */ int32_t value
+);
 
 #ifdef __cplusplus
 } /* extern "C" */
