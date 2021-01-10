@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_DISPLAY_WIDTH_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_DISPLAY_WIDTH_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
@@ -55,9 +54,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Client_GetGeneralDisplayWidth(void);
+
 DLLEXPORT int32_t D2_D2Client_GetGeneralDisplayWidth_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetGeneralDisplayWidth(int general_display_width);
+
 DLLEXPORT void D2_D2Client_SetGeneralDisplayWidth_1_00(
     int32_t general_display_width
 );
