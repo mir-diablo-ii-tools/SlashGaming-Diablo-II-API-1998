@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_INGAME_MOUSE_POSITION_X_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_INGAME_MOUSE_POSITION_X_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus
@@ -55,9 +54,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Client_GetIngameMousePositionX(void);
+
 DLLEXPORT int32_t D2_D2Client_GetIngameMousePositionX_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetIngameMousePositionX(int mouse_position_x);
+
 DLLEXPORT void D2_D2Client_SetIngameMousePositionX_1_00(int32_t mouse_position_x);
 
 #ifdef __cplusplus
