@@ -73,6 +73,7 @@ struct D2_CelContext* D2_CelContext_Create(
 
     if (wrapper.ptr_1_00 == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
     cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
@@ -87,6 +88,7 @@ struct D2_CelContext* D2_CelContext_Create(
 
     if (wrapper.ptr_1_12a == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
     cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
@@ -102,6 +104,7 @@ struct D2_CelContext* D2_CelContext_Create(
 
     if (wrapper.ptr_1_13c == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+      goto return_bad;
     }
 
     cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
@@ -112,6 +115,9 @@ struct D2_CelContext* D2_CelContext_Create(
 
     return (struct D2_CelContext*) wrapper.ptr_1_13c;
   }
+
+return_bad:
+  return NULL;
 }
 
 void D2_CelContext_Destroy(struct D2_CelContext* cel_context) {
@@ -157,7 +163,7 @@ struct D2_CelFile* D2_CelContext_GetCelFile(
   return (struct D2_CelFile*) D2_CelContext_GetCelFileConst(cel_context);
 }
 
-const struct D2_CelFile* D2_CelContext_GetConstCelFile(
+const struct D2_CelFile* D2_CelContext_GetCelFileConst(
     const struct D2_CelContext* cel_context
 ) {
   union D2_CelContext_View view;
