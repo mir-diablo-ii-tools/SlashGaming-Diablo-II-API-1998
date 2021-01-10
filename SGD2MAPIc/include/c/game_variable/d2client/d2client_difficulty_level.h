@@ -46,8 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
 
-#include <stdint.h>
-
+#include <mdc/std/stdint.h>
 #include "../../../../include/c/game_constant/d2_difficulty_level.h"
 
 #include "../../../dllexport_define.inc"
@@ -57,13 +56,16 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT enum D2_DifficultyLevel D2_D2Client_GetDifficultyLevel(void);
-DLLEXPORT int32_t D2_D2Client_GetDifficultyLevel_1_00(void);
+
+DLLEXPORT /* enum D2_DifficultyLevel_1_00 */ int32_t
+D2_D2Client_GetDifficultyLevel_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetDifficultyLevel(
     enum D2_DifficultyLevel difficulty_level
 );
+
 DLLEXPORT void D2_D2Client_SetDifficultyLevel_1_00(
-    int32_t difficulty_level
+    /* enum D2_DifficultyLevel_1_00 */ int32_t difficulty_level
 );
 
 #ifdef __cplusplus
