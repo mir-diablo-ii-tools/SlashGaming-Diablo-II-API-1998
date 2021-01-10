@@ -43,7 +43,7 @@
 ;  work.
 ;
 
-global DrawCenteredUnicodeText_1_11_Shim
+global _D2_D2Client_DrawCenteredUnicodeText_1_11_Shim
 
 section .data
 
@@ -58,7 +58,7 @@ section .text
 ;     int32_t right,
 ;     /* enum D2_TextColor_1_00 */ int32_t text_color
 ; )
-D2_D2Client_DrawCenteredUnicodeText_1_11_Shim:
+_D2_D2Client_DrawCenteredUnicodeText_1_11_Shim:
     push ebp
     mov ebp, esp
 

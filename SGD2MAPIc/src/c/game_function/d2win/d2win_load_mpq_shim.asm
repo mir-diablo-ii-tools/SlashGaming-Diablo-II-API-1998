@@ -43,7 +43,7 @@
 ;  work.
 ;
 
-global D2_D2Win_LoadMpq_1_11_Shim
+global _D2_D2Win_LoadMpq_1_11_Shim
 
 section .data
 
@@ -60,7 +60,7 @@ section .text
 ;     void* (*on_fail_callback)(void),
 ;     int32_t priority
 ; )
-D2_D2Win_LoadMpq_1_11_Shim:
+_D2_D2Win_LoadMpq_1_11_Shim:
   push ebp
   mov ebp, esp
 
