@@ -46,8 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_H_
 
-#include <stdbool.h>
-
 #include "../../game_bool.h"
 
 #include "../../../dllexport_define.inc"
@@ -56,10 +54,12 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_D2Client_GetIsHelpScreenOpen(void);
+DLLEXPORT int D2_D2Client_GetIsHelpScreenOpen(void);
+
 DLLEXPORT mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen(bool is_help_screen_open);
+DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen(int is_help_screen_open);
+
 DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen_1_00(
     mapi_bool32 is_help_screen_open
 );
