@@ -62,7 +62,7 @@ static void InitGameAddress(void) {
 static void InitStatic(void) {
   static int is_game_address_init = 0;
 
-  if (is_game_address_init) {
+  if (!is_game_address_init) {
     InitGameAddress();
 
     is_game_address_init = 1;
