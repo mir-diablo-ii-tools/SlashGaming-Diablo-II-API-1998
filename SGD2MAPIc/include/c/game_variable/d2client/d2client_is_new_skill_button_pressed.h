@@ -46,8 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_SKILL_BUTTON_PRESSED_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_SKILL_BUTTON_PRESSED_H_
 
-#include <stdbool.h>
-
 #include "../../game_bool.h"
 
 #include "../../../dllexport_define.inc"
@@ -56,10 +54,12 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_D2Client_GetIsNewSkillButtonPressed(void);
+DLLEXPORT int D2_D2Client_GetIsNewSkillButtonPressed(void);
+
 DLLEXPORT mapi_bool32 D2_D2Client_GetIsNewSkillButtonPressed_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetIsNewSkillButtonPressed(bool is_button_pressed);
+DLLEXPORT void D2_D2Client_SetIsNewSkillButtonPressed(int is_button_pressed);
+
 DLLEXPORT void D2_D2Client_SetIsNewSkillButtonPressed_1_00(
     mapi_bool32 is_button_pressed
 );
