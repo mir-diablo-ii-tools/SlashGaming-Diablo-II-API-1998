@@ -55,11 +55,13 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT struct D2_BeltRecord* D2_D2Common_GetGlobalBeltsTxt(void);
+
 DLLEXPORT struct D2_BeltRecord_1_00* D2_D2Common_GetGlobalBeltsTxt_1_00(void);
 
 DLLEXPORT void D2_D2Common_SetGlobalBeltsTxt(
     struct D2_BeltRecord* belt_record
 );
+
 DLLEXPORT void D2_D2Common_SetGlobalBeltsTxt_1_00(
     struct D2_BeltRecord_1_00* belt_record
 );
