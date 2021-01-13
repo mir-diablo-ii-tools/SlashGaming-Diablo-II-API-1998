@@ -45,57 +45,63 @@
 
 #include "../../../../include/c/game_variable/d2client/d2client_screen_open_mode.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Client.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Client,
       "ScreenOpenMode"
   );
 }
 
+static void InitStatic(void) {
+  static int is_game_address_init = 0;
+
+  if (!is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
+}
+
+/**
+ * External
+ */
+
 enum D2_ScreenOpenMode D2_D2Client_GetScreenOpenMode(void) {
+  InitStatic();
+
   return D2_ScreenOpenMode_ToApiValue(
       D2_D2Client_GetScreenOpenMode_1_07()
   );
 }
 
-uint32_t D2_D2Client_GetScreenOpenMode_1_07(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+/* enum D2_ScreenOpenMode_1_07 */ uint32_t
+D2_D2Client_GetScreenOpenMode_1_07(void) {
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return *(uint32_t*) game_address->raw_address;
+  return *(uint32_t*) game_address.raw_address;
 }
 
 void D2_D2Client_SetScreenOpenMode(
     enum D2_ScreenOpenMode screen_open_mode
 ) {
+  InitStatic();
+
   D2_D2Client_SetScreenOpenMode_1_07(
       D2_ScreenOpenMode_ToGameValue(screen_open_mode)
   );
 }
 
 void D2_D2Client_SetScreenOpenMode_1_07(
-    uint32_t screen_open_mode
+    /* enum D2_ScreenOpenMode_1_07 */ uint32_t screen_open_mode
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  *(uint32_t*) game_address->raw_address = screen_open_mode;
+  *(uint32_t*) game_address.raw_address = screen_open_mode;
 }
