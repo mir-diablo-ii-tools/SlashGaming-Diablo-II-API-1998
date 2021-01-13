@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_SHIFT_X_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_SHIFT_X_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../../dllexport_define.inc"
 
@@ -55,9 +55,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Client_GetScreenShiftX(void);
+
 DLLEXPORT int32_t D2_D2Client_GetScreenShiftX_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetScreenShiftX(int screen_shift_x);
+
 DLLEXPORT void D2_D2Client_SetScreenShiftX_1_00(int32_t screen_shift_x);
 
 #ifdef __cplusplus
