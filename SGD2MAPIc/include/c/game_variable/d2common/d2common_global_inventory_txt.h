@@ -55,12 +55,14 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT struct D2_InventoryRecord* D2_D2Common_GetGlobalInventoryTxt(void);
+
 DLLEXPORT struct D2_InventoryRecord_1_00*
 D2_D2Common_GetGlobalInventoryTxt_1_00(void);
 
 DLLEXPORT void D2_D2Common_SetGlobalInventoryTxt(
     struct D2_InventoryRecord* inventory_record
 );
+
 DLLEXPORT void D2_D2Common_SetGlobalInventoryTxt_1_00(
     struct D2_InventoryRecord_1_00* inventory_record
 );

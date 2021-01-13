@@ -45,43 +45,53 @@
 
 #include "../../../../include/c/game_variable/d2common/d2common_global_inventory_txt.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2Common.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2Common,
       "GlobalInventoryTxt"
   );
 }
 
+static void InitStatic(void) {
+  static int is_game_address_init = 0;
+
+  if (!is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
+}
+
+/**
+ * External
+ */
+
 struct D2_InventoryRecord* D2_D2Common_GetGlobalInventoryTxt(void) {
+  InitStatic();
+
   return (struct D2_InventoryRecord*)
       D2_D2Common_GetGlobalInventoryTxt_1_00();
 }
 
-struct D2_InventoryRecord_1_00* D2_D2Common_GetGlobalInventoryTxt_1_00(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+struct D2_InventoryRecord_1_00*
+D2_D2Common_GetGlobalInventoryTxt_1_00(void) {
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return *(struct D2_InventoryRecord_1_00**) game_address->raw_address;
+  return *(struct D2_InventoryRecord_1_00**) game_address.raw_address;
 }
 
 void D2_D2Common_SetGlobalInventoryTxt(
     struct D2_InventoryRecord* inventory_record
 ) {
+  InitStatic();
+
   D2_D2Common_SetGlobalInventoryTxt_1_00(
       (struct D2_InventoryRecord_1_00*) inventory_record
   );
@@ -90,12 +100,8 @@ void D2_D2Common_SetGlobalInventoryTxt(
 void D2_D2Common_SetGlobalInventoryTxt_1_00(
     struct D2_InventoryRecord_1_00* inventory_record
 ) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  *(struct D2_InventoryRecord_1_00**) game_address->raw_address =
+  *(struct D2_InventoryRecord_1_00**) game_address.raw_address =
       inventory_record;
 }
