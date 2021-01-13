@@ -46,8 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_STATS_BUTTON_PRESSED_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_STATS_BUTTON_PRESSED_H_
 
-#include <stdbool.h>
-
 #include "../../game_bool.h"
 
 #include "../../../dllexport_define.inc"
@@ -56,11 +54,13 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_D2Client_GetIsNewStatsButtonPressed(void);
+DLLEXPORT int D2_D2Client_GetIsNewStatsButtonPressed(void);
+
 DLLEXPORT mapi_bool32 D2_D2Client_GetIsNewStatsButtonPressed_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed(bool value);
-DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed_1_00(mapi_bool32 value);
+DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed(int is_button_pressed);
+
+DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed_1_00(mapi_bool32 is_button_pressed);
 
 #ifdef __cplusplus
 } /* extern "C" */
