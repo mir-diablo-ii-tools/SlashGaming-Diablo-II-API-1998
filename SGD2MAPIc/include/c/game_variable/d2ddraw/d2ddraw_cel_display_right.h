@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_CEL_DISPLAY_RIGHT_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_CEL_DISPLAY_RIGHT_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../../dllexport_define.inc"
 
@@ -55,9 +55,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2DDraw_GetCelDisplayRight(void);
+
 DLLEXPORT int32_t D2_D2DDraw_GetCelDisplayRight_1_00(void);
 
 DLLEXPORT void D2_D2DDraw_SetCelDisplayRight(int right);
+
 DLLEXPORT void D2_D2DDraw_SetCelDisplayRight_1_00(int32_t right);
 
 #ifdef __cplusplus
