@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_BIT_BLOCK_HEIGHT_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_BIT_BLOCK_HEIGHT_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../../dllexport_define.inc"
 
@@ -55,9 +55,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2GDI_GetBitBlockHeight(void);
+
 DLLEXPORT int32_t D2_D2GDI_GetBitBlockHeight_1_00(void);
 
 DLLEXPORT void D2_D2GDI_SetBitBlockHeight(int height);
+
 DLLEXPORT void D2_D2GDI_SetBitBlockHeight_1_00(int32_t height);
 
 #ifdef __cplusplus
