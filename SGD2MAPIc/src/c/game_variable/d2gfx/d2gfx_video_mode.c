@@ -45,53 +45,60 @@
 
 #include "../../../../include/c/game_variable/d2gfx/d2gfx_video_mode.h"
 
-#include <pthread.h>
-#include <stdint.h>
-
-#include "../../../asm_x86_macro.h"
-#include "../../backend/error_handling.h"
-#include "../../backend/game_address_table.h"
+#include "../../../../include/c/default_game_library.h"
+#include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
-#include "../../../wide_macro.h"
+#include "../../backend/game_address_table.h"
 
-static pthread_once_t once_flag = PTHREAD_ONCE_INIT;
-static const struct MAPI_GameAddress* game_address;
+static struct Mapi_GameAddress game_address;
 
 static void InitGameAddress(void) {
-  game_address = GetGameAddress(
-      "D2GFX.dll",
+  game_address = Mapi_GameAddressTable_GetFromLibrary(
+      D2_DefaultLibrary_kD2GFX,
       "VideoMode"
   );
 }
 
+static void InitStatic(void) {
+  static int is_game_address_init = 0;
+
+  if (!is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
+}
+
+/**
+ * External
+ */
+
 enum D2_VideoMode D2_D2GFX_GetVideoMode(void) {
-  return D2_VideoMode_ToApiValue(
+  InitStatic();
+
+  return D2_VideoMode_ToApiValue_1_00(
       D2_D2GFX_GetVideoMode_1_00()
   );
 }
 
-int32_t D2_D2GFX_GetVideoMode_1_00(void) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+/* enum D2_VideoMode_1_00 */ int32_t D2_D2GFX_GetVideoMode_1_00(void) {
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  return *(int32_t*) game_address->raw_address;
+  return *(int32_t*) game_address.raw_address;
 }
 
 void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode) {
+  InitStatic();
+
   D2_D2GFX_SetVideoMode_1_00(
-      D2_VideoMode_ToGameValue(video_mode)
+      D2_VideoMode_ToGameValue_1_00(video_mode)
   );
 }
 
-void D2_D2GFX_SetVideoMode_1_00(int32_t video_mode) {
-  int once_return = pthread_once(&once_flag, &InitGameAddress);
+void D2_D2GFX_SetVideoMode_1_00(
+    /* enum D2_VideoMode_1_00 */ int32_t video_mode
+) {
+  InitStatic();
 
-  if (once_return != 0) {
-    ExitOnCallOnceFailure(__FILEW__, __LINE__);
-  }
-
-  *(int32_t*) game_address->raw_address = video_mode;
+  *(int32_t*) game_address.raw_address = video_mode;
 }

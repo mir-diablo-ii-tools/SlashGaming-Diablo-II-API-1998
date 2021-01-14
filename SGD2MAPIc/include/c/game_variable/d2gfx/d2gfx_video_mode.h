@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_H_
 
-#include <stdint.h>
+#include <mdc/std/stdint.h>
 
 #include "../../game_constant/d2_video_mode.h"
 
@@ -57,10 +57,15 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT enum D2_VideoMode D2_D2GFX_GetVideoMode(void);
-DLLEXPORT int32_t D2_D2GFX_GetVideoMode_1_00(void);
+
+DLLEXPORT /* enum D2_VideoMode_1_00 */ int32_t
+D2_D2GFX_GetVideoMode_1_00(void);
 
 DLLEXPORT void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode);
-DLLEXPORT void D2_D2GFX_SetVideoMode_1_00(int32_t video_mode);
+
+DLLEXPORT void D2_D2GFX_SetVideoMode_1_00(
+    /* enum D2_VideoMode_1_00 */ int32_t video_mode
+);
 
 #ifdef __cplusplus
 } /* extern "C" */
