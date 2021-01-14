@@ -282,7 +282,7 @@ enum D2_GameVersion Mapi_GetGameVersionFromFileSignature(
       file_signature_table_search_key.signature
   );
 
-  if (is_load_signature_success) {
+  if (!is_load_signature_success) {
     return -1;
   }
 
