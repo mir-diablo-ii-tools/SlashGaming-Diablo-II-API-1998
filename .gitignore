@@ -48,6 +48,13 @@
 *.vcxproj.filters
 *.vcxproj.user
 
+# Visual Studio Code Analysis
+CodeAnalysisResultManifest.txt
+*.lastcodeanalysissucceeded
+*.nativecodeanalysis.all.xml
+*.nativecodeanalysis.sarif
+*.nativecodeanalysis.xml
+
 # Compression Formats
 *.7z
 *.rar
