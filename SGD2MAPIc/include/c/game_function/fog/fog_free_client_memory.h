@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_H_
 #define SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 
@@ -56,7 +55,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_Fog_FreeClientMemory(
+DLLEXPORT int D2_Fog_FreeClientMemory(
     void* ptr,
     const char* source_file,
     int line,

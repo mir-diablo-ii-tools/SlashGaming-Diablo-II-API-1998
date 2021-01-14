@@ -71,7 +71,7 @@ static void InitStatic(void) {
  * External
  */
 
-bool D2_Storm_SFileOpenArchive(
+int D2_Storm_SFileOpenArchive(
     const char* mpq_archive_path,
     int priority,
     unsigned int flags,
@@ -79,7 +79,7 @@ bool D2_Storm_SFileOpenArchive(
 ) {
   InitStatic();
 
-  return (bool) D2_Storm_SFileOpenArchive_1_00(
+  return (int) D2_Storm_SFileOpenArchive_1_00(
       mpq_archive_path,
       priority,
       flags,

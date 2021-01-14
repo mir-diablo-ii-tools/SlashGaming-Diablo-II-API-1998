@@ -87,7 +87,7 @@ struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11_Shim(
 
 struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     const char* mpq_file_name,
-    bool is_set_err_on_drive_query_fail,
+    int is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void),
     int priority
 ) {

@@ -76,7 +76,7 @@ void D2_D2Win_SetPopUpUnicodeText(
     int position_x,
     int position_y,
     enum D2_TextColor text_color,
-    bool is_text_box_centered
+    int is_text_box_centered
 ) {
   InitStatic();
 

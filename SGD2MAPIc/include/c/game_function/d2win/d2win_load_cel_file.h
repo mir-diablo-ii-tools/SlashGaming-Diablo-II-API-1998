@@ -46,9 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_H_
 
-#include <mdc/std/stdbool.h>
-#include "../../game_struct/d2_cel_file.h"
 #include "../../game_bool.h"
+#include "../../game_struct/d2_cel_file.h"
 
 #include "../../../dllexport_define.inc"
 
@@ -58,7 +57,7 @@ extern "C" {
 
 DLLEXPORT struct D2_CelFile* D2_D2Win_LoadCelFile(
     const char* cel_file_path,
-    bool is_dcc_else_dc6
+    int is_dcc_else_dc6
 );
 
 DLLEXPORT struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(

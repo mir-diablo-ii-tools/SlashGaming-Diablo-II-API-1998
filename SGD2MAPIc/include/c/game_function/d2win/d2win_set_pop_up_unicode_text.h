@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_POP_UP_UNICODE_TEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_POP_UP_UNICODE_TEXT_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_constant/d2_text_color.h"
@@ -63,7 +62,7 @@ DLLEXPORT void D2_D2Win_SetPopUpUnicodeText(
     int position_x,
     int position_y,
     enum D2_TextColor text_color,
-    bool is_text_box_centered
+    int is_text_box_centered
 );
 
 DLLEXPORT void D2_D2Win_SetPopUpUnicodeText_1_00(

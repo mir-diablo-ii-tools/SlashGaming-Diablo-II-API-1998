@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_struct/d2_mpq_archive_handle.h"
@@ -59,7 +58,7 @@ extern "C" {
 
 DLLEXPORT struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     const char* mpq_file_name,
-    bool is_set_err_on_drive_query_fail,
+    int is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void),
     int priority
 );

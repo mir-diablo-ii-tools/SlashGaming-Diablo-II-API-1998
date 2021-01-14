@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_struct/d2_mpq_archive.h"
 #include "../../game_bool.h"
@@ -57,7 +56,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_Storm_SFileOpenArchive(
+DLLEXPORT int D2_Storm_SFileOpenArchive(
     const char* mpq_archive_path,
     int priority,
     unsigned int flags,

@@ -71,7 +71,7 @@ static void InitStatic(void) {
  * External
  */
 
-bool D2_D2GFX_DrawCelContext(
+int D2_D2GFX_DrawCelContext(
     struct D2_CelContext* cel_context,
     int position_x,
     int position_y,
@@ -86,7 +86,7 @@ bool D2_D2GFX_DrawCelContext(
   running_game_version = D2_GetRunningGameVersion();
 
   if (running_game_version <= D2_GameVersion_k1_10) {
-    return (bool) D2_D2GFX_DrawCelContext_1_00(
+    return D2_D2GFX_DrawCelContext_1_00(
         (struct D2_CelContext_1_00*) cel_context,
         position_x,
         position_y,
@@ -95,7 +95,7 @@ bool D2_D2GFX_DrawCelContext(
         unknown_06__set_to_nullptr
     );
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    return (bool) D2_D2GFX_DrawCelContext_1_12A(
+    return D2_D2GFX_DrawCelContext_1_12A(
         (struct D2_CelContext_1_12A*) cel_context,
         position_x,
         position_y,
@@ -104,7 +104,7 @@ bool D2_D2GFX_DrawCelContext(
         unknown_06__set_to_nullptr
     );
   } else /* if (running_game_version > D2_GameVersion_k1_13ABeta) */ {
-    return (bool) D2_D2GFX_DrawCelContext_1_13C(
+    return D2_D2GFX_DrawCelContext_1_13C(
         (struct D2_CelContext_1_13C*) cel_context,
         position_x,
         position_y,

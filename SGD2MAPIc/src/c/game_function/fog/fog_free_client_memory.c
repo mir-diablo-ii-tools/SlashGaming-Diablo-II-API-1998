@@ -71,7 +71,7 @@ static void InitStatic(void) {
  * External
  */
 
-bool D2_Fog_FreeClientMemory(
+int D2_Fog_FreeClientMemory(
     void* ptr,
     const char* source_file,
     int line,
@@ -79,7 +79,7 @@ bool D2_Fog_FreeClientMemory(
 ) {
   InitStatic();
 
-  return (bool) D2_Fog_FreeClientMemory_1_00(
+  return (int) D2_Fog_FreeClientMemory_1_00(
       ptr,
       source_file,
       line,

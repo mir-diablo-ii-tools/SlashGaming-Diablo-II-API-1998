@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_bool.h"
 #include "../../game_struct/d2_cel_context.h"
@@ -59,7 +58,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT bool D2_D2GFX_DrawCelContext(
+DLLEXPORT int D2_D2GFX_DrawCelContext(
     struct D2_CelContext* cel_context,
     int position_x,
     int position_y,

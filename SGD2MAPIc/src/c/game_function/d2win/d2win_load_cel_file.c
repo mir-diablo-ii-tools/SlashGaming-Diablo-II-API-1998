@@ -73,7 +73,7 @@ static void InitStatic(void) {
 
 struct D2_CelFile* D2_D2Win_LoadCelFile(
     const char* cel_file_path,
-    bool is_dcc_else_dc6
+    int is_dcc_else_dc6
 ) {
   InitStatic();
 

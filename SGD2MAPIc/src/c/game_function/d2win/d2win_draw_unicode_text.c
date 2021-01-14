@@ -76,7 +76,7 @@ void D2_D2Win_DrawUnicodeText(
     int position_x,
     int position_y,
     enum D2_TextColor text_color,
-    bool is_indented
+    int is_indented
 ) {
   InitStatic();
 

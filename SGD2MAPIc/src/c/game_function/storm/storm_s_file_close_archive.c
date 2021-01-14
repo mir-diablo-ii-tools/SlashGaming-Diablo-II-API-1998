@@ -71,12 +71,12 @@ static void InitStatic(void) {
  * External
  */
 
-bool D2_Storm_SFileCloseArchive(
+int D2_Storm_SFileCloseArchive(
     struct D2_MpqArchive* mpq_archive
 ) {
   InitStatic();
 
-  return (bool) D2_Storm_SFileCloseArchive_1_00(
+  return (int) D2_Storm_SFileCloseArchive_1_00(
       (struct D2_MpqArchive_1_00*) mpq_archive
   );
 }

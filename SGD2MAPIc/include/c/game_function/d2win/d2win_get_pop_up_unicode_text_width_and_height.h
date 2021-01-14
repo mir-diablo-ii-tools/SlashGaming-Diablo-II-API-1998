@@ -46,7 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_GET_POP_UP_UNICODE_TEXT_WIDTH_AND_HEIGHT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_GET_POP_UP_UNICODE_TEXT_WIDTH_AND_HEIGHT_H_
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include "../../game_struct/d2_unicode_char.h"
 
