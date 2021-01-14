@@ -55,9 +55,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT HWND D2_D2GFX_GetWindowHandle(void);
+
 DLLEXPORT HWND D2_D2GFX_GetWindowHandle_1_00(void);
 
 DLLEXPORT void D2_D2GFX_SetWindowHandle(HWND window_handle);
+
 DLLEXPORT void D2_D2GFX_SetWindowHandle_1_00(HWND window_handle);
 
 #ifdef __cplusplus
