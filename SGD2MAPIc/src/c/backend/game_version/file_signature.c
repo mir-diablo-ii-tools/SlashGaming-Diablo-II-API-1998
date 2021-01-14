@@ -50,7 +50,6 @@
 #include <string.h>
 
 #include <mdc/error/exit_on_error.h>
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include <mdc/wchar_t/filew.h>
 #include "../../../../include/c/game_executable.h"
@@ -68,7 +67,7 @@ enum {
   kSignatureCount = 4
 };
 
-static bool File_SignatureLocation_LoadSignature(
+static int File_SignatureLocation_LoadSignature(
     const struct FileSignatureLocation* location,
     uint8_t* signature
 ) {
@@ -113,12 +112,12 @@ static bool File_SignatureLocation_LoadSignature(
 
   fclose(file);
 
-  return true;
+  return 1;
 
 close_file:
   fclose(file);
 
-  return false;
+  return 0;
 }
 
 struct FileSignatureTableEntry {
@@ -169,7 +168,7 @@ enum {
       / sizeof(kFileSignatureSortedTable[0])
 };
 
-static bool HasFileSignatureCheck(enum D2_GameVersion game_version) {
+static int HasFileSignatureCheck(enum D2_GameVersion game_version) {
   switch (game_version) {
     case D2_GameVersion_kBeta1_02:
     case D2_GameVersion_kBeta1_02StressTest:
@@ -187,11 +186,11 @@ static bool HasFileSignatureCheck(enum D2_GameVersion game_version) {
     case D2_GameVersion_kLod1_14C:
     case D2_GameVersion_kClassic1_14D:
     case D2_GameVersion_kLod1_14D: {
-      return true;
+      return 1;
     }
 
     default: {
-      return false;
+      return 0;
     }
   }
 }
@@ -271,7 +270,7 @@ enum D2_GameVersion Mapi_GetGameVersionFromFileSignature(
   struct FileSignatureTableEntry file_signature_table_search_key;
   const struct FileSignatureTableEntry* file_signature_table_search_result;
 
-  bool is_load_signature_success;
+  int is_load_signature_success;
 
   if (!HasFileSignatureCheck(guess_game_version)) {
     return guess_game_version;

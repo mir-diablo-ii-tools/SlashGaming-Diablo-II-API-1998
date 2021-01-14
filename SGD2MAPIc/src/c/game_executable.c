@@ -48,7 +48,6 @@
 #include <windows.h>
 
 #include <mdc/malloc/malloc.h>
-#include <mdc/std/stdbool.h>
 #include <mdc/std/threads.h>
 
 static wchar_t game_executable_path[MAX_PATH + 1];

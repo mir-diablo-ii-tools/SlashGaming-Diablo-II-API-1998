@@ -69,7 +69,7 @@ static struct Mapi_GamePatch Mapi_GamePatch_InitFromBufferMove(
   struct Mapi_GamePatch game_patch;
   int mtx_init_result;
 
-  game_patch.is_patch_applied = false;
+  game_patch.is_patch_applied = 0;
   game_patch.patch_size = patch_size;
 
   game_patch.game_address = Mapi_GameAddress_InitCopy(game_address);
@@ -111,7 +111,7 @@ static void Mapi_GamePatch_WriteBytes(
 
   is_write_process_memory_success = WriteProcessMemory(
       GetCurrentProcess(),
-      game_address->raw_address,
+      (void*) game_address->raw_address,
       buffer,
       patch_size,
       NULL
@@ -317,7 +317,7 @@ void Mapi_GamePatch_Apply(
       game_patch->patch_size
   );
 
-  game_patch->is_patch_applied = true;
+  game_patch->is_patch_applied = 1;
 
   mtx_unlock(&game_patch->patch_mutex);
 }
@@ -337,7 +337,7 @@ void Mapi_GamePatch_Remove(
       game_patch->patch_size
   );
 
-  game_patch->is_patch_applied = false;
+  game_patch->is_patch_applied = 0;
 
   mtx_unlock(&game_patch->patch_mutex);
 }

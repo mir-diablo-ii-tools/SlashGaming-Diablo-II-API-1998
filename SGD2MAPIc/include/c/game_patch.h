@@ -48,7 +48,6 @@
 
 #include <stddef.h>
 
-#include <mdc/std/stdbool.h>
 #include <mdc/std/stdint.h>
 #include <mdc/std/threads.h>
 #include "game_address.h"
@@ -62,7 +61,7 @@ extern "C" {
 
 struct Mapi_GamePatch {
   struct Mapi_GameAddress game_address;
-  bool is_patch_applied;
+  int is_patch_applied;
   uint8_t* patch_buffer;
   uint8_t* unpatched_buffer;
   size_t patch_size;

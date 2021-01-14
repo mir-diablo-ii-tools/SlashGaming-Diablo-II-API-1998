@@ -248,7 +248,7 @@ const char* D2_GetRunningGameVersionName(void) {
   return D2_GetGameVersionName(D2_GetRunningGameVersion());
 }
 
-bool D2_IsGameVersionAtLeast1_14(
+int D2_IsGameVersionAtLeast1_14(
     enum D2_GameVersion game_version_id
 ) {
   InitStatic();
@@ -256,7 +256,7 @@ bool D2_IsGameVersionAtLeast1_14(
   return game_version_id > D2_GameVersion_k1_13D;
 }
 
-bool D2_IsRunningGameVersionAtLeast1_14(void) {
+int D2_IsRunningGameVersionAtLeast1_14(void) {
   InitStatic();
 
   return D2_IsGameVersionAtLeast1_14(

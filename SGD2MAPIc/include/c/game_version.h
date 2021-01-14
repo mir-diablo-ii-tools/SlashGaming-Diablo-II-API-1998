@@ -46,8 +46,6 @@
 #ifndef SGD2MAPI_C_GAME_VERSION_H_
 #define SGD2MAPI_C_GAME_VERSION_H_
 
-#include <mdc/std/stdbool.h>
-
 #include "../dllexport_define.inc"
 
 #ifdef __cplusplus
@@ -98,14 +96,14 @@ DLLEXPORT const char* D2_GetRunningGameVersionName(void);
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT bool D2_IsGameVersionAtLeast1_14(
+DLLEXPORT int D2_IsGameVersionAtLeast1_14(
     enum D2_GameVersion game_version_id
 );
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT bool D2_IsRunningGameVersionAtLeast1_14(void);
+DLLEXPORT int D2_IsRunningGameVersionAtLeast1_14(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
