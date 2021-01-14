@@ -2,6 +2,7 @@
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
+# TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
 CFG=SGD2MAPIc - Win32 Debug
@@ -19,14 +20,14 @@ CFG=SGD2MAPIc - Win32 Debug
 !MESSAGE 
 !MESSAGE "SGD2MAPIc - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "SGD2MAPIc - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "SGD2MAPIc - Win32 Release Dll" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "SGD2MAPIc - Win32 Debug Dll" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
 # PROP Scc_ProjName ""
 # PROP Scc_LocalPath ""
-CPP=cl.exe
-RSC=rc.exe
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
@@ -40,8 +41,11 @@ RSC=rc.exe
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
+MTL=midl.exe
+CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_LIB" /D "_UNICODE" /D "UNICODE" /YX /FD /c
+RSC=rc.exe
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
 # ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
@@ -63,8 +67,11 @@ LIB32=link.exe -lib
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
+MTL=midl.exe
+CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_LIB" /D "_UNICODE" /D "UNICODE" /YX /FD /GZ /c
+RSC=rc.exe
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -74,12 +81,72 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo
 
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ReleaseDll"
+# PROP BASE Intermediate_Dir "ReleaseDll"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "ReleaseDll"
+# PROP Intermediate_Dir "ReleaseDll"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+CPP=cl.exe
+# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "EMPTYDLL_EXPORTS" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D "_USRDLL" /D "SGD2MAPI_DLLEXPORT" /YX /FD /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d "NDEBUG"
+# ADD RSC /l 0x409 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
+# ADD LINK32 libunicows.lib MDCc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "DebugDll"
+# PROP BASE Intermediate_Dir "DebugDll"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "DebugDll"
+# PROP Intermediate_Dir "DebugDll"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+CPP=cl.exe
+# ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "EMPTYDLL_EXPORTS" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D "_USRDLL" /D "SGD2MAPI_DLLEXPORT" /YX /FD /GZ /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d "_DEBUG"
+# ADD RSC /l 0x409 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 libunicows.lib MDCcD.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
+
 !ENDIF 
 
 # Begin Target
 
 # Name "SGD2MAPIc - Win32 Release"
 # Name "SGD2MAPIc - Win32 Debug"
+# Name "SGD2MAPIc - Win32 Release Dll"
+# Name "SGD2MAPIc - Win32 Debug Dll"
 # Begin Group "Files"
 
 # PROP Default_Filter ""
@@ -138,6 +205,32 @@ InputName=cdecl_function
 
 # End Custom Build
 
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\ReleaseDll
+InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputName=cdecl_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\DebugDll
+InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputName=cdecl_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
 !ENDIF 
 
 # End Source File
@@ -168,6 +261,32 @@ InputName=esi_function
 # Begin Custom Build
 InputDir=.\src\c\backend\game_function
 IntDir=.\Debug
+InputPath=.\src\c\backend\game_function\esi_function.asm
+InputName=esi_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\ReleaseDll
+InputPath=.\src\c\backend\game_function\esi_function.asm
+InputName=esi_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\DebugDll
 InputPath=.\src\c\backend\game_function\esi_function.asm
 InputName=esi_function
 
@@ -214,6 +333,32 @@ InputName=fastcall_function
 
 # End Custom Build
 
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\ReleaseDll
+InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputName=fastcall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\DebugDll
+InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputName=fastcall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
 !ENDIF 
 
 # End Source File
@@ -252,6 +397,32 @@ InputName=stdcall_function
 
 # End Custom Build
 
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\ReleaseDll
+InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputName=stdcall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\DebugDll
+InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputName=stdcall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
 !ENDIF 
 
 # End Source File
@@ -282,6 +453,32 @@ InputName=thiscall_function
 # Begin Custom Build
 InputDir=.\src\c\backend\game_function
 IntDir=.\Debug
+InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputName=thiscall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\ReleaseDll
+InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputName=thiscall_function
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\backend\game_function
+IntDir=.\DebugDll
 InputPath=.\src\c\backend\game_function\thiscall_function.asm
 InputName=thiscall_function
 
@@ -408,6 +605,32 @@ InputName=d2client_draw_centered_unicode_text_shim
 # Begin Custom Build
 InputDir=.\src\c\game_function\d2client
 IntDir=.\Debug
+InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputName=d2client_draw_centered_unicode_text_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2client
+IntDir=.\ReleaseDll
+InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputName=d2client_draw_centered_unicode_text_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2client
+IntDir=.\DebugDll
 InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 InputName=d2client_draw_centered_unicode_text_shim
 
@@ -558,6 +781,32 @@ SOURCE=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
 # Begin Custom Build
 InputDir=.\src\c\game_function\d2win
 IntDir=.\Debug
+InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputName=d2win_load_mpq_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2win
+IntDir=.\ReleaseDll
+InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputName=d2win_load_mpq_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
+!ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
+
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2win
+IntDir=.\DebugDll
 InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
 InputName=d2win_load_mpq_shim
 
