@@ -67,6 +67,7 @@ struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
   wrapper.ptr_1_00 = Mdc_malloc(sizeof(*wrapper.ptr_1_00));
   if (wrapper.ptr_1_00 == NULL) {
     Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
+    goto return_bad;
   }
 
   position_view.ptr_1_00 = (const struct D2_PositionalRectangle_1_00*)
@@ -85,6 +86,9 @@ struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
   );
 
   return (struct D2_InventoryRecord*) wrapper.ptr_1_00;
+
+return_bad:
+  return NULL;
 }
 
 void D2_InventoryRecord_Destroy(
