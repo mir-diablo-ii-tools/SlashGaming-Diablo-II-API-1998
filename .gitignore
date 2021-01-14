@@ -19,6 +19,7 @@
 *.ilk
 *.iobj
 *.ipdb
+*.exp
 *.pch
 *.pdb
 *.recipe
