@@ -45,7 +45,6 @@
 
 #include "../../../../include/c/game_function/fog/fog_free_client_memory.h"
 
-#include <mdc/std/threads.h>
 #include "../../../../include/c/default_game_library.h"
 #include "../../../../include/c/game_address.h"
 #include "../../../../include/c/game_version.h"
@@ -62,9 +61,13 @@ static void InitGameAddress(void) {
 }
 
 static void InitStatic(void) {
-  static once_flag game_address_init_flag = ONCE_FLAG_INIT;
+  static int is_game_address_init = 0;
 
-  call_once(&game_address_init_flag, &InitGameAddress);
+  if (!is_game_address_init) {
+    InitGameAddress();
+
+    is_game_address_init = 1;
+  }
 }
 
 /**
