@@ -43,10 +43,10 @@
  *  work.
  */
 
-#if defined(SGD2MAPI_DLLEXPORT)
-#define DLLEXPORT __declspec(dllexport)
-#elif defined(SGD2MAPI_DLLIMPORT)
-#define DLLEXPORT __declspec(dllimport)
+#if defined(SGD2MAPIC_DLLEXPORT)
+  #define DLLEXPORT __declspec(dllexport)
+#elif defined(SGD2MAPIC_DLLIMPORT)
+  #define DLLEXPORT __declspec(dllimport)
 #else
-#define DLLEXPORT
+  #define DLLEXPORT
 #endif
