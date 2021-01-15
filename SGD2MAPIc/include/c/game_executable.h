@@ -48,14 +48,17 @@
 
 #include <mdc/std/wchar.h>
 
+#include "../dllexport_define.inc"
+
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-const wchar_t* Mapi_GameExecutable_GetPath(void);
+DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
+#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_C_GAME_EXECUTABLE_H_ */

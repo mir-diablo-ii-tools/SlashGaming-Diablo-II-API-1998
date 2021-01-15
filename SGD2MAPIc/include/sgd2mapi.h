@@ -51,6 +51,7 @@
 #include "c/game_address.h"
 #include "c/game_bool.h"
 #include "c/game_constant.h"
+#include "c/game_executable.h"
 #include "c/game_function.h"
 #include "c/game_patch.h"
 #include "c/game_struct.h"
