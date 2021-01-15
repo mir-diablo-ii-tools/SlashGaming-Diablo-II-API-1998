@@ -134,7 +134,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo /o"DebugDll/SGD2MAPIcDll.bsc"
+# ADD BSC32 /nologo /o"DebugDll/SGD2MAPIcDDll.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 libunicows.lib MDCcD.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"DebugDll/SGD2MAPIcDDll.dll" /pdbtype:sept
@@ -1755,6 +1755,14 @@ SOURCE=.\include\d2api_version.h
 # Begin Source File
 
 SOURCE=.\include\c\default_game_library.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\dllexport_define.inc
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\dllexport_undefine.inc
 # End Source File
 # Begin Source File
 
