@@ -78,32 +78,32 @@ enum D2_GameVersion {
  * Returns the UTF-8 encoded null-terminated string associated with the
  * specified game version.
  */
-DLLEXPORT const char* D2_GetGameVersionName(
+DLLEXPORT const char* D2_GameVersion_GetName(
     enum D2_GameVersion game_version
 );
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT enum D2_GameVersion D2_GetRunningGameVersion(void);
+DLLEXPORT enum D2_GameVersion D2_GameVersion_GetRunning(void);
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
  * running game version.
  */
-DLLEXPORT const char* D2_GetRunningGameVersionName(void);
+DLLEXPORT const char* D2_GameVersion_GetRunningName(void);
 
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT int D2_IsGameVersionAtLeast1_14(
+DLLEXPORT int D2_GameVersion_IsAtLeast1_14(
     enum D2_GameVersion game_version_id
 );
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT int D2_IsRunningGameVersionAtLeast1_14(void);
+DLLEXPORT int D2_GameVersion_IsRunningAtLeast1_14(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

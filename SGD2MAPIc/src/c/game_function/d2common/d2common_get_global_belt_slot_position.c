@@ -77,7 +77,7 @@ void D2_D2Common_GetGlobalBeltSlotPosition(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
     D2_D2Common_GetGlobalBeltSlotPosition_1_00(

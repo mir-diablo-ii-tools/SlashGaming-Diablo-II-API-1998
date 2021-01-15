@@ -83,7 +83,7 @@ int D2_D2GFX_DrawCelContext(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_10) {
     return D2_D2GFX_DrawCelContext_1_00(

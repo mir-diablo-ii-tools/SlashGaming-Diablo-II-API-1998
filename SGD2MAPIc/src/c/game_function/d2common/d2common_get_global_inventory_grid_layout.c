@@ -80,7 +80,7 @@ void D2_D2Common_GetGlobalInventoryGridLayout(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_06B) {
     D2_D2Common_GetGlobalInventoryGridLayout_1_00(

@@ -52,7 +52,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-enum D2_GameVersion Mapi_GetGameVersionFromFileSignature(
+enum D2_GameVersion Mapi_GameVersion_GetFromFileSignature(
     enum D2_GameVersion guess_game_version
 );
 

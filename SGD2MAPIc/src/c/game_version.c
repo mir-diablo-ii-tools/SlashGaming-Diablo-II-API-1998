@@ -66,15 +66,15 @@ static enum D2_GameVersion DetermineRunningGameVersion(void) {
   * Perform first stage game version detection using the executable
   * file name.
   */
-  game_executable_path = Mapi_GetGameExecutablePath();
+  game_executable_path = Mapi_GameExecutable_GetPath();
   fixed_file_info = Mapi_GetFixedFileInfo(game_executable_path);
-  game_version = Mapi_GetGameVersionFromFileVersion(&fixed_file_info);
+  game_version = Mapi_GameVersion_GetFromFileVersion(&fixed_file_info);
 
   /*
   * Perform second stage game version detection by checking the bytes
   * of game file(s).
   */
-  game_version = Mapi_GetGameVersionFromFileSignature(game_version);
+  game_version = Mapi_GameVersion_GetFromFileSignature(game_version);
 
   return game_version;
 }
@@ -92,7 +92,7 @@ static void InitStatic(void) {
  * External functions
  */
 
-const char* D2_GetGameVersionName(
+const char* D2_GameVersion_GetName(
     enum D2_GameVersion game_version
 ) {
   switch (game_version) {
@@ -236,19 +236,19 @@ const char* D2_GetGameVersionName(
   }
 }
 
-enum D2_GameVersion D2_GetRunningGameVersion(void) {
+enum D2_GameVersion D2_GameVersion_GetRunning(void) {
   InitStatic();
 
   return running_game_version;
 }
 
-const char* D2_GetRunningGameVersionName(void) {
+const char* D2_GameVersion_GetRunningName(void) {
   InitStatic();
 
-  return D2_GetGameVersionName(D2_GetRunningGameVersion());
+  return D2_GameVersion_GetName(D2_GameVersion_GetRunning());
 }
 
-int D2_IsGameVersionAtLeast1_14(
+int D2_GameVersion_IsAtLeast1_14(
     enum D2_GameVersion game_version_id
 ) {
   InitStatic();
@@ -256,10 +256,10 @@ int D2_IsGameVersionAtLeast1_14(
   return game_version_id > D2_GameVersion_k1_13D;
 }
 
-int D2_IsRunningGameVersionAtLeast1_14(void) {
+int D2_GameVersion_IsRunningAtLeast1_14(void) {
   InitStatic();
 
-  return D2_IsGameVersionAtLeast1_14(
-      D2_GetRunningGameVersion()
+  return D2_GameVersion_IsAtLeast1_14(
+      D2_GameVersion_GetRunning()
   );
 }

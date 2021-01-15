@@ -217,7 +217,7 @@ static struct FileSignatureLocation GetFileSignatureLocation(
 
     case D2_GameVersion_kClassic1_14A:
     case D2_GameVersion_kLod1_14A: {
-      file_signature_location.path = Mapi_GetGameExecutablePath();
+      file_signature_location.path = Mapi_GameExecutable_GetPath();
       file_signature_location.offset = 0x120;
 
       break;
@@ -227,7 +227,7 @@ static struct FileSignatureLocation GetFileSignatureLocation(
     case D2_GameVersion_kLod1_14B:
     case D2_GameVersion_kClassic1_14C:
     case D2_GameVersion_kLod1_14C: {
-      file_signature_location.path = Mapi_GetGameExecutablePath();
+      file_signature_location.path = Mapi_GameExecutable_GetPath();
       file_signature_location.offset = 0x110;
 
       break;
@@ -235,7 +235,7 @@ static struct FileSignatureLocation GetFileSignatureLocation(
 
     case D2_GameVersion_kClassic1_14D:
     case D2_GameVersion_kLod1_14D: {
-      file_signature_location.path = Mapi_GetGameExecutablePath();
+      file_signature_location.path = Mapi_GameExecutable_GetPath();
       file_signature_location.offset = 0x140;
 
       break;
@@ -262,7 +262,7 @@ return_bad:
  * External functions
  */
 
-enum D2_GameVersion Mapi_GetGameVersionFromFileSignature(
+enum D2_GameVersion Mapi_GameVersion_GetFromFileSignature(
     enum D2_GameVersion guess_game_version
 ) {
   struct FileSignatureLocation file_signature_location;

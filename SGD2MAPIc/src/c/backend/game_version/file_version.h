@@ -56,7 +56,7 @@ extern "C" {
 
 VS_FIXEDFILEINFO Mapi_GetFixedFileInfo(const wchar_t* file_path);
 
-enum D2_GameVersion Mapi_GetGameVersionFromFileVersion(
+enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
     const VS_FIXEDFILEINFO* fixed_file_info
 );
 

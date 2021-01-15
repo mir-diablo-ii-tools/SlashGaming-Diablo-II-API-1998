@@ -89,7 +89,7 @@ void D2_D2Win_UnloadMpq_1_00(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version < D2_GameVersion_k1_11
       || running_game_version > D2_GameVersion_k1_13D) { 

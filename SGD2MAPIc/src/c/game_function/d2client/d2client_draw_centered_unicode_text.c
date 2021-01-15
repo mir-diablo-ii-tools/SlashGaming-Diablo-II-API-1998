@@ -113,7 +113,7 @@ void D2_D2Client_DrawCenteredUnicodeText_1_00(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_10
       || running_game_version >= D2_GameVersion_kClassic1_14A) {

@@ -95,7 +95,7 @@ struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_02) {
     return (struct D2_MpqArchiveHandle*) D2_D2Win_LoadMpq_1_00(

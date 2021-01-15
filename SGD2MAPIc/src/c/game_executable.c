@@ -121,7 +121,7 @@ static void InitStatic(void) {
  * External functions
  */
 
-const wchar_t* Mapi_GetGameExecutablePath(void) {
+const wchar_t* Mapi_GameExecutable_GetPath(void) {
   InitStatic();
 
   if (game_executable_path_len < MAX_PATH) {

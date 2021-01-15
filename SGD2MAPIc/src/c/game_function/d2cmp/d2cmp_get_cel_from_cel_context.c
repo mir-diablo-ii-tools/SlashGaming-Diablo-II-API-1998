@@ -78,7 +78,7 @@ struct D2_Cel* D2_D2CMP_GetCelFromCelContext(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version < D2_GameVersion_k1_11) {
     return (struct D2_Cel*) D2_D2CMP_GetCelFromCelContext_1_00(

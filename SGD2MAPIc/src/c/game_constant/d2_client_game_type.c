@@ -52,7 +52,7 @@
 int D2_ClientGameType_ToGameValue(enum D2_ClientGameType api_value) {
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version < D2_GameVersion_k1_07) {
     return D2_ClientGameType_ToGameValue_1_00(api_value);
@@ -142,7 +142,7 @@ return_bad:
 enum D2_ClientGameType D2_ClientGameType_ToApiValue(int game_value) {
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version < D2_GameVersion_k1_07) {
     return D2_ClientGameType_ToApiValue_1_00(game_value);

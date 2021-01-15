@@ -176,7 +176,7 @@ const struct Mapi_GameAddressTableEntry*
 Mapi_GameAddressTable_Get(void) {
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   switch (running_game_version) {
     case D2_GameVersion_k1_00: {
@@ -321,7 +321,7 @@ return_bad:
 size_t Mapi_GameAddressTable_Size(void) {
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   switch (running_game_version) {
     case D2_GameVersion_k1_00: {

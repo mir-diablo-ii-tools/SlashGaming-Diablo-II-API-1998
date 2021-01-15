@@ -52,7 +52,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-const wchar_t* Mapi_GetGameExecutablePath(void);
+const wchar_t* Mapi_GameExecutable_GetPath(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

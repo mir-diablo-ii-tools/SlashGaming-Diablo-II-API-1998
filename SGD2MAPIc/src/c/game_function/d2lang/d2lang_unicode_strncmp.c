@@ -96,7 +96,7 @@ int D2_D2Lang_Unicode_strncmp(
 
   InitStatic();
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version <= D2_GameVersion_k1_09D) {
     return D2_D2Lang_Unicode_strncmp_1_00(

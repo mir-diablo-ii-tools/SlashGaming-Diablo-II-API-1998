@@ -54,8 +54,8 @@ const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
     enum D2_DefaultLibrary library
 ) {
   /* Redirect if the game version is 1.14 or higher. */
-  if (D2_IsRunningGameVersionAtLeast1_14()) {
-    return Mapi_GetGameExecutablePath();
+  if (D2_GameVersion_IsRunningAtLeast1_14()) {
+    return Mapi_GameExecutable_GetPath();
   }
 
   return D2_DefaultLibrary_GetPathWithoutRedirect(library);

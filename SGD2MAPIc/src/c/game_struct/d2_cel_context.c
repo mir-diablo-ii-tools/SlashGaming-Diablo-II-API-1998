@@ -65,7 +65,7 @@ struct D2_CelContext* D2_CelContext_Create(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -133,7 +133,7 @@ struct D2_CelContext* D2_CelContext_AssignMembers(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -170,7 +170,7 @@ const struct D2_CelFile* D2_CelContext_GetCelFileConst(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -198,7 +198,7 @@ void D2_CelContext_SetCelFile(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -227,7 +227,7 @@ unsigned int D2_CelContext_GetDirectionIndex(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -254,7 +254,7 @@ void D2_CelContext_SetDirectionIndex(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -280,7 +280,7 @@ unsigned int D2_CelContext_GetFrameIndex(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
@@ -307,7 +307,7 @@ void D2_CelContext_SetFrameIndex(
 
   enum D2_GameVersion running_game_version;
 
-  running_game_version = D2_GetRunningGameVersion();
+  running_game_version = D2_GameVersion_GetRunning();
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {

@@ -290,7 +290,7 @@ return_bad:
   return Vs_FixedFileInfo_kUninit;
 }
 
-enum D2_GameVersion Mapi_GetGameVersionFromFileVersion(
+enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
     const VS_FIXEDFILEINFO* fixed_file_info
 ) {
   struct FileVersionTableEntry file_version_table_entry_search_key;
