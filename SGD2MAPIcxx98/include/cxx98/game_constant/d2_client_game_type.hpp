@@ -55,21 +55,23 @@ namespace d2 {
  */
 
 enum ClientGameType {
-  ClientGameType_kSinglePlayer,
-  ClientGameType_kBattleNetJoin,
+  ClientGameType_kSinglePlayer = D2_ClientGameType_kSinglePlayer,
+  ClientGameType_kBattleNetJoin = D2_ClientGameType_kSinglePlayer,
 
 #if D2API_VERSION == D2API_VERSION_ALL \
     || D2API_VERSION < D2API_VERSION_1_07
-  ClientGameType_kOpenBattleNetHostOrLanHost = 2,
-  ClientGameType_kOpenBattleNetJoinOrLanJoin,
+  ClientGameType_kOpenBattleNetHostOrLanHost =
+      D2_ClientGameType_kOpenBattleNetHostOrLanHost,
+  ClientGameType_kOpenBattleNetJoinOrLanJoin =
+      D2_ClientGameType_kOpenBattleNetJoinOrLanJoin,
 #endif
 
 #if D2API_VERSION == D2API_VERSION_ALL \
     || D2API_VERSION >= D2API_VERSION_1_07
-  ClientGameType_kOpenBattleNetHost = 4,
-  ClientGameType_kOpenBattleNetJoin,
-  ClientGameType_kLanHost,
-  ClientGameType_kLanJoin,
+  ClientGameType_kOpenBattleNetHost = D2_ClientGameType_kOpenBattleNetHost,
+  ClientGameType_kOpenBattleNetJoin = D2_ClientGameType_kOpenBattleNetJoin,
+  ClientGameType_kLanHost = D2_ClientGameType_kLanHost,
+  ClientGameType_kLanJoin = D2_ClientGameType_kLanJoin,
 #endif
 };
 
@@ -78,19 +80,23 @@ enum ClientGameType {
  */
 
 enum ClientGameType_1_00 {
-  ClientGameType_1_00_kSinglePlayer = 0,
-  ClientGameType_1_00_kBattleNetJoin = 3,
-  ClientGameType_1_00_kOpenBattleNetHostOrLanHost = 6,
-  ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin,
+  ClientGameType_1_00_kSinglePlayer = D2_ClientGameType_1_00_kSinglePlayer,
+  ClientGameType_1_00_kBattleNetJoin = D2_ClientGameType_1_00_kBattleNetJoin,
+  ClientGameType_1_00_kOpenBattleNetHostOrLanHost =
+      D2_ClientGameType_1_00_kOpenBattleNetHostOrLanHost,
+  ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin =
+      D2_ClientGameType_1_00_kOpenBattleNetJoinOrLanJoin,
 };
 
 enum ClientGameType_1_07 {
-  ClientGameType_1_07_kSinglePlayer = 0,
-  ClientGameType_1_07_kBattleNetJoin = 3,
-  ClientGameType_1_07_kOpenBattleNetHost = 6,
-  ClientGameType_1_07_kOpenBattleNetJoin,
-  ClientGameType_1_07_kLanHost,
-  ClientGameType_1_07_kLanJoin,
+  ClientGameType_1_07_kSinglePlayer = D2_ClientGameType_1_07_kSinglePlayer,
+  ClientGameType_1_07_kBattleNetJoin = D2_ClientGameType_1_07_kBattleNetJoin,
+  ClientGameType_1_07_kOpenBattleNetHost =
+      D2_ClientGameType_1_07_kOpenBattleNetHost,
+  ClientGameType_1_07_kOpenBattleNetJoin =
+      D2_ClientGameType_1_07_kOpenBattleNetJoin,
+  ClientGameType_1_07_kLanHost = D2_ClientGameType_1_07_kLanHost,
+  ClientGameType_1_07_kLanJoin = D2_ClientGameType_1_07_kLanJoin,
 };
 
 /**
