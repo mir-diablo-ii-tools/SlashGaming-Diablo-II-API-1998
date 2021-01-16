@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CXX98_GAME_VERSION_HPP_
 #define SGD2MAPI_CXX98_GAME_VERSION_HPP_
 
-#include "../dllexport_define.inc"
+#include <sgd2mapi.h>
 
 namespace d2 {
 
@@ -76,32 +76,43 @@ enum GameVersion {
  * Returns the UTF-8 encoded null-terminated string associated with the
  * specified game version.
  */
-DLLEXPORT const char* GameVersion_GetName(
-    GameVersion game_version
-);
+const char* GameVersion_GetName(GameVersion game_version) {
+  return D2_GameVersion_GetName(static_cast<D2_GameVersion>(game_version));
+}
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT GameVersion GameVersion_GetRunning();
+GameVersion GameVersion_GetRunning() {
+  return static_cast<GameVersion>(D2_GameVersion_GetRunning());
+}
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
  * running game version.
  */
-DLLEXPORT const char* GameVersion_GetRunningName();
+const char* GameVersion_GetRunningName() {
+  return D2_GameVersion_GetRunningName();
+}
 
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT bool GameVersion_IsAtLeast1_14(GameVersion game_version);
+bool GameVersion_IsAtLeast1_14(GameVersion game_version) {
+  D2_GameVersion actual_game_version = static_cast<D2_GameVersion>(
+      game_version
+  );
+
+  return D2_GameVersion_IsAtLeast1_14(actual_game_version) != 0;
+}
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT bool GameVersion_IsRunningAtLeast1_14();
+bool GameVersion_IsRunningAtLeast1_14() {
+  return D2_GameVersion_IsRunningAtLeast1_14() != 0;
+}
 
 } // namespace d2
 
-#include "../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_VERSION_HPP_ */

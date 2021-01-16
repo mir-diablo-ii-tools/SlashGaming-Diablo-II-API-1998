@@ -46,9 +46,7 @@
 #ifndef SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_
 #define SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_
 
-#include <mdc/std/wchar.h>
-
-#include "../dllexport_define.inc"
+#include <sgd2mapi.h>
 
 namespace d2 {
 
@@ -68,15 +66,22 @@ enum DefaultLibrary {
   DefaultLibrary_kFog, DefaultLibrary_kStorm,
 };
 
-DLLEXPORT const wchar_t* DefaultLibrary_GetPathWithRedirect(
+const wchar_t* DefaultLibrary_GetPathWithRedirect(
     DefaultLibrary library
-);
+) {
+  return D2_DefaultLibrary_GetPathWithRedirect(
+      static_cast<D2_DefaultLibrary>(library)
+  );
+}
 
-DLLEXPORT const wchar_t* DefaultLibrary_GetPathWithoutRedirect(
+const wchar_t* DefaultLibrary_GetPathWithoutRedirect(
     DefaultLibrary library
-);
+) {
+  return D2_DefaultLibrary_GetPathWithoutRedirect(
+      static_cast<D2_DefaultLibrary>(library)
+  );
+}
 
 } // namespace d2
 
-#include "../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_ */

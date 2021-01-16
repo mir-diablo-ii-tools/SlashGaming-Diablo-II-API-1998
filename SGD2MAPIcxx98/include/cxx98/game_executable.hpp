@@ -46,13 +46,14 @@
 #ifndef SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
 #define SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
 
-#include "../dllexport_define.inc"
+#include <sgd2mapi.h>
 
 namespace mapi {
 
-DLLEXPORT const wchar_t* GameExecutable_GetPath();
+const wchar_t* GameExecutable_GetPath() {
+  return Mapi_GameExecutable_GetPath();
+}
 
 } // namespace mapi
 
-#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_CXX98_GAME_EXECUTABLE_HPP_ */
