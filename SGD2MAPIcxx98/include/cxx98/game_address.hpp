@@ -52,12 +52,41 @@
 #include <sgd2mapi.h>
 #include "default_game_library.hpp"
 
-#include "../dllexport_define.inc"
-
 namespace mapi {
 
-class DLLEXPORT GameAddress {
+class GameAddress {
  public:
+
+  /*
+  * Copiers, movers, and destructors are not declared on purpose.
+  */
+
+  /*
+  * The following move functions are declared to enable move in C++98
+  * code.
+  */
+
+  static GameAddress InitMove(GameAddress& game_address) {
+    return GameAddress(
+        Mapi_GameAddress_InitMove(&game_address.game_address_)
+    );
+  }
+
+  GameAddress& AssignMove(
+      GameAddress& game_address
+  ) {
+    if (this == &game_address) {
+      return *this;
+    }
+
+    Mapi_GameAddress_AssignMove(
+        &this->game_address_,
+        &game_address.game_address_
+    );
+
+    return *this;
+  }
+
   /**
    * Initializes a GameAddress. The game address locator is specified
    * as a string encoded in 7-bit ASCII, which represents the address's
@@ -66,7 +95,14 @@ class DLLEXPORT GameAddress {
   static GameAddress FromExportedName(
       d2::DefaultLibrary default_library,
       const char* exported_name
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromLibraryAndExportedName(
+            static_cast<D2_DefaultLibrary>(default_library),
+            exported_name
+        )
+    );
+  }
 
   /**
    * Initializes a GameAddress. The game address locator is specified
@@ -76,7 +112,14 @@ class DLLEXPORT GameAddress {
   static GameAddress FromExportedName(
       const wchar_t* path,
       const char* exported_name
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromPathAndExportedName(
+            path,
+            exported_name
+        )
+    );
+  }
 
   /**
    * Initializes a GameAddress. The game address locator is specified
@@ -85,7 +128,14 @@ class DLLEXPORT GameAddress {
   static GameAddress FromOffset(
       d2::DefaultLibrary library,
       ptrdiff_t offset
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromLibraryAndOffset(
+            static_cast<D2_DefaultLibrary>(library),
+            offset
+        )
+    );
+  }
 
   /**
    * Initializes a GameAddress. The game address locator is specified
@@ -94,7 +144,14 @@ class DLLEXPORT GameAddress {
   static GameAddress FromOffset(
       const wchar_t* path,
       ptrdiff_t offset
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromPathAndOffset(
+            path,
+            offset
+        )
+    );
+  }
 
   /**
    * Initializes a GameAddress. The game address locator is specified
@@ -103,7 +160,14 @@ class DLLEXPORT GameAddress {
   static GameAddress FromOrdinal(
       d2::DefaultLibrary library,
       int16_t ordinal
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromLibraryAndOrdinal(
+            static_cast<D2_DefaultLibrary>(library),
+            ordinal
+        )
+    );
+  }
 
   /**
    * Initializes a GameAddress. The game address locator is specified
@@ -112,19 +176,41 @@ class DLLEXPORT GameAddress {
   static GameAddress FromOrdinal(
       const wchar_t* path,
       int16_t ordinal
-  ) throw();
+  ) {
+    return GameAddress(
+        Mapi_GameAddress_InitFromPathAndOrdinal(
+            path,
+            ordinal
+        )
+    );
+  }
 
-  void swap(GameAddress& game_address);
+  void swap(GameAddress& game_address) {
+    Mapi_GameAddress_Swap(&this->game_address_, &game_address.game_address_);
+  }
 
-  intptr_t raw_address() const throw();
+  Mapi_GameAddress& GetRefC() throw() {
+    const auto* const_this = this;
+
+    return const_cast<Mapi_GameAddress&>(const_this->GetRefC());
+  }
+
+  const Mapi_GameAddress& GetRefC() const throw() {
+    return this->game_address_;
+  }
+
+  intptr_t raw_address() const throw() {
+    return this->game_address_.raw_address;
+  }
 
  private:
   Mapi_GameAddress game_address_;
 
-  explicit GameAddress(Mapi_GameAddress game_address);
+  explicit GameAddress(Mapi_GameAddress game_address)
+      : game_address_(game_address) {
+  }
 };
 
 } // namespace mapi
 
-#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_CXX98_GAME_ADDRESS_HPP_ */
