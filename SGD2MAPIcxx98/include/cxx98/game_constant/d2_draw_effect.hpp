@@ -76,7 +76,7 @@ enum DrawEffect_1_00 {
       D2_DrawEffect_1_00_kThreeFourthsOpaque,
   DrawEffect_1_00_kUnknown03 = D2_DrawEffect_1_00_kUnknown03,
   DrawEffect_1_00_kUnknown04 = D2_DrawEffect_1_00_kUnknown04,
-  DrawEffect_1_00_kUnknown04 = D2_DrawEffect_1_00_kNone,
+  DrawEffect_1_00_kNone = D2_DrawEffect_1_00_kNone,
   DrawEffect_1_00_kUnknown06 = D2_DrawEffect_1_00_kUnknown06,
   DrawEffect_1_00_kUnknown07 = D2_DrawEffect_1_00_kUnknown07
 };
