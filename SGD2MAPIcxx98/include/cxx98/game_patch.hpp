@@ -68,32 +68,6 @@ public:
 
 #else
 
-  /*
-  * The following move functions are declared to enable move in C++98
-  * code.
-  */
-
-  static GamePatch InitMove(GamePatch& game_patch) {
-    return GamePatch(
-        Mapi_GamePatch_InitMove(&game_patch.game_patch_)
-    );
-  }
-
-  GamePatch& AssignMove(
-      GamePatch& game_patch
-  ) {
-    if (this == &game_patch) {
-      return *this;
-    }
-
-    Mapi_GamePatch_AssignMove(
-        &this->game_patch_,
-        &game_patch.game_patch_
-    );
-
-    return *this;
-  }
-
   GamePatch(GamePatch&& game_patch) noexcept
       : game_patch_(Mapi_GamePatch_InitMove(&game_patch.game_patch_)) {
   }
@@ -119,6 +93,32 @@ public:
   }
 
 #endif
+
+  /*
+  * The following move functions are declared to enable move in C++98
+  * code.
+  */
+
+  static GamePatch InitMove(GamePatch& game_patch) {
+    return GamePatch(
+        Mapi_GamePatch_InitMove(&game_patch.game_patch_)
+    );
+  }
+
+  GamePatch& AssignMove(
+      GamePatch& game_patch
+  ) {
+    if (this == &game_patch) {
+      return *this;
+    }
+
+    Mapi_GamePatch_AssignMove(
+        &this->game_patch_,
+        &game_patch.game_patch_
+    );
+
+    return *this;
+  }
 
   /**
    * Initializes a patch. The patch is configured to overwrite the game
@@ -217,7 +217,7 @@ public:
   }
 
   Mapi_GamePatch& GetRefC() throw() {
-    const auto* const_this = this;
+    const Mapi_GamePatch* const_this = this;
 
     return const_cast<Mapi_GamePatch&>(const_this->GetRefC());
   }
