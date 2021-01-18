@@ -48,6 +48,8 @@
 
 #include <stddef.h>
 
+#include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 #include <sgd2mapi.h>
 #include "game_address.hpp"
 #include "game_branch_type.hpp"
@@ -56,6 +58,12 @@ namespace mapi {
 
 class GamePatch {
 public:
+  /* Default constructor defined to permit move semantics in containers. */
+
+  GamePatch()
+      : game_patch_(),
+        is_init_(false) {
+  }
 
 #if __cplusplus < 201103L && _MSVC_LANG < 201103L
 
@@ -68,8 +76,11 @@ public:
 
 #else
 
+  GamePatch(GamePatch& other) = delete;
+
   GamePatch(GamePatch&& game_patch) noexcept
-      : game_patch_(Mapi_GamePatch_InitMove(&game_patch.game_patch_)) {
+      : game_patch_(Mapi_GamePatch_InitMove(&game_patch.game_patch_)),
+        is_init_(true) {
   }
 
   /**
@@ -89,8 +100,12 @@ public:
         &game_patch.game_patch_
     );
 
+    this->is_init_ = true;
+
     return *this;
   }
+
+  GamePatch& operator=(const GamePatch& other) = delete;
 
 #endif
 
@@ -116,6 +131,8 @@ public:
         &this->game_patch_,
         &game_patch.game_patch_
     );
+
+    this->is_init_ = true;
 
     return *this;
   }
@@ -201,6 +218,17 @@ public:
    * address with the bytes stored in its patch buffer.
    */
   void Apply() {
+    if (!this->is_init_) {
+      Mdc_Error_ExitOnGeneralError(
+          L"Error",
+          L"Game patch is uninit.",
+          __FILEW__,
+          __LINE__
+      );
+
+      return;
+    }
+
     Mapi_GamePatch_Apply(&this->game_patch_);
   }
 
@@ -209,6 +237,17 @@ public:
    * bytes at its target address.
    */
   void Remove() {
+    if (!this->is_init_) {
+      Mdc_Error_ExitOnGeneralError(
+          L"Error",
+          L"Game patch is uninit.",
+          __FILEW__,
+          __LINE__
+      );
+
+      return;
+    }
+
     Mapi_GamePatch_Remove(&this->game_patch_);
   }
 
@@ -228,9 +267,11 @@ public:
 
 private:
   Mapi_GamePatch game_patch_;
+  bool is_init_;
 
   explicit GamePatch(Mapi_GamePatch game_patch) throw()
-      : game_patch_(game_patch) {
+      : game_patch_(game_patch),
+        is_init_(true) {
   }
 
 #if __cplusplus < 201103L && _MSVC_LANG < 201103L
