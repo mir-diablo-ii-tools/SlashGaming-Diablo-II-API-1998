@@ -190,7 +190,7 @@ class GameAddress {
   }
 
   Mapi_GameAddress& GetRefC() throw() {
-    const Mapi_GameAddress* const_this = this;
+    const GameAddress* const_this = this;
 
     return const_cast<Mapi_GameAddress&>(const_this->GetRefC());
   }

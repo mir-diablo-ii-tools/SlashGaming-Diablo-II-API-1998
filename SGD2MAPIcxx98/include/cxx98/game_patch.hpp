@@ -217,7 +217,7 @@ public:
   }
 
   Mapi_GamePatch& GetRefC() throw() {
-    const Mapi_GamePatch* const_this = this;
+    const GamePatch* const_this = this;
 
     return const_cast<Mapi_GamePatch&>(const_this->GetRefC());
   }
