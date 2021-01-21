@@ -292,14 +292,39 @@ struct Mapi_GamePatch* Mapi_GamePatch_AssignMove(
     struct Mapi_GamePatch* dest,
     struct Mapi_GamePatch* src
 ) {
+  struct Mapi_GameAddress* assign_game_address;
+
   if (dest == src) {
     return dest;
   }
 
-  *dest = *src;
+  mtx_destroy(&dest->patch_mutex);
+  dest->patch_mutex = src->patch_mutex;
+
+  Mdc_free(dest->unpatched_buffer);
+  dest->unpatched_buffer = src->unpatched_buffer;
+
+  Mdc_free(dest->patch_buffer);
+  dest->patch_buffer = src->patch_buffer;
+
+  assign_game_address = Mapi_GameAddress_AssignMove(
+      &dest->game_address,
+      &src->game_address
+  );
+
+  if (assign_game_address == NULL) {
+    goto return_bad;
+  }
+
+  dest->patch_size = src->patch_size;
+  dest->is_patch_applied = src->is_patch_applied;
+
   *src = Mapi_GamePatch_kUninit;
 
   return dest;
+
+return_bad:
+  return NULL;
 }
 
 void Mapi_GamePatch_Apply(
