@@ -73,6 +73,8 @@ static struct Mapi_GameAddress ResolveAddress(
           locator->library,
           locator->address_locator_value.offset
       );
+
+      break;
     }
 
     case Mapi_GameAddressLocatorType_kOrdinal: {
@@ -80,6 +82,8 @@ static struct Mapi_GameAddress ResolveAddress(
           locator->library,
           locator->address_locator_value.ordinal
       );
+
+      break;
     }
 
     case Mapi_GameAddressLocatorType_kExportedName: {
@@ -87,6 +91,8 @@ static struct Mapi_GameAddress ResolveAddress(
           locator->library,
           locator->address_locator_value.exported_name
       );
+
+      break;
     }
 
     default: {
