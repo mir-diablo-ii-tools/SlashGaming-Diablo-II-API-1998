@@ -101,7 +101,7 @@ kFileVersionSortedTable[] = {
     { { 1, 0, 12, 49 }, D2_GameVersion_k1_12A },
     { { 1, 0, 13, 55 }, D2_GameVersion_k1_13ABeta },
     { { 1, 0, 13, 60 }, D2_GameVersion_k1_13C },
-    { { 1, 0, 10, 64 }, D2_GameVersion_k1_13D },
+    { { 1, 0, 13, 64 }, D2_GameVersion_k1_13D },
 
     { { 1, 0, 14, 64 }, D2_GameVersion_kLod1_14A },
     { { 1, 0, 14, 68 }, D2_GameVersion_kLod1_14B },
