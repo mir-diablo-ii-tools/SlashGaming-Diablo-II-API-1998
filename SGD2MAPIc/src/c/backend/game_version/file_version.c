@@ -159,7 +159,7 @@ static int FileVersion_Compare(
   }
 
   minor_version_right1 = file_version1->minor_version_right;
-  minor_version_right2 = file_version2->minor_version_left;
+  minor_version_right2 = file_version2->minor_version_right;
 
   if (minor_version_right1 < minor_version_right2) {
     return -1;
