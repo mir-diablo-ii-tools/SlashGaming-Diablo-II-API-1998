@@ -45,6 +45,8 @@
 
 #include "file_version.h"
 
+#include <stdlib.h>
+
 #include <mdc/error/exit_on_error.h>
 #include <mdc/malloc/malloc.h>
 
@@ -101,7 +103,7 @@ kFileVersionSortedTable[] = {
     { { 1, 0, 12, 49 }, D2_GameVersion_k1_12A },
     { { 1, 0, 13, 55 }, D2_GameVersion_k1_13ABeta },
     { { 1, 0, 13, 60 }, D2_GameVersion_k1_13C },
-    { { 1, 0, 10, 64 }, D2_GameVersion_k1_13D },
+    { { 1, 0, 13, 64 }, D2_GameVersion_k1_13D },
 
     { { 1, 0, 14, 64 }, D2_GameVersion_kLod1_14A },
     { { 1, 0, 14, 68 }, D2_GameVersion_kLod1_14B },
@@ -159,7 +161,7 @@ static int FileVersion_Compare(
   }
 
   minor_version_right1 = file_version1->minor_version_right;
-  minor_version_right2 = file_version2->minor_version_left;
+  minor_version_right2 = file_version2->minor_version_right;
 
   if (minor_version_right1 < minor_version_right2) {
     return -1;
@@ -293,13 +295,13 @@ return_bad:
 enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
     const VS_FIXEDFILEINFO* fixed_file_info
 ) {
-  struct FileVersionTableEntry file_version_table_entry_search_key;
-  const struct FileVersionTableEntry* file_version_table_entry_search_result;
+  struct FileVersionTableEntry file_version_table_search_key;
+  const struct FileVersionTableEntry* file_version_table_search_result;
 
   struct FileVersion* file_version_search_key;
 
   file_version_search_key =
-      &file_version_table_entry_search_key.file_version;
+      &file_version_table_search_key.file_version;
 
   file_version_search_key->major_version_left =
       (fixed_file_info->dwFileVersionMS >> 16) & 0xFFFF;
@@ -310,13 +312,13 @@ enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
   file_version_search_key->minor_version_right =
       (fixed_file_info->dwFileVersionLS >> 0) & 0xFFFF;
 
-  file_version_table_entry_search_result = bsearch(
-      &file_version_table_entry_search_key,
+  file_version_table_search_result = bsearch(
+      &file_version_table_search_key,
       kFileVersionSortedTable,
       kFileVersionSortedTableCount,
       sizeof(kFileVersionSortedTable[0]),
       &FileVersionTableEntry_CompareKeyAsVoid
   );
 
-  return file_version_table_entry_search_result->game_version;
+  return file_version_table_search_result->game_version;
 }
