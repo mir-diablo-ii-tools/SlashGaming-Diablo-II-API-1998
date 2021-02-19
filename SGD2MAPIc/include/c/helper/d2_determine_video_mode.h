@@ -43,20 +43,28 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_H_
-#define SGD2MAPI_SGD2MAPI_H_
+#ifndef SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_
+#define SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_
 
-#include "d2api_version.h"
-#include "c/default_game_library.h"
-#include "c/game_address.h"
-#include "c/game_bool.h"
-#include "c/game_constant.h"
-#include "c/game_executable.h"
-#include "c/game_function.h"
-#include "c/game_patch.h"
-#include "c/game_struct.h"
-#include "c/game_variable.h"
-#include "c/game_version.h"
-#include "c/helper.h"
+#include "../game_constant/d2_video_mode.h"
 
-#endif /* SGD2MAPI_SGD2MAPI_H_ */
+#include "../../dllexport_define.inc"
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+/**
+ * Determine the video mode from the command line args, then from the
+ * registry.
+ */
+DLLEXPORT enum D2_VideoMode D2_Helper_DetermineVideoMode(void);
+
+DLLEXPORT enum D2_VideoMode_1_00 D2_Helper_DetermineVideoMode_1_00(void);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_ */

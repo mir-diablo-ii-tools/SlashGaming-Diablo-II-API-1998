@@ -43,20 +43,9 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_H_
-#define SGD2MAPI_SGD2MAPI_H_
+#ifndef SGD2MAPI_C_HELPER_H_
+#define SGD2MAPI_C_HELPER_H_
 
-#include "d2api_version.h"
-#include "c/default_game_library.h"
-#include "c/game_address.h"
-#include "c/game_bool.h"
-#include "c/game_constant.h"
-#include "c/game_executable.h"
-#include "c/game_function.h"
-#include "c/game_patch.h"
-#include "c/game_struct.h"
-#include "c/game_variable.h"
-#include "c/game_version.h"
-#include "c/helper.h"
+#include "helper/d2_determine_video_mode.h"
 
-#endif /* SGD2MAPI_SGD2MAPI_H_ */
+#endif /* SGD2MAPI_C_HELPER_H_ */
