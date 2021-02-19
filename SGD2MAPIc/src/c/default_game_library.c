@@ -69,12 +69,12 @@ const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
       return L"BNClient.dll";
     }
 
-    case D2_DefaultLibrary_kD2Client: {
-      return L"D2Client.dll";
-    }
-
     case D2_DefaultLibrary_kD2CMP: {
       return L"D2CMP.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Client: {
+      return L"D2Client.dll";
     }
 
     case D2_DefaultLibrary_kD2Common: {

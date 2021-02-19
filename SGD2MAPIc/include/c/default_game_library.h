@@ -58,8 +58,8 @@ extern "C" {
  * The default libraries that are used by Diablo II.
  */
 enum D2_DefaultLibrary {
-  D2_DefaultLibrary_kBNClient, D2_DefaultLibrary_kD2Client,
-  D2_DefaultLibrary_kD2CMP, D2_DefaultLibrary_kD2Common,
+  D2_DefaultLibrary_kBNClient, D2_DefaultLibrary_kD2CMP,
+  D2_DefaultLibrary_kD2Client, D2_DefaultLibrary_kD2Common,
   D2_DefaultLibrary_kD2DDraw, D2_DefaultLibrary_kD2Direct3D,
   D2_DefaultLibrary_kD2Game, D2_DefaultLibrary_kD2GDI,
   D2_DefaultLibrary_kD2GFX, D2_DefaultLibrary_kD2Glide,
