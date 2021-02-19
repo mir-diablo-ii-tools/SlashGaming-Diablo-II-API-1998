@@ -320,5 +320,24 @@ enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
       &FileVersionTableEntry_CompareKeyAsVoid
   );
 
+  if (file_version_table_search_result == NULL) {
+    Mdc_Error_ExitOnGeneralError(
+        L"Error",
+        L"Could not map the file version %d.%d.%d.%d to a known game"
+            L"version.",
+        __FILEW__,
+        __LINE__,
+        file_version_search_key->major_version_left,
+        file_version_search_key->major_version_right,
+        file_version_search_key->minor_version_left,
+        file_version_search_key->minor_version_right
+    );
+
+    goto return_bad;
+  }
+
   return file_version_table_search_result->game_version;
+
+return_bad:
+  return -1;
 }

@@ -294,5 +294,16 @@ enum D2_GameVersion Mapi_GameVersion_GetFromFileSignature(
       &FileSignatureTableEntry_CompareKeyAsVoid
   );
 
+  if (file_signature_table_search_result == NULL) {
+    Mdc_Error_ExitOnGeneralError(
+        L"Error",
+        L"Could not determine the game version from the file signature.",
+        __FILEW__,
+        __LINE__
+    );
+
+    return -1;
+  }
+
   return file_signature_table_search_result->game_version;
 }

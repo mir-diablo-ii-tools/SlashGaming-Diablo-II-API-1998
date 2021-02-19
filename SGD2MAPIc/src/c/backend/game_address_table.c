@@ -50,10 +50,17 @@
 #include <mdc/error/exit_on_error.h>
 #include <mdc/std/threads.h>
 #include <mdc/wchar_t/filew.h>
+#include <mdc/wchar_t/wide_decoding.h>
 #include "game_address_table/game_address_table_impl.h"
 #include "game_library.h"
 
+enum {
+  kAddressNameWideCapacity = 512
+};
+
 static const struct Mapi_GameAddressTableEntry* game_address_table;
+
+static wchar_t address_name_wide[kAddressNameWideCapacity];
 
 static int Mapi_GameAddressTableEntry_CompareKeysAsVoid(
     const void* entry1,
@@ -133,6 +140,9 @@ const struct Mapi_GameAddress Mapi_GameAddressTable_GetFromLibrary(
   struct Mapi_GameAddressTableEntry search_entry;
   const struct Mapi_GameAddressTableEntry* search_result;
 
+  wchar_t* address_name_wide_ptr;
+  size_t address_name_wide_length;
+
   InitStatic();
 
   search_entry.library = library;
@@ -146,5 +156,32 @@ const struct Mapi_GameAddress Mapi_GameAddressTable_GetFromLibrary(
       &Mapi_GameAddressTableEntry_CompareKeysAsVoid
   );
 
+  if (search_result == NULL) {
+    address_name_wide_length = Mdc_Wide_DecodeAsciiLength(address_name);
+
+    if (address_name_wide_length >= kAddressNameWideCapacity) {
+      address_name_wide_ptr = L"**Name is longer than character limit**";
+    } else {
+      address_name_wide_ptr = Mdc_Wide_DecodeAscii(
+          address_name_wide,
+          address_name
+      );
+    }
+
+    Mdc_Error_ExitOnGeneralError(
+        L"Error",
+        L"Could not locate address named \"%ls\" for library with value %d.",
+        __FILEW__,
+        __LINE__,
+        address_name_wide,
+        library
+    );
+
+    goto return_bad;
+  }
+
   return ResolveAddress(search_result);
+
+return_bad:
+  return Mapi_GameAddress_kUninit;
 }

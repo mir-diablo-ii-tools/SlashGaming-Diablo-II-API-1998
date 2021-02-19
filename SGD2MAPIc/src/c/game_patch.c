@@ -152,7 +152,7 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBackBranchPatch(
     Mdc_Error_ExitOnGeneralError(
         L"Error",
         L"The specified back branch patch at 0x%X requires a minimum "
-            L"size of %u. The size specified is %u.",
+            L"size of %u bytes. The size specified is %u bytes.",
         __FILEW__,
         __LINE__,
         game_address->raw_address,
@@ -191,7 +191,7 @@ struct Mapi_GamePatch Mapi_GamePatch_InitGameBranchPatch(
     Mdc_Error_ExitOnGeneralError(
         L"Error",
         L"The specified branch patch at 0x%X requires a minimum size "
-            L"of %u. The size specified is %u.",
+            L"of %u bytes. The size specified is %u bytes.",
         __FILEW__,
         __LINE__,
         game_address->raw_address,

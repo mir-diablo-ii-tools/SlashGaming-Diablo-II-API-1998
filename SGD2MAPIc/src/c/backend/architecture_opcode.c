@@ -46,6 +46,7 @@
 #include "architecture_opcode.h"
 
 #include <mdc/error/exit_on_error.h>
+#include <mdc/wchar_t/filew.h>
 
 enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type) {
   switch (branch_type) {

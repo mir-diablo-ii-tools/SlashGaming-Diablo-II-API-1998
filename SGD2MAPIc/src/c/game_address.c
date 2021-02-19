@@ -184,13 +184,14 @@ Mapi_GameAddress_InitFromPathAndOrdinal(
   if (get_proc_address_result == NULL) {
     Mdc_Error_ExitOnGeneralError(
         L"Error",
-        L"%s failed with error code 0x%X. Could not locate exported "
-            L"ordinal: %hd",
+        L"%ls failed with error code 0x%X. Could not locate "
+            L"exported ordinal %hd from the path %ls.",
         __FILEW__,
         __LINE__,
         L"GetProcAddress",
         GetLastError(),
-        ordinal
+        ordinal,
+        path
     );
 
     goto return_bad;
