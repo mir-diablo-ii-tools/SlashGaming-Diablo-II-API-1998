@@ -61,6 +61,10 @@ struct Mapi_GameAddress {
   intptr_t raw_address;
 };
 
+#define MAPI_GAME_ADDRESS_UNINIT { 0 }
+
+DLLEXPORT extern const struct Mapi_GameAddress Mapi_GameAddress_kUninit;
+
 /**
  * Initializes a GameAddress. The game address locator is specified
  * as a string encoded in 7-bit ASCII, which represents the address's

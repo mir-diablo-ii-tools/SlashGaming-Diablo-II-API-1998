@@ -52,9 +52,7 @@
 #include <mdc/wchar_t/wide_decoding.h>
 #include "backend/game_library.h"
 
-#define MAPI_GAME_ADDRESS_UNINIT { 0 }
-
-static const struct Mapi_GameAddress Mapi_GameAddress_kUninit =
+const struct Mapi_GameAddress Mapi_GameAddress_kUninit =
     MAPI_GAME_ADDRESS_UNINIT;
 
 enum {
