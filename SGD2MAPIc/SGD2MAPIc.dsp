@@ -70,7 +70,7 @@ LIB32=link.exe -lib
 MTL=midl.exe
 CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_LIB" /D "_UNICODE" /D "UNICODE" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_LIB" /D "_UNICODE" /D "UNICODE" /Fp"Debug/SGD2MAPIcD.pch" /YX /FD /GZ /c
 RSC=rc.exe
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
+# ADD LIB32 /nologo /out:"Debug\SGD2MAPIcD.lib"
 
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
@@ -108,7 +108,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"ReleaseDll/SGD2MAPIcDll.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 libunicows.lib MDCc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"ReleaseDll/SGD2MAPIcDll.dll"
+# ADD LINK32 libunicows.lib MDCc.lib shlwapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"ReleaseDll/SGD2MAPIcDll.dll"
 
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
@@ -137,7 +137,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"DebugDll/SGD2MAPIcDDll.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libunicows.lib MDCcD.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"DebugDll/SGD2MAPIcDDll.dll" /pdbtype:sept
+# ADD LINK32 libunicows.lib MDCcD.lib shlwapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"DebugDll/SGD2MAPIcDDll.dll" /pdbtype:sept
 
 !ENDIF 
 
@@ -150,6 +150,682 @@ LINK32=link.exe
 # Begin Group "Files"
 
 # PROP Default_Filter ""
+# Begin Group "include"
+
+# PROP Default_Filter ""
+# Begin Group "game_constant_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_client_game_type.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_difficulty_level.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_draw_effect.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_screen_open_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_text_color.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_text_font.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_constant\d2_video_mode.h
+# End Source File
+# End Group
+# Begin Group "game_function_h"
+
+# PROP Default_Filter ""
+# Begin Group "d2client_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2client\d2client_draw_centered_unicode_text.h
+# End Source File
+# End Group
+# Begin Group "d2cmp_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.h
+# End Source File
+# End Group
+# Begin Group "d2common_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_record.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_slot_position.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common\d2common_get_global_equipment_slot_layout.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_grid_layout.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_position.h
+# End Source File
+# End Group
+# Begin Group "d2gfx_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_cel_context.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_rectangle.h
+# End Source File
+# End Group
+# Begin Group "d2lang_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_get_string_by_index.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_ascii_to_unicode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcat.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcmp.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcpy.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strlen.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncat.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncmp.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncpy.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_tolower.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_toupper.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_unicode_to_utf8.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_utf8_to_unicode.h
+# End Source File
+# End Group
+# Begin Group "d2win_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_draw_unicode_text.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_draw_width.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_n_draw_width.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_load_cel_file.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_load_mpq.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_set_pop_up_unicode_text.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_set_text_font.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_unload_cel_file.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win\d2win_unload_mpq.h
+# End Source File
+# End Group
+# Begin Group "fog_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\fog\fog_alloc_client_memory.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\fog\fog_free_client_memory.h
+# End Source File
+# End Group
+# Begin Group "storm_function_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_function\storm\storm_s_file_close_archive.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\storm\storm_s_file_open_archive.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\include\c\game_function\bnclient_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2client_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2cmp_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2common_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2ddraw_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2direct3d_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2game_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2gdi_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2gfx_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2glide_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2lang_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2launch_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2mcpclient_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2multi_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2net_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2sound_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\d2win_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\fog_function.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_function\storm_function.h
+# End Source File
+# End Group
+# Begin Group "game_struct_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_belt_record.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_cel.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_cel_context.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_cel_file.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_equipment_layout.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_grid_layout.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_inventory_record.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_mpq_archive.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_mpq_archive_handle.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_positional_rectangle.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct\d2_unicode_char.h
+# End Source File
+# End Group
+# Begin Group "game_variable_h"
+
+# PROP Default_Filter ""
+# Begin Group "bnclient_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_domain_name.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.h
+# End Source File
+# End Group
+# Begin Group "d2client_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_difficulty_level.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_game_type.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_general_display_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_general_display_width.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_general_play_area_camera_shift_x.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_x.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_y.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_inventory_arrange_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_is_automap_open.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_is_game_menu_open.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_is_help_screen_open.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_is_new_skill_button_pressed.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_is_new_stats_button_pressed.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_screen_open_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_x.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_y.h
+# End Source File
+# End Group
+# Begin Group "d2common_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2common\d2common_global_belts_txt.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt_records_count.h
+# End Source File
+# End Group
+# Begin Group "d2ddraw_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_width.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_left.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_right.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_display_height.h
+# End Source File
+# End Group
+# Begin Group "d2direct3d_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_width.h
+# End Source File
+# End Group
+# Begin Group "d2gdi_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_width.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_left.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_right.h
+# End Source File
+# End Group
+# Begin Group "d2gfx_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gfx\d2gfx_is_windowed_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gfx\d2gfx_resolution_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gfx\d2gfx_video_mode.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gfx\d2gfx_window_handle.h
+# End Source File
+# End Group
+# Begin Group "d2glide_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2glide\d2glide_display_height.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2glide\d2glide_display_width.h
+# End Source File
+# End Group
+# Begin Group "d2win_variable_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_x.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_y.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\bnclient_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2client_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2cmp_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2common_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2ddraw_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2direct3d_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2game_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gdi_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2gfx_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2glide_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2lang_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2launch_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2mcpclient_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2multi_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2net_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2sound_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\d2win_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\fog_variable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_variable\storm_variable.h
+# End Source File
+# End Group
+# Begin Group "helper_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\helper\d2_determine_video_mode.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\include\d2api_version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\default_game_library.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\dllexport_define.inc
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\dllexport_undefine.inc
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_address.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_bool.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_branch_type.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_executable.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_patch.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_undefined.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\helper.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\sgd2mapi.h
+# End Source File
+# End Group
 # Begin Group "src"
 
 # PROP Default_Filter ""
@@ -1112,6 +1788,14 @@ SOURCE=.\src\c\game_variable\d2win\d2win_main_menu_mouse_position_y.c
 # End Source File
 # End Group
 # End Group
+# Begin Group "helper_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\helper\d2_determine_video_mode.c
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\src\c\default_game_library.c
@@ -1131,670 +1815,6 @@ SOURCE=.\src\c\game_patch.c
 # Begin Source File
 
 SOURCE=.\src\c\game_version.c
-# End Source File
-# End Group
-# Begin Group "include"
-
-# PROP Default_Filter ""
-# Begin Group "game_constant_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_client_game_type.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_difficulty_level.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_draw_effect.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_screen_open_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_text_color.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_text_font.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_constant\d2_video_mode.h
-# End Source File
-# End Group
-# Begin Group "game_function_h"
-
-# PROP Default_Filter ""
-# Begin Group "d2client_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2client\d2client_draw_centered_unicode_text.h
-# End Source File
-# End Group
-# Begin Group "d2cmp_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.h
-# End Source File
-# End Group
-# Begin Group "d2common_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_record.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_slot_position.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_equipment_slot_layout.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_grid_layout.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_position.h
-# End Source File
-# End Group
-# Begin Group "d2gfx_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_cel_context.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_rectangle.h
-# End Source File
-# End Group
-# Begin Group "d2lang_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_get_string_by_index.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_ascii_to_unicode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcat.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcmp.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcpy.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strlen.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncat.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncmp.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncpy.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_tolower.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_toupper.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_unicode_to_utf8.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_utf8_to_unicode.h
-# End Source File
-# End Group
-# Begin Group "d2win_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_draw_unicode_text.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_draw_width.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_n_draw_width.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_load_cel_file.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_load_mpq.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_set_pop_up_unicode_text.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_set_text_font.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_unload_cel_file.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win\d2win_unload_mpq.h
-# End Source File
-# End Group
-# Begin Group "fog_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\fog\fog_alloc_client_memory.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\fog\fog_free_client_memory.h
-# End Source File
-# End Group
-# Begin Group "storm_function_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_function\storm\storm_s_file_close_archive.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\storm\storm_s_file_open_archive.h
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=.\include\c\game_function\bnclient_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2client_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2cmp_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2common_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2ddraw_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2direct3d_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2game_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2gdi_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2gfx_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2glide_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2launch_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2mcpclient_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2multi_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2net_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2sound_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2win_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\fog_function.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\storm_function.h
-# End Source File
-# End Group
-# Begin Group "game_struct_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_belt_record.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_cel.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_cel_context.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_cel_file.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_equipment_layout.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_grid_layout.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_inventory_record.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_mpq_archive.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_mpq_archive_handle.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_positional_rectangle.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_unicode_char.h
-# End Source File
-# End Group
-# Begin Group "game_variable_h"
-
-# PROP Default_Filter ""
-# Begin Group "bnclient_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_domain_name.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.h
-# End Source File
-# End Group
-# Begin Group "d2client_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_difficulty_level.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_game_type.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_general_display_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_general_display_width.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_general_play_area_camera_shift_x.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_x.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_y.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_inventory_arrange_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_is_automap_open.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_is_game_menu_open.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_is_help_screen_open.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_is_new_skill_button_pressed.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_is_new_stats_button_pressed.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_open_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_x.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_y.h
-# End Source File
-# End Group
-# Begin Group "d2common_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2common\d2common_global_belts_txt.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt_records_count.h
-# End Source File
-# End Group
-# Begin Group "d2ddraw_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_width.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_left.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_right.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_display_height.h
-# End Source File
-# End Group
-# Begin Group "d2direct3d_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_width.h
-# End Source File
-# End Group
-# Begin Group "d2gdi_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_width.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_left.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_right.h
-# End Source File
-# End Group
-# Begin Group "d2gfx_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_is_windowed_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_resolution_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_video_mode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_window_handle.h
-# End Source File
-# End Group
-# Begin Group "d2glide_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2glide\d2glide_display_height.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2glide\d2glide_display_width.h
-# End Source File
-# End Group
-# Begin Group "d2win_variable_h"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_x.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_y.h
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\bnclient_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2client_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2cmp_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2common_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2ddraw_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2direct3d_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2game_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gdi_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2gfx_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2glide_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2lang_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2launch_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2mcpclient_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2multi_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2net_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2sound_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\d2win_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\fog_variable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_variable\storm_variable.h
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=.\include\d2api_version.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\default_game_library.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\dllexport_define.inc
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\dllexport_undefine.inc
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_address.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_bool.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_branch_type.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_executable.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_patch.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_undefined.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_version.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\sgd2mapi.h
 # End Source File
 # End Group
 # End Group
