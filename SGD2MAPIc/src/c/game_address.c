@@ -249,6 +249,34 @@ struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
   return Mapi_GameAddress_AssignCopy(dest, src);
 }
 
+int Mapi_GameAddress_Equal(
+    const struct Mapi_GameAddress* game_address1,
+    const struct Mapi_GameAddress* game_address2
+) {
+  if (game_address1 == game_address2) {
+    return 1;
+  }
+
+  return (game_address1->raw_address == game_address2->raw_address);
+}
+
+int Mapi_GameAddress_Compare(
+    const struct Mapi_GameAddress* game_address1,
+    const struct Mapi_GameAddress* game_address2
+) {
+  if (game_address1 == game_address2) {
+    return 0;
+  }
+
+  if (game_address1->raw_address < game_address2->raw_address) {
+    return -1;
+  } else if (game_address1->raw_address > game_address2->raw_address) {
+    return 1;
+  }
+
+  return 1;
+}
+
 void Mapi_GameAddress_Swap(
     struct Mapi_GameAddress* game_address1,
     struct Mapi_GameAddress* game_address2

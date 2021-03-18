@@ -149,6 +149,16 @@ DLLEXPORT struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
     struct Mapi_GameAddress* src
 );
 
+DLLEXPORT int Mapi_GameAddress_Equal(
+    const struct Mapi_GameAddress* game_address1,
+    const struct Mapi_GameAddress* game_address2
+);
+
+DLLEXPORT int Mapi_GameAddress_Compare(
+    const struct Mapi_GameAddress* game_address1,
+    const struct Mapi_GameAddress* game_address2
+);
+
 DLLEXPORT void Mapi_GameAddress_Swap(
     struct Mapi_GameAddress* game_address1,
     struct Mapi_GameAddress* game_address2
