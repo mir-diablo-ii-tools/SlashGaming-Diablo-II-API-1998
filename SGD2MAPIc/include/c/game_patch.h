@@ -69,6 +69,10 @@ struct Mapi_GamePatch {
   mtx_t patch_mutex;
 };
 
+#define MAPI_GAME_PATCH_UNINIT { 0 }
+
+DLLEXPORT extern const struct Mapi_GamePatch Mapi_GamePatch_kUninit;
+
 /**
  * Initializes a patch. The patch is configured to overwrite the game
  * code with a branch to the specified function. Space prior to the

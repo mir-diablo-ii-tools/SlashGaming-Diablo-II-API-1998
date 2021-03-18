@@ -52,9 +52,7 @@
 #include <mdc/wchar_t/filew.h>
 #include "backend/architecture_opcode.h"
 
-#define MAPI_GAME_PATCH_UNINIT { 0 }
-
-static const struct Mapi_GamePatch Mapi_GamePatch_kUninit =
+const struct Mapi_GamePatch Mapi_GamePatch_kUninit =
     MAPI_GAME_PATCH_UNINIT;
 
 enum {
