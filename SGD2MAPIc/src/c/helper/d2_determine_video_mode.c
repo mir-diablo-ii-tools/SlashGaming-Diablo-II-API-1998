@@ -158,6 +158,8 @@ static enum D2_VideoMode GetRegistryVideoMode() {
     }
   }
 
+  render_value_size = sizeof(render_value);
+
   reg_query_value_status = RegQueryValueExW(
       query_key_result,
       L"Render",
