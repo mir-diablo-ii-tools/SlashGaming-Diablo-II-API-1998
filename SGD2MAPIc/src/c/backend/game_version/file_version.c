@@ -105,10 +105,10 @@ kFileVersionSortedTable[] = {
     { { 1, 0, 13, 60 }, D2_GameVersion_k1_13C },
     { { 1, 0, 13, 64 }, D2_GameVersion_k1_13D },
 
-    { { 1, 0, 14, 64 }, D2_GameVersion_kLod1_14A },
-    { { 1, 0, 14, 68 }, D2_GameVersion_kLod1_14B },
-    { { 1, 0, 14, 70 }, D2_GameVersion_kLod1_14C },
-    { { 1, 0, 14, 71 }, D2_GameVersion_kLod1_14D },
+    { { 1, 14, 0, 64 }, D2_GameVersion_kLod1_14A },
+    { { 1, 14, 1, 68 }, D2_GameVersion_kLod1_14B },
+    { { 1, 14, 2, 70 }, D2_GameVersion_kLod1_14C },
+    { { 1, 14, 3, 71 }, D2_GameVersion_kLod1_14D },
 };
 
 enum {
@@ -323,7 +323,7 @@ enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
   if (file_version_table_search_result == NULL) {
     Mdc_Error_ExitOnGeneralError(
         L"Error",
-        L"Could not map the file version %d.%d.%d.%d to a known game"
+        L"Could not map the file version %d.%d.%d.%d to a known game "
             L"version.",
         __FILEW__,
         __LINE__,
