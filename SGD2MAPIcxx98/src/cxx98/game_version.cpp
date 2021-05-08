@@ -45,8 +45,6 @@
 
 #include "../../include/cxx98/game_version.hpp"
 
-#include <sgd2mapi.h>
-
 namespace d2 {
 
 GameVersion::operator GameVersion::ValueType() {
