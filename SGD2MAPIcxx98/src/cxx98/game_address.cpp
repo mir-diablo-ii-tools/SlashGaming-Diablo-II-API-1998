@@ -43,95 +43,110 @@
  *  work.
  */
 
-#ifndef SGMAPI_CXX98_GAME_ADDRESS_HPP_
-#define SGMAPI_CXX98_GAME_ADDRESS_HPP_
-
-#include <stddef.h>
-
-#include <mdc/std/stdint.h>
-#include <sgd2mapi.h>
-#include "default_game_library.hpp"
+#include "../../include/cxx98/game_address.hpp"
 
 namespace mapi {
 
-class GameAddress {
- public:
+GameAddress GameAddress::FromExportedName(
+    ::d2::DefaultLibrary library,
+    const char* exported_name
+) {
+  GameAddress game_address;
 
-  /*
-  * Copiers, movers, and destructors are not declared on purpose.
-  */
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromLibraryAndExportedName(
+          static_cast<D2_DefaultLibrary>(library),
+          exported_name
+      );
 
-  /*
-  * The following move functions are declared to enable move in C++98
-  * code.
-  */
+  return game_address;
+}
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as a null-terminated string encoded in 7-bit ASCII, which
-   * represents the address's exported name.
-   */
-  static GameAddress FromExportedName(
-      ::d2::DefaultLibrary default_library,
-      const char* exported_name
-  );
+GameAddress GameAddress::FromExportedName(
+    const wchar_t* path,
+    const char* exported_name
+) {
+  GameAddress game_address;
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as a null-terminated string encoded in 7-bit ASCII, which
-   * represents the address's exported name.
-   */
-  static GameAddress FromExportedName(
-      const wchar_t* path,
-      const char* exported_name
-  );
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromPathAndExportedName(
+          path,
+          exported_name
+      );
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as the offset from the module base address to the target address.
-   */
-  static GameAddress FromOffset(
-      ::d2::DefaultLibrary library,
-      ptrdiff_t offset
-  );
+  return game_address;
+}
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as the offset from the module base address to the target address.
-   */
-  static GameAddress FromOffset(
-      const wchar_t* path,
-      ptrdiff_t offset
-  );
+GameAddress GameAddress::FromOffset(
+    ::d2::DefaultLibrary library,
+    ptrdiff_t offset
+) {
+  GameAddress game_address;
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as the address's ordinal value.
-   */
-  static GameAddress FromOrdinal(
-      ::d2::DefaultLibrary library,
-      int16_t ordinal
-  );
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromLibraryAndOffset(
+          static_cast<D2_DefaultLibrary>(library),
+          offset
+      );
 
-  /**
-   * Initializes a GameAddress. The game address locator is specified
-   * as the address's ordinal value.
-   */
-  static GameAddress FromOrdinal(
-      const wchar_t* path,
-      int16_t ordinal
-  );
+  return game_address;
+}
 
-  void Swap(GameAddress& game_address);
+GameAddress GameAddress::FromOffset(
+    const wchar_t* path,
+    ptrdiff_t offset
+) {
+  GameAddress game_address;
 
-  void swap(GameAddress& game_address);
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromPathAndOffset(
+          path,
+          offset
+      );
 
-  intptr_t raw_address() const throw();
+  return game_address;
+}
 
- private:
-  Mapi_GameAddress game_address_;
-};
+GameAddress GameAddress::FromOrdinal(
+    ::d2::DefaultLibrary library,
+    int16_t ordinal
+) {
+  GameAddress game_address;
+
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromLibraryAndOrdinal(
+          static_cast<D2_DefaultLibrary>(library),
+          ordinal
+      );
+
+  return game_address;
+}
+
+GameAddress GameAddress::FromOrdinal(
+    const wchar_t* path,
+    int16_t ordinal
+) {
+  GameAddress game_address;
+
+  game_address.game_address_ =
+      Mapi_GameAddress_InitFromPathAndOrdinal(
+          path,
+          ordinal
+      );
+
+  return game_address;
+}
+
+void GameAddress::Swap(GameAddress& game_address) {
+  Mapi_GameAddress_Swap(&this->game_address_, &game_address.game_address_);
+}
+
+void GameAddress::swap(GameAddress& game_address) {
+  this->Swap(game_address);
+}
+
+intptr_t GameAddress::raw_address() const throw() {
+  return this->game_address_.raw_address;
+}
 
 } // namespace mapi
-
-#endif /* SGMAPI_CXX98_GAME_ADDRESS_HPP_ */
