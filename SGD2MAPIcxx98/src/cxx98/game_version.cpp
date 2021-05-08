@@ -49,7 +49,7 @@
 
 namespace d2 {
 
-GameVersion::operator int() {
+GameVersion::operator GameVersion::ValueType() {
   return this->value_;
 }
 
