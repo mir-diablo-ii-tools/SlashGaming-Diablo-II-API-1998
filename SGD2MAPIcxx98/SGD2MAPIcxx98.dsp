@@ -155,12 +155,16 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\cxx98\game_version.cpp
+SOURCE=.\src\cxx98\default_game_library.cpp
 # End Source File
 # End Group
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\default_game_library.hpp
+# End Source File
 # Begin Source File
 
 SOURCE=.\include\dllexport_define.inc

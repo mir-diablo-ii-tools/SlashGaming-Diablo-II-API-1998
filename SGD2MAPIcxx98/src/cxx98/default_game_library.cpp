@@ -43,68 +43,59 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_
-#define SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_
+#include "../../include/cxx98/default_game_library.hpp"
 
-#include <mdc/std/wchar.h>
 #include <sgd2mapi.h>
-
-#include "../dllexport_define.inc"
 
 namespace d2 {
 
-/**
- * The default libraries that are used by Diablo II.
- */
-struct DLLEXPORT DefaultLibrary {
-  typedef int ValueType;
+DefaultLibrary::operator int() {
+  return this->value_;
+}
 
-  enum {
-    kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2Game,
-    kD2GDI, kD2GFX, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
-    kD2Net, kD2Server, kD2Sound, kD2Win, kFog, kStorm,
-  };
+DefaultLibrary::operator D2_DefaultLibrary() {
+  return this->value_;
+}
 
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
+bool operator==(
+    const DefaultLibrary& lhs,
+    const DefaultLibrary& rhs
+) {
+  return lhs.value_ == rhs.value_;
+}
 
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
+bool operator!=(
+    const DefaultLibrary& lhs,
+    const DefaultLibrary& rhs
+) {
+  return lhs.value_ != rhs.value_;
+}
 
-  operator ValueType();
-
-  operator D2_DefaultLibrary();
-
-  friend bool operator==(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-
-  friend bool operator!=(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-
-  friend bool operator<(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-};
+bool operator<(
+    const DefaultLibrary& lhs,
+    const DefaultLibrary& rhs
+) {
+  return lhs.value_ < rhs.value_;
+}
 
 namespace default_library {
 
-DLLEXPORT const wchar_t* GetPathWithRedirect(DefaultLibrary library);
+const wchar_t* GetPathWithRedirect(
+    DefaultLibrary library
+) {
+  return D2_DefaultLibrary_GetPathWithRedirect(
+      static_cast<D2_DefaultLibrary>(library.value_)
+  );
+}
 
-DLLEXPORT const wchar_t* GetPathWithoutRedirect(DefaultLibrary library);
+const wchar_t* GetPathWithoutRedirect(
+    DefaultLibrary library
+) {
+  return D2_DefaultLibrary_GetPathWithoutRedirect(
+      static_cast<D2_DefaultLibrary>(library.value_)
+  );
+}
 
 } // namespace default_library
 
 } // namespace d2
-
-#include "../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_ */
