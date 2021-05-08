@@ -183,6 +183,10 @@ SOURCE=.\include\cxx98\game_bool.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\include\cxx98\game_undefined.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_version.hpp
 # End Source File
 # End Group

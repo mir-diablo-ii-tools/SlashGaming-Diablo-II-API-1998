@@ -46,13 +46,13 @@
 #ifndef SGMAPI_CXX98_GAME_UNDEFINED_HPP_
 #define SGMAPI_CXX98_GAME_UNDEFINED_HPP_
 
-#include <mdc/std/stdint.h>
+#include <sgd2mapi.h>
 
 namespace mapi {
 
-struct Undefined;
+typedef Mapi_Undefined Undefined;
 
-typedef uint8_t UndefinedByte;
+typedef Mapi_UndefinedByte UndefinedByte;
 
 } // namespace mapi
 
