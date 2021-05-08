@@ -43,52 +43,31 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_VERSION_HPP_
-#define SGD2MAPI_CXX98_GAME_VERSION_HPP_
+#include "../../include/cxx98/game_version.hpp"
 
 #include <sgd2mapi.h>
 
-#include "../dllexport_define.inc"
-
 namespace d2 {
 
-/**
- * The Diablo II game versions supported and recognized.
- */
-struct DLLEXPORT GameVersion {
-  typedef int ValueType;
+GameVersion::operator int() {
+  return this->value_;
+}
 
-  enum {
-    kBeta1_02, kBeta1_02StressTest,
+GameVersion::operator D2_GameVersion() {
+  return static_cast<D2_GameVersion>(this->value_);
+}
 
-    k1_00, k1_01, k1_02, k1_03, k1_04B_C, k1_05, k1_05B, k1_06, k1_06B,
+bool operator==(const GameVersion& lhs, const GameVersion& rhs) {
+  return lhs.value_ == rhs.value_;
+}
 
-    k1_07Beta, k1_07, k1_08, k1_09, k1_09B, k1_09D, k1_10Beta, k1_10SBeta,
-    k1_10, k1_11, k1_11B, k1_12A, k1_13ABeta, k1_13C, k1_13D,
+bool operator!=(const GameVersion& lhs, const GameVersion& rhs) {
+  return lhs.value_ != rhs.value_;
+}
 
-    kClassic1_14A, kLod1_14A, kClassic1_14B, kLod1_14B, kClassic1_14C,
-    kLod1_14C, kClassic1_14D, kLod1_14D,
-  };
-
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
-
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
-
-  operator ValueType();
-
-  operator D2_GameVersion();
-
-  friend bool operator==(const GameVersion& lhs, const GameVersion& rhs);
-  friend bool operator!=(const GameVersion& lhs, const GameVersion& rhs);
-  friend bool operator<(const GameVersion& lhs, const GameVersion& rhs);
-};
+bool operator<(const GameVersion& lhs, const GameVersion& rhs) {
+  return lhs.value_ < rhs.value_;
+}
 
 namespace game_version {
 
@@ -96,32 +75,47 @@ namespace game_version {
  * Returns the UTF-8 encoded null-terminated string associated with the
  * specified game version.
  */
-DLLEXPORT const char* GetName(GameVersion game_version);
+const char* GetName(GameVersion game_version) {
+  return D2_GameVersion_GetName(
+      static_cast<D2_GameVersion>(game_version)
+  );
+}
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT GameVersion GetRunning();
+GameVersion GetRunning() {
+  GameVersion game_version;
+  game_version.value_ = D2_GameVersion_GetRunning();
+  return game_version;
+}
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
  * running game version.
  */
-DLLEXPORT const char* GetRunningName();
+const char* GetRunningName() {
+  return D2_GameVersion_GetRunningName();
+}
 
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT bool IsAtLeast1_14(GameVersion game_version);
+bool IsAtLeast1_14(GameVersion game_version) {
+  D2_GameVersion actual_game_version = static_cast<D2_GameVersion>(
+      game_version
+  );
+
+  return D2_GameVersion_IsAtLeast1_14(actual_game_version) != 0;
+}
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT bool IsRunningAtLeast1_14();
+bool IsRunningAtLeast1_14() {
+  return D2_GameVersion_IsRunningAtLeast1_14() != 0;
+}
 
 } // namespace game_version
 
 } // namespace d2
-
-#include "../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_VERSION_HPP_ */
