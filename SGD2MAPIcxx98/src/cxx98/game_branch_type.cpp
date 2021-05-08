@@ -43,48 +43,28 @@
  *  work.
  */
 
-#ifndef SGMAPI_CXX98_GAME_BRANCH_TYPE_HPP_
-#define SGMAPI_CXX98_GAME_BRANCH_TYPE_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../dllexport_define.inc"
+#include "../../include/cxx98/game_branch_type.hpp"
 
 namespace mapi {
 
-/**
- * The branch types that are used to call an inserted function. A call saves
- * some state defined by the architecture, with the purpose of returning to the
- * calling function. A jump does not save any state information.
- */
-struct DLLEXPORT BranchType {
-  typedef int ValueType;
+BranchType::operator BranchType::ValueType() {
+  return this->value_;
+}
 
-  enum {
-    kCall, kJump,
-  };
+BranchType::operator Mapi_BranchType() {
+  return static_cast<Mapi_BranchType>(this->value_);
+}
 
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
+bool operator==(const BranchType& lhs, const BranchType& rhs) {
+  return lhs.value_ == rhs.value_;
+}
 
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
+bool operator!=(const BranchType& lhs, const BranchType& rhs) {
+  return lhs.value_ != rhs.value_;
+}
 
-  operator ValueType();
-
-  operator Mapi_BranchType();
-
-  friend bool operator==(const BranchType& lhs, const BranchType& rhs);
-  friend bool operator!=(const BranchType& lhs, const BranchType& rhs);
-  friend bool operator<(const BranchType& lhs, const BranchType& rhs);
-};
+bool operator<(const BranchType& lhs, const BranchType& rhs) {
+  return lhs.value_ < rhs.value_;
+}
 
 } // namespace mapi
-
-#include "../dllexport_undefine.inc"
-#endif /* SGMAPI_CXX98_GAME_BRANCH_TYPE_HPP_ */

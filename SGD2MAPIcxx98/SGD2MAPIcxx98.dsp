@@ -159,6 +159,10 @@ SOURCE=.\src\cxx98\default_game_library.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\cxx98\game_branch_type.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\cxx98\game_version.cpp
 # End Source File
 # End Group
@@ -180,6 +184,10 @@ SOURCE=.\include\dllexport_undefine.inc
 # Begin Source File
 
 SOURCE=.\include\cxx98\game_bool.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_branch_type.hpp
 # End Source File
 # Begin Source File
 
