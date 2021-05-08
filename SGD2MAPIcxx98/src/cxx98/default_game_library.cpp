@@ -47,12 +47,12 @@
 
 namespace d2 {
 
-DefaultLibrary::operator int() {
+DefaultLibrary::operator DefaultLibrary::ValueType() {
   return this->value_;
 }
 
 DefaultLibrary::operator D2_DefaultLibrary() {
-  return this->value_;
+  return static_cast<D2_DefaultLibrary>(this->value_);
 }
 
 bool operator==(
