@@ -65,7 +65,6 @@ static struct Mapi_GamePatch Mapi_GamePatch_InitFromBufferMove(
     size_t patch_size
 ) {
   struct Mapi_GamePatch game_patch;
-  int mtx_init_result;
 
   game_patch.is_patch_applied = 0;
   game_patch.patch_size = patch_size;
@@ -86,15 +85,7 @@ static struct Mapi_GamePatch Mapi_GamePatch_InitFromBufferMove(
       patch_size
   );
 
-  mtx_init_result = mtx_init(&game_patch.patch_mutex, mtx_plain);
-  if (mtx_init_result != thrd_success) {
-    goto free_unpatched_buffer;
-  }
-
   return game_patch;
-
-free_unpatched_buffer:
-  Mdc_free(game_patch.unpatched_buffer);
 
 return_bad:
   return Mapi_GamePatch_kUninit;
@@ -275,8 +266,6 @@ struct Mapi_GamePatch Mapi_GamePatch_InitMove(
 }
 
 void Mapi_GamePatch_Deinit(struct Mapi_GamePatch* game_patch) {
-  mtx_destroy(&game_patch->patch_mutex);
-
   Mdc_free(game_patch->unpatched_buffer);
   game_patch->unpatched_buffer = NULL;
 
@@ -295,9 +284,6 @@ struct Mapi_GamePatch* Mapi_GamePatch_AssignMove(
   if (dest == src) {
     return dest;
   }
-
-  mtx_destroy(&dest->patch_mutex);
-  dest->patch_mutex = src->patch_mutex;
 
   Mdc_free(dest->unpatched_buffer);
   dest->unpatched_buffer = src->unpatched_buffer;
@@ -328,8 +314,6 @@ return_bad:
 void Mapi_GamePatch_Apply(
     struct Mapi_GamePatch* game_patch
 ) {
-  mtx_lock(&game_patch->patch_mutex);
-
   if (game_patch->is_patch_applied) {
     return;
   }
@@ -341,15 +325,11 @@ void Mapi_GamePatch_Apply(
   );
 
   game_patch->is_patch_applied = 1;
-
-  mtx_unlock(&game_patch->patch_mutex);
 }
 
 void Mapi_GamePatch_Remove(
     struct Mapi_GamePatch* game_patch
 ) {
-  mtx_lock(&game_patch->patch_mutex);
-
   if (!game_patch->is_patch_applied) {
     return;
   }
@@ -361,8 +341,6 @@ void Mapi_GamePatch_Remove(
   );
 
   game_patch->is_patch_applied = 0;
-
-  mtx_unlock(&game_patch->patch_mutex);
 }
 
 void Mapi_GamePatch_Swap(

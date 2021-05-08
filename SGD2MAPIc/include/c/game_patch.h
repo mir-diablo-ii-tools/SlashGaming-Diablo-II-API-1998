@@ -49,7 +49,6 @@
 #include <stddef.h>
 
 #include <mdc/std/stdint.h>
-#include <mdc/std/threads.h>
 #include "game_address.h"
 #include "game_branch_type.h"
 
@@ -65,8 +64,6 @@ struct Mapi_GamePatch {
   uint8_t* patch_buffer;
   uint8_t* unpatched_buffer;
   size_t patch_size;
-
-  mtx_t patch_mutex;
 };
 
 #define MAPI_GAME_PATCH_UNINIT { 0 }
