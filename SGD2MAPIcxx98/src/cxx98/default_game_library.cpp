@@ -45,8 +45,6 @@
 
 #include "../../include/cxx98/default_game_library.hpp"
 
-#include <sgd2mapi.h>
-
 namespace d2 {
 
 DefaultLibrary::operator int() {
@@ -84,7 +82,7 @@ const wchar_t* GetPathWithRedirect(
     DefaultLibrary library
 ) {
   return D2_DefaultLibrary_GetPathWithRedirect(
-      static_cast<D2_DefaultLibrary>(library.value_)
+      static_cast<D2_DefaultLibrary>(library)
   );
 }
 
@@ -92,7 +90,7 @@ const wchar_t* GetPathWithoutRedirect(
     DefaultLibrary library
 ) {
   return D2_DefaultLibrary_GetPathWithoutRedirect(
-      static_cast<D2_DefaultLibrary>(library.value_)
+      static_cast<D2_DefaultLibrary>(library)
   );
 }
 
