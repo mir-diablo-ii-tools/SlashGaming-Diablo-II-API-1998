@@ -46,14 +46,14 @@
 #ifndef SGMAPI_CXX98_GAME_BOOL_HPP_
 #define SGMAPI_CXX98_GAME_BOOL_HPP_
 
-#include <mdc/std/stdint.h>
+#include <sgd2mapi.h>
 
 namespace mapi {
 
-typedef int8_t bool8;
-typedef int16_t bool16;
-typedef int32_t bool32;
-typedef int64_t bool64;
+typedef mapi_bool8 bool8;
+typedef mapi_bool16 bool16;
+typedef mapi_bool32 bool32;
+typedef mapi_bool64 bool64;
 
 } // namespace mapi
 
