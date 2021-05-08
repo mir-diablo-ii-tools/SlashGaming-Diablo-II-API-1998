@@ -43,20 +43,16 @@
  *  work.
  */
 
-#ifndef SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
-#define SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
+#include "../../include/cxx98/game_executable.hpp"
 
-#include <mdc/std/wchar.h>
-
-#include "../dllexport_define.inc"
+#include <sgd2mapi.h>
 
 namespace mapi {
 namespace game_executable {
 
-DLLEXPORT const wchar_t* GetPath();
+const wchar_t* GetPath() {
+  return Mapi_GameExecutable_GetPath();
+}
 
 } // namespace game_executable
 } // namespace mapi
-
-#include "../dllexport_undefine.inc"
-#endif /* SGMAPI_CXX98_GAME_EXECUTABLE_HPP_ */

@@ -163,6 +163,10 @@ SOURCE=.\src\cxx98\game_branch_type.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\cxx98\game_executable.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\cxx98\game_version.cpp
 # End Source File
 # End Group
@@ -188,6 +192,10 @@ SOURCE=.\include\cxx98\game_bool.hpp
 # Begin Source File
 
 SOURCE=.\include\cxx98\game_branch_type.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_executable.hpp
 # End Source File
 # Begin Source File
 
