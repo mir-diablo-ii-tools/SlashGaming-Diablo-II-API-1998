@@ -58,84 +58,32 @@ namespace mapi {
 
 class GamePatch {
 public:
-  /* Default constructor defined to permit move semantics in containers. */
+  GamePatch();
 
-  GamePatch()
-      : game_patch_(),
-        is_init_(false) {
-  }
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
-#if __cplusplus < 201103L && _MSVC_LANG < 201103L
+  GamePatch(const GamePatch& game_patch) = delete;
 
-  /**
-   * Deinitializes the game patch.
-   */
-  ~GamePatch() throw() {
-    Mapi_GamePatch_Deinit(&this->game_patch_);
-  }
+  GamePatch(GamePatch&& game_patch);
 
-#else
-
-  GamePatch(GamePatch& other) = delete;
-
-  GamePatch(GamePatch&& game_patch) noexcept
-      : game_patch_(Mapi_GamePatch_InitMove(&game_patch.game_patch_)),
-        is_init_(true) {
-  }
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
   /**
    * Deinitializes the game patch.
    */
-  ~GamePatch() noexcept {
-    Mapi_GamePatch_Deinit(&this->game_patch_);
-  }
+  ~GamePatch();
 
-  GamePatch& operator=(GamePatch&& game_patch) noexcept {
-    if (this == &game_patch) {
-      return *this;
-    }
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
-    Mapi_GamePatch_AssignMove(
-        &this->game_patch_,
-        &game_patch.game_patch_
-    );
+  GamePatch& operator=(const GamePatch& game_patch) = delete;
 
-    this->is_init_ = true;
+  GamePatch& operator=(GamePatch&& game_patch);
 
-    return *this;
-  }
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
-  GamePatch& operator=(const GamePatch& other) = delete;
+  operator Mapi_GamePatch&();
 
-#endif
-
-  /*
-  * The following move functions are declared to enable move in C++98
-  * code.
-  */
-
-  static GamePatch InitMove(GamePatch& game_patch) {
-    return GamePatch(
-        Mapi_GamePatch_InitMove(&game_patch.game_patch_)
-    );
-  }
-
-  GamePatch& AssignMove(
-      GamePatch& game_patch
-  ) {
-    if (this == &game_patch) {
-      return *this;
-    }
-
-    Mapi_GamePatch_AssignMove(
-        &this->game_patch_,
-        &game_patch.game_patch_
-    );
-
-    this->is_init_ = true;
-
-    return *this;
-  }
+  operator const Mapi_GamePatch&() const;
 
   /**
    * Initializes a patch. The patch is configured to overwrite the game
@@ -147,16 +95,7 @@ public:
       BranchType branch_type,
       void (*func_ptr)(),
       size_t patch_size
-  ) {
-    return GamePatch(
-        Mapi_GamePatch_InitGameBackBranchPatch(
-            &game_address.GetRefC(),
-            static_cast<Mapi_BranchType>(branch_type),
-            func_ptr,
-            patch_size
-        )
-    );
-  }
+  );
 
   /**
    * Initializes a patch. The patch is configured to overwrite the game
@@ -168,16 +107,7 @@ public:
       BranchType branch_type,
       void (*func_ptr)(),
       size_t patch_size
-  ) {
-    return GamePatch(
-        Mapi_GamePatch_InitGameBranchPatch(
-            &game_address.GetRefC(),
-            static_cast<Mapi_BranchType>(branch_type),
-            func_ptr,
-            patch_size
-        )
-    );
-  }
+  );
 
   /**
    * Initializes a patch. The patch is configured to overwrite the game
@@ -187,15 +117,7 @@ public:
       const GameAddress& game_address,
       const uint8_t* buffer,
       size_t patch_size
-  ) {
-    return GamePatch(
-        Mapi_GamePatch_InitGameBufferPatch(
-            &game_address.GetRefC(),
-            buffer,
-            patch_size
-        )
-    );
-  }
+  );
 
   /**
    * Initializes a patch. The patch is configured to overwrite the game
@@ -204,86 +126,36 @@ public:
   static GamePatch MakeGameNopPatch(
       const GameAddress& game_address,
       size_t patch_size
-  ) {
-    return GamePatch(
-        Mapi_GamePatch_InitGameNopPatch(
-            &game_address.GetRefC(),
-            patch_size
-        )
-    );
-  }
+  );
 
   /**
    * Applies the game patch by replacing the bytes at its target
    * address with the bytes stored in its patch buffer.
    */
-  void Apply() {
-    if (!this->is_init_) {
-      Mdc_Error_ExitOnGeneralError(
-          L"Error",
-          L"Game patch is uninit.",
-          __FILEW__,
-          __LINE__
-      );
-
-      return;
-    }
-
-    Mapi_GamePatch_Apply(&this->game_patch_);
-  }
+  void Apply();
 
   /**
    * Removes the game patch by restoring the original state of the
    * bytes at its target address.
    */
-  void Remove() {
-    if (!this->is_init_) {
-      Mdc_Error_ExitOnGeneralError(
-          L"Error",
-          L"Game patch is uninit.",
-          __FILEW__,
-          __LINE__
-      );
+  void Remove();
 
-      return;
-    }
+  void Swap(GamePatch& game_patch);
 
-    Mapi_GamePatch_Remove(&this->game_patch_);
-  }
-
-  void swap(GamePatch& game_patch) {
-    Mapi_GamePatch_Swap(&this->game_patch_, &game_patch.game_patch_);
-  }
-
-  Mapi_GamePatch& GetRefC() throw() {
-    const GamePatch* const_this = this;
-
-    return const_cast<Mapi_GamePatch&>(const_this->GetRefC());
-  }
-
-  const Mapi_GamePatch& GetRefC() const throw() {
-    return this->game_patch_;
-  }
+  void swap(GamePatch& game_patch);
 
 private:
   Mapi_GamePatch game_patch_;
-  bool is_init_;
-
-  explicit GamePatch(Mapi_GamePatch game_patch) throw()
-      : game_patch_(game_patch),
-        is_init_(true) {
-  }
 
 #if __cplusplus < 201103L && _MSVC_LANG < 201103L
 
   /*
   * These functions are intentionally left unimplemented.
   */
+  GamePatch(const GamePatch& game_patch);
+  GamePatch& operator=(const GamePatch& game_patch);
 
-  GamePatch(GamePatch&);
-  GamePatch& operator=(GamePatch&);
-
-#endif
+#endif // __cplusplus < 201103L && _MSVC_LANG < 201103L
 };
 
 } // namespace mapi
