@@ -1217,7 +1217,7 @@ SOURCE=.\src\c\backend\game_library.cpp
 SOURCE=.\src\c\backend\game_library.h
 # End Source File
 # End Group
-# Begin Group "game_constant"
+# Begin Group "game_constant_c"
 
 # PROP Default_Filter ""
 # Begin Source File
