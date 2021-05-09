@@ -76,9 +76,9 @@ struct DLLEXPORT DefaultLibrary {
   */
   ValueType value_;
 
-  operator ValueType();
+  operator ValueType() const;
 
-  operator D2_DefaultLibrary();
+  operator D2_DefaultLibrary() const;
 
   friend bool operator==(
       const DefaultLibrary& lhs,

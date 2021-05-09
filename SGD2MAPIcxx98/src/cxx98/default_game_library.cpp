@@ -47,11 +47,11 @@
 
 namespace d2 {
 
-DefaultLibrary::operator DefaultLibrary::ValueType() {
+DefaultLibrary::operator DefaultLibrary::ValueType() const {
   return this->value_;
 }
 
-DefaultLibrary::operator D2_DefaultLibrary() {
+DefaultLibrary::operator D2_DefaultLibrary() const {
   return static_cast<D2_DefaultLibrary>(this->value_);
 }
 

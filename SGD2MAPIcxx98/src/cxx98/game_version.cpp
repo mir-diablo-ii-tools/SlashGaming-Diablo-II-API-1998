@@ -47,11 +47,11 @@
 
 namespace d2 {
 
-GameVersion::operator GameVersion::ValueType() {
+GameVersion::operator GameVersion::ValueType() const {
   return this->value_;
 }
 
-GameVersion::operator D2_GameVersion() {
+GameVersion::operator D2_GameVersion() const {
   return static_cast<D2_GameVersion>(this->value_);
 }
 

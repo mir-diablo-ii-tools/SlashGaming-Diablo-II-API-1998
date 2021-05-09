@@ -47,11 +47,11 @@
 
 namespace mapi {
 
-BranchType::operator BranchType::ValueType() {
+BranchType::operator BranchType::ValueType() const {
   return this->value_;
 }
 
-BranchType::operator Mapi_BranchType() {
+BranchType::operator Mapi_BranchType() const {
   return static_cast<Mapi_BranchType>(this->value_);
 }
 

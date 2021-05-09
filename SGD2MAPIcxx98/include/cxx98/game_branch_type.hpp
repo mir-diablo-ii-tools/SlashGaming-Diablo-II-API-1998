@@ -75,9 +75,9 @@ struct DLLEXPORT BranchType {
   */
   ValueType value_;
 
-  operator ValueType();
+  operator ValueType() const;
 
-  operator Mapi_BranchType();
+  operator Mapi_BranchType() const;
 
   friend bool operator==(const BranchType& lhs, const BranchType& rhs);
   friend bool operator!=(const BranchType& lhs, const BranchType& rhs);

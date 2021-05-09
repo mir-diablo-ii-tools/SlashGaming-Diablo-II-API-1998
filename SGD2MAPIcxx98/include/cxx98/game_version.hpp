@@ -81,9 +81,9 @@ struct DLLEXPORT GameVersion {
   */
   ValueType value_;
 
-  operator ValueType();
+  operator ValueType() const;
 
-  operator D2_GameVersion();
+  operator D2_GameVersion() const;
 
   friend bool operator==(const GameVersion& lhs, const GameVersion& rhs);
   friend bool operator!=(const GameVersion& lhs, const GameVersion& rhs);
