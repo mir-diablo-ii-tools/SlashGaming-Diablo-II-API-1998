@@ -61,10 +61,9 @@ class GameAddress {
   * Copiers, movers, and destructors are not declared on purpose.
   */
 
-  /*
-  * The following move functions are declared to enable move in C++98
-  * code.
-  */
+  operator Mapi_GameAddress&();
+
+  operator const Mapi_GameAddress&() const;
 
   /**
    * Initializes a GameAddress. The game address locator is specified

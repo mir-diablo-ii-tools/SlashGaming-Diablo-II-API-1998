@@ -47,6 +47,14 @@
 
 namespace mapi {
 
+GameAddress::operator Mapi_GameAddress&() {
+  return this->game_address_;
+}
+
+GameAddress::operator const Mapi_GameAddress&() const {
+  return this->game_address_;
+}
+
 GameAddress GameAddress::FromExportedName(
     ::d2::DefaultLibrary library,
     const char* exported_name
