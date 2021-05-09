@@ -273,6 +273,7 @@ void Mapi_GamePatch_Deinit(struct Mapi_GamePatch* game_patch) {
   game_patch->patch_buffer = NULL;
 
   Mapi_GameAddress_Deinit(&game_patch->game_address);
+  game_patch->game_address = Mapi_GameAddress_kUninit;
 }
 
 struct Mapi_GamePatch* Mapi_GamePatch_AssignMove(
