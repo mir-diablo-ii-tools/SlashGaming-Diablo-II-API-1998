@@ -68,7 +68,7 @@ struct Mapi_GamePatch {
 
 #define MAPI_GAME_PATCH_UNINIT { 0 }
 
-DLLEXPORT extern const struct Mapi_GamePatch Mapi_GamePatch_kUninit;
+DLLEXPORT const struct Mapi_GamePatch Mapi_GamePatch_kUninit;
 
 /**
  * Initializes a patch. The patch is configured to overwrite the game

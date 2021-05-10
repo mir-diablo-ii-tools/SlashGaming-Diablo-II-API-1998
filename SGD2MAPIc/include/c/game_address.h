@@ -63,7 +63,7 @@ struct Mapi_GameAddress {
 
 #define MAPI_GAME_ADDRESS_UNINIT { 0 }
 
-DLLEXPORT extern const struct Mapi_GameAddress Mapi_GameAddress_kUninit;
+DLLEXPORT const struct Mapi_GameAddress Mapi_GameAddress_kUninit;
 
 /**
  * Initializes a GameAddress. The game address locator is specified
