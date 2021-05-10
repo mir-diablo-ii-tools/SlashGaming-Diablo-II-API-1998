@@ -150,8 +150,11 @@ private:
 #if __cplusplus < 201103L && _MSVC_LANG < 201103L
 
   /*
-  * These functions are intentionally left unimplemented.
+  * These functions are intentionally unusable. They need to be
+  * defined for DLL export, however. They should not be used
+  * internally and cannot be used externally.
   */
+
   GamePatch(const GamePatch& game_patch);
   GamePatch& operator=(const GamePatch& game_patch);
 
