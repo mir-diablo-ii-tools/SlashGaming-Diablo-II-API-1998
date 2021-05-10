@@ -43,72 +43,41 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_CONSTANT_D2_DIFFICULTY_LEVEL_HPP_
-#define SGD2MAPI_CXX98_GAME_CONSTANT_D2_DIFFICULTY_LEVEL_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../dllexport_define.inc"
+#include "../../../include/cxx98/game_constant/d2_difficulty_level.hpp"
 
 namespace d2 {
 namespace difficulty_level {
 
-/*
-* These internal enums is not intended for direct public use. It is
-* stricly defined here to prevent enum leak to namespace. Use the
-* typedefs in the upper-level namespace instead.
-*/
+int ToGameValue(DifficultyLevel api_value) {
+  return ::D2_DifficultyLevel_ToGameValue(
+      static_cast<D2_DifficultyLevel>(api_value)
+  );
+}
 
-namespace api {
+DifficultyLevel_1_00 ToGameValue_1_00(DifficultyLevel api_value) {
+  ::D2_DifficultyLevel_1_00 c_game_value =
+      ::D2_DifficultyLevel_ToGameValue_1_00(
+          static_cast<::D2_DifficultyLevel>(api_value)
+      );
 
-enum DifficultyLevel {
-  kNormal = D2_DifficultyLevel_kNormal,
-  kNightmare = D2_DifficultyLevel_kNightmare,
-  kHell = D2_DifficultyLevel_kHell,
-};
+  return static_cast<DifficultyLevel_1_00>(c_game_value);
+}
 
-} // namespace api
+DifficultyLevel ToApiValue(int game_value) {
+  ::D2_DifficultyLevel c_api_value = ::D2_DifficultyLevel_ToApiValue(
+      game_value
+  );
 
-namespace v1_00 {
+  return static_cast<DifficultyLevel>(c_api_value);
+}
 
-enum DifficultyLevel_1_00 {
-  kNormal = D2_DifficultyLevel_1_00_kNormal,
-  kNightmare = D2_DifficultyLevel_1_00_kNightmare,
-  kHell = D2_DifficultyLevel_1_00_kHell,
-};
+DifficultyLevel ToApiValue_1_00(DifficultyLevel_1_00 game_value) {
+  ::D2_DifficultyLevel c_api_value = ::D2_DifficultyLevel_ToApiValue_1_00(
+      static_cast<::D2_DifficultyLevel_1_00>(game_value)
+  );
 
-} // namespace v1_00
-
-} // namespace difficulty_level
-
-/**
- * Generic enum definitions
- */
-
-typedef difficulty_level::api::DifficultyLevel DifficultyLevel;
-
-/**
- * Version-specific enum definitions
- */
-
-typedef difficulty_level::v1_00::DifficultyLevel_1_00 DifficultyLevel_1_00;
-
-/**
- * Function declarations
- */
-
-namespace difficulty_level {
-
-DLLEXPORT int ToGameValue(DifficultyLevel api_value);
-
-DLLEXPORT DifficultyLevel_1_00 ToGameValue_1_00(DifficultyLevel api_value);
-
-DLLEXPORT DifficultyLevel ToApiValue(int game_value);
-
-DLLEXPORT DifficultyLevel ToApiValue_1_00(DifficultyLevel_1_00 game_value);
+  return static_cast<DifficultyLevel>(c_api_value);
+}
 
 } // namespace difficulty_level
 } // namespace d2
-
-#include "../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_CONSTANT_D2_DIFFICULTY_LEVEL_HPP_ */

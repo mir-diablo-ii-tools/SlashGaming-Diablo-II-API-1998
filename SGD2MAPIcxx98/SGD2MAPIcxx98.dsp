@@ -160,6 +160,10 @@ LINK32=link.exe
 
 SOURCE=.\include\cxx98\game_constant\d2_client_game_type.hpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_difficulty_level.hpp
+# End Source File
 # End Group
 # Begin Source File
 
@@ -211,6 +215,10 @@ SOURCE=.\include\cxx98\game_version.hpp
 # Begin Source File
 
 SOURCE=.\src\cxx98\game_constant\d2_client_game_type.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_difficulty_level.cpp
 # End Source File
 # End Group
 # Begin Source File
