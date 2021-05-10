@@ -45,60 +45,25 @@
 
 #include "../../include/cxx98/game_version.hpp"
 
+#include <sgd2mapi.h>
+
 namespace d2 {
-
-GameVersion::operator GameVersion::ValueType() const {
-  return this->value_;
-}
-
-GameVersion::operator D2_GameVersion() const {
-  return static_cast<D2_GameVersion>(this->value_);
-}
-
-bool operator==(const GameVersion& lhs, const GameVersion& rhs) {
-  return lhs.value_ == rhs.value_;
-}
-
-bool operator!=(const GameVersion& lhs, const GameVersion& rhs) {
-  return lhs.value_ != rhs.value_;
-}
-
-bool operator<(const GameVersion& lhs, const GameVersion& rhs) {
-  return lhs.value_ < rhs.value_;
-}
-
 namespace game_version {
 
-/**
- * Returns the UTF-8 encoded null-terminated string associated with the
- * specified game version.
- */
 const char* GetName(GameVersion game_version) {
   return D2_GameVersion_GetName(
       static_cast<D2_GameVersion>(game_version)
   );
 }
 
-/**
- * Returns the identifier of the running game version.
- */
 GameVersion GetRunning() {
-  GameVersion game_version;
-  game_version.value_ = D2_GameVersion_GetRunning();
-  return game_version;
+  return static_cast<GameVersion>(D2_GameVersion_GetRunning());
 }
 
-/**
- * Returns the UTF-8 encoded null-terminated string associated with the
- * running game version.
- */
 const char* GetRunningName() {
   return D2_GameVersion_GetRunningName();
 }
 
-/**
- * Returns whether the Diablo II game version is at least 1.14.
- */
 bool IsAtLeast1_14(GameVersion game_version) {
   D2_GameVersion actual_game_version = static_cast<D2_GameVersion>(
       game_version
@@ -107,13 +72,9 @@ bool IsAtLeast1_14(GameVersion game_version) {
   return D2_GameVersion_IsAtLeast1_14(actual_game_version) != 0;
 }
 
-/**
- * Returns whether the running game version is at least 1.14.
- */
 bool IsRunningAtLeast1_14() {
   return D2_GameVersion_IsRunningAtLeast1_14() != 0;
 }
 
 } // namespace game_version
-
 } // namespace d2

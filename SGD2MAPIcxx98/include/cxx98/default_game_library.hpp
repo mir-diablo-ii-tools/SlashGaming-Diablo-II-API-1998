@@ -47,54 +47,29 @@
 #define SGD2MAPI_CXX98_DEFAULT_GAME_LIBRARY_HPP_
 
 #include <mdc/std/wchar.h>
-#include <sgd2mapi.h>
 
 #include "../dllexport_define.inc"
 
 namespace d2 {
+namespace default_library {
+
+/*
+* This internal enum is not intended for public use. It is stricly
+* defined here to force enum scope syntax similar to scoped enum
+* class.
+*/
+enum DefaultLibrary {
+  kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2Game,
+  kD2GDI, kD2GFX, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
+  kD2Net, kD2Server, kD2Sound, kD2Win, kFog, kStorm,
+};
+
+} // namespace default_library
 
 /**
  * The default libraries that are used by Diablo II.
  */
-struct DLLEXPORT DefaultLibrary {
-  typedef int ValueType;
-
-  enum {
-    kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2Game,
-    kD2GDI, kD2GFX, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
-    kD2Net, kD2Server, kD2Sound, kD2Win, kFog, kStorm,
-  };
-
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
-
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
-
-  operator ValueType() const;
-
-  operator D2_DefaultLibrary() const;
-
-  friend bool operator==(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-
-  friend bool operator!=(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-
-  friend bool operator<(
-      const DefaultLibrary& lhs,
-      const DefaultLibrary& rhs
-  );
-};
+typedef default_library::DefaultLibrary DefaultLibrary;
 
 namespace default_library {
 

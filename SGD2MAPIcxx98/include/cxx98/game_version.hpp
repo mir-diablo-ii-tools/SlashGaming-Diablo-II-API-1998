@@ -46,49 +46,34 @@
 #ifndef SGD2MAPI_CXX98_GAME_VERSION_HPP_
 #define SGD2MAPI_CXX98_GAME_VERSION_HPP_
 
-#include <sgd2mapi.h>
-
 #include "../dllexport_define.inc"
 
 namespace d2 {
+namespace game_version {
+
+/*
+* This internal enum is not intended for public use. It is stricly
+* defined here to force enum scope syntax similar to scoped enum
+* class.
+*/
+enum GameVersion {
+  kBeta1_02, kBeta1_02StressTest,
+
+  k1_00, k1_01, k1_02, k1_03, k1_04B_C, k1_05, k1_05B, k1_06, k1_06B,
+
+  k1_07Beta, k1_07, k1_08, k1_09, k1_09B, k1_09D, k1_10Beta, k1_10SBeta,
+  k1_10, k1_11, k1_11B, k1_12A, k1_13ABeta, k1_13C, k1_13D,
+
+  kClassic1_14A, kLod1_14A, kClassic1_14B, kLod1_14B, kClassic1_14C,
+  kLod1_14C, kClassic1_14D, kLod1_14D,
+};
+
+} // namespace game_version
 
 /**
  * The Diablo II game versions supported and recognized.
  */
-struct DLLEXPORT GameVersion {
-  typedef int ValueType;
-
-  enum {
-    kBeta1_02, kBeta1_02StressTest,
-
-    k1_00, k1_01, k1_02, k1_03, k1_04B_C, k1_05, k1_05B, k1_06, k1_06B,
-
-    k1_07Beta, k1_07, k1_08, k1_09, k1_09B, k1_09D, k1_10Beta, k1_10SBeta,
-    k1_10, k1_11, k1_11B, k1_12A, k1_13ABeta, k1_13C, k1_13D,
-
-    kClassic1_14A, kLod1_14A, kClassic1_14B, kLod1_14B, kClassic1_14C,
-    kLod1_14C, kClassic1_14D, kLod1_14D,
-  };
-
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
-
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
-
-  operator ValueType() const;
-
-  operator D2_GameVersion() const;
-
-  friend bool operator==(const GameVersion& lhs, const GameVersion& rhs);
-  friend bool operator!=(const GameVersion& lhs, const GameVersion& rhs);
-  friend bool operator<(const GameVersion& lhs, const GameVersion& rhs);
-};
+typedef game_version::GameVersion GameVersion;
 
 namespace game_version {
 

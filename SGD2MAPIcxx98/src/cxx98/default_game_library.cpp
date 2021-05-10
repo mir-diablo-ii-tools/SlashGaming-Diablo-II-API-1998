@@ -45,55 +45,22 @@
 
 #include "../../include/cxx98/default_game_library.hpp"
 
+#include <sgd2mapi.h>
+
 namespace d2 {
-
-DefaultLibrary::operator DefaultLibrary::ValueType() const {
-  return this->value_;
-}
-
-DefaultLibrary::operator D2_DefaultLibrary() const {
-  return static_cast<D2_DefaultLibrary>(this->value_);
-}
-
-bool operator==(
-    const DefaultLibrary& lhs,
-    const DefaultLibrary& rhs
-) {
-  return lhs.value_ == rhs.value_;
-}
-
-bool operator!=(
-    const DefaultLibrary& lhs,
-    const DefaultLibrary& rhs
-) {
-  return lhs.value_ != rhs.value_;
-}
-
-bool operator<(
-    const DefaultLibrary& lhs,
-    const DefaultLibrary& rhs
-) {
-  return lhs.value_ < rhs.value_;
-}
-
 namespace default_library {
 
-const wchar_t* GetPathWithRedirect(
-    DefaultLibrary library
-) {
+const wchar_t* GetPathWithRedirect(DefaultLibrary library) {
   return D2_DefaultLibrary_GetPathWithRedirect(
       static_cast<D2_DefaultLibrary>(library)
   );
 }
 
-const wchar_t* GetPathWithoutRedirect(
-    DefaultLibrary library
-) {
+const wchar_t* GetPathWithoutRedirect(DefaultLibrary library) {
   return D2_DefaultLibrary_GetPathWithoutRedirect(
       static_cast<D2_DefaultLibrary>(library)
   );
 }
 
 } // namespace default_library
-
 } // namespace d2

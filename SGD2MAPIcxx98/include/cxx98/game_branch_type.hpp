@@ -46,43 +46,28 @@
 #ifndef SGMAPI_CXX98_GAME_BRANCH_TYPE_HPP_
 #define SGMAPI_CXX98_GAME_BRANCH_TYPE_HPP_
 
-#include <sgd2mapi.h>
-
 #include "../dllexport_define.inc"
 
 namespace mapi {
+namespace branch_type {
+
+/*
+* This internal enum is not intended for public use. It is stricly
+* defined here to force enum scope syntax similar to scoped enum
+* class.
+*/
+enum BranchType {
+  kCall, kJump,
+};
+
+} // namespace branch_type
 
 /**
  * The branch types that are used to call an inserted function. A call saves
  * some state defined by the architecture, with the purpose of returning to the
  * calling function. A jump does not save any state information.
  */
-struct DLLEXPORT BranchType {
-  typedef int ValueType;
-
-  enum {
-    kCall, kJump,
-  };
-
-  /*
-  * Constructors, destructor, and assignment operators are not
-  * declared, so that constant initialization will work.
-  */
-
-  /*
-  * Do not access this public member outside of API. It has been made
-  * public so that constant initialization will work.
-  */
-  ValueType value_;
-
-  operator ValueType() const;
-
-  operator Mapi_BranchType() const;
-
-  friend bool operator==(const BranchType& lhs, const BranchType& rhs);
-  friend bool operator!=(const BranchType& lhs, const BranchType& rhs);
-  friend bool operator<(const BranchType& lhs, const BranchType& rhs);
-};
+typedef branch_type::BranchType BranchType;
 
 } // namespace mapi
 
