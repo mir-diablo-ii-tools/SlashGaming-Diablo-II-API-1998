@@ -150,37 +150,17 @@ LINK32=link.exe
 # Begin Group "Files"
 
 # PROP Default_Filter ""
-# Begin Group "src"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\cxx98\default_game_library.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cxx98\game_address.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cxx98\game_branch_type.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cxx98\game_executable.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cxx98\game_patch.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cxx98\game_version.cpp
-# End Source File
-# End Group
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Group "game_constant_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_client_game_type.hpp
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\include\cxx98\default_game_library.hpp
@@ -220,6 +200,38 @@ SOURCE=.\include\cxx98\game_undefined.hpp
 # Begin Source File
 
 SOURCE=.\include\cxx98\game_version.hpp
+# End Source File
+# End Group
+# Begin Group "src"
+
+# PROP Default_Filter ""
+# Begin Group "game_constant_cpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_client_game_type.cpp
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\src\cxx98\default_game_library.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_address.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_executable.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_patch.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_version.cpp
 # End Source File
 # End Group
 # End Group
