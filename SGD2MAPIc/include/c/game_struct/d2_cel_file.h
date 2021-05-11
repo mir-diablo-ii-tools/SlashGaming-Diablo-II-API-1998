@@ -73,7 +73,7 @@ struct D2_CelFile;
   /* 0x14 */ uint32_t num_frames;
 
   /* This field gives the struct variable length. */
-  /* 0x18 */ Mapi_UndefinedByte cels[];
+  /* 0x18 */ Mapi_UndefinedByte cels[1];
 };
 
 #pragma pack(pop)
