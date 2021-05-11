@@ -48,72 +48,69 @@
 
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace d2 {
+namespace screen_open_mode {
+
+/*
+* These internal enums is not intended for direct public use. It is
+* stricly defined here to prevent enum leak to namespace. Use the
+* typedefs in the upper-level namespace instead.
+*/
+
+namespace api {
+
+enum ScreenOpenMode {
+  kNone = D2_ScreenOpenMode_kNone,
+  kRight = D2_ScreenOpenMode_kRight,
+  kLeft = D2_ScreenOpenMode_kLeft,
+  kBoth = D2_ScreenOpenMode_kBoth,
+};
+
+} // namespace api
+
+namespace v1_07 {
+
+enum ScreenOpenMode_1_07 {
+  kNone = D2_ScreenOpenMode_1_07_kNone,
+  kRight = D2_ScreenOpenMode_1_07_kRight,
+  kLeft = D2_ScreenOpenMode_1_07_kLeft,
+  kBoth = D2_ScreenOpenMode_1_07_kBoth,
+};
+
+} // namespace v1_07
+
+} // namespace screen_open_mode
 
 /**
  * Generic enum definitions
  */
 
-enum ScreenOpenMode {
-  ScreenOpenMode_kNone = D2_ScreenOpenMode_kNone,
-  ScreenOpenMode_kRight = D2_ScreenOpenMode_kRight,
-  ScreenOpenMode_kLeft = D2_ScreenOpenMode_kLeft,
-  ScreenOpenMode_kBoth = D2_ScreenOpenMode_kBoth,
-};
+typedef screen_open_mode::api::ScreenOpenMode ScreenOpenMode;
 
 /**
  * Version-specific enum definitions
  */
 
-enum ScreenOpenMode_1_07 {
-  ScreenOpenMode_1_07_kNone = D2_ScreenOpenMode_1_07_kNone,
-  ScreenOpenMode_1_07_kRight = D2_ScreenOpenMode_1_07_kRight,
-  ScreenOpenMode_1_07_kLeft = D2_ScreenOpenMode_1_07_kLeft,
-  ScreenOpenMode_1_07_kBoth = D2_ScreenOpenMode_1_07_kBoth,
-};
+typedef screen_open_mode::v1_07::ScreenOpenMode_1_07 ScreenOpenMode_1_07;
 
 /**
  * Function declarations
  */
 
-int ScreenOpenMode_ToGameValue(
-    ScreenOpenMode api_value
-) {
-  return D2_ScreenOpenMode_ToGameValue(
-      static_cast<D2_ScreenOpenMode>(api_value)
-  );
-}
+namespace screen_open_mode {
 
-ScreenOpenMode_1_07 ScreenOpenMode_ToGameValue_1_07(
-    ScreenOpenMode api_value
-) {
-  D2_ScreenOpenMode_1_07 actual_game_value =
-      D2_ScreenOpenMode_ToGameValue_1_07(
-          static_cast<D2_ScreenOpenMode>(api_value)
-      );
+DLLEXPORT int ToGameValue(ScreenOpenMode api_value);
 
-  return static_cast<ScreenOpenMode_1_07>(actual_game_value);
-}
+DLLEXPORT ScreenOpenMode_1_07 ToGameValue_1_07(ScreenOpenMode api_value);
 
-ScreenOpenMode ScreenOpenMode_ToApiValue(
-    int game_value
-) {
-  return static_cast<ScreenOpenMode>(
-      D2_ScreenOpenMode_ToApiValue(game_value)
-  );
-}
+DLLEXPORT ScreenOpenMode ToApiValue(int game_value);
 
-ScreenOpenMode ScreenOpenMode_ToApiValue_1_07(
-    ScreenOpenMode_1_07 game_value
-) {
-  D2_ScreenOpenMode actual_api_value =
-      D2_ScreenOpenMode_ToApiValue_1_07(
-          static_cast<D2_ScreenOpenMode_1_07>(game_value)
-      );
+DLLEXPORT ScreenOpenMode ToApiValue_1_07(ScreenOpenMode_1_07 game_value);
 
-  return static_cast<ScreenOpenMode>(actual_api_value);
-}
-
+} // namespace screen_open_mode
 } // namespace d2
 
+#include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_HPP_ */

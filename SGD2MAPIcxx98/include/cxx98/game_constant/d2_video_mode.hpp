@@ -48,68 +48,75 @@
 
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace d2 {
+namespace video_mode {
+
+/*
+* These internal enums is not intended for direct public use. It is
+* stricly defined here to prevent enum leak to namespace. Use the
+* typedefs in the upper-level namespace instead.
+*/
+
+namespace api {
+
+enum VideoMode {
+  kGdi = D2_VideoMode_kGdi,
+  kSoftware = D2_VideoMode_kSoftware,
+  kDirectDraw = D2_VideoMode_kDirectDraw,
+  kGlide = D2_VideoMode_kGlide,
+  kOpenGl = D2_VideoMode_kOpenGl,
+  kDirect3D = D2_VideoMode_kDirect3D,
+  kRave = D2_VideoMode_kRave,
+};
+
+} // namespace api
+
+namespace v1_00 {
+
+enum VideoMode_1_00 {
+  kGdi = D2_VideoMode_1_00_kGdi,
+  kSoftware = D2_VideoMode_1_00_kSoftware,
+  kDirectDraw = D2_VideoMode_1_00_kDirectDraw,
+  kGlide = D2_VideoMode_1_00_kGlide,
+  kOpenGl = D2_VideoMode_1_00_kOpenGl,
+  kDirect3D = D2_VideoMode_1_00_kDirect3D,
+  kRave = D2_VideoMode_1_00_kRave,
+};
+
+} // namespace v1_00
+
+} // namespace video_mode
 
 /**
  * Generic enum definitions
  */
 
-enum VideoMode {
-  VideoMode_kGdi = D2_VideoMode_kGdi,
-  VideoMode_kSoftware = D2_VideoMode_kSoftware,
-  VideoMode_kDirectDraw = D2_VideoMode_kDirectDraw,
-  VideoMode_kGlide = D2_VideoMode_kGlide,
-  VideoMode_kOpenGl = D2_VideoMode_kOpenGl,
-  VideoMode_kDirect3D = D2_VideoMode_kDirect3D,
-  VideoMode_kRave = D2_VideoMode_kRave,
-};
+typedef video_mode::api::VideoMode VideoMode;
 
 /**
  * Version-specific enum definitions
  */
 
-enum VideoMode_1_00 {
-  VideoMode_1_00_kGdi = D2_VideoMode_1_00_kGdi,
-  VideoMode_1_00_kSoftware = D2_VideoMode_1_00_kSoftware,
-  VideoMode_1_00_kDirectDraw = D2_VideoMode_1_00_kDirectDraw,
-  VideoMode_1_00_kGlide = D2_VideoMode_1_00_kGlide,
-  VideoMode_1_00_kOpenGl = D2_VideoMode_1_00_kOpenGl,
-  VideoMode_1_00_kDirect3D = D2_VideoMode_1_00_kDirect3D,
-  VideoMode_1_00_kRave = D2_VideoMode_1_00_kRave,
-};
+typedef video_mode::v1_00::VideoMode_1_00 VideoMode_1_00;
 
 /**
  * Function declarations
  */
 
-int VideoMode_ToGameValue(VideoMode api_value) {
-  return D2_VideoMode_ToGameValue(static_cast<D2_VideoMode>(api_value));
-}
+namespace video_mode {
 
-VideoMode_1_00 VideoMode_ToGameValue_1_00(
-    VideoMode api_value
-) {
-  D2_VideoMode_1_00 actual_game_value = D2_VideoMode_ToGameValue_1_00(
-      static_cast<D2_VideoMode>(api_value)
-  );
+DLLEXPORT int ToGameValue(VideoMode api_value);
 
-  return static_cast<VideoMode_1_00>(actual_game_value);
-}
+DLLEXPORT VideoMode_1_00 ToGameValue_1_00(VideoMode api_value);
 
-VideoMode VideoMode_ToApiValue(int game_value) {
-  return static_cast<VideoMode>(D2_VideoMode_ToApiValue(game_value));
-}
+DLLEXPORT VideoMode ToApiValue(int game_value);
 
-VideoMode VideoMode_ToApiValue_1_00(
-    VideoMode_1_00 game_value
-) {
-  D2_VideoMode actual_api_value = D2_VideoMode_ToApiValue_1_00(
-      static_cast<D2_VideoMode_1_00>(game_value)
-  );
+DLLEXPORT VideoMode ToApiValue_1_00(VideoMode_1_00 game_value);
 
-  return static_cast<VideoMode>(actual_api_value);
-}
-
+} // namespace video_mode
 } // namespace d2
 
+#include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_CONSTANT_D2_VIDEO_MODE_HPP_ */

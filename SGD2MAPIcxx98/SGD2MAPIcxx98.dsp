@@ -164,6 +164,26 @@ SOURCE=.\include\cxx98\game_constant\d2_client_game_type.hpp
 
 SOURCE=.\include\cxx98\game_constant\d2_difficulty_level.hpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_draw_effect.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_screen_open_mode.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_text_color.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_text_font.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_constant\d2_video_mode.hpp
+# End Source File
 # End Group
 # Begin Source File
 
@@ -219,6 +239,26 @@ SOURCE=.\src\cxx98\game_constant\d2_client_game_type.cpp
 # Begin Source File
 
 SOURCE=.\src\cxx98\game_constant\d2_difficulty_level.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_draw_effect.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_screen_open_mode.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_text_color.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_text_font.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_constant\d2_video_mode.cpp
 # End Source File
 # End Group
 # Begin Source File

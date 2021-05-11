@@ -43,83 +43,41 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_CONSTANT_D2_DRAW_EFFECT_HPP_
-#define SGD2MAPI_CXX98_GAME_CONSTANT_D2_DRAW_EFFECT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../dllexport_define.inc"
+#include "../../../include/cxx98/game_constant/d2_text_font.hpp"
 
 namespace d2 {
-namespace draw_effect {
+namespace text_font {
 
-/*
-* These internal enums is not intended for direct public use. It is
-* stricly defined here to prevent enum leak to namespace. Use the
-* typedefs in the upper-level namespace instead.
-*/
+int ToGameValue(TextFont api_value) {
+  return ::D2_TextFont_ToGameValue(
+      static_cast<D2_TextFont>(api_value)
+  );
+}
 
-namespace api {
+TextFont_1_00 ToGameValue_1_00(TextFont api_value) {
+  ::D2_TextFont_1_00 c_game_value =
+      ::D2_TextFont_ToGameValue_1_00(
+          static_cast<::D2_TextFont>(api_value)
+      );
 
-enum DrawEffect {
-  kOneFourthOpaque = D2_DrawEffect_kOneFourthOpaque,
-  kHalfOpaque = D2_DrawEffect_kHalfOpaque,
-  kThreeFourthsOpaque = D2_DrawEffect_kThreeFourthsOpaque,
-  kUnknown03 = D2_DrawEffect_kUnknown03,
-  kUnknown04 = D2_DrawEffect_kUnknown04,
-  kNone = D2_DrawEffect_kNone,
-  kUnknown06 = D2_DrawEffect_kUnknown06,
-  kUnknown07 = D2_DrawEffect_kUnknown07
-};
+  return static_cast<TextFont_1_00>(c_game_value);
+}
 
-} // namespace api
+TextFont ToApiValue(int game_value) {
+  ::D2_TextFont c_api_value = ::D2_TextFont_ToApiValue(
+      game_value
+  );
 
-namespace v1_00 {
+  return static_cast<TextFont>(c_api_value);
+}
 
-enum DrawEffect_1_00 {
-  kOneFourthOpaque = D2_DrawEffect_1_00_kOneFourthOpaque,
-  kHalfOpaque = D2_DrawEffect_1_00_kHalfOpaque,
-  kThreeFourthsOpaque =
-      D2_DrawEffect_1_00_kThreeFourthsOpaque,
-  kUnknown03 = D2_DrawEffect_1_00_kUnknown03,
-  kUnknown04 = D2_DrawEffect_1_00_kUnknown04,
-  kNone = D2_DrawEffect_1_00_kNone,
-  kUnknown06 = D2_DrawEffect_1_00_kUnknown06,
-  kUnknown07 = D2_DrawEffect_1_00_kUnknown07
-};
+TextFont ToApiValue_1_00(TextFont_1_00 game_value) {
+  ::D2_TextFont c_api_value = ::D2_TextFont_ToApiValue_1_00(
+      static_cast<::D2_TextFont_1_00>(game_value)
+  );
 
-} // namespace v1_00
+  return static_cast<TextFont>(c_api_value);
+}
 
-} // namespace draw_effect
-
-/**
- * Generic enum definitions
- */
-
-typedef draw_effect::api::DrawEffect DrawEffect;
-
-/**
- * Version-specific enum definitions
- */
-
-typedef draw_effect::v1_00::DrawEffect_1_00 DrawEffect_1_00;
-
-/**
- * Function declarations
- */
-
-namespace draw_effect {
-
-DLLEXPORT int ToGameValue(DrawEffect api_value);
-
-DLLEXPORT DrawEffect_1_00 ToGameValue_1_00(DrawEffect api_value);
-
-DLLEXPORT DrawEffect ToApiValue(int game_value);
-
-DLLEXPORT DrawEffect ToApiValue_1_00(DrawEffect_1_00 game_value);
-
-} // namespace draw_effect
+} // namespace text_font
 } // namespace d2
-
-#include "../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_CONSTANT_D2_DRAW_EFFECT_HPP_ */

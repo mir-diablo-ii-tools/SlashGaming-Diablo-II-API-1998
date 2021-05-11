@@ -48,93 +48,99 @@
 
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace d2 {
+namespace text_color {
+
+/*
+* These internal enums is not intended for direct public use. It is
+* stricly defined here to prevent enum leak to namespace. Use the
+* typedefs in the upper-level namespace instead.
+*/
+
+namespace api {
+
+enum TextColor {
+  kWhite = D2_TextColor_kWhite,
+  kRed = D2_TextColor_kRed,
+  kGreen = D2_TextColor_kGreen,
+  kBlue = D2_TextColor_kBlue,
+  kGold = D2_TextColor_kGold,
+  kDarkGrey = D2_TextColor_kDarkGrey,
+  kBlack = D2_TextColor_kBlack,
+  kTan = D2_TextColor_kTan,
+  kOrange = D2_TextColor_kOrange,
+  kYellow = D2_TextColor_kYellow,
+  kDarkerGreen = D2_TextColor_kDarkerGreen,
+  kPurple = D2_TextColor_kPurple,
+  kDarkGreen = D2_TextColor_kDarkGreen,
+  kMetallic = D2_TextColor_kMetallic,
+  kLightGrey = D2_TextColor_kLightGrey,
+  kCorrupt = D2_TextColor_kCorrupt,
+  kBrightWhite = D2_TextColor_kBrightWhite,
+  kDarkRed = D2_TextColor_kDarkRed,
+  kBrown = D2_TextColor_kBrown,
+};
+
+} // namespace api
+
+namespace v1_00 {
+
+enum TextColor_1_00 {
+  kWhite = D2_TextColor_1_00_kWhite,
+  kRed = D2_TextColor_1_00_kRed,
+  kGreen = D2_TextColor_1_00_kGreen,
+  kBlue = D2_TextColor_1_00_kBlue,
+  kGold = D2_TextColor_1_00_kGold,
+  kDarkGrey = D2_TextColor_1_00_kDarkGrey,
+  kBlack = D2_TextColor_1_00_kBlack,
+  kTan = D2_TextColor_1_00_kTan,
+  kOrange = D2_TextColor_1_00_kOrange,
+  kYellow = D2_TextColor_1_00_kYellow,
+  kDarkerGreen = D2_TextColor_1_00_kDarkerGreen,
+  kPurple = D2_TextColor_1_00_kPurple,
+  kDarkGreen = D2_TextColor_1_00_kDarkGreen,
+  kMetallic = D2_TextColor_1_00_kMetallic,
+  kLightGrey = D2_TextColor_1_00_kLightGrey,
+  kCorrupt = D2_TextColor_1_00_kCorrupt,
+  kBrightWhite = D2_TextColor_1_00_kBrightWhite,
+  kDarkRed = D2_TextColor_1_00_kDarkRed,
+  kBrown = D2_TextColor_1_00_kBrown,
+};
+
+} // namespace v1_00
+
+} // namespace text_color
 
 /**
  * Generic enum definitions
  */
 
-enum TextColor {
-  TextColor_kWhite = D2_TextColor_kWhite,
-  TextColor_kRed = D2_TextColor_kRed,
-  TextColor_kGreen = D2_TextColor_kGreen,
-  TextColor_kBlue = D2_TextColor_kBlue,
-  TextColor_kGold = D2_TextColor_kGold,
-  TextColor_kDarkGrey = D2_TextColor_kDarkGrey,
-  TextColor_kBlack = D2_TextColor_kBlack,
-  TextColor_kTan = D2_TextColor_kTan,
-  TextColor_kOrange = D2_TextColor_kOrange,
-  TextColor_kYellow = D2_TextColor_kYellow,
-  TextColor_kDarkerGreen = D2_TextColor_kDarkerGreen,
-  TextColor_kPurple = D2_TextColor_kPurple,
-  TextColor_kDarkGreen = D2_TextColor_kDarkGreen,
-  TextColor_kMetallic = D2_TextColor_kMetallic,
-  TextColor_kLightGrey = D2_TextColor_kLightGrey,
-  TextColor_kCorrupt = D2_TextColor_kCorrupt,
-  TextColor_kBrightWhite = D2_TextColor_kBrightWhite,
-  TextColor_kDarkRed = D2_TextColor_kDarkRed,
-  TextColor_kBrown = D2_TextColor_kBrown,
-};
+typedef text_color::api::TextColor TextColor;
 
 /**
  * Version-specific enum definitions
  */
 
-enum TextColor_1_00 {
-  TextColor_1_00_kWhite = D2_TextColor_1_00_kWhite,
-  TextColor_1_00_kRed = D2_TextColor_1_00_kRed,
-  TextColor_1_00_kGreen = D2_TextColor_1_00_kGreen,
-  TextColor_1_00_kBlue = D2_TextColor_1_00_kBlue,
-  TextColor_1_00_kGold = D2_TextColor_1_00_kGold,
-  TextColor_1_00_kDarkGrey = D2_TextColor_1_00_kDarkGrey,
-  TextColor_1_00_kBlack = D2_TextColor_1_00_kBlack,
-  TextColor_1_00_kTan = D2_TextColor_1_00_kTan,
-  TextColor_1_00_kOrange = D2_TextColor_1_00_kOrange,
-  TextColor_1_00_kYellow = D2_TextColor_1_00_kYellow,
-  TextColor_1_00_kDarkerGreen = D2_TextColor_1_00_kDarkerGreen,
-  TextColor_1_00_kPurple = D2_TextColor_1_00_kPurple,
-  TextColor_1_00_kDarkGreen = D2_TextColor_1_00_kDarkGreen,
-  TextColor_1_00_kMetallic = D2_TextColor_1_00_kMetallic,
-  TextColor_1_00_kLightGrey = D2_TextColor_1_00_kLightGrey,
-  TextColor_1_00_kCorrupt = D2_TextColor_1_00_kCorrupt,
-  TextColor_1_00_kBrightWhite = D2_TextColor_1_00_kBrightWhite,
-  TextColor_1_00_kDarkRed = D2_TextColor_1_00_kDarkRed,
-  TextColor_1_00_kBrown = D2_TextColor_1_00_kBrown,
-};
+typedef text_color::v1_00::TextColor_1_00 TextColor_1_00;
 
 /**
  * Function declarations
  */
 
-int TextColor_ToGameValue(TextColor api_value) {
-  return D2_TextColor_ToGameValue(static_cast<D2_TextColor>(api_value));
-}
+namespace text_color {
 
-TextColor_1_00 TextColor_ToGameValue_1_00(
-    TextColor api_value
-) {
-  D2_TextColor_1_00 actual_game_value = D2_TextColor_ToGameValue_1_00(
-      static_cast<D2_TextColor>(api_value)
-  );
+DLLEXPORT int ToGameValue(TextColor api_value);
 
-  return static_cast<TextColor_1_00>(actual_game_value);
-}
+DLLEXPORT TextColor_1_00 ToGameValue_1_00(TextColor api_value);
 
-TextColor TextColor_ToApiValue(int game_value) {
-  return static_cast<TextColor>(D2_TextColor_ToApiValue(game_value));
-}
+DLLEXPORT TextColor ToApiValue(int game_value);
 
-TextColor TextColor_ToApiValue_1_00(
-    TextColor_1_00 game_value
-) {
-  D2_TextColor actual_api_value =
-      D2_TextColor_ToApiValue_1_00(
-          static_cast<D2_TextColor_1_00>(game_value)
-      );
+DLLEXPORT TextColor ToApiValue_1_00(TextColor_1_00 game_value);
 
-  return static_cast<TextColor>(actual_api_value);
-}
-
+} // namespace text_color
 } // namespace d2
 
+#include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_CONSTANT_D2_TEXT_COLOR_HPP_ */
