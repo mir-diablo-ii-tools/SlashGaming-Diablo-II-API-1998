@@ -52,10 +52,11 @@ namespace mapi {
 namespace branch_type {
 
 /*
-* This internal enum is not intended for public use. It is stricly
-* defined here to force enum scope syntax similar to scoped enum
-* class.
+* This internal enum is not intended for direct public use. It is
+* stricly defined here to prevent enum leak to namespace. Use the
+* typedefs in the upper-level namespace instead.
 */
+
 enum BranchType {
   kCall, kJump,
 };

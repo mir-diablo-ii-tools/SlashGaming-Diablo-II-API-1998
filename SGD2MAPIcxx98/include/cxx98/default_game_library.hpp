@@ -54,10 +54,11 @@ namespace d2 {
 namespace default_library {
 
 /*
-* This internal enum is not intended for public use. It is stricly
-* defined here to force enum scope syntax similar to scoped enum
-* class.
+* This internal enum is not intended for direct public use. It is
+* stricly defined here to prevent enum leak to namespace. Use the
+* typedefs in the upper-level namespace instead.
 */
+
 enum DefaultLibrary {
   kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2Game,
   kD2GDI, kD2GFX, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
