@@ -185,6 +185,154 @@ SOURCE=.\include\cxx98\game_constant\d2_text_font.hpp
 SOURCE=.\include\cxx98\game_constant\d2_video_mode.hpp
 # End Source File
 # End Group
+# Begin Group "game_function_hpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "game_struct_hpp"
+
+# PROP Default_Filter ""
+# Begin Group "d2_belt_record_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_cel_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel\d2_cel_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_cel_context_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel_context\d2_cel_context_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_cel_file_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel_file\d2_cel_file_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_equipment_layout_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_equipment_layout\d2_equipment_layout_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_grid_layout_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_inventory_record_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_inventory_record\d2_inventory_record_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_mpq_archive_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_mpq_archive\d2_mpq_archive_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_mpq_archive_handle_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_mpq_archive_handle\d2_mpq_archive_handle_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_positional_rectangle_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_struct.hpp
+# End Source File
+# End Group
+# Begin Group "d2_unicode_char_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_unicode_char\d2_unicode_char_struct.hpp
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_belt_record.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel_context.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel_file.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_equipment_layout.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_grid_layout.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_inventory_record.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_mpq_archive.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_mpq_archive_handle.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_unicode_char.hpp
+# End Source File
+# End Group
+# Begin Group "game_variable_hpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "helper_hpp"
+
+# PROP Default_Filter ""
+# End Group
 # Begin Source File
 
 SOURCE=.\include\cxx98\default_game_library.hpp
@@ -260,6 +408,66 @@ SOURCE=.\src\cxx98\game_constant\d2_text_font.cpp
 
 SOURCE=.\src\cxx98\game_constant\d2_video_mode.cpp
 # End Source File
+# End Group
+# Begin Group "game_function_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "game_struct_cpp"
+
+# PROP Default_Filter ""
+# Begin Group "d2_belt_record_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_cel_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_cel_context_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_cel_file_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_equipment_layout_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_grid_layout_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_inventory_record_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_mpq_archive_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_mpq_archive_handle_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_positional_rectangle_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "d2_unicode_char_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# End Group
+# Begin Group "game_variable_cpp"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Group "helper_cpp"
+
+# PROP Default_Filter ""
 # End Group
 # Begin Source File
 
