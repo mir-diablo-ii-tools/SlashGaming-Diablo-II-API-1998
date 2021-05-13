@@ -50,58 +50,58 @@
  */
 
 unsigned int D2_CelFile_GetVersion(const struct D2_CelFile* cel_file) {
-  union D2_CelFile_View view;
+  struct D2_CelFile_View view;
 
-  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+  view.ptr.v1_00 = (const struct D2_CelFile_1_00*) cel_file;
 
-  return view.ptr_1_00->version;
+  return view.ptr.v1_00->version;
 }
 
 void D2_CelFile_SetVersion(
     struct D2_CelFile* cel_file,
     unsigned int version
 ) {
-  union D2_CelFile_Wrapper wrapper;
+  struct D2_CelFile_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+  wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-  wrapper.ptr_1_00->version = version;
+  wrapper.ptr.v1_00->version = version;
 }
 
 unsigned int D2_CelFile_GetNumDirections(const struct D2_CelFile* cel_file) {
-  union D2_CelFile_View view;
+  struct D2_CelFile_View view;
 
-  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+  view.ptr.v1_00 = (const struct D2_CelFile_1_00*) cel_file;
 
-  return view.ptr_1_00->num_directions;
+  return view.ptr.v1_00->num_directions;
 }
 
 void D2_CelFile_SetNumDirections(
     struct D2_CelFile* cel_file,
     unsigned int num_directions
 ) {
-  union D2_CelFile_Wrapper wrapper;
+  struct D2_CelFile_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+  wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-  wrapper.ptr_1_00->num_directions = num_directions;
+  wrapper.ptr.v1_00->num_directions = num_directions;
 }
 
 unsigned int D2_CelFile_GetNumFrames(const struct D2_CelFile* cel_file) {
-  union D2_CelFile_View view;
+  struct D2_CelFile_View view;
 
-  view.ptr_1_00 = (const struct D2_CelFile_1_00*) cel_file;
+  view.ptr.v1_00 = (const struct D2_CelFile_1_00*) cel_file;
 
-  return view.ptr_1_00->num_frames;
+  return view.ptr.v1_00->num_frames;
 }
 
 void D2_CelFile_SetNumFrames(
     struct D2_CelFile* cel_file,
     unsigned int num_frames
 ) {
-  union D2_CelFile_Wrapper wrapper;
+  struct D2_CelFile_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+  wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-  wrapper.ptr_1_00->num_frames = num_frames;
+  wrapper.ptr.v1_00->num_frames = num_frames;
 }

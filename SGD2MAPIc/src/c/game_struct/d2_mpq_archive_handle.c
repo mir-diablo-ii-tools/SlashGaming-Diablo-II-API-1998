@@ -61,25 +61,25 @@ const struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AccessConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle,
     size_t index
 ) {
-  union D2_MpqArchiveHandle_View view;
+  struct D2_MpqArchiveHandle_View view;
 
-  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*)
+  view.ptr.v1_00 = (const struct D2_MpqArchiveHandle_1_00*)
       mpq_archive_handle;
 
-  return (const struct D2_MpqArchiveHandle*) &view.ptr_1_00[index];
+  return (const struct D2_MpqArchiveHandle*) &view.ptr.v1_00[index];
 }
 
 struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AssignMembers(
     struct D2_MpqArchiveHandle* dest,
     const struct D2_MpqArchiveHandle* src
 ) {
-  union D2_MpqArchiveHandle_Wrapper dest_wrapper;
-  union D2_MpqArchiveHandle_View src_view;
+  struct D2_MpqArchiveHandle_Wrapper dest_wrapper;
+  struct D2_MpqArchiveHandle_View src_view;
 
-  dest_wrapper.ptr_1_00 = (struct D2_MpqArchiveHandle_1_00*) dest;
-  src_view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) src;
+  dest_wrapper.ptr.v1_00 = (struct D2_MpqArchiveHandle_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_MpqArchiveHandle_1_00*) src;
 
-  *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
 
   return dest;
 }
@@ -95,22 +95,22 @@ struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
 const struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchiveConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  union D2_MpqArchiveHandle_View view;
+  struct D2_MpqArchiveHandle_View view;
 
-  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  view.ptr.v1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
 
-  return (const struct D2_MpqArchive*) view.ptr_1_00->mpq_archive;
+  return (const struct D2_MpqArchive*) view.ptr.v1_00->mpq_archive;
 }
 
 void D2_MpqArchiveHandle_SetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle,
     struct D2_MpqArchive* mpq_archive
 ) {
-  union D2_MpqArchiveHandle_Wrapper wrapper;
+  struct D2_MpqArchiveHandle_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  wrapper.ptr.v1_00 = (struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
 
-  wrapper.ptr_1_00->mpq_archive = (struct D2_MpqArchive_1_00*) mpq_archive;
+  wrapper.ptr.v1_00->mpq_archive = (struct D2_MpqArchive_1_00*) mpq_archive;
 }
 
 char* D2_MpqArchiveHandle_GetMpqArchivePath(
@@ -124,9 +124,9 @@ char* D2_MpqArchiveHandle_GetMpqArchivePath(
 const char* D2_MpqArchiveHandle_GetMpqArchivePathConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 ) {
-  union D2_MpqArchiveHandle_View view;
+  struct D2_MpqArchiveHandle_View view;
 
-  view.ptr_1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
+  view.ptr.v1_00 = (const struct D2_MpqArchiveHandle_1_00*) mpq_archive_handle;
 
-  return view.ptr_1_00->mpq_archive_path;
+  return view.ptr.v1_00->mpq_archive_path;
 }

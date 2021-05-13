@@ -79,12 +79,16 @@ struct D2_EquipmentLayout;
  * View and wrapper declarations
  */
 
-union D2_EquipmentLayout_View {
-  const struct D2_EquipmentLayout_1_00* ptr_1_00;
+struct D2_EquipmentLayout_View {
+  union {
+    const struct D2_EquipmentLayout_1_00* v1_00;
+  } ptr;
 };
 
-union D2_EquipmentLayout_Wrapper {
-  struct D2_EquipmentLayout_1_00* ptr_1_00;
+struct D2_EquipmentLayout_Wrapper {
+  union {
+    struct D2_EquipmentLayout_1_00* v1_00;
+  } ptr;
 };
 
 /**

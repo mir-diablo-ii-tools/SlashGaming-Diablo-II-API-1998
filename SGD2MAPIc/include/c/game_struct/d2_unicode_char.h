@@ -75,12 +75,16 @@ struct D2_UnicodeChar;
  * View and wrapper declarations
  */
 
-union D2_UnicodeChar_View {
-  const struct D2_UnicodeChar_1_00* ptr_1_00;
+struct D2_UnicodeChar_View {
+  union {
+    const struct D2_UnicodeChar_1_00* v1_00;
+  } ptr;
 };
 
-union D2_UnicodeChar_Wrapper {
-  struct D2_UnicodeChar_1_00* ptr_1_00;
+struct D2_UnicodeChar_Wrapper {
+  union {
+    struct D2_UnicodeChar_1_00* v1_00;
+  } ptr;
 };
 
 /**

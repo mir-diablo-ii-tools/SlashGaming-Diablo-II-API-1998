@@ -73,12 +73,16 @@ struct D2_MpqArchive_1_00;
  * View and wrapper declarations
  */
 
-union D2_MpqArchive_View {
-  const struct D2_MpqArchive_1_00* ptr_1_00;
+struct D2_MpqArchive_View {
+  union {
+    const struct D2_MpqArchive_1_00* v1_00;
+  } ptr;
 };
 
-union D2_MpqArchive_Wrapper {
-  struct D2_MpqArchive_1_00* ptr_1_00;
+struct D2_MpqArchive_Wrapper {
+  union {
+    struct D2_MpqArchive_1_00* v1_00;
+  } ptr;
 };
 
 /**

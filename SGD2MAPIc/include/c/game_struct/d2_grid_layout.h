@@ -82,12 +82,16 @@ struct D2_GridLayout;
  * View and wrapper declarations
  */
 
-union D2_GridLayout_View {
-  const struct D2_GridLayout_1_00* ptr_1_00;
+struct D2_GridLayout_View {
+  union {
+    const struct D2_GridLayout_1_00* v1_00;
+  } ptr;
 };
 
-union D2_GridLayout_Wrapper {
-  struct D2_GridLayout_1_00* ptr_1_00;
+struct D2_GridLayout_Wrapper {
+  union {
+    struct D2_GridLayout_1_00* v1_00;
+  } ptr;
 };
 
 /**

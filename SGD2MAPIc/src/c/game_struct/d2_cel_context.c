@@ -59,9 +59,9 @@ struct D2_CelContext* D2_CelContext_Create(
     unsigned int direction_index,
     unsigned int frame_index
 ) {
-  union D2_CelContext_Wrapper wrapper;
+  struct D2_CelContext_Wrapper wrapper;
 
-  union D2_CelFile_Wrapper cel_file_wrapper;
+  struct D2_CelFile_Wrapper cel_file_wrapper;
 
   enum D2_GameVersion running_game_version;
 
@@ -69,51 +69,51 @@ struct D2_CelContext* D2_CelContext_Create(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    wrapper.ptr_1_00 = Mdc_malloc(sizeof(*wrapper.ptr_1_00));
+    wrapper.ptr.v1_00 = Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
 
-    if (wrapper.ptr_1_00 == NULL) {
+    if (wrapper.ptr.v1_00 == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
       goto return_bad;
     }
 
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_00->cel_file = cel_file_wrapper.ptr_1_00;
-    wrapper.ptr_1_00->direction_index = direction_index;
-    wrapper.ptr_1_00->frame_index = frame_index;
+    wrapper.ptr.v1_00->cel_file = cel_file_wrapper.ptr.v1_00;
+    wrapper.ptr.v1_00->direction_index = direction_index;
+    wrapper.ptr.v1_00->frame_index = frame_index;
 
-    return (struct D2_CelContext*) wrapper.ptr_1_00;
+    return (struct D2_CelContext*) wrapper.ptr.v1_00;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    wrapper.ptr_1_12a = Mdc_malloc(sizeof(*wrapper.ptr_1_12a));
+    wrapper.ptr.v1_12a = Mdc_malloc(sizeof(*wrapper.ptr.v1_12a));
 
-    if (wrapper.ptr_1_12a == NULL) {
+    if (wrapper.ptr.v1_12a == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
       goto return_bad;
     }
 
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_12a->cel_file = cel_file_wrapper.ptr_1_00;
-    wrapper.ptr_1_12a->direction_index = direction_index;
-    wrapper.ptr_1_12a->frame_index = frame_index;
+    wrapper.ptr.v1_12a->cel_file = cel_file_wrapper.ptr.v1_00;
+    wrapper.ptr.v1_12a->direction_index = direction_index;
+    wrapper.ptr.v1_12a->frame_index = frame_index;
 
-    return (struct D2_CelContext*) wrapper.ptr_1_12a;
+    return (struct D2_CelContext*) wrapper.ptr.v1_12a;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    wrapper.ptr_1_13c = Mdc_malloc(sizeof(*wrapper.ptr_1_13c));
+    wrapper.ptr.v1_13c = Mdc_malloc(sizeof(*wrapper.ptr.v1_13c));
 
-    if (wrapper.ptr_1_13c == NULL) {
+    if (wrapper.ptr.v1_13c == NULL) {
       Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
       goto return_bad;
     }
 
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_13c->cel_file = cel_file_wrapper.ptr_1_00;
-    wrapper.ptr_1_13c->direction_index = direction_index;
-    wrapper.ptr_1_13c->frame_index = frame_index;
+    wrapper.ptr.v1_13c->cel_file = cel_file_wrapper.ptr.v1_00;
+    wrapper.ptr.v1_13c->direction_index = direction_index;
+    wrapper.ptr.v1_13c->frame_index = frame_index;
 
-    return (struct D2_CelContext*) wrapper.ptr_1_13c;
+    return (struct D2_CelContext*) wrapper.ptr.v1_13c;
   }
 
 return_bad:
@@ -128,8 +128,8 @@ struct D2_CelContext* D2_CelContext_AssignMembers(
     struct D2_CelContext* dest,
     const struct D2_CelContext* src
 ) {
-  union D2_CelContext_Wrapper dest_wrapper;
-  union D2_CelContext_View src_view;
+  struct D2_CelContext_Wrapper dest_wrapper;
+  struct D2_CelContext_View src_view;
 
   enum D2_GameVersion running_game_version;
 
@@ -137,21 +137,21 @@ struct D2_CelContext* D2_CelContext_AssignMembers(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    dest_wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) dest;
-    src_view.ptr_1_00 = (const struct D2_CelContext_1_00*) src;
+    dest_wrapper.ptr.v1_00 = (struct D2_CelContext_1_00*) dest;
+    src_view.ptr.v1_00 = (const struct D2_CelContext_1_00*) src;
 
-    *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+    *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    dest_wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) dest;
-    src_view.ptr_1_12a = (const struct D2_CelContext_1_12A*) src;
+    dest_wrapper.ptr.v1_12a = (struct D2_CelContext_1_12A*) dest;
+    src_view.ptr.v1_12a = (const struct D2_CelContext_1_12A*) src;
 
-    *dest_wrapper.ptr_1_12a = *src_view.ptr_1_12a;
+    *dest_wrapper.ptr.v1_12a = *src_view.ptr.v1_12a;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    dest_wrapper.ptr_1_13c = (struct D2_CelContext_1_13C*) dest;
-    src_view.ptr_1_13c = (const struct D2_CelContext_1_13C*) src;
+    dest_wrapper.ptr.v1_13c = (struct D2_CelContext_1_13C*) dest;
+    src_view.ptr.v1_13c = (const struct D2_CelContext_1_13C*) src;
 
-    *dest_wrapper.ptr_1_13c = *src_view.ptr_1_13c;
+    *dest_wrapper.ptr.v1_13c = *src_view.ptr.v1_13c;
   }
 
   return dest;
@@ -166,7 +166,7 @@ struct D2_CelFile* D2_CelContext_GetCelFile(
 const struct D2_CelFile* D2_CelContext_GetCelFileConst(
     const struct D2_CelContext* cel_context
 ) {
-  union D2_CelContext_View view;
+  struct D2_CelContext_View view;
 
   enum D2_GameVersion running_game_version;
 
@@ -174,18 +174,18 @@ const struct D2_CelFile* D2_CelContext_GetCelFileConst(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    view.ptr_1_00 = (const struct D2_CelContext_1_00*) cel_context;
+    view.ptr.v1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return (struct D2_CelFile*) view.ptr_1_00->cel_file;
+    return (struct D2_CelFile*) view.ptr.v1_00->cel_file;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    view.ptr_1_12a = (const struct D2_CelContext_1_12A*) cel_context;
+    view.ptr.v1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return (struct D2_CelFile*) view.ptr_1_12a->cel_file;
+    return (struct D2_CelFile*) view.ptr.v1_12a->cel_file;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    view.ptr_1_13c = (const struct D2_CelContext_1_13C*) cel_context;
+    view.ptr.v1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return (struct D2_CelFile*) view.ptr_1_13c->cel_file;
+    return (struct D2_CelFile*) view.ptr.v1_13c->cel_file;
   }
 }
 
@@ -193,8 +193,8 @@ void D2_CelContext_SetCelFile(
     struct D2_CelContext* cel_context,
     struct D2_CelFile* cel_file
 ) {
-  union D2_CelContext_Wrapper wrapper;
-  union D2_CelFile_Wrapper cel_file_wrapper;
+  struct D2_CelContext_Wrapper wrapper;
+  struct D2_CelFile_Wrapper cel_file_wrapper;
 
   enum D2_GameVersion running_game_version;
 
@@ -202,28 +202,28 @@ void D2_CelContext_SetCelFile(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) cel_context;
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    wrapper.ptr.v1_00 = (struct D2_CelContext_1_00*) cel_context;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_00->cel_file = cel_file_wrapper.ptr_1_00;
+    wrapper.ptr.v1_00->cel_file = cel_file_wrapper.ptr.v1_00;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) cel_context;
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    wrapper.ptr.v1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_12a->cel_file = cel_file_wrapper.ptr_1_00;
+    wrapper.ptr.v1_12a->cel_file = cel_file_wrapper.ptr.v1_00;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    wrapper.ptr_1_13c = (struct D2_CelContext_1_13C*) cel_context;
-    cel_file_wrapper.ptr_1_00 = (struct D2_CelFile_1_00*) cel_file;
+    wrapper.ptr.v1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
 
-    wrapper.ptr_1_13c->cel_file = cel_file_wrapper.ptr_1_00;
+    wrapper.ptr.v1_13c->cel_file = cel_file_wrapper.ptr.v1_00;
   }
 }
 
 unsigned int D2_CelContext_GetDirectionIndex(
     const struct D2_CelContext* cel_context
 ) {
-  union D2_CelContext_View view;
+  struct D2_CelContext_View view;
 
   enum D2_GameVersion running_game_version;
 
@@ -231,18 +231,18 @@ unsigned int D2_CelContext_GetDirectionIndex(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    view.ptr_1_00 = (const struct D2_CelContext_1_00*) cel_context;
+    view.ptr.v1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return view.ptr_1_00->direction_index;
+    return view.ptr.v1_00->direction_index;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    view.ptr_1_12a = (const struct D2_CelContext_1_12A*) cel_context;
+    view.ptr.v1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return view.ptr_1_12a->direction_index;
+    return view.ptr.v1_12a->direction_index;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    view.ptr_1_13c = (const struct D2_CelContext_1_13C*) cel_context;
+    view.ptr.v1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return view.ptr_1_13c->direction_index;
+    return view.ptr.v1_13c->direction_index;
   }
 }
 
@@ -250,7 +250,7 @@ void D2_CelContext_SetDirectionIndex(
     struct D2_CelContext* cel_context,
     unsigned int direction_index
 ) {
-  union D2_CelContext_Wrapper wrapper;
+  struct D2_CelContext_Wrapper wrapper;
 
   enum D2_GameVersion running_game_version;
 
@@ -258,25 +258,25 @@ void D2_CelContext_SetDirectionIndex(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) cel_context;
+    wrapper.ptr.v1_00 = (struct D2_CelContext_1_00*) cel_context;
 
-    wrapper.ptr_1_00->direction_index = direction_index;
+    wrapper.ptr.v1_00->direction_index = direction_index;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    wrapper.ptr.v1_12a = (struct D2_CelContext_1_12A*) cel_context;
 
-    wrapper.ptr_1_12a->direction_index = direction_index;
+    wrapper.ptr.v1_12a->direction_index = direction_index;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    wrapper.ptr_1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    wrapper.ptr.v1_13c = (struct D2_CelContext_1_13C*) cel_context;
 
-    wrapper.ptr_1_13c->direction_index = direction_index;
+    wrapper.ptr.v1_13c->direction_index = direction_index;
   }
 }
 
 unsigned int D2_CelContext_GetFrameIndex(
     const struct D2_CelContext* cel_context
 ) {
-  union D2_CelContext_View view;
+  struct D2_CelContext_View view;
 
   enum D2_GameVersion running_game_version;
 
@@ -284,18 +284,18 @@ unsigned int D2_CelContext_GetFrameIndex(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    view.ptr_1_00 = (const struct D2_CelContext_1_00*) cel_context;
+    view.ptr.v1_00 = (const struct D2_CelContext_1_00*) cel_context;
 
-    return view.ptr_1_00->frame_index;
+    return view.ptr.v1_00->frame_index;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    view.ptr_1_12a = (const struct D2_CelContext_1_12A*) cel_context;
+    view.ptr.v1_12a = (const struct D2_CelContext_1_12A*) cel_context;
 
-    return view.ptr_1_12a->frame_index;
+    return view.ptr.v1_12a->frame_index;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    view.ptr_1_13c = (const struct D2_CelContext_1_13C*) cel_context;
+    view.ptr.v1_13c = (const struct D2_CelContext_1_13C*) cel_context;
 
-    return view.ptr_1_13c->frame_index;
+    return view.ptr.v1_13c->frame_index;
   }
 }
 
@@ -303,7 +303,7 @@ void D2_CelContext_SetFrameIndex(
     struct D2_CelContext* cel_context,
     unsigned int frame_index
 ) {
-  union D2_CelContext_Wrapper wrapper;
+  struct D2_CelContext_Wrapper wrapper;
 
   enum D2_GameVersion running_game_version;
 
@@ -311,17 +311,17 @@ void D2_CelContext_SetFrameIndex(
 
   if (running_game_version >= D2_GameVersion_k1_00
       && running_game_version <= D2_GameVersion_k1_10) {
-    wrapper.ptr_1_00 = (struct D2_CelContext_1_00*) cel_context;
+    wrapper.ptr.v1_00 = (struct D2_CelContext_1_00*) cel_context;
 
-    wrapper.ptr_1_00->frame_index = frame_index;
+    wrapper.ptr.v1_00->frame_index = frame_index;
   } else if (running_game_version == D2_GameVersion_k1_12A) {
-    wrapper.ptr_1_12a = (struct D2_CelContext_1_12A*) cel_context;
+    wrapper.ptr.v1_12a = (struct D2_CelContext_1_12A*) cel_context;
 
-    wrapper.ptr_1_12a->frame_index = frame_index;
+    wrapper.ptr.v1_12a->frame_index = frame_index;
   } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
       && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    wrapper.ptr_1_13c = (struct D2_CelContext_1_13C*) cel_context;
+    wrapper.ptr.v1_13c = (struct D2_CelContext_1_13C*) cel_context;
 
-    wrapper.ptr_1_13c->frame_index = frame_index;
+    wrapper.ptr.v1_13c->frame_index = frame_index;
   }
 }

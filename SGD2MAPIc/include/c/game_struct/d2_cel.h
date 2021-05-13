@@ -80,12 +80,16 @@ struct D2_Cel;
  * View and wrapper declarations
  */
 
-union D2_Cel_View {
-  const struct D2_Cel_1_00* ptr_1_00;
+struct D2_Cel_View {
+  union {
+    const struct D2_Cel_1_00* v1_00;
+  } ptr;
 };
 
-union D2_Cel_Wrapper {
-  struct D2_Cel_1_00* ptr_1_00;
+struct D2_Cel_Wrapper {
+  union {
+    struct D2_Cel_1_00* v1_00;
+  } ptr;
 };
 
 /**

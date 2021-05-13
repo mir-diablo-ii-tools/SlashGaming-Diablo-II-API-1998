@@ -79,12 +79,16 @@ struct D2_InventoryRecord;
  * View and wrapper declarations
  */
 
-union D2_InventoryRecord_View {
-  const struct D2_InventoryRecord_1_00* ptr_1_00;
+struct D2_InventoryRecord_View {
+  union {
+    const struct D2_InventoryRecord_1_00* v1_00;
+  } ptr;
 };
 
-union D2_InventoryRecord_Wrapper {
-  struct D2_InventoryRecord_1_00* ptr_1_00;
+struct D2_InventoryRecord_Wrapper {
+  union {
+    struct D2_InventoryRecord_1_00* v1_00;
+  } ptr;
 };
 
 /**

@@ -80,12 +80,16 @@ struct D2_BeltRecord;
  * View and wrapper declarations
  */
 
-union D2_BeltRecord_View {
-  const struct D2_BeltRecord_1_00* ptr_1_00;
+struct D2_BeltRecord_View {
+  union {
+    const struct D2_BeltRecord_1_00* v1_00;
+  } ptr;
 };
 
-union D2_BeltRecord_Wrapper {
-  struct D2_BeltRecord_1_00* ptr_1_00;
+struct D2_BeltRecord_Wrapper {
+  union {
+    struct D2_BeltRecord_1_00* v1_00;
+  } ptr;
 };
 
 /**

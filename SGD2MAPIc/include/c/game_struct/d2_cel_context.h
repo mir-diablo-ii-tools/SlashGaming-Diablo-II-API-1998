@@ -96,16 +96,20 @@ struct D2_CelContext;
  * View and wrapper declarations
  */
 
-union D2_CelContext_View {
-  const struct D2_CelContext_1_00* ptr_1_00;
-  const struct D2_CelContext_1_12A* ptr_1_12a;
-  const struct D2_CelContext_1_13C* ptr_1_13c;
+struct D2_CelContext_View {
+  union {
+    const struct D2_CelContext_1_00* v1_00;
+    const struct D2_CelContext_1_12A* v1_12a;
+    const struct D2_CelContext_1_13C* v1_13c;
+  } ptr;
 };
 
-union D2_CelContext_Wrapper {
-  struct D2_CelContext_1_00* ptr_1_00;
-  struct D2_CelContext_1_12A* ptr_1_12a;
-  struct D2_CelContext_1_13C* ptr_1_13c;
+struct D2_CelContext_Wrapper {
+  union {
+    struct D2_CelContext_1_00* v1_00;
+    struct D2_CelContext_1_12A* v1_12a;
+    struct D2_CelContext_1_13C* v1_13c;
+  } ptr;
 };
 
 /**

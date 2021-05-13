@@ -82,12 +82,16 @@ struct D2_CelFile;
  * View and wrapper declarations
  */
 
-union D2_CelFile_View {
-  const struct D2_CelFile_1_00* ptr_1_00;
+struct D2_CelFile_View {
+  union {
+    const struct D2_CelFile_1_00* v1_00;
+  } ptr;
 };
 
-union D2_CelFile_Wrapper {
-  struct D2_CelFile_1_00* ptr_1_00;
+struct D2_CelFile_Wrapper {
+  union {
+    struct D2_CelFile_1_00* v1_00;
+  } ptr;
 };
 
 /**

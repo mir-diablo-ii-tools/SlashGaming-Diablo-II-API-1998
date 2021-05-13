@@ -58,27 +58,27 @@ struct D2_BeltRecord* D2_BeltRecord_CreateFromRecord(
     unsigned char num_slots,
     const struct D2_PositionalRectangle* slot_positions
 ) {
-  union D2_BeltRecord_Wrapper wrapper;
+  struct D2_BeltRecord_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*) Mdc_malloc(
-      sizeof(*wrapper.ptr_1_00)
+  wrapper.ptr.v1_00 = (struct D2_BeltRecord_1_00*) Mdc_malloc(
+      sizeof(*wrapper.ptr.v1_00)
   );
 
-  if (wrapper.ptr_1_00 == NULL) {
+  if (wrapper.ptr.v1_00 == NULL) {
     Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
     goto return_bad;
   }
 
-  wrapper.ptr_1_00->unknown_0x00 = reserved_00__set_to_nullptr;
-  wrapper.ptr_1_00->num_slots = num_slots;
+  wrapper.ptr.v1_00->unknown_0x00 = reserved_00__set_to_nullptr;
+  wrapper.ptr.v1_00->num_slots = num_slots;
 
   memcpy(
-      wrapper.ptr_1_00->slot_positions,
+      wrapper.ptr.v1_00->slot_positions,
       slot_positions,
-      sizeof(wrapper.ptr_1_00->slot_positions)
+      sizeof(wrapper.ptr.v1_00->slot_positions)
   );
 
-  return (struct D2_BeltRecord*) wrapper.ptr_1_00;
+  return (struct D2_BeltRecord*) wrapper.ptr.v1_00;
 
 return_bad:
   return NULL;
@@ -104,45 +104,45 @@ const struct D2_BeltRecord* D2_BeltRecord_AccessConst(
     const struct D2_BeltRecord* belt_record,
     size_t index
 ) {
-  union D2_BeltRecord_View view;
+  struct D2_BeltRecord_View view;
 
-  view.ptr_1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
+  view.ptr.v1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
 
-  return (const struct D2_BeltRecord*) &view.ptr_1_00[index];
+  return (const struct D2_BeltRecord*) &view.ptr.v1_00[index];
 }
 
 void D2_BeltRecord_AssignMembers(
     struct D2_BeltRecord* dest,
     const struct D2_BeltRecord* src
 ) {
-  union D2_BeltRecord_Wrapper dest_wrapper;
-  union D2_BeltRecord_View src_view;
+  struct D2_BeltRecord_Wrapper dest_wrapper;
+  struct D2_BeltRecord_View src_view;
 
-  dest_wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*) dest;
-  src_view.ptr_1_00 = (const struct D2_BeltRecord_1_00*) src;
+  dest_wrapper.ptr.v1_00 = (struct D2_BeltRecord_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_BeltRecord_1_00*) src;
 
-  *dest_wrapper.ptr_1_00 = *src_view.ptr_1_00;
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
 }
 
 unsigned char D2_BeltRecord_GetNumSlots(
     const struct D2_BeltRecord* belt_record
 ) {
-  union D2_BeltRecord_View view;
+  struct D2_BeltRecord_View view;
 
-  view.ptr_1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
+  view.ptr.v1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
 
-  return view.ptr_1_00->num_slots;
+  return view.ptr.v1_00->num_slots;
 }
 
 void D2_BeltRecord_SetNumSlots(
     struct D2_BeltRecord* belt_record,
     unsigned char num_slots
 ) {
-  union D2_BeltRecord_Wrapper wrapper;
+  struct D2_BeltRecord_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_BeltRecord_1_00*) belt_record;
+  wrapper.ptr.v1_00 = (struct D2_BeltRecord_1_00*) belt_record;
 
-  wrapper.ptr_1_00->num_slots = num_slots;
+  wrapper.ptr.v1_00->num_slots = num_slots;
 }
 
 struct D2_PositionalRectangle* D2_BeltRecord_GetSlotPositions(
@@ -156,10 +156,10 @@ const struct D2_PositionalRectangle*
 D2_BeltRecord_GetSlotPositionsConst(
     const struct D2_BeltRecord* belt_record
 ) {
-  union D2_BeltRecord_View view;
+  struct D2_BeltRecord_View view;
 
-  view.ptr_1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
+  view.ptr.v1_00 = (const struct D2_BeltRecord_1_00*) belt_record;
 
   return (const struct D2_PositionalRectangle*)
-      view.ptr_1_00->slot_positions;
+      view.ptr.v1_00->slot_positions;
 }

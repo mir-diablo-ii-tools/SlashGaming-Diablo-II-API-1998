@@ -50,65 +50,65 @@
  */
 
 int D2_Cel_GetHeight(const struct D2_Cel* cel) {
-  union D2_Cel_View view;
+  struct D2_Cel_View view;
 
-  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+  view.ptr.v1_00 = (const struct D2_Cel_1_00*) cel;
 
-  return view.ptr_1_00->height;
+  return view.ptr.v1_00->height;
 }
 
 void D2_Cel_SetHeight(struct D2_Cel* cel, int height) {
-  union D2_Cel_Wrapper wrapper;
+  struct D2_Cel_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+  wrapper.ptr.v1_00 = (struct D2_Cel_1_00*) cel;
 
-  wrapper.ptr_1_00->height = height;
+  wrapper.ptr.v1_00->height = height;
 }
 
 int D2_Cel_GetOffsetX(const struct D2_Cel* cel) {
-  union D2_Cel_View view;
+  struct D2_Cel_View view;
 
-  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+  view.ptr.v1_00 = (const struct D2_Cel_1_00*) cel;
 
-  return view.ptr_1_00->offset_x;
+  return view.ptr.v1_00->offset_x;
 }
 
 void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x) {
-  union D2_Cel_Wrapper wrapper;
+  struct D2_Cel_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+  wrapper.ptr.v1_00 = (struct D2_Cel_1_00*) cel;
 
-  wrapper.ptr_1_00->offset_x = offset_x;
+  wrapper.ptr.v1_00->offset_x = offset_x;
 }
 
 int D2_Cel_GetOffsetY(const struct D2_Cel* cel) {
-  union D2_Cel_View view;
+  struct D2_Cel_View view;
 
-  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+  view.ptr.v1_00 = (const struct D2_Cel_1_00*) cel;
 
-  return view.ptr_1_00->offset_y;
+  return view.ptr.v1_00->offset_y;
 }
 
 void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y) {
-  union D2_Cel_Wrapper wrapper;
+  struct D2_Cel_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+  wrapper.ptr.v1_00 = (struct D2_Cel_1_00*) cel;
 
-  wrapper.ptr_1_00->offset_y = offset_y;
+  wrapper.ptr.v1_00->offset_y = offset_y;
 }
 
 int D2_Cel_GetWidth(const struct D2_Cel* cel) {
-  union D2_Cel_View view;
+  struct D2_Cel_View view;
 
-  view.ptr_1_00 = (const struct D2_Cel_1_00*) cel;
+  view.ptr.v1_00 = (const struct D2_Cel_1_00*) cel;
 
-  return view.ptr_1_00->width;
+  return view.ptr.v1_00->width;
 }
 
 void D2_Cel_SetWidth(struct D2_Cel* cel, int width) {
-  union D2_Cel_Wrapper wrapper;
+  struct D2_Cel_Wrapper wrapper;
 
-  wrapper.ptr_1_00 = (struct D2_Cel_1_00*) cel;
+  wrapper.ptr.v1_00 = (struct D2_Cel_1_00*) cel;
 
-  wrapper.ptr_1_00->width = width;
+  wrapper.ptr.v1_00->width = width;
 }
