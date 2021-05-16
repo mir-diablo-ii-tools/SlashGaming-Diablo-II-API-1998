@@ -53,54 +53,6 @@
  * Function definitions
  */
 
-struct D2_PositionalRectangle*
-D2_PositionalRectangle_CreateFromPositions(
-    int left,
-    int right,
-    int top,
-    int bottom
-) {
-  struct D2_PositionalRectangle_Wrapper wrapper;
-
-  wrapper.ptr.v1_00 = Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
-
-  if (wrapper.ptr.v1_00 == NULL) {
-    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-    goto return_bad;
-  }
-
-  wrapper.ptr.v1_00->left = left;
-  wrapper.ptr.v1_00->right = right;
-  wrapper.ptr.v1_00->top = top;
-  wrapper.ptr.v1_00->bottom = bottom;
-
-  return (struct D2_PositionalRectangle*) wrapper.ptr.v1_00;
-
-return_bad:
-  return NULL;
-}
-
-void D2_PositionalRectangle_Destroy(
-    struct D2_PositionalRectangle* positional_rectangle
-) {
-  Mdc_free(positional_rectangle);
-}
-
-struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
-    struct D2_PositionalRectangle* dest,
-    const struct D2_PositionalRectangle* src
-) {
-  struct D2_PositionalRectangle_Wrapper dest_wrapper;
-  struct D2_PositionalRectangle_View src_view;
-
-  dest_wrapper.ptr.v1_00 = (struct D2_PositionalRectangle_1_00*) dest;
-  src_view.ptr.v1_00 = (const struct D2_PositionalRectangle_1_00*) src;
-
-  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
-
-  return dest;
-}
-
 struct D2_PositionalRectangle* D2_PositionalRectangle_Access(
     struct D2_PositionalRectangle* positional_rectangle,
     size_t index
@@ -119,6 +71,21 @@ const struct D2_PositionalRectangle* D2_PositionalRectangle_AccessConst(
       positional_rectangle;
 
   return (const struct D2_PositionalRectangle*) &view.ptr.v1_00[index];
+}
+
+struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
+    struct D2_PositionalRectangle* dest,
+    const struct D2_PositionalRectangle* src
+) {
+  struct D2_PositionalRectangle_Wrapper dest_wrapper;
+  struct D2_PositionalRectangle_View src_view;
+
+  dest_wrapper.ptr.v1_00 = (struct D2_PositionalRectangle_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_PositionalRectangle_1_00*) src;
+
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
+
+  return dest;
 }
 
 int D2_PositionalRectangle_GetLeft(
@@ -211,4 +178,44 @@ void D2_PositionalRectangle_SetBottom(
       positional_rectangle;
 
   wrapper.ptr.v1_00->bottom = bottom;
+}
+
+/**
+ * API functions
+ */
+
+struct D2_PositionalRectangle_Api
+D2_PositionalRectangle_Api_InitFromPositions(
+    int left,
+    int right,
+    int top,
+    int bottom
+) {
+  struct D2_PositionalRectangle_Api positional_rectangle;
+
+  positional_rectangle.value.v1_00.left = left;
+  positional_rectangle.value.v1_00.right = right;
+  positional_rectangle.value.v1_00.top = top;
+  positional_rectangle.value.v1_00.bottom = bottom;
+
+  return positional_rectangle;
+}
+
+void D2_PositionalRectangle_Api_Deinit(
+    struct D2_PositionalRectangle_Api* positional_rectangle
+) {
+}
+
+struct D2_PositionalRectangle* D2_PositionalRectangle_Api_Get(
+    struct D2_PositionalRectangle_Api* positional_rectangle
+) {
+  return (struct D2_PositionalRectangle*) &positional_rectangle->value.v1_00;
+}
+
+const struct D2_PositionalRectangle*
+D2_PositionalRectangle_Api_GetConst(
+    const struct D2_PositionalRectangle_Api* positional_rectangle
+) {
+  return (const struct D2_PositionalRectangle*)
+      &positional_rectangle->value.v1_00;
 }

@@ -75,7 +75,7 @@ struct D2_PositionalRectangle;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
+ * View, wrapper, and API struct declarations
  */
 
 struct D2_PositionalRectangle_View {
@@ -90,6 +90,12 @@ struct D2_PositionalRectangle_Wrapper {
   } ptr;
 };
 
+struct D2_PositionalRectangle_Api {
+  union {
+    struct D2_PositionalRectangle_1_00 v1_00;
+  } value;
+};
+
 /**
  * Struct typedefs
  */
@@ -98,6 +104,8 @@ struct D2_PositionalRectangle_Wrapper {
 
 typedef struct D2_PositionalRectangle D2_PositionalRectangle;
 typedef struct D2_PositionalRectangle_1_00 D2_PositionalRectangle_1_00;
+
+typedef struct D2_PositionalRectangle_Api D2_PositionalRectangle_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -108,34 +116,6 @@ typedef struct D2_PositionalRectangle_1_00 D2_PositionalRectangle_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic PositionalRectangle initialized with the specified
- * positions.
- */
-DLLEXPORT struct D2_PositionalRectangle*
-D2_PositionalRectangle_CreateFromPositions(
-    int left,
-    int right,
-    int top,
-    int bottom
-);
-
-/**
- * Destroy the PositionalRectangle, freeing up resources.
- */
-DLLEXPORT void D2_PositionalRectangle_Destroy(
-    struct D2_PositionalRectangle* positional_rectangle
-);
-
-/**
- * Assigns each PositionalRectangle member the values of the source
- * PositionalRectangle. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
-    struct D2_PositionalRectangle* dest,
-    const struct D2_PositionalRectangle* src
-);
 
 /**
  * Returns the element of the PositionalRectangle array at the specified
@@ -154,6 +134,15 @@ DLLEXPORT const struct D2_PositionalRectangle*
 D2_PositionalRectangle_AccessConst(
     const struct D2_PositionalRectangle* positional_rectangle,
     size_t index
+);
+
+/**
+ * Assigns each PositionalRectangle member the values of the source
+ * PositionalRectangle. This is a shallow copy operation.
+ */
+DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
+    struct D2_PositionalRectangle* dest,
+    const struct D2_PositionalRectangle* src
 );
 
 /**
@@ -214,6 +203,37 @@ DLLEXPORT int D2_PositionalRectangle_GetBottom(
 DLLEXPORT void D2_PositionalRectangle_SetBottom(
     struct D2_PositionalRectangle* positional_rectangle,
     int bottom
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes a PositionalRectangle with the specified position.
+ */
+DLLEXPORT struct D2_PositionalRectangle_Api
+D2_PositionalRectangle_Api_InitFromPositions(
+    int left,
+    int right,
+    int top,
+    int bottom
+);
+
+/**
+ * Deinitialize the PositionalRectangle.
+ */
+DLLEXPORT void D2_PositionalRectangle_Api_Deinit(
+    struct D2_PositionalRectangle_Api* positional_rectangle
+);
+
+DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_Api_Get(
+    struct D2_PositionalRectangle_Api* positional_rectangle
+);
+
+DLLEXPORT const struct D2_PositionalRectangle*
+D2_PositionalRectangle_Api_GetConst(
+    const struct D2_PositionalRectangle_Api* positional_rectangle
 );
 
 #ifdef __cplusplus
