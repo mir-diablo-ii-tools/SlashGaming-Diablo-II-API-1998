@@ -62,8 +62,8 @@ GameAddress GameAddress::FromExportedName(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromLibraryAndExportedName(
-          static_cast<D2_DefaultLibrary>(library),
+      ::Mapi_GameAddress_InitFromLibraryAndExportedName(
+          static_cast<::D2_DefaultLibrary>(library),
           exported_name
       );
 
@@ -77,7 +77,7 @@ GameAddress GameAddress::FromExportedName(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromPathAndExportedName(
+      ::Mapi_GameAddress_InitFromPathAndExportedName(
           path,
           exported_name
       );
@@ -92,8 +92,8 @@ GameAddress GameAddress::FromOffset(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromLibraryAndOffset(
-          static_cast<D2_DefaultLibrary>(library),
+      ::Mapi_GameAddress_InitFromLibraryAndOffset(
+          static_cast<::D2_DefaultLibrary>(library),
           offset
       );
 
@@ -107,7 +107,7 @@ GameAddress GameAddress::FromOffset(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromPathAndOffset(
+      ::Mapi_GameAddress_InitFromPathAndOffset(
           path,
           offset
       );
@@ -122,8 +122,8 @@ GameAddress GameAddress::FromOrdinal(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromLibraryAndOrdinal(
-          static_cast<D2_DefaultLibrary>(library),
+      ::Mapi_GameAddress_InitFromLibraryAndOrdinal(
+          static_cast<::D2_DefaultLibrary>(library),
           ordinal
       );
 
@@ -137,7 +137,7 @@ GameAddress GameAddress::FromOrdinal(
   GameAddress game_address;
 
   game_address.game_address_ =
-      Mapi_GameAddress_InitFromPathAndOrdinal(
+      ::Mapi_GameAddress_InitFromPathAndOrdinal(
           path,
           ordinal
       );
@@ -146,7 +146,7 @@ GameAddress GameAddress::FromOrdinal(
 }
 
 void GameAddress::Swap(GameAddress& game_address) {
-  Mapi_GameAddress_Swap(&this->game_address_, &game_address.game_address_);
+  ::Mapi_GameAddress_Swap(&this->game_address_, &game_address.game_address_);
 }
 
 void GameAddress::swap(GameAddress& game_address) {

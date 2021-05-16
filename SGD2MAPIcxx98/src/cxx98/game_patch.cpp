@@ -50,20 +50,20 @@
 namespace mapi {
 
 GamePatch::GamePatch()
-    : game_patch_(Mapi_GamePatch_kUninit) {
+    : game_patch_(::Mapi_GamePatch_kUninit) {
 }
 
 #if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
 GamePatch::GamePatch(GamePatch&& game_patch)
-    : game_patch_(Mapi_GamePatch_InitMove(&game_patch.game_patch_)) {
+    : game_patch_(::Mapi_GamePatch_InitMove(&game_patch.game_patch_)) {
 }
 
 #endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
 
 GamePatch::~GamePatch() {
-  Mapi_GamePatch_Deinit(&this->game_patch_);
+  ::Mapi_GamePatch_Deinit(&this->game_patch_);
 }
 
 #if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
@@ -73,7 +73,7 @@ GamePatch& GamePatch::operator=(GamePatch&& game_patch) {
     return *this;
   }
 
-  Mapi_GamePatch_AssignMove(&this->game_patch_, &game_patch.game_patch_);
+  ::Mapi_GamePatch_AssignMove(&this->game_patch_, &game_patch.game_patch_);
 
   return *this;
 }
@@ -96,9 +96,9 @@ GamePatch GamePatch::MakeGameBackBranchPatch(
 ) {
   GamePatch game_patch;
 
-  game_patch.game_patch_ = Mapi_GamePatch_InitGameBackBranchPatch(
-      &static_cast<const Mapi_GameAddress&>(game_address),
-      static_cast<Mapi_BranchType>(branch_type),
+  game_patch.game_patch_ = ::Mapi_GamePatch_InitGameBackBranchPatch(
+      &static_cast<const ::Mapi_GameAddress&>(game_address),
+      static_cast<::Mapi_BranchType>(branch_type),
       func_ptr,
       patch_size
   );
@@ -114,9 +114,9 @@ GamePatch GamePatch::MakeGameBranchPatch(
 ) {
   GamePatch game_patch;
 
-  game_patch.game_patch_ = Mapi_GamePatch_InitGameBranchPatch(
-      &static_cast<const Mapi_GameAddress&>(game_address),
-      static_cast<Mapi_BranchType>(branch_type),
+  game_patch.game_patch_ = ::Mapi_GamePatch_InitGameBranchPatch(
+      &static_cast<const ::Mapi_GameAddress&>(game_address),
+      static_cast<::Mapi_BranchType>(branch_type),
       func_ptr,
       patch_size
   );
@@ -131,8 +131,8 @@ GamePatch GamePatch::MakeGameBufferPatch(
 ) {
   GamePatch game_patch;
   
-  game_patch.game_patch_ = Mapi_GamePatch_InitGameBufferPatch(
-      &static_cast<const Mapi_GameAddress&>(game_address),
+  game_patch.game_patch_ = ::Mapi_GamePatch_InitGameBufferPatch(
+      &static_cast<const ::Mapi_GameAddress&>(game_address),
       buffer,
       patch_size
   );
@@ -146,8 +146,8 @@ GamePatch GamePatch::MakeGameNopPatch(
 ) {
   GamePatch game_patch;
   
-  game_patch.game_patch_ = Mapi_GamePatch_InitGameNopPatch(
-      &static_cast<const Mapi_GameAddress&>(game_address),
+  game_patch.game_patch_ = ::Mapi_GamePatch_InitGameNopPatch(
+      &static_cast<const ::Mapi_GameAddress&>(game_address),
       patch_size
   );
 
@@ -155,15 +155,15 @@ GamePatch GamePatch::MakeGameNopPatch(
 }
 
 void GamePatch::Apply() {
-  Mapi_GamePatch_Apply(&this->game_patch_);
+  ::Mapi_GamePatch_Apply(&this->game_patch_);
 }
 
 void GamePatch::Remove() {
-  Mapi_GamePatch_Remove(&this->game_patch_);
+  ::Mapi_GamePatch_Remove(&this->game_patch_);
 }
 
 void GamePatch::Swap(GamePatch& game_patch) {
-  Mapi_GamePatch_Swap(&this->game_patch_, &game_patch.game_patch_);
+  ::Mapi_GamePatch_Swap(&this->game_patch_, &game_patch.game_patch_);
 }
 
 void GamePatch::swap(GamePatch& game_patch) {
