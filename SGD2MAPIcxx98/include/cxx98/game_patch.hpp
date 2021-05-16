@@ -69,7 +69,8 @@ public:
 #endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
   /**
-   * Deinitializes the game patch.
+   * Destructs this game patch. Does not remove the effects of the
+   * patch.
    */
   ~GamePatch();
 
@@ -86,9 +87,9 @@ public:
   operator const Mapi_GamePatch&() const;
 
   /**
-   * Initializes a patch. The patch is configured to overwrite the game
-   * code with a branch to the specified function. Space prior to the
-   * branch is filled with NOPs.
+   * Makes an instance of a back branch patch. The patch is configured
+   * to overwrite the game code with a branch to the specified
+   * function. Space prior to the branch is filled with NOPs.
    */
   static GamePatch MakeGameBackBranchPatch(
       const GameAddress& game_address,
@@ -98,9 +99,9 @@ public:
   );
 
   /**
-   * Initializes a patch. The patch is configured to overwrite the game
-   * code with a branch to the specified function. Space after the
-   * branch is filled with NOPs.
+   * Makes an instance of a branch patch. The patch is configured to
+   * overwrite the game code with a branch to the specified function.
+   * Space after the branch is filled with NOPs.
    */
   static GamePatch MakeGameBranchPatch(
       const GameAddress& game_address,
@@ -110,8 +111,9 @@ public:
   );
 
   /**
-   * Initializes a patch. The patch is configured to overwrite the game
-   * code with values copied from an array of 8-bit integrals.
+   * Makes an instance of a buffer patch. The patch is configured to
+   * overwrite the game code with values copied from an array of 8-bit
+   * integrals.
    */
   static GamePatch MakeGameBufferPatch(
       const GameAddress& game_address,
@@ -120,8 +122,8 @@ public:
   );
 
   /**
-   * Initializes a patch. The patch is configured to overwrite the game
-   * code with NOPs.
+   * Makes an instance of a NOP patch. The patch is configured to
+   * overwrite the game code with NOPs.
    */
   static GamePatch MakeGameNopPatch(
       const GameAddress& game_address,
