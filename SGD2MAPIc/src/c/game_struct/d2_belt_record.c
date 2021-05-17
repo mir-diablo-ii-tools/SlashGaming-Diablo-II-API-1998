@@ -53,43 +53,6 @@
  * Function definitions
  */
 
-struct D2_BeltRecord* D2_BeltRecord_CreateFromRecord(
-    struct Mapi_Undefined* reserved_00__set_to_nullptr,
-    unsigned char num_slots,
-    const struct D2_PositionalRectangle* slot_positions
-) {
-  struct D2_BeltRecord_Wrapper wrapper;
-
-  wrapper.ptr.v1_00 = (struct D2_BeltRecord_1_00*) Mdc_malloc(
-      sizeof(*wrapper.ptr.v1_00)
-  );
-
-  if (wrapper.ptr.v1_00 == NULL) {
-    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-    goto return_bad;
-  }
-
-  wrapper.ptr.v1_00->unknown_0x00 = reserved_00__set_to_nullptr;
-  wrapper.ptr.v1_00->num_slots = num_slots;
-
-  memcpy(
-      wrapper.ptr.v1_00->slot_positions,
-      slot_positions,
-      sizeof(wrapper.ptr.v1_00->slot_positions)
-  );
-
-  return (struct D2_BeltRecord*) wrapper.ptr.v1_00;
-
-return_bad:
-  return NULL;
-}
-
-void D2_BeltRecord_Destroy(
-    struct D2_BeltRecord* belt_record
-) {
-  Mdc_free(belt_record);
-}
-
 struct D2_BeltRecord* D2_BeltRecord_Access(
     struct D2_BeltRecord* belt_record,
     size_t index
@@ -162,4 +125,44 @@ D2_BeltRecord_GetSlotPositionsConst(
 
   return (const struct D2_PositionalRectangle*)
       view.ptr.v1_00->slot_positions;
+}
+
+/**
+ * API functions
+ */
+
+struct D2_BeltRecord_Api D2_BeltRecord_Api_InitFromRecord(
+    struct Mapi_Undefined* reserved_00__set_to_nullptr,
+    unsigned char num_slots,
+    const struct D2_PositionalRectangle* slot_positions
+) {
+  struct D2_BeltRecord_Api belt_record;
+
+  belt_record.value.v1_00.unknown_0x00 = reserved_00__set_to_nullptr;
+  belt_record.value.v1_00.num_slots = num_slots;
+
+  memcpy(
+      belt_record.value.v1_00.slot_positions,
+      slot_positions,
+      sizeof(belt_record.value.v1_00.slot_positions)
+  );
+
+  return belt_record;
+}
+
+void D2_BeltRecord_Api_Deinit(
+    struct D2_BeltRecord_Api* belt_record
+) {
+}
+
+struct D2_BeltRecord* D2_BeltRecord_Api_Get(
+    struct D2_BeltRecord_Api* belt_record
+) {
+  return (struct D2_BeltRecord*) &belt_record->value.v1_00;
+}
+
+const struct D2_BeltRecord* D2_BeltRecord_Api_GetConst(
+    const struct D2_BeltRecord_Api* belt_record
+) {
+  return (const struct D2_BeltRecord*) &belt_record->value.v1_00;
 }

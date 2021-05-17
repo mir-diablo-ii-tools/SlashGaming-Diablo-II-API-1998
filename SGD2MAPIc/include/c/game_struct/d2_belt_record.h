@@ -93,6 +93,16 @@ struct D2_BeltRecord_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_BeltRecord_Api {
+  union {
+    struct D2_BeltRecord_1_00 v1_00;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -100,6 +110,8 @@ struct D2_BeltRecord_Wrapper {
 
 typedef struct D2_BeltRecord D2_BeltRecord;
 typedef struct D2_BeltRecord_1_00 D2_BeltRecord_1_00;
+
+typedef struct D2_BeltRecord_Api D2_BeltRecord_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -110,32 +122,6 @@ typedef struct D2_BeltRecord_1_00 D2_BeltRecord_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic BeltRecord with the specified number of slots and slot
- * positions.
- */
-DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_CreateFromRecord(
-    struct Mapi_Undefined* reserved_00__set_to_nullptr,
-    unsigned char num_slots,
-    const struct D2_PositionalRectangle* slot_positions
-);
-
-/**
- * Destroys the BeltRecord, freeing up resources.
- */
-DLLEXPORT void D2_BeltRecord_Destroy(
-    struct D2_BeltRecord* belt_record
-);
-
-/**
- * Assigns each BeltRecord member the values of the source BeltRecord.
- * This is a shallow copy operation.
- */
-DLLEXPORT void D2_BeltRecord_AssignMembers(
-    struct D2_BeltRecord* dest,
-    const struct D2_BeltRecord* src
-);
 
 /**
  * Returns the element of the BeltRecord array at the specified
@@ -153,6 +139,15 @@ DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_Access(
 DLLEXPORT const struct D2_BeltRecord* D2_BeltRecord_AccessConst(
     const struct D2_BeltRecord* belt_record,
     size_t index
+);
+
+/**
+ * Assigns each BeltRecord member the values of the source BeltRecord.
+ * This is a shallow copy operation.
+ */
+DLLEXPORT void D2_BeltRecord_AssignMembers(
+    struct D2_BeltRecord* dest,
+    const struct D2_BeltRecord* src
 );
 
 /**
@@ -186,6 +181,40 @@ D2_BeltRecord_GetSlotPositionsConst(
 );
 
 /**
+ * API functions
+ */
+
+/**
+ * Initializes a BeltRecord with the specified number of slots and
+ * slot positions.
+ */
+DLLEXPORT struct D2_BeltRecord_Api D2_BeltRecord_Api_InitFromRecord(
+    struct Mapi_Undefined* reserved_00__set_to_nullptr,
+    unsigned char num_slots,
+    const struct D2_PositionalRectangle* slot_positions
+);
+
+/**
+ * Deinitializes the BeltRecord.
+ */
+DLLEXPORT void D2_BeltRecord_Api_Deinit(
+    struct D2_BeltRecord_Api* belt_record
+);
+
+DLLEXPORT struct D2_BeltRecord* D2_BeltRecord_Api_Get(
+    struct D2_BeltRecord_Api* belt_record
+);
+
+DLLEXPORT const struct D2_BeltRecord*
+D2_BeltRecord_Api_GetConst(
+    const struct D2_BeltRecord_Api* belt_record
+);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+/**
  * Static assertions (1.00)
  */
 
@@ -203,10 +232,6 @@ static_assert(
     offsetof(struct D2_BeltRecord_1_00, slot_positions) == 0x08,
     "Incorrect member alignment."
 );
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
 
 #include "../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_BELT_RECORD_H_ */
