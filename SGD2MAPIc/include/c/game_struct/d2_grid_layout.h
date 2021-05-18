@@ -95,6 +95,16 @@ struct D2_GridLayout_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_GridLayout_Api {
+  union {
+    struct D2_GridLayout_1_00 v1_00;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -102,6 +112,8 @@ struct D2_GridLayout_Wrapper {
 
 typedef struct D2_GridLayout D2_GridLayout;
 typedef struct D2_GridLayout_1_00 D2_GridLayout_1_00;
+
+typedef struct D2_GridLayout_Api D2_GridLayout_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -112,33 +124,6 @@ typedef struct D2_GridLayout_1_00 D2_GridLayout_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic GridLayout with the specified layout.
- */
-DLLEXPORT struct D2_GridLayout* D2_GridLayout_CreateFromLayout(
-    unsigned char num_columns,
-    unsigned char num_rows,
-    const struct D2_PositionalRectangle* position,
-    unsigned char width,
-    unsigned char height
-);
-
-/**
- * Destroys the GridLayout, freeing up resources.
- */
-DLLEXPORT void D2_GridLayout_Destroy(
-    struct D2_GridLayout* grid_layout
-);
-
-/**
- * Assigns each GridLayout member the values of the source
- * GridLayout. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_GridLayout* D2_GridLayout_AssignMembers(
-    struct D2_GridLayout* dest,
-    const struct D2_GridLayout* src
-);
 
 /**
  * Returns the element of the GridLayout array at the specified
@@ -156,6 +141,15 @@ DLLEXPORT struct D2_GridLayout* D2_GridLayout_Access(
 DLLEXPORT const struct D2_GridLayout* D2_GridLayout_AccessConst(
     const struct D2_GridLayout* grid_layout,
     size_t index
+);
+
+/**
+ * Assigns each GridLayout member the values of the source
+ * GridLayout. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_GridLayout_AssignMembers(
+    struct D2_GridLayout* dest,
+    const struct D2_GridLayout* src
 );
 
 /**
@@ -231,6 +225,37 @@ DLLEXPORT unsigned char D2_GridLayout_GetHeight(
 DLLEXPORT void D2_GridLayout_SetHeight(
     struct D2_GridLayout* grid_layout,
     unsigned char height
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes a GridLayout with the specified layout.
+ */
+DLLEXPORT struct D2_GridLayout_Api D2_GridLayout_Api_InitFromLayout(
+    unsigned char num_columns,
+    unsigned char num_rows,
+    const struct D2_PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+);
+
+/**
+ * Deinitializes the GridLayout.
+ */
+DLLEXPORT void D2_GridLayout_Api_Deinit(
+    struct D2_GridLayout_Api* grid_layout
+);
+
+DLLEXPORT struct D2_GridLayout* D2_GridLayout_Api_Get(
+    struct D2_GridLayout_Api* grid_layout
+);
+
+DLLEXPORT const struct D2_GridLayout*
+D2_GridLayout_Api_GetConst(
+    const struct D2_GridLayout_Api* grid_layout
 );
 
 #ifdef __cplusplus

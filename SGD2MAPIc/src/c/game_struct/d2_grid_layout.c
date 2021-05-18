@@ -53,60 +53,6 @@
  * Function definitions
  */
 
-struct D2_GridLayout* D2_GridLayout_CreateFromLayout(
-    unsigned char num_columns,
-    unsigned char num_rows,
-    const struct D2_PositionalRectangle* position,
-    unsigned char width,
-    unsigned char height
-) {
-  struct D2_GridLayout_Wrapper wrapper;
-  struct D2_PositionalRectangle_View positional_rectangle_view;
-
-  wrapper.ptr.v1_00 = (struct D2_GridLayout_1_00*)
-      Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
-
-  if (wrapper.ptr.v1_00 == NULL) {
-    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-    goto return_bad;
-  }
-
-  positional_rectangle_view.ptr.v1_00 =
-      (const struct D2_PositionalRectangle_1_00*) position;
-
-  wrapper.ptr.v1_00->num_columns = num_columns;
-  wrapper.ptr.v1_00->num_rows = num_rows;
-  wrapper.ptr.v1_00->position = *positional_rectangle_view.ptr.v1_00;
-  wrapper.ptr.v1_00->width = width;
-  wrapper.ptr.v1_00->height = height;
-
-  return (struct D2_GridLayout*) wrapper.ptr.v1_00;
-
-return_bad:
-  return NULL;
-}
-
-void D2_GridLayout_Destroy(
-    struct D2_GridLayout* grid_layout
-) {
-  Mdc_free(grid_layout);
-}
-
-struct D2_GridLayout* D2_GridLayout_AssignMembers(
-    struct D2_GridLayout* dest,
-    const struct D2_GridLayout* src
-) {
-  struct D2_GridLayout_Wrapper dest_wrapper;
-  struct D2_GridLayout_View src_view;
-
-  dest_wrapper.ptr.v1_00 = (struct D2_GridLayout_1_00*) dest;
-  src_view.ptr.v1_00 = (const struct D2_GridLayout_1_00*) src;
-
-  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
-
-  return dest;
-}
-
 struct D2_GridLayout* D2_GridLayout_Access(
     struct D2_GridLayout* grid_layout,
     size_t index
@@ -126,6 +72,19 @@ const struct D2_GridLayout* D2_GridLayout_AccessConst(
   view.ptr.v1_00 = (struct D2_GridLayout_1_00*) grid_layout;
 
   return (const struct D2_GridLayout*) &view.ptr.v1_00[index];
+}
+
+void D2_GridLayout_AssignMembers(
+    struct D2_GridLayout* dest,
+    const struct D2_GridLayout* src
+) {
+  struct D2_GridLayout_Wrapper dest_wrapper;
+  struct D2_GridLayout_View src_view;
+
+  dest_wrapper.ptr.v1_00 = (struct D2_GridLayout_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_GridLayout_1_00*) src;
+
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
 }
 
 unsigned char D2_GridLayout_GetNumColumns(
@@ -228,4 +187,47 @@ void D2_GridLayout_SetHeight(
   wrapper.ptr.v1_00 = (struct D2_GridLayout_1_00*) grid_layout;
 
   wrapper.ptr.v1_00->height = height;
+}
+
+/**
+ * API functions
+ */
+
+struct D2_GridLayout_Api D2_GridLayout_Api_InitFromLayout(
+    unsigned char num_columns,
+    unsigned char num_rows,
+    const struct D2_PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+) {
+  struct D2_GridLayout_Api grid_layout;
+
+  grid_layout.value.v1_00.num_columns = num_columns;
+  grid_layout.value.v1_00.num_rows = num_rows;
+  D2_PositionalRectangle_AssignMembers(
+      (struct D2_PositionalRectangle*) &grid_layout.value.v1_00.position,
+      position
+  );
+  grid_layout.value.v1_00.width = width;
+  grid_layout.value.v1_00.height = height;
+
+  return grid_layout;
+}
+
+void D2_GridLayout_Api_Deinit(
+    struct D2_GridLayout_Api* grid_layout
+) {
+}
+
+struct D2_GridLayout* D2_GridLayout_Api_Get(
+    struct D2_GridLayout_Api* grid_layout
+) {
+  return (struct D2_GridLayout*) &grid_layout->value.v1_00;
+}
+
+const struct D2_GridLayout*
+D2_GridLayout_Api_GetConst(
+    const struct D2_GridLayout_Api* grid_layout
+) {
+  return (const struct D2_GridLayout*) &grid_layout->value.v1_00;
 }
