@@ -92,6 +92,16 @@ struct D2_EquipmentLayout_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_EquipmentLayout_Api {
+  union {
+    struct D2_EquipmentLayout_1_00 v1_00;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -99,6 +109,8 @@ struct D2_EquipmentLayout_Wrapper {
 
 typedef struct D2_EquipmentLayout D2_EquipmentLayout;
 typedef struct D2_EquipmentLayout_1_00 D2_EquipmentLayout_1_00;
+
+typedef struct D2_EquipmentLayout_Api D2_EquipmentLayout_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -109,32 +121,6 @@ typedef struct D2_EquipmentLayout_1_00 D2_EquipmentLayout_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic EquipmentLayout with the specified position,
- * width, and height.
- */
-DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_CreateFromLayout(
-    const struct D2_PositionalRectangle* position,
-    unsigned char width,
-    unsigned char height
-);
-
-/**
- * Destroys the EquipmentLayout, freeing up resources.
- */
-DLLEXPORT void D2_EquipmentLayout_Destroy(
-    struct D2_EquipmentLayout* equipment_layout
-);
-
-/**
- * Assigns each EquipmentLayout member the values of the source
- * EquipmentLayout. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_AssignMembers(
-    struct D2_EquipmentLayout* dest,
-    const struct D2_EquipmentLayout* src
-);
 
 /**
  * Returns the element of the EquipmentLayout array at the specified
@@ -152,6 +138,15 @@ DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
 DLLEXPORT const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
     const struct D2_EquipmentLayout* equipment_layout,
     size_t index
+);
+
+/**
+ * Assigns each EquipmentLayout member the values of the source
+ * EquipmentLayout. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_EquipmentLayout_AssignMembers(
+    struct D2_EquipmentLayout* dest,
+    const struct D2_EquipmentLayout* src
 );
 
 /**
@@ -197,6 +192,36 @@ DLLEXPORT unsigned char D2_EquipmentLayout_GetHeight(
 DLLEXPORT void D2_EquipmentLayout_SetHeight(
     struct D2_EquipmentLayout* equipment_layout,
     unsigned char height
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes an EquipmentLayout with the specified position, width,
+ * and height.
+ */
+DLLEXPORT struct D2_EquipmentLayout_Api D2_EquipmentLayout_Api_InitFromLayout(
+    const struct D2_PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+);
+
+/**
+ * Deinitializes the EquipmentLayout.
+ */
+DLLEXPORT void D2_EquipmentLayout_Deinit(
+    struct D2_EquipmentLayout_Api* equipment_layout
+);
+
+DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Api_Get(
+    struct D2_EquipmentLayout_Api* belt_record
+);
+
+DLLEXPORT const struct D2_EquipmentLayout*
+D2_EquipmentLayout_Api_GetConst(
+    const struct D2_EquipmentLayout_Api* belt_record
 );
 
 #ifdef __cplusplus

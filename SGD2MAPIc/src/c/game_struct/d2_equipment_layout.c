@@ -53,53 +53,6 @@
  * Function definitions
  */
 
-struct D2_EquipmentLayout* D2_EquipmentLayout_CreateFromLayout(
-    const struct D2_PositionalRectangle* position,
-    unsigned char width,
-    unsigned char height
-) {
-  struct D2_EquipmentLayout_Wrapper wrapper;
-  struct D2_PositionalRectangle_View position_view;
-
-  wrapper.ptr.v1_00 = Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
-  if (wrapper.ptr.v1_00 == NULL) {
-    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-    goto return_bad;
-  }
-
-  position_view.ptr.v1_00 = (struct D2_PositionalRectangle_1_00*) position;
-
-  wrapper.ptr.v1_00->position = *position_view.ptr.v1_00;
-  wrapper.ptr.v1_00->width = width;
-  wrapper.ptr.v1_00->height = height;
-
-  return (struct D2_EquipmentLayout*) wrapper.ptr.v1_00;
-
-return_bad:
-  return NULL;
-}
-
-void D2_EquipmentLayout_Destroy(
-    struct D2_EquipmentLayout* equipment_layout
-) {
-  Mdc_free(equipment_layout);
-}
-
-struct D2_EquipmentLayout* D2_EquipmentLayout_AssignMembers(
-    struct D2_EquipmentLayout* dest,
-    const struct D2_EquipmentLayout* src
-) {
-  struct D2_EquipmentLayout_Wrapper dest_wrapper;
-  struct D2_EquipmentLayout_View src_view;
-
-  dest_wrapper.ptr.v1_00 = (struct D2_EquipmentLayout_1_00*) dest;
-  src_view.ptr.v1_00 = (const struct D2_EquipmentLayout_1_00*) src;
-
-  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
-
-  return dest;
-}
-
 struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
     struct D2_EquipmentLayout* equipment_layout,
     size_t index
@@ -119,6 +72,19 @@ const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
   view.ptr.v1_00 = (const struct D2_EquipmentLayout_1_00*) equipment_layout;
 
   return (const struct D2_EquipmentLayout*) &view.ptr.v1_00[index];
+}
+
+void D2_EquipmentLayout_AssignMembers(
+    struct D2_EquipmentLayout* dest,
+    const struct D2_EquipmentLayout* src
+) {
+  struct D2_EquipmentLayout_Wrapper dest_wrapper;
+  struct D2_EquipmentLayout_View src_view;
+
+  dest_wrapper.ptr.v1_00 = (struct D2_EquipmentLayout_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_EquipmentLayout_1_00*) src;
+
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
 }
 
 struct D2_PositionalRectangle* D2_EquipmentLayout_GetPosition(
@@ -178,4 +144,44 @@ void D2_EquipmentLayout_SetHeight(
   wrapper.ptr.v1_00 = (struct D2_EquipmentLayout_1_00*) equipment_layout;
 
   wrapper.ptr.v1_00->height = height;
+}
+
+/**
+ * API functions
+ */
+
+struct D2_EquipmentLayout_Api D2_EquipmentLayout_Api_InitFromLayout(
+    const struct D2_PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+) {
+  struct D2_EquipmentLayout_Api equipment_layout;
+
+  D2_PositionalRectangle_AssignMembers(
+      (struct D2_PositionalRectangle*) &equipment_layout.value.v1_00,
+      position
+  );
+
+  equipment_layout.value.v1_00.width = width;
+  equipment_layout.value.v1_00.height = height;
+
+  return equipment_layout;
+}
+
+void D2_EquipmentLayout_Api_Deinit(
+    struct D2_EquipmentLayout_Api* equipment_layout
+) {
+}
+
+struct D2_EquipmentLayout* D2_EquipmentLayout_Api_Get(
+    struct D2_EquipmentLayout_Api* belt_record
+) {
+  return (struct D2_EquipmentLayout*) &belt_record->value.v1_00;
+}
+
+const struct D2_EquipmentLayout*
+D2_EquipmentLayout_Api_GetConst(
+    const struct D2_EquipmentLayout_Api* belt_record
+) {
+  return (const struct D2_EquipmentLayout*) &belt_record->value.v1_00;
 }
