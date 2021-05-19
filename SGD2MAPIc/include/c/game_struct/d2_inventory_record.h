@@ -92,6 +92,16 @@ struct D2_InventoryRecord_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_InventoryRecord_Api {
+  union {
+    struct D2_InventoryRecord_1_00 v1_00;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -99,6 +109,8 @@ struct D2_InventoryRecord_Wrapper {
 
 typedef struct D2_InventoryRecord D2_InventoryRecord;
 typedef struct D2_InventoryRecord_1_00 D2_InventoryRecord_1_00;
+
+typedef struct D2_InventoryRecord_Api D2_InventoryRecord_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -109,31 +121,6 @@ typedef struct D2_InventoryRecord_1_00 D2_InventoryRecord_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic InventoryRecord with the specified record.
- */
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
-    const struct D2_PositionalRectangle* position,
-    const struct D2_GridLayout* grid_layout,
-    const struct D2_EquipmentLayout* equipment_slots
-);
-
-/**
- * Destroys the InventoryRecord, freeing up resources.
- */
-DLLEXPORT void D2_InventoryRecord_Destroy(
-    struct D2_InventoryRecord* inventory_record
-);
-
-/**
- * Assigns each InventoryRecord member the values of the source
- * InventoryRecord. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_AssignMembers(
-    struct D2_InventoryRecord* dest,
-    const struct D2_InventoryRecord* src
-);
 
 /**
  * Returns the element of the InventoryRecord array at the specified index.
@@ -149,6 +136,15 @@ DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Access(
 DLLEXPORT const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
     const struct D2_InventoryRecord* inventory_record,
     size_t index
+);
+
+/**
+ * Assigns each InventoryRecord member the values of the source
+ * InventoryRecord. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_InventoryRecord_AssignMembers(
+    struct D2_InventoryRecord* dest,
+    const struct D2_InventoryRecord* src
 );
 
 /**
@@ -193,6 +189,35 @@ DLLEXPORT struct D2_EquipmentLayout* D2_InventoryRecord_GetEquipmentSlots(
 DLLEXPORT const struct D2_EquipmentLayout*
 D2_InventoryRecord_GetEquipmentSlotsConst(
     const struct D2_InventoryRecord* inventory_record
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes an InventoryRecord with the specified record.
+ */
+DLLEXPORT struct D2_InventoryRecord_Api D2_InventoryRecord_Api_InitFromRecord(
+    const struct D2_PositionalRectangle* position,
+    const struct D2_GridLayout* grid_layout,
+    const struct D2_EquipmentLayout* equipment_slots
+);
+
+/**
+ * Deinitializes the InventoryRecord.
+ */
+DLLEXPORT void D2_InventoryRecord_Api_Deinit(
+    struct D2_InventoryRecord_Api* inventory_record
+);
+
+DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Api_Get(
+    struct D2_InventoryRecord_Api* inventory_record
+);
+
+DLLEXPORT const struct D2_InventoryRecord*
+D2_InventoryRecord_Api_GetConst(
+    const struct D2_InventoryRecord_Api* inventory_record
 );
 
 #ifdef __cplusplus

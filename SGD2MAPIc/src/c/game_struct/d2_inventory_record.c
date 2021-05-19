@@ -53,65 +53,6 @@
  * Function definitions
  */
 
-struct D2_InventoryRecord* D2_InventoryRecord_CreateFromRecord(
-    const struct D2_PositionalRectangle* position,
-    const struct D2_GridLayout* grid_layout,
-    const struct D2_EquipmentLayout* equipment_slots
-) {
-  struct D2_InventoryRecord_Wrapper wrapper;
-
-  struct D2_PositionalRectangle_View position_view;
-  struct D2_GridLayout_View grid_layout_view;
-  struct D2_EquipmentLayout_View equipment_slots_view;
-
-  wrapper.ptr.v1_00 = Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
-  if (wrapper.ptr.v1_00 == NULL) {
-    Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-    goto return_bad;
-  }
-
-  position_view.ptr.v1_00 = (const struct D2_PositionalRectangle_1_00*)
-      position;
-  grid_layout_view.ptr.v1_00 = (const struct D2_GridLayout_1_00*) grid_layout;
-  equipment_slots_view.ptr.v1_00 = (const struct D2_EquipmentLayout_1_00*)
-      equipment_slots;
-
-  wrapper.ptr.v1_00->position = *position_view.ptr.v1_00;
-  wrapper.ptr.v1_00->grid_layout = *grid_layout_view.ptr.v1_00;
-
-  memcpy(
-      wrapper.ptr.v1_00->equipment_slots,
-      equipment_slots_view.ptr.v1_00,
-      sizeof(wrapper.ptr.v1_00->equipment_slots)
-  );
-
-  return (struct D2_InventoryRecord*) wrapper.ptr.v1_00;
-
-return_bad:
-  return NULL;
-}
-
-void D2_InventoryRecord_Destroy(
-    struct D2_InventoryRecord* inventory_record
-) {
-  Mdc_free(inventory_record);
-}
-
-struct D2_InventoryRecord* D2_InventoryRecord_AssignMembers(
-    struct D2_InventoryRecord* dest,
-    const struct D2_InventoryRecord* src
-) {
-  struct D2_InventoryRecord_Wrapper dest_wrapper;
-  struct D2_InventoryRecord_View src_view;
-
-  dest_wrapper.ptr.v1_00 = (struct D2_InventoryRecord_1_00*) dest;
-  src_view.ptr.v1_00 = (const struct D2_InventoryRecord_1_00*) src;
-
-  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
-
-  return dest;
-}
-
 struct D2_InventoryRecord* D2_InventoryRecord_Access(
     struct D2_InventoryRecord* inventory_record,
     size_t index
@@ -131,6 +72,19 @@ const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
   view.ptr.v1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
 
   return (const struct D2_InventoryRecord*) &view.ptr.v1_00[index];
+}
+
+void D2_InventoryRecord_AssignMembers(
+    struct D2_InventoryRecord* dest,
+    const struct D2_InventoryRecord* src
+) {
+  struct D2_InventoryRecord_Wrapper dest_wrapper;
+  struct D2_InventoryRecord_View src_view;
+
+  dest_wrapper.ptr.v1_00 = (struct D2_InventoryRecord_1_00*) dest;
+  src_view.ptr.v1_00 = (const struct D2_InventoryRecord_1_00*) src;
+
+  *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
 }
 
 struct D2_PositionalRectangle* D2_InventoryRecord_GetPosition(
@@ -185,4 +139,51 @@ D2_InventoryRecord_GetEquipmentSlotsConst(
   view.ptr.v1_00 = (const struct D2_InventoryRecord_1_00*) inventory_record;
 
   return (const struct D2_EquipmentLayout*) &view.ptr.v1_00->equipment_slots;
+}
+
+/**
+ * API functions
+ */
+
+struct D2_InventoryRecord_Api D2_InventoryRecord_Api_InitFromRecord(
+    const struct D2_PositionalRectangle* position,
+    const struct D2_GridLayout* grid_layout,
+    const struct D2_EquipmentLayout* equipment_slots
+) {
+  struct D2_InventoryRecord_Api inventory_record;
+
+  D2_PositionalRectangle_AssignMembers(
+      (struct D2_PositionalRectangle*) &inventory_record.value.v1_00.position,
+      position
+  );
+  D2_GridLayout_AssignMembers(
+      (struct D2_GridLayout*) &inventory_record.value.v1_00.grid_layout,
+      grid_layout
+  );
+
+  memcpy(
+      &inventory_record.value.v1_00.equipment_slots,
+      equipment_slots,
+      sizeof(inventory_record.value.v1_00.equipment_slots)
+  );
+
+  return inventory_record;
+}
+
+void D2_InventoryRecord_Api_Deinit(
+    struct D2_InventoryRecord_Api* inventory_record
+) {
+}
+
+struct D2_InventoryRecord* D2_InventoryRecord_Api_Get(
+    struct D2_InventoryRecord_Api* inventory_record
+) {
+  return (struct D2_InventoryRecord*) &inventory_record->value.v1_00;
+}
+
+const struct D2_InventoryRecord*
+D2_InventoryRecord_Api_GetConst(
+    const struct D2_InventoryRecord_Api* inventory_record
+) {
+  return (const struct D2_InventoryRecord*) &inventory_record->value.v1_00;
 }
