@@ -85,7 +85,7 @@ const struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AccessConst(
   return (const struct D2_MpqArchiveHandle*) &view.ptr.v1_00[index];
 }
 
-struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AssignMembers(
+void D2_MpqArchiveHandle_AssignMembers(
     struct D2_MpqArchiveHandle* dest,
     const struct D2_MpqArchiveHandle* src
 ) {
@@ -96,8 +96,6 @@ struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AssignMembers(
   src_view.ptr.v1_00 = (const struct D2_MpqArchiveHandle_1_00*) src;
 
   *dest_wrapper.ptr.v1_00 = *src_view.ptr.v1_00;
-
-  return dest;
 }
 
 struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(

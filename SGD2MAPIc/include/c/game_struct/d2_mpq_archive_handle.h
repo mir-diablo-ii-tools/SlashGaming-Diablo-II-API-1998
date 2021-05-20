@@ -94,15 +94,6 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * Assigns each MpqArchiveHandle member the values of the source
- * MpqArchiveHandle. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_AssignMembers(
-    struct D2_MpqArchiveHandle* dest,
-    const struct D2_MpqArchiveHandle* src
-);
-
-/**
  * Returns the element of the MpqArchiveHandle array at the specified
  * index.
  */
@@ -119,6 +110,15 @@ DLLEXPORT const struct D2_MpqArchiveHandle*
 D2_MpqArchiveHandle_AccessConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle,
     size_t index
+);
+
+/**
+ * Assigns each MpqArchiveHandle member the values of the source
+ * MpqArchiveHandle. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_MpqArchiveHandle_AssignMembers(
+    struct D2_MpqArchiveHandle* dest,
+    const struct D2_MpqArchiveHandle* src
 );
 
 /**
