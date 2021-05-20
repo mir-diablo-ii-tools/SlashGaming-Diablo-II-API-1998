@@ -113,6 +113,18 @@ struct D2_CelContext_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_CelContext_Api {
+  union {
+    struct D2_CelContext_1_00 v1_00;
+    struct D2_CelContext_1_12A v1_12a;
+    struct D2_CelContext_1_13C v1_13c;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -121,35 +133,13 @@ struct D2_CelContext_Wrapper {
 typedef struct D2_CelContext D2_CelContext;
 typedef struct D2_CelContext_1_00 D2_CelContext_1_00;
 
+typedef struct D2_UnicodeChar_Api D2_UnicodeChar_Api;
+
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic CelContext with the specified cel file, direction, and
- * frame.
- */
-DLLEXPORT struct D2_CelContext* D2_CelContext_Create(
-    struct D2_CelFile* cel_file,
-    unsigned int direction_index,
-    unsigned int frame_index
-);
-
-/**
- * Destroys the CelContext, freeing up resources.
- */
-DLLEXPORT void D2_CelContext_Destroy(struct D2_CelContext* cel_context);
-
-/**
- * Assigns each CelContext member the values of the source
- * CelContext. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_CelContext* D2_CelContext_AssignMembers(
-    struct D2_CelContext* dest,
-    const struct D2_CelContext* src
-);
 
 /**
  * Returns the element of the CelContext array at the specified
@@ -167,6 +157,15 @@ DLLEXPORT struct D2_CelContext* D2_CelContext_Access(
 DLLEXPORT const struct D2_CelContext* D2_CelContext_AccessConst(
     const struct D2_CelContext* cel_context,
     size_t index
+);
+
+/**
+ * Assigns each CelContext member the values of the source
+ * CelContext. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_CelContext_AssignMembers(
+    struct D2_CelContext* dest,
+    const struct D2_CelContext* src
 );
 
 /**
@@ -219,6 +218,35 @@ DLLEXPORT unsigned int D2_CelContext_GetFrameIndex(
 DLLEXPORT void D2_CelContext_SetFrameIndex(
     struct D2_CelContext* cel_context,
     unsigned int frame_index
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes a CelContext with the specified cel file, direction,
+ * and frame.
+ */
+DLLEXPORT struct D2_CelContext_Api D2_CelContext_Api_Init(
+    struct D2_CelFile* cel_file,
+    unsigned int direction_index,
+    unsigned int frame_index
+);
+
+/**
+ * Deinitializes the CelContext.
+ */
+DLLEXPORT void D2_CelContext_Api_Deinit(
+    struct D2_CelContext_Api* cel_context
+);
+
+DLLEXPORT struct D2_CelContext* D2_CelContext_Api_Get(
+    struct D2_CelContext_Api* cel_context
+);
+
+DLLEXPORT const struct D2_CelContext* D2_CelContext_Api_GetConst(
+    const struct D2_CelContext_Api* cel_context
 );
 
 #ifdef __cplusplus

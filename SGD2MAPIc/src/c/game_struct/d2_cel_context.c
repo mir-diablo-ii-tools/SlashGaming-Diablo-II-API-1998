@@ -45,86 +45,13 @@
 
 #include "../../../include/c/game_struct/d2_cel_context.h"
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/malloc/malloc.h>
-#include <mdc/wchar_t/filew.h>
 #include "../../../include/c/game_version.h"
 
 /**
  * Function definitions
  */
 
-struct D2_CelContext* D2_CelContext_Create(
-    struct D2_CelFile* cel_file,
-    unsigned int direction_index,
-    unsigned int frame_index
-) {
-  struct D2_CelContext_Wrapper wrapper;
-
-  struct D2_CelFile_Wrapper cel_file_wrapper;
-
-  enum D2_GameVersion running_game_version;
-
-  running_game_version = D2_GameVersion_GetRunning();
-
-  if (running_game_version >= D2_GameVersion_k1_00
-      && running_game_version <= D2_GameVersion_k1_10) {
-    wrapper.ptr.v1_00 = Mdc_malloc(sizeof(*wrapper.ptr.v1_00));
-
-    if (wrapper.ptr.v1_00 == NULL) {
-      Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-      goto return_bad;
-    }
-
-    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
-
-    wrapper.ptr.v1_00->cel_file = cel_file_wrapper.ptr.v1_00;
-    wrapper.ptr.v1_00->direction_index = direction_index;
-    wrapper.ptr.v1_00->frame_index = frame_index;
-
-    return (struct D2_CelContext*) wrapper.ptr.v1_00;
-  } else if (running_game_version == D2_GameVersion_k1_12A) {
-    wrapper.ptr.v1_12a = Mdc_malloc(sizeof(*wrapper.ptr.v1_12a));
-
-    if (wrapper.ptr.v1_12a == NULL) {
-      Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-      goto return_bad;
-    }
-
-    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
-
-    wrapper.ptr.v1_12a->cel_file = cel_file_wrapper.ptr.v1_00;
-    wrapper.ptr.v1_12a->direction_index = direction_index;
-    wrapper.ptr.v1_12a->frame_index = frame_index;
-
-    return (struct D2_CelContext*) wrapper.ptr.v1_12a;
-  } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
-      && running_game_version <= D2_GameVersion_kLod1_14D) */ {
-    wrapper.ptr.v1_13c = Mdc_malloc(sizeof(*wrapper.ptr.v1_13c));
-
-    if (wrapper.ptr.v1_13c == NULL) {
-      Mdc_Error_ExitOnMemoryAllocError(__FILEW__, __LINE__);
-      goto return_bad;
-    }
-
-    cel_file_wrapper.ptr.v1_00 = (struct D2_CelFile_1_00*) cel_file;
-
-    wrapper.ptr.v1_13c->cel_file = cel_file_wrapper.ptr.v1_00;
-    wrapper.ptr.v1_13c->direction_index = direction_index;
-    wrapper.ptr.v1_13c->frame_index = frame_index;
-
-    return (struct D2_CelContext*) wrapper.ptr.v1_13c;
-  }
-
-return_bad:
-  return NULL;
-}
-
-void D2_CelContext_Destroy(struct D2_CelContext* cel_context) {
-  Mdc_free(cel_context);
-}
-
-struct D2_CelContext* D2_CelContext_AssignMembers(
+void D2_CelContext_AssignMembers(
     struct D2_CelContext* dest,
     const struct D2_CelContext* src
 ) {
@@ -153,8 +80,6 @@ struct D2_CelContext* D2_CelContext_AssignMembers(
 
     *dest_wrapper.ptr.v1_13c = *src_view.ptr.v1_13c;
   }
-
-  return dest;
 }
 
 struct D2_CelFile* D2_CelContext_GetCelFile(
@@ -323,5 +248,66 @@ void D2_CelContext_SetFrameIndex(
     wrapper.ptr.v1_13c = (struct D2_CelContext_1_13C*) cel_context;
 
     wrapper.ptr.v1_13c->frame_index = frame_index;
+  }
+}
+
+/**
+ * API functions
+ */
+
+struct D2_CelContext_Api D2_CelContext_Api_Init(
+    struct D2_CelFile* cel_file,
+    unsigned int direction_index,
+    unsigned int frame_index
+) {
+  struct D2_CelContext_Api cel_context = { 0 };
+
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GameVersion_GetRunning();
+
+  if (running_game_version >= D2_GameVersion_k1_00
+      && running_game_version <= D2_GameVersion_k1_10) {
+    cel_context.value.v1_00.cel_file = (struct D2_CelFile_1_00*) cel_file;
+    cel_context.value.v1_00.direction_index = direction_index;
+    cel_context.value.v1_00.frame_index = frame_index;
+  } else if (running_game_version == D2_GameVersion_k1_12A) {
+    cel_context.value.v1_12a.cel_file = (struct D2_CelFile_1_00*) cel_file;
+    cel_context.value.v1_12a.direction_index = direction_index;
+    cel_context.value.v1_12a.frame_index = frame_index;
+  } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
+      && running_game_version <= D2_GameVersion_kLod1_14D) */ {
+    cel_context.value.v1_13c.cel_file = (struct D2_CelFile_1_00*) cel_file;
+    cel_context.value.v1_13c.direction_index = direction_index;
+    cel_context.value.v1_13c.frame_index = frame_index;
+  }
+
+  return cel_context;
+}
+
+void D2_CelContext_Api_Deinit(struct D2_CelContext_Api* cel_context) {
+}
+
+struct D2_CelContext* D2_CelContext_Api_Get(
+    struct D2_CelContext_Api* cel_context
+) {
+  return (struct D2_CelContext*) D2_CelContext_Api_GetConst(cel_context);
+}
+
+const struct D2_CelContext* D2_CelContext_Api_GetConst(
+    const struct D2_CelContext_Api* cel_context
+) {
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GameVersion_GetRunning();
+
+  if (running_game_version >= D2_GameVersion_k1_00
+      && running_game_version <= D2_GameVersion_k1_10) {
+    return (const struct D2_CelContext*) &cel_context->value.v1_00;
+  } else if (running_game_version == D2_GameVersion_k1_12A) {
+    return (const struct D2_CelContext*) &cel_context->value.v1_12a;
+  } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
+      && running_game_version <= D2_GameVersion_kLod1_14D) */ {
+    return (const struct D2_CelContext*) &cel_context->value.v1_13c;
   }
 }
