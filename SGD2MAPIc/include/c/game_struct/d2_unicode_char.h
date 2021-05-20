@@ -50,6 +50,7 @@
 
 #include <mdc/std/assert.h>
 #include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 
 #include "../../dllexport_define.inc"
 
@@ -88,6 +89,16 @@ struct D2_UnicodeChar_Wrapper {
 };
 
 /**
+ * API struct declarations
+ */
+
+struct D2_UnicodeChar_Api {
+  union {
+    struct D2_UnicodeChar_1_00 v1_00;
+  } value;
+};
+
+/**
  * Struct typedefs
  */
 
@@ -95,6 +106,8 @@ struct D2_UnicodeChar_Wrapper {
 
 typedef struct D2_UnicodeChar D2_UnicodeChar;
 typedef struct D2_UnicodeChar_1_00 D2_UnicodeChar_1_00;
+
+typedef struct D2_UnicodeChar_Api D2_UnicodeChar_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
@@ -105,64 +118,6 @@ typedef struct D2_UnicodeChar_1_00 D2_UnicodeChar_1_00;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-/**
- * Creates a generic UnicodeChar initialized as the null-terminator
- * character.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateEmpty(void);
-
-/**
- * Creates a generic UnicodeChar with a 7-bit ASCII character.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateFromAsciiChar(char ch);
-
-
-/**
- * Creates a generic UnicodeChar string with the characters left
- * uninitialized.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromCount(
-    size_t count
-);
-
-/**
- * Creates a generic UnicodeChar string with a null-terminated 7-bit
- * ASCII character string.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromAsciiString(
-    const char* str
-);
-
-/**
- * Creates a generic UnicodeChar string with a null-terminated UTF-8 character
- * string.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromUtf8String(
-    const char* str
-);
-
-/**
- * Creates a generic UnicodeChar string with a null-terminated wide character
- * string.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_CreateStringFromWideString(
-    const wchar_t* str
-);
-
-/**
- * Destroy the UnicodeChar, freeing up resources.
- */
-DLLEXPORT void D2_UnicodeChar_Destroy(struct D2_UnicodeChar* unicode_char);
-
-/**
- * Assigns each UnicodeChar member the values of the source
- * UnicodeChar. This is a shallow copy operation.
- */
-DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_AssignMembers(
-    struct D2_UnicodeChar* dest,
-    const struct D2_UnicodeChar* src
-);
 
 /**
  * Returns the element of the UnicodeChar array at the specified
@@ -183,11 +138,51 @@ DLLEXPORT const struct D2_UnicodeChar* D2_UnicodeChar_AccessConst(
 );
 
 /**
+ * Assigns each UnicodeChar member the values of the source
+ * UnicodeChar. This is a shallow copy operation.
+ */
+DLLEXPORT void D2_UnicodeChar_AssignMembers(
+    struct D2_UnicodeChar* dest,
+    const struct D2_UnicodeChar* src
+);
+
+/**
  * Replaces the character with the specified 7-bit ASCII character.
  */
 DLLEXPORT void D2_UnicodeChar_SetCharFromAsciiChar(
     struct D2_UnicodeChar* unicode_char,
     char ch
+);
+
+/**
+ * API functions
+ */
+
+/**
+ * Initializes a UnicodeChar set as the null-terminator character.
+ */
+DLLEXPORT struct D2_UnicodeChar_Api D2_UnicodeChar_Api_InitNull(void);
+
+/**
+ * Initializes a UnicodeChar with a 7-bit ASCII character.
+ */
+DLLEXPORT struct D2_UnicodeChar_Api D2_UnicodeChar_Api_InitFromAsciiChar(
+    char ascii_ch
+);
+
+/**
+ * Deinitializes the UnicodeChar.
+ */
+DLLEXPORT void D2_UnicodeChar_Api_Deinit(
+    struct D2_UnicodeChar_Api* unicode_char
+);
+
+DLLEXPORT struct D2_UnicodeChar* D2_UnicodeChar_Api_Get(
+    struct D2_UnicodeChar_Api* unicode_char
+);
+
+DLLEXPORT const struct D2_UnicodeChar* D2_UnicodeChar_Api_GetConst(
+    const struct D2_UnicodeChar_Api* unicode_char
 );
 
 #ifdef __cplusplus
