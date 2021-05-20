@@ -77,22 +77,6 @@ struct D2_BeltRecord;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_BeltRecord_View {
-  union {
-    const struct D2_BeltRecord_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_BeltRecord_Wrapper {
-  union {
-    struct D2_BeltRecord_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * API struct declarations
  */
 

@@ -76,22 +76,6 @@ struct D2_InventoryRecord;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_InventoryRecord_View {
-  union {
-    const struct D2_InventoryRecord_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_InventoryRecord_Wrapper {
-  union {
-    struct D2_InventoryRecord_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * API struct declarations
  */
 

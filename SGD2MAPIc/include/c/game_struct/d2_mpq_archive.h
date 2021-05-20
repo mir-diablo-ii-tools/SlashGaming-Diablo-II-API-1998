@@ -70,22 +70,6 @@ struct D2_MpqArchive_1_00;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_MpqArchive_View {
-  union {
-    const struct D2_MpqArchive_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_MpqArchive_Wrapper {
-  union {
-    struct D2_MpqArchive_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * Struct typedefs
  */
 

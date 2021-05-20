@@ -77,22 +77,6 @@ struct D2_Cel;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_Cel_View {
-  union {
-    const struct D2_Cel_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_Cel_Wrapper {
-  union {
-    struct D2_Cel_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * Struct typedefs
  */
 

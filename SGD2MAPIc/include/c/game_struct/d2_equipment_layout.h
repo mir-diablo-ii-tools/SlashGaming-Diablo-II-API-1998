@@ -76,22 +76,6 @@ struct D2_EquipmentLayout;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_EquipmentLayout_View {
-  union {
-    const struct D2_EquipmentLayout_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_EquipmentLayout_Wrapper {
-  union {
-    struct D2_EquipmentLayout_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * API struct declarations
  */
 
@@ -202,7 +186,8 @@ DLLEXPORT void D2_EquipmentLayout_SetHeight(
  * Initializes an EquipmentLayout with the specified position, width,
  * and height.
  */
-DLLEXPORT struct D2_EquipmentLayout_Api D2_EquipmentLayout_Api_InitFromLayout(
+DLLEXPORT struct D2_EquipmentLayout_Api
+D2_EquipmentLayout_Api_InitFromLayout(
     const struct D2_PositionalRectangle* position,
     unsigned char width,
     unsigned char height

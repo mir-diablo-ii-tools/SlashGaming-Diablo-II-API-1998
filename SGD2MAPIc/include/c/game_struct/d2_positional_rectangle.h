@@ -75,20 +75,8 @@ struct D2_PositionalRectangle;
 #pragma pack(pop)
 
 /**
- * View, wrapper, and API struct declarations
+ * API struct declarations
  */
-
-struct D2_PositionalRectangle_View {
-  union {
-    const struct D2_PositionalRectangle_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_PositionalRectangle_Wrapper {
-  union {
-    struct D2_PositionalRectangle_1_00* v1_00;
-  } ptr;
-};
 
 struct D2_PositionalRectangle_Api {
   union {

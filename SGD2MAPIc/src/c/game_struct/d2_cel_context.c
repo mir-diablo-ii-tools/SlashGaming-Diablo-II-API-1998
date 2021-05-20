@@ -48,6 +48,26 @@
 #include "../../../include/c/game_version.h"
 
 /**
+ * View and wrapper declarations
+ */
+
+struct D2_CelContext_View {
+  union {
+    const struct D2_CelContext_1_00* v1_00;
+    const struct D2_CelContext_1_12A* v1_12a;
+    const struct D2_CelContext_1_13C* v1_13c;
+  } ptr;
+};
+
+struct D2_CelContext_Wrapper {
+  union {
+    struct D2_CelContext_1_00* v1_00;
+    struct D2_CelContext_1_12A* v1_12a;
+    struct D2_CelContext_1_13C* v1_13c;
+  } ptr;
+};
+
+/**
  * Function definitions
  */
 

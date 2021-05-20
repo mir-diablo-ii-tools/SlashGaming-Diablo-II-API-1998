@@ -46,6 +46,22 @@
 #include "../../../include/c/game_struct/d2_mpq_archive_handle.h"
 
 /**
+ * View and wrapper declarations
+ */
+
+struct D2_MpqArchiveHandle_View {
+  union {
+    const struct D2_MpqArchiveHandle_1_00* v1_00;
+  } ptr;
+};
+
+struct D2_MpqArchiveHandle_Wrapper {
+  union {
+    struct D2_MpqArchiveHandle_1_00* v1_00;
+  } ptr;
+};
+
+/**
  * Function definitions
  */
 

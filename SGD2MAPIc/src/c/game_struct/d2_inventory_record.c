@@ -46,8 +46,23 @@
 #include "../../../include/c/game_struct/d2_inventory_record.h"
 
 #include <mdc/error/exit_on_error.h>
-#include <mdc/malloc/malloc.h>
 #include <mdc/wchar_t/filew.h>
+
+/**
+ * View and wrapper declarations
+ */
+
+struct D2_InventoryRecord_View {
+  union {
+    const struct D2_InventoryRecord_1_00* v1_00;
+  } ptr;
+};
+
+struct D2_InventoryRecord_Wrapper {
+  union {
+    struct D2_InventoryRecord_1_00* v1_00;
+  } ptr;
+};
 
 /**
  * Function definitions
