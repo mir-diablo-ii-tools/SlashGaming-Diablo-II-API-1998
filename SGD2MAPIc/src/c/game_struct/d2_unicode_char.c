@@ -45,13 +45,21 @@
 
 #include "../../../include/c/game_struct/d2_unicode_char.h"
 
-#include <string.h>
+/**
+ * View and wrapper declarations
+ */
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/malloc/malloc.h>
-#include <mdc/std/wchar.h>
-#include <mdc/wchar_t/filew.h>
-#include <mdc/wchar_t/wide_decoding.h>
+struct D2_UnicodeChar_View {
+  union {
+    const struct D2_UnicodeChar_1_00* v1_00;
+  } ptr;
+};
+
+struct D2_UnicodeChar_Wrapper {
+  union {
+    struct D2_UnicodeChar_1_00* v1_00;
+  } ptr;
+};
 
 /**
  * Function definitions

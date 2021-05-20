@@ -73,22 +73,6 @@ struct D2_UnicodeChar;
 #pragma pack(pop)
 
 /**
- * View and wrapper declarations
- */
-
-struct D2_UnicodeChar_View {
-  union {
-    const struct D2_UnicodeChar_1_00* v1_00;
-  } ptr;
-};
-
-struct D2_UnicodeChar_Wrapper {
-  union {
-    struct D2_UnicodeChar_1_00* v1_00;
-  } ptr;
-};
-
-/**
  * API struct declarations
  */
 
