@@ -43,17 +43,101 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-
-#include <sgd2mapi.h>
+#include "../../../../include/cxx98/game_struct/d2_positional_rectangle/d2_positional_rectangle_api.hpp"
 
 namespace d2 {
 
-typedef ::D2_PositionalRectangle PositionalRectangle;
+PositionalRectangle_Api::PositionalRectangle_Api() {
+}
 
-typedef ::D2_PositionalRectangle_1_00 PositionalRectangle_1_00;
+PositionalRectangle_Api::PositionalRectangle_Api(
+    int left,
+    int right,
+    int top,
+    int bottom
+)
+    : positional_rectangle_(
+          ::D2_PositionalRectangle_Api_InitFromPositions(
+              left,
+              right,
+              top,
+              bottom
+          )
+      ) {
+}
+
+PositionalRectangle_Api::operator PositionalRectangle_View() const {
+  return PositionalRectangle_View(this->Get());
+}
+
+PositionalRectangle_Api::operator PositionalRectangle_Wrapper() {
+  return PositionalRectangle_Wrapper(this->Get());
+}
+
+PositionalRectangle* PositionalRectangle_Api::Get() {
+  const PositionalRectangle_Api* const_this = this;
+
+  return const_cast<PositionalRectangle*>(const_this->Get());
+}
+
+const PositionalRectangle* PositionalRectangle_Api::Get() const {
+  return ::D2_PositionalRectangle_Api_GetConst(&this->positional_rectangle_);
+}
+
+void PositionalRectangle_Api::AssignMembers(
+    PositionalRectangle_View src
+) {
+  PositionalRectangle_Wrapper wrapper(*this);
+
+  wrapper.AssignMembers(src);
+}
+
+int PositionalRectangle_Api::GetLeft() const {
+  PositionalRectangle_View view(*this);
+
+  return view.GetLeft();
+}
+
+void PositionalRectangle_Api::SetLeft(int left) {
+  PositionalRectangle_Wrapper wrapper(*this);
+
+  wrapper.SetLeft(left);
+}
+
+int PositionalRectangle_Api::GetRight() const {
+  PositionalRectangle_View view(*this);
+
+  return view.GetRight();
+}
+
+void PositionalRectangle_Api::SetRight(int right) {
+  PositionalRectangle_Wrapper wrapper(*this);
+
+  wrapper.SetRight(right);
+}
+
+int PositionalRectangle_Api::GetTop() const {
+  PositionalRectangle_View view(*this);
+
+  return view.GetTop();
+}
+
+void PositionalRectangle_Api::SetTop(int top) {
+  PositionalRectangle_Wrapper wrapper(*this);
+
+  wrapper.SetTop(top);
+}
+
+int PositionalRectangle_Api::GetBottom() const {
+  PositionalRectangle_View view(*this);
+
+  return view.GetBottom();
+}
+
+void PositionalRectangle_Api::SetBottom(int bottom) {
+  PositionalRectangle_Wrapper wrapper(*this);
+
+  wrapper.SetBottom(bottom);
+}
 
 } // namespace d2
-
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_ */

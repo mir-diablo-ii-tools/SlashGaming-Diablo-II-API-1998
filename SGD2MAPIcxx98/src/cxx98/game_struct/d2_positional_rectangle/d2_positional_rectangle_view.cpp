@@ -43,17 +43,51 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-
-#include <sgd2mapi.h>
+#include "../../../../include/cxx98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_PositionalRectangle PositionalRectangle;
+PositionalRectangle_View::PositionalRectangle_View(
+    const PositionalRectangle* positional_rectangle
+) {
+  this->positional_rectangle_.v1_00 =
+      reinterpret_cast<const PositionalRectangle_1_00*>(
+          positional_rectangle
+      );
+}
 
-typedef ::D2_PositionalRectangle_1_00 PositionalRectangle_1_00;
+PositionalRectangle_View::PositionalRectangle_View(
+    const PositionalRectangle_1_00* positional_rectangle
+) {
+  this->positional_rectangle_.v1_00 = positional_rectangle;
+}
+
+PositionalRectangle_View PositionalRectangle_View::operator[](
+    size_t index
+) const {
+  return ::D2_PositionalRectangle_AccessConst(this->Get(), index);
+}
+
+const PositionalRectangle* PositionalRectangle_View::Get() const {
+  return reinterpret_cast<const PositionalRectangle*>(
+      this->positional_rectangle_.v1_00
+  );
+}
+
+int PositionalRectangle_View::GetLeft() const {
+  return ::D2_PositionalRectangle_GetLeft(this->Get());
+}
+
+int PositionalRectangle_View::GetRight() const {
+  return ::D2_PositionalRectangle_GetRight(this->Get());
+}
+
+int PositionalRectangle_View::GetTop() const {
+  return ::D2_PositionalRectangle_GetTop(this->Get());
+}
+
+int PositionalRectangle_View::GetBottom() const {
+  return ::D2_PositionalRectangle_GetBottom(this->Get());
+}
 
 } // namespace d2
-
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_ */

@@ -269,7 +269,19 @@ SOURCE=.\include\cxx98\game_struct\d2_mpq_archive_handle\d2_mpq_archive_handle_s
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_api.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_struct.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_view.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_wrapper.hpp
 # End Source File
 # End Group
 # Begin Group "d2_unicode_char_hpp"
@@ -455,6 +467,18 @@ SOURCE=.\src\cxx98\game_constant\d2_video_mode.cpp
 # Begin Group "d2_positional_rectangle_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_api.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_view.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_wrapper.cpp
+# End Source File
 # End Group
 # Begin Group "d2_unicode_char_cpp"
 

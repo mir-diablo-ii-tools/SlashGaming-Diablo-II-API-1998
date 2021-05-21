@@ -43,17 +43,44 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_VIEW_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "d2_positional_rectangle_struct.hpp"
 
 namespace d2 {
 
-typedef ::D2_PositionalRectangle PositionalRectangle;
+class PositionalRectangle_View {
+ public:
+  union ViewType {
+    const PositionalRectangle_1_00* v1_00;
+  };
 
-typedef ::D2_PositionalRectangle_1_00 PositionalRectangle_1_00;
+  PositionalRectangle_View(const PositionalRectangle* positional_rectangle);
+
+  explicit PositionalRectangle_View(
+      const PositionalRectangle_1_00* positional_rectangle
+  );
+
+  PositionalRectangle_View operator[](size_t index) const;
+
+  const PositionalRectangle* Get() const;
+
+  int GetLeft() const;
+
+  int GetRight() const;
+
+  int GetTop() const;
+
+  int GetBottom() const;
+
+ private:
+  ViewType positional_rectangle_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_VIEW_HPP_ */

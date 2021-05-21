@@ -43,17 +43,59 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_API_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "d2_positional_rectangle_struct.hpp"
+#include "d2_positional_rectangle_view.hpp"
+#include "d2_positional_rectangle_wrapper.hpp"
 
 namespace d2 {
 
-typedef ::D2_PositionalRectangle PositionalRectangle;
+class PositionalRectangle_Api {
+ public:
+  PositionalRectangle_Api();
+  
+  PositionalRectangle_Api(
+      int left,
+      int right,
+      int top,
+      int bottom
+  );
 
-typedef ::D2_PositionalRectangle_1_00 PositionalRectangle_1_00;
+  operator PositionalRectangle_View() const;
+
+  operator PositionalRectangle_Wrapper();
+
+  PositionalRectangle* Get();
+
+  const PositionalRectangle* Get() const;
+
+  void AssignMembers(PositionalRectangle_View src);
+
+  int GetLeft() const;
+
+  void SetLeft(int left);
+
+  int GetRight() const;
+
+  void SetRight(int right);
+
+  int GetTop() const;
+
+  void SetTop(int top);
+
+  int GetBottom() const;
+
+  void SetBottom(int bottom);
+
+ private:
+  ::D2_PositionalRectangle_Api positional_rectangle_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_API_HPP_ */
