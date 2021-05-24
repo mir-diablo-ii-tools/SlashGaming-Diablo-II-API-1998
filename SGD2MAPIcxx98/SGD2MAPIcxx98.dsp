@@ -197,7 +197,19 @@ SOURCE=.\include\cxx98\game_constant\d2_video_mode.hpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_api.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_struct.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_view.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_wrapper.hpp
 # End Source File
 # End Group
 # Begin Group "d2_cel_hpp"
@@ -431,6 +443,18 @@ SOURCE=.\src\cxx98\game_constant\d2_video_mode.cpp
 # Begin Group "d2_belt_record_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_belt_record\d2_belt_record_api.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_belt_record\d2_belt_record_view.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_belt_record\d2_belt_record_wrapper.cpp
+# End Source File
 # End Group
 # Begin Group "d2_cel_cpp"
 
