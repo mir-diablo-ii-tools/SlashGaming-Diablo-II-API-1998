@@ -66,9 +66,9 @@ class PositionalRectangle_Wrapper {
       PositionalRectangle_1_00* positional_rectangle
   );
 
-  PositionalRectangle_Wrapper operator[](size_t index);
-
   PositionalRectangle_View operator[](size_t index) const;
+
+  PositionalRectangle_Wrapper operator[](size_t index);
 
   operator PositionalRectangle_View() const;
 
