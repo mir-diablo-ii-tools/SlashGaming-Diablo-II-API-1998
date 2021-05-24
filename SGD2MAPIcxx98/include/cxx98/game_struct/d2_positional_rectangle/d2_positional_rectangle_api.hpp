@@ -66,6 +66,8 @@ class PositionalRectangle_Api {
       int bottom
   );
 
+  ~PositionalRectangle_Api();
+
   operator PositionalRectangle_View() const;
 
   operator PositionalRectangle_Wrapper();

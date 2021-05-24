@@ -66,6 +66,10 @@ PositionalRectangle_Api::PositionalRectangle_Api(
       ) {
 }
 
+PositionalRectangle_Api::~PositionalRectangle_Api() {
+  ::D2_PositionalRectangle_Api_Deinit(&this->positional_rectangle_);
+}
+
 PositionalRectangle_Api::operator PositionalRectangle_View() const {
   return PositionalRectangle_View(this->Get());
 }
