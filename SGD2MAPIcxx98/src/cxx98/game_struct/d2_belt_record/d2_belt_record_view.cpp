@@ -43,17 +43,43 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
-
-#include <sgd2mapi.h>
+#include "../../../../include/cxx98/game_struct/d2_belt_record/d2_belt_record_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_BeltRecord BeltRecord;
+BeltRecord_View::BeltRecord_View(
+    const BeltRecord* belt_record
+) {
+  this->belt_record_.v1_00 =
+      reinterpret_cast<const BeltRecord_1_00*>(
+          belt_record
+      );
+}
 
-typedef ::D2_BeltRecord_1_00 BeltRecord_1_00;
+BeltRecord_View::BeltRecord_View(
+    const BeltRecord_1_00* belt_record
+) {
+  this->belt_record_.v1_00 = belt_record;
+}
+
+BeltRecord_View BeltRecord_View::operator[](
+    size_t index
+) const {
+  return ::D2_BeltRecord_AccessConst(this->Get(), index);
+}
+
+const BeltRecord* BeltRecord_View::Get() const {
+  return reinterpret_cast<const BeltRecord*>(
+      this->belt_record_.v1_00
+  );
+}
+
+unsigned char BeltRecord_View::GetNumSlots() const {
+  return this->belt_record_.v1_00->num_slots;
+}
+
+PositionalRectangle_View BeltRecord_View::GetSlotPositions() const {
+  return PositionalRectangle_View(this->belt_record_.v1_00->slot_positions);
+}
 
 } // namespace d2
-
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_ */

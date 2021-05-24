@@ -43,17 +43,39 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_VIEW_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "d2_belt_record_struct.hpp"
 
 namespace d2 {
 
-typedef ::D2_BeltRecord BeltRecord;
+class BeltRecord_View {
+ public:
+  union ViewType {
+    const BeltRecord_1_00* v1_00;
+  };
 
-typedef ::D2_BeltRecord_1_00 BeltRecord_1_00;
+  BeltRecord_View(const BeltRecord* belt_record);
+
+  explicit BeltRecord_View(const BeltRecord_1_00* belt_record);
+
+  BeltRecord_View operator[](size_t index) const;
+
+  const BeltRecord* Get() const;
+
+  unsigned char GetNumSlots() const;
+
+  PositionalRectangle_View GetSlotPositions() const;
+
+ private:
+  ViewType belt_record_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_VIEW_HPP_ */

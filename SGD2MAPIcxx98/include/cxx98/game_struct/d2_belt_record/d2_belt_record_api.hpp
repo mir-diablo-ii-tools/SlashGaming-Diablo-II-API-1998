@@ -43,17 +43,55 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_API_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../../game_undefined.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "d2_belt_record_struct.hpp"
+#include "d2_belt_record_view.hpp"
+#include "d2_belt_record_wrapper.hpp"
 
 namespace d2 {
 
-typedef ::D2_BeltRecord BeltRecord;
+class BeltRecord_Api {
+ public:
+  BeltRecord_Api();
 
-typedef ::D2_BeltRecord_1_00 BeltRecord_1_00;
+  BeltRecord_Api(
+      ::mapi::Undefined* reserved_00__set_to_NULL,
+      unsigned char num_slots,
+      const PositionalRectangle* slot_positions
+  );
+
+  ~BeltRecord_Api();
+
+  operator BeltRecord_View() const;
+
+  operator BeltRecord_Wrapper();
+
+  BeltRecord* Get();
+
+  const BeltRecord* Get() const;
+
+  void AssignMembers(BeltRecord_View src);
+
+  unsigned char GetNumSlots() const;
+
+  void SetNumSlots(unsigned char num_slots);
+
+  PositionalRectangle_View GetSlotPositions() const;
+
+  PositionalRectangle_Wrapper GetSlotPositions();
+
+ private:
+  ::D2_BeltRecord_Api belt_record_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_API_HPP_ */
