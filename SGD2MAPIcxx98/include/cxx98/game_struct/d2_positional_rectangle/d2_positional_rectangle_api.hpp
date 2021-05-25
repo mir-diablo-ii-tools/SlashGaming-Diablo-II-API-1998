@@ -53,9 +53,11 @@
 #include "d2_positional_rectangle_view.hpp"
 #include "d2_positional_rectangle_wrapper.hpp"
 
+#include "../../../dllexport_define.inc"
+
 namespace d2 {
 
-class PositionalRectangle_Api {
+class DLLEXPORT PositionalRectangle_Api {
  public:
   PositionalRectangle_Api();
   
@@ -100,4 +102,5 @@ class PositionalRectangle_Api {
 
 } // namespace d2
 
+#include "../../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_API_HPP_ */

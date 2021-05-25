@@ -54,9 +54,11 @@
 #include "d2_belt_record_struct.hpp"
 #include "d2_belt_record_view.hpp"
 
+#include "../../../dllexport_define.inc"
+
 namespace d2 {
 
-class BeltRecord_Wrapper {
+class DLLEXPORT BeltRecord_Wrapper {
  public:
   union WrapperType {
     BeltRecord_1_00* v1_00;
@@ -92,4 +94,5 @@ class BeltRecord_Wrapper {
 
 } // namespace d2
 
+#include "../../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_WRAPPER_HPP_ */

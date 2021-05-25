@@ -51,9 +51,11 @@
 #include <sgd2mapi.h>
 #include "d2_positional_rectangle_struct.hpp"
 
+#include "../../../dllexport_define.inc"
+
 namespace d2 {
 
-class PositionalRectangle_View {
+class DLLEXPORT PositionalRectangle_View {
  public:
   union ViewType {
     const PositionalRectangle_1_00* v1_00;
@@ -83,4 +85,5 @@ class PositionalRectangle_View {
 
 } // namespace d2
 
+#include "../../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_D2_POSITIONAL_RECTANGLE_VIEW_HPP_ */
