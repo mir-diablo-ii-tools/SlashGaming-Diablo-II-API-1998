@@ -83,9 +83,7 @@ EquipmentLayout* EquipmentLayout_Api::Get() {
 }
 
 const EquipmentLayout* EquipmentLayout_Api::Get() const {
-  return reinterpret_cast<const EquipmentLayout*>(
-      &this->equipment_layout_.value.v1_00
-  );
+  return ::D2_EquipmentLayout_Api_GetConst(&this->equipment_layout_);
 }
 
 void EquipmentLayout_Api::AssignMembers(EquipmentLayout_View src) {
