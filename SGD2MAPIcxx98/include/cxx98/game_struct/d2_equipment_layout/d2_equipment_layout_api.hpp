@@ -43,20 +43,61 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_API_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "d2_equipment_layout_struct.hpp"
+#include "d2_equipment_layout_view.hpp"
+#include "d2_equipment_layout_wrapper.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_EquipmentLayout EquipmentLayout;
+class DLLEXPORT EquipmentLayout_Api {
+ public:
+  EquipmentLayout_Api();
 
-typedef ::D2_EquipmentLayout_1_00 EquipmentLayout_1_00;
+  EquipmentLayout_Api(
+      const PositionalRectangle* position,
+      unsigned char width,
+      unsigned char height
+  );
+
+  ~EquipmentLayout_Api();
+
+  operator EquipmentLayout_View() const;
+
+  operator EquipmentLayout_Wrapper();
+
+  EquipmentLayout* Get();
+
+  const EquipmentLayout* Get() const;
+
+  void AssignMembers(EquipmentLayout_View src);
+
+  PositionalRectangle_View GetPosition() const;
+
+  PositionalRectangle_Wrapper GetPosition();
+
+  unsigned char GetWidth() const;
+
+  void SetWidth(unsigned char width);
+
+  unsigned char GetHeight() const;
+
+  void SetHeight(unsigned char height);
+
+ private:
+  ::D2_EquipmentLayout_Api equipment_layout_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_API_HPP_ */

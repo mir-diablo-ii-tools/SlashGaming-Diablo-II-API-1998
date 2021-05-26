@@ -43,20 +43,47 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_equipment_layout/d2_equipment_layout_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_EquipmentLayout EquipmentLayout;
+EquipmentLayout_View::EquipmentLayout_View(
+    const EquipmentLayout* equipment_layout
+) {
+  this->equipment_layout_.v1_00 =
+      reinterpret_cast<const EquipmentLayout_1_00*>(
+          equipment_layout
+      );
+}
 
-typedef ::D2_EquipmentLayout_1_00 EquipmentLayout_1_00;
+EquipmentLayout_View::EquipmentLayout_View(
+    const EquipmentLayout_1_00* equipment_layout
+) {
+  this->equipment_layout_.v1_00 = equipment_layout;
+}
+
+EquipmentLayout_View EquipmentLayout_View::operator[](size_t index) const {
+  return ::D2_EquipmentLayout_AccessConst(this->Get(), index);
+}
+
+const EquipmentLayout* EquipmentLayout_View::Get() const {
+  return reinterpret_cast<const EquipmentLayout*>(
+      this->equipment_layout_.v1_00
+  );
+}
+
+PositionalRectangle_View EquipmentLayout_View::GetPosition() const {
+  return PositionalRectangle_View(
+      ::D2_EquipmentLayout_GetPositionConst(this->Get())
+  );
+}
+
+unsigned char EquipmentLayout_View::GetWidth() const {
+  return ::D2_EquipmentLayout_GetWidth(this->Get());
+}
+
+unsigned char EquipmentLayout_View::GetHeight() const {
+  return ::D2_EquipmentLayout_GetHeight(this->Get());
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_ */

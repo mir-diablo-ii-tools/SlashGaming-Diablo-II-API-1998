@@ -43,20 +43,91 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_equipment_layout/d2_equipment_layout_api.hpp"
 
 namespace d2 {
 
-typedef ::D2_EquipmentLayout EquipmentLayout;
+EquipmentLayout_Api::EquipmentLayout_Api() {
+}
 
-typedef ::D2_EquipmentLayout_1_00 EquipmentLayout_1_00;
+EquipmentLayout_Api::EquipmentLayout_Api(
+    const PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+)
+    : equipment_layout_(
+          ::D2_EquipmentLayout_Api_InitFromLayout(
+              position,
+              width,
+              height
+          )
+      ) {
+}
+
+EquipmentLayout_Api::~EquipmentLayout_Api() {
+  ::D2_EquipmentLayout_Api_Deinit(&this->equipment_layout_);
+}
+
+EquipmentLayout_Api::operator EquipmentLayout_View() const {
+  return EquipmentLayout_View(this->Get());
+}
+
+EquipmentLayout_Api::operator EquipmentLayout_Wrapper() {
+  return EquipmentLayout_Wrapper(this->Get());
+}
+
+EquipmentLayout* EquipmentLayout_Api::Get() {
+  const EquipmentLayout_Api* const_this = this;
+
+  return const_cast<EquipmentLayout*>(const_this->Get());
+}
+
+const EquipmentLayout* EquipmentLayout_Api::Get() const {
+  return reinterpret_cast<const EquipmentLayout*>(
+      &this->equipment_layout_.value.v1_00
+  );
+}
+
+void EquipmentLayout_Api::AssignMembers(EquipmentLayout_View src) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.AssignMembers(src);
+}
+
+PositionalRectangle_View EquipmentLayout_Api::GetPosition() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetPosition();
+}
+
+PositionalRectangle_Wrapper EquipmentLayout_Api::GetPosition() {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  return wrapper.GetPosition();
+}
+
+unsigned char EquipmentLayout_Api::GetWidth() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetWidth();
+}
+
+void EquipmentLayout_Api::SetWidth(unsigned char width) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.SetWidth(width);
+}
+
+unsigned char EquipmentLayout_Api::GetHeight() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetHeight();
+}
+
+void EquipmentLayout_Api::SetHeight(unsigned char height) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.SetHeight(height);
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_D2_EQUIPMENT_LAYOUT_STRUCT_HPP_ */
