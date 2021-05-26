@@ -829,6 +829,9 @@ SOURCE=.\include\sgd2mapi.h
 # Begin Group "src"
 
 # PROP Default_Filter ""
+# Begin Group "game_constant_c"
+
+# PROP Default_Filter ""
 # Begin Group "backend_c"
 
 # PROP Default_Filter ""
@@ -1217,9 +1220,6 @@ SOURCE=.\src\c\backend\game_library.cpp
 SOURCE=.\src\c\backend\game_library.h
 # End Source File
 # End Group
-# Begin Group "game_constant_c"
-
-# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE=.\src\c\game_constant\d2_client_game_type.c
