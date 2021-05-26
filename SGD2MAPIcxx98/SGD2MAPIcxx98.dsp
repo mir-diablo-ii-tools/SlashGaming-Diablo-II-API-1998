@@ -261,7 +261,19 @@ SOURCE=.\include\cxx98\game_struct\d2_equipment_layout\d2_equipment_layout_wrapp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_api.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_struct.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_view.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_wrapper.hpp
 # End Source File
 # End Group
 # Begin Group "d2_inventory_record_hpp"
@@ -499,6 +511,18 @@ SOURCE=.\src\cxx98\game_struct\d2_equipment_layout\d2_equipment_layout_wrapper.c
 # Begin Group "d2_grid_layout_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_grid_layout\d2_grid_layout_api.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_grid_layout\d2_grid_layout_view.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_grid_layout\d2_grid_layout_wrapper.cpp
+# End Source File
 # End Group
 # Begin Group "d2_inventory_record_cpp"
 

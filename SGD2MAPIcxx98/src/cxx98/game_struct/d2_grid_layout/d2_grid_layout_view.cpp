@@ -43,20 +43,50 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_grid_layout/d2_grid_layout_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_GridLayout GridLayout;
+GridLayout_View::GridLayout_View(const GridLayout* grid_layout) {
+  this->grid_layout_.v1_00 = reinterpret_cast<const GridLayout_1_00*>(
+      grid_layout
+  );
+}
 
-typedef ::D2_GridLayout_1_00 GridLayout_1_00;
+GridLayout_View::GridLayout_View(const GridLayout_1_00* grid_layout) {
+  this->grid_layout_.v1_00 = grid_layout;
+}
+
+GridLayout_View GridLayout_View::operator[](size_t index) const {
+  return ::D2_GridLayout_AccessConst(this->Get(), index);
+}
+
+const GridLayout* GridLayout_View::Get() const {
+  return reinterpret_cast<const GridLayout*>(
+      this->grid_layout_.v1_00
+  );
+}
+
+unsigned char GridLayout_View::GetNumColumns() const {
+  return ::D2_GridLayout_GetNumColumns(this->Get());
+}
+
+unsigned char GridLayout_View::GetNumRows() const {
+  return ::D2_GridLayout_GetNumRows(this->Get());
+}
+
+PositionalRectangle_View GridLayout_View::GetPosition() const {
+  return PositionalRectangle_View(
+      ::D2_GridLayout_GetPositionConst(this->Get())
+  );
+}
+
+unsigned char GridLayout_View::GetWidth() const {
+  return ::D2_GridLayout_GetWidth(this->Get());
+}
+
+unsigned char GridLayout_View::GetHeight() const {
+  return ::D2_GridLayout_GetHeight(this->Get());
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_ */

@@ -43,20 +43,68 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "d2_grid_layout_struct.hpp"
+#include "d2_grid_layout_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_GridLayout GridLayout;
+class DLLEXPORT GridLayout_Wrapper {
+ public:
+  union WrapperType {
+    GridLayout_1_00* v1_00;
+  };
 
-typedef ::D2_GridLayout_1_00 GridLayout_1_00;
+  GridLayout_Wrapper(GridLayout* grid_layout);
+
+  explicit GridLayout_Wrapper(GridLayout_1_00* grid_layout);
+
+  GridLayout_View operator[](size_t index) const;
+
+  GridLayout_Wrapper operator[](size_t index);
+
+  operator GridLayout_View() const;
+
+  GridLayout* Get();
+
+  const GridLayout* Get() const;
+
+  void AssignMembers(GridLayout_View src);
+
+  unsigned char GetNumColumns() const;
+
+  void SetNumColumns(unsigned char num_columns);
+
+  unsigned char GetNumRows() const;
+
+  void SetNumRows(unsigned char num_rows);
+
+  PositionalRectangle_View GetPosition() const;
+
+  PositionalRectangle_Wrapper GetPosition();
+
+  unsigned char GetWidth() const;
+
+  void SetWidth(unsigned char width);
+
+  unsigned char GetHeight() const;
+
+  void SetHeight(unsigned char height);
+
+ private:
+  WrapperType grid_layout_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_WRAPPER_HPP_ */

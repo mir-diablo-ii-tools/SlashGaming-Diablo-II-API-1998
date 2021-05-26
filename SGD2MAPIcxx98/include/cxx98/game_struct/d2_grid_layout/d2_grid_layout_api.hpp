@@ -43,20 +43,69 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_API_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "d2_grid_layout_struct.hpp"
+#include "d2_grid_layout_view.hpp"
+#include "d2_grid_layout_wrapper.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_GridLayout GridLayout;
+class DLLEXPORT GridLayout_Api {
+ public:
+  GridLayout_Api(
+      unsigned char num_columns,
+      unsigned char num_rows,
+      const PositionalRectangle* position,
+      unsigned char width,
+      unsigned char height
+  );
 
-typedef ::D2_GridLayout_1_00 GridLayout_1_00;
+  ~GridLayout_Api();
+
+  operator GridLayout_View() const;
+
+  operator GridLayout_Wrapper();
+
+  GridLayout* Get();
+
+  const GridLayout* Get() const;
+
+  void AssignMembers(GridLayout_View src);
+
+  unsigned char GetNumColumns() const;
+
+  void SetNumColumns(unsigned char num_columns);
+
+  unsigned char GetNumRows() const;
+
+  void SetNumRows(unsigned char num_rows);
+
+  PositionalRectangle_View GetPosition() const;
+
+  PositionalRectangle_Wrapper GetPosition();
+
+  unsigned char GetWidth() const;
+
+  void SetWidth(unsigned char width);
+
+  unsigned char GetHeight() const;
+
+  void SetHeight(unsigned char height);
+
+ private:
+  ::D2_GridLayout_Api grid_layout_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_GRID_LAYOUT_D2_GRID_LAYOUT_API_HPP_ */
