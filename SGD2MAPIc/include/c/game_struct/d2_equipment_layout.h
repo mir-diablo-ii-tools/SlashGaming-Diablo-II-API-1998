@@ -196,7 +196,7 @@ D2_EquipmentLayout_Api_InitFromLayout(
 /**
  * Deinitializes the EquipmentLayout.
  */
-DLLEXPORT void D2_EquipmentLayout_Deinit(
+DLLEXPORT void D2_EquipmentLayout_Api_Deinit(
     struct D2_EquipmentLayout_Api* equipment_layout
 );
 
