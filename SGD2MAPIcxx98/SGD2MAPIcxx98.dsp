@@ -281,7 +281,19 @@ SOURCE=.\include\cxx98\game_struct\d2_grid_layout\d2_grid_layout_wrapper.hpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\cxx98\game_struct\d2_inventory_record\d2_inventory_record_api.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_struct\d2_inventory_record\d2_inventory_record_struct.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_inventory_record\d2_inventory_record_view.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_inventory_record\d2_inventory_record_wrapper.hpp
 # End Source File
 # End Group
 # Begin Group "d2_mpq_archive_hpp"
@@ -527,6 +539,18 @@ SOURCE=.\src\cxx98\game_struct\d2_grid_layout\d2_grid_layout_wrapper.cpp
 # Begin Group "d2_inventory_record_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_inventory_record\d2_inventory_record_api.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_inventory_record\d2_inventory_record_view.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_inventory_record\d2_inventory_record_wrapper.cpp
+# End Source File
 # End Group
 # Begin Group "d2_mpq_archive_cpp"
 

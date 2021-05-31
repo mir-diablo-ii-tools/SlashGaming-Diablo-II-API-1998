@@ -43,20 +43,64 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_equipment_layout/d2_equipment_layout_view.hpp"
+#include "../d2_equipment_layout/d2_equipment_layout_wrapper.hpp"
+#include "../d2_grid_layout/d2_grid_layout_view.hpp"
+#include "../d2_grid_layout/d2_grid_layout_wrapper.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "d2_inventory_record_struct.hpp"
+#include "d2_inventory_record_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_InventoryRecord InventoryRecord;
+class DLLEXPORT InventoryRecord_Wrapper {
+ public:
+  union WrapperType {
+    InventoryRecord_1_00* v1_00;
+  };
 
-typedef ::D2_InventoryRecord_1_00 InventoryRecord_1_00;
+  InventoryRecord_Wrapper(InventoryRecord* inventory_record);
+
+  explicit InventoryRecord_Wrapper(InventoryRecord_1_00* inventory_record);
+
+  InventoryRecord_View operator[](size_t index) const;
+
+  InventoryRecord_Wrapper operator[](size_t index);
+
+  operator InventoryRecord_View() const;
+
+  InventoryRecord* Get();
+
+  const InventoryRecord* Get() const;
+
+  void AssignMembers(InventoryRecord_View src);
+
+  PositionalRectangle_View GetPosition() const;
+
+  PositionalRectangle_Wrapper GetPosition();
+
+  GridLayout_View GetGridLayout() const;
+
+  GridLayout_Wrapper GetGridLayout();
+
+  EquipmentLayout_View GetEquipmentSlots() const;
+
+  EquipmentLayout_Wrapper GetEquipmentSlots();
+
+ private:
+  WrapperType inventory_record_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_WRAPPER_HPP_ */

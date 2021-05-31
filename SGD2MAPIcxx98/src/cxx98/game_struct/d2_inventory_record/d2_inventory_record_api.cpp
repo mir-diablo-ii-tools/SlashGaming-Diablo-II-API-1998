@@ -43,20 +43,89 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_inventory_record/d2_inventory_record_api.hpp"
 
 namespace d2 {
 
-typedef ::D2_InventoryRecord InventoryRecord;
+InventoryRecord_Api::InventoryRecord_Api() {
+}
 
-typedef ::D2_InventoryRecord_1_00 InventoryRecord_1_00;
+InventoryRecord_Api::InventoryRecord_Api(
+      const PositionalRectangle* position,
+      const GridLayout* grid_layout,
+      const EquipmentLayout* equipment_slots
+)
+    : inventory_record_(
+          ::D2_InventoryRecord_Api_InitFromRecord(
+              position,
+              grid_layout,
+              equipment_slots
+          )
+      ) {
+}
+
+InventoryRecord_Api::~InventoryRecord_Api() {
+  ::D2_InventoryRecord_Api_Deinit(&this->inventory_record_);
+}
+
+InventoryRecord_Api::operator InventoryRecord_View() const {
+  return InventoryRecord_View(this->Get());
+}
+
+InventoryRecord_Api::operator InventoryRecord_Wrapper() {
+  return InventoryRecord_Wrapper(this->Get());
+}
+
+InventoryRecord* InventoryRecord_Api::Get() {
+  const InventoryRecord_Api* const_this = this;
+
+  return const_cast<InventoryRecord*>(const_this->Get());
+}
+
+const InventoryRecord* InventoryRecord_Api::Get() const {
+  return ::D2_InventoryRecord_Api_GetConst(&this->inventory_record_);
+}
+
+void InventoryRecord_Api::AssignMembers(InventoryRecord_View src) {
+  InventoryRecord_Wrapper wrapper(*this);
+
+  wrapper.AssignMembers(src.Get());
+}
+
+PositionalRectangle_View InventoryRecord_Api::GetPosition() const {
+  InventoryRecord_View view(*this);
+
+  return view.GetPosition();
+}
+
+PositionalRectangle_Wrapper InventoryRecord_Api::GetPosition() {
+  InventoryRecord_Wrapper wrapper(*this);
+
+  return wrapper.GetPosition();
+}
+
+GridLayout_View InventoryRecord_Api::GetGridLayout() const {
+  InventoryRecord_View view(*this);
+
+  return view.GetGridLayout();
+}
+
+GridLayout_Wrapper InventoryRecord_Api::GetGridLayout() {
+  InventoryRecord_Wrapper wrapper(*this);
+
+  return wrapper.GetGridLayout();
+}
+
+EquipmentLayout_View InventoryRecord_Api::GetEquipmentSlots() const {
+  InventoryRecord_View view(*this);
+
+  return view.GetEquipmentSlots();
+}
+
+EquipmentLayout_Wrapper InventoryRecord_Api::GetEquipmentSlots() {
+  InventoryRecord_Wrapper wrapper(*this);
+
+  return wrapper.GetEquipmentSlots();
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_ */

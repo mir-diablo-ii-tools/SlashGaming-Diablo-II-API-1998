@@ -43,20 +43,51 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_inventory_record/d2_inventory_record_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_InventoryRecord InventoryRecord;
+InventoryRecord_View::InventoryRecord_View(
+    const InventoryRecord* inventory_record
+) {
+  this->inventory_record_.v1_00 =
+      reinterpret_cast<const InventoryRecord_1_00*>(
+          inventory_record
+      );
+}
 
-typedef ::D2_InventoryRecord_1_00 InventoryRecord_1_00;
+InventoryRecord_View::InventoryRecord_View(
+    const InventoryRecord_1_00* inventory_record
+) {
+  this->inventory_record_.v1_00 = inventory_record;
+}
+
+InventoryRecord_View InventoryRecord_View::operator[](size_t index) const {
+  return ::D2_InventoryRecord_AccessConst(this->Get(), index);
+}
+
+const InventoryRecord* InventoryRecord_View::Get() const {
+  return reinterpret_cast<const InventoryRecord*>(
+      this->inventory_record_.v1_00
+  );
+}
+
+PositionalRectangle_View InventoryRecord_View::GetPosition() const {
+  return PositionalRectangle_View(
+      ::D2_InventoryRecord_GetPositionConst(this->Get())
+  );
+}
+
+GridLayout_View InventoryRecord_View::GetGridLayout() const {
+  return GridLayout_View(
+      ::D2_InventoryRecord_GetGridLayoutConst(this->Get())
+  );
+}
+
+EquipmentLayout_View InventoryRecord_View::GetEquipmentSlots() const {
+  return EquipmentLayout_View(
+      ::D2_InventoryRecord_GetEquipmentSlotsConst(this->Get())
+  );
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_STRUCT_HPP_ */
