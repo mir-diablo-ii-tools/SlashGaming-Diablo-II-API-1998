@@ -43,20 +43,43 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_VIEW_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "d2_cel_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_Cel Cel;
+class DLLEXPORT Cel_View {
+ public:
+  union ViewType {
+    const Cel_1_00* v1_00;
+  };
 
-typedef ::D2_Cel_1_00 Cel_1_00;
+  Cel_View(const Cel* cel);
+
+  explicit Cel_View(const Cel_1_00* cel);
+
+  const Cel* Get() const;
+
+  int GetHeight() const;
+
+  int GetOffsetX() const;
+
+  int GetOffsetY() const;
+
+  int GetWidth() const;
+
+ private:
+  ViewType cel_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_VIEW_HPP_ */

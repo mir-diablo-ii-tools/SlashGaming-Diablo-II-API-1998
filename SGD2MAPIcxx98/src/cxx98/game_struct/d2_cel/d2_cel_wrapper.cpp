@@ -43,20 +43,72 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_cel/d2_cel_wrapper.hpp"
 
 namespace d2 {
 
-typedef ::D2_Cel Cel;
+Cel_Wrapper::Cel_Wrapper(Cel* cel) {
+  this->cel_.v1_00 = reinterpret_cast<Cel_1_00*>(cel);
+}
 
-typedef ::D2_Cel_1_00 Cel_1_00;
+Cel_Wrapper::Cel_Wrapper(Cel_1_00* cel) {
+  this->cel_.v1_00 = cel;
+}
+
+Cel_Wrapper::operator Cel_View() const {
+  return Cel_View(this->Get());
+}
+
+Cel* Cel_Wrapper::Get() {
+  const Cel_Wrapper* const_this = this;
+
+  return const_cast<Cel*>(const_this->Get());
+}
+
+const Cel* Cel_Wrapper::Get() const {
+  Cel_View view(*this);
+
+  return view.Get();
+}
+
+int Cel_Wrapper::GetHeight() const {
+  Cel_View view(*this);
+
+  return view.GetHeight();
+}
+
+void Cel_Wrapper::SetHeight(int height) {
+  ::D2_Cel_SetHeight(this->Get(), height);
+}
+
+int Cel_Wrapper::GetOffsetX() const {
+  Cel_View view(*this);
+
+  return view.GetOffsetX();
+}
+
+void Cel_Wrapper::SetOffsetX(int offset_x) {
+  ::D2_Cel_SetOffsetX(this->Get(), offset_x);
+}
+
+int Cel_Wrapper::GetOffsetY() const {
+  Cel_View view(*this);
+
+  return view.GetOffsetY();
+}
+
+void Cel_Wrapper::SetOffsetY(int offset_y) {
+  ::D2_Cel_SetOffsetY(this->Get(), offset_y);
+}
+
+int Cel_Wrapper::GetWidth() const {
+  Cel_View view(*this);
+
+  return view.GetWidth();
+}
+
+void Cel_Wrapper::SetWidth(int width) {
+  ::D2_Cel_SetWidth(this->Get(), width);
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_ */

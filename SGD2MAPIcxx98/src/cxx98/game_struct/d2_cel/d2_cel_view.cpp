@@ -43,20 +43,36 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_cel/d2_cel_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_Cel Cel;
+Cel_View::Cel_View(const Cel* cel) {
+  this->cel_.v1_00 = reinterpret_cast<const Cel_1_00*>(cel);
+}
 
-typedef ::D2_Cel_1_00 Cel_1_00;
+Cel_View::Cel_View(const Cel_1_00* cel) {
+  this->cel_.v1_00 = cel;
+}
+
+const Cel* Cel_View::Get() const {
+  return reinterpret_cast<const Cel*>(this->cel_.v1_00);
+}
+
+int Cel_View::GetHeight() const {
+  return ::D2_Cel_GetHeight(this->Get());
+}
+
+int Cel_View::GetOffsetX() const {
+  return ::D2_Cel_GetOffsetX(this->Get());
+}
+
+int Cel_View::GetOffsetY() const {
+  return ::D2_Cel_GetOffsetY(this->Get());
+}
+
+int Cel_View::GetWidth() const {
+  return ::D2_Cel_GetWidth(this->Get());
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_ */

@@ -219,6 +219,14 @@ SOURCE=.\include\cxx98\game_struct\d2_belt_record\d2_belt_record_wrapper.hpp
 
 SOURCE=.\include\cxx98\game_struct\d2_cel\d2_cel_struct.hpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel\d2_cel_view.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\game_struct\d2_cel\d2_cel_wrapper.hpp
+# End Source File
 # End Group
 # Begin Group "d2_cel_context_hpp"
 
@@ -495,6 +503,14 @@ SOURCE=.\src\cxx98\game_struct\d2_belt_record\d2_belt_record_wrapper.cpp
 # Begin Group "d2_cel_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_cel\d2_cel_view.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\game_struct\d2_cel\d2_cel_wrapper.cpp
+# End Source File
 # End Group
 # Begin Group "d2_cel_context_cpp"
 

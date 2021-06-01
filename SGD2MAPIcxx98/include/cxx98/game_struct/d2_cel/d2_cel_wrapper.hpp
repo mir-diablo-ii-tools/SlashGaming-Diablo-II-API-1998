@@ -43,20 +43,55 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "d2_cel_struct.hpp"
+#include "d2_cel_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_Cel Cel;
+class DLLEXPORT Cel_Wrapper {
+ public:
+  union WrapperType {
+    Cel_1_00* v1_00;
+  };
 
-typedef ::D2_Cel_1_00 Cel_1_00;
+  Cel_Wrapper(Cel* cel);
+
+  explicit Cel_Wrapper(Cel_1_00* cel);
+
+  operator Cel_View() const;
+
+  Cel* Get();
+
+  const Cel* Get() const;
+
+  int GetHeight() const;
+
+  void SetHeight(int height);
+
+  int GetOffsetX() const;
+
+  void SetOffsetX(int offset_x);
+
+  int GetOffsetY() const;
+
+  void SetOffsetY(int offset_y);
+
+  int GetWidth() const;
+
+  void SetWidth(int width);
+
+ private:
+  WrapperType cel_;
+};
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_WRAPPER_HPP_ */
