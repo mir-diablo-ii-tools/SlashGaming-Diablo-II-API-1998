@@ -43,20 +43,40 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "d2_mpq_archive_struct.hpp"
+#include "d2_mpq_archive_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_MpqArchive MpqArchive;
+class DLLEXPORT MpqArchive_Wrapper {
+ public:
+  union WrapperType {
+    MpqArchive_1_00* v1_00;
+  };
 
-typedef ::D2_MpqArchive_1_00 MpqArchive_1_00;
+  MpqArchive_Wrapper(MpqArchive* mpq_archive);
+
+  explicit MpqArchive_Wrapper(MpqArchive_1_00* mpq_archive);
+
+  operator MpqArchive_View() const;
+
+  MpqArchive* Get();
+
+  const MpqArchive* Get() const;
+
+ private:
+  WrapperType mpq_archive_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_WRAPPER_HPP_ */

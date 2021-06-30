@@ -43,20 +43,22 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_MpqArchive MpqArchive;
+MpqArchive_View::MpqArchive_View(const MpqArchive* mpq_archive) {
+  this->mpq_archive_.v1_00 = reinterpret_cast<const MpqArchive_1_00*>(
+      mpq_archive
+  );
+}
 
-typedef ::D2_MpqArchive_1_00 MpqArchive_1_00;
+MpqArchive_View::MpqArchive_View(const MpqArchive_1_00* mpq_archive) {
+  this->mpq_archive_.v1_00 = mpq_archive;
+}
+
+const MpqArchive* MpqArchive_View::Get() const {
+  return reinterpret_cast<const MpqArchive*>(this->mpq_archive_.v1_00);
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_STRUCT_HPP_ */

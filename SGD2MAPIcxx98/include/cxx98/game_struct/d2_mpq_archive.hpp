@@ -47,5 +47,7 @@
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HPP_
 
 #include "d2_mpq_archive/d2_mpq_archive_struct.hpp"
+#include "d2_mpq_archive/d2_mpq_archive_view.hpp"
+#include "d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
 
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HPP_ */
