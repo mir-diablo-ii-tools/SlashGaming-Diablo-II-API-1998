@@ -43,11 +43,60 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
+#include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
 
-#include "d2_cel_file/d2_cel_file_struct.hpp"
-#include "d2_cel_file/d2_cel_file_view.hpp"
-#include "d2_cel_file/d2_cel_file_wrapper.hpp"
+namespace d2 {
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_ */
+CelFile_Wrapper::CelFile_Wrapper(CelFile* cel_file) {
+  this->cel_file_.v1_00 = reinterpret_cast<CelFile_1_00*>(cel_file);
+}
+
+CelFile_Wrapper::CelFile_Wrapper(CelFile_1_00* cel_file) {
+  this->cel_file_.v1_00 = cel_file;
+}
+
+CelFile_Wrapper::operator CelFile_View() const {
+  return CelFile_View(this->Get());
+}
+
+CelFile* CelFile_Wrapper::Get() {
+  const CelFile_Wrapper* const_this = this;
+
+  return const_cast<CelFile*>(const_this->Get());
+}
+
+const CelFile* CelFile_Wrapper::Get() const {
+  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+}
+
+unsigned int CelFile_Wrapper::GetNumFrames() const {
+  CelFile_View view(*this);
+
+  return view.GetNumFrames();
+}
+
+void CelFile_Wrapper::SetNumFrames(unsigned int num_frames) {
+  ::D2_CelFile_SetNumFrames(this->Get(), num_frames);
+}
+
+unsigned int CelFile_Wrapper::GetNumDirections() const {
+  CelFile_View view(*this);
+
+  return view.GetNumDirections();
+}
+
+void CelFile_Wrapper::SetNumDirections(unsigned int num_directions) {
+  ::D2_CelFile_SetNumDirections(this->Get(), num_directions);
+}
+
+unsigned int CelFile_Wrapper::GetVersion() const {
+  CelFile_View view(*this);
+
+  return view.GetVersion();
+}
+
+void CelFile_Wrapper::SetVersion(unsigned int version) {
+  ::D2_CelFile_SetVersion(this->Get(), version);
+}
+
+} // namespace d2

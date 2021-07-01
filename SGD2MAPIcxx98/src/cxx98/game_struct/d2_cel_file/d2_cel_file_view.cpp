@@ -43,11 +43,32 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
+#include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_view.hpp"
 
-#include "d2_cel_file/d2_cel_file_struct.hpp"
-#include "d2_cel_file/d2_cel_file_view.hpp"
-#include "d2_cel_file/d2_cel_file_wrapper.hpp"
+namespace d2 {
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_ */
+CelFile_View::CelFile_View(const CelFile* cel_file) {
+  this->cel_file_.v1_00 = reinterpret_cast<const CelFile_1_00*>(cel_file);
+}
+
+CelFile_View::CelFile_View(const CelFile_1_00* cel_file) {
+  this->cel_file_.v1_00 = cel_file;
+}
+
+const CelFile* CelFile_View::Get() const {
+  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+}
+
+unsigned int CelFile_View::GetNumFrames() const {
+  return ::D2_CelFile_GetNumFrames(this->Get());
+}
+
+unsigned int CelFile_View::GetNumDirections() const {
+  return ::D2_CelFile_GetNumDirections(this->Get());
+}
+
+unsigned int CelFile_View::GetVersion() const {
+  return ::D2_CelFile_GetVersion(this->Get());
+}
+
+} // namespace d2

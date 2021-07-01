@@ -48,10 +48,15 @@
 
 #include <sgd2mapi.h>
 
+#include "../../../dllexport_define.inc"
+
 namespace d2 {
 
 typedef ::D2_CelFile CelFile;
 
+typedef ::D2_CelFile_1_00 CelFile_1_00;
+
 } // namespace d2
 
+#include "../../../dllexport_undefine.inc"
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_STRUCT_HPP_ */

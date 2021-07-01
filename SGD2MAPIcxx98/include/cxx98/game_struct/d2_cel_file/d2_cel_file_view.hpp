@@ -43,11 +43,41 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_VIEW_HPP_
 
-#include "d2_cel_file/d2_cel_file_struct.hpp"
-#include "d2_cel_file/d2_cel_file_view.hpp"
-#include "d2_cel_file/d2_cel_file_wrapper.hpp"
+#include <stddef.h>
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_ */
+#include <sgd2mapi.h>
+#include "d2_cel_file_struct.hpp"
+
+#include "../../../dllexport_define.inc"
+
+namespace d2 {
+
+class DLLEXPORT CelFile_View {
+ public:
+  union ViewType {
+    const CelFile_1_00* v1_00;
+  };
+
+  CelFile_View(const CelFile* cel_file);
+
+  explicit CelFile_View(const CelFile_1_00* cel_file);
+
+  const CelFile* Get() const;
+
+  unsigned int GetNumFrames() const;
+
+  unsigned int GetNumDirections() const;
+
+  unsigned int GetVersion() const;
+
+ private:
+  ViewType cel_file_;
+};
+
+} // namespace d2
+
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_VIEW_HPP_ */

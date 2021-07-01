@@ -43,11 +43,52 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_WRAPPER_HPP_
 
-#include "d2_cel_file/d2_cel_file_struct.hpp"
-#include "d2_cel_file/d2_cel_file_view.hpp"
-#include "d2_cel_file/d2_cel_file_wrapper.hpp"
+#include <stddef.h>
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_ */
+#include <sgd2mapi.h>
+#include "d2_cel_file_struct.hpp"
+#include "d2_cel_file_view.hpp"
+
+#include "../../../dllexport_define.inc"
+
+namespace d2 {
+
+class DLLEXPORT CelFile_Wrapper {
+ public:
+  union WrapperType {
+    CelFile_1_00* v1_00;
+  };
+
+  CelFile_Wrapper(CelFile* cel_file);
+
+  explicit CelFile_Wrapper(CelFile_1_00* cel_file);
+
+  operator CelFile_View() const;
+
+  CelFile* Get();
+
+  const CelFile* Get() const;
+
+  unsigned int GetNumFrames() const;
+
+  void SetNumFrames(unsigned int num_frames);
+
+  unsigned int GetNumDirections() const;
+
+  void SetNumDirections(unsigned int num_directions);
+
+  unsigned int GetVersion() const;
+
+  void SetVersion(unsigned int version);
+
+ private:
+  WrapperType cel_file_;
+};
+
+} // namespace d2
+
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_WRAPPER_HPP_ */
