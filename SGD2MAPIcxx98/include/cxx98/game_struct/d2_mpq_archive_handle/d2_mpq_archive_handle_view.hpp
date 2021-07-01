@@ -43,17 +43,44 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_VIEW_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_mpq_archive/d2_mpq_archive_view.hpp"
+#include "d2_mpq_archive_handle_struct.hpp"
+
+#include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_MpqArchiveHandle MpqArchiveHandle;
+class DLLEXPORT MpqArchiveHandle_View {
+ public:
+  union ViewType {
+    const MpqArchiveHandle_1_00* v1_00;
+  };
 
-typedef ::D2_MpqArchiveHandle_1_00 MpqArchiveHandle_1_00;
+  MpqArchiveHandle_View(const MpqArchiveHandle* mpq_archive_handle);
+
+  explicit MpqArchiveHandle_View(
+      const MpqArchiveHandle_1_00* mpq_archive_handle
+  );
+
+  MpqArchiveHandle_View operator[](size_t index) const;
+
+  const MpqArchiveHandle* Get() const;
+
+  MpqArchive_View GetMpqArchive() const;
+
+  const char* GetMpqArchivePath() const;
+
+ private:
+  ViewType mpq_archive_handle_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_ */
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_VIEW_HPP_ */

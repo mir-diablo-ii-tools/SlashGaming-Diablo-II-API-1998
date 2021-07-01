@@ -43,17 +43,60 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_mpq_archive/d2_mpq_archive_view.hpp"
+#include "../d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
+#include "d2_mpq_archive_handle_struct.hpp"
+#include "d2_mpq_archive_handle_view.hpp"
+
+#include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_MpqArchiveHandle MpqArchiveHandle;
+class DLLEXPORT MpqArchiveHandle_Wrapper {
+ public:
+  union WrapperType {
+    MpqArchiveHandle_1_00* v1_00;
+  };
 
-typedef ::D2_MpqArchiveHandle_1_00 MpqArchiveHandle_1_00;
+  MpqArchiveHandle_Wrapper(MpqArchiveHandle* mpq_archive_handle);
+
+  explicit MpqArchiveHandle_Wrapper(
+      MpqArchiveHandle_1_00* mpq_archive_handle
+  );
+
+  MpqArchiveHandle_View operator[](size_t index) const;
+
+  MpqArchiveHandle_Wrapper operator[](size_t index);
+
+  operator MpqArchiveHandle_View() const;
+
+  MpqArchiveHandle* Get();
+
+  const MpqArchiveHandle* Get() const;
+
+  void AssignMembers(MpqArchiveHandle_View src);
+
+  MpqArchive_View GetMpqArchive() const;
+
+  MpqArchive_Wrapper GetMpqArchive();
+
+  void SetMpqArchive(MpqArchive_Wrapper mpq_archive);
+
+  char* GetMpqArchivePath();
+
+  const char* GetMpqArchivePath() const;
+
+ private:
+  WrapperType mpq_archive_handle_;
+};
 
 } // namespace d2
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_ */
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_WRAPPER_HPP_ */

@@ -43,17 +43,41 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_
-
-#include <sgd2mapi.h>
+#include "../../../../include/cxx98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_MpqArchiveHandle MpqArchiveHandle;
+MpqArchiveHandle_View::MpqArchiveHandle_View(
+    const MpqArchiveHandle* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 =
+      reinterpret_cast<const MpqArchiveHandle_1_00*>(
+          mpq_archive_handle
+      );
+}
 
-typedef ::D2_MpqArchiveHandle_1_00 MpqArchiveHandle_1_00;
+MpqArchiveHandle_View::MpqArchiveHandle_View(
+    const MpqArchiveHandle_1_00* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 = mpq_archive_handle;
+}
+
+MpqArchiveHandle_View MpqArchiveHandle_View::operator[](size_t index) const {
+  return ::D2_MpqArchiveHandle_AccessConst(this->Get(), index);
+}
+
+const MpqArchiveHandle* MpqArchiveHandle_View::Get() const {
+  return reinterpret_cast<const MpqArchiveHandle*>(
+      this->mpq_archive_handle_.v1_00
+  );
+}
+
+MpqArchive_View MpqArchiveHandle_View::GetMpqArchive() const {
+  return ::D2_MpqArchiveHandle_GetMpqArchiveConst(this->Get());
+}
+
+const char* MpqArchiveHandle_View::GetMpqArchivePath() const {
+  return ::D2_MpqArchiveHandle_GetMpqArchivePathConst(this->Get());
+}
 
 } // namespace d2
-
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_STRUCT_HPP_ */
