@@ -43,24 +43,50 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_VIEW_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_VIEW_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_cel_file/d2_cel_file_view.hpp"
+#include "d2_cel_context_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_CelContext CelContext;
+class DLLEXPORT CelContext_View {
+ public:
+  union ViewType {
+    const CelContext_1_00* v1_00;
+    const CelContext_1_12A* v1_12a;
+    const CelContext_1_13C* v1_13c;
+  };
 
-typedef ::D2_CelContext_1_00 CelContext_1_00;
+  CelContext_View(const CelContext* cel_context);
 
-typedef ::D2_CelContext_1_12A CelContext_1_12A;
+  explicit CelContext_View(const CelContext_1_00* cel_context);
 
-typedef ::D2_CelContext_1_13C CelContext_1_13C;
+  explicit CelContext_View(const CelContext_1_12A* cel_context);
+
+  explicit CelContext_View(const CelContext_1_13C* cel_context);
+
+  CelContext_View operator[](size_t index) const;
+
+  const CelContext* Get() const;
+
+  CelFile_View GetCelFile() const;
+
+  unsigned int GetDirectionIndex() const;
+
+  unsigned int GetFrameIndex() const;
+
+ private:
+  ViewType cel_context_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_VIEW_HPP_ */

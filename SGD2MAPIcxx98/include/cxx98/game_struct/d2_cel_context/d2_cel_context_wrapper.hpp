@@ -43,24 +43,68 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_
+
+#include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_cel_file/d2_cel_file_view.hpp"
+#include "../d2_cel_file/d2_cel_file_wrapper.hpp"
+#include "d2_cel_context_struct.hpp"
+#include "d2_cel_context_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_CelContext CelContext;
+class DLLEXPORT CelContext_Wrapper {
+ public:
+  union WrapperType {
+    CelContext_1_00* v1_00;
+    CelContext_1_12A* v1_12a;
+    CelContext_1_13C* v1_13c;
+  };
 
-typedef ::D2_CelContext_1_00 CelContext_1_00;
+  CelContext_Wrapper(CelContext* cel_context);
 
-typedef ::D2_CelContext_1_12A CelContext_1_12A;
+  explicit CelContext_Wrapper(CelContext_1_00* cel_context);
 
-typedef ::D2_CelContext_1_13C CelContext_1_13C;
+  explicit CelContext_Wrapper(CelContext_1_12A* cel_context);
+
+  explicit CelContext_Wrapper(CelContext_1_13C* cel_context);
+
+  CelContext_View operator[](size_t index) const;
+
+  CelContext_Wrapper operator[](size_t index);
+
+  operator CelContext_View() const;
+
+  CelContext* Get();
+
+  const CelContext* Get() const;
+
+  void AssignMembers(CelContext_View src);
+
+  CelFile_View GetCelFile() const;
+
+  CelFile_Wrapper GetCelFile();
+
+  void SetCelFile(CelFile_Wrapper cel_file);
+
+  unsigned int GetDirectionIndex() const;
+
+  void SetDirectionIndex(unsigned int direction_index);
+
+  unsigned int GetFrameIndex() const;
+
+  void SetFrameIndex(unsigned int frame_index);
+
+ private:
+  WrapperType cel_context_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_ */
