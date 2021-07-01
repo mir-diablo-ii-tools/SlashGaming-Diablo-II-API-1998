@@ -71,6 +71,43 @@ struct D2_CelContext_Wrapper {
  * Function definitions
  */
 
+struct D2_CelContext* D2_CelContext_Access(
+    struct D2_CelContext* cel_context,
+    size_t index
+) {
+  return (struct D2_CelContext*) D2_CelContext_AccessConst(
+      cel_context,
+      index
+  );
+}
+
+const struct D2_CelContext* D2_CelContext_AccessConst(
+    const struct D2_CelContext* cel_context,
+    size_t index
+) {
+  struct D2_CelContext_View view;
+
+  enum D2_GameVersion running_game_version;
+
+  running_game_version = D2_GameVersion_GetRunning();
+
+  if (running_game_version >= D2_GameVersion_k1_00
+      && running_game_version <= D2_GameVersion_k1_10) {
+    view.ptr.v1_00 = (const struct D2_CelContext_1_00*) cel_context;
+
+    return (struct D2_CelContext*) &view.ptr.v1_00[index];
+  } else if (running_game_version == D2_GameVersion_k1_12A) {
+    view.ptr.v1_12a = (const struct D2_CelContext_1_12A*) cel_context;
+
+    return (struct D2_CelContext*) &view.ptr.v1_12a[index];
+  } else /* if (running_game_version >= D2_GameVersion_k1_13ABeta
+      && running_game_version <= D2_GameVersion_kLod1_14D) */ {
+    view.ptr.v1_13c = (const struct D2_CelContext_1_13C*) cel_context;
+
+    return (struct D2_CelContext*) &view.ptr.v1_13c[index];
+  }
+}
+
 void D2_CelContext_AssignMembers(
     struct D2_CelContext* dest,
     const struct D2_CelContext* src
