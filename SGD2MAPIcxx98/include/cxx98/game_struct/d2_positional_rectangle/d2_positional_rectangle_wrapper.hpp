@@ -95,6 +95,7 @@ class DLLEXPORT PositionalRectangle_Wrapper {
   int GetBottom() const;
 
   void SetBottom(int bottom);
+
  private:
   WrapperType positional_rectangle_;
 };

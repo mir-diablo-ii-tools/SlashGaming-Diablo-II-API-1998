@@ -75,7 +75,7 @@ BeltRecord_Wrapper BeltRecord_Wrapper::operator[](
 }
 
 BeltRecord_Wrapper::operator BeltRecord_View() const {
-    return BeltRecord_View(this->Get());
+  return BeltRecord_View(this->Get());
 }
 
 BeltRecord* BeltRecord_Wrapper::Get() {
