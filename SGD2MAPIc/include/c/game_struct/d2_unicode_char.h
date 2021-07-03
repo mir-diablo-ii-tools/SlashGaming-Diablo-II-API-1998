@@ -67,7 +67,7 @@ struct D2_UnicodeChar;
 #pragma pack(push, 1)
 
 /* sizeof: 0x02 */ struct D2_UnicodeChar_1_00 {
-  /* 0x00 */ int16_t ch;
+  /* 0x00 */ uint16_t ch;
 };
 
 #pragma pack(pop)
