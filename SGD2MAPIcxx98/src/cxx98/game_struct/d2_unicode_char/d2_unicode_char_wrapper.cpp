@@ -43,20 +43,52 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_unicode_char/d2_unicode_char_wrapper.hpp"
 
 namespace d2 {
 
-typedef ::D2_UnicodeChar UnicodeChar;
+UnicodeChar_Wrapper::UnicodeChar_Wrapper(UnicodeChar* ch) {
+  this->ch_.v1_00 = reinterpret_cast<UnicodeChar_1_00*>(ch);
+}
 
-typedef ::D2_UnicodeChar_1_00 UnicodeChar_1_00;
+UnicodeChar_Wrapper::UnicodeChar_Wrapper(UnicodeChar_1_00* ch) {
+  this->ch_.v1_00 = ch;
+}
+
+UnicodeChar_View UnicodeChar_Wrapper::operator[](size_t index) const {
+  UnicodeChar_View view(*this);
+
+  return view[index];
+}
+
+UnicodeChar_Wrapper UnicodeChar_Wrapper::operator[](size_t index) {
+  return ::D2_UnicodeChar_Access(this->Get(), index);
+}
+
+UnicodeChar_Wrapper::operator UnicodeChar_View() const {
+  return UnicodeChar_View(this->Get());
+}
+
+UnicodeChar* UnicodeChar_Wrapper::Get() {
+  const UnicodeChar_Wrapper* const_this = this;
+
+  return const_cast<UnicodeChar*>(const_this->Get());
+}
+
+const UnicodeChar* UnicodeChar_Wrapper::Get() const {
+  return reinterpret_cast<const UnicodeChar*>(this->ch_.v1_00);
+}
+
+void UnicodeChar_Wrapper::AssignMembers(UnicodeChar_View src) {
+  ::D2_UnicodeChar_AssignMembers(this->Get(), src.Get());
+}
+
+void UnicodeChar_Wrapper::SetCharFromAsciiChar(char ch) {
+  ::D2_UnicodeChar_SetCharFromAsciiChar(this->Get(), ch);
+}
+
+void UnicodeChar_Wrapper::SetCharFromUtf16CodeUnit(uint_least16_t ch) {
+  ::D2_UnicodeChar_SetCharFromUtf16CodeUnit(this->Get(), ch);
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_ */

@@ -43,20 +43,51 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_WRAPPER_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_WRAPPER_HPP_
 
+#include <stddef.h>
+
+#include <mdc/std/stdint.h>
 #include <sgd2mapi.h>
+#include "d2_unicode_char_struct.hpp"
+#include "d2_unicode_char_view.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-typedef ::D2_UnicodeChar UnicodeChar;
+class DLLEXPORT UnicodeChar_Wrapper {
+ public:
+  union WrapperType {
+    UnicodeChar_1_00* v1_00;
+  };
 
-typedef ::D2_UnicodeChar_1_00 UnicodeChar_1_00;
+  UnicodeChar_Wrapper(UnicodeChar* ch);
+
+  explicit UnicodeChar_Wrapper(UnicodeChar_1_00* ch);
+
+  UnicodeChar_View operator[](size_t index) const;
+
+  UnicodeChar_Wrapper operator[](size_t index);
+
+  operator UnicodeChar_View() const;
+
+  UnicodeChar* Get();
+
+  const UnicodeChar* Get() const;
+
+  void AssignMembers(UnicodeChar_View src);
+
+  void SetCharFromAsciiChar(char ch);
+
+  void SetCharFromUtf16CodeUnit(uint_least16_t ch);
+
+ private:
+  WrapperType ch_;
+};
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_WRAPPER_HPP_ */

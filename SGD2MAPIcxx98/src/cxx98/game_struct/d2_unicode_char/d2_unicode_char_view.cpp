@@ -43,20 +43,24 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_
-
-#include <sgd2mapi.h>
-
-#include "../../../dllexport_define.inc"
+#include "../../../../include/cxx98/game_struct/d2_unicode_char/d2_unicode_char_view.hpp"
 
 namespace d2 {
 
-typedef ::D2_UnicodeChar UnicodeChar;
+UnicodeChar_View::UnicodeChar_View(const UnicodeChar* ch) {
+  this->ch_.v1_00 = reinterpret_cast<const UnicodeChar_1_00*>(ch);
+}
 
-typedef ::D2_UnicodeChar_1_00 UnicodeChar_1_00;
+UnicodeChar_View::UnicodeChar_View(const UnicodeChar_1_00* ch) {
+  this->ch_.v1_00 = ch;
+}
+
+UnicodeChar_View UnicodeChar_View::operator[](size_t index) const {
+  return ::D2_UnicodeChar_AccessConst(this->Get(), index);
+}
+
+const UnicodeChar* UnicodeChar_View::Get() const {
+  return reinterpret_cast<const UnicodeChar*>(this->ch_.v1_00);
+}
 
 } // namespace d2
-
-#include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_UNICODE_CHAR_D2_UNICODE_CHAR_STRUCT_HPP_ */
