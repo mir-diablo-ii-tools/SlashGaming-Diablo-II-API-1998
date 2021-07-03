@@ -110,6 +110,17 @@ void D2_UnicodeChar_SetCharFromAsciiChar(
   wrapper.ptr.v1_00->ch = ch;
 }
 
+void D2_UnicodeChar_SetCharFromUtf16CodeUnit(
+    struct D2_UnicodeChar* unicode_char,
+    uint_least16_t ch
+) {
+  struct D2_UnicodeChar_Wrapper wrapper;
+
+  wrapper.ptr.v1_00 = (struct D2_UnicodeChar_1_00*) unicode_char;
+
+  wrapper.ptr.v1_00->ch = ch;
+}
+
 /**
  * API functions
  */

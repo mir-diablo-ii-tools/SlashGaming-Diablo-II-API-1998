@@ -139,6 +139,14 @@ DLLEXPORT void D2_UnicodeChar_SetCharFromAsciiChar(
 );
 
 /**
+ * Replaces the character with the specified UTF-16 code unit.
+ */
+DLLEXPORT void D2_UnicodeChar_SetCharFromUtf16CodeUnit(
+    struct D2_UnicodeChar* unicode_char,
+    uint_least16_t ch
+);
+
+/**
  * API functions
  */
 
