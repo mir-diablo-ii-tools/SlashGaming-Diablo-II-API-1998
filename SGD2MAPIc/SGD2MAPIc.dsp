@@ -247,54 +247,6 @@ SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_rectangle.h
 
 SOURCE=.\include\c\game_function\d2lang\d2lang_get_string_by_index.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_ascii_to_unicode.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcat.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcmp.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strcpy.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strlen.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncat.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncmp.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_strncpy.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_tolower.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_toupper.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_unicode_to_utf8.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_function\d2lang\d2lang_unicode_utf8_to_unicode.h
-# End Source File
 # End Group
 # Begin Group "d2win_function_h"
 
@@ -1369,54 +1321,6 @@ SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_rectangle.c
 # Begin Source File
 
 SOURCE=.\src\c\game_function\d2lang\d2lang_get_string_by_index.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_ascii_to_unicode.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strcat.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strcmp.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strcpy.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strlen.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strncat.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strncmp.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_strncpy.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_tolower.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_toupper.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_unicode_to_utf8.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\c\game_function\d2lang\d2lang_unicode_utf8_to_unicode.c
 # End Source File
 # End Group
 # Begin Group "d2win_function_c"
