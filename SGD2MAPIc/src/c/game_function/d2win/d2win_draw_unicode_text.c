@@ -75,7 +75,7 @@ static void InitStatic(void) {
  */
 
 void D2_D2Win_DrawUnicodeText(
-    const struct D2_UnicodeChar* text,
+    const wchar_t* text,
     int position_x,
     int position_y,
     enum D2_TextColor text_color,
@@ -84,7 +84,7 @@ void D2_D2Win_DrawUnicodeText(
   InitStatic();
 
   D2_D2Win_DrawUnicodeText_1_00(
-      (const struct D2_UnicodeChar_1_00*) text,
+      text,
       position_x,
       position_y,
       D2_TextColor_ToGameValue(text_color),
@@ -93,7 +93,7 @@ void D2_D2Win_DrawUnicodeText(
 }
 
 void D2_D2Win_DrawUnicodeText_1_00(
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t position_x,
     int32_t position_y,
     /* enum D2_TextColor_1_00 */ int32_t text_color,

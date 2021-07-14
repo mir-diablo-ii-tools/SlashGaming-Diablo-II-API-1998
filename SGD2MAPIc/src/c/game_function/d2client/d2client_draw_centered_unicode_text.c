@@ -78,7 +78,7 @@ void __cdecl D2_D2Client_DrawCenteredUnicodeText_1_11_Shim(
     intptr_t func_ptr,
     int32_t left,
     int32_t position_y,
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t right,
     /* enum D2_TextColor_1_00 */ int32_t text_color
 );
@@ -90,7 +90,7 @@ void __cdecl D2_D2Client_DrawCenteredUnicodeText_1_11_Shim(
 void D2_D2Client_DrawCenteredUnicodeText(
     int left,
     int position_y,
-    const struct D2_UnicodeChar* text,
+    const wchar_t* text,
     int right,
     enum D2_TextColor text_color
 ) {
@@ -99,7 +99,7 @@ void D2_D2Client_DrawCenteredUnicodeText(
   D2_D2Client_DrawCenteredUnicodeText_1_00(
       left,
       position_y,
-      (const struct D2_UnicodeChar_1_00*) text,
+      text,
       right,
       D2_TextColor_ToGameValue(text_color)
   );
@@ -108,7 +108,7 @@ void D2_D2Client_DrawCenteredUnicodeText(
 void D2_D2Client_DrawCenteredUnicodeText_1_00(
     int32_t left,
     int32_t position_y,
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t right,
     /* enum D2_TextColor_1_00 */ int32_t text_color
 ) {

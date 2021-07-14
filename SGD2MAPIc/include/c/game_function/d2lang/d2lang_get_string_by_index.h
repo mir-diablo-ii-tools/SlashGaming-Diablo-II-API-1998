@@ -47,7 +47,7 @@
 #define SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_GET_STRING_BY_INDEX_H_
 
 #include <mdc/std/stdint.h>
-#include "../../game_struct/d2_unicode_char.h"
+#include <mdc/std/wchar.h>
 
 #include "../../../dllexport_define.inc"
 
@@ -55,11 +55,11 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
+DLLEXPORT const wchar_t* D2_D2Lang_GetStringByIndex(
     unsigned int id
 );
 
-DLLEXPORT const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
+DLLEXPORT const wchar_t* D2_D2Lang_GetStringByIndex_1_00(
     uint32_t id
 );
 

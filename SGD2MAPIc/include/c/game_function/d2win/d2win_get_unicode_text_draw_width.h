@@ -47,7 +47,7 @@
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_GET_UNICODE_TEXT_DRAW_WIDTH_H_
 
 #include <mdc/std/stdint.h>
-#include "../../game_struct/d2_unicode_char.h"
+#include <mdc/std/wchar.h>
 
 #include "../../../dllexport_define.inc"
 
@@ -56,11 +56,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT int D2_D2Win_GetUnicodeTextDrawWidth(
-    const struct D2_UnicodeChar* text
+    const wchar_t* text
 );
 
 DLLEXPORT int32_t D2_D2Win_GetUnicodeTextDrawWidth_1_00(
-    const struct D2_UnicodeChar_1_00* text
+    const wchar_t* text
 );
 
 #ifdef __cplusplus

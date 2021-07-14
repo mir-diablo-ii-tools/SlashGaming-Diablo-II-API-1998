@@ -74,22 +74,22 @@ static void InitStatic(void) {
  * External
  */
 
-const struct D2_UnicodeChar* D2_D2Lang_GetStringByIndex(
+const wchar_t* D2_D2Lang_GetStringByIndex(
     unsigned int id
 ) {
   InitStatic();
 
-  return (const struct D2_UnicodeChar*) D2_D2Lang_GetStringByIndex_1_00(
+  return D2_D2Lang_GetStringByIndex_1_00(
       id
   );
 }
 
-const struct D2_UnicodeChar_1_00* D2_D2Lang_GetStringByIndex_1_00(
+const wchar_t* D2_D2Lang_GetStringByIndex_1_00(
     uint32_t id
 ) {
   InitStatic();
 
-  return (const struct D2_UnicodeChar_1_00*) CallFastcallFunction(
+  return (const wchar_t*) CallFastcallFunction(
       game_address.raw_address,
       1,
       id

@@ -75,19 +75,16 @@ static void InitStatic(void) {
  */
 
 int D2_D2Win_GetUnicodeTextNDrawWidth(
-    const struct D2_UnicodeChar* text,
+    const wchar_t* text,
     int length
 ) {
   InitStatic();
 
-  return D2_D2Win_GetUnicodeTextNDrawWidth_1_00(
-      (const struct D2_UnicodeChar_1_00*) text,
-      length
-  );
+  return D2_D2Win_GetUnicodeTextNDrawWidth_1_00(text, length);
 }
 
 int32_t D2_D2Win_GetUnicodeTextNDrawWidth_1_00(
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t length
 ) {
   InitStatic();

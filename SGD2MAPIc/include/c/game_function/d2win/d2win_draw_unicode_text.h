@@ -47,9 +47,9 @@
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_H_
 
 #include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 #include "../../game_bool.h"
 #include "../../game_constant/d2_text_color.h"
-#include "../../game_struct/d2_unicode_char.h"
 
 #include "../../../dllexport_define.inc"
 
@@ -58,7 +58,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT void D2_D2Win_DrawUnicodeText(
-    const struct D2_UnicodeChar* text,
+    const wchar_t* text,
     int position_x,
     int position_y,
     enum D2_TextColor text_color,
@@ -66,7 +66,7 @@ DLLEXPORT void D2_D2Win_DrawUnicodeText(
 );
 
 DLLEXPORT void D2_D2Win_DrawUnicodeText_1_00(
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t position_x,
     int32_t position_y,
     /* enum D2_TextColor_1_00 */ int32_t text_color,

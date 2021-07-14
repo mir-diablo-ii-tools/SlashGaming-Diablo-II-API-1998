@@ -75,21 +75,21 @@ static void InitStatic(void) {
  */
 
 void D2_D2Win_GetPopUpUnicodeTextWidthAndHeight(
-    const struct D2_UnicodeChar* text,
+    const wchar_t* text,
     int* width,
     int* height
 ) {
   InitStatic();
 
   D2_D2Win_GetPopUpUnicodeTextWidthAndHeight_1_00(
-      (const struct D2_UnicodeChar_1_00*) text,
+      text,
       width,
       height
   );
 }
 
 void D2_D2Win_GetPopUpUnicodeTextWidthAndHeight_1_00(
-    const struct D2_UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t* width,
     int32_t* height
 ) {

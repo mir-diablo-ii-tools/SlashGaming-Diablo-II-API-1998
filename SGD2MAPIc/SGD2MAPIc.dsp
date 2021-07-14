@@ -436,10 +436,6 @@ SOURCE=.\include\c\game_struct\d2_mpq_archive_handle.h
 
 SOURCE=.\include\c\game_struct\d2_positional_rectangle.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\include\c\game_struct\d2_unicode_char.h
-# End Source File
 # End Group
 # Begin Group "game_variable_h"
 
@@ -760,6 +756,10 @@ SOURCE=.\include\c\game_executable.h
 # Begin Source File
 
 SOURCE=.\include\c\game_patch.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\game_struct.h
 # End Source File
 # Begin Source File
 
