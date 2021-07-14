@@ -47,8 +47,8 @@
 #define SGD2MAPI_CXX98_GAME_FUNCTION_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_HPP_
 
 #include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 #include "../../game_constant/d2_text_color.hpp"
-#include "../../game_struct/d2_unicode_char.hpp"
 
 #include "../../../dllexport_define.inc"
 
@@ -58,7 +58,7 @@ namespace d2client {
 DLLEXPORT void DrawCenteredUnicodeText(
     int left,
     int position_y,
-    const UnicodeChar* text,
+    const wchar_t* text,
     int right,
     TextColor text_color
 );
@@ -66,7 +66,7 @@ DLLEXPORT void DrawCenteredUnicodeText(
 DLLEXPORT void DrawCenteredUnicodeText_1_00(
     int32_t left,
     int32_t position_y,
-    const UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t right,
     TextColor_1_00 text_color
 );

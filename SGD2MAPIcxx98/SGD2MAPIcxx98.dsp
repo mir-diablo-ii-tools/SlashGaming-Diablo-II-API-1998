@@ -592,10 +592,6 @@ SOURCE=.\src\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_v
 SOURCE=.\src\cxx98\game_struct\d2_positional_rectangle\d2_positional_rectangle_wrapper.cpp
 # End Source File
 # End Group
-# Begin Group "d2_unicode_char_cpp"
-
-# PROP Default_Filter ""
-# End Group
 # End Group
 # Begin Group "game_variable_cpp"
 

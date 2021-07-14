@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/cxx98/game_function/d2client_function/d2client_draw_centered_unicode_text.hpp"
+#include "../../../../include/cxx98/game_function/d2client/d2client_draw_centered_unicode_text.hpp"
 
 #include <sgd2mapi.h>
 
@@ -53,7 +53,7 @@ namespace d2client {
 void DrawCenteredUnicodeText(
     int left,
     int position_y,
-    const UnicodeChar* text,
+    const wchar_t* text,
     int right,
     TextColor text_color
 ) {
@@ -69,7 +69,7 @@ void DrawCenteredUnicodeText(
 void DrawCenteredUnicodeText_1_00(
     int32_t left,
     int32_t position_y,
-    const UnicodeChar_1_00* text,
+    const wchar_t* text,
     int32_t right,
     TextColor_1_00 text_color
 ) {
