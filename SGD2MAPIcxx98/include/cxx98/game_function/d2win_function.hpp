@@ -43,18 +43,18 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_FUNC_D2WIN_FUNCTION_HPP_
+#define SGD2MAPI_CXX98_GAME_FUNC_D2WIN_FUNCTION_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-// #include "cxx98/game_struct.hpp"
-// #include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
+#include "d2win/d2win_draw_unicode_text.hpp"
+#include "d2win/d2win_get_pop_up_unicode_text_width_and_height.hpp"
+#include "d2win/d2win_get_unicode_text_draw_width.hpp"
+#include "d2win/d2win_get_unicode_text_n_draw_width.hpp"
+#include "d2win/d2win_load_cel_file.hpp"
+#include "d2win/d2win_load_mpq.hpp"
+#include "d2win/d2win_set_pop_up_unicode_text.hpp"
+#include "d2win/d2win_set_text_font.hpp"
+#include "d2win/d2win_unload_cel_file.hpp"
+#include "d2win/d2win_unload_mpq.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_FUNC_D2WIN_FUNCTION_HPP_ */

@@ -43,18 +43,27 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_FUNCTION_HPP_
+#define SGD2MAPI_CXX98_GAME_FUNCTION_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-// #include "cxx98/game_struct.hpp"
-// #include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
+#include "game_function/bnclient_function.hpp"
+#include "game_function/d2client_function.hpp"
+#include "game_function/d2cmp_function.hpp"
+#include "game_function/d2common_function.hpp"
+#include "game_function/d2ddraw_function.hpp"
+#include "game_function/d2direct3d_function.hpp"
+#include "game_function/d2game_function.hpp"
+#include "game_function/d2gdi_function.hpp"
+#include "game_function/d2gfx_function.hpp"
+#include "game_function/d2glide_function.hpp"
+#include "game_function/d2lang_function.hpp"
+#include "game_function/d2launch_function.hpp"
+#include "game_function/d2mcpclient_function.hpp"
+#include "game_function/d2multi_function.hpp"
+#include "game_function/d2net_function.hpp"
+#include "game_function/d2sound_function.hpp"
+#include "game_function/d2win_function.hpp"
+#include "game_function/fog_function.hpp"
+#include "game_function/storm_function.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_FUNCTION_HPP_ */

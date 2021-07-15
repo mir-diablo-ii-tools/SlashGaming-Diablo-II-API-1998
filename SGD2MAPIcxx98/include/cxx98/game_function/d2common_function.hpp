@@ -43,18 +43,13 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_FUNC_D2COMMON_FUNCTION_HPP_
+#define SGD2MAPI_CXX98_GAME_FUNC_D2COMMON_FUNCTION_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-// #include "cxx98/game_struct.hpp"
-// #include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
+#include "d2common/d2common_get_global_belt_record.hpp"
+#include "d2common/d2common_get_global_belt_slot_position.hpp"
+#include "d2common/d2common_get_global_equipment_slot_layout.hpp"
+#include "d2common/d2common_get_global_inventory_grid_layout.hpp"
+#include "d2common/d2common_get_global_inventory_position.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_FUNC_D2COMMON_FUNCTION_HPP_ */
