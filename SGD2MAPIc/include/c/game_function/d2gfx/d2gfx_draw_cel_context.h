@@ -72,7 +72,7 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     int32_t position_x,
     int32_t position_y,
     uint32_t bgrt_color,
-    int32_t draw_cel_context_effect,
+    int32_t draw_effect,
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 
@@ -81,7 +81,7 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     int32_t position_x,
     int32_t position_y,
     uint32_t bgrt_color,
-    int32_t draw_cel_context_effect,
+    int32_t draw_effect,
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 
@@ -90,7 +90,7 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     int32_t position_x,
     int32_t position_y,
     uint32_t bgrt_color,
-    int32_t draw_cel_context_effect,
+    int32_t draw_effect,
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 

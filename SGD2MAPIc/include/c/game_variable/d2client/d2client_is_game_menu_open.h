@@ -64,7 +64,6 @@ DLLEXPORT void D2_D2Client_SetIsGameMenuOpen_1_00(
     mapi_bool32 is_game_menu_open
 );
 
-
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */

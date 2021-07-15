@@ -60,7 +60,9 @@ DLLEXPORT mapi_bool32 D2_D2Client_GetIsNewStatsButtonPressed_1_00(void);
 
 DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed(int is_button_pressed);
 
-DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed_1_00(mapi_bool32 is_button_pressed);
+DLLEXPORT void D2_D2Client_SetIsNewStatsButtonPressed_1_00(
+    mapi_bool32 is_button_pressed
+);
 
 #ifdef __cplusplus
 } /* extern "C" */
