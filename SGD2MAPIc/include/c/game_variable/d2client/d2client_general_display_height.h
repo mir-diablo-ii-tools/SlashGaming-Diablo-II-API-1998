@@ -57,9 +57,13 @@ DLLEXPORT int D2_D2Client_GetGeneralDisplayHeight(void);
 
 DLLEXPORT int32_t D2_D2Client_GetGeneralDisplayHeight_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetGeneralDisplayHeight(int value);
+DLLEXPORT void D2_D2Client_SetGeneralDisplayHeight(
+    int general_display_height
+);
 
-DLLEXPORT void D2_D2Client_SetGeneralDisplayHeight_1_00(int32_t value);
+DLLEXPORT void D2_D2Client_SetGeneralDisplayHeight_1_00(
+    int32_t general_display_height
+);
 
 #ifdef __cplusplus
 } /* extern "C" */

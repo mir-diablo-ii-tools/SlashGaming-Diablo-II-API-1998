@@ -63,7 +63,7 @@ D2_D2Client_GetGameType_1_00(void);
 DLLEXPORT void D2_D2Client_SetGameType(enum D2_ClientGameType game_type);
 
 DLLEXPORT void D2_D2Client_SetGameType_1_00(
-    /* enum D2_ClientGameType_1_00 */ int32_t value
+    /* enum D2_ClientGameType_1_00 */ int32_t game_type
 );
 
 #ifdef __cplusplus
