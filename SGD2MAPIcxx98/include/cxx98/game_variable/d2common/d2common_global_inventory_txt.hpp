@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CXX98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_HPP_
 #define SGD2MAPI_CXX98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_HPP_
 
-#include "../../game_struct/d2_inventory_record.hpp"
+#include "../../game_struct/d2_inventory_record/d2_inventory_record_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 
