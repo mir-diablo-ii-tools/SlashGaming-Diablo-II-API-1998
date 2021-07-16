@@ -43,17 +43,24 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_VARIABLE_HPP_
+#define SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_VARIABLE_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-#include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
+#include "d2client/d2client_difficulty_level.hpp"
+#include "d2client/d2client_game_type.hpp"
+#include "d2client/d2client_general_display_height.hpp"
+#include "d2client/d2client_general_display_width.hpp"
+#include "d2client/d2client_general_play_area_camera_shift_x.hpp"
+#include "d2client/d2client_ingame_mouse_position_x.hpp"
+#include "d2client/d2client_ingame_mouse_position_y.hpp"
+#include "d2client/d2client_inventory_arrange_mode.hpp"
+#include "d2client/d2client_is_automap_open.hpp"
+#include "d2client/d2client_is_game_menu_open.hpp"
+#include "d2client/d2client_is_help_screen_open.hpp"
+#include "d2client/d2client_is_new_skill_button_pressed.hpp"
+#include "d2client/d2client_is_new_stats_button_pressed.hpp"
+#include "d2client/d2client_screen_open_mode.hpp"
+#include "d2client/d2client_screen_shift_x.hpp"
+#include "d2client/d2client_screen_shift_y.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_VARIABLE_HPP_ */

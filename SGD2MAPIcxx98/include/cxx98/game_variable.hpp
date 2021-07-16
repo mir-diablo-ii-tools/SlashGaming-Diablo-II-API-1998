@@ -43,17 +43,27 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_VARIABLE_HPP_
+#define SGD2MAPI_CXX98_GAME_VARIABLE_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-#include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
+#include "game_variable/bnclient_variable.hpp"
+#include "game_variable/d2client_variable.hpp"
+#include "game_variable/d2cmp_variable.hpp"
+#include "game_variable/d2common_variable.hpp"
+#include "game_variable/d2ddraw_variable.hpp"
+#include "game_variable/d2direct3d_variable.hpp"
+#include "game_variable/d2game_variable.hpp"
+#include "game_variable/d2gdi_variable.hpp"
+#include "game_variable/d2gfx_variable.hpp"
+#include "game_variable/d2glide_variable.hpp"
+#include "game_variable/d2lang_variable.hpp"
+#include "game_variable/d2launch_variable.hpp"
+#include "game_variable/d2mcpclient_variable.hpp"
+#include "game_variable/d2multi_variable.hpp"
+#include "game_variable/d2net_variable.hpp"
+#include "game_variable/d2sound_variable.hpp"
+#include "game_variable/d2win_variable.hpp"
+#include "game_variable/fog_variable.hpp"
+#include "game_variable/storm_variable.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_VARIABLE_HPP_ */
