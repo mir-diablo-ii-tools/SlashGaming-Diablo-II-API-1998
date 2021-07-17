@@ -59,6 +59,10 @@ CelFile_Api::CelFile_Api(const char* path, bool is_dcc_else_dc6) {
   this->Open(path, is_dcc_else_dc6);
 }
 
+CelFile_Api::~CelFile_Api() {
+  this->Close();
+}
+
 CelFile_Api::operator CelFile_View() const {
   return CelFile_View(this->Get());
 }
