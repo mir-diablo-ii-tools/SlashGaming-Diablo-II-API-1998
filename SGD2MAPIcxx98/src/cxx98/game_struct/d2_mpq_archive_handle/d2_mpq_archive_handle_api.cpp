@@ -136,7 +136,7 @@ void MpqArchiveHandle_Api::Open(
 ) {
   this->Close();
   
-  MpqArchiveHandle* loaded_mpq = d2win::LoadMpq(
+  MpqArchiveHandle* loaded_mpq_archive_handle = d2win::LoadMpq(
       path,
       is_set_error_on_drive_query_fail,
       on_fail_callback,
@@ -144,7 +144,7 @@ void MpqArchiveHandle_Api::Open(
   );
 
   this->mpq_archive_handle_.v1_00 = reinterpret_cast<MpqArchiveHandle_1_00*>(
-      loaded_mpq
+      loaded_mpq_archive_handle
   );
 
   this->is_open_ = (this->Get() != NULL);
