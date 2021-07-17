@@ -1356,6 +1356,17 @@ SOURCE=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
+# Begin Custom Build
+InputDir=.\src\c\game_function\d2win
+IntDir=.\Release
+InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputName=d2win_load_mpq_shim
+
+"$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	nasm.exe -f win32 -Xvc -o "$(IntDir)\$(InputName).obj" $(InputDir)\$(InputName).asm
+
+# End Custom Build
+
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
