@@ -158,6 +158,10 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\c\file\file_pe_signature.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\c\file\file_version_info.h
 # End Source File
 # Begin Source File
@@ -1188,6 +1192,10 @@ SOURCE=.\src\c\backend\game_library.h
 # Begin Group "file_c"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\file\file_pe_signature.c
+# End Source File
 # Begin Source File
 
 SOURCE=.\src\c\file\file_version_info.c
