@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,20 +43,10 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#ifndef SGMAPI_CXX98_FILE_HPP_
+#define SGMAPI_CXX98_FILE_HPP_
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/file.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-#include "cxx98/game_struct.hpp"
-#include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
-#include "cxx98/helper.hpp"
+#include "file/file_version_info.hpp"
+#include "file/fixed_file_version.hpp"
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+#endif /* SGMAPI_CXX98_FILE_HPP_ */

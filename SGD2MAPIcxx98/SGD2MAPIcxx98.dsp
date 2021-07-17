@@ -153,6 +153,18 @@ LINK32=link.exe
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Group "file_hpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\file\file_version_info.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\file\fixed_file_version.hpp
+# End Source File
+# End Group
 # Begin Group "game_constant_hpp"
 
 # PROP Default_Filter ""
@@ -1015,6 +1027,10 @@ SOURCE=.\include\dllexport_undefine.inc
 # End Source File
 # Begin Source File
 
+SOURCE=.\include\cxx98\file.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\game_address.hpp
 # End Source File
 # Begin Source File
@@ -1065,6 +1081,18 @@ SOURCE=.\include\sgd2mapi.hpp
 # Begin Group "src"
 
 # PROP Default_Filter ""
+# Begin Group "file_cpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\file\file_version_info.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cxx98\file\fixed_file_version.cpp
+# End Source File
+# End Group
 # Begin Group "game_constant_cpp"
 
 # PROP Default_Filter ""
