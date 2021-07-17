@@ -89,16 +89,16 @@ const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
       return L"D2Direct3D.dll";
     }
 
-    case D2_DefaultLibrary_kD2Game: {
-      return L"D2Game.dll";
-    }
-
     case D2_DefaultLibrary_kD2GDI: {
       return L"D2GDI.dll";
     }
 
     case D2_DefaultLibrary_kD2GFX: {
       return L"D2GFX.dll";
+    }
+
+    case D2_DefaultLibrary_kD2Game: {
+      return L"D2Game.dll";
     }
 
     case D2_DefaultLibrary_kD2Glide: {
