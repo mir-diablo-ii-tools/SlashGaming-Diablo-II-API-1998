@@ -108,7 +108,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"ReleaseDll/SGD2MAPIcxx98Dll.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 libunicows.lib libMDCc.lib libMDCcpp98.lib libSGD2MAPIc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
+# ADD LINK32 libunicows.lib libMDCc.lib libMDCcpp98.lib libSGD2MAPIc.lib shlwapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
 
 !ELSEIF  "$(CFG)" == "SGD2MAPIcxx98 - Win32 Debug Dll"
 
@@ -137,7 +137,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"DebugDll/SGD2MAPIcxx98DDll.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libunicows.lib libMDCcD.lib libMDCcpp98D.lib SGD2MAPIcD.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"DebugDll/SGD2MAPIcxx98D.dll" /pdbtype:sept
+# ADD LINK32 libunicows.lib libMDCcD.lib libMDCcpp98D.lib SGD2MAPIcD.lib shlwapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"DebugDll/SGD2MAPIcxx98D.dll" /pdbtype:sept
 
 !ENDIF 
 
@@ -996,6 +996,10 @@ SOURCE=.\include\cxx98\game_variable\storm_variable.hpp
 # Begin Group "helper_hpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cxx98\helper\d2_determine_video_mode.hpp
+# End Source File
 # End Group
 # Begin Source File
 
@@ -1048,6 +1052,10 @@ SOURCE=.\include\cxx98\game_variable.hpp
 # Begin Source File
 
 SOURCE=.\include\cxx98\game_version.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cxx98\helper.hpp
 # End Source File
 # Begin Source File
 
@@ -1668,6 +1676,10 @@ SOURCE=.\src\cxx98\game_variable\d2win\d2win_main_menu_mouse_position_y.cpp
 # Begin Group "helper_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\helper\d2_determine_video_mode.cpp
+# End Source File
 # End Group
 # Begin Source File
 

@@ -43,19 +43,24 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_SGD2MAPI_HPP_
-#define SGD2MAPI_SGD2MAPI_HPP_
+#include "../../../include/cxx98/helper/d2_determine_video_mode.hpp"
 
-#include "d2api_version.h"
-#include "cxx98/default_game_library.hpp"
-#include "cxx98/game_address.hpp"
-#include "cxx98/game_bool.hpp"
-#include "cxx98/game_constant.hpp"
-#include "cxx98/game_function.hpp"
-#include "cxx98/game_patch.hpp"
-#include "cxx98/game_struct.hpp"
-#include "cxx98/game_variable.hpp"
-#include "cxx98/game_version.hpp"
-#include "cxx98/helper.hpp"
+#include <sgd2mapi.h>
 
-#endif /* SGD2MAPI_SGD2MAPI_HPP_ */
+namespace d2 {
+namespace helper {
+
+/**
+ * Determine the video mode from the command line args, then from the
+ * registry.
+ */
+VideoMode DetermineVideoMode() {
+  return static_cast<VideoMode>(::D2_Helper_DetermineVideoMode());
+}
+
+VideoMode_1_00 DetermineVideoMode_1_00() {
+  return static_cast<VideoMode_1_00>(::D2_Helper_DetermineVideoMode_1_00());
+}
+
+} // namespace helper
+} // namespace d2
