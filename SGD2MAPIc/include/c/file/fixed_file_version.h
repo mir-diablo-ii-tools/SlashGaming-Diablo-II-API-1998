@@ -66,16 +66,20 @@
             << (sizeof(WORD) * CHAR_BIT)) \
         | ((uint_least64_t)minor_low & 0xFFFF)
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 struct Mapi_FixedFileVersion {
   WORD major_high;
   WORD major_low;
   WORD minor_high;
   WORD minor_low;
 };
+
+#define MAPI_FIXED_FILE_VERSION_UNINIT { 0 }
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+DLLEXPORT struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit;
 
 DLLEXPORT struct Mapi_FixedFileVersion
 Mapi_FixedFileVersion_InitFromVersion(

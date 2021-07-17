@@ -49,6 +49,9 @@
  * External
  */
 
+struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit =
+    MAPI_FIXED_FILE_VERSION_UNINIT;
+
 struct Mapi_FixedFileVersion Mapi_FixedFileVersion_InitFromVersion(
     WORD major_high,
     WORD major_low,
