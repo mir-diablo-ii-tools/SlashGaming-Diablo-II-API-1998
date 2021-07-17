@@ -43,44 +43,39 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_API_HPP_
 
 #include <stddef.h>
 
 #include <sgd2mapi.h>
-#include "../d2_cel/d2_cel_view.hpp"
-#include "../d2_cel/d2_cel_wrapper.hpp"
 #include "../d2_cel_file/d2_cel_file_view.hpp"
 #include "../d2_cel_file/d2_cel_file_wrapper.hpp"
 #include "d2_cel_context_struct.hpp"
 #include "d2_cel_context_view.hpp"
+#include "d2_cel_context_wrapper.hpp"
 
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT CelContext_Wrapper {
+class DLLEXPORT CelContext_Api {
  public:
-  union WrapperType {
-    CelContext_1_00* v1_00;
-    CelContext_1_12A* v1_12a;
-    CelContext_1_13C* v1_13c;
-  };
+  typedef ::D2_CelContext_Api ApiType;
 
-  CelContext_Wrapper(CelContext* cel_context);
+  CelContext_Api();
 
-  explicit CelContext_Wrapper(CelContext_1_00* cel_context);
+  CelContext_Api(
+      CelFile_Wrapper cel_file,
+      unsigned int direction,
+      unsigned int frame
+  );
 
-  explicit CelContext_Wrapper(CelContext_1_12A* cel_context);
-
-  explicit CelContext_Wrapper(CelContext_1_13C* cel_context);
-
-  CelContext_View operator[](size_t index) const;
-
-  CelContext_Wrapper operator[](size_t index);
+  ~CelContext_Api();
 
   operator CelContext_View() const;
+
+  operator CelContext_Wrapper();
 
   CelContext* Get();
 
@@ -107,10 +102,10 @@ class DLLEXPORT CelContext_Wrapper {
   void SetFrameIndex(unsigned int frame_index);
 
  private:
-  WrapperType cel_context_;
+  ApiType cel_context_;
 };
 
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_WRAPPER_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_API_HPP_ */

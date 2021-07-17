@@ -45,6 +45,8 @@
 
 #include "../../../../include/cxx98/game_struct/d2_cel_context/d2_cel_context_wrapper.hpp"
 
+#include "../../../../include/cxx98/game_function/d2gfx/d2gfx_draw_cel_context.hpp"
+#include "../../../../include/cxx98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
 #include "../../../../include/cxx98/game_version.hpp"
 
 namespace d2 {
@@ -117,6 +119,21 @@ const CelContext* CelContext_Wrapper::Get() const {
 
 void CelContext_Wrapper::AssignMembers(CelContext_View src) {
   ::D2_CelContext_AssignMembers(this->Get(), src.Get());
+}
+
+bool CelContext_Wrapper::DrawFrame(int position_x, int position_y) {
+  return d2gfx::DrawCelContext(
+      this->Get(),
+      position_x,
+      position_y,
+      0xFFFFFFFFUL,
+      draw_effect::api::kNone,
+      NULL
+  );
+}
+
+Cel_Wrapper CelContext_Wrapper::GetCel() {
+  return d2cmp::GetCelFromCelContext(this->Get());
 }
 
 CelFile_View CelContext_Wrapper::GetCelFile() const {
