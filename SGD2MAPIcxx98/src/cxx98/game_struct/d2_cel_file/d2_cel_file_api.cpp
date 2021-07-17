@@ -59,9 +59,42 @@ CelFile_Api::CelFile_Api(const char* path, bool is_dcc_else_dc6) {
   this->Open(path, is_dcc_else_dc6);
 }
 
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+CelFile_Api::CelFile_Api(CelFile_Api&& cel_file) noexcept
+    : cel_file_(
+          ::std::move(cel_file.cel_file_)
+      ),
+      is_open_(::std::move(cel_file.is_open_)) {
+  cel_file.cel_file_ = NULL;
+  cel_file.is_open_ = false;
+}
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
 CelFile_Api::~CelFile_Api() {
   this->Close();
 }
+
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+CelFile_Api& CelFile_Api::operator=(
+    CelFile_Api&& cel_file
+) {
+  if (this == &cel_file) {
+    return *this;
+  }
+
+  this->cel_file_ = ::std::move(other.cel_file_);
+  this->is_open_ = ::std::move(other.is_open_);
+
+  other.cel_file_ = NULL;
+  other.is_open_ = false;
+
+  return *this;
+}
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
 CelFile_Api::operator CelFile_View() const {
   return CelFile_View(this->Get());

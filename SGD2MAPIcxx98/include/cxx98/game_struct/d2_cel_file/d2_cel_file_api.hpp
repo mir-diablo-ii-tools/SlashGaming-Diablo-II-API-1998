@@ -48,6 +48,7 @@
 
 #include <stddef.h>
 
+#include <mdc/std/assert.h>
 #include <sgd2mapi.h>
 #include "d2_cel_file_struct.hpp"
 #include "d2_cel_file_wrapper.hpp"
@@ -66,7 +67,23 @@ class DLLEXPORT CelFile_Api {
 
   CelFile_Api(const char* path, bool is_dcc_else_dc6);
 
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+  CelFile_Api(const CelFile_Api& cel_file) = delete;
+
+  CelFile_Api(CelFile_Api&& cel_file) noexcept;
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
   ~CelFile_Api();
+
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+  CelFile_Api& operator=(const CelFile_Api& cel_file) = delete;
+
+  CelFile_Api& operator=(CelFile_Api&& cel_file) noexcept;
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
   operator CelFile_View() const;
 
@@ -109,6 +126,22 @@ class DLLEXPORT CelFile_Api {
  private:
   ApiType cel_file_;
   bool is_open_;
+
+#if __cplusplus < 201103L && _MSVC_LANG < 201103L
+
+  /*
+  * These functions are intentionally unusable. They need to be
+  * defined for DLL export, however. They should not be used
+  * internally and cannot be used externally.
+  */
+
+  CelFile_Api(const CelFile_Api&) {}
+  CelFile_Api& operator=(const CelFile_Api&) {
+    assert(false);
+    return *this;
+  }
+
+#endif // __cplusplus < 201103L && _MSVC_LANG < 201103L
 };
 
 } // namespace d2
