@@ -77,9 +77,44 @@ MpqArchiveHandle_Api::MpqArchiveHandle_Api(
   );
 }
 
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+MpqArchiveHandle_Api::MpqArchiveHandle_Api(
+    MpqArchiveHandle_Api&& mpq_archive_handle
+) noexcept
+    : mpq_archive_handle_(
+          ::std::move(mpq_archive_handle.mpq_archive_handle_)
+      ),
+      is_open_(::std::move(mpq_archive_handle.is_open_)) {
+  mpq_archive_handle.mpq_archive_handle_ = NULL;
+  mpq_archive_handle.is_open_ = false;
+}
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
 MpqArchiveHandle_Api::~MpqArchiveHandle_Api() {
   this->Close();
 }
+
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+MpqArchiveHandle_Api& MpqArchiveHandle_Api::operator=(
+    MpqArchiveHandle_Api&& mpq_archive_handle
+) {
+  if (this == &mpq_archive_handle) {
+    return *this;
+  }
+
+  this->mpq_archive_handle_ = ::std::move(other.mpq_archive_handle_);
+  this->is_open_ = ::std::move(other.is_open_);
+
+  other.mpq_archive_handle_ = NULL;
+  other.is_open_ = false;
+
+  return *this;
+}
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
 MpqArchiveHandle_Api::operator MpqArchiveHandle_View() const {
   return MpqArchiveHandle_View(this->Get());

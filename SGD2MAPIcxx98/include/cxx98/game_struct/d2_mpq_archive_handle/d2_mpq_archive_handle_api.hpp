@@ -48,6 +48,7 @@
 
 #include <stddef.h>
 
+#include <mdc/std/assert.h>
 #include <sgd2mapi.h>
 #include "../d2_mpq_archive/d2_mpq_archive_view.hpp"
 #include "../d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
@@ -80,7 +81,31 @@ class DLLEXPORT MpqArchiveHandle_Api {
       int priority
   );
 
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+  MpqArchiveHandle_Api(
+      const MpqArchiveHandle_Api& mpq_archive_handle
+  ) = delete;
+
+  MpqArchiveHandle_Api(
+      MpqArchiveHandle_Api&& mpq_archive_handle
+  ) noexcept;
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
   ~MpqArchiveHandle_Api();
+
+#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
+
+  MpqArchiveHandle_Api& operator=(
+      const MpqArchiveHandle_Api& mpq_archive_handle
+  ) = delete;
+
+  MpqArchiveHandle_Api& operator=(
+      MpqArchiveHandle_Api&& mpq_archive_handle
+  ) noexcept;
+
+#endif // __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 
   operator MpqArchiveHandle_View() const;
 
@@ -120,6 +145,22 @@ class DLLEXPORT MpqArchiveHandle_Api {
  private:
   ApiType mpq_archive_handle_;
   bool is_open_;
+
+#if __cplusplus < 201103L && _MSVC_LANG < 201103L
+
+  /*
+  * These functions are intentionally unusable. They need to be
+  * defined for DLL export, however. They should not be used
+  * internally and cannot be used externally.
+  */
+
+  MpqArchiveHandle_Api(const MpqArchiveHandle_Api&) {}
+  MpqArchiveHandle_Api& operator=(const MpqArchiveHandle_Api&) {
+    assert(false);
+    return *this;
+  }
+
+#endif // __cplusplus < 201103L && _MSVC_LANG < 201103L
 };
 
 } // namespace d2
