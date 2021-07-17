@@ -53,6 +53,7 @@
 #include "cxx98/game_constant.hpp"
 #include "cxx98/game_function.hpp"
 #include "cxx98/game_patch.hpp"
+#include "cxx98/game_struct.hpp"
 #include "cxx98/game_variable.hpp"
 #include "cxx98/game_version.hpp"
 

@@ -46,6 +46,9 @@
 #ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_HPP_
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_HPP_
 
+#include "d2_inventory_record/d2_inventory_record_api.hpp"
 #include "d2_inventory_record/d2_inventory_record_struct.hpp"
+#include "d2_inventory_record/d2_inventory_record_view.hpp"
+#include "d2_inventory_record/d2_inventory_record_wrapper.hpp"
 
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_INVENTORY_RECORD_HPP_ */

@@ -43,9 +43,12 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_HPP_
 
+#include "d2_belt_record/d2_belt_record_api.hpp"
 #include "d2_belt_record/d2_belt_record_struct.hpp"
+#include "d2_belt_record/d2_belt_record_view.hpp"
+#include "d2_belt_record/d2_belt_record_wrapper.hpp"
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_BELT_RECORD_HPP_ */

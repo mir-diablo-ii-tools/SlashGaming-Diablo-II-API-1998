@@ -46,6 +46,9 @@
 #ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_HPP_
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_HPP_
 
+#include "d2_equipment_layout/d2_equipment_layout_api.hpp"
 #include "d2_equipment_layout/d2_equipment_layout_struct.hpp"
+#include "d2_equipment_layout/d2_equipment_layout_view.hpp"
+#include "d2_equipment_layout/d2_equipment_layout_wrapper.hpp"
 
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_HPP_ */

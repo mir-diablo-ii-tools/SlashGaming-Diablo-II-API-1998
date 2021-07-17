@@ -47,5 +47,7 @@
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_HPP_
 
 #include "d2_cel/d2_cel_struct.hpp"
+#include "d2_cel/d2_cel_view.hpp"
+#include "d2_cel/d2_cel_wrapper.hpp"
 
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_HPP_ */

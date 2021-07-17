@@ -46,6 +46,7 @@
 #ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_HPP_
 
+#include "d2_cel_file/d2_cel_file_api.hpp"
 #include "d2_cel_file/d2_cel_file_struct.hpp"
 #include "d2_cel_file/d2_cel_file_view.hpp"
 #include "d2_cel_file/d2_cel_file_wrapper.hpp"

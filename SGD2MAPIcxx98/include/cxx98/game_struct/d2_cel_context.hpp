@@ -46,6 +46,9 @@
 #ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_HPP_
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_HPP_
 
+#include "d2_cel_context/d2_cel_context_api.hpp"
 #include "d2_cel_context/d2_cel_context_struct.hpp"
+#include "d2_cel_context/d2_cel_context_view.hpp"
+#include "d2_cel_context/d2_cel_context_wrapper.hpp"
 
 #endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_CONTEXT_HPP_ */

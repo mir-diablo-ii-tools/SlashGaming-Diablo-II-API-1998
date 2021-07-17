@@ -43,12 +43,18 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_
-#define SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_HPP_
 
-#include "d2_positional_rectangle/d2_positional_rectangle_api.hpp"
-#include "d2_positional_rectangle/d2_positional_rectangle_struct.hpp"
-#include "d2_positional_rectangle/d2_positional_rectangle_view.hpp"
-#include "d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "game_struct/d2_belt_record.hpp"
+#include "game_struct/d2_cel.hpp"
+#include "game_struct/d2_cel_context.hpp"
+#include "game_struct/d2_cel_file.hpp"
+#include "game_struct/d2_equipment_layout.hpp"
+#include "game_struct/d2_inventory_record.hpp"
+#include "game_struct/d2_grid_layout.hpp"
+#include "game_struct/d2_mpq_archive.hpp"
+#include "game_struct/d2_mpq_archive_handle.hpp"
+#include "game_struct/d2_positional_rectangle.hpp"
 
-#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_HPP_ */
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_HPP_ */
