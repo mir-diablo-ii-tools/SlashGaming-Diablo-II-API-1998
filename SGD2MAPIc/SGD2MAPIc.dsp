@@ -153,6 +153,14 @@ LINK32=link.exe
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Group "file_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\file\file_version_info.h
+# End Source File
+# End Group
 # Begin Group "game_constant_h"
 
 # PROP Default_Filter ""
@@ -1169,6 +1177,13 @@ SOURCE=.\src\c\backend\game_library.cpp
 SOURCE=.\src\c\backend\game_library.h
 # End Source File
 # End Group
+# Begin Group "file_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\file\file_version_info.c
+# End Source File
 # Begin Group "game_constant_c"
 
 # PROP Default_Filter ""
