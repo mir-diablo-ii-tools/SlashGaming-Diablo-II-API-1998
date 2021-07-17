@@ -43,90 +43,73 @@
  *  work.
  */
 
-#include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
+#ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_API_HPP_
+#define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_API_HPP_
 
-#include "../../../../include/cxx98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
+#include <stddef.h>
+
+#include <sgd2mapi.h>
+#include "d2_cel_file_struct.hpp"
+#include "d2_cel_file_wrapper.hpp"
+
+#include "../../../dllexport_define.inc"
 
 namespace d2 {
 
-CelFile_Wrapper::CelFile_Wrapper(CelFile* cel_file) {
-  this->cel_file_.v1_00 = reinterpret_cast<CelFile_1_00*>(cel_file);
-}
+class DLLEXPORT CelFile_Api {
+ public:
+  union ApiType {
+    CelFile_1_00* v1_00;
+  };
 
-CelFile_Wrapper::CelFile_Wrapper(CelFile_1_00* cel_file) {
-  this->cel_file_.v1_00 = cel_file;
-}
+  CelFile_Api();
 
-CelFile_Wrapper::operator CelFile_View() const {
-  return CelFile_View(this->Get());
-}
+  CelFile_Api(const char* path, bool is_dcc_else_dc6);
 
-CelFile* CelFile_Wrapper::Get() {
-  const CelFile_Wrapper* const_this = this;
+  operator CelFile_View() const;
 
-  return const_cast<CelFile*>(const_this->Get());
-}
+  operator CelFile_Wrapper();
 
-bool CelFile_Wrapper::DrawFrame(
-    int position_x,
-    int position_y,
-    unsigned int direction_index,
-    unsigned int frame_index
-) {
-  CelContext_Api cel_context(
-      this->Get(),
-      direction_index,
-      frame_index
+  CelFile* Get();
+
+  const CelFile* Get() const;
+
+  void Close();
+
+  bool DrawFrame(
+      int position_x,
+      int position_y,
+      unsigned int direction_index,
+      unsigned int frame_index
   );
 
-  return cel_context.DrawFrame(position_x, position_y);
-}
-
-Cel_Wrapper CelFile_Wrapper::GetCel(
-    unsigned int direction_index,
-    unsigned int frame_index
-) {
-  CelContext_Api cel_context(
-      this->Get(),
-      direction_index,
-      frame_index
+  Cel_Wrapper GetCel(
+      unsigned int direction_index,
+      unsigned int frame_index
   );
 
-  return cel_context.GetCel();
-}
+  bool IsOpen() const;
 
-const CelFile* CelFile_Wrapper::Get() const {
-  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
-}
+  void Open(const char* path, bool is_dcc_else_dc6);
 
-unsigned int CelFile_Wrapper::GetNumFrames() const {
-  CelFile_View view(*this);
+  unsigned int GetNumFrames() const;
 
-  return view.GetNumFrames();
-}
+  void SetNumFrames(unsigned int num_frames);
 
-void CelFile_Wrapper::SetNumFrames(unsigned int num_frames) {
-  ::D2_CelFile_SetNumFrames(this->Get(), num_frames);
-}
+  unsigned int GetNumDirections() const;
 
-unsigned int CelFile_Wrapper::GetNumDirections() const {
-  CelFile_View view(*this);
+  void SetNumDirections(unsigned int num_directions);
 
-  return view.GetNumDirections();
-}
+  unsigned int GetVersion() const;
 
-void CelFile_Wrapper::SetNumDirections(unsigned int num_directions) {
-  ::D2_CelFile_SetNumDirections(this->Get(), num_directions);
-}
+  void SetVersion(unsigned int version);
 
-unsigned int CelFile_Wrapper::GetVersion() const {
-  CelFile_View view(*this);
-
-  return view.GetVersion();
-}
-
-void CelFile_Wrapper::SetVersion(unsigned int version) {
-  ::D2_CelFile_SetVersion(this->Get(), version);
-}
+ private:
+  ApiType cel_file_;
+  bool is_open_;
+};
 
 } // namespace d2
+
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_API_HPP_ */

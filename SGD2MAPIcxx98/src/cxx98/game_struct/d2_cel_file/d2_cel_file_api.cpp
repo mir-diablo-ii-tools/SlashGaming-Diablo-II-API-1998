@@ -43,90 +43,126 @@
  *  work.
  */
 
-#include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
+#include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_api.hpp"
 
-#include "../../../../include/cxx98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
+#include "../../../../include/cxx98/game_function/d2win/d2win_load_cel_file.hpp"
+#include "../../../../include/cxx98/game_function/d2win/d2win_unload_cel_file.hpp"
 
 namespace d2 {
 
-CelFile_Wrapper::CelFile_Wrapper(CelFile* cel_file) {
-  this->cel_file_.v1_00 = reinterpret_cast<CelFile_1_00*>(cel_file);
+CelFile_Api::CelFile_Api()
+    : cel_file_(),
+      is_open_(false) {
 }
 
-CelFile_Wrapper::CelFile_Wrapper(CelFile_1_00* cel_file) {
-  this->cel_file_.v1_00 = cel_file;
+CelFile_Api::CelFile_Api(const char* path, bool is_dcc_else_dc6) {
+  this->Open(path, is_dcc_else_dc6);
 }
 
-CelFile_Wrapper::operator CelFile_View() const {
+CelFile_Api::operator CelFile_View() const {
   return CelFile_View(this->Get());
 }
 
-CelFile* CelFile_Wrapper::Get() {
-  const CelFile_Wrapper* const_this = this;
+CelFile_Api::operator CelFile_Wrapper() {
+  return CelFile_Wrapper(this->Get());
+}
+
+CelFile* CelFile_Api::Get() {
+  const CelFile_Api* const_this = this;
 
   return const_cast<CelFile*>(const_this->Get());
 }
 
-bool CelFile_Wrapper::DrawFrame(
+const CelFile* CelFile_Api::Get() const {
+  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+}
+
+void CelFile_Api::Close() {
+  if (!this->IsOpen()) {
+    return;
+  }
+
+  d2win::UnloadCelFile(this->Get());
+  this->cel_file_.v1_00 = NULL;
+  this->is_open_ = false;
+}
+
+bool CelFile_Api::DrawFrame(
     int position_x,
     int position_y,
     unsigned int direction_index,
     unsigned int frame_index
 ) {
-  CelContext_Api cel_context(
-      this->Get(),
+  CelFile_Wrapper wrapper(*this);
+
+  return wrapper.DrawFrame(
+      position_x,
+      position_y,
       direction_index,
       frame_index
   );
-
-  return cel_context.DrawFrame(position_x, position_y);
 }
 
-Cel_Wrapper CelFile_Wrapper::GetCel(
+Cel_Wrapper CelFile_Api::GetCel(
     unsigned int direction_index,
     unsigned int frame_index
 ) {
-  CelContext_Api cel_context(
-      this->Get(),
+  CelFile_Wrapper wrapper(*this);
+
+  return wrapper.GetCel(
       direction_index,
       frame_index
   );
-
-  return cel_context.GetCel();
 }
 
-const CelFile* CelFile_Wrapper::Get() const {
-  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+bool CelFile_Api::IsOpen() const {
+  return this->is_open_;
 }
 
-unsigned int CelFile_Wrapper::GetNumFrames() const {
+void CelFile_Api::Open(const char* path, bool is_dcc_else_dc6) {
+  this->Close();
+
+  CelFile* cel_file = d2win::LoadCelFile(path, is_dcc_else_dc6);
+
+  this->cel_file_.v1_00 = reinterpret_cast<CelFile_1_00*>(cel_file);
+
+  this->is_open_ = (this->Get() != NULL);
+}
+
+unsigned int CelFile_Api::GetNumFrames() const {
   CelFile_View view(*this);
 
   return view.GetNumFrames();
 }
 
-void CelFile_Wrapper::SetNumFrames(unsigned int num_frames) {
-  ::D2_CelFile_SetNumFrames(this->Get(), num_frames);
+void CelFile_Api::SetNumFrames(unsigned int num_frames) {
+  CelFile_Wrapper wrapper(*this);
+
+  wrapper.SetNumFrames(num_frames);
 }
 
-unsigned int CelFile_Wrapper::GetNumDirections() const {
+unsigned int CelFile_Api::GetNumDirections() const {
   CelFile_View view(*this);
 
   return view.GetNumDirections();
 }
 
-void CelFile_Wrapper::SetNumDirections(unsigned int num_directions) {
-  ::D2_CelFile_SetNumDirections(this->Get(), num_directions);
+void CelFile_Api::SetNumDirections(unsigned int num_directions) {
+  CelFile_Wrapper wrapper(*this);
+
+  wrapper.SetNumDirections(num_directions);
 }
 
-unsigned int CelFile_Wrapper::GetVersion() const {
+unsigned int CelFile_Api::GetVersion() const {
   CelFile_View view(*this);
 
   return view.GetVersion();
 }
 
-void CelFile_Wrapper::SetVersion(unsigned int version) {
-  ::D2_CelFile_SetVersion(this->Get(), version);
+void CelFile_Api::SetVersion(unsigned int version) {
+  CelFile_Wrapper wrapper(*this);
+
+  wrapper.SetVersion(version);
 }
 
 } // namespace d2

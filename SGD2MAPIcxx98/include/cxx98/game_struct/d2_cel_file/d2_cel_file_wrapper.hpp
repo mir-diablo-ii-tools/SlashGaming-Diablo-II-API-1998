@@ -49,6 +49,8 @@
 #include <stddef.h>
 
 #include <sgd2mapi.h>
+#include "../d2_cel/d2_cel_view.hpp"
+#include "../d2_cel/d2_cel_wrapper.hpp"
 #include "d2_cel_file_struct.hpp"
 #include "d2_cel_file_view.hpp"
 
@@ -71,6 +73,18 @@ class DLLEXPORT CelFile_Wrapper {
   CelFile* Get();
 
   const CelFile* Get() const;
+
+  bool DrawFrame(
+      int position_x,
+      int position_y,
+      unsigned int direction_index,
+      unsigned int frame_index
+  );
+
+  Cel_Wrapper GetCel(
+      unsigned int direction_index,
+      unsigned int frame_index
+  );
 
   unsigned int GetNumFrames() const;
 
