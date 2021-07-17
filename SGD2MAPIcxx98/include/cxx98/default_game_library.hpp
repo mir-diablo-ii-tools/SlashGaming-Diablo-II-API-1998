@@ -60,8 +60,8 @@ namespace default_library {
 */
 
 enum DefaultLibrary {
-  kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2Game,
-  kD2GDI, kD2GFX, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
+  kBNClient, kD2CMP, kD2Client, kD2Common, kD2DDraw, kD2Direct3D, kD2GDI,
+  kD2GFX, kD2Game, kD2Glide, kD2Lang, kD2Launch, kD2MCPClient, kD2Multi,
   kD2Net, kD2Server, kD2Sound, kD2Win, kFog, kStorm,
 };
 
