@@ -160,6 +160,10 @@ LINK32=link.exe
 
 SOURCE=.\include\c\file\file_version_info.h
 # End Source File
+# Begin Source File
+
+SOURCE=.\include\c\file\fixed_file_version.h
+# End Source File
 # End Group
 # Begin Group "game_constant_h"
 
@@ -1184,6 +1188,11 @@ SOURCE=.\src\c\backend\game_library.h
 
 SOURCE=.\src\c\file\file_version_info.c
 # End Source File
+# Begin Source File
+
+SOURCE=.\src\c\file\fixed_file_version.c
+# End Source File
+# End Group
 # Begin Group "game_constant_c"
 
 # PROP Default_Filter ""
