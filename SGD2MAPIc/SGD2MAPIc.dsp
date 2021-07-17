@@ -751,6 +751,10 @@ SOURCE=.\include\dllexport_undefine.inc
 # End Source File
 # Begin Source File
 
+SOURCE=.\include\c\file.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\c\game_address.h
 # End Source File
 # Begin Source File
