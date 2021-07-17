@@ -81,7 +81,7 @@ class DLLEXPORT FixedFileVersion {
   uint_least64_t ToValue() const;
 
  private:
-  Mapi_FixedFileVersion fixed_file_version_;
+  ::Mapi_FixedFileVersion fixed_file_version_;
 };
 
 } // namespace mapi

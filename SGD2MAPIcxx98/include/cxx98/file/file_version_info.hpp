@@ -77,7 +77,7 @@ class DLLEXPORT FileVersionInfo {
   ) const;
 
  private:
-  Mapi_FileVersionInfo file_version_info_;
+  ::Mapi_FileVersionInfo file_version_info_;
 };
 
 } // namespace mapi
