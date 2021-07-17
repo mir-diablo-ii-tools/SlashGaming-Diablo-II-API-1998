@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C
+ * SlashGaming Diablo II Modding API for C++98
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C.
+ * This file is part of SlashGaming Diablo II Modding API for C++98.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,11 +43,32 @@
  *  work.
  */
 
-#ifndef SGMAPI_CXX98_FILE_HPP_
-#define SGMAPI_CXX98_FILE_HPP_
+#ifndef SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_
+#define SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_
 
-#include "file/file_pe_signature.hpp"
-#include "file/file_version_info.hpp"
-#include "file/fixed_file_version.hpp"
+#include <stddef.h>
+#include <windows.h>
 
-#endif /* SGMAPI_CXX98_FILE_HPP_ */
+#include <mdc/std/stdint.h>
+#include <sgd2mapi.h>
+
+#include "../../dllexport_define.inc"
+
+namespace mapi {
+
+class DLLEXPORT FilePeSignature {
+ public:
+  FilePeSignature();
+
+  int CompareSignature(const FilePeSignature& signature) const;
+
+  static FilePeSignature ReadFile(const wchar_t* path, size_t count);
+
+ private:
+  ::Mapi_FilePeSignature file_pe_signature_;
+};
+
+} // namespace mapi
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_ */

@@ -158,6 +158,10 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\include\cxx98\file\file_pe_signature.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cxx98\file\file_version_info.hpp
 # End Source File
 # Begin Source File
@@ -1084,6 +1088,10 @@ SOURCE=.\include\sgd2mapi.hpp
 # Begin Group "file_cpp"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cxx98\file\file_pe_signature.cpp
+# End Source File
 # Begin Source File
 
 SOURCE=.\src\cxx98\file\file_version_info.cpp
