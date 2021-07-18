@@ -220,6 +220,8 @@ set(SRC_ASM
 )
 
 set(SRC_C
+    "src/c/backend/d2se/d2se_file_pe_signature.c"
+
     "src/c/backend/game_address_table/game_address_table_impl.c"
 
     "src/c/backend/game_version/game_version_file_pe_signature.c"
@@ -331,6 +333,8 @@ set(SRC_C
 )
 
 set(SRC_HEADERS
+    "src/c/backend/d2se/d2se_file_pe_signature.h"
+
     "src/c/backend/game_address_table/game_address_table_define.h"
     "src/c/backend/game_address_table/game_address_table_impl.h"
 
