@@ -804,7 +804,35 @@ SOURCE=.\include\sgd2mapi.h
 # Begin Group "backend_c"
 
 # PROP Default_Filter ""
-# Begin Group "backend_game_address_table_h"
+# Begin Group "backend_d2se_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_file_pe_signature.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_file_pe_signature.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_game_version.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_game_version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_ini.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\backend\d2se\d2se_ini.h
+# End Source File
+# End Group
+# Begin Group "backend_game_address_table_c"
 
 # PROP Default_Filter ""
 # Begin Source File
