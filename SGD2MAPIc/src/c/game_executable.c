@@ -51,11 +51,14 @@
 #include <mdc/std/threads.h>
 
 #include "../../include/c/file/file_version_info.h"
+#include "backend/d2se/d2se_file_pe_signature.h"
 
 static wchar_t game_executable_path[MAX_PATH + 1];
 static size_t game_executable_path_len = 0;
 
 static wchar_t* long_game_executable_path = NULL;
+
+static int is_d2se = 0;
 
 static struct Mapi_FileVersionInfo file_version_info;
 
@@ -123,6 +126,18 @@ static void InitGameExecutable(void) {
   is_init = 1;
 }
 
+static void InitIsD2se(void) {
+  static is_init = 0;
+
+  if (is_init) {
+    return;
+  }
+
+  is_d2se = FilePeSignature_IsD2se();
+
+  is_init = 1;
+}
+
 static void InitFileVersionInfo(void) {
   static is_init = 0;
 
@@ -145,6 +160,7 @@ static void InitStatic(void) {
   }
 
   InitGameExecutable();
+  InitIsD2se();
   InitFileVersionInfo();
 
   is_init = 1;
@@ -162,6 +178,12 @@ const wchar_t* Mapi_GameExecutable_GetPath(void) {
   }
 
   return long_game_executable_path;
+}
+
+int Mapi_GameExecutable_IsD2se(void) {
+  InitStatic();
+
+  return is_d2se;
 }
 
 const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(

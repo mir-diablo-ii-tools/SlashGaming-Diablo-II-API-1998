@@ -59,6 +59,8 @@ extern "C" {
 
 DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
 
+DLLEXPORT int Mapi_GameExecutable_IsD2se(void);
+
 DLLEXPORT const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
     const wchar_t* sub_block
 );
