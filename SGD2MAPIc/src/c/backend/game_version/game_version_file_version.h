@@ -43,25 +43,11 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-
-#include <windows.h>
+#ifndef SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_VERSION_H_
+#define SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_VERSION_H_
 
 #include "../../../../include/c/game_version.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+enum D2_GameVersion FileVersion_GuessGameVersion(void);
 
-VS_FIXEDFILEINFO Mapi_GetFixedFileInfo(const wchar_t* file_path);
-
-enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
-    const VS_FIXEDFILEINFO* fixed_file_info
-);
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
-
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_ */
+#endif /* SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_VERSION_H_ */

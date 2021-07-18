@@ -53,22 +53,18 @@
 #include <mdc/wchar_t/filew.h>
 #include "../../include/c/game_executable.h"
 #include "backend/game_version/file_signature.h"
-#include "backend/game_version/file_version.h"
+#include "backend/game_version/game_version_file_version.h"
 
 static enum D2_GameVersion running_game_version;
 
 static enum D2_GameVersion DetermineRunningGameVersion(void) {
-  const wchar_t* game_executable_path;
-  VS_FIXEDFILEINFO fixed_file_info;
   enum D2_GameVersion game_version;
 
   /*
   * Perform first stage game version detection using the executable
   * file name.
   */
-  game_executable_path = Mapi_GameExecutable_GetPath();
-  fixed_file_info = Mapi_GetFixedFileInfo(game_executable_path);
-  game_version = Mapi_GameVersion_GetFromFileVersion(&fixed_file_info);
+  game_version = FileVersion_GuessGameVersion();
 
   /*
   * Perform second stage game version detection by checking the bytes
