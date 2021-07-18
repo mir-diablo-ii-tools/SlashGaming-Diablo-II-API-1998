@@ -1149,19 +1149,19 @@ SOURCE=.\src\c\backend\game_function\thiscall_function.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_signature.c
+SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_signature.h
+SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_version.c
+SOURCE=.\src\c\backend\game_version\game_version_file_version.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_version.h
+SOURCE=.\src\c\backend\game_version\game_version_file_version.h
 # End Source File
 # End Group
 # Begin Source File
