@@ -43,21 +43,15 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_
+#ifndef SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
+#define SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
 
 #include "../../../../include/c/game_version.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-enum D2_GameVersion Mapi_GameVersion_GetFromFileSignature(
-    enum D2_GameVersion guess_game_version
+enum D2_GameVersion FilePeSignature_GuessGameVersion(
+    int is_game_version_at_least_1_14
 );
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+int FilePeSignature_HasCheck(enum D2_GameVersion game_version);
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_ */
+#endif /* SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_ */
