@@ -45,6 +45,8 @@
 
 #include "../../../../include/cxx98/game_struct/d2_cel_file/d2_cel_file_api.hpp"
 
+#include <utility>
+
 #include "../../../../include/cxx98/game_function/d2win/d2win_load_cel_file.hpp"
 #include "../../../../include/cxx98/game_function/d2win/d2win_unload_cel_file.hpp"
 
@@ -66,7 +68,7 @@ CelFile_Api::CelFile_Api(CelFile_Api&& cel_file) noexcept
           ::std::move(cel_file.cel_file_)
       ),
       is_open_(::std::move(cel_file.is_open_)) {
-  cel_file.cel_file_ = NULL;
+  cel_file.cel_file_.v1_00 = NULL;
   cel_file.is_open_ = false;
 }
 
@@ -80,16 +82,16 @@ CelFile_Api::~CelFile_Api() {
 
 CelFile_Api& CelFile_Api::operator=(
     CelFile_Api&& cel_file
-) {
+) noexcept {
   if (this == &cel_file) {
     return *this;
   }
 
-  this->cel_file_ = ::std::move(other.cel_file_);
-  this->is_open_ = ::std::move(other.is_open_);
+  this->cel_file_ = ::std::move(cel_file.cel_file_);
+  this->is_open_ = ::std::move(cel_file.is_open_);
 
-  other.cel_file_ = NULL;
-  other.is_open_ = false;
+  cel_file.cel_file_.v1_00 = NULL;
+  cel_file.is_open_ = false;
 
   return *this;
 }
