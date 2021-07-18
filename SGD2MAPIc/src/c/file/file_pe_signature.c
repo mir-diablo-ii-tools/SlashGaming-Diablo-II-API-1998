@@ -55,7 +55,7 @@
  * External
  */
 
-struct Mapi_FilePeSignature Mapi_FilePeSignature_kUninit =
+const struct Mapi_FilePeSignature Mapi_FilePeSignature_kUninit =
     MAPI_FILE_PE_SIGNATURE_UNINIT;
 
 int Mapi_FilePeSignature_Compare(

@@ -49,7 +49,7 @@
  * External
  */
 
-struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit =
+const struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit =
     MAPI_FIXED_FILE_VERSION_UNINIT;
 
 struct Mapi_FixedFileVersion Mapi_FixedFileVersion_InitFromVersion(
