@@ -58,6 +58,8 @@ namespace game_executable {
 
 DLLEXPORT const wchar_t* GetPath();
 
+DLLEXPORT bool IsD2se();
+
 DLLEXPORT const wchar_t* QueryFileVersionInfoString(
     const wchar_t* sub_block
 );
