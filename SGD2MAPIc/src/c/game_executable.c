@@ -50,10 +50,14 @@
 #include <mdc/malloc/malloc.h>
 #include <mdc/std/threads.h>
 
+#include "../../include/c/file/file_version_info.h"
+
 static wchar_t game_executable_path[MAX_PATH + 1];
 static size_t game_executable_path_len = 0;
 
 static wchar_t* long_game_executable_path = NULL;
+
+static struct Mapi_FileVersionInfo file_version_info;
 
 enum {
   kInitialCapacity = 512
@@ -94,6 +98,12 @@ free_path:
 }
 
 static void InitGameExecutable(void) {
+  static int is_init = 0;
+
+  if (is_init) {
+    return;
+  }
+
   /* Simple case: Paths within the MAX_PATH limit. */
   game_executable_path_len = GetModuleFileNameW(
       NULL,
@@ -109,12 +119,35 @@ static void InitGameExecutable(void) {
   long_game_executable_path = GetMemoryAllocGameExecutable(
       &game_executable_path_len
   );
+
+  is_init = 1;
+}
+
+static void InitFileVersionInfo(void) {
+  static is_init = 0;
+
+  if (is_init) {
+    return;
+  }
+
+  file_version_info = Mapi_FileVersionInfo_InitFromPath(
+      game_executable_path
+  );
+
+  is_init = 1;
 }
 
 static void InitStatic(void) {
-  static once_flag game_executable_path_init_flag = ONCE_FLAG_INIT;
+  static is_init = 0;
 
-  call_once(&game_executable_path_init_flag, &InitGameExecutable);
+  if (is_init) {
+    return;
+  }
+
+  InitGameExecutable();
+  InitFileVersionInfo();
+
+  is_init = 1;
 }
 
 /**
@@ -129,4 +162,30 @@ const wchar_t* Mapi_GameExecutable_GetPath(void) {
   }
 
   return long_game_executable_path;
+}
+
+const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
+    const wchar_t* sub_block
+) {
+  InitStatic();
+
+  return Mapi_FileVersionInfo_QueryString(
+      &file_version_info,
+      sub_block
+  );
+}
+
+const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
+    const wchar_t* sub_block,
+    size_t* count
+) {
+  InitStatic();
+
+  return Mapi_FileVersionInfo_QueryVar(&file_version_info, sub_block, count);
+}
+
+const VS_FIXEDFILEINFO* Mapi_GameExecutable_QueryFixedFileInfo(void) {
+  InitStatic();
+
+  return Mapi_FileVersionInfo_QueryFixedFileInfo(&file_version_info);
 }
