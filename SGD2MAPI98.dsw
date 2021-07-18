@@ -3,6 +3,30 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "MDC"=".\MirD-Common-C\MDC\MDC.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "MDCcpp98"=".\MirD-Common-C\MDCcpp98\MDCcpp98.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "SGD2MAPIc"=".\SGD2MAPIc\SGD2MAPIc.dsp" - Package Owner=<4>
 
 Package=<5>
@@ -11,6 +35,9 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name MDC
+    End Project Dependency
 }}}
 
 ###############################################################################
@@ -25,6 +52,12 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name SGD2MAPIc
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MDC
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MDCcpp98
     End Project Dependency
 }}}
 
