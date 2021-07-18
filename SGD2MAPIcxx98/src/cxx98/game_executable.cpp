@@ -54,6 +54,10 @@ const wchar_t* GetPath() {
   return ::Mapi_GameExecutable_GetPath();
 }
 
+bool IsD2se() {
+  return !!::Mapi_GameExecutable_IsD2se();
+}
+
 const wchar_t* QueryFileVersionInfoString(
     const wchar_t* sub_block
 ) {

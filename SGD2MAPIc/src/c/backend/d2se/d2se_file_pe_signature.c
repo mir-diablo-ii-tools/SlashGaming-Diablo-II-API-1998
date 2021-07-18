@@ -43,39 +43,81 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_GAME_EXECUTABLE_H_
-#define SGMAPI_C_GAME_EXECUTABLE_H_
+#include "d2se_file_pe_signature.h"
 
 #include <stddef.h>
-#include <windows.h>
+#include <stdlib.h>
 
+#include <mdc/error/exit_on_error.h>
 #include <mdc/std/wchar.h>
+#include <mdc/wchar_t/filew.h>
+#include "../../../../include/c/file/file_pe_signature.h"
+#include "../../../../include/c/game_executable.h"
 
-#include "../dllexport_define.inc"
+enum {
+  kSignatureCount = 64,
+};
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+static const struct Mapi_FilePeSignature kD2seSignatureSortedSet[] = {
+    {
+        kSignatureCount,
+        {
+            0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
+            0x5F, 0xDC, 0xB5, 0x4D, 0x00, 0x00, 0x00, 0x00,
 
-DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
+            0x00, 0x00, 0x00, 0x00, 0xE0, 0x00, 0x0F, 0x01,
+            0x0B, 0x01, 0x02, 0x32, 0x00, 0x08, 0x01, 0x00,
 
-DLLEXPORT int Mapi_GameExecutable_IsD2se(void);
+            0x00, 0x8A, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x40, 0x3C, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
 
-DLLEXPORT const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
-    const wchar_t* sub_block
-);
+            0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x40, 0x00,
+            0x00, 0x10, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
+        }
+    },
+};
 
-DLLEXPORT const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-);
+enum {
+  kD2seSignatureSortedSetCount = sizeof(kD2seSignatureSortedSet)
+      / sizeof(kD2seSignatureSortedSet[0])
+};
 
-DLLEXPORT const VS_FIXEDFILEINFO*
-Mapi_GameExecutable_QueryFixedFileInfo(void);
+static int Mapi_FilePeSignature_CompareAsVoid(
+    const void* signature1,
+    const void* signature2
+) {
+  return Mapi_FilePeSignature_Compare(signature1, signature2);
+}
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+static int ContainsSignature(const struct Mapi_FilePeSignature* signature) {
+  const struct Mapi_FilePeSignature* search_result;
 
-#include "../dllexport_undefine.inc"
-#endif /* SGMAPI_C_GAME_EXECUTABLE_H_ */
+  search_result = bsearch(
+      signature,
+      kD2seSignatureSortedSet,
+      kD2seSignatureSortedSetCount,
+      sizeof(kD2seSignatureSortedSet[0]),
+      &Mapi_FilePeSignature_CompareAsVoid
+  );
+
+  return (search_result != NULL);
+}
+
+/**
+ * External
+ */
+
+int FilePeSignature_IsD2se(void) {
+  const wchar_t* game_executable_path;
+  struct Mapi_FilePeSignature signature;
+
+  game_executable_path = Mapi_GameExecutable_GetPath();
+
+  Mapi_FilePeSignature_ReadFile(
+      &signature,
+      game_executable_path,
+      kSignatureCount
+  );
+
+  return ContainsSignature(&signature);
+}

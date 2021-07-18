@@ -43,39 +43,77 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_GAME_EXECUTABLE_H_
-#define SGMAPI_C_GAME_EXECUTABLE_H_
+#include "d2se_ini.h"
 
-#include <stddef.h>
 #include <windows.h>
 
+#include <mdc/error/exit_on_error.h>
 #include <mdc/std/wchar.h>
+#include <mdc/wchar_t/filew.h>
+#include "d2se_game_version.h"
 
-#include "../dllexport_define.inc"
+#define D2SE_INI_PATH L"D2SE_SETUP.ini"
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+static const wchar_t* const kD2seIniPath = D2SE_INI_PATH;
 
-DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
+enum D2_GameVersion D2seIni_GetGameVersion(void) {
+  DWORD get_private_profile_string_result;
 
-DLLEXPORT int Mapi_GameExecutable_IsD2se(void);
+  wchar_t version_str[10];
 
-DLLEXPORT const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
-    const wchar_t* sub_block
-);
+  get_private_profile_string_result = GetPrivateProfileStringW(
+      L"Protected",
+      L"D2Core",
+      L"",
+      version_str,
+      10,
+      kD2seIniPath
+  );
 
-DLLEXPORT const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-);
+  return D2seIni_GuessGameVersion(version_str);
+}
 
-DLLEXPORT const VS_FIXEDFILEINFO*
-Mapi_GameExecutable_QueryFixedFileInfo(void);
+enum D2_VideoMode D2seIni_GetVideoMode(void) {
+  int renderer_value;
+  int window_mode_value;
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+  renderer_value = GetPrivateProfileIntW(
+      L"USERSETTINGS",
+      L"Renderer",
+      -1,
+      kD2seIniPath
+  );
 
-#include "../dllexport_undefine.inc"
-#endif /* SGMAPI_C_GAME_EXECUTABLE_H_ */
+  switch (renderer_value) {
+    case 0: {
+      window_mode_value = GetPrivateProfileIntW(
+          L"USERSETTINGS",
+          L"WindowMode",
+          -1,
+          kD2seIniPath
+      );
+
+      return (window_mode_value == 1)
+          ? D2_VideoMode_kGdi
+          : D2_VideoMode_kDirectDraw;
+    }
+
+    case 1: {
+      return D2_VideoMode_kDirect3D;
+    }
+
+    case 3: {
+      return D2_VideoMode_kGlide;
+    }
+
+    default: {
+      Mdc_Error_ExitOnConstantMappingError(
+          __FILEW__,
+          __LINE__,
+          renderer_value
+      );
+
+      return -1;
+    }
+  }
+}

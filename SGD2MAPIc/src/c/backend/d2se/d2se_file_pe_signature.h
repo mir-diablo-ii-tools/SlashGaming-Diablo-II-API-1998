@@ -43,39 +43,9 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_GAME_EXECUTABLE_H_
-#define SGMAPI_C_GAME_EXECUTABLE_H_
+#ifndef SGD2MAPI_C_BACKEND_D2SE_D2SE_FILE_PE_SIGNATURE_H_
+#define SGD2MAPI_C_BACKEND_D2SE_D2SE_FILE_PE_SIGNATURE_H_
 
-#include <stddef.h>
-#include <windows.h>
+int FilePeSignature_IsD2se(void);
 
-#include <mdc/std/wchar.h>
-
-#include "../dllexport_define.inc"
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
-
-DLLEXPORT int Mapi_GameExecutable_IsD2se(void);
-
-DLLEXPORT const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
-    const wchar_t* sub_block
-);
-
-DLLEXPORT const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-);
-
-DLLEXPORT const VS_FIXEDFILEINFO*
-Mapi_GameExecutable_QueryFixedFileInfo(void);
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
-
-#include "../dllexport_undefine.inc"
-#endif /* SGMAPI_C_GAME_EXECUTABLE_H_ */
+#endif /* SGD2MAPI_C_BACKEND_D2SE_D2SE_FILE_PE_SIGNATURE_H_ */

@@ -52,6 +52,7 @@
 #include <mdc/std/wchar.h>
 #include <mdc/wchar_t/filew.h>
 #include "../../include/c/game_executable.h"
+#include "backend/d2se/d2se_ini.h"
 #include "backend/game_version/game_version_file_pe_signature.h"
 #include "backend/game_version/game_version_file_version.h"
 
@@ -59,6 +60,10 @@ static enum D2_GameVersion running_game_version;
 
 static enum D2_GameVersion DetermineRunningGameVersion(void) {
   enum D2_GameVersion game_version;
+
+  if (Mapi_GameExecutable_IsD2se()) {
+    return D2seIni_GetGameVersion();
+  }
 
   /*
    * Perform first stage game version detection using the game
