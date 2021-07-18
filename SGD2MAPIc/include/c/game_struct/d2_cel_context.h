@@ -248,12 +248,12 @@ static_assert(
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_00, frame) == 0x08,
+    offsetof(struct D2_CelContext_1_00, frame_index) == 0x08,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_00, direction) == 0x0C,
+    offsetof(struct D2_CelContext_1_00, direction_index) == 0x0C,
     "Incorrect member alignment."
 );
 
@@ -272,12 +272,12 @@ static_assert(
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_12A, frame) == 0x40,
+    offsetof(struct D2_CelContext_1_12A, frame_index) == 0x40,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_12A, direction) == 0x38,
+    offsetof(struct D2_CelContext_1_12A, direction_index) == 0x38,
     "Incorrect member alignment."
 );
 
@@ -296,12 +296,12 @@ static_assert(
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_13C, frame) == 0x00,
+    offsetof(struct D2_CelContext_1_13C, frame_index) == 0x00,
     "Incorrect member alignment."
 );
 
 static_assert(
-    offsetof(struct D2_CelContext_1_13C, direction) == 0x40,
+    offsetof(struct D2_CelContext_1_13C, direction_index) == 0x40,
     "Incorrect member alignment."
 );
 
