@@ -43,33 +43,32 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_
+#define SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_
 
+#include <stddef.h>
+#include <windows.h>
+
+#include <mdc/std/stdint.h>
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace mapi {
-namespace game_executable {
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+class DLLEXPORT FilePeSignature {
+ public:
+  FilePeSignature();
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+  int CompareSignature(const FilePeSignature& signature) const;
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+  static FilePeSignature ReadFile(const wchar_t* path, size_t count);
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+ private:
+  ::Mapi_FilePeSignature file_pe_signature_;
+};
 
-} // namespace game_executable
 } // namespace mapi
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_CXX98_FILE_FILE_PE_SIGNATURE_HPP_ */

@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,48 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_
+#define SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_
 
-#include <sgd2mapi.h>
+#include <stddef.h>
 
-namespace mapi {
-namespace game_executable {
+#include <mdc/std/stdint.h>
+#include <mdc/std/wchar.h>
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+#include "../../dllexport_define.inc"
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+enum {
+  Mapi_FilePeSignature_kMinSignatureCount = 32,
+  Mapi_FilePeSignature_kMaxSignatureCount = 64,
+};
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+struct Mapi_FilePeSignature {
+  size_t signature_count;
+  uint8_t signature[Mapi_FilePeSignature_kMaxSignatureCount];
+};
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+#define MAPI_FILE_PE_SIGNATURE_UNINIT { 0 }
 
-} // namespace game_executable
-} // namespace mapi
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+DLLEXPORT const struct Mapi_FilePeSignature Mapi_FilePeSignature_kUninit;
+
+DLLEXPORT int Mapi_FilePeSignature_Compare(
+    const struct Mapi_FilePeSignature* signature1,
+    const struct Mapi_FilePeSignature* signature2
+);
+
+DLLEXPORT int Mapi_FilePeSignature_ReadFile(
+    struct Mapi_FilePeSignature* signature,
+    const wchar_t* path,
+    size_t count
+);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_ */

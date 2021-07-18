@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C
+ * SlashGaming Diablo II Modding API for C++98
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C.
+ * This file is part of SlashGaming Diablo II Modding API for C++98.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,21 +43,36 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_
+#include "../../../include/cxx98/file/file_pe_signature.hpp"
 
-#include "../../../../include/c/game_version.h"
+namespace mapi {
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+FilePeSignature::FilePeSignature()
+    : file_pe_signature_(::Mapi_FilePeSignature_kUninit) {
+}
 
-enum D2_GameVersion Mapi_GameVersion_GetFromFileSignature(
-    enum D2_GameVersion guess_game_version
-);
+int FilePeSignature::CompareSignature(
+    const FilePeSignature& signature
+) const {
+  return ::Mapi_FilePeSignature_Compare(
+      &this->file_pe_signature_,
+      &signature.file_pe_signature_
+  );
+}
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+FilePeSignature FilePeSignature::ReadFile(
+    const wchar_t* path,
+    size_t count
+) {
+  FilePeSignature file_pe_signature;
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_SIGNATURE_H_ */
+  ::Mapi_FilePeSignature_ReadFile(
+      &file_pe_signature.file_pe_signature_,
+      path,
+      count
+  );
+
+  return file_pe_signature;
+}
+
+} // namespace mapi

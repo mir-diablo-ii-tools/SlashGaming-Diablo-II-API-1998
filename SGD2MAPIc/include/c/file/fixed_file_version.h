@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,63 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_C_FILE_FIXED_FILE_VERSION_H_
+#define SGMAPI_C_FILE_FIXED_FILE_VERSION_H_
 
-#include <sgd2mapi.h>
+#include <limits.h>
+#include <windows.h>
 
-namespace mapi {
-namespace game_executable {
+#include <mdc/std/stdint.h>
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+#include "../../dllexport_define.inc"
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+#define MAPI_FIXED_FILE_VERSION_MERGE_VERSION_TO_VALUE( \
+    major_high, \
+    major_low, \
+    minor_high, \
+    minor_low \
+) \
+    (((uint_least64_t)major_high & 0xFFFF) << (sizeof(WORD) * CHAR_BIT * 3)) \
+        | (((uint_least64_t)major_low & 0xFFFF) \
+            << (sizeof(WORD) * CHAR_BIT * 2)) \
+        | (((uint_least64_t)minor_high & 0xFFFF) \
+            << (sizeof(WORD) * CHAR_BIT)) \
+        | ((uint_least64_t)minor_low & 0xFFFF)
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+struct Mapi_FixedFileVersion {
+  WORD major_high;
+  WORD major_low;
+  WORD minor_high;
+  WORD minor_low;
+};
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+#define MAPI_FIXED_FILE_VERSION_UNINIT { 0 }
 
-} // namespace game_executable
-} // namespace mapi
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+DLLEXPORT const struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit;
+
+DLLEXPORT struct Mapi_FixedFileVersion
+Mapi_FixedFileVersion_InitFromVersion(
+    WORD major_high,
+    WORD major_low,
+    WORD minor_high,
+    WORD minor_low
+);
+
+DLLEXPORT void Mapi_FixedFileVersion_Deinit(
+    struct Mapi_FixedFileVersion* fixed_file_version
+);
+
+DLLEXPORT uint_least64_t Mapi_FixedFileVersion_ToValue(
+    const struct Mapi_FixedFileVersion* fixed_file_version
+);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_C_FILE_FIXED_FILE_VERSION_H_ */

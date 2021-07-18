@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C
+ * SlashGaming Diablo II Modding API for C++98
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C.
+ * This file is part of SlashGaming Diablo II Modding API for C++98.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,25 +43,49 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
-#define SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_
+#include "../../../include/cxx98/file/file_version_info.hpp"
 
-#include <windows.h>
+namespace mapi {
 
-#include "../../../../include/c/game_version.h"
+FileVersionInfo::FileVersionInfo()
+    : file_version_info_(::Mapi_FileVersionInfo_kUninit) {
+}
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+FileVersionInfo::FileVersionInfo(const wchar_t* path)
+    : file_version_info_() {
+  this->ReadFile(path);
+}
 
-VS_FIXEDFILEINFO Mapi_GetFixedFileInfo(const wchar_t* file_path);
+FileVersionInfo::~FileVersionInfo() {
+  ::Mapi_FileVersionInfo_Deinit(&this->file_version_info_);
+}
 
-enum D2_GameVersion Mapi_GameVersion_GetFromFileVersion(
-    const VS_FIXEDFILEINFO* fixed_file_info
-);
+void FileVersionInfo::ReadFile(const wchar_t* path) {
+  this->file_version_info_ = ::Mapi_FileVersionInfo_InitFromPath(path);
+}
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+const VS_FIXEDFILEINFO& FileVersionInfo::QueryFixedFileInfo() const {
+  return *::Mapi_FileVersionInfo_QueryFixedFileInfo(
+      &this->file_version_info_
+  );
+}
 
-#endif /* SGMAPI_C_BACKEND_GAME_VERSION_FILE_VERSION_H_ */
+const wchar_t* FileVersionInfo::QueryString(const wchar_t* sub_block) const {
+  return ::Mapi_FileVersionInfo_QueryString(
+      &this->file_version_info_,
+      sub_block
+  );
+}
+
+const DWORD* FileVersionInfo::QueryVar(
+    const wchar_t* sub_block,
+    size_t* count
+) const {
+  return ::Mapi_FileVersionInfo_QueryVar(
+      &this->file_version_info_,
+      sub_block,
+      count
+  );
+}
+
+} // namespace mapi

@@ -153,6 +153,22 @@ LINK32=link.exe
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Group "file_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\c\file\file_pe_signature.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\file\file_version_info.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\c\file\fixed_file_version.h
+# End Source File
+# End Group
 # Begin Group "game_constant_h"
 
 # PROP Default_Filter ""
@@ -739,6 +755,10 @@ SOURCE=.\include\dllexport_undefine.inc
 # End Source File
 # Begin Source File
 
+SOURCE=.\include\c\file.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\c\game_address.h
 # End Source File
 # Begin Source File
@@ -1129,19 +1149,19 @@ SOURCE=.\src\c\backend\game_function\thiscall_function.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_signature.c
+SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_signature.h
+SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_version.c
+SOURCE=.\src\c\backend\game_version\game_version_file_version.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\file_version.h
+SOURCE=.\src\c\backend\game_version\game_version_file_version.h
 # End Source File
 # End Group
 # Begin Source File
@@ -1167,6 +1187,22 @@ SOURCE=.\src\c\backend\game_library.cpp
 # Begin Source File
 
 SOURCE=.\src\c\backend\game_library.h
+# End Source File
+# End Group
+# Begin Group "file_c"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\c\file\file_pe_signature.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\file\file_version_info.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\c\file\fixed_file_version.c
 # End Source File
 # End Group
 # Begin Group "game_constant_c"

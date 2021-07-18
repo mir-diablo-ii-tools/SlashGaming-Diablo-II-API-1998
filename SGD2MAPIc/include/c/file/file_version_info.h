@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,54 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_C_FILE_FILE_VERSION_INFO_H_
+#define SGMAPI_C_FILE_FILE_VERSION_INFO_H_
 
-#include <sgd2mapi.h>
+#include <stddef.h>
+#include <windows.h>
 
-namespace mapi {
-namespace game_executable {
+#include <mdc/std/wchar.h>
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+#include "../../dllexport_define.inc"
 
-const wchar_t* QueryFileVersionInfoString(
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+struct Mapi_FileVersionInfo {
+  void* file_version_info;
+};
+
+#define MAPI_FILE_VERSION_INFO_UNINIT { 0 };
+
+DLLEXPORT const struct Mapi_FileVersionInfo Mapi_FileVersionInfo_kUninit;
+
+DLLEXPORT struct Mapi_FileVersionInfo Mapi_FileVersionInfo_InitFromPath(
+    const wchar_t* path
+);
+
+DLLEXPORT void Mapi_FileVersionInfo_Deinit(
+    struct Mapi_FileVersionInfo* file_version_info
+);
+
+DLLEXPORT const VS_FIXEDFILEINFO* Mapi_FileVersionInfo_QueryFixedFileInfo(
+    const struct Mapi_FileVersionInfo* file_version_info
+);
+
+DLLEXPORT const wchar_t* Mapi_FileVersionInfo_QueryString(
+    const struct Mapi_FileVersionInfo* file_version_info,
     const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+);
 
-const DWORD* QueryFileVersionInfoVar(
+DLLEXPORT const DWORD* Mapi_FileVersionInfo_QueryVar(
+    const struct Mapi_FileVersionInfo* file_version_info,
     const wchar_t* sub_block,
     size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+);
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
-} // namespace game_executable
-} // namespace mapi
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_C_FILE_FILE_VERSION_INFO_H_ */

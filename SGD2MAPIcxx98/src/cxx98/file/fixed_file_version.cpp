@@ -43,33 +43,56 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
-
-#include <sgd2mapi.h>
+#include "../../../include/cxx98/file/fixed_file_version.hpp"
 
 namespace mapi {
-namespace game_executable {
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
+FixedFileVersion::FixedFileVersion()
+    : fixed_file_version_(::Mapi_FixedFileVersion_kUninit) {
 }
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
+FixedFileVersion::FixedFileVersion(
+    WORD major_high,
+    WORD major_low,
+    WORD minor_high,
+    WORD minor_low
+)
+    : fixed_file_version_(
+          Mapi_FixedFileVersion_InitFromVersion(
+              major_high,
+              major_low,
+              minor_high,
+              minor_low
+          )
+      ) {
 }
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
+FixedFileVersion::~FixedFileVersion() {
+  ::Mapi_FixedFileVersion_Deinit(&this->fixed_file_version_);
 }
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
+bool operator==(const FixedFileVersion& lhs, const FixedFileVersion& rhs) {
+  const ::Mapi_FixedFileVersion& actual_lhs = lhs.fixed_file_version_;
+  const ::Mapi_FixedFileVersion& actual_rhs = rhs.fixed_file_version_;
+
+  return (actual_lhs.major_high == actual_rhs.major_high)
+      && (actual_lhs.major_low == actual_rhs.major_low)
+      && (actual_lhs.minor_high == actual_rhs.minor_high)
+      && (actual_lhs.minor_low == actual_rhs.minor_low);
 }
 
-} // namespace game_executable
+bool operator<(const FixedFileVersion& lhs, const FixedFileVersion& rhs) {
+  const ::Mapi_FixedFileVersion& actual_lhs = lhs.fixed_file_version_;
+  const ::Mapi_FixedFileVersion& actual_rhs = rhs.fixed_file_version_;
+
+  return (actual_lhs.major_high < actual_rhs.major_high)
+      && (actual_lhs.major_low < actual_rhs.major_low)
+      && (actual_lhs.minor_high < actual_rhs.minor_high)
+      && (actual_lhs.minor_low < actual_rhs.minor_low);
+}
+
+uint_least64_t FixedFileVersion::ToValue() const {
+  return ::Mapi_FixedFileVersion_ToValue(&this->fixed_file_version_);
+}
+
 } // namespace mapi

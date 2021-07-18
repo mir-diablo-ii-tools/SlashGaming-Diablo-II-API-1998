@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,15 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
+#define SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
 
-#include <sgd2mapi.h>
+#include "../../../../include/c/game_version.h"
 
-namespace mapi {
-namespace game_executable {
+enum D2_GameVersion FilePeSignature_GuessGameVersion(
+    int is_game_version_at_least_1_14
+);
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+int FilePeSignature_HasCheck(enum D2_GameVersion game_version);
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
-
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
-
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
-
-} // namespace game_executable
-} // namespace mapi
+#endif /* SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_ */

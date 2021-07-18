@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,11 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_CXX98_FILE_HPP_
+#define SGMAPI_CXX98_FILE_HPP_
 
-#include <sgd2mapi.h>
+#include "file/file_pe_signature.hpp"
+#include "file/file_version_info.hpp"
+#include "file/fixed_file_version.hpp"
 
-namespace mapi {
-namespace game_executable {
-
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
-
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
-
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
-
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
-
-} // namespace game_executable
-} // namespace mapi
+#endif /* SGMAPI_CXX98_FILE_HPP_ */

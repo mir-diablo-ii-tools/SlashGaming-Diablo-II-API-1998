@@ -43,33 +43,44 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_CXX98_FILE_FILE_VERSION_INFO_HPP_
+#define SGMAPI_CXX98_FILE_FILE_VERSION_INFO_HPP_
+
+#include <stddef.h>
+#include <windows.h>
 
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace mapi {
-namespace game_executable {
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+class DLLEXPORT FileVersionInfo {
+ public:
+  FileVersionInfo();
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+  explicit FileVersionInfo(const wchar_t* path);
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+  ~FileVersionInfo();
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+  void ReadFile(const wchar_t* path);
 
-} // namespace game_executable
+  const VS_FIXEDFILEINFO& QueryFixedFileInfo() const;
+  
+  const wchar_t* QueryString(
+      const wchar_t* sub_block
+  ) const;
+
+  const DWORD* QueryVar(
+      const wchar_t* sub_block,
+      size_t* count
+  ) const;
+
+ private:
+  ::Mapi_FileVersionInfo file_version_info_;
+};
+
 } // namespace mapi
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_CXX98_FILE_FILE_VERSION_INFO_HPP_ */

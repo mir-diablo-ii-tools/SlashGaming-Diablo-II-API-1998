@@ -48,6 +48,7 @@
 
 #include "d2api_version.h"
 #include "cxx98/default_game_library.hpp"
+#include "cxx98/file.hpp"
 #include "cxx98/game_address.hpp"
 #include "cxx98/game_bool.hpp"
 #include "cxx98/game_constant.hpp"

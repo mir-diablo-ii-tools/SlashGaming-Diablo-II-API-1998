@@ -48,6 +48,7 @@
 
 #include "d2api_version.h"
 #include "c/default_game_library.h"
+#include "c/file.h"
 #include "c/game_address.h"
 #include "c/game_bool.h"
 #include "c/game_constant.h"

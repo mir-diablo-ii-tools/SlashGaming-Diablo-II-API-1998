@@ -46,6 +46,9 @@
 #ifndef SGMAPI_C_GAME_EXECUTABLE_H_
 #define SGMAPI_C_GAME_EXECUTABLE_H_
 
+#include <stddef.h>
+#include <windows.h>
+
 #include <mdc/std/wchar.h>
 
 #include "../dllexport_define.inc"
@@ -55,6 +58,18 @@ extern "C" {
 #endif /* __cplusplus */
 
 DLLEXPORT const wchar_t* Mapi_GameExecutable_GetPath(void);
+
+DLLEXPORT const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
+    const wchar_t* sub_block
+);
+
+DLLEXPORT const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
+    const wchar_t* sub_block,
+    size_t* count
+);
+
+DLLEXPORT const VS_FIXEDFILEINFO*
+Mapi_GameExecutable_QueryFixedFileInfo(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

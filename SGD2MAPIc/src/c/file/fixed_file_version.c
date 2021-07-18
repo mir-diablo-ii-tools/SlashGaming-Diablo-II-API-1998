@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,33 +43,43 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#include "../../../include/c/file/fixed_file_version.h"
 
-#include <sgd2mapi.h>
+/**
+ * External
+ */
 
-namespace mapi {
-namespace game_executable {
+const struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit =
+    MAPI_FIXED_FILE_VERSION_UNINIT;
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
-
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
+struct Mapi_FixedFileVersion Mapi_FixedFileVersion_InitFromVersion(
+    WORD major_high,
+    WORD major_low,
+    WORD minor_high,
+    WORD minor_low
 ) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
+  struct Mapi_FixedFileVersion fixed_file_version;
+
+  fixed_file_version.major_high = major_high;
+  fixed_file_version.major_low = major_low;
+  fixed_file_version.minor_high = minor_high;
+  fixed_file_version.minor_low = minor_low;
+
+  return fixed_file_version;
 }
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
+void Mapi_FixedFileVersion_Deinit(
+    struct Mapi_FixedFileVersion* fixed_file_version
 ) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
 }
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
+uint_least64_t Mapi_FixedFileVersion_ToValue(
+    const struct Mapi_FixedFileVersion* fixed_file_version
+) {
+  return MAPI_FIXED_FILE_VERSION_MERGE_VERSION_TO_VALUE(
+      fixed_file_version->major_high,
+      fixed_file_version->major_low,
+      fixed_file_version->minor_high,
+      fixed_file_version->minor_low
+  );
 }
-
-} // namespace game_executable
-} // namespace mapi

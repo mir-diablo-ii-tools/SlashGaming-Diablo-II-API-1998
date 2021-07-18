@@ -43,33 +43,48 @@
  *  work.
  */
 
-#include "../../include/cxx98/game_executable.hpp"
+#ifndef SGMAPI_CXX98_FILE_FIXED_FILE_VERSION_HPP_
+#define SGMAPI_CXX98_FILE_FIXED_FILE_VERSION_HPP_
 
+#include <windows.h>
+
+#include <mdc/std/stdint.h>
 #include <sgd2mapi.h>
 
+#include "../../dllexport_define.inc"
+
 namespace mapi {
-namespace game_executable {
 
-const wchar_t* GetPath() {
-  return ::Mapi_GameExecutable_GetPath();
-}
+class DLLEXPORT FixedFileVersion {
+ public:
+  FixedFileVersion();
 
-const wchar_t* QueryFileVersionInfoString(
-    const wchar_t* sub_block
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
-}
+  FixedFileVersion(
+      WORD major_high,
+      WORD major_low,
+      WORD minor_high,
+      WORD minor_low
+  );
 
-const DWORD* QueryFileVersionInfoVar(
-    const wchar_t* sub_block,
-    size_t* count
-) {
-  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
-}
+  ~FixedFileVersion();
 
-const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
-  return *::Mapi_GameExecutable_QueryFixedFileInfo();
-}
+  friend bool operator==(
+      const FixedFileVersion& lhs,
+      const FixedFileVersion& rhs
+  );
 
-} // namespace game_executable
+  friend bool operator<(
+      const FixedFileVersion& lhs,
+      const FixedFileVersion& rhs
+  );
+
+  uint_least64_t ToValue() const;
+
+ private:
+  ::Mapi_FixedFileVersion fixed_file_version_;
+};
+
 } // namespace mapi
+
+#include "../../dllexport_undefine.inc"
+#endif /* SGMAPI_CXX98_FILE_FIXED_FILE_VERSION_HPP_ */

@@ -46,6 +46,9 @@
 #ifndef SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
 #define SGMAPI_CXX98_GAME_EXECUTABLE_HPP_
 
+#include <stddef.h>
+#include <windows.h>
+
 #include <mdc/std/wchar.h>
 
 #include "../dllexport_define.inc"
@@ -54,6 +57,17 @@ namespace mapi {
 namespace game_executable {
 
 DLLEXPORT const wchar_t* GetPath();
+
+DLLEXPORT const wchar_t* QueryFileVersionInfoString(
+    const wchar_t* sub_block
+);
+
+DLLEXPORT const DWORD* QueryFileVersionInfoVar(
+    const wchar_t* sub_block,
+    size_t* count
+);
+
+DLLEXPORT const VS_FIXEDFILEINFO& QueryFixedFileInfo();
 
 } // namespace game_executable
 } // namespace mapi
