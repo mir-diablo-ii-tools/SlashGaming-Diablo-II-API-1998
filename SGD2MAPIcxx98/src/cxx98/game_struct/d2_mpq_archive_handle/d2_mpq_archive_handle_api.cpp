@@ -45,6 +45,8 @@
 
 #include "../../../../include/cxx98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_api.hpp"
 
+#include <utility>
+
 #include "../../../../include/cxx98/game_function/d2win/d2win_load_mpq.hpp"
 #include "../../../../include/cxx98/game_function/d2win/d2win_unload_mpq.hpp"
 
@@ -86,7 +88,7 @@ MpqArchiveHandle_Api::MpqArchiveHandle_Api(
           ::std::move(mpq_archive_handle.mpq_archive_handle_)
       ),
       is_open_(::std::move(mpq_archive_handle.is_open_)) {
-  mpq_archive_handle.mpq_archive_handle_ = NULL;
+  mpq_archive_handle.mpq_archive_handle_.v1_00 = NULL;
   mpq_archive_handle.is_open_ = false;
 }
 
@@ -100,16 +102,18 @@ MpqArchiveHandle_Api::~MpqArchiveHandle_Api() {
 
 MpqArchiveHandle_Api& MpqArchiveHandle_Api::operator=(
     MpqArchiveHandle_Api&& mpq_archive_handle
-) {
+) noexcept {
   if (this == &mpq_archive_handle) {
     return *this;
   }
 
-  this->mpq_archive_handle_ = ::std::move(other.mpq_archive_handle_);
-  this->is_open_ = ::std::move(other.is_open_);
+  this->mpq_archive_handle_ = ::std::move(
+      mpq_archive_handle.mpq_archive_handle_
+  );
+  this->is_open_ = ::std::move(mpq_archive_handle.is_open_);
 
-  other.mpq_archive_handle_ = NULL;
-  other.is_open_ = false;
+  mpq_archive_handle.mpq_archive_handle_.v1_00 = NULL;
+  mpq_archive_handle.is_open_ = false;
 
   return *this;
 }
