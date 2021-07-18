@@ -21,7 +21,7 @@ set(INCLUDE_HEADERS
     "include/cxx98/game_constant/d2_text_color.hpp"
     "include/cxx98/game_constant/d2_text_font.hpp"
     "include/cxx98/game_constant/d2_video_mode.hpp"
-    
+
     "include/cxx98/game_function/d2client/d2client_draw_centered_unicode_text.hpp"
     "include/cxx98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
     "include/cxx98/game_function/d2common/d2common_get_global_belt_record.hpp"
@@ -214,7 +214,7 @@ set(SRC_C
     "src/cxx98/game_constant/d2_text_color.cpp"
     "src/cxx98/game_constant/d2_text_font.cpp"
     "src/cxx98/game_constant/d2_video_mode.cpp"
-    
+
     "src/cxx98/game_function/d2client/d2client_draw_centered_unicode_text.cpp"
     "src/cxx98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.cpp"
     "src/cxx98/game_function/d2common/d2common_get_global_belt_record.cpp"
