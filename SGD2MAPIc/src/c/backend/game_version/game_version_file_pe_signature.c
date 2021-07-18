@@ -47,9 +47,8 @@
 
 #include <stdlib.h>
 
-#include <mdc/std/wchar.h>
-
 #include <mdc/error/exit_on_error.h>
+#include <mdc/std/wchar.h>
 #include <mdc/wchar_t/filew.h>
 #include "../../../../include/c/file/file_pe_signature.h"
 #include "../../../../include/c/game_executable.h"
@@ -400,8 +399,8 @@ static enum D2_GameVersion SearchTable(
    * and the key matches the type of file_pe_signature.
    */
   search_result = bsearch(
-      kSortedVersionTable,
       file_pe_signature,
+      kSortedVersionTable,
       kSortedVersionTableCount,
       sizeof(kSortedVersionTable[0]),
       &VersionTableEntry_CompareKeyAsVoid
