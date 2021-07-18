@@ -51,6 +51,8 @@
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
+#include "../../../include/c/game_executable.h"
+#include "../backend/d2se/d2se_ini.h"
 
 static enum D2_VideoMode_1_00 GetVideoModeFromRegValue_1_00(DWORD reg_value) {
   switch (reg_value) {
@@ -179,21 +181,23 @@ static enum D2_VideoMode GetRegistryVideoMode() {
  */
 
 enum D2_VideoMode D2_Helper_DetermineVideoMode(void) {
-  return D2_VideoMode_ToApiValue_1_00(
-      D2_Helper_DetermineVideoMode_1_00()
-  );
-}
-
-enum D2_VideoMode_1_00 D2_Helper_DetermineVideoMode_1_00(void) {
   enum D2_VideoMode command_line_video_mode;
   enum D2_VideoMode reg_video_mode;
+
+  if (Mapi_GameExecutable_IsD2se()) {
+    return D2seIni_GetVideoMode();
+  }
 
   command_line_video_mode = GetCommandLineVideoMode();
 
   if (command_line_video_mode != D2_VideoMode_kDirectDraw) {
-    return D2_VideoMode_ToGameValue_1_00(command_line_video_mode);
+    return command_line_video_mode;
   }
 
   reg_video_mode = GetRegistryVideoMode();
-  return D2_VideoMode_ToGameValue_1_00(reg_video_mode);
+  return reg_video_mode;
+}
+
+enum D2_VideoMode_1_00 D2_Helper_DetermineVideoMode_1_00(void) {
+  return D2_VideoMode_ToGameValue_1_00(D2_Helper_DetermineVideoMode());
 }
