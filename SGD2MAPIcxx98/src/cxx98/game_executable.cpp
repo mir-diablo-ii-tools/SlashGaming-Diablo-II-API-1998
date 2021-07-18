@@ -51,7 +51,24 @@ namespace mapi {
 namespace game_executable {
 
 const wchar_t* GetPath() {
-  return Mapi_GameExecutable_GetPath();
+  return ::Mapi_GameExecutable_GetPath();
+}
+
+const wchar_t* QueryFileVersionInfoString(
+    const wchar_t* sub_block
+) {
+  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
+}
+
+const DWORD* QueryFileVersionInfoVar(
+    const wchar_t* sub_block,
+    size_t* count
+) {
+  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
+}
+
+const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
+  return *::Mapi_GameExecutable_QueryFixedFileInfo();
 }
 
 } // namespace game_executable
