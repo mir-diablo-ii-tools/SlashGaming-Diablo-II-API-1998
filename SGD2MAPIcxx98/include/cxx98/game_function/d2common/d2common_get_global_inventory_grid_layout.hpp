@@ -52,7 +52,7 @@
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
-namespace d2commmon {
+namespace d2common {
 
 DLLEXPORT void GetGlobalInventoryGridLayout(
     unsigned int inventory_record_index,
@@ -71,7 +71,7 @@ DLLEXPORT void GetGlobalInventoryGridLayout_1_07(
     GridLayout_1_00* out_grid_layout
 );
 
-} // namespace d2commmon
+} // namespace d2common
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"

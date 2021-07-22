@@ -48,7 +48,7 @@
 #include <sgd2mapi.h>
 
 namespace d2 {
-namespace d2commmon {
+namespace d2common {
 
 void GetGlobalBeltSlotPosition(
     unsigned int belt_record_index,
@@ -90,5 +90,5 @@ void GetGlobalBeltSlotPosition_1_07(
   );
 }
 
-} // namespace d2commmon
+} // namespace d2common
 } // namespace d2
