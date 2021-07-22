@@ -341,7 +341,7 @@ SOURCE=.\include\cxx98\game_function\d2win\d2win_set_pop_up_unicode_text.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\cxx98\game_function\d2win\d2win_set_text_font.hpp
+SOURCE=.\include\cxx98\game_function\d2win\d2win_set_unicode_text_font.hpp
 # End Source File
 # Begin Source File
 
@@ -1273,7 +1273,7 @@ SOURCE=.\src\cxx98\game_function\d2win\d2win_set_pop_up_unicode_text.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\cxx98\game_function\d2win\d2win_set_text_font.cpp
+SOURCE=.\src\cxx98\game_function\d2win\d2win_set_unicode_text_font.cpp
 # End Source File
 # Begin Source File
 

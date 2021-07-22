@@ -297,7 +297,7 @@ SOURCE=.\include\c\game_function\d2win\d2win_set_pop_up_unicode_text.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_set_text_font.h
+SOURCE=.\include\c\game_function\d2win\d2win_set_unicode_text_font.h
 # End Source File
 # Begin Source File
 
@@ -1479,7 +1479,7 @@ SOURCE=.\src\c\game_function\d2win\d2win_set_pop_up_unicode_text.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_set_text_font.c
+SOURCE=.\src\c\game_function\d2win\d2win_set_unicode_text_font.c
 # End Source File
 # Begin Source File
 
