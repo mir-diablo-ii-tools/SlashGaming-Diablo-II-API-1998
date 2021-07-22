@@ -43,8 +43,8 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_
-#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_
+#ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_H_
+#define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_H_
 
 #include <mdc/std/stdint.h>
 #include "../../game_constant/d2_text_font.h"
@@ -55,11 +55,12 @@
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT enum D2_TextFont D2_D2Win_SetTextFont(
+DLLEXPORT enum D2_TextFont D2_D2Win_SetUnicodeTextFont(
     enum D2_TextFont text_font
 );
 
-DLLEXPORT /* enum D2_TextFont_1_00 */ int32_t D2_D2Win_SetTextFont_1_00(
+DLLEXPORT /* enum D2_TextFont_1_00 */ int32_t
+D2_D2Win_SetUnicodeTextFont_1_00(
     /* enum D2_TextFont_1_00 */ int32_t text_font
 );
 
@@ -68,4 +69,4 @@ DLLEXPORT /* enum D2_TextFont_1_00 */ int32_t D2_D2Win_SetTextFont_1_00(
 #endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_TEXT_FONT_H_ */
+#endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_H_ */

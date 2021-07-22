@@ -43,26 +43,27 @@
  *  work.
  */
 
-#include "../../../../include/cxx98/game_function/d2win/d2win_set_text_font.hpp"
+#ifndef SGD2MAPI_CXX98_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_HPP_
+#define SGD2MAPI_CXX98_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_HPP_
 
-#include <sgd2mapi.h>
+#include <mdc/std/stdint.h>
+#include "../../game_constant/d2_text_font.hpp"
+
+#include "../../../dllexport_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-TextFont SetTextFont(
+DLLEXPORT TextFont SetUnicodeTextFont(
     TextFont text_font
-) {
-  return static_cast<TextFont>(
-      ::D2_D2Win_SetTextFont(static_cast<::D2_TextFont>(text_font))
-  );
-}
+);
 
-TextFont_1_00 SetTextFont_1_00(
+DLLEXPORT TextFont_1_00 SetUnicodeTextFont_1_00(
     TextFont_1_00 text_font
-) {
-  return static_cast<TextFont_1_00>(::D2_D2Win_SetTextFont_1_00(text_font));
-}
+);
 
 } // namespace d2win
 } // namespace d2
+
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_HPP_ */
