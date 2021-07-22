@@ -113,7 +113,7 @@ struct D2_CelContext_Api {
 typedef struct D2_CelContext D2_CelContext;
 typedef struct D2_CelContext_1_00 D2_CelContext_1_00;
 
-typedef struct D2_UnicodeChar_Api D2_UnicodeChar_Api;
+typedef struct D2_CelContext_Api D2_CelContext_Api;
 
 #endif /* SGD2MAPI_ENABLE_TYPEDEFS */
 
