@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/c/game_function/d2win/d2win_set_text_font.h"
+#include "../../../../include/c/game_function/d2win/d2win_set_unicode_text_font.h"
 
 #include "../../../../include/c/default_game_library.h"
 #include "../../../../include/c/game_address.h"
@@ -56,7 +56,7 @@ static struct Mapi_GameAddress game_address;
 static void InitGameAddress(void) {
   game_address = Mapi_GameAddressTable_GetFromLibrary(
       D2_DefaultLibrary_kD2Win,
-      "SetTextFont"
+      "SetUnicodeTextFont"
   );
 }
 
@@ -74,17 +74,17 @@ static void InitStatic(void) {
  * External
  */
 
-enum D2_TextFont D2_D2Win_SetTextFont(
+enum D2_TextFont D2_D2Win_SetUnicodeTextFont(
     enum D2_TextFont text_font
 ) {
   InitStatic();
 
   return D2_TextFont_ToApiValue(
-      D2_D2Win_SetTextFont_1_00(D2_TextFont_ToGameValue(text_font))
+      D2_D2Win_SetUnicodeTextFont_1_00(D2_TextFont_ToGameValue(text_font))
   );
 }
 
-/* enum D2_TextFont_1_00 */ int32_t D2_D2Win_SetTextFont_1_00(
+/* enum D2_TextFont_1_00 */ int32_t D2_D2Win_SetUnicodeTextFont_1_00(
     /* enum D2_TextFont_1_00 */ int32_t text_font
 ) {
   InitStatic();
