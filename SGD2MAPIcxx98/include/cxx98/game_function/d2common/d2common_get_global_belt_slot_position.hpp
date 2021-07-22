@@ -52,7 +52,7 @@
 #include "../../../dllexport_define.inc"
 
 namespace d2 {
-namespace d2commmon {
+namespace d2common {
 
 DLLEXPORT void GetGlobalBeltSlotPosition(
     unsigned int belt_record_index,
@@ -74,7 +74,7 @@ DLLEXPORT void GetGlobalBeltSlotPosition_1_07(
     uint32_t belt_slot_index
 );
 
-} // namespace d2commmon
+} // namespace d2common
 } // namespace d2
 
 #include "../../../dllexport_undefine.inc"

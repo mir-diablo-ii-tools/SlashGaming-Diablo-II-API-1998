@@ -48,7 +48,7 @@
 #include <sgd2mapi.h>
 
 namespace d2 {
-namespace d2commmon {
+namespace d2common {
 
 void GetGlobalInventoryGridLayout(
     unsigned int inventory_record_index,
@@ -84,5 +84,5 @@ void GetGlobalInventoryGridLayout_1_07(
   );
 }
 
-} // namespace d2commmon
+} // namespace d2common
 } // namespace d2
