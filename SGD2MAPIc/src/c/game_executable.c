@@ -92,6 +92,14 @@ static wchar_t* GetMemoryAllocGameExecutable(
     path_new_capacity *= 2;
   } while (*path_len >= path_capacity);
 
+  /* Shrink to fit. */
+  realloc_result = Mdc_realloc(path, (*path_len + 1) * sizeof(path[0]));
+  if (realloc_result == NULL) {
+    goto free_path;
+  }
+
+  path = realloc_result;
+
   return path;
 
 free_path:
@@ -115,6 +123,7 @@ static void InitGameExecutable(void) {
   );
 
   if (game_executable_path_len < MAX_PATH) {
+    is_init = 1;
     return;
   }
 
@@ -146,22 +155,8 @@ static void InitFileVersionInfo(void) {
   }
 
   file_version_info = Mapi_FileVersionInfo_InitFromPath(
-      game_executable_path
+      Mapi_GameExecutable_GetPath()
   );
-
-  is_init = 1;
-}
-
-static void InitStatic(void) {
-  static is_init = 0;
-
-  if (is_init) {
-    return;
-  }
-
-  InitGameExecutable();
-  InitIsD2se();
-  InitFileVersionInfo();
 
   is_init = 1;
 }
@@ -171,7 +166,7 @@ static void InitStatic(void) {
  */
 
 const wchar_t* Mapi_GameExecutable_GetPath(void) {
-  InitStatic();
+  InitGameExecutable();
 
   if (game_executable_path_len < MAX_PATH) {
     return game_executable_path;
@@ -181,7 +176,7 @@ const wchar_t* Mapi_GameExecutable_GetPath(void) {
 }
 
 int Mapi_GameExecutable_IsD2se(void) {
-  InitStatic();
+  InitIsD2se();
 
   return is_d2se;
 }
@@ -189,7 +184,7 @@ int Mapi_GameExecutable_IsD2se(void) {
 const wchar_t* Mapi_GameExecutable_QueryFileVersionInfoString(
     const wchar_t* sub_block
 ) {
-  InitStatic();
+  InitFileVersionInfo();
 
   return Mapi_FileVersionInfo_QueryString(
       &file_version_info,
@@ -201,13 +196,13 @@ const DWORD* Mapi_GameExecutable_QueryFileVersionInfoVar(
     const wchar_t* sub_block,
     size_t* count
 ) {
-  InitStatic();
+  InitFileVersionInfo();
 
   return Mapi_FileVersionInfo_QueryVar(&file_version_info, sub_block, count);
 }
 
 const VS_FIXEDFILEINFO* Mapi_GameExecutable_QueryFixedFileInfo(void) {
-  InitStatic();
+  InitFileVersionInfo();
 
   return Mapi_FileVersionInfo_QueryFixedFileInfo(&file_version_info);
 }

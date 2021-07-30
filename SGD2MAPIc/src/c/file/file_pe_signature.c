@@ -170,10 +170,12 @@ int Mapi_FilePeSignature_ReadFile(
 
   fread_count = fread(
       signature,
-      sizeof(signature[0]),
+      sizeof(signature->signature[0]),
       count,
       file
   );
+
+  signature->signature_count = count;
 
   if (fread_count < count) {
     Mdc_Error_ExitOnGeneralError(
