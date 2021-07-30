@@ -154,9 +154,8 @@ static void InitFileVersionInfo(void) {
     return;
   }
 
-  InitGameExecutable();
   file_version_info = Mapi_FileVersionInfo_InitFromPath(
-      game_executable_path
+      Mapi_GameExecutable_GetPath()
   );
 
   is_init = 1;
