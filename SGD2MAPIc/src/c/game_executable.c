@@ -92,6 +92,14 @@ static wchar_t* GetMemoryAllocGameExecutable(
     path_new_capacity *= 2;
   } while (*path_len >= path_capacity);
 
+  /* Shrink to fit. */
+  realloc_result = Mdc_realloc(path, (*path_len + 1) * sizeof(path[0]));
+  if (realloc_result == NULL) {
+    goto free_path;
+  }
+
+  path = realloc_result;
+
   return path;
 
 free_path:
