@@ -66,9 +66,7 @@ Cel* Cel_Wrapper::Get() {
 }
 
 const Cel* Cel_Wrapper::Get() const {
-  Cel_View view(*this);
-
-  return view.Get();
+  return reinterpret_cast<const Cel*>(this->cel_.v1_00);
 }
 
 int Cel_Wrapper::GetHeight() const {
