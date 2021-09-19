@@ -69,7 +69,8 @@ struct Mapi_FilePeSignature {
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT const struct Mapi_FilePeSignature Mapi_FilePeSignature_kUninit;
+DLLEXPORT extern const struct Mapi_FilePeSignature
+Mapi_FilePeSignature_kUninit;
 
 DLLEXPORT int Mapi_FilePeSignature_Compare(
     const struct Mapi_FilePeSignature* signature1,
