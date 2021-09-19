@@ -61,7 +61,7 @@ void DrawUnicodeText(
       text,
       position_x,
       position_y,
-      static_cast<::D2_TextColor>(text_color),
+      static_cast< ::D2_TextColor>(text_color),
       is_indented
   );
 }

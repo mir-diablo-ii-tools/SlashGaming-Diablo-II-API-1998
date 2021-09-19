@@ -57,7 +57,7 @@ int ToGameValue(ScreenOpenMode api_value) {
 ScreenOpenMode_1_07 ToGameValue_1_07(ScreenOpenMode api_value) {
   ::D2_ScreenOpenMode_1_07 c_game_value =
       ::D2_ScreenOpenMode_ToGameValue_1_07(
-          static_cast<::D2_ScreenOpenMode>(api_value)
+          static_cast< ::D2_ScreenOpenMode>(api_value)
       );
 
   return static_cast<ScreenOpenMode_1_07>(c_game_value);
@@ -73,7 +73,7 @@ ScreenOpenMode ToApiValue(int game_value) {
 
 ScreenOpenMode ToApiValue_1_07(ScreenOpenMode_1_07 game_value) {
   ::D2_ScreenOpenMode c_api_value = ::D2_ScreenOpenMode_ToApiValue_1_07(
-      static_cast<::D2_ScreenOpenMode_1_07>(game_value)
+      static_cast< ::D2_ScreenOpenMode_1_07>(game_value)
   );
 
   return static_cast<ScreenOpenMode>(c_api_value);

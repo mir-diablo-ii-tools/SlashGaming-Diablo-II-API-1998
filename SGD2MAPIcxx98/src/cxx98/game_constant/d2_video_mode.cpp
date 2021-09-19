@@ -57,7 +57,7 @@ int ToGameValue(VideoMode api_value) {
 VideoMode_1_00 ToGameValue_1_00(VideoMode api_value) {
   ::D2_VideoMode_1_00 c_game_value =
       ::D2_VideoMode_ToGameValue_1_00(
-          static_cast<::D2_VideoMode>(api_value)
+          static_cast< ::D2_VideoMode>(api_value)
       );
 
   return static_cast<VideoMode_1_00>(c_game_value);
@@ -73,7 +73,7 @@ VideoMode ToApiValue(int game_value) {
 
 VideoMode ToApiValue_1_00(VideoMode_1_00 game_value) {
   ::D2_VideoMode c_api_value = ::D2_VideoMode_ToApiValue_1_00(
-      static_cast<::D2_VideoMode_1_00>(game_value)
+      static_cast< ::D2_VideoMode_1_00>(game_value)
   );
 
   return static_cast<VideoMode>(c_api_value);

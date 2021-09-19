@@ -98,7 +98,7 @@ GamePatch GamePatch::MakeGameBackBranchPatch(
 
   game_patch.game_patch_ = ::Mapi_GamePatch_InitGameBackBranchPatch(
       &static_cast<const ::Mapi_GameAddress&>(game_address),
-      static_cast<::Mapi_BranchType>(branch_type),
+      static_cast< ::Mapi_BranchType>(branch_type),
       func_ptr,
       patch_size
   );
@@ -116,7 +116,7 @@ GamePatch GamePatch::MakeGameBranchPatch(
 
   game_patch.game_patch_ = ::Mapi_GamePatch_InitGameBranchPatch(
       &static_cast<const ::Mapi_GameAddress&>(game_address),
-      static_cast<::Mapi_BranchType>(branch_type),
+      static_cast< ::Mapi_BranchType>(branch_type),
       func_ptr,
       patch_size
   );

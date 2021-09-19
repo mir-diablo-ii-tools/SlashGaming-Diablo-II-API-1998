@@ -62,7 +62,7 @@ ScreenOpenMode_1_07 GetScreenOpenMode_1_07() {
 
 void SetScreenOpenMode(ScreenOpenMode screen_open_mode) {
   ::D2_D2Client_SetScreenOpenMode(
-      static_cast<::D2_ScreenOpenMode>(screen_open_mode)
+      static_cast< ::D2_ScreenOpenMode>(screen_open_mode)
   );
 }
 

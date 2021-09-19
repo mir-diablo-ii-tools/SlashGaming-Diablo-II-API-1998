@@ -63,7 +63,7 @@ bool DrawCelContext(
       position_x,
       position_y,
       bgrt_color,
-      static_cast<::D2_DrawEffect>(draw_effect),
+      static_cast< ::D2_DrawEffect>(draw_effect),
       unknown_06__set_to_nullptr
   );
 }
