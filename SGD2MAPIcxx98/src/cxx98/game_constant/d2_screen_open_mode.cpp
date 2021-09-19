@@ -46,7 +46,7 @@
 #include "../../../include/cxx98/game_constant/d2_screen_open_mode.hpp"
 
 namespace d2 {
-namespace draw_effect {
+namespace screen_open_mode {
 
 int ToGameValue(ScreenOpenMode api_value) {
   return ::D2_ScreenOpenMode_ToGameValue(
@@ -79,5 +79,5 @@ ScreenOpenMode ToApiValue_1_07(ScreenOpenMode_1_07 game_value) {
   return static_cast<ScreenOpenMode>(c_api_value);
 }
 
-} // namespace draw_effect
+} // namespace screen_open_mode
 } // namespace d2
