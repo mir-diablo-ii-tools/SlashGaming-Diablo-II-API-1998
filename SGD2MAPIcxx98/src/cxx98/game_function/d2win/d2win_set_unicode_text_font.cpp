@@ -54,7 +54,7 @@ TextFont SetUnicodeTextFont(
     TextFont text_font
 ) {
   return static_cast<TextFont>(
-      ::D2_D2Win_SetUnicodeTextFont(static_cast<::D2_TextFont>(text_font))
+      ::D2_D2Win_SetUnicodeTextFont(static_cast< ::D2_TextFont>(text_font))
   );
 }
 

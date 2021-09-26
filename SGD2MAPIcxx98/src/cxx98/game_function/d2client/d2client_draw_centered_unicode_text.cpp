@@ -62,7 +62,7 @@ void DrawCenteredUnicodeText(
       position_y,
       text,
       right,
-      static_cast<::D2_TextColor>(text_color)
+      static_cast< ::D2_TextColor>(text_color)
   );
 }
 

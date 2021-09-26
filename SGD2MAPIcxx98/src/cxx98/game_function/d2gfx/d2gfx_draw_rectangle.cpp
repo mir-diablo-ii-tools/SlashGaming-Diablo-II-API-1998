@@ -64,7 +64,7 @@ void DrawRectangle(
       right,
       bottom,
       primitive_color_id,
-      static_cast<::D2_DrawEffect>(draw_effect)
+      static_cast< ::D2_DrawEffect>(draw_effect)
   );
 }
 

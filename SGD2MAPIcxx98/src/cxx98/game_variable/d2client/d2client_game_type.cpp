@@ -59,7 +59,7 @@ ClientGameType_1_00 GetGameType_1_00() {
 }
 
 void SetGameType(ClientGameType game_type) {
-  ::D2_D2Client_SetGameType(static_cast<::D2_ClientGameType>(game_type));
+  ::D2_D2Client_SetGameType(static_cast< ::D2_ClientGameType>(game_type));
 }
 
 void SetGameType_1_00(ClientGameType_1_00 game_type) {

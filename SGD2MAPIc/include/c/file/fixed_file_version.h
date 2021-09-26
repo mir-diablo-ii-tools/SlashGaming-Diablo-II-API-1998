@@ -79,7 +79,8 @@ struct Mapi_FixedFileVersion {
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT const struct Mapi_FixedFileVersion Mapi_FixedFileVersion_kUninit;
+DLLEXPORT extern const struct Mapi_FixedFileVersion
+Mapi_FixedFileVersion_kUninit;
 
 DLLEXPORT struct Mapi_FixedFileVersion
 Mapi_FixedFileVersion_InitFromVersion(

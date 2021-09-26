@@ -63,7 +63,8 @@ struct Mapi_FileVersionInfo {
 
 #define MAPI_FILE_VERSION_INFO_UNINIT { 0 };
 
-DLLEXPORT const struct Mapi_FileVersionInfo Mapi_FileVersionInfo_kUninit;
+DLLEXPORT extern const struct Mapi_FileVersionInfo
+Mapi_FileVersionInfo_kUninit;
 
 DLLEXPORT struct Mapi_FileVersionInfo Mapi_FileVersionInfo_InitFromPath(
     const wchar_t* path

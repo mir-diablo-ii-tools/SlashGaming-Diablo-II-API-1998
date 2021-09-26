@@ -63,7 +63,7 @@ GameAddress GameAddress::FromExportedName(
 
   game_address.game_address_ =
       ::Mapi_GameAddress_InitFromLibraryAndExportedName(
-          static_cast<::D2_DefaultLibrary>(library),
+          static_cast< ::D2_DefaultLibrary>(library),
           exported_name
       );
 
@@ -93,7 +93,7 @@ GameAddress GameAddress::FromOffset(
 
   game_address.game_address_ =
       ::Mapi_GameAddress_InitFromLibraryAndOffset(
-          static_cast<::D2_DefaultLibrary>(library),
+          static_cast< ::D2_DefaultLibrary>(library),
           offset
       );
 
@@ -123,7 +123,7 @@ GameAddress GameAddress::FromOrdinal(
 
   game_address.game_address_ =
       ::Mapi_GameAddress_InitFromLibraryAndOrdinal(
-          static_cast<::D2_DefaultLibrary>(library),
+          static_cast< ::D2_DefaultLibrary>(library),
           ordinal
       );
 

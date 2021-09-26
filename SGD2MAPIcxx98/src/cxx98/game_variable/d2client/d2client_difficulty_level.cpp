@@ -64,7 +64,7 @@ void SetDifficultyLevel(
     DifficultyLevel difficulty_level
 ) {
   ::D2_D2Client_SetDifficultyLevel(
-      static_cast<::D2_DifficultyLevel>(difficulty_level)
+      static_cast< ::D2_DifficultyLevel>(difficulty_level)
   );
 }
 

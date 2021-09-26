@@ -59,7 +59,7 @@ VideoMode_1_00 GetVideoMode_1_00() {
 }
 
 void SetVideoMode(VideoMode video_mode) {
-  ::D2_D2GFX_SetVideoMode(static_cast<::D2_VideoMode>(video_mode));
+  ::D2_D2GFX_SetVideoMode(static_cast< ::D2_VideoMode>(video_mode));
 }
 
 void SetVideoMode_1_00(VideoMode_1_00 video_mode) {
