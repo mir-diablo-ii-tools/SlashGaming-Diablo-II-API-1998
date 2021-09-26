@@ -54,9 +54,11 @@
 #include "game_address.hpp"
 #include "game_branch_type.hpp"
 
+#include "../dllexport_define.inc"
+
 namespace mapi {
 
-class GamePatch {
+class DLLEXPORT GamePatch {
 public:
   GamePatch();
 
@@ -165,4 +167,5 @@ private:
 
 } // namespace mapi
 
+#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_CXX98_GAME_PATCH_HPP_ */
