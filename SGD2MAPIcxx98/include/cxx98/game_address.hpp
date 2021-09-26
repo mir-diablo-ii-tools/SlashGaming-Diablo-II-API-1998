@@ -52,9 +52,11 @@
 #include <sgd2mapi.h>
 #include "default_game_library.hpp"
 
+#include "../dllexport_define.inc"
+
 namespace mapi {
 
-class GameAddress {
+class DLLEXPORT GameAddress {
  public:
 
   /*
@@ -133,4 +135,5 @@ class GameAddress {
 
 } // namespace mapi
 
+#include "../dllexport_undefine.inc"
 #endif /* SGMAPI_CXX98_GAME_ADDRESS_HPP_ */
