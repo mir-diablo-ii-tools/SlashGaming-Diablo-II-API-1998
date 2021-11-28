@@ -87,7 +87,7 @@
 include(FetchContent)
 
 FetchContent_Declare(MDC
-    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/MirD-Common-C"
+    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/MDC"
 )
 
 FetchContent_MakeAvailable(MDC)
