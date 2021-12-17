@@ -379,8 +379,8 @@ target_compile_definitions(SGD2MAPIc INTERFACE SGD2MAPIC_DLLIMPORT)
 
 target_include_directories(SGD2MAPIc PUBLIC "include")
 
-target_link_libraries(SGD2MAPIc PUBLIC libMDCc shlwapi version)
-add_dependencies(SGD2MAPIc libMDCc)
+target_link_libraries(SGD2MAPIc PUBLIC MDCc shlwapi version)
+add_dependencies(SGD2MAPIc MDCc)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}
     FILES
