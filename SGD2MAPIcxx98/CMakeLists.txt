@@ -389,8 +389,8 @@ target_compile_definitions(SGD2MAPIcxx98 INTERFACE SGD2MAPICXX98_DLLIMPORT)
 
 target_include_directories(SGD2MAPIcxx98 PUBLIC "include")
 
-target_link_libraries(SGD2MAPIcxx98 SGD2MAPIc libMDCcpp98 libMDCc version)
-add_dependencies(SGD2MAPIcxx98 SGD2MAPIc libMDCcpp98 libMDCc)
+target_link_libraries(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc version)
+add_dependencies(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}
     FILES
