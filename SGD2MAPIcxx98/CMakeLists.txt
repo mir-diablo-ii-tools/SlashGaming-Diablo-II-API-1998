@@ -384,26 +384,26 @@ set(SOURCE_FILES
 )
 
 # Output static LIB
-add_library(libSGD2MAPIcxx98 STATIC ${SOURCE_FILES})
+add_library(lib${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
-target_include_directories(libSGD2MAPIcxx98 PUBLIC "include")
+target_include_directories(lib${PROJECT_NAME} PUBLIC "include")
 
-target_link_libraries(libSGD2MAPIcxx98 libSGD2MAPIc libMDCcpp98 libMDCc)
-add_dependencies(libSGD2MAPIcxx98 libSGD2MAPIc libMDCcpp98 libMDCc)
+target_link_libraries(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
+add_dependencies(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
 
 # Output DLL
-add_library(SGD2MAPIcxx98 SHARED ${SOURCE_FILES})
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
-target_compile_definitions(SGD2MAPIcxx98 PRIVATE SGD2MAPICXX98_DLLEXPORT)
-target_compile_definitions(SGD2MAPIcxx98 INTERFACE SGD2MAPICXX98_DLLIMPORT)
+target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPICXX98_DLLEXPORT)
+target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPICXX98_DLLIMPORT)
 
-target_include_directories(SGD2MAPIcxx98 PUBLIC "include")
+target_include_directories(${PROJECT_NAME} PUBLIC "include")
 
-target_link_libraries(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc version)
-add_dependencies(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc)
+target_link_libraries(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc version)
+add_dependencies(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc)
 
 # Project source listing
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES}
 )
 
-install(TARGETS SGD2MAPIcxx98 libSGD2MAPIcxx98)
+install(TARGETS ${PROJECT_NAME} lib${PROJECT_NAME})
