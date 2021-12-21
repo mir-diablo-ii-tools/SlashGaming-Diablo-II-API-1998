@@ -84,6 +84,8 @@
 # this Program grant you additional permission to convey the resulting
 # work.
 
+cmake_minimum_required(VERSION 3.11)
+
 include(FetchContent)
 
 FetchContent_Declare(MDC

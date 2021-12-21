@@ -41,23 +41,27 @@
 # this Program grant you additional permission to convey the resulting
 # work.
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
 
+# Name of the project, also is the name of the file
 project(SGD2MAPIcxx98)
 
+# Define requirements for C
 set(CMAKE_C_STANDARD 90)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+# Define requirements for C++
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Remove MinGW compiled binary "lib" prefix
 if (MINGW)
     set(CMAKE_IMPORT_LIBRARY_PREFIX "")
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     set(CMAKE_STATIC_LIBRARY_PREFIX "")
 endif (MINGW)
 
-# Header and source files
+# List all of the source files here
 set(INCLUDE_HEADERS
     "include/cxx98/file/file_pe_signature.hpp"
     "include/cxx98/file/file_version_info.hpp"
@@ -373,30 +377,33 @@ set(SRC_C
 
 set(SRC_HEADERS)
 
-# Output static LIB
-add_library(libSGD2MAPIcxx98 STATIC ${SRC_C} ${SRC_HEADERS} ${INCLUDE_HEADERS})
-
-target_include_directories(libSGD2MAPIcxx98 PUBLIC "include")
-
-target_link_libraries(libSGD2MAPIcxx98 libSGD2MAPIc libMDCcpp98 libMDCc)
-add_dependencies(libSGD2MAPIcxx98 libSGD2MAPIc libMDCcpp98 libMDCc)
-
-# Output DLL
-add_library(SGD2MAPIcxx98 SHARED ${SRC_C} ${SRC_HEADERS} ${INCLUDE_HEADERS})
-
-target_compile_definitions(SGD2MAPIcxx98 PRIVATE SGD2MAPICXX98_DLLEXPORT)
-target_compile_definitions(SGD2MAPIcxx98 INTERFACE SGD2MAPICXX98_DLLIMPORT)
-
-target_include_directories(SGD2MAPIcxx98 PUBLIC "include")
-
-target_link_libraries(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc version)
-add_dependencies(SGD2MAPIcxx98 SGD2MAPIc MDCcpp98 MDCc)
-
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}
-    FILES
-        ${SRC_C}
-        ${SRC_HEADERS}
-        ${INCLUDE_HEADERS}
+set(SOURCE_FILES
+    ${SRC_C}
+    ${SRC_HEADERS}
+    ${INCLUDE_HEADERS}
 )
 
-install(TARGETS SGD2MAPIcxx98 libSGD2MAPIcxx98)
+# Output static LIB
+add_library(lib${PROJECT_NAME} STATIC ${SOURCE_FILES})
+
+target_include_directories(lib${PROJECT_NAME} PUBLIC "include")
+
+target_link_libraries(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
+add_dependencies(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
+
+# Output DLL
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPICXX98_DLLEXPORT)
+target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPICXX98_DLLIMPORT)
+
+target_include_directories(${PROJECT_NAME} PUBLIC "include")
+
+target_link_libraries(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc version)
+add_dependencies(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc)
+
+# Project source listing
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES}
+)
+
+install(TARGETS ${PROJECT_NAME} lib${PROJECT_NAME})
