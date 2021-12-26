@@ -43,10 +43,48 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2gfx/d2gfx_draw_rectangle.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+void DrawRectangle(
+    int left,
+    int top,
+    int right,
+    int bottom,
+    int primitive_color_id,
+    DrawEffect draw_effect
+) {
+  ::D2_D2GFX_DrawRectangle(
+      left,
+      top,
+      right,
+      bottom,
+      primitive_color_id,
+      static_cast< ::D2_DrawEffect>(draw_effect)
+  );
 }
+
+void DrawRectangle_1_00(
+    int32_t left,
+    int32_t top,
+    int32_t right,
+    int32_t bottom,
+    int32_t primitive_color_id,
+    DrawEffect_1_00 draw_effect
+) {
+  ::D2_D2GFX_DrawRectangle_1_00(
+      left,
+      top,
+      right,
+      bottom,
+      primitive_color_id,
+      draw_effect
+  );
+}
+
+} // namespace d2gfx
+} // namespace d2

@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gfx/d2gfx_video_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+VideoMode GetVideoMode() {
+  return static_cast<VideoMode>(::D2_D2GFX_GetVideoMode());
 }
+
+VideoMode_1_00 GetVideoMode_1_00() {
+  return static_cast<VideoMode_1_00>(::D2_D2GFX_GetVideoMode_1_00());
+}
+
+void SetVideoMode(VideoMode video_mode) {
+  ::D2_D2GFX_SetVideoMode(static_cast< ::D2_VideoMode>(video_mode));
+}
+
+void SetVideoMode_1_00(VideoMode_1_00 video_mode) {
+  ::D2_D2GFX_SetVideoMode_1_00(video_mode);
+}
+
+} // namespace d2gfx
+} // namespace d2

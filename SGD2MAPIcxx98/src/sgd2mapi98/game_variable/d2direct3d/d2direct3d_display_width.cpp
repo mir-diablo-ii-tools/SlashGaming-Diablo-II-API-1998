@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2direct3d/d2direct3d_display_width.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2direct3d {
+
+int GetDisplayWidth() {
+  return ::D2_D2Direct3D_GetDisplayWidth();
 }
+
+int32_t GetDisplayWidth_1_00() {
+  return ::D2_D2Direct3D_GetDisplayWidth_1_00();
+}
+
+void SetDisplayWidth(int width) {
+  ::D2_D2Direct3D_SetDisplayWidth(width);
+}
+
+void SetDisplayWidth_1_00(int32_t width) {
+  ::D2_D2Direct3D_SetDisplayWidth_1_00(width);
+}
+
+} // namespace d2direct3d
+} // namespace d2

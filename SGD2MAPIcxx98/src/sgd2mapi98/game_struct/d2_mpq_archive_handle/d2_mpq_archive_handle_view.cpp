@@ -43,10 +43,41 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+MpqArchiveHandle_View::MpqArchiveHandle_View(
+    const MpqArchiveHandle* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 =
+      reinterpret_cast<const MpqArchiveHandle_1_00*>(
+          mpq_archive_handle
+      );
 }
+
+MpqArchiveHandle_View::MpqArchiveHandle_View(
+    const MpqArchiveHandle_1_00* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 = mpq_archive_handle;
+}
+
+MpqArchiveHandle_View MpqArchiveHandle_View::operator[](size_t index) const {
+  return ::D2_MpqArchiveHandle_AccessConst(this->Get(), index);
+}
+
+const MpqArchiveHandle* MpqArchiveHandle_View::Get() const {
+  return reinterpret_cast<const MpqArchiveHandle*>(
+      this->mpq_archive_handle_.v1_00
+  );
+}
+
+MpqArchive_View MpqArchiveHandle_View::GetMpqArchive() const {
+  return ::D2_MpqArchiveHandle_GetMpqArchiveConst(this->Get());
+}
+
+const char* MpqArchiveHandle_View::GetMpqArchivePath() const {
+  return ::D2_MpqArchiveHandle_GetMpqArchivePathConst(this->Get());
+}
+
+} // namespace d2

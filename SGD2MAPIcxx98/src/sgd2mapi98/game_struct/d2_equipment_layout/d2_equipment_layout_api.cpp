@@ -43,10 +43,89 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_equipment_layout/d2_equipment_layout_api.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+EquipmentLayout_Api::EquipmentLayout_Api() {
 }
+
+EquipmentLayout_Api::EquipmentLayout_Api(
+    const PositionalRectangle* position,
+    unsigned char width,
+    unsigned char height
+)
+    : equipment_layout_(
+          ::D2_EquipmentLayout_Api_InitFromLayout(
+              position,
+              width,
+              height
+          )
+      ) {
+}
+
+EquipmentLayout_Api::~EquipmentLayout_Api() {
+  ::D2_EquipmentLayout_Api_Deinit(&this->equipment_layout_);
+}
+
+EquipmentLayout_Api::operator EquipmentLayout_View() const {
+  return EquipmentLayout_View(this->Get());
+}
+
+EquipmentLayout_Api::operator EquipmentLayout_Wrapper() {
+  return EquipmentLayout_Wrapper(this->Get());
+}
+
+EquipmentLayout* EquipmentLayout_Api::Get() {
+  const EquipmentLayout_Api* const_this = this;
+
+  return const_cast<EquipmentLayout*>(const_this->Get());
+}
+
+const EquipmentLayout* EquipmentLayout_Api::Get() const {
+  return ::D2_EquipmentLayout_Api_GetConst(&this->equipment_layout_);
+}
+
+void EquipmentLayout_Api::AssignMembers(EquipmentLayout_View src) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.AssignMembers(src);
+}
+
+PositionalRectangle_View EquipmentLayout_Api::GetPosition() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetPosition();
+}
+
+PositionalRectangle_Wrapper EquipmentLayout_Api::GetPosition() {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  return wrapper.GetPosition();
+}
+
+unsigned char EquipmentLayout_Api::GetWidth() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetWidth();
+}
+
+void EquipmentLayout_Api::SetWidth(unsigned char width) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.SetWidth(width);
+}
+
+unsigned char EquipmentLayout_Api::GetHeight() const {
+  EquipmentLayout_View view(*this);
+
+  return view.GetHeight();
+}
+
+void EquipmentLayout_Api::SetHeight(unsigned char height) {
+  EquipmentLayout_Wrapper wrapper(*this);
+
+  wrapper.SetHeight(height);
+}
+
+} // namespace d2

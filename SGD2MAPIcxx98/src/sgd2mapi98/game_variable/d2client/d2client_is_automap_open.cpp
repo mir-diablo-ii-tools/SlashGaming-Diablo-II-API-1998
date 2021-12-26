@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_automap_open.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+bool GetIsAutomapOpen() {
+  return !!::D2_D2Client_GetIsAutomapOpen();
 }
+
+::mapi::bool32 GetIsAutomapOpen_1_00() {
+  return ::D2_D2Client_GetIsAutomapOpen_1_00();
+}
+
+void SetIsAutomapOpen(bool is_automap_open) {
+  ::D2_D2Client_SetIsAutomapOpen(is_automap_open);
+}
+
+void SetIsAutomapOpen_1_00(::mapi::bool32 is_automap_open) {
+  ::D2_D2Client_SetIsAutomapOpen_1_00(is_automap_open);
+}
+
+} // namespace d2client
+} // namespace d2

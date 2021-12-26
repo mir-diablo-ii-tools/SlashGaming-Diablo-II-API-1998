@@ -43,10 +43,44 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2client/d2client_draw_centered_unicode_text.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+void DrawCenteredUnicodeText(
+    int left,
+    int position_y,
+    const wchar_t* text,
+    int right,
+    TextColor text_color
+) {
+  ::D2_D2Client_DrawCenteredUnicodeText(
+      left,
+      position_y,
+      text,
+      right,
+      static_cast< ::D2_TextColor>(text_color)
+  );
 }
+
+void DrawCenteredUnicodeText_1_00(
+    int32_t left,
+    int32_t position_y,
+    const wchar_t* text,
+    int32_t right,
+    TextColor_1_00 text_color
+) {
+  ::D2_D2Client_DrawCenteredUnicodeText_1_00(
+      left,
+      position_y,
+      text,
+      right,
+      text_color
+  );
+}
+
+} // namespace d2client
+} // namespace d2

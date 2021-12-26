@@ -43,10 +43,36 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_get_pop_up_unicode_text_width_and_height.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+void GetPopUpUnicodeTextWidthAndHeight(
+    const wchar_t* text,
+    int* width,
+    int* height
+) {
+  ::D2_D2Win_GetPopUpUnicodeTextWidthAndHeight(
+      text,
+      width,
+      height
+  );
 }
+
+void GetPopUpUnicodeTextWidthAndHeight_1_00(
+    const wchar_t* text,
+    int32_t* width,
+    int32_t* height
+) {
+  ::D2_D2Win_GetPopUpUnicodeTextWidthAndHeight_1_00(
+      text,
+      width,
+      height
+  );
+}
+
+} // namespace d2win
+} // namespace d2

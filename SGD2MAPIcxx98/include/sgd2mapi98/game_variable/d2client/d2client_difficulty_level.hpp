@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#ifndef SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
+#define SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
 
-#include "../include/sgd2mapi98.hpp"
+#include "../../../../include/sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
-}
+#include "../../../dllexport_define.inc"
+
+namespace d2 {
+namespace d2client {
+
+DLLEXPORT DifficultyLevel GetDifficultyLevel();
+
+DLLEXPORT DifficultyLevel_1_00 GetDifficultyLevel_1_00();
+
+DLLEXPORT void SetDifficultyLevel(
+    DifficultyLevel difficulty_level
+);
+
+DLLEXPORT void SetDifficultyLevel_1_00(
+    DifficultyLevel_1_00 difficulty_level
+);
+
+} // namespace d2client
+} // namespace d2
+
+#include "../../../dllexport_undefine.inc"
+#endif /* SGD2MAPI_CXX98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_ */

@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_new_stats_button_pressed.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+bool GetIsNewStatsButtonPressed() {
+  return !!::D2_D2Client_GetIsNewStatsButtonPressed();
 }
+
+::mapi::bool32 GetIsNewStatsButtonPressed_1_00() {
+  return ::D2_D2Client_GetIsNewStatsButtonPressed_1_00();
+}
+
+void SetIsNewStatsButtonPressed(bool is_button_pressed) {
+  ::D2_D2Client_SetIsNewStatsButtonPressed(is_button_pressed);
+}
+
+void SetIsNewStatsButtonPressed_1_00(::mapi::bool32 is_button_pressed) {
+  ::D2_D2Client_SetIsNewStatsButtonPressed_1_00(is_button_pressed);
+}
+
+} // namespace d2client
+} // namespace d2

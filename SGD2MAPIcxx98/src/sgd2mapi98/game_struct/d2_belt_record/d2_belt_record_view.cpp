@@ -43,10 +43,43 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+BeltRecord_View::BeltRecord_View(
+    const BeltRecord* belt_record
+) {
+  this->belt_record_.v1_00 =
+      reinterpret_cast<const BeltRecord_1_00*>(
+          belt_record
+      );
 }
+
+BeltRecord_View::BeltRecord_View(
+    const BeltRecord_1_00* belt_record
+) {
+  this->belt_record_.v1_00 = belt_record;
+}
+
+BeltRecord_View BeltRecord_View::operator[](
+    size_t index
+) const {
+  return ::D2_BeltRecord_AccessConst(this->Get(), index);
+}
+
+const BeltRecord* BeltRecord_View::Get() const {
+  return reinterpret_cast<const BeltRecord*>(
+      this->belt_record_.v1_00
+  );
+}
+
+unsigned char BeltRecord_View::GetNumSlots() const {
+  return this->belt_record_.v1_00->num_slots;
+}
+
+PositionalRectangle_View BeltRecord_View::GetSlotPositions() const {
+  return PositionalRectangle_View(this->belt_record_.v1_00->slot_positions);
+}
+
+} // namespace d2

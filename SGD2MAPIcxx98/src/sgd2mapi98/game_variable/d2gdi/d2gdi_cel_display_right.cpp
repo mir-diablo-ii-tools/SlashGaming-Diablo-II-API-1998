@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gdi/d2gdi_cel_display_right.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gdi {
+
+int GetCelDisplayRight() {
+  return ::D2_D2GDI_GetCelDisplayRight();
 }
+
+int32_t GetCelDisplayRight_1_00() {
+  return ::D2_D2GDI_GetCelDisplayRight_1_00();
+}
+
+void SetCelDisplayRight(int right) {
+  ::D2_D2GDI_SetCelDisplayRight(right);
+}
+
+void SetCelDisplayRight_1_00(int32_t right) {
+  ::D2_D2GDI_SetCelDisplayRight_1_00(right);
+}
+
+} // namespace d2gdi
+} // namespace d2

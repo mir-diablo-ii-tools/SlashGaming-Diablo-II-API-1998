@@ -43,10 +43,46 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_inventory_position.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+void GetGlobalInventoryPosition(
+    unsigned int inventory_record_index,
+    unsigned int inventory_arrange_mode,
+    PositionalRectangle* out_position
+) {
+  ::D2_D2Common_GetGlobalInventoryPosition(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_position
+  );
 }
+
+void GetGlobalInventoryPosition_1_00(
+    uint32_t inventory_record_index,
+    PositionalRectangle_1_00* out_position
+) {
+  ::D2_D2Common_GetGlobalInventoryPosition_1_00(
+      inventory_record_index,
+      out_position
+  );
+}
+
+void GetGlobalInventoryPosition_1_07(
+    uint32_t inventory_record_index,
+    uint32_t inventory_arrange_mode,
+    PositionalRectangle_1_00* out_position
+) {
+  ::D2_D2Common_GetGlobalInventoryPosition_1_07(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_position
+  );
+}
+
+} // namespace d2common
+} // namespace d2

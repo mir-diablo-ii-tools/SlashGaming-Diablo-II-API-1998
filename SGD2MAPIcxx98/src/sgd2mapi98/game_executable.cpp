@@ -43,10 +43,37 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../include/sgd2mapi98/game_executable.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace mapi {
+namespace game_executable {
+
+const wchar_t* GetPath() {
+  return ::Mapi_GameExecutable_GetPath();
 }
+
+bool IsD2se() {
+  return !!::Mapi_GameExecutable_IsD2se();
+}
+
+const wchar_t* QueryFileVersionInfoString(
+    const wchar_t* sub_block
+) {
+  return ::Mapi_GameExecutable_QueryFileVersionInfoString(sub_block);
+}
+
+const DWORD* QueryFileVersionInfoVar(
+    const wchar_t* sub_block,
+    size_t* count
+) {
+  return ::Mapi_GameExecutable_QueryFileVersionInfoVar(sub_block, count);
+}
+
+const VS_FIXEDFILEINFO& QueryFixedFileInfo() {
+  return *::Mapi_GameExecutable_QueryFixedFileInfo();
+}
+
+} // namespace game_executable
+} // namespace mapi

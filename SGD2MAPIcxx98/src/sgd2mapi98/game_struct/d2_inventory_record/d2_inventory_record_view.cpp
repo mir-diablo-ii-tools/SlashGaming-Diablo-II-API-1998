@@ -43,10 +43,51 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+InventoryRecord_View::InventoryRecord_View(
+    const InventoryRecord* inventory_record
+) {
+  this->inventory_record_.v1_00 =
+      reinterpret_cast<const InventoryRecord_1_00*>(
+          inventory_record
+      );
 }
+
+InventoryRecord_View::InventoryRecord_View(
+    const InventoryRecord_1_00* inventory_record
+) {
+  this->inventory_record_.v1_00 = inventory_record;
+}
+
+InventoryRecord_View InventoryRecord_View::operator[](size_t index) const {
+  return ::D2_InventoryRecord_AccessConst(this->Get(), index);
+}
+
+const InventoryRecord* InventoryRecord_View::Get() const {
+  return reinterpret_cast<const InventoryRecord*>(
+      this->inventory_record_.v1_00
+  );
+}
+
+PositionalRectangle_View InventoryRecord_View::GetPosition() const {
+  return PositionalRectangle_View(
+      ::D2_InventoryRecord_GetPositionConst(this->Get())
+  );
+}
+
+GridLayout_View InventoryRecord_View::GetGridLayout() const {
+  return GridLayout_View(
+      ::D2_InventoryRecord_GetGridLayoutConst(this->Get())
+  );
+}
+
+EquipmentLayout_View InventoryRecord_View::GetEquipmentSlots() const {
+  return EquipmentLayout_View(
+      ::D2_InventoryRecord_GetEquipmentSlotsConst(this->Get())
+  );
+}
+
+} // namespace d2

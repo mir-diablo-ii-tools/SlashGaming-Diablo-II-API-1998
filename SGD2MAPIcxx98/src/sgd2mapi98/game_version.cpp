@@ -43,10 +43,38 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../include/sgd2mapi98/game_version.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace game_version {
+
+const char* GetName(GameVersion game_version) {
+  return D2_GameVersion_GetName(
+      static_cast<D2_GameVersion>(game_version)
+  );
 }
+
+GameVersion GetRunning() {
+  return static_cast<GameVersion>(D2_GameVersion_GetRunning());
+}
+
+const char* GetRunningName() {
+  return D2_GameVersion_GetRunningName();
+}
+
+bool IsAtLeast1_14(GameVersion game_version) {
+  D2_GameVersion actual_game_version = static_cast<D2_GameVersion>(
+      game_version
+  );
+
+  return D2_GameVersion_IsAtLeast1_14(actual_game_version) != 0;
+}
+
+bool IsRunningAtLeast1_14() {
+  return D2_GameVersion_IsRunningAtLeast1_14() != 0;
+}
+
+} // namespace game_version
+} // namespace d2

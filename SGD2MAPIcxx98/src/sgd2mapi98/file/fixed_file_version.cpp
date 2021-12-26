@@ -43,10 +43,56 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/file/fixed_file_version.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace mapi {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+FixedFileVersion::FixedFileVersion()
+    : fixed_file_version_(::Mapi_FixedFileVersion_kUninit) {
 }
+
+FixedFileVersion::FixedFileVersion(
+    WORD major_high,
+    WORD major_low,
+    WORD minor_high,
+    WORD minor_low
+)
+    : fixed_file_version_(
+          Mapi_FixedFileVersion_InitFromVersion(
+              major_high,
+              major_low,
+              minor_high,
+              minor_low
+          )
+      ) {
+}
+
+FixedFileVersion::~FixedFileVersion() {
+  ::Mapi_FixedFileVersion_Deinit(&this->fixed_file_version_);
+}
+
+bool operator==(const FixedFileVersion& lhs, const FixedFileVersion& rhs) {
+  const ::Mapi_FixedFileVersion& actual_lhs = lhs.fixed_file_version_;
+  const ::Mapi_FixedFileVersion& actual_rhs = rhs.fixed_file_version_;
+
+  return (actual_lhs.major_high == actual_rhs.major_high)
+      && (actual_lhs.major_low == actual_rhs.major_low)
+      && (actual_lhs.minor_high == actual_rhs.minor_high)
+      && (actual_lhs.minor_low == actual_rhs.minor_low);
+}
+
+bool operator<(const FixedFileVersion& lhs, const FixedFileVersion& rhs) {
+  const ::Mapi_FixedFileVersion& actual_lhs = lhs.fixed_file_version_;
+  const ::Mapi_FixedFileVersion& actual_rhs = rhs.fixed_file_version_;
+
+  return (actual_lhs.major_high < actual_rhs.major_high)
+      && (actual_lhs.major_low < actual_rhs.major_low)
+      && (actual_lhs.minor_high < actual_rhs.minor_high)
+      && (actual_lhs.minor_low < actual_rhs.minor_low);
+}
+
+uint_least64_t FixedFileVersion::ToValue() const {
+  return ::Mapi_FixedFileVersion_ToValue(&this->fixed_file_version_);
+}
+
+} // namespace mapi

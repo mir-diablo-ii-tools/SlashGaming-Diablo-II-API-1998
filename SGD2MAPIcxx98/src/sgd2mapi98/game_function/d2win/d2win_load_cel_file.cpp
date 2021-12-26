@@ -43,10 +43,26 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+CelFile* LoadCelFile(
+    const char* cel_file_path,
+    bool is_dcc_else_dc6
+) {
+  return ::D2_D2Win_LoadCelFile(cel_file_path, is_dcc_else_dc6);
 }
+
+CelFile_1_00* LoadCelFile_1_00(
+    const char* cel_file_path,
+    ::mapi::bool32 is_dcc_else_dc6
+) {
+  return ::D2_D2Win_LoadCelFile_1_00(cel_file_path, is_dcc_else_dc6);
+}
+
+} // namespace d2win
+} // namespace d2

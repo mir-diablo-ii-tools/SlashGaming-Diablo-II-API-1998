@@ -43,10 +43,41 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
+namespace difficulty_level {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+int ToGameValue(DifficultyLevel api_value) {
+  return ::D2_DifficultyLevel_ToGameValue(
+      static_cast<D2_DifficultyLevel>(api_value)
+  );
 }
+
+DifficultyLevel_1_00 ToGameValue_1_00(DifficultyLevel api_value) {
+  ::D2_DifficultyLevel_1_00 c_game_value =
+      ::D2_DifficultyLevel_ToGameValue_1_00(
+          static_cast< ::D2_DifficultyLevel>(api_value)
+      );
+
+  return static_cast<DifficultyLevel_1_00>(c_game_value);
+}
+
+DifficultyLevel ToApiValue(int game_value) {
+  ::D2_DifficultyLevel c_api_value = ::D2_DifficultyLevel_ToApiValue(
+      game_value
+  );
+
+  return static_cast<DifficultyLevel>(c_api_value);
+}
+
+DifficultyLevel ToApiValue_1_00(DifficultyLevel_1_00 game_value) {
+  ::D2_DifficultyLevel c_api_value = ::D2_DifficultyLevel_ToApiValue_1_00(
+      static_cast< ::D2_DifficultyLevel_1_00>(game_value)
+  );
+
+  return static_cast<DifficultyLevel>(c_api_value);
+}
+
+} // namespace difficulty_level
+} // namespace d2

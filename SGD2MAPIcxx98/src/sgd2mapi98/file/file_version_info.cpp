@@ -43,10 +43,49 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/file/file_version_info.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace mapi {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+FileVersionInfo::FileVersionInfo()
+    : file_version_info_(::Mapi_FileVersionInfo_kUninit) {
 }
+
+FileVersionInfo::FileVersionInfo(const wchar_t* path)
+    : file_version_info_() {
+  this->ReadFile(path);
+}
+
+FileVersionInfo::~FileVersionInfo() {
+  ::Mapi_FileVersionInfo_Deinit(&this->file_version_info_);
+}
+
+void FileVersionInfo::ReadFile(const wchar_t* path) {
+  this->file_version_info_ = ::Mapi_FileVersionInfo_InitFromPath(path);
+}
+
+const VS_FIXEDFILEINFO& FileVersionInfo::QueryFixedFileInfo() const {
+  return *::Mapi_FileVersionInfo_QueryFixedFileInfo(
+      &this->file_version_info_
+  );
+}
+
+const wchar_t* FileVersionInfo::QueryString(const wchar_t* sub_block) const {
+  return ::Mapi_FileVersionInfo_QueryString(
+      &this->file_version_info_,
+      sub_block
+  );
+}
+
+const DWORD* FileVersionInfo::QueryVar(
+    const wchar_t* sub_block,
+    size_t* count
+) const {
+  return ::Mapi_FileVersionInfo_QueryVar(
+      &this->file_version_info_,
+      sub_block,
+      count
+  );
+}
+
+} // namespace mapi

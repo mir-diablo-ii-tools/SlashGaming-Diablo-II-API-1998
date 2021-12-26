@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gfx/d2gfx_is_windowed_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+bool GetIsWindowedMode() {
+  return !!::D2_D2GFX_GetIsWindowedMode();
 }
+
+::mapi::bool32 GetIsWindowedMode_1_00() {
+  return ::D2_D2GFX_GetIsWindowedMode_1_00();
+}
+
+void SetIsWindowedMode(bool is_window_mode) {
+  ::D2_D2GFX_SetIsWindowedMode(is_window_mode);
+}
+
+void SetIsWindowedMode_1_00(::mapi::bool32 is_window_mode) {
+  ::D2_D2GFX_SetIsWindowedMode_1_00(is_window_mode);
+}
+
+} // namespace d2gfx
+} // namespace d2

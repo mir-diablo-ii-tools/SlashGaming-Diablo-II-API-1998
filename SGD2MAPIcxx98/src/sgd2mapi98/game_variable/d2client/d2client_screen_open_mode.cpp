@@ -43,10 +43,32 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_screen_open_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+ScreenOpenMode GetScreenOpenMode() {
+  return static_cast<ScreenOpenMode>(::D2_D2Client_GetScreenOpenMode());
 }
+
+ScreenOpenMode_1_07 GetScreenOpenMode_1_07() {
+  return static_cast<ScreenOpenMode_1_07>(
+      ::D2_D2Client_GetScreenOpenMode_1_07()
+  );
+}
+
+void SetScreenOpenMode(ScreenOpenMode screen_open_mode) {
+  ::D2_D2Client_SetScreenOpenMode(
+      static_cast< ::D2_ScreenOpenMode>(screen_open_mode)
+  );
+}
+
+void SetScreenOpenMode_1_07(ScreenOpenMode_1_07 screen_open_mode) {
+  ::D2_D2Client_SetScreenOpenMode_1_07(screen_open_mode);
+}
+
+} // namespace d2client
+} // namespace d2

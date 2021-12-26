@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2common/d2common_global_inventory_txt.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+InventoryRecord* GetGlobalInventoryTxt() {
+  return ::D2_D2Common_GetGlobalInventoryTxt();
 }
+
+InventoryRecord_1_00* GetGlobalInventoryTxt_1_00() {
+  return ::D2_D2Common_GetGlobalInventoryTxt_1_00();
+}
+
+void SetGlobalInventoryTxt(InventoryRecord* inventory_record) {
+  ::D2_D2Common_SetGlobalInventoryTxt(inventory_record);
+}
+
+void SetGlobalInventoryTxt_1_00(
+    InventoryRecord_1_00* inventory_record
+) {
+  ::D2_D2Common_SetGlobalInventoryTxt_1_00(inventory_record);
+}
+
+} // namespace d2common
+} // namespace d2

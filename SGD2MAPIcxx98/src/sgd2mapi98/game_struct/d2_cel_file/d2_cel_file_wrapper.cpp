@@ -43,10 +43,90 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include "../../../../include/sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+
+CelFile_Wrapper::CelFile_Wrapper(CelFile* cel_file) {
+  this->cel_file_.v1_00 = reinterpret_cast<CelFile_1_00*>(cel_file);
 }
+
+CelFile_Wrapper::CelFile_Wrapper(CelFile_1_00* cel_file) {
+  this->cel_file_.v1_00 = cel_file;
+}
+
+CelFile_Wrapper::operator CelFile_View() const {
+  return CelFile_View(this->Get());
+}
+
+CelFile* CelFile_Wrapper::Get() {
+  const CelFile_Wrapper* const_this = this;
+
+  return const_cast<CelFile*>(const_this->Get());
+}
+
+bool CelFile_Wrapper::DrawFrame(
+    int position_x,
+    int position_y,
+    unsigned int direction_index,
+    unsigned int frame_index
+) {
+  CelContext_Api cel_context(
+      this->Get(),
+      direction_index,
+      frame_index
+  );
+
+  return cel_context.DrawFrame(position_x, position_y);
+}
+
+Cel_Wrapper CelFile_Wrapper::GetCel(
+    unsigned int direction_index,
+    unsigned int frame_index
+) {
+  CelContext_Api cel_context(
+      this->Get(),
+      direction_index,
+      frame_index
+  );
+
+  return cel_context.GetCel();
+}
+
+const CelFile* CelFile_Wrapper::Get() const {
+  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+}
+
+unsigned int CelFile_Wrapper::GetNumFrames() const {
+  CelFile_View view(*this);
+
+  return view.GetNumFrames();
+}
+
+void CelFile_Wrapper::SetNumFrames(unsigned int num_frames) {
+  ::D2_CelFile_SetNumFrames(this->Get(), num_frames);
+}
+
+unsigned int CelFile_Wrapper::GetNumDirections() const {
+  CelFile_View view(*this);
+
+  return view.GetNumDirections();
+}
+
+void CelFile_Wrapper::SetNumDirections(unsigned int num_directions) {
+  ::D2_CelFile_SetNumDirections(this->Get(), num_directions);
+}
+
+unsigned int CelFile_Wrapper::GetVersion() const {
+  CelFile_View view(*this);
+
+  return view.GetVersion();
+}
+
+void CelFile_Wrapper::SetVersion(unsigned int version) {
+  ::D2_CelFile_SetVersion(this->Get(), version);
+}
+
+} // namespace d2

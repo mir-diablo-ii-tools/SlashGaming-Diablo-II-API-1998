@@ -43,10 +43,51 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+PositionalRectangle_View::PositionalRectangle_View(
+    const PositionalRectangle* positional_rectangle
+) {
+  this->positional_rectangle_.v1_00 =
+      reinterpret_cast<const PositionalRectangle_1_00*>(
+          positional_rectangle
+      );
 }
+
+PositionalRectangle_View::PositionalRectangle_View(
+    const PositionalRectangle_1_00* positional_rectangle
+) {
+  this->positional_rectangle_.v1_00 = positional_rectangle;
+}
+
+PositionalRectangle_View PositionalRectangle_View::operator[](
+    size_t index
+) const {
+  return ::D2_PositionalRectangle_AccessConst(this->Get(), index);
+}
+
+const PositionalRectangle* PositionalRectangle_View::Get() const {
+  return reinterpret_cast<const PositionalRectangle*>(
+      this->positional_rectangle_.v1_00
+  );
+}
+
+int PositionalRectangle_View::GetLeft() const {
+  return ::D2_PositionalRectangle_GetLeft(this->Get());
+}
+
+int PositionalRectangle_View::GetRight() const {
+  return ::D2_PositionalRectangle_GetRight(this->Get());
+}
+
+int PositionalRectangle_View::GetTop() const {
+  return ::D2_PositionalRectangle_GetTop(this->Get());
+}
+
+int PositionalRectangle_View::GetBottom() const {
+  return ::D2_PositionalRectangle_GetBottom(this->Get());
+}
+
+} // namespace d2

@@ -43,10 +43,58 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/game_constant/d2_client_game_type.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
+namespace client_game_type {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+int ToGameValue(ClientGameType api_value) {
+  return ::D2_ClientGameType_ToGameValue(
+      static_cast<D2_ClientGameType>(api_value)
+  );
 }
+
+ClientGameType_1_00 ToGameValue_1_00(ClientGameType api_value) {
+  ::D2_ClientGameType_1_00 c_game_value =
+      ::D2_ClientGameType_ToGameValue_1_00(
+          static_cast< ::D2_ClientGameType>(api_value)
+      );
+
+  return static_cast<ClientGameType_1_00>(c_game_value);
+}
+
+ClientGameType_1_07 ToGameValue_1_07(ClientGameType api_value) {
+  ::D2_ClientGameType_1_07 c_game_value =
+      ::D2_ClientGameType_ToGameValue_1_07(
+          static_cast< ::D2_ClientGameType>(api_value)
+      );
+
+  return static_cast<ClientGameType_1_07>(c_game_value);
+}
+
+ClientGameType ToApiValue(int game_value) {
+  ::D2_ClientGameType c_api_value = ::D2_ClientGameType_ToApiValue(
+      game_value
+  );
+
+  return static_cast<ClientGameType>(c_api_value);
+}
+
+ClientGameType ToApiValue_1_00(ClientGameType_1_00 game_value) {
+  ::D2_ClientGameType c_api_value = ::D2_ClientGameType_ToApiValue_1_00(
+      static_cast< ::D2_ClientGameType_1_00>(game_value)
+  );
+
+  return static_cast<ClientGameType>(c_api_value);
+}
+
+ClientGameType ToApiValue_1_07(ClientGameType_1_07 game_value) {
+  ::D2_ClientGameType c_api_value = ::D2_ClientGameType_ToApiValue_1_07(
+      static_cast< ::D2_ClientGameType_1_07>(game_value)
+  );
+
+  return static_cast<ClientGameType>(c_api_value);
+}
+
+} // namespace client_game_type
+} // namespace d2

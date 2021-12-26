@@ -43,10 +43,52 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_equipment_slot_layout.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+void GetGlobalEquipmentSlotLayout(
+    unsigned int inventory_record_index,
+    unsigned int inventory_arrange_mode,
+    EquipmentLayout* out_equipment_slot_layout,
+    unsigned int equipment_slot_index
+) {
+  ::D2_D2Common_GetGlobalEquipmentSlotLayout(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_equipment_slot_layout,
+      equipment_slot_index
+  );
 }
+
+void GetGlobalEquipmentSlotLayout_1_00(
+    uint32_t inventory_record_index,
+    EquipmentLayout_1_00* out_equipment_slot_layout,
+    uint32_t equipment_slot_index
+) {
+  ::D2_D2Common_GetGlobalEquipmentSlotLayout_1_00(
+      inventory_record_index,
+      out_equipment_slot_layout,
+      equipment_slot_index
+  );
+}
+
+void GetGlobalEquipmentSlotLayout_1_07(
+    uint32_t inventory_record_index,
+    uint32_t inventory_arrange_mode,
+    EquipmentLayout_1_00* out_equipment_slot_layout,
+    uint32_t equipment_slot_index
+) {
+  ::D2_D2Common_GetGlobalEquipmentSlotLayout_1_07(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_equipment_slot_layout,
+      equipment_slot_index
+  );
+}
+
+} // namespace d2common
+} // namespace d2

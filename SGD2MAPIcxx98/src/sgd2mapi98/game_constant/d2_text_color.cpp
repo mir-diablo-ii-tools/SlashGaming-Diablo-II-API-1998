@@ -43,10 +43,41 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/game_constant/d2_text_color.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
+namespace text_color {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+int ToGameValue(TextColor api_value) {
+  return ::D2_TextColor_ToGameValue(
+      static_cast<D2_TextColor>(api_value)
+  );
 }
+
+TextColor_1_00 ToGameValue_1_00(TextColor api_value) {
+  ::D2_TextColor_1_00 c_game_value =
+      ::D2_TextColor_ToGameValue_1_00(
+          static_cast< ::D2_TextColor>(api_value)
+      );
+
+  return static_cast<TextColor_1_00>(c_game_value);
+}
+
+TextColor ToApiValue(int game_value) {
+  ::D2_TextColor c_api_value = ::D2_TextColor_ToApiValue(
+      game_value
+  );
+
+  return static_cast<TextColor>(c_api_value);
+}
+
+TextColor ToApiValue_1_00(TextColor_1_00 game_value) {
+  ::D2_TextColor c_api_value = ::D2_TextColor_ToApiValue_1_00(
+      static_cast< ::D2_TextColor_1_00>(game_value)
+  );
+
+  return static_cast<TextColor>(c_api_value);
+}
+
+} // namespace text_color
+} // namespace d2

@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_unload_mpq.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+void UnloadMpq(
+    MpqArchiveHandle* mpq_archive_handle
+) {
+  ::D2_D2Win_UnloadMpq(mpq_archive_handle);
 }
+
+void UnloadMpq_1_00(
+    MpqArchiveHandle_1_00* mpq_archive_handle
+) {
+  ::D2_D2Win_UnloadMpq_1_00(mpq_archive_handle);
+}
+
+} // namespace d2win
+} // namespace d2

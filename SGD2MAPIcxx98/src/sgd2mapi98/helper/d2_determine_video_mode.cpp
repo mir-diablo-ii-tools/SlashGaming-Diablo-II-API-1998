@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/helper/d2_determine_video_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace helper {
+
+/**
+ * Determine the video mode from the command line args, then from the
+ * registry.
+ */
+VideoMode DetermineVideoMode() {
+  return static_cast<VideoMode>(::D2_Helper_DetermineVideoMode());
 }
+
+VideoMode_1_00 DetermineVideoMode_1_00() {
+  return static_cast<VideoMode_1_00>(::D2_Helper_DetermineVideoMode_1_00());
+}
+
+} // namespace helper
+} // namespace d2

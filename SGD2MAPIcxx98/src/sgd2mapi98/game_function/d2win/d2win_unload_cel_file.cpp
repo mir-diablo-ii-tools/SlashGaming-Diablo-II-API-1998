@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_unload_cel_file.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+void UnloadCelFile(
+    CelFile* cel_file
+) {
+  ::D2_D2Win_UnloadCelFile(cel_file);
 }
+
+void UnloadCelFile_1_00(
+    CelFile_1_00* cel_file
+) {
+  ::D2_D2Win_UnloadCelFile_1_00(cel_file);
+}
+
+} // namespace d2win
+} // namespace d2

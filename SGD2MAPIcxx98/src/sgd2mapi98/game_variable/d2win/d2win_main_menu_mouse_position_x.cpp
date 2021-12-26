@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2win/d2win_main_menu_mouse_position_x.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+int GetMainMenuMousePositionX() {
+  return ::D2_D2Win_GetMainMenuMousePositionX();
 }
+
+int32_t GetMainMenuMousePositionX_1_00() {
+  return ::D2_D2Win_GetMainMenuMousePositionX_1_00();
+}
+
+void SetMainMenuMousePositionX(int mouse_position_x) {
+  ::D2_D2Win_SetMainMenuMousePositionX(mouse_position_x);
+}
+
+void SetMainMenuMousePositionX_1_00(
+    int32_t mouse_position_x
+) {
+  ::D2_D2Win_SetMainMenuMousePositionX_1_00(mouse_position_x);
+}
+
+} // namespace d2win
+} // namespace d2

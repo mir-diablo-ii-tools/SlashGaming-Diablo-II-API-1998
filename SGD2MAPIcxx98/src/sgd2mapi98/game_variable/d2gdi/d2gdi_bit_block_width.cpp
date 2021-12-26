@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gdi/d2gdi_bit_block_width.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gdi {
+
+int GetBitBlockWidth() {
+  return ::D2_D2GDI_GetBitBlockWidth();
 }
+
+int32_t GetBitBlockWidth_1_00() {
+  return ::D2_D2GDI_GetBitBlockWidth_1_00();
+}
+
+void SetBitBlockWidth(int width) {
+  ::D2_D2GDI_SetBitBlockWidth(width);
+}
+
+void SetBitBlockWidth_1_00(int32_t width) {
+  ::D2_D2GDI_SetBitBlockWidth_1_00(width);
+}
+
+} // namespace d2gdi
+} // namespace d2

@@ -43,10 +43,52 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_belt_slot_position.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+void GetGlobalBeltSlotPosition(
+    unsigned int belt_record_index,
+    unsigned int inventory_arrange_mode,
+    PositionalRectangle* out_belt_slot,
+    unsigned int belt_slot_index
+) {
+  ::D2_D2Common_GetGlobalBeltSlotPosition(
+      belt_record_index,
+      inventory_arrange_mode,
+      out_belt_slot,
+      belt_slot_index
+  );
 }
+
+void GetGlobalBeltSlotPosition_1_00(
+    uint32_t belt_record_index,
+    PositionalRectangle_1_00* out_belt_slot,
+    uint32_t belt_slot_index
+) {
+  ::D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+      belt_record_index,
+      out_belt_slot,
+      belt_slot_index
+  );
+}
+
+void GetGlobalBeltSlotPosition_1_07(
+    uint32_t belt_record_index,
+    uint32_t inventory_arrange_mode,
+    PositionalRectangle_1_00* out_belt_slot,
+    uint32_t belt_slot_index
+) {
+  ::D2_D2Common_GetGlobalBeltSlotPosition_1_07(
+      belt_record_index,
+      inventory_arrange_mode,
+      out_belt_slot,
+      belt_slot_index
+  );
+}
+
+} // namespace d2common
+} // namespace d2

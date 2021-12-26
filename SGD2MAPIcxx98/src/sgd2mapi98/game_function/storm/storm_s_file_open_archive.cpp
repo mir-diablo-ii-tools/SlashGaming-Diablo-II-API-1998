@@ -43,10 +43,40 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/storm/storm_s_file_open_archive.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace storm {
+
+bool SFileOpenArchive(
+    const char* mpq_archive_path,
+    int priority,
+    unsigned int flags,
+    MpqArchive** mpq_archive_ptr_out
+) {
+  return !!::D2_Storm_SFileOpenArchive(
+      mpq_archive_path,
+      priority,
+      flags,
+      mpq_archive_ptr_out
+  );
 }
+
+::mapi::bool32 SFileOpenArchive_1_00(
+    const char* mpq_archive_path,
+    int32_t priority,
+    uint32_t flags,
+    MpqArchive_1_00** mpq_archive_ptr_out
+) {
+  return ::D2_Storm_SFileOpenArchive_1_00(
+      mpq_archive_path,
+      priority,
+      flags,
+      mpq_archive_ptr_out
+  );
+}
+
+} // namespace storm
+} // namespace d2

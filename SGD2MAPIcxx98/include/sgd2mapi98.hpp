@@ -43,10 +43,20 @@
  *  work.
  */
 
-#include <windows.h>
+#ifndef SGD2MAPI_SGD2MAPI98_HPP_
+#define SGD2MAPI_SGD2MAPI98_HPP_
 
-#include "../include/sgd2mapi98.hpp"
+#include "d2api_version.h"
+#include "sgd2mapi98/default_game_library.hpp"
+#include "sgd2mapi98/file.hpp"
+#include "sgd2mapi98/game_address.hpp"
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_constant.hpp"
+#include "sgd2mapi98/game_function.hpp"
+#include "sgd2mapi98/game_patch.hpp"
+#include "sgd2mapi98/game_struct.hpp"
+#include "sgd2mapi98/game_variable.hpp"
+#include "sgd2mapi98/game_version.hpp"
+#include "sgd2mapi98/helper.hpp"
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
-}
+#endif /* SGD2MAPI_SGD2MAPI98_HPP_ */

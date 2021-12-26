@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/storm/storm_s_file_close_archive.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace storm {
+
+bool SFileCloseArchive(
+    MpqArchive* mpq_archive
+) {
+  return !!::D2_Storm_SFileCloseArchive(mpq_archive);
 }
+
+::mapi::bool32 SFileCloseArchive_1_00(
+    MpqArchive_1_00* mpq_archive
+) {
+  return ::D2_Storm_SFileCloseArchive_1_00(mpq_archive);
+}
+
+} // namespace storm
+} // namespace d2

@@ -43,10 +43,41 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/game_constant/d2_text_font.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
+namespace text_font {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+int ToGameValue(TextFont api_value) {
+  return ::D2_TextFont_ToGameValue(
+      static_cast<D2_TextFont>(api_value)
+  );
 }
+
+TextFont_1_00 ToGameValue_1_00(TextFont api_value) {
+  ::D2_TextFont_1_00 c_game_value =
+      ::D2_TextFont_ToGameValue_1_00(
+          static_cast< ::D2_TextFont>(api_value)
+      );
+
+  return static_cast<TextFont_1_00>(c_game_value);
+}
+
+TextFont ToApiValue(int game_value) {
+  ::D2_TextFont c_api_value = ::D2_TextFont_ToApiValue(
+      game_value
+  );
+
+  return static_cast<TextFont>(c_api_value);
+}
+
+TextFont ToApiValue_1_00(TextFont_1_00 game_value) {
+  ::D2_TextFont c_api_value = ::D2_TextFont_ToApiValue_1_00(
+      static_cast< ::D2_TextFont_1_00>(game_value)
+  );
+
+  return static_cast<TextFont>(c_api_value);
+}
+
+} // namespace text_font
+} // namespace d2

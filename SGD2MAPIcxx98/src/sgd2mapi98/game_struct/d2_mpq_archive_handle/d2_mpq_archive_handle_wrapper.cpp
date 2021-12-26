@@ -43,10 +43,80 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_wrapper.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+MpqArchiveHandle_Wrapper::MpqArchiveHandle_Wrapper(
+    MpqArchiveHandle* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 = reinterpret_cast<MpqArchiveHandle_1_00*>(
+      mpq_archive_handle
+  );
 }
+
+MpqArchiveHandle_Wrapper::MpqArchiveHandle_Wrapper(
+    MpqArchiveHandle_1_00* mpq_archive_handle
+) {
+  this->mpq_archive_handle_.v1_00 = mpq_archive_handle;
+}
+
+MpqArchiveHandle_View MpqArchiveHandle_Wrapper::operator[](
+    size_t index
+) const {
+  MpqArchiveHandle_View view(*this);
+
+  return view[index];
+}
+
+MpqArchiveHandle_Wrapper MpqArchiveHandle_Wrapper::operator[](size_t index) {
+  return ::D2_MpqArchiveHandle_Access(this->Get(), index);
+}
+
+MpqArchiveHandle_Wrapper::operator MpqArchiveHandle_View() const {
+  return MpqArchiveHandle_View(this->Get());
+}
+
+MpqArchiveHandle* MpqArchiveHandle_Wrapper::Get() {
+  const MpqArchiveHandle_Wrapper* const_this = this;
+
+  return const_cast<MpqArchiveHandle*>(const_this->Get());
+}
+
+const MpqArchiveHandle* MpqArchiveHandle_Wrapper::Get() const {
+  return reinterpret_cast<const MpqArchiveHandle*>(
+      this->mpq_archive_handle_.v1_00
+  );
+}
+
+void MpqArchiveHandle_Wrapper::AssignMembers(MpqArchiveHandle_View src) {
+  ::D2_MpqArchiveHandle_AssignMembers(this->Get(), src.Get());
+}
+
+MpqArchive_View MpqArchiveHandle_Wrapper::GetMpqArchive() const {
+  MpqArchiveHandle_View view(*this);
+
+  return view.GetMpqArchive();
+}
+
+MpqArchive_Wrapper MpqArchiveHandle_Wrapper::GetMpqArchive() {
+  return ::D2_MpqArchiveHandle_GetMpqArchive(this->Get());
+}
+
+void MpqArchiveHandle_Wrapper::SetMpqArchive(
+    MpqArchive_Wrapper mpq_archive
+) {
+  ::D2_MpqArchiveHandle_SetMpqArchive(this->Get(), mpq_archive.Get());
+}
+
+char* MpqArchiveHandle_Wrapper::GetMpqArchivePath() {
+  return ::D2_MpqArchiveHandle_GetMpqArchivePath(this->Get());
+}
+
+const char* MpqArchiveHandle_Wrapper::GetMpqArchivePath() const {
+  MpqArchiveHandle_View view(*this);
+
+  return view.GetMpqArchivePath();
+}
+
+} // namespace d2

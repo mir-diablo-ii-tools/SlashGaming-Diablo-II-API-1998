@@ -43,10 +43,46 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_inventory_grid_layout.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+void GetGlobalInventoryGridLayout(
+    unsigned int inventory_record_index,
+    unsigned int inventory_arrange_mode,
+    GridLayout* out_grid_layout
+) {
+  ::D2_D2Common_GetGlobalInventoryGridLayout(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_grid_layout
+  );
 }
+
+void GetGlobalInventoryGridLayout_1_00(
+    uint32_t inventory_record_index,
+    GridLayout_1_00* out_grid_layout
+) {
+  ::D2_D2Common_GetGlobalInventoryGridLayout_1_00(
+      inventory_record_index,
+      out_grid_layout
+  );
+}
+
+void GetGlobalInventoryGridLayout_1_07(
+    uint32_t inventory_record_index,
+    uint32_t inventory_arrange_mode,
+    GridLayout_1_00* out_grid_layout
+) {
+  ::D2_D2Common_GetGlobalInventoryGridLayout_1_07(
+      inventory_record_index,
+      inventory_arrange_mode,
+      out_grid_layout
+  );
+}
+
+} // namespace d2common
+} // namespace d2

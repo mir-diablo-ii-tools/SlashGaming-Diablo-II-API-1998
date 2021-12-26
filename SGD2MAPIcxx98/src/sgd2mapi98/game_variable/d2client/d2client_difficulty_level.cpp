@@ -43,10 +43,36 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_difficulty_level.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+DifficultyLevel GetDifficultyLevel() {
+  return static_cast<DifficultyLevel>(::D2_D2Client_GetDifficultyLevel());
 }
+
+DifficultyLevel_1_00 GetDifficultyLevel_1_00() {
+  return static_cast<DifficultyLevel_1_00>(
+      ::D2_D2Client_GetDifficultyLevel_1_00()
+  );
+}
+
+void SetDifficultyLevel(
+    DifficultyLevel difficulty_level
+) {
+  ::D2_D2Client_SetDifficultyLevel(
+      static_cast< ::D2_DifficultyLevel>(difficulty_level)
+  );
+}
+
+void SetDifficultyLevel_1_00(
+    DifficultyLevel_1_00 difficulty_level
+) {
+  ::D2_D2Client_SetDifficultyLevel_1_00(difficulty_level);
+}
+
+} // namespace d2client
+} // namespace d2

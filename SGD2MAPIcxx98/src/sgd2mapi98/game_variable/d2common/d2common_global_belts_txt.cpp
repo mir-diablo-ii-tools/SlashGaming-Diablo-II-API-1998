@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2common/d2common_global_belts_txt.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+BeltRecord* GetGlobalBeltsTxt() {
+  return ::D2_D2Common_GetGlobalBeltsTxt();
 }
+
+BeltRecord_1_00* GetGlobalBeltsTxt_1_00() {
+  return ::D2_D2Common_GetGlobalBeltsTxt_1_00();
+}
+
+void SetGlobalBeltsTxt(BeltRecord* belt_record) {
+  ::D2_D2Common_SetGlobalBeltsTxt(belt_record);
+}
+
+void SetGlobalBeltsTxt_1_00(BeltRecord_1_00* belt_record) {
+  ::D2_D2Common_SetGlobalBeltsTxt_1_00(belt_record);
+}
+
+} // namespace d2common
+} // namespace d2

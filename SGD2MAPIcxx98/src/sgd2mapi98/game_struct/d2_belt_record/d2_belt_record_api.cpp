@@ -43,10 +43,79 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_api.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+BeltRecord_Api::BeltRecord_Api() {
 }
+
+BeltRecord_Api::BeltRecord_Api(
+    ::mapi::Undefined* reserved_00__set_to_NULL,
+    unsigned char num_slots,
+    const PositionalRectangle* slot_positions
+)
+    : belt_record_(
+          ::D2_BeltRecord_Api_InitFromRecord(
+              reserved_00__set_to_NULL,
+              num_slots,
+              slot_positions
+          )
+      ) {
+}
+
+BeltRecord_Api::~BeltRecord_Api() {
+  ::D2_BeltRecord_Api_Deinit(&this->belt_record_);
+}
+
+BeltRecord_Api::operator BeltRecord_View() const {
+  return BeltRecord_View(this->Get());
+}
+
+BeltRecord_Api::operator BeltRecord_Wrapper() {
+  return BeltRecord_Wrapper(this->Get());
+}
+
+BeltRecord* BeltRecord_Api::Get() {
+  const BeltRecord_Api* const_this = this;
+
+  return const_cast<BeltRecord*>(const_this->Get());
+}
+
+const BeltRecord* BeltRecord_Api::Get() const {
+  return ::D2_BeltRecord_Api_GetConst(&this->belt_record_);
+}
+
+void BeltRecord_Api::AssignMembers(
+    BeltRecord_View src
+) {
+  BeltRecord_Wrapper wrapper(*this);
+
+  wrapper.AssignMembers(src);
+}
+
+unsigned char BeltRecord_Api::GetNumSlots() const {
+  BeltRecord_View view(*this);
+
+  return view.GetNumSlots();
+}
+
+void BeltRecord_Api::SetNumSlots(unsigned char num_slots) {
+  BeltRecord_Wrapper wrapper(*this);
+
+  wrapper.SetNumSlots(num_slots);
+}
+
+PositionalRectangle_View BeltRecord_Api::GetSlotPositions() const {
+  BeltRecord_View view(*this);
+
+  return view.GetSlotPositions();
+}
+
+PositionalRectangle_Wrapper BeltRecord_Api::GetSlotPositions() {
+  BeltRecord_Wrapper wrapper(*this);
+
+  return wrapper.GetSlotPositions();
+}
+
+} // namespace d2

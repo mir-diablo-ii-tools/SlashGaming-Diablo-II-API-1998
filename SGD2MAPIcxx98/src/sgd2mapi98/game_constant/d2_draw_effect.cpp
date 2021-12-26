@@ -43,10 +43,41 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/game_constant/d2_draw_effect.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
+namespace draw_effect {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+int ToGameValue(DrawEffect api_value) {
+  return ::D2_DrawEffect_ToGameValue(
+      static_cast<D2_DrawEffect>(api_value)
+  );
 }
+
+DrawEffect_1_00 ToGameValue_1_00(DrawEffect api_value) {
+  ::D2_DrawEffect_1_00 c_game_value =
+      ::D2_DrawEffect_ToGameValue_1_00(
+          static_cast< ::D2_DrawEffect>(api_value)
+      );
+
+  return static_cast<DrawEffect_1_00>(c_game_value);
+}
+
+DrawEffect ToApiValue(int game_value) {
+  ::D2_DrawEffect c_api_value = ::D2_DrawEffect_ToApiValue(
+      game_value
+  );
+
+  return static_cast<DrawEffect>(c_api_value);
+}
+
+DrawEffect ToApiValue_1_00(DrawEffect_1_00 game_value) {
+  ::D2_DrawEffect c_api_value = ::D2_DrawEffect_ToApiValue_1_00(
+      static_cast< ::D2_DrawEffect_1_00>(game_value)
+  );
+
+  return static_cast<DrawEffect>(c_api_value);
+}
+
+} // namespace draw_effect
+} // namespace d2

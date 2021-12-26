@@ -43,10 +43,20 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/bnclient/bnclient_gateway_ip_v4_address.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace bnclient {
+
+char* GetGatewayIpV4Address() {
+  return ::D2_BNClient_GetGatewayIpV4Address();
 }
+
+char* GetGatewayIpV4Address_1_00() {
+  return ::D2_BNClient_GetGatewayIpV4Address_1_00();
+}
+
+} // namespace bnclient
+} // namespace d2

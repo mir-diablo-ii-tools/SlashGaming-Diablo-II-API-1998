@@ -43,10 +43,40 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/fog/fog_alloc_client_memory.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace fog {
+
+void* AllocClientMemory(
+    int size,
+    const char* source_file,
+    int line,
+    int unused__set_to_0
+) {
+  return ::D2_Fog_AllocClientMemory(
+      size,
+      source_file,
+      line,
+      unused__set_to_0
+  );
 }
+
+void* AllocClientMemory_1_00(
+    int32_t size,
+    const char* source_file,
+    int32_t line,
+    int32_t unused__set_to_0
+) {
+  return ::D2_Fog_AllocClientMemory_1_00(
+      size,
+      source_file,
+      line,
+      unused__set_to_0
+  );
+}
+
+} // namespace fog
+} // namespace d2

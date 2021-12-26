@@ -43,10 +43,32 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_inventory_arrange_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+unsigned int GetInventoryArrangeMode() {
+  return ::D2_D2Client_GetInventoryArrangeMode();
 }
+
+uint32_t GetInventoryArrangeMode_1_07() {
+  return ::D2_D2Client_GetInventoryArrangeMode_1_07();
+}
+
+void SetInventoryArrangeMode(
+    unsigned int inventory_arrange_mode
+) {
+  ::D2_D2Client_SetInventoryArrangeMode(inventory_arrange_mode);
+}
+
+void SetInventoryArrangeMode_1_07(
+    uint32_t inventory_arrange_mode
+) {
+  ::D2_D2Client_SetInventoryArrangeMode_1_07(inventory_arrange_mode);
+}
+
+} // namespace d2client
+} // namespace d2

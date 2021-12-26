@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2ddraw/d2ddraw_bit_block_height.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2ddraw {
+
+int GetBitBlockHeight() {
+  return ::D2_D2DDraw_GetBitBlockHeight();
 }
+
+int32_t GetBitBlockHeight_1_00() {
+  return ::D2_D2DDraw_GetBitBlockHeight_1_00();
+}
+
+void SetBitBlockHeight(int height) {
+  ::D2_D2DDraw_SetBitBlockHeight(height);
+}
+
+void SetBitBlockHeight_1_00(int32_t height) {
+  ::D2_D2DDraw_SetBitBlockHeight_1_00(height);
+}
+
+} // namespace d2ddraw
+} // namespace d2

@@ -43,10 +43,20 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/bnclient/bnclient_gateway_domain_name.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace bnclient {
+
+char* GetGatewayDomainName() {
+  return ::D2_BNClient_GetGatewayDomainName();
 }
+
+char* GetGatewayDomainName_1_00() {
+  return ::D2_BNClient_GetGatewayDomainName_1_00();
+}
+
+} // namespace bnclient
+} // namespace d2

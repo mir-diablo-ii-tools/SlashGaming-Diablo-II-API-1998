@@ -43,10 +43,84 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2gfx/d2gfx_draw_cel_context.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+bool DrawCelContext(
+    CelContext* cel_context,
+    int position_x,
+    int position_y,
+    unsigned int bgrt_color,
+    DrawEffect draw_effect,
+    ::mapi::Undefined* unknown_06__set_to_nullptr
+) {
+  return !!::D2_D2GFX_DrawCelContext(
+      cel_context,
+      position_x,
+      position_y,
+      bgrt_color,
+      static_cast< ::D2_DrawEffect>(draw_effect),
+      unknown_06__set_to_nullptr
+  );
 }
+
+::mapi::bool32 DrawCelContext_1_00(
+    CelContext_1_00* cel_context,
+    int32_t position_x,
+    int32_t position_y,
+    uint32_t bgrt_color,
+    DrawEffect_1_00 draw_effect,
+    ::mapi::Undefined* unknown_06__set_to_nullptr
+) {
+  return ::D2_D2GFX_DrawCelContext_1_00(
+      cel_context,
+      position_x,
+      position_y,
+      bgrt_color,
+      draw_effect,
+      unknown_06__set_to_nullptr
+  );
+}
+
+::mapi::bool32 DrawCelContext_1_12A(
+    CelContext_1_12A* cel_context,
+    int32_t position_x,
+    int32_t position_y,
+    uint32_t bgrt_color,
+    DrawEffect_1_00 draw_effect,
+    ::mapi::Undefined* unknown_06__set_to_nullptr
+) {
+  return ::D2_D2GFX_DrawCelContext_1_12A(
+      cel_context,
+      position_x,
+      position_y,
+      bgrt_color,
+      draw_effect,
+      unknown_06__set_to_nullptr
+  );
+}
+
+::mapi::bool32 DrawCelContext_1_13C(
+    CelContext_1_13C* cel_context,
+    int32_t position_x,
+    int32_t position_y,
+    uint32_t bgrt_color,
+    DrawEffect_1_00 draw_effect,
+    ::mapi::Undefined* unknown_06__set_to_nullptr
+) {
+  return ::D2_D2GFX_DrawCelContext_1_13C(
+      cel_context,
+      position_x,
+      position_y,
+      bgrt_color,
+      draw_effect,
+      unknown_06__set_to_nullptr
+  );
+}
+
+} // namespace d2gfx
+} // namespace d2

@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2ddraw/d2ddraw_display_height.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2ddraw {
+
+int GetDisplayHeight() {
+  return ::D2_D2DDraw_GetDisplayHeight();
 }
+
+int32_t GetDisplayHeight_1_00() {
+  return ::D2_D2DDraw_GetDisplayHeight_1_00();
+}
+
+void SetDisplayHeight(int height) {
+  ::D2_D2DDraw_SetDisplayHeight(height);
+}
+
+void SetDisplayHeight_1_00(int32_t height) {
+  ::D2_D2DDraw_SetDisplayHeight_1_00(height);
+}
+
+} // namespace d2ddraw
+} // namespace d2

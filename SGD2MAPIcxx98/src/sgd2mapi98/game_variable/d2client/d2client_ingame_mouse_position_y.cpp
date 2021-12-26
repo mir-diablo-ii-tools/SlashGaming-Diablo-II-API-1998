@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_ingame_mouse_position_y.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+int GetIngameMousePositionY() {
+  return ::D2_D2Client_GetIngameMousePositionY();
 }
+
+int32_t GetIngameMousePositionY_1_00() {
+  return ::D2_D2Client_GetIngameMousePositionY_1_00();
+}
+
+void SetIngameMousePositionY(int mouse_position_y) {
+  ::D2_D2Client_SetIngameMousePositionY(mouse_position_y);
+}
+
+void SetIngameMousePositionY_1_00(int32_t mouse_position_y) {
+  ::D2_D2Client_SetIngameMousePositionY_1_00(mouse_position_y);
+}
+
+} // namespace d2client
+} // namespace d2

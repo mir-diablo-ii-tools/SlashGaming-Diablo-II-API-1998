@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gfx/d2gfx_window_handle.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+HWND GetWindowHandle() {
+  return ::D2_D2GFX_GetWindowHandle();
 }
+
+HWND GetWindowHandle_1_00() {
+  return ::D2_D2GFX_GetWindowHandle_1_00();
+}
+
+void SetWindowHandle(HWND window_handle) {
+  ::D2_D2GFX_SetWindowHandle(window_handle);
+}
+
+void SetWindowHandle_1_00(HWND window_handle) {
+  ::D2_D2GFX_SetWindowHandle_1_00(window_handle);
+}
+
+} // namespace d2gfx
+} // namespace d2

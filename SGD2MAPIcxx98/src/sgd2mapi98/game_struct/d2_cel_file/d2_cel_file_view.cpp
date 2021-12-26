@@ -43,10 +43,32 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+CelFile_View::CelFile_View(const CelFile* cel_file) {
+  this->cel_file_.v1_00 = reinterpret_cast<const CelFile_1_00*>(cel_file);
 }
+
+CelFile_View::CelFile_View(const CelFile_1_00* cel_file) {
+  this->cel_file_.v1_00 = cel_file;
+}
+
+const CelFile* CelFile_View::Get() const {
+  return reinterpret_cast<const CelFile*>(this->cel_file_.v1_00);
+}
+
+unsigned int CelFile_View::GetNumFrames() const {
+  return ::D2_CelFile_GetNumFrames(this->Get());
+}
+
+unsigned int CelFile_View::GetNumDirections() const {
+  return ::D2_CelFile_GetNumDirections(this->Get());
+}
+
+unsigned int CelFile_View::GetVersion() const {
+  return ::D2_CelFile_GetVersion(this->Get());
+}
+
+} // namespace d2

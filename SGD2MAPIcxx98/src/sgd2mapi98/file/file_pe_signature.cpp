@@ -43,10 +43,36 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../include/sgd2mapi98/file/file_pe_signature.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace mapi {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+FilePeSignature::FilePeSignature()
+    : file_pe_signature_(::Mapi_FilePeSignature_kUninit) {
 }
+
+int FilePeSignature::CompareSignature(
+    const FilePeSignature& signature
+) const {
+  return ::Mapi_FilePeSignature_Compare(
+      &this->file_pe_signature_,
+      &signature.file_pe_signature_
+  );
+}
+
+FilePeSignature FilePeSignature::ReadFile(
+    const wchar_t* path,
+    size_t count
+) {
+  FilePeSignature file_pe_signature;
+
+  ::Mapi_FilePeSignature_ReadFile(
+      &file_pe_signature.file_pe_signature_,
+      path,
+      count
+  );
+
+  return file_pe_signature;
+}
+
+} // namespace mapi

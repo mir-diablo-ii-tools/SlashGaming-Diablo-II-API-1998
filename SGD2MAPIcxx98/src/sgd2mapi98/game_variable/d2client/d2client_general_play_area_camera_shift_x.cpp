@@ -43,10 +43,32 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_general_play_area_camera_shift_x.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+int GetGeneralPlayAreaCameraShiftX() {
+  return ::D2_D2Client_GetGeneralPlayAreaCameraShiftX();
 }
+
+int32_t GetGeneralPlayAreaCameraShiftX_1_00() {
+  return ::D2_D2Client_GetGeneralPlayAreaCameraShiftX_1_00();
+}
+
+void SetGeneralPlayAreaCameraShiftX(
+    int camera_shift_x
+) {
+  ::D2_D2Client_SetGeneralPlayAreaCameraShiftX(camera_shift_x);
+}
+
+void SetGeneralPlayAreaCameraShiftX_1_00(
+    int32_t camera_shift_x
+) {
+  ::D2_D2Client_SetGeneralPlayAreaCameraShiftX_1_00(camera_shift_x);
+}
+
+} // namespace d2client
+} // namespace d2

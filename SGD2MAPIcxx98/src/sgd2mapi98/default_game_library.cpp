@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../include/sgd2mapi98/default_game_library.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace default_library {
+
+const wchar_t* GetPathWithRedirect(DefaultLibrary library) {
+  return D2_DefaultLibrary_GetPathWithRedirect(
+      static_cast<D2_DefaultLibrary>(library)
+  );
 }
+
+const wchar_t* GetPathWithoutRedirect(DefaultLibrary library) {
+  return D2_DefaultLibrary_GetPathWithoutRedirect(
+      static_cast<D2_DefaultLibrary>(library)
+  );
+}
+
+} // namespace default_library
+} // namespace d2

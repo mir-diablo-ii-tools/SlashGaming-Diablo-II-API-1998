@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2gfx/d2gfx_resolution_mode.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2gfx {
+
+unsigned int GetResolutionMode() {
+  return ::D2_D2GFX_GetResolutionMode();
 }
+
+uint32_t GetResolutionMode_1_00() {
+  return ::D2_D2GFX_GetResolutionMode_1_00();
+}
+
+void SetResolutionMode(unsigned int resolution_mode) {
+  ::D2_D2GFX_SetResolutionMode(resolution_mode);
+}
+
+void SetResolutionMode_1_00(uint32_t resolution_mode) {
+  ::D2_D2GFX_SetResolutionMode_1_00(resolution_mode);
+}
+
+} // namespace d2gfx
+} // namespace d2

@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_set_unicode_text_font.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+TextFont SetUnicodeTextFont(
+    TextFont text_font
+) {
+  return static_cast<TextFont>(
+      ::D2_D2Win_SetUnicodeTextFont(static_cast< ::D2_TextFont>(text_font))
+  );
 }
+
+TextFont_1_00 SetUnicodeTextFont_1_00(
+    TextFont_1_00 text_font
+) {
+  return static_cast<TextFont_1_00>(
+      ::D2_D2Win_SetUnicodeTextFont_1_00(text_font)
+  );
+}
+
+} // namespace d2win
+} // namespace d2

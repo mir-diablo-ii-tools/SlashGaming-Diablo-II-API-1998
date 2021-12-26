@@ -43,10 +43,22 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+namespace d2 {
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+MpqArchive_View::MpqArchive_View(const MpqArchive* mpq_archive) {
+  this->mpq_archive_.v1_00 = reinterpret_cast<const MpqArchive_1_00*>(
+      mpq_archive
+  );
 }
+
+MpqArchive_View::MpqArchive_View(const MpqArchive_1_00* mpq_archive) {
+  this->mpq_archive_.v1_00 = mpq_archive;
+}
+
+const MpqArchive* MpqArchive_View::Get() const {
+  return reinterpret_cast<const MpqArchive*>(this->mpq_archive_.v1_00);
+}
+
+} // namespace d2

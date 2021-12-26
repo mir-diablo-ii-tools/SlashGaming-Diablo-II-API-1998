@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2lang/d2lang_get_string_by_index.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2lang {
+
+const wchar_t* GetStringByIndex(
+    unsigned int id
+) {
+  return ::D2_D2Lang_GetStringByIndex(id);
 }
+
+const wchar_t* GetStringByIndex_1_00(
+    uint32_t id
+) {
+  return ::D2_D2Lang_GetStringByIndex_1_00(id);
+}
+
+} // namespace d2lang
+} // namespace d2

@@ -43,10 +43,24 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_get_unicode_text_draw_width.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+int GetUnicodeTextDrawWidth(
+    const wchar_t* text
+) {
+  return ::D2_D2Win_GetUnicodeTextDrawWidth(text);
 }
+
+int32_t GetUnicodeTextDrawWidth_1_00(
+    const wchar_t* text
+) {
+  return ::D2_D2Win_GetUnicodeTextDrawWidth_1_00(text);
+}
+
+} // namespace d2win
+} // namespace d2

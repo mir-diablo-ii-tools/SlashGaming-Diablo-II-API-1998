@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_help_screen_open.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+bool GetIsHelpScreenOpen() {
+  return !!::D2_D2Client_GetIsHelpScreenOpen();
 }
+
+::mapi::bool32 GetIsHelpScreenOpen_1_00() {
+  return ::D2_D2Client_GetIsHelpScreenOpen_1_00();
+}
+
+void SetIsHelpScreenOpen(bool is_help_screen_open) {
+  ::D2_D2Client_SetIsHelpScreenOpen(is_help_screen_open);
+}
+
+void SetIsHelpScreenOpen_1_00(
+    ::mapi::bool32 is_help_screen_open
+) {
+  ::D2_D2Client_SetIsHelpScreenOpen_1_00(is_help_screen_open);
+}
+
+} // namespace d2client
+} // namespace d2

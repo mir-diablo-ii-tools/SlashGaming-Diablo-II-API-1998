@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_game_type.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+ClientGameType GetGameType() {
+  return static_cast<ClientGameType>(::D2_D2Client_GetGameType());
 }
+
+ClientGameType_1_00 GetGameType_1_00() {
+  return static_cast<ClientGameType_1_00>(::D2_D2Client_GetGameType_1_00());
+}
+
+void SetGameType(ClientGameType game_type) {
+  ::D2_D2Client_SetGameType(static_cast< ::D2_ClientGameType>(game_type));
+}
+
+void SetGameType_1_00(ClientGameType_1_00 game_type) {
+  ::D2_D2Client_SetGameType_1_00(game_type);
+}
+
+} // namespace d2client
+} // namespace d2

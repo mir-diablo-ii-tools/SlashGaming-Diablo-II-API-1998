@@ -43,10 +43,44 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_set_pop_up_unicode_text.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2win {
+
+void SetPopUpUnicodeText(
+    const wchar_t* text,
+    int position_x,
+    int position_y,
+    TextColor text_color,
+    bool is_text_box_centered
+) {
+  ::D2_D2Win_SetPopUpUnicodeText(
+      text,
+      position_x,
+      position_y,
+      static_cast< ::D2_TextColor>(text_color),
+      is_text_box_centered
+  );
 }
+
+void SetPopUpUnicodeText_1_00(
+    const wchar_t* text,
+    int32_t position_x,
+    int32_t position_y,
+    TextColor_1_00 text_color,
+    ::mapi::bool32 is_text_box_centered
+) {
+  ::D2_D2Win_SetPopUpUnicodeText_1_00(
+      text,
+      position_x,
+      position_y,
+      text_color,
+      is_text_box_centered
+  );
+}
+
+} // namespace d2win
+} // namespace d2

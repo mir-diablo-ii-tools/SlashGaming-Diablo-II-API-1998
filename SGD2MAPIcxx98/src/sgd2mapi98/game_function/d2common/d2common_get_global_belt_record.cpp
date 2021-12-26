@@ -43,10 +43,46 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_belt_record.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2common {
+
+void GetGlobalBeltRecord(
+    unsigned int belt_record_index,
+    unsigned int inventory_arrange_mode,
+    BeltRecord* out_belt_record
+) {
+  ::D2_D2Common_GetGlobalBeltRecord(
+      belt_record_index,
+      inventory_arrange_mode,
+      out_belt_record
+  );
 }
+
+void GetGlobalBeltRecord_1_00(
+    uint32_t belt_record_index,
+    BeltRecord_1_00* out_belt_record
+) {
+  ::D2_D2Common_GetGlobalBeltRecord_1_00(
+      belt_record_index,
+      out_belt_record
+  );
+}
+
+void GetGlobalBeltRecord_1_07(
+    uint32_t belt_record_index,
+    uint32_t inventory_arrange_mode,
+    BeltRecord_1_00* out_belt_record
+) {
+  ::D2_D2Common_GetGlobalBeltRecord_1_07(
+      belt_record_index,
+      inventory_arrange_mode,
+      out_belt_record
+  );
+}
+
+} // namespace d2common
+} // namespace d2

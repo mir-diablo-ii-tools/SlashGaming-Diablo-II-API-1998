@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_new_skill_button_pressed.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+bool GetIsNewSkillButtonPressed() {
+  return !!::D2_D2Client_GetIsNewSkillButtonPressed();
 }
+
+::mapi::bool32 GetIsNewSkillButtonPressed_1_00() {
+  return ::D2_D2Client_GetIsNewSkillButtonPressed_1_00();
+}
+
+void SetIsNewSkillButtonPressed(bool is_button_pressed) {
+  ::D2_D2Client_SetIsNewSkillButtonPressed(is_button_pressed);
+}
+
+void SetIsNewSkillButtonPressed_1_00(
+    ::mapi::bool32 is_button_pressed
+) {
+  ::D2_D2Client_SetIsNewSkillButtonPressed_1_00(is_button_pressed);
+}
+
+} // namespace d2client
+} // namespace d2

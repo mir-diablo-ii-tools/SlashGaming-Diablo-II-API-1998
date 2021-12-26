@@ -43,10 +43,36 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2cmp {
+
+Cel* GetCelFromCelContext(
+    CelContext* cel_context
+) {
+  return ::D2_D2CMP_GetCelFromCelContext(cel_context);
 }
+
+Cel_1_00* GetCelFromCelContext_1_00(
+    CelContext_1_00* cel_context
+) {
+  return ::D2_D2CMP_GetCelFromCelContext_1_00(cel_context);
+}
+
+Cel_1_00* GetCelFromCelContext_1_12A(
+    CelContext_1_12A* cel_context
+) {
+  return ::D2_D2CMP_GetCelFromCelContext_1_12A(cel_context);
+}
+
+Cel_1_00* GetCelFromCelContext_1_13C(
+    CelContext_1_13C* cel_context
+) {
+  return ::D2_D2CMP_GetCelFromCelContext_1_13C(cel_context);
+}
+
+} // namespace d2cmp
+} // namespace d2

@@ -43,10 +43,28 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_screen_shift_y.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+int GetScreenShiftY() {
+  return ::D2_D2Client_GetScreenShiftY();
 }
+
+int32_t GetScreenShiftY_1_00() {
+  return ::D2_D2Client_GetScreenShiftY_1_00();
+}
+
+void SetScreenShiftY(int screen_shift_y) {
+  ::D2_D2Client_SetScreenShiftY(screen_shift_y);
+}
+
+void SetScreenShiftY_1_00(int32_t screen_shift_y) {
+  ::D2_D2Client_SetScreenShiftY_1_00(screen_shift_y);
+}
+
+} // namespace d2client
+} // namespace d2

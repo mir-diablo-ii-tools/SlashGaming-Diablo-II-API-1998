@@ -43,10 +43,30 @@
  *  work.
  */
 
-#include <windows.h>
+#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_general_display_width.hpp"
 
-#include "../include/sgd2mapi98.hpp"
+#include <sgd2mapi.h>
 
-BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
-  return TRUE;
+namespace d2 {
+namespace d2client {
+
+int GetGeneralDisplayWidth() {
+  return ::D2_D2Client_GetGeneralDisplayWidth();
 }
+
+int32_t GetGeneralDisplayWidth_1_00() {
+  return ::D2_D2Client_GetGeneralDisplayWidth_1_00();
+}
+
+void SetGeneralDisplayWidth(int general_display_width) {
+  ::D2_D2Client_SetGeneralDisplayWidth(general_display_width);
+}
+
+void SetGeneralDisplayWidth_1_00(
+    int32_t general_display_width
+) {
+  ::D2_D2Client_SetGeneralDisplayWidth_1_00(general_display_width);
+}
+
+} // namespace d2client
+} // namespace d2
