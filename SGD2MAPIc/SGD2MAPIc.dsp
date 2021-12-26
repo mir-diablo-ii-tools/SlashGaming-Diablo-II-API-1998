@@ -163,15 +163,15 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\file\file_pe_signature.h
+SOURCE=.\include\sgd2mapi98\file\file_pe_signature.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\file\file_version_info.h
+SOURCE=.\include\sgd2mapi98\file\file_version_info.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\file\fixed_file_version.h
+SOURCE=.\include\sgd2mapi98\file\fixed_file_version.h
 # End Source File
 # End Group
 # Begin Group "game_constant_h"
@@ -179,31 +179,31 @@ SOURCE=.\include\c\file\fixed_file_version.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_client_game_type.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_client_game_type.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_difficulty_level.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_difficulty_level.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_draw_effect.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_draw_effect.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_screen_open_mode.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_screen_open_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_text_color.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_text_color.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_text_font.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_text_font.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_constant\d2_video_mode.h
+SOURCE=.\include\sgd2mapi98\game_constant\d2_video_mode.h
 # End Source File
 # End Group
 # Begin Group "game_function_h"
@@ -214,7 +214,7 @@ SOURCE=.\include\c\game_constant\d2_video_mode.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2client\d2client_draw_centered_unicode_text.h
+SOURCE=.\include\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text.h
 # End Source File
 # End Group
 # Begin Group "d2cmp_function_h"
@@ -222,7 +222,7 @@ SOURCE=.\include\c\game_function\d2client\d2client_draw_centered_unicode_text.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.h
+SOURCE=.\include\sgd2mapi98\game_function\d2cmp\d2cmp_get_cel_from_cel_context.h
 # End Source File
 # End Group
 # Begin Group "d2common_function_h"
@@ -230,23 +230,23 @@ SOURCE=.\include\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_record.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common\d2common_get_global_belt_record.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_belt_slot_position.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common\d2common_get_global_belt_slot_position.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_equipment_slot_layout.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common\d2common_get_global_equipment_slot_layout.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_grid_layout.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common\d2common_get_global_inventory_grid_layout.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_position.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common\d2common_get_global_inventory_position.h
 # End Source File
 # End Group
 # Begin Group "d2gfx_function_h"
@@ -254,11 +254,11 @@ SOURCE=.\include\c\game_function\d2common\d2common_get_global_inventory_position
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_cel_context.h
+SOURCE=.\include\sgd2mapi98\game_function\d2gfx\d2gfx_draw_cel_context.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_rectangle.h
+SOURCE=.\include\sgd2mapi98\game_function\d2gfx\d2gfx_draw_rectangle.h
 # End Source File
 # End Group
 # Begin Group "d2lang_function_h"
@@ -266,7 +266,7 @@ SOURCE=.\include\c\game_function\d2gfx\d2gfx_draw_rectangle.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2lang\d2lang_get_string_by_index.h
+SOURCE=.\include\sgd2mapi98\game_function\d2lang\d2lang_get_string_by_index.h
 # End Source File
 # End Group
 # Begin Group "d2win_function_h"
@@ -274,43 +274,43 @@ SOURCE=.\include\c\game_function\d2lang\d2lang_get_string_by_index.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_draw_unicode_text.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_draw_unicode_text.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_draw_width.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_get_unicode_text_draw_width.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_get_unicode_text_n_draw_width.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_get_unicode_text_n_draw_width.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_load_cel_file.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_load_cel_file.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_load_mpq.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_load_mpq.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_set_pop_up_unicode_text.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_set_pop_up_unicode_text.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_set_unicode_text_font.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_set_unicode_text_font.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_unload_cel_file.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_unload_cel_file.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win\d2win_unload_mpq.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win\d2win_unload_mpq.h
 # End Source File
 # End Group
 # Begin Group "fog_function_h"
@@ -318,11 +318,11 @@ SOURCE=.\include\c\game_function\d2win\d2win_unload_mpq.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\fog\fog_alloc_client_memory.h
+SOURCE=.\include\sgd2mapi98\game_function\fog\fog_alloc_client_memory.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\fog\fog_free_client_memory.h
+SOURCE=.\include\sgd2mapi98\game_function\fog\fog_free_client_memory.h
 # End Source File
 # End Group
 # Begin Group "storm_function_h"
@@ -330,88 +330,88 @@ SOURCE=.\include\c\game_function\fog\fog_free_client_memory.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_function\storm\storm_s_file_close_archive.h
+SOURCE=.\include\sgd2mapi98\game_function\storm\storm_s_file_close_archive.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\storm\storm_s_file_open_archive.h
+SOURCE=.\include\sgd2mapi98\game_function\storm\storm_s_file_open_archive.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\include\c\game_function\bnclient_function.h
+SOURCE=.\include\sgd2mapi98\game_function\bnclient_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2client_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2client_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2cmp_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2cmp_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2common_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2common_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2ddraw_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2ddraw_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2direct3d_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2direct3d_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2game_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2game_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2gdi_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2gdi_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2gfx_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2gfx_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2glide_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2glide_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2lang_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2lang_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2launch_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2launch_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2mcpclient_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2mcpclient_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2multi_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2multi_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2net_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2net_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2sound_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2sound_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\d2win_function.h
+SOURCE=.\include\sgd2mapi98\game_function\d2win_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\fog_function.h
+SOURCE=.\include\sgd2mapi98\game_function\fog_function.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_function\storm_function.h
+SOURCE=.\include\sgd2mapi98\game_function\storm_function.h
 # End Source File
 # End Group
 # Begin Group "game_struct_h"
@@ -419,43 +419,43 @@ SOURCE=.\include\c\game_function\storm_function.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_belt_record.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_belt_record.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_cel.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_cel.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_cel_context.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_cel_context.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_cel_file.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_cel_file.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_equipment_layout.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_equipment_layout.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_grid_layout.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_grid_layout.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_inventory_record.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_inventory_record.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_mpq_archive.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_mpq_archive.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_mpq_archive_handle.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_mpq_archive_handle.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct\d2_positional_rectangle.h
+SOURCE=.\include\sgd2mapi98\game_struct\d2_positional_rectangle.h
 # End Source File
 # End Group
 # Begin Group "game_variable_h"
@@ -466,11 +466,11 @@ SOURCE=.\include\c\game_struct\d2_positional_rectangle.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_domain_name.h
+SOURCE=.\include\sgd2mapi98\game_variable\bnclient\bnclient_gateway_domain_name.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.h
+SOURCE=.\include\sgd2mapi98\game_variable\bnclient\bnclient_gateway_ip_v4_address.h
 # End Source File
 # End Group
 # Begin Group "d2client_variable_h"
@@ -478,67 +478,67 @@ SOURCE=.\include\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_difficulty_level.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_difficulty_level.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_game_type.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_game_type.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_general_display_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_general_display_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_general_display_width.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_general_display_width.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_general_play_area_camera_shift_x.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_general_play_area_camera_shift_x.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_x.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_ingame_mouse_position_x.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_ingame_mouse_position_y.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_ingame_mouse_position_y.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_inventory_arrange_mode.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_inventory_arrange_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_is_automap_open.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_is_automap_open.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_is_game_menu_open.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_is_game_menu_open.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_is_help_screen_open.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_is_help_screen_open.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_is_new_skill_button_pressed.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_is_new_skill_button_pressed.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_is_new_stats_button_pressed.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_is_new_stats_button_pressed.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_open_mode.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_screen_open_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_x.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_screen_shift_x.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_y.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client\d2client_screen_shift_y.h
 # End Source File
 # End Group
 # Begin Group "d2common_variable_h"
@@ -546,15 +546,15 @@ SOURCE=.\include\c\game_variable\d2client\d2client_screen_shift_y.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2common\d2common_global_belts_txt.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2common\d2common_global_belts_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2common\d2common_global_inventory_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt_records_count.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2common\d2common_global_inventory_txt_records_count.h
 # End Source File
 # End Group
 # Begin Group "d2ddraw_variable_h"
@@ -562,23 +562,23 @@ SOURCE=.\include\c\game_variable\d2common\d2common_global_inventory_txt_records_
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw\d2ddraw_bit_block_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_bit_block_width.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw\d2ddraw_bit_block_width.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_left.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw\d2ddraw_cel_display_left.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_cel_display_right.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw\d2ddraw_cel_display_right.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_display_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw\d2ddraw_display_height.h
 # End Source File
 # End Group
 # Begin Group "d2direct3d_variable_h"
@@ -586,11 +586,11 @@ SOURCE=.\include\c\game_variable\d2ddraw\d2ddraw_display_height.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2direct3d\d2direct3d_display_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_width.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2direct3d\d2direct3d_display_width.h
 # End Source File
 # End Group
 # Begin Group "d2gdi_variable_h"
@@ -598,19 +598,19 @@ SOURCE=.\include\c\game_variable\d2direct3d\d2direct3d_display_width.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gdi\d2gdi_bit_block_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_bit_block_width.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gdi\d2gdi_bit_block_width.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_left.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gdi\d2gdi_cel_display_left.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_right.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gdi\d2gdi_cel_display_right.h
 # End Source File
 # End Group
 # Begin Group "d2gfx_variable_h"
@@ -618,19 +618,19 @@ SOURCE=.\include\c\game_variable\d2gdi\d2gdi_cel_display_right.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_is_windowed_mode.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gfx\d2gfx_is_windowed_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_resolution_mode.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gfx\d2gfx_resolution_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_video_mode.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gfx\d2gfx_video_mode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gfx\d2gfx_window_handle.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gfx\d2gfx_window_handle.h
 # End Source File
 # End Group
 # Begin Group "d2glide_variable_h"
@@ -638,11 +638,11 @@ SOURCE=.\include\c\game_variable\d2gfx\d2gfx_window_handle.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2glide\d2glide_display_height.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2glide\d2glide_display_height.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2glide\d2glide_display_width.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2glide\d2glide_display_width.h
 # End Source File
 # End Group
 # Begin Group "d2win_variable_h"
@@ -650,88 +650,88 @@ SOURCE=.\include\c\game_variable\d2glide\d2glide_display_width.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_x.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2win\d2win_main_menu_mouse_position_x.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2win\d2win_main_menu_mouse_position_y.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2win\d2win_main_menu_mouse_position_y.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\bnclient_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\bnclient_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2client_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2client_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2cmp_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2cmp_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2common_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2common_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2ddraw_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2ddraw_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2direct3d_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2direct3d_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2game_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2game_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gdi_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gdi_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2gfx_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2gfx_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2glide_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2glide_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2lang_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2lang_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2launch_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2launch_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2mcpclient_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2mcpclient_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2multi_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2multi_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2net_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2net_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2sound_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2sound_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\d2win_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\d2win_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\fog_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\fog_variable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_variable\storm_variable.h
+SOURCE=.\include\sgd2mapi98\game_variable\storm_variable.h
 # End Source File
 # End Group
 # Begin Group "helper_h"
@@ -739,7 +739,7 @@ SOURCE=.\include\c\game_variable\storm_variable.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\c\helper\d2_determine_video_mode.h
+SOURCE=.\include\sgd2mapi98\helper\d2_determine_video_mode.h
 # End Source File
 # End Group
 # Begin Source File
@@ -748,7 +748,7 @@ SOURCE=.\include\d2api_version.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\default_game_library.h
+SOURCE=.\include\sgd2mapi98\default_game_library.h
 # End Source File
 # Begin Source File
 
@@ -760,47 +760,47 @@ SOURCE=.\include\dllexport_undefine.inc
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\file.h
+SOURCE=.\include\sgd2mapi98\file.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_address.h
+SOURCE=.\include\sgd2mapi98\game_address.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_bool.h
+SOURCE=.\include\sgd2mapi98\game_bool.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_branch_type.h
+SOURCE=.\include\sgd2mapi98\game_branch_type.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_executable.h
+SOURCE=.\include\sgd2mapi98\game_executable.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_patch.h
+SOURCE=.\include\sgd2mapi98\game_patch.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_struct.h
+SOURCE=.\include\sgd2mapi98\game_struct.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_undefined.h
+SOURCE=.\include\sgd2mapi98\game_undefined.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\game_version.h
+SOURCE=.\include\sgd2mapi98\game_version.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\c\helper.h
+SOURCE=.\include\sgd2mapi98\helper.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\sgd2mapi.h
+SOURCE=.\include\sgd2mapi98.h
 # End Source File
 # End Group
 # Begin Group "src"
@@ -814,27 +814,27 @@ SOURCE=.\include\sgd2mapi.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_file_pe_signature.c
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_file_pe_signature.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_file_pe_signature.h
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_file_pe_signature.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_game_version.c
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_game_version.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_game_version.h
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_game_version.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_ini.c
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_ini.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\d2se\d2se_ini.h
+SOURCE=.\src\sgd2mapi98\backend\d2se\d2se_ini.h
 # End Source File
 # End Group
 # Begin Group "backend_game_address_table_c"
@@ -842,15 +842,15 @@ SOURCE=.\src\c\backend\d2se\d2se_ini.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_address_table\game_address_table_define.h
+SOURCE=.\src\sgd2mapi98\backend\game_address_table\game_address_table_define.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_address_table\game_address_table_impl.c
+SOURCE=.\src\sgd2mapi98\backend\game_address_table\game_address_table_impl.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_address_table\game_address_table_impl.h
+SOURCE=.\src\sgd2mapi98\backend\game_address_table\game_address_table_impl.h
 # End Source File
 # End Group
 # Begin Group "backend_game_function_c"
@@ -858,14 +858,14 @@ SOURCE=.\src\c\backend\game_address_table\game_address_table_impl.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\cdecl_function.asm
+SOURCE=.\src\sgd2mapi98\backend\game_function\cdecl_function.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Release
-InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\cdecl_function.asm
 InputName=cdecl_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -876,9 +876,9 @@ InputName=cdecl_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Debug
-InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\cdecl_function.asm
 InputName=cdecl_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -889,9 +889,9 @@ InputName=cdecl_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\ReleaseDll
-InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\cdecl_function.asm
 InputName=cdecl_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -902,9 +902,9 @@ InputName=cdecl_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\DebugDll
-InputPath=.\src\c\backend\game_function\cdecl_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\cdecl_function.asm
 InputName=cdecl_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -917,19 +917,19 @@ InputName=cdecl_function
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\cdecl_function.h
+SOURCE=.\src\sgd2mapi98\backend\game_function\cdecl_function.h
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\esi_function.asm
+SOURCE=.\src\sgd2mapi98\backend\game_function\esi_function.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Release
-InputPath=.\src\c\backend\game_function\esi_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\esi_function.asm
 InputName=esi_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -940,9 +940,9 @@ InputName=esi_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Debug
-InputPath=.\src\c\backend\game_function\esi_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\esi_function.asm
 InputName=esi_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -953,9 +953,9 @@ InputName=esi_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\ReleaseDll
-InputPath=.\src\c\backend\game_function\esi_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\esi_function.asm
 InputName=esi_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -966,9 +966,9 @@ InputName=esi_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\DebugDll
-InputPath=.\src\c\backend\game_function\esi_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\esi_function.asm
 InputName=esi_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -981,19 +981,19 @@ InputName=esi_function
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\esi_function.h
+SOURCE=.\src\sgd2mapi98\backend\game_function\esi_function.h
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\fastcall_function.asm
+SOURCE=.\src\sgd2mapi98\backend\game_function\fastcall_function.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Release
-InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\fastcall_function.asm
 InputName=fastcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1004,9 +1004,9 @@ InputName=fastcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Debug
-InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\fastcall_function.asm
 InputName=fastcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1017,9 +1017,9 @@ InputName=fastcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\ReleaseDll
-InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\fastcall_function.asm
 InputName=fastcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1030,9 +1030,9 @@ InputName=fastcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\DebugDll
-InputPath=.\src\c\backend\game_function\fastcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\fastcall_function.asm
 InputName=fastcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1045,19 +1045,19 @@ InputName=fastcall_function
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\fastcall_function.h
+SOURCE=.\src\sgd2mapi98\backend\game_function\fastcall_function.h
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\stdcall_function.asm
+SOURCE=.\src\sgd2mapi98\backend\game_function\stdcall_function.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Release
-InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\stdcall_function.asm
 InputName=stdcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1068,9 +1068,9 @@ InputName=stdcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Debug
-InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\stdcall_function.asm
 InputName=stdcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1081,9 +1081,9 @@ InputName=stdcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\ReleaseDll
-InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\stdcall_function.asm
 InputName=stdcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1094,9 +1094,9 @@ InputName=stdcall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\DebugDll
-InputPath=.\src\c\backend\game_function\stdcall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\stdcall_function.asm
 InputName=stdcall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1109,19 +1109,19 @@ InputName=stdcall_function
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\stdcall_function.h
+SOURCE=.\src\sgd2mapi98\backend\game_function\stdcall_function.h
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\thiscall_function.asm
+SOURCE=.\src\sgd2mapi98\backend\game_function\thiscall_function.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Release
-InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\thiscall_function.asm
 InputName=thiscall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1132,9 +1132,9 @@ InputName=thiscall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\Debug
-InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\thiscall_function.asm
 InputName=thiscall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1145,9 +1145,9 @@ InputName=thiscall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\ReleaseDll
-InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\thiscall_function.asm
 InputName=thiscall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1158,9 +1158,9 @@ InputName=thiscall_function
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\backend\game_function
+InputDir=.\src\sgd2mapi98\backend\game_function
 IntDir=.\DebugDll
-InputPath=.\src\c\backend\game_function\thiscall_function.asm
+InputPath=.\src\sgd2mapi98\backend\game_function\thiscall_function.asm
 InputName=thiscall_function
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1173,7 +1173,7 @@ InputName=thiscall_function
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_function\thiscall_function.h
+SOURCE=.\src\sgd2mapi98\backend\game_function\thiscall_function.h
 # PROP Exclude_From_Build 1
 # End Source File
 # End Group
@@ -1182,44 +1182,44 @@ SOURCE=.\src\c\backend\game_function\thiscall_function.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.c
+SOURCE=.\src\sgd2mapi98\backend\game_version\game_version_file_pe_signature.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\game_version_file_pe_signature.h
+SOURCE=.\src\sgd2mapi98\backend\game_version\game_version_file_pe_signature.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\game_version_file_version.c
+SOURCE=.\src\sgd2mapi98\backend\game_version\game_version_file_version.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_version\game_version_file_version.h
+SOURCE=.\src\sgd2mapi98\backend\game_version\game_version_file_version.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\src\c\backend\architecture_opcode.c
+SOURCE=.\src\sgd2mapi98\backend\architecture_opcode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\architecture_opcode.h
+SOURCE=.\src\sgd2mapi98\backend\architecture_opcode.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_address_table.c
+SOURCE=.\src\sgd2mapi98\backend\game_address_table.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_address_table.h
+SOURCE=.\src\sgd2mapi98\backend\game_address_table.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_library.cpp
+SOURCE=.\src\sgd2mapi98\backend\game_library.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\backend\game_library.h
+SOURCE=.\src\sgd2mapi98\backend\game_library.h
 # End Source File
 # End Group
 # Begin Group "file_c"
@@ -1227,15 +1227,15 @@ SOURCE=.\src\c\backend\game_library.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\file\file_pe_signature.c
+SOURCE=.\src\sgd2mapi98\file\file_pe_signature.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\file\file_version_info.c
+SOURCE=.\src\sgd2mapi98\file\file_version_info.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\file\fixed_file_version.c
+SOURCE=.\src\sgd2mapi98\file\fixed_file_version.c
 # End Source File
 # End Group
 # Begin Group "game_constant_c"
@@ -1243,31 +1243,31 @@ SOURCE=.\src\c\file\fixed_file_version.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_client_game_type.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_client_game_type.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_difficulty_level.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_difficulty_level.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_draw_effect.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_draw_effect.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_screen_open_mode.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_screen_open_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_text_color.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_text_color.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_text_font.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_text_font.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_constant\d2_video_mode.c
+SOURCE=.\src\sgd2mapi98\game_constant\d2_video_mode.c
 # End Source File
 # End Group
 # Begin Group "game_function_c"
@@ -1278,18 +1278,18 @@ SOURCE=.\src\c\game_constant\d2_video_mode.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text.c
+SOURCE=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+SOURCE=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2client
+InputDir=.\src\sgd2mapi98\game_function\d2client
 IntDir=.\Release
-InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 InputName=d2client_draw_centered_unicode_text_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1300,9 +1300,9 @@ InputName=d2client_draw_centered_unicode_text_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2client
+InputDir=.\src\sgd2mapi98\game_function\d2client
 IntDir=.\Debug
-InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 InputName=d2client_draw_centered_unicode_text_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1313,9 +1313,9 @@ InputName=d2client_draw_centered_unicode_text_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2client
+InputDir=.\src\sgd2mapi98\game_function\d2client
 IntDir=.\ReleaseDll
-InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 InputName=d2client_draw_centered_unicode_text_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1326,9 +1326,9 @@ InputName=d2client_draw_centered_unicode_text_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2client
+InputDir=.\src\sgd2mapi98\game_function\d2client
 IntDir=.\DebugDll
-InputPath=.\src\c\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2client\d2client_draw_centered_unicode_text_shim.asm
 InputName=d2client_draw_centered_unicode_text_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1345,7 +1345,7 @@ InputName=d2client_draw_centered_unicode_text_shim
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.c
+SOURCE=.\src\sgd2mapi98\game_function\d2cmp\d2cmp_get_cel_from_cel_context.c
 # End Source File
 # End Group
 # Begin Group "d2common_function_c"
@@ -1353,23 +1353,23 @@ SOURCE=.\src\c\game_function\d2cmp\d2cmp_get_cel_from_cel_context.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2common\d2common_get_global_belt_record.c
+SOURCE=.\src\sgd2mapi98\game_function\d2common\d2common_get_global_belt_record.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2common\d2common_get_global_belt_slot_position.c
+SOURCE=.\src\sgd2mapi98\game_function\d2common\d2common_get_global_belt_slot_position.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2common\d2common_get_global_equipment_slot_layout.c
+SOURCE=.\src\sgd2mapi98\game_function\d2common\d2common_get_global_equipment_slot_layout.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2common\d2common_get_global_inventory_grid_layout.c
+SOURCE=.\src\sgd2mapi98\game_function\d2common\d2common_get_global_inventory_grid_layout.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2common\d2common_get_global_inventory_position.c
+SOURCE=.\src\sgd2mapi98\game_function\d2common\d2common_get_global_inventory_position.c
 # End Source File
 # End Group
 # Begin Group "d2gfx_function_c"
@@ -1377,11 +1377,11 @@ SOURCE=.\src\c\game_function\d2common\d2common_get_global_inventory_position.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_cel_context.c
+SOURCE=.\src\sgd2mapi98\game_function\d2gfx\d2gfx_draw_cel_context.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_rectangle.c
+SOURCE=.\src\sgd2mapi98\game_function\d2gfx\d2gfx_draw_rectangle.c
 # End Source File
 # End Group
 # Begin Group "d2lang_function_c"
@@ -1389,7 +1389,7 @@ SOURCE=.\src\c\game_function\d2gfx\d2gfx_draw_rectangle.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2lang\d2lang_get_string_by_index.c
+SOURCE=.\src\sgd2mapi98\game_function\d2lang\d2lang_get_string_by_index.c
 # End Source File
 # End Group
 # Begin Group "d2win_function_c"
@@ -1397,38 +1397,38 @@ SOURCE=.\src\c\game_function\d2lang\d2lang_get_string_by_index.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_draw_unicode_text.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_draw_unicode_text.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_get_pop_up_unicode_text_width_and_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_get_unicode_text_draw_width.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_get_unicode_text_draw_width.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_get_unicode_text_n_draw_width.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_get_unicode_text_n_draw_width.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_load_cel_file.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_load_cel_file.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_load_mpq.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq_shim.asm
 
 !IF  "$(CFG)" == "SGD2MAPIc - Win32 Release"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2win
+InputDir=.\src\sgd2mapi98\game_function\d2win
 IntDir=.\Release
-InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq_shim.asm
 InputName=d2win_load_mpq_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1439,9 +1439,9 @@ InputName=d2win_load_mpq_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2win
+InputDir=.\src\sgd2mapi98\game_function\d2win
 IntDir=.\Debug
-InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq_shim.asm
 InputName=d2win_load_mpq_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1452,9 +1452,9 @@ InputName=d2win_load_mpq_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Release Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2win
+InputDir=.\src\sgd2mapi98\game_function\d2win
 IntDir=.\ReleaseDll
-InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq_shim.asm
 InputName=d2win_load_mpq_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1465,9 +1465,9 @@ InputName=d2win_load_mpq_shim
 !ELSEIF  "$(CFG)" == "SGD2MAPIc - Win32 Debug Dll"
 
 # Begin Custom Build
-InputDir=.\src\c\game_function\d2win
+InputDir=.\src\sgd2mapi98\game_function\d2win
 IntDir=.\DebugDll
-InputPath=.\src\c\game_function\d2win\d2win_load_mpq_shim.asm
+InputPath=.\src\sgd2mapi98\game_function\d2win\d2win_load_mpq_shim.asm
 InputName=d2win_load_mpq_shim
 
 "$(IntDir)\$(InputName).obj" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -1480,19 +1480,19 @@ InputName=d2win_load_mpq_shim
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_set_pop_up_unicode_text.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_set_pop_up_unicode_text.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_set_unicode_text_font.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_set_unicode_text_font.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_unload_cel_file.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_unload_cel_file.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\d2win\d2win_unload_mpq.c
+SOURCE=.\src\sgd2mapi98\game_function\d2win\d2win_unload_mpq.c
 # End Source File
 # End Group
 # Begin Group "fog_function_c"
@@ -1500,11 +1500,11 @@ SOURCE=.\src\c\game_function\d2win\d2win_unload_mpq.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\fog\fog_alloc_client_memory.c
+SOURCE=.\src\sgd2mapi98\game_function\fog\fog_alloc_client_memory.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\fog\fog_free_client_memory.c
+SOURCE=.\src\sgd2mapi98\game_function\fog\fog_free_client_memory.c
 # End Source File
 # End Group
 # Begin Group "storm_function_c"
@@ -1512,11 +1512,11 @@ SOURCE=.\src\c\game_function\fog\fog_free_client_memory.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_function\storm\storm_s_file_close_archive.c
+SOURCE=.\src\sgd2mapi98\game_function\storm\storm_s_file_close_archive.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_function\storm\storm_s_file_open_archive.c
+SOURCE=.\src\sgd2mapi98\game_function\storm\storm_s_file_open_archive.c
 # End Source File
 # End Group
 # End Group
@@ -1525,43 +1525,43 @@ SOURCE=.\src\c\game_function\storm\storm_s_file_open_archive.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_belt_record.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_belt_record.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_cel.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_cel.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_cel_context.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_cel_context.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_cel_file.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_cel_file.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_equipment_layout.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_equipment_layout.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_grid_layout.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_grid_layout.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_inventory_record.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_inventory_record.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_mpq_archive.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_mpq_archive.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_mpq_archive_handle.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_mpq_archive_handle.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_struct\d2_positional_rectangle.c
+SOURCE=.\src\sgd2mapi98\game_struct\d2_positional_rectangle.c
 # End Source File
 # End Group
 # Begin Group "game_variable_c"
@@ -1572,11 +1572,11 @@ SOURCE=.\src\c\game_struct\d2_positional_rectangle.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\bnclient\bnclient_gateway_domain_name.c
+SOURCE=.\src\sgd2mapi98\game_variable\bnclient\bnclient_gateway_domain_name.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.c
+SOURCE=.\src\sgd2mapi98\game_variable\bnclient\bnclient_gateway_ip_v4_address.c
 # End Source File
 # End Group
 # Begin Group "d2client_variable_c"
@@ -1584,67 +1584,67 @@ SOURCE=.\src\c\game_variable\bnclient\bnclient_gateway_ip_v4_address.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_difficulty_level.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_difficulty_level.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_game_type.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_game_type.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_general_display_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_general_display_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_general_display_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_general_display_width.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_general_play_area_camera_shift_x.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_general_play_area_camera_shift_x.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_ingame_mouse_position_x.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_ingame_mouse_position_x.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_ingame_mouse_position_y.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_ingame_mouse_position_y.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_inventory_arrange_mode.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_inventory_arrange_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_is_automap_open.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_is_automap_open.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_is_game_menu_open.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_is_game_menu_open.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_is_help_screen_open.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_is_help_screen_open.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_is_new_skill_button_pressed.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_is_new_skill_button_pressed.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_is_new_stats_button_pressed.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_is_new_stats_button_pressed.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_screen_open_mode.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_screen_open_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_screen_shift_x.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_screen_shift_x.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2client\d2client_screen_shift_y.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2client\d2client_screen_shift_y.c
 # End Source File
 # End Group
 # Begin Group "d2common_variable_c"
@@ -1652,15 +1652,15 @@ SOURCE=.\src\c\game_variable\d2client\d2client_screen_shift_y.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2common\d2common_global_belts_txt.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2common\d2common_global_belts_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2common\d2common_global_inventory_txt.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2common\d2common_global_inventory_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2common\d2common_global_inventory_txt_records_count.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2common\d2common_global_inventory_txt_records_count.c
 # End Source File
 # End Group
 # Begin Group "d2ddraw_variable_c"
@@ -1668,27 +1668,27 @@ SOURCE=.\src\c\game_variable\d2common\d2common_global_inventory_txt_records_coun
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_bit_block_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_bit_block_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_bit_block_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_bit_block_width.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_cel_display_left.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_cel_display_left.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_cel_display_right.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_cel_display_right.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_display_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_display_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_display_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2ddraw\d2ddraw_display_width.c
 # End Source File
 # End Group
 # Begin Group "d2direct3d_variable_c"
@@ -1696,11 +1696,11 @@ SOURCE=.\src\c\game_variable\d2ddraw\d2ddraw_display_width.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2direct3d\d2direct3d_display_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2direct3d\d2direct3d_display_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2direct3d\d2direct3d_display_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2direct3d\d2direct3d_display_width.c
 # End Source File
 # End Group
 # Begin Group "d2gdi_variable_c"
@@ -1708,19 +1708,19 @@ SOURCE=.\src\c\game_variable\d2direct3d\d2direct3d_display_width.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gdi\d2gdi_bit_block_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gdi\d2gdi_bit_block_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gdi\d2gdi_bit_block_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gdi\d2gdi_bit_block_width.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gdi\d2gdi_cel_display_left.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gdi\d2gdi_cel_display_left.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gdi\d2gdi_cel_display_right.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gdi\d2gdi_cel_display_right.c
 # End Source File
 # End Group
 # Begin Group "d2gfx_variable_c"
@@ -1728,19 +1728,19 @@ SOURCE=.\src\c\game_variable\d2gdi\d2gdi_cel_display_right.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gfx\d2gfx_is_windowed_mode.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gfx\d2gfx_is_windowed_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gfx\d2gfx_resolution_mode.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gfx\d2gfx_resolution_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gfx\d2gfx_video_mode.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gfx\d2gfx_video_mode.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2gfx\d2gfx_window_handle.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2gfx\d2gfx_window_handle.c
 # End Source File
 # End Group
 # Begin Group "d2glide_variable_c"
@@ -1748,11 +1748,11 @@ SOURCE=.\src\c\game_variable\d2gfx\d2gfx_window_handle.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2glide\d2glide_display_height.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2glide\d2glide_display_height.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2glide\d2glide_display_width.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2glide\d2glide_display_width.c
 # End Source File
 # End Group
 # Begin Group "d2win_variable_c"
@@ -1760,11 +1760,11 @@ SOURCE=.\src\c\game_variable\d2glide\d2glide_display_width.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2win\d2win_main_menu_mouse_position_x.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2win\d2win_main_menu_mouse_position_x.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_variable\d2win\d2win_main_menu_mouse_position_y.c
+SOURCE=.\src\sgd2mapi98\game_variable\d2win\d2win_main_menu_mouse_position_y.c
 # End Source File
 # End Group
 # End Group
@@ -1773,12 +1773,12 @@ SOURCE=.\src\c\game_variable\d2win\d2win_main_menu_mouse_position_y.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\src\c\helper\d2_determine_video_mode.c
+SOURCE=.\src\sgd2mapi98\helper\d2_determine_video_mode.c
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\src\c\default_game_library.c
+SOURCE=.\src\sgd2mapi98\default_game_library.c
 # End Source File
 # Begin Source File
 
@@ -1786,19 +1786,19 @@ SOURCE=.\src\dll_main.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_address.c
+SOURCE=.\src\sgd2mapi98\game_address.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_executable.c
+SOURCE=.\src\sgd2mapi98\game_executable.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_patch.c
+SOURCE=.\src\sgd2mapi98\game_patch.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\c\game_version.c
+SOURCE=.\src\sgd2mapi98\game_version.c
 # End Source File
 # End Group
 # End Group
