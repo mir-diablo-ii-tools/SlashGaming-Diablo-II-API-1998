@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_inventory_grid_layout.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace d2common {

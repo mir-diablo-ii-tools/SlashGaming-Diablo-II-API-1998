@@ -49,7 +49,7 @@
 #include <stddef.h>
 
 #include <mdc/std/stdint.h>
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "default_game_library.hpp"
 
 #include "../dllexport_define.inc"

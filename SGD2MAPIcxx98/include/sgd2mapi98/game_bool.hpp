@@ -46,7 +46,7 @@
 #ifndef SGMAPI_CXX98_GAME_BOOL_HPP_
 #define SGMAPI_CXX98_GAME_BOOL_HPP_
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace mapi {
 

@@ -45,7 +45,7 @@
 
 #include "../../include/sgd2mapi98/game_version.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace game_version {

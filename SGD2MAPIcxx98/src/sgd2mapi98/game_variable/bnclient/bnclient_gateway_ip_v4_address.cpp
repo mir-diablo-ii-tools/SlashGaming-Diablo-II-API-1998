@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_variable/bnclient/bnclient_gateway_ip_v4_address.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace bnclient {

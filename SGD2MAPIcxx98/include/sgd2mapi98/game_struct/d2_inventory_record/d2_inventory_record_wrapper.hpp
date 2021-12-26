@@ -48,7 +48,7 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "../d2_equipment_layout/d2_equipment_layout_view.hpp"
 #include "../d2_equipment_layout/d2_equipment_layout_wrapper.hpp"
 #include "../d2_grid_layout/d2_grid_layout_view.hpp"

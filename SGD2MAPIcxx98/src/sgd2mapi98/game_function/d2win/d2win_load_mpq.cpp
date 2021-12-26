@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_function/d2win/d2win_load_mpq.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace d2win {

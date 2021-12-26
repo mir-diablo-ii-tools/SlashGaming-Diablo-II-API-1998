@@ -49,7 +49,7 @@
 #include <stddef.h>
 
 #include <mdc/std/assert.h>
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "../d2_mpq_archive/d2_mpq_archive_view.hpp"
 #include "../d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
 #include "d2_mpq_archive_handle_struct.hpp"

@@ -45,7 +45,7 @@
 
 #include <windows.h>
 
-#include "../include/sgd2mapi.h"
+#include "../include/sgd2mapi98.h"
 
 BOOL WINAPI DllMain(HINSTANCE hinstDll, DWORD fdwReason, LPVOID lpReserved) {
   return TRUE;

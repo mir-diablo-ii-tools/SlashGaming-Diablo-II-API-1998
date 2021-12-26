@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CXX98_GAME_CONSTANT_D2_TEXT_COLOR_HPP_
 #define SGD2MAPI_CXX98_GAME_CONSTANT_D2_TEXT_COLOR_HPP_
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 #include "../../dllexport_define.inc"
 

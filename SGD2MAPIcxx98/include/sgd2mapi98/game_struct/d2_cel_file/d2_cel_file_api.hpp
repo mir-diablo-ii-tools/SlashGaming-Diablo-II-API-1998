@@ -49,7 +49,7 @@
 #include <stddef.h>
 
 #include <mdc/std/assert.h>
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "d2_cel_file_struct.hpp"
 #include "d2_cel_file_wrapper.hpp"
 

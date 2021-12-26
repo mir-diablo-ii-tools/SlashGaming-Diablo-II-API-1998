@@ -45,7 +45,7 @@
 
 #include "../../../include/sgd2mapi98/helper/d2_determine_video_mode.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace helper {

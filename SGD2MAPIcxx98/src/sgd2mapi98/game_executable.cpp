@@ -45,7 +45,7 @@
 
 #include "../../include/sgd2mapi98/game_executable.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace mapi {
 namespace game_executable {

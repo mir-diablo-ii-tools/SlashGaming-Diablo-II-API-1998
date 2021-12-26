@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_function/d2win/d2win_get_unicode_text_draw_width.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace d2win {

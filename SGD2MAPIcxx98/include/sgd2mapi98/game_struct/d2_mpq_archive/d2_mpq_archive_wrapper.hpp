@@ -48,7 +48,7 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "d2_mpq_archive_struct.hpp"
 #include "d2_mpq_archive_view.hpp"
 

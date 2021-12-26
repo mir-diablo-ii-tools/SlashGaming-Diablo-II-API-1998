@@ -48,7 +48,7 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 #include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
 #include "d2_grid_layout_struct.hpp"

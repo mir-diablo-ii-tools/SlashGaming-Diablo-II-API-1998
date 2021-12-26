@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_variable/d2win/d2win_main_menu_mouse_position_x.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace d2win {

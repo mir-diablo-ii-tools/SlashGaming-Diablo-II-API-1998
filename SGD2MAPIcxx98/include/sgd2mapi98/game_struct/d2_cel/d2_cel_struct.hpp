@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
 #define SGD2MAPI_CXX98_GAME_STRUCT_D2_CEL_D2_CEL_STRUCT_HPP_
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 #include "../../../dllexport_define.inc"
 

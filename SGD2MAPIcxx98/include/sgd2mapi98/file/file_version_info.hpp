@@ -49,7 +49,7 @@
 #include <stddef.h>
 #include <windows.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 #include "../../dllexport_define.inc"
 

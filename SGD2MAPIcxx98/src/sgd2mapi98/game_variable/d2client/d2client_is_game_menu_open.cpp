@@ -45,7 +45,7 @@
 
 #include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_game_menu_open.hpp"
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 
 namespace d2 {
 namespace d2client {

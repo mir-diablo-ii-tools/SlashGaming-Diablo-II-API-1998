@@ -48,7 +48,7 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "d2_positional_rectangle_struct.hpp"
 
 #include "../../../dllexport_define.inc"

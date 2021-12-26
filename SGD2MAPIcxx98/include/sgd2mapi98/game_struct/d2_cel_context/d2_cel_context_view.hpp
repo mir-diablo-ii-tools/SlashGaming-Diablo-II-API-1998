@@ -48,7 +48,7 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi.h>
+#include <sgd2mapi98.h>
 #include "../d2_cel_file/d2_cel_file_view.hpp"
 #include "d2_cel_context_struct.hpp"
 
