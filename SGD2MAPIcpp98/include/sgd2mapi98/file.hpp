@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C
+ * SlashGaming Diablo II Modding API for C++98
  * Copyright (C) 2018-2021  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C.
+ * This file is part of SlashGaming Diablo II Modding API for C++98.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
