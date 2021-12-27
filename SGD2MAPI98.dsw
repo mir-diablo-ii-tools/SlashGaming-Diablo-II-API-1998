@@ -42,7 +42,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "SGD2MAPIcxx98"=".\SGD2MAPIcxx98\SGD2MAPIcxx98.dsp" - Package Owner=<4>
+Project: "SGD2MAPIcpp98"=".\SGD2MAPIcpp98\SGD2MAPIcpp98.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

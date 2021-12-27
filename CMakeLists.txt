@@ -94,4 +94,4 @@ endif (MSVC)
 
 add_subdirectory(third_party)
 add_subdirectory(SGD2MAPIc)
-add_subdirectory(SGD2MAPIcxx98)
+add_subdirectory(SGD2MAPIcpp98)
