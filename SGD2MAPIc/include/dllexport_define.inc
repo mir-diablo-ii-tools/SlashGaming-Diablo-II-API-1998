@@ -43,9 +43,9 @@
  *  work.
  */
 
-#if defined(SGD2MAPIC_DLLEXPORT)
+#if defined(SGD2MAPI_C_DLLEXPORT)
   #define DLLEXPORT __declspec(dllexport)
-#elif defined(SGD2MAPIC_DLLIMPORT)
+#elif defined(SGD2MAPI_C_DLLIMPORT)
   #define DLLEXPORT __declspec(dllimport)
 #else
   #define DLLEXPORT
