@@ -394,8 +394,8 @@ add_dependencies(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
 # Output DLL
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPICPP98_DLLEXPORT)
-target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPICPP98_DLLIMPORT)
+target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPI_CPP98_DLLEXPORT)
+target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPI_CPP98_DLLIMPORT)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "include")
 
