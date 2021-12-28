@@ -169,7 +169,7 @@ int Mapi_FilePeSignature_ReadFile(
   }
 
   fread_count = fread(
-      signature,
+      signature->signature,
       sizeof(signature->signature[0]),
       count,
       file
