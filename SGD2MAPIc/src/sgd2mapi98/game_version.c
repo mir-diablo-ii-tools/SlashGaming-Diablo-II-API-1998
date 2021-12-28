@@ -248,22 +248,16 @@ enum D2_GameVersion D2_GameVersion_GetRunning(void) {
 }
 
 const char* D2_GameVersion_GetRunningName(void) {
-  InitStatic();
-
   return D2_GameVersion_GetName(D2_GameVersion_GetRunning());
 }
 
 int D2_GameVersion_IsAtLeast1_14(
     enum D2_GameVersion game_version_id
 ) {
-  InitStatic();
-
   return game_version_id > D2_GameVersion_k1_13D;
 }
 
 int D2_GameVersion_IsRunningAtLeast1_14(void) {
-  InitStatic();
-
   return D2_GameVersion_IsAtLeast1_14(
       D2_GameVersion_GetRunning()
   );
