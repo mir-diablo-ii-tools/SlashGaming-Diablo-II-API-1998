@@ -47,6 +47,7 @@
 #define SGMAPI_C_GAME_ADDRESS_H_
 
 #include <stddef.h>
+#include <windows.h>
 
 #include <mdc/std/stdint.h>
 #include "default_game_library.h"
@@ -82,8 +83,8 @@ Mapi_GameAddress_InitFromLibraryAndExportedName(
  * represents the address's exported name.
  */
 DLLEXPORT struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndExportedName(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
+    HMODULE library,
     const char* decorated_name
 );
 
@@ -102,8 +103,8 @@ Mapi_GameAddress_InitFromLibraryAndOffset(
  * as the offset from the module base address to the target address.
  */
 DLLEXPORT struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndOffset(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndOffset(
+    HMODULE library,
     ptrdiff_t offset
 );
 
@@ -122,8 +123,8 @@ Mapi_GameAddress_InitFromLibraryAndOrdinal(
  * as the address's ordinal value.
  */
 DLLEXPORT struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndOrdinal(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndOrdinal(
+    HMODULE library,
     int16_t ordinal
 );
 

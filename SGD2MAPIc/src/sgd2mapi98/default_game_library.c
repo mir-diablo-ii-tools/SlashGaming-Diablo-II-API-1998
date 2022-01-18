@@ -45,11 +45,52 @@
 
 #include "../../include/sgd2mapi98/default_game_library.h"
 
+#include <windows.h>
+
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
 #include "../../include/sgd2mapi98/game_executable.h"
 #include "../../include/sgd2mapi98/game_version.h"
 
+enum {
+  kDefaultLibraryCount = D2_DefaultLibrary_kStorm + 1,
+};
+
+static HMODULE library_handles[kDefaultLibraryCount] = { 0 };
+
+/**
+ * External
+ */
+
+HMODULE D2_DefaultLibrary_GetHandle(
+    enum D2_DefaultLibrary library,
+    int is_allow_redirect_to_game_exe) {
+  HMODULE* library_handle_ptr;
+
+  library_handle_ptr = &library_handles[(size_t)library];
+
+  if (*library_handle_ptr == NULL) {
+    const wchar_t* path;
+
+    path = is_allow_redirect_to_game_exe
+        ? D2_DefaultLibrary_GetPathWithRedirect(library)
+        : D2_DefaultLibrary_GetPathWithoutRedirect(library);
+
+    *library_handle_ptr = LoadLibraryW(path);
+    if (*library_handle_ptr == NULL) {
+      Mdc_Error_ExitOnWindowsFunctionError(
+          __FILEW__,
+          __LINE__,
+          L"LoadLibraryW",
+          GetLastError()
+      );
+
+      return NULL;
+    }
+  }
+
+  return *library_handle_ptr;
+}
 const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
     enum D2_DefaultLibrary library
 ) {

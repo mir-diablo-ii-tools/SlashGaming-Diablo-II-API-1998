@@ -50,7 +50,10 @@
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
 #include <mdc/wchar_t/wide_decoding.h>
-#include "backend/game_library.h"
+
+/**
+ * External
+ */
 
 const struct Mapi_GameAddress Mapi_GameAddress_kUninit =
     MAPI_GAME_ADDRESS_UNINIT;
@@ -66,15 +69,15 @@ Mapi_GameAddress_InitFromLibraryAndExportedName(
     enum D2_DefaultLibrary library,
     const char* decorated_name
 ) {
-  return Mapi_GameAddress_InitFromPathAndExportedName(
-      D2_DefaultLibrary_GetPathWithoutRedirect(library),
+  return Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
+      D2_DefaultLibrary_GetHandle(library, 1),
       decorated_name
   );
 }
 
 struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndExportedName(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
+    HMODULE library,
     const char* exported_name
 ) {
   struct Mapi_GameAddress game_address;
@@ -82,13 +85,10 @@ Mapi_GameAddress_InitFromPathAndExportedName(
   wchar_t* exported_name_wide_ptr;
   size_t exported_name_wide_length;
 
-  const struct Mapi_GameLibrary* game_library;
   FARPROC get_proc_address_result;
 
-  game_library = Mapi_GameLibrary_GetFromPath(path);
-
   get_proc_address_result = GetProcAddress(
-      (HMODULE) game_library->base_address,
+      library,
       exported_name
   );
 
@@ -131,22 +131,20 @@ Mapi_GameAddress_InitFromLibraryAndOffset(
     enum D2_DefaultLibrary library,
     ptrdiff_t offset
 ) {
-  return Mapi_GameAddress_InitFromPathAndOffset(
-      D2_DefaultLibrary_GetPathWithRedirect(library),
+  return Mapi_GameAddress_InitFromLibraryHandleAndOffset(
+      D2_DefaultLibrary_GetHandle(library, 1),
       offset
   );
 }
 
 struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndOffset(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndOffset(
+    HMODULE library,
     ptrdiff_t offset
 ) {
   struct Mapi_GameAddress game_address;
-  const struct Mapi_GameLibrary* game_library;
 
-  game_library = Mapi_GameLibrary_GetFromPath(path);
-  game_address.raw_address = game_library->base_address + offset;
+  game_address.raw_address = (intptr_t)library + offset;
 
   return game_address;
 }
@@ -156,30 +154,30 @@ Mapi_GameAddress_InitFromLibraryAndOrdinal(
     enum D2_DefaultLibrary library,
     int16_t ordinal
 ) {
-  return Mapi_GameAddress_InitFromPathAndOrdinal(
-      D2_DefaultLibrary_GetPathWithRedirect(library),
+  return Mapi_GameAddress_InitFromLibraryHandleAndOrdinal(
+      D2_DefaultLibrary_GetHandle(library, 1),
       ordinal
   );
 }
 
 struct Mapi_GameAddress
-Mapi_GameAddress_InitFromPathAndOrdinal(
-    const wchar_t* path,
+Mapi_GameAddress_InitFromLibraryHandleAndOrdinal(
+    HMODULE library,
     int16_t ordinal
 ) {
   struct Mapi_GameAddress game_address;
-  const struct Mapi_GameLibrary* game_library;
 
   FARPROC get_proc_address_result;
 
-  game_library = Mapi_GameLibrary_GetFromPath(path);
-
   get_proc_address_result = GetProcAddress(
-      (HMODULE) game_library->base_address,
+      library,
       (LPCSTR) ordinal
   );
 
   if (get_proc_address_result == NULL) {
+    static wchar_t path[MAX_PATH];
+
+    GetModuleFileNameW(library, path, sizeof(path));
     Mdc_Error_ExitOnGeneralError(
         L"Error",
         L"%ls failed with error code 0x%X. Could not locate "

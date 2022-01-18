@@ -47,6 +47,7 @@
 #define SGMAPI_CPP98_GAME_ADDRESS_HPP_
 
 #include <stddef.h>
+#include <windows.h>
 
 #include <mdc/std/stdint.h>
 #include <sgd2mapi98.h>
@@ -83,7 +84,7 @@ class DLLEXPORT GameAddress {
    * represents the address's exported name.
    */
   static GameAddress FromExportedName(
-      const wchar_t* path,
+      HMODULE library,
       const char* exported_name
   );
 
@@ -101,7 +102,7 @@ class DLLEXPORT GameAddress {
    * as the offset from the module base address to the target address.
    */
   static GameAddress FromOffset(
-      const wchar_t* path,
+      HMODULE library,
       ptrdiff_t offset
   );
 
@@ -119,7 +120,7 @@ class DLLEXPORT GameAddress {
    * as the address's ordinal value.
    */
   static GameAddress FromOrdinal(
-      const wchar_t* path,
+      HMODULE library,
       int16_t ordinal
   );
 

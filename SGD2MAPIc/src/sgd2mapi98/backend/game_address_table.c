@@ -52,7 +52,6 @@
 #include <mdc/wchar_t/filew.h>
 #include <mdc/wchar_t/wide_decoding.h>
 #include "game_address_table/game_address_table_impl.h"
-#include "game_library.h"
 
 enum {
   kAddressNameWideCapacity = 512

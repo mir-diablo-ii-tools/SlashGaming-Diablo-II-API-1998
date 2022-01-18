@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
 #define SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_
 
+#include <windows.h>
+
 #include <mdc/std/wchar.h>
 
 #include "../dllexport_define.inc"
@@ -69,6 +71,10 @@ enum D2_DefaultLibrary {
   D2_DefaultLibrary_kD2Sound, D2_DefaultLibrary_kD2Win,
   D2_DefaultLibrary_kFog, D2_DefaultLibrary_kStorm,
 };
+
+DLLEXPORT HMODULE D2_DefaultLibrary_GetHandle(
+    enum D2_DefaultLibrary library,
+    int is_allow_redirect_to_game_exe);
 
 DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
     enum D2_DefaultLibrary library
