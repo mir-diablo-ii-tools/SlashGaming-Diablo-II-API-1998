@@ -45,6 +45,8 @@
 
 #include "../../include/sgd2mapi98/game_address.hpp"
 
+#include <windows.h>
+
 namespace mapi {
 
 GameAddress::operator Mapi_GameAddress&() {
@@ -71,14 +73,14 @@ GameAddress GameAddress::FromExportedName(
 }
 
 GameAddress GameAddress::FromExportedName(
-    const wchar_t* path,
+    HMODULE library,
     const char* exported_name
 ) {
   GameAddress game_address;
 
   game_address.game_address_ =
-      ::Mapi_GameAddress_InitFromPathAndExportedName(
-          path,
+      ::Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
+          library,
           exported_name
       );
 
@@ -101,14 +103,14 @@ GameAddress GameAddress::FromOffset(
 }
 
 GameAddress GameAddress::FromOffset(
-    const wchar_t* path,
+    HMODULE library,
     ptrdiff_t offset
 ) {
   GameAddress game_address;
 
   game_address.game_address_ =
-      ::Mapi_GameAddress_InitFromPathAndOffset(
-          path,
+      ::Mapi_GameAddress_InitFromLibraryHandleAndOffset(
+          library,
           offset
       );
 
@@ -131,14 +133,14 @@ GameAddress GameAddress::FromOrdinal(
 }
 
 GameAddress GameAddress::FromOrdinal(
-    const wchar_t* path,
+    HMODULE library,
     int16_t ordinal
 ) {
   GameAddress game_address;
 
   game_address.game_address_ =
-      ::Mapi_GameAddress_InitFromPathAndOrdinal(
-          path,
+      ::Mapi_GameAddress_InitFromLibraryHandleAndOrdinal(
+          library,
           ordinal
       );
 

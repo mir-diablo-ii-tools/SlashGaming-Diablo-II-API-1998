@@ -243,7 +243,6 @@ set(SRC_C
 
     "src/sgd2mapi98/backend/architecture_opcode.c"
     "src/sgd2mapi98/backend/game_address_table.c"
-    "src/sgd2mapi98/backend/game_library.cpp"
 
     "src/sgd2mapi98/file/file_pe_signature.c"
     "src/sgd2mapi98/file/file_version_info.c"
@@ -365,7 +364,6 @@ set(SRC_HEADERS
 
     "src/sgd2mapi98/backend/architecture_opcode.h"
     "src/sgd2mapi98/backend/game_address_table.h"
-    "src/sgd2mapi98/backend/game_library.h"
 )
 
 set(SOURCE_FILES
