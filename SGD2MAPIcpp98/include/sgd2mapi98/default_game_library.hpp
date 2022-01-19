@@ -46,6 +46,8 @@
 #ifndef SGD2MAPI_CPP98_DEFAULT_GAME_LIBRARY_HPP_
 #define SGD2MAPI_CPP98_DEFAULT_GAME_LIBRARY_HPP_
 
+#include <windows.h>
+
 #include <mdc/std/wchar.h>
 
 #include "../dllexport_define.inc"
@@ -73,6 +75,10 @@ enum DefaultLibrary {
 typedef default_library::DefaultLibrary DefaultLibrary;
 
 namespace default_library {
+
+DLLEXPORT HMODULE GetHandle(
+    DefaultLibrary library,
+    bool is_allow_redirect_to_game_exe);
 
 DLLEXPORT const wchar_t* GetPathWithRedirect(DefaultLibrary library);
 
