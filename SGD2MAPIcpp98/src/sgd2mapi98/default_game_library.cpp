@@ -50,6 +50,14 @@
 namespace d2 {
 namespace default_library {
 
+HMODULE GetHandle(
+    DefaultLibrary library,
+    bool is_allow_redirect_to_game_exe) {
+  return D2_DefaultLibrary_GetHandle(
+      static_cast<D2_DefaultLibrary>(library),
+      is_allow_redirect_to_game_exe);
+}
+
 const wchar_t* GetPathWithRedirect(DefaultLibrary library) {
   return D2_DefaultLibrary_GetPathWithRedirect(
       static_cast<D2_DefaultLibrary>(library)
