@@ -80,9 +80,9 @@ DLLEXPORT HMODULE GetHandle(
     DefaultLibrary library,
     bool is_allow_redirect_to_game_exe);
 
-DLLEXPORT const wchar_t* GetPathWithRedirect(DefaultLibrary library);
-
-DLLEXPORT const wchar_t* GetPathWithoutRedirect(DefaultLibrary library);
+DLLEXPORT const wchar_t* GetPath(
+    DefaultLibrary library,
+    bool is_allow_redirect_to_game_exe);
 
 } // namespace default_library
 

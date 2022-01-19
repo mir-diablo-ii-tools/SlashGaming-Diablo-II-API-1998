@@ -58,16 +58,12 @@ HMODULE GetHandle(
       is_allow_redirect_to_game_exe);
 }
 
-const wchar_t* GetPathWithRedirect(DefaultLibrary library) {
-  return D2_DefaultLibrary_GetPathWithRedirect(
-      static_cast<D2_DefaultLibrary>(library)
-  );
-}
-
-const wchar_t* GetPathWithoutRedirect(DefaultLibrary library) {
-  return D2_DefaultLibrary_GetPathWithoutRedirect(
-      static_cast<D2_DefaultLibrary>(library)
-  );
+const wchar_t* GetPath(
+    DefaultLibrary library,
+    bool is_allow_redirect_to_game_exe) {
+  return D2_DefaultLibrary_GetPath(
+      static_cast<D2_DefaultLibrary>(library),
+      is_allow_redirect_to_game_exe);
 }
 
 } // namespace default_library

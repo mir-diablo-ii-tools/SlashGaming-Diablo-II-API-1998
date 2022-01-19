@@ -72,10 +72,7 @@ HMODULE D2_DefaultLibrary_GetHandle(
   if (*library_handle_ptr == NULL) {
     const wchar_t* path;
 
-    path = is_allow_redirect_to_game_exe
-        ? D2_DefaultLibrary_GetPathWithRedirect(library)
-        : D2_DefaultLibrary_GetPathWithoutRedirect(library);
-
+    path = D2_DefaultLibrary_GetPath(library, is_allow_redirect_to_game_exe);
     *library_handle_ptr = LoadLibraryW(path);
     if (*library_handle_ptr == NULL) {
       Mdc_Error_ExitOnWindowsFunctionError(
@@ -91,20 +88,16 @@ HMODULE D2_DefaultLibrary_GetHandle(
 
   return *library_handle_ptr;
 }
-const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
-    enum D2_DefaultLibrary library
-) {
+
+const wchar_t* D2_DefaultLibrary_GetPath(
+    enum D2_DefaultLibrary library,
+    int is_allow_redirect_to_game_exe) {
   /* Redirect if the game version is 1.14 or higher. */
-  if (D2_GameVersion_IsRunningAtLeast1_14()) {
+  if (is_allow_redirect_to_game_exe
+      && D2_GameVersion_IsRunningAtLeast1_14()) {
     return Mapi_GameExecutable_GetPath();
   }
 
-  return D2_DefaultLibrary_GetPathWithoutRedirect(library);
-}
-
-const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
-    enum D2_DefaultLibrary library
-) {
   switch (library) {
     case D2_DefaultLibrary_kBNClient: {
       return L"BNClient.dll";
