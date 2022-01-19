@@ -76,13 +76,9 @@ DLLEXPORT HMODULE D2_DefaultLibrary_GetHandle(
     enum D2_DefaultLibrary library,
     int is_allow_redirect_to_game_exe);
 
-DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPathWithRedirect(
-    enum D2_DefaultLibrary library
-);
-
-DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPathWithoutRedirect(
-    enum D2_DefaultLibrary library
-);
+DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPath(
+    enum D2_DefaultLibrary library,
+    int is_allow_redirect_to_game_exe);
 
 #ifdef __cplusplus
 } /* extern "C" */
