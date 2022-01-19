@@ -1213,14 +1213,6 @@ SOURCE=.\src\sgd2mapi98\backend\game_address_table.c
 
 SOURCE=.\src\sgd2mapi98\backend\game_address_table.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\src\sgd2mapi98\backend\game_library.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\sgd2mapi98\backend\game_library.h
-# End Source File
 # End Group
 # Begin Group "file_c"
 
