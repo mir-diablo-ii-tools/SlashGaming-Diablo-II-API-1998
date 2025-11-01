@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/helper/d2_determine_video_mode.h"
+#include "sgd2mapi98/helper/d2_determine_video_mode.h"
 
 #include <stddef.h>
 #include <windows.h>
@@ -51,7 +51,7 @@
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../include/sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/game_executable.h"
 #include "../backend/d2se/d2se_ini.h"
 
 static enum D2_VideoMode_1_00 GetVideoModeFromRegValue_1_00(DWORD reg_value) {

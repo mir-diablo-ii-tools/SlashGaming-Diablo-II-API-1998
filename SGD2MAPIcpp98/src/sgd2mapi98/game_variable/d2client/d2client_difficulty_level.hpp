@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
 
-#include "../../../../include/sgd2mapi98/game_constant/d2_difficulty_level.hpp"
+#include "sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
 #include "../../../dllexport_define.inc"
 

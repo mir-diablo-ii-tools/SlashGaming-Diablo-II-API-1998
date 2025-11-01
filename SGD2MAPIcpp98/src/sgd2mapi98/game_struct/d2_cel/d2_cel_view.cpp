@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_cel/d2_cel_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel/d2_cel_view.hpp"
 
 namespace d2 {
 

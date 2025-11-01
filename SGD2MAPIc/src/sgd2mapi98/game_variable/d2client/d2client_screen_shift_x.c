@@ -43,11 +43,11 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_screen_shift_x.h"
+#include "sgd2mapi98/game_variable/d2client/d2client_screen_shift_x.h"
 
-#include "../../../../include/sgd2mapi98/default_game_library.h"
-#include "../../../../include/sgd2mapi98/game_address.h"
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/default_game_library.h"
+#include "sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_version.h"
 #include "../../backend/game_address_table.h"
 
 static struct Mapi_GameAddress game_address;

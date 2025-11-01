@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/game_patch.h"
+#include "sgd2mapi98/game_patch.h"
 
 #include <string.h>
 

@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_inventory_arrange_mode.hpp"
+#include "sgd2mapi98/game_variable/d2client/d2client_inventory_arrange_mode.hpp"
 
 #include <sgd2mapi98.h>
 

@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/file/file_pe_signature.hpp"
+#include "sgd2mapi98/file/file_pe_signature.hpp"
 
 namespace mapi {
 

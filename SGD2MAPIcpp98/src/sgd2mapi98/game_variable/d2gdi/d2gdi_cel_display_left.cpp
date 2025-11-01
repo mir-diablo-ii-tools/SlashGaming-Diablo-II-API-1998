@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2gdi/d2gdi_cel_display_left.hpp"
+#include "sgd2mapi98/game_variable/d2gdi/d2gdi_cel_display_left.hpp"
 
 #include <sgd2mapi98.h>
 

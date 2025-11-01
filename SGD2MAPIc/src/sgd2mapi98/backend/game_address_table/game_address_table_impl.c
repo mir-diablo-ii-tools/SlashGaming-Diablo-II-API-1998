@@ -49,7 +49,7 @@
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 #include "game_address_table_define.h"
 
 static const struct Mapi_GameAddressTableEntry kGameAddressTable_1_00[] =

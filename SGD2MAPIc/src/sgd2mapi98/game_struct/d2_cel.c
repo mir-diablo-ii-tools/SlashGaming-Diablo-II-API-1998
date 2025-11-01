@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_struct/d2_cel.h"
+#include "sgd2mapi98/game_struct/d2_cel.h"
 
 /**
  * View and wrapper declarations

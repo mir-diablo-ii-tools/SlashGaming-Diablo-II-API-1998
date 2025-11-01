@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2common/d2common_global_inventory_txt.hpp"
+#include "sgd2mapi98/game_variable/d2common/d2common_global_inventory_txt.hpp"
 
 #include <sgd2mapi98.h>
 

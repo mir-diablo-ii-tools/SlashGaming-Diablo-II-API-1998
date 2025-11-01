@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2gfx/d2gfx_draw_rectangle.hpp"
+#include "sgd2mapi98/game_function/d2gfx/d2gfx_draw_rectangle.hpp"
 
 #include <sgd2mapi98.h>
 

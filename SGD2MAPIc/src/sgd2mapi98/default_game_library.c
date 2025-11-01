@@ -43,14 +43,14 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/default_game_library.h"
+#include "sgd2mapi98/default_game_library.h"
 
 #include <windows.h>
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../include/sgd2mapi98/game_executable.h"
-#include "../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/game_version.h"
 
 enum {
   kDefaultLibraryCount = D2_DefaultLibrary_kStorm + 1,

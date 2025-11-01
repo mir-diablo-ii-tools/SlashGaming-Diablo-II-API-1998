@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2common/d2common_get_global_belt_slot_position.hpp"
+#include "sgd2mapi98/game_function/d2common/d2common_get_global_belt_slot_position.hpp"
 
 #include <sgd2mapi98.h>
 

@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
 #define SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_PE_SIGNATURE_H_
 
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 enum D2_GameVersion FilePeSignature_GuessGameVersion(
     int is_game_version_at_least_1_14

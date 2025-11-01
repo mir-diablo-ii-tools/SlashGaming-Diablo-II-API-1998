@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
 
 namespace d2 {
 

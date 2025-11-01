@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_VERSION_H_
 #define SGD2MAPI_C_BACKEND_GAME_VERSION_GAME_VERSION_FILE_VERSION_H_
 
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 enum D2_GameVersion FileVersion_GuessGameVersion(void);
 

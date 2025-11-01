@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/storm/storm_s_file_open_archive.hpp"
+#include "sgd2mapi98/game_function/storm/storm_s_file_open_archive.hpp"
 
 #include <sgd2mapi98.h>
 

@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
 
 #include <sgd2mapi98.h>
 

@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_equipment_layout/d2_equipment_layout_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_equipment_layout/d2_equipment_layout_wrapper.hpp"
 
 namespace d2 {
 

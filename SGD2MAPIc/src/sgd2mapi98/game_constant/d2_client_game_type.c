@@ -43,11 +43,11 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_constant/d2_client_game_type.h"
+#include "sgd2mapi98/game_constant/d2_client_game_type.h"
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 int D2_ClientGameType_ToGameValue(enum D2_ClientGameType api_value) {
   enum D2_GameVersion running_game_version;

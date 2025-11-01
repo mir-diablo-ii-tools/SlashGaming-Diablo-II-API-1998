@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_wrapper.hpp"
 
 namespace d2 {
 

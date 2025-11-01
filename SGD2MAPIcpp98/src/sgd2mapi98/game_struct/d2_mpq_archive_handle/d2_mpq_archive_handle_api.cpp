@@ -43,12 +43,12 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_api.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_api.hpp"
 
 #include <utility>
 
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_load_mpq.hpp"
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_unload_mpq.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_load_mpq.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_unload_mpq.hpp"
 
 namespace d2 {
 

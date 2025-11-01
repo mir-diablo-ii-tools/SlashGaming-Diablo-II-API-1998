@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/bnclient/bnclient_gateway_domain_name.hpp"
+#include "sgd2mapi98/game_variable/bnclient/bnclient_gateway_domain_name.hpp"
 
 #include <sgd2mapi98.h>
 

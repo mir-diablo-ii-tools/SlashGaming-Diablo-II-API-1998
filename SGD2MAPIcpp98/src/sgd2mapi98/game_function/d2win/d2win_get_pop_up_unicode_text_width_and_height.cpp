@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_get_pop_up_unicode_text_width_and_height.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_get_pop_up_unicode_text_width_and_height.hpp"
 
 #include <sgd2mapi98.h>
 

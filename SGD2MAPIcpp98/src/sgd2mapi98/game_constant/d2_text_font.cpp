@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_constant/d2_text_font.hpp"
+#include "sgd2mapi98/game_constant/d2_text_font.hpp"
 
 namespace d2 {
 namespace text_font {

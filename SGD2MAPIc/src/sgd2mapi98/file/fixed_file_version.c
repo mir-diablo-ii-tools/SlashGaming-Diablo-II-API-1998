@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/file/fixed_file_version.h"
+#include "sgd2mapi98/file/fixed_file_version.h"
 
 /**
  * External

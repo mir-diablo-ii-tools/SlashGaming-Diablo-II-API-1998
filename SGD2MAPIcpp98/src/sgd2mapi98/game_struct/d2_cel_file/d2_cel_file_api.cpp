@@ -43,12 +43,12 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_api.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_api.hpp"
 
 #include <utility>
 
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_unload_cel_file.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_unload_cel_file.hpp"
 
 namespace d2 {
 
