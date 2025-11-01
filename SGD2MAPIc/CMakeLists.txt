@@ -330,26 +330,22 @@ set(SOURCE_FILES
     ${INCLUDE_HEADERS}
 )
 
-# Output static LIB
-add_library(lib${PROJECT_NAME} STATIC ${SOURCE_FILES})
+# Build output
+option(${PROJECT_NAME}_BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+if (${PROJECT_NAME}_BUILD_SHARED_LIBS)
+    add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+    target_compile_definitions(${PROJECT_NAME}
+        INTERFACE SGD2MAPI_C_DLLIMPORT
+        PRIVATE SGD2MAPI_C_DLLEXPORT)
+else()
+    add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+endif()
 
-target_include_directories(lib${PROJECT_NAME} PUBLIC "include")
-
-target_link_libraries(lib${PROJECT_NAME} PUBLIC libMDCc shlwapi version)
-add_dependencies(lib${PROJECT_NAME} libMDCc)
-
-# Output DLL
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPI_C_DLLEXPORT)
-target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPI_C_DLLIMPORT)
-
-target_include_directories(${PROJECT_NAME} PUBLIC "include")
+target_include_directories(
+    ${PROJECT_NAME} PUBLIC "${${PROJECT_NAME}_SOURCE_DIR}/include"
+    ${PROJECT_NAME} PUBLIC "${${PROJECT_NAME}_SOURCE_DIR}/src")
 
 target_link_libraries(${PROJECT_NAME} PUBLIC MDCc shlwapi version)
-add_dependencies(${PROJECT_NAME} MDCc)
 
 # Project source listing
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
-
-install(TARGETS ${PROJECT_NAME} lib${PROJECT_NAME})
