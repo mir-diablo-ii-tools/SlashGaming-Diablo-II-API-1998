@@ -1,46 +1,3 @@
-# SlashGaming Diablo II Modding API for C++98
-# Copyright (C) 2018-2022  Mir Drualga
-#
-# This file is part of SlashGaming Diablo II Modding API for C++98.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Additional permissions under GNU Affero General Public License version 3
-# section 7
-#
-# If you modify this Program, or any covered work, by linking or combining
-# it with Diablo II (or a modified version of that game and its
-# libraries), containing parts covered by the terms of Blizzard End User
-# License Agreement, the licensors of this Program grant you additional
-# permission to convey the resulting work. This additional permission is
-# also extended to any combination of expansions, mods, and remasters of
-# the game.
-#
-# If you modify this Program, or any covered work, by linking or combining
-# it with any Graphics Device Interface (GDI), DirectDraw, Direct3D,
-# Glide, OpenGL, or Rave wrapper (or modified versions of those
-# libraries), containing parts not covered by a compatible license, the
-# licensors of this Program grant you additional permission to convey the
-# resulting work.
-#
-# If you modify this Program, or any covered work, by linking or combining
-# it with any library (or a modified version of that library) that links
-# to Diablo II (or a modified version of that game and its libraries),
-# containing parts not covered by a compatible license, the licensors of
-# this Program grant you additional permission to convey the resulting
-# work.
-
 cmake_minimum_required(VERSION 3.11)
 
 # Name of the project, also is the name of the file
@@ -383,27 +340,23 @@ set(SOURCE_FILES
     ${INCLUDE_HEADERS}
 )
 
-# Output static LIB
-add_library(lib${PROJECT_NAME} STATIC ${SOURCE_FILES})
+# Build output
+option(${PROJECT_NAME}_BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+if (${PROJECT_NAME}_BUILD_SHARED_LIBS)
+    add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+    target_compile_definitions(${PROJECT_NAME}
+        INTERFACE SGD2MAPI_CPP98_DLLIMPORT
+        PRIVATE SGD2MAPI_CPP98_DLLEXPORT)
+else()
+    add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+endif()
 
-target_include_directories(lib${PROJECT_NAME} PUBLIC "include")
+target_include_directories(
+    ${PROJECT_NAME} PUBLIC "${${PROJECT_NAME}_SOURCE_DIR}/include"
+    ${PROJECT_NAME} PUBLIC "${${PROJECT_NAME}_SOURCE_DIR}/src")
 
-target_link_libraries(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
-add_dependencies(lib${PROJECT_NAME} libSGD2MAPIc libMDCcpp98 libMDCc)
-
-# Output DLL
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE SGD2MAPI_CPP98_DLLEXPORT)
-target_compile_definitions(${PROJECT_NAME} INTERFACE SGD2MAPI_CPP98_DLLIMPORT)
-
-target_include_directories(${PROJECT_NAME} PUBLIC "include")
-
-target_link_libraries(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc version)
-add_dependencies(${PROJECT_NAME} SGD2MAPIc MDCcpp98 MDCc)
+target_link_libraries(${PROJECT_NAME} PUBLIC SGD2MAPIc MDCcpp98 MDCc version)
 
 # Project source listing
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES}
 )
-
-install(TARGETS ${PROJECT_NAME} lib${PROJECT_NAME})
