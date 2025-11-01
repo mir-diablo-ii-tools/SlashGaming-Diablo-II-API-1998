@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2gfx/d2gfx_window_handle.hpp"
+#include "sgd2mapi98/game_variable/d2gfx/d2gfx_window_handle.hpp"
 
 #include <sgd2mapi98.h>
 

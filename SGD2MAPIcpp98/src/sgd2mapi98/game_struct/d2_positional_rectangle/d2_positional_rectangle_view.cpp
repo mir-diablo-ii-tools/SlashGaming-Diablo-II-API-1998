@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
 namespace d2 {
 

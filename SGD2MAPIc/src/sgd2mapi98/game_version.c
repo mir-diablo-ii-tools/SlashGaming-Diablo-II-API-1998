@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 #include <windows.h>
 
@@ -51,7 +51,7 @@
 #include <mdc/std/threads.h>
 #include <mdc/std/wchar.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../include/sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/game_executable.h"
 #include "backend/d2se/d2se_ini.h"
 #include "backend/game_version/game_version_file_pe_signature.h"
 #include "backend/game_version/game_version_file_version.h"

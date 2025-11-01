@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/file/file_version_info.hpp"
+#include "sgd2mapi98/file/file_version_info.hpp"
 
 namespace mapi {
 

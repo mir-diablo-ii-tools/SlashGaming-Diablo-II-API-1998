@@ -43,11 +43,11 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.h"
+#include "sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.h"
 
-#include "../../../../include/sgd2mapi98/default_game_library.h"
-#include "../../../../include/sgd2mapi98/game_address.h"
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/default_game_library.h"
+#include "sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_version.h"
 #include "../../backend/game_address_table.h"
 #include "../../backend/game_function/stdcall_function.h"
 

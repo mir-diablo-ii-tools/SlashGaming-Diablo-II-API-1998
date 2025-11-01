@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2win/d2win_draw_unicode_text.hpp"
+#include "sgd2mapi98/game_function/d2win/d2win_draw_unicode_text.hpp"
 
 #include <sgd2mapi98.h>
 

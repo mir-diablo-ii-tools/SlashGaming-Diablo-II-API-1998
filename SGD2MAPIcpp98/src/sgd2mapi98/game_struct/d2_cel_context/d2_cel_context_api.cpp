@@ -43,9 +43,9 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
 
-#include "../../../../include/sgd2mapi98/game_version.hpp"
+#include "sgd2mapi98/game_version.hpp"
 
 namespace d2 {
 

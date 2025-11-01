@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/game_address.hpp"
+#include "sgd2mapi98/game_address.hpp"
 
 #include <windows.h>
 

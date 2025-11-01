@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2ddraw/d2ddraw_display_width.hpp"
+#include "sgd2mapi98/game_variable/d2ddraw/d2ddraw_display_width.hpp"
 
 #include <sgd2mapi98.h>
 

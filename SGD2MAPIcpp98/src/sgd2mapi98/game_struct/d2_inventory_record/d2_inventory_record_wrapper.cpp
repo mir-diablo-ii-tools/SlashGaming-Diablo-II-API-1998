@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_wrapper.hpp"
 
 namespace d2 {
 

@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/file/file_version_info.h"
+#include "sgd2mapi98/file/file_version_info.h"
 
 #include <stdlib.h>
 

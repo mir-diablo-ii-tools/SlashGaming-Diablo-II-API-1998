@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2lang/d2lang_get_string_by_index.hpp"
+#include "sgd2mapi98/game_function/d2lang/d2lang_get_string_by_index.hpp"
 
 #include <sgd2mapi98.h>
 

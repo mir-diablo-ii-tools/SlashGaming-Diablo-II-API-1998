@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
+#include "sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
 
 #include <sgd2mapi98.h>
 

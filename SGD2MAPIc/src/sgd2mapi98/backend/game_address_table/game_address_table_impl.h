@@ -50,7 +50,7 @@
 
 #include <mdc/std/stdint.h>
 #include <mdc/std/wchar.h>
-#include "../../../../include/sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_address.h"
 
 #ifdef __cplusplus
 extern "C" {

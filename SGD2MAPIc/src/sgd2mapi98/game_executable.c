@@ -43,14 +43,14 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/game_executable.h"
 
 #include <windows.h>
 
 #include <mdc/malloc/malloc.h>
 #include <mdc/std/threads.h>
 
-#include "../../include/sgd2mapi98/file/file_version_info.h"
+#include "sgd2mapi98/file/file_version_info.h"
 #include "backend/d2se/d2se_file_pe_signature.h"
 
 static wchar_t game_executable_path[MAX_PATH + 1];

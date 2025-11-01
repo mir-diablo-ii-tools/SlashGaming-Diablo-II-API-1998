@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../include/sgd2mapi98/default_game_library.hpp"
+#include "sgd2mapi98/default_game_library.hpp"
 
 #include <sgd2mapi98.h>
 

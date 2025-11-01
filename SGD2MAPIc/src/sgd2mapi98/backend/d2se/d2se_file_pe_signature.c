@@ -51,8 +51,8 @@
 #include <mdc/error/exit_on_error.h>
 #include <mdc/std/wchar.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../../include/sgd2mapi98/file/file_pe_signature.h"
-#include "../../../../include/sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/file/file_pe_signature.h"
+#include "sgd2mapi98/game_executable.h"
 
 enum {
   kSignatureCount = 64,

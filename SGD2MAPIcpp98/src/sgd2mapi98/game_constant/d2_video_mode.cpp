@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_constant/d2_video_mode.hpp"
+#include "sgd2mapi98/game_constant/d2_video_mode.hpp"
 
 namespace d2 {
 namespace video_mode {

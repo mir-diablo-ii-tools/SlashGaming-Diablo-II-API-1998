@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2022  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,30 +43,34 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
-#define SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_
+#ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
+#define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_
 
-#include "../../../../include/sgd2mapi98/game_constant/d2_difficulty_level.hpp"
+#include <mdc/std/stdint.h>
+#include "sgd2mapi98/game_constant/d2_difficulty_level.h"
 
 #include "../../../dllexport_define.inc"
 
-namespace d2 {
-namespace d2client {
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
-DLLEXPORT DifficultyLevel GetDifficultyLevel();
+DLLEXPORT enum D2_DifficultyLevel D2_D2Client_GetDifficultyLevel(void);
 
-DLLEXPORT DifficultyLevel_1_00 GetDifficultyLevel_1_00();
+DLLEXPORT /* enum D2_DifficultyLevel_1_00 */ int32_t
+D2_D2Client_GetDifficultyLevel_1_00(void);
 
-DLLEXPORT void SetDifficultyLevel(
-    DifficultyLevel difficulty_level
+DLLEXPORT void D2_D2Client_SetDifficultyLevel(
+    enum D2_DifficultyLevel difficulty_level
 );
 
-DLLEXPORT void SetDifficultyLevel_1_00(
-    DifficultyLevel_1_00 difficulty_level
+DLLEXPORT void D2_D2Client_SetDifficultyLevel_1_00(
+    /* enum D2_DifficultyLevel_1_00 */ int32_t difficulty_level
 );
 
-} // namespace d2client
-} // namespace d2
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
 
 #include "../../../dllexport_undefine.inc"
-#endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_ */
+#endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_H_ */

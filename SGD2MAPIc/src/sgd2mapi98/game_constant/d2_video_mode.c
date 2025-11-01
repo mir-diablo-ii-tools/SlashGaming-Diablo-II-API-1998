@@ -43,11 +43,11 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_constant/d2_video_mode.h"
+#include "sgd2mapi98/game_constant/d2_video_mode.h"
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 int D2_VideoMode_ToGameValue(enum D2_VideoMode api_value) {
   return D2_VideoMode_ToGameValue_1_00(api_value);

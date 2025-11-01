@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_struct/d2_mpq_archive.h"
+#include "sgd2mapi98/game_struct/d2_mpq_archive.h"
 
 /**
  * View and wrapper declarations

@@ -49,8 +49,8 @@
 
 #include <mdc/error/exit_on_error.h>
 #include <mdc/wchar_t/filew.h>
-#include "../../../../include/sgd2mapi98/file/fixed_file_version.h"
-#include "../../../../include/sgd2mapi98/game_executable.h"
+#include "sgd2mapi98/file/fixed_file_version.h"
+#include "sgd2mapi98/game_executable.h"
 
 static enum D2_GameVersion SearchTable(
     const struct Mapi_FixedFileVersion* fixed_file_version

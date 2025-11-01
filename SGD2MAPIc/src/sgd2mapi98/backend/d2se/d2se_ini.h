@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_C_BACKEND_D2SE_D2SE_INI_H_
 #define SGD2MAPI_C_BACKEND_D2SE_D2SE_INI_H_
 
-#include "../../../../include/sgd2mapi98/game_constant/d2_video_mode.h"
-#include "../../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_constant/d2_video_mode.h"
+#include "sgd2mapi98/game_version.h"
 
 enum D2_GameVersion D2seIni_GetGameVersion(void);
 

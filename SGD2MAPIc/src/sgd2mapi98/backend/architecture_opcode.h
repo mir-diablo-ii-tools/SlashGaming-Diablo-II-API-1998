@@ -46,7 +46,7 @@
 #ifndef SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
 #define SGMAPI_C_BACKEND_ARCHITECTURE_OPCODE_H_
 
-#include "../../../include/sgd2mapi98/game_branch_type.h"
+#include "sgd2mapi98/game_branch_type.h"
 
 enum Mapi_OpCode {
   Mapi_OpCode_kCall = 0xE8,

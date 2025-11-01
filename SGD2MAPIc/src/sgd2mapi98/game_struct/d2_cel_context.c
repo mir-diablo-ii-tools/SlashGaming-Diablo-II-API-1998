@@ -43,9 +43,9 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_struct/d2_cel_context.h"
+#include "sgd2mapi98/game_struct/d2_cel_context.h"
 
-#include "../../../include/sgd2mapi98/game_version.h"
+#include "sgd2mapi98/game_version.h"
 
 /**
  * View and wrapper declarations

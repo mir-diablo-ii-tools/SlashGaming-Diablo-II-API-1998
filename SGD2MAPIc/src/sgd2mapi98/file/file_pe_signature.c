@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/file/file_pe_signature.h"
+#include "sgd2mapi98/file/file_pe_signature.h"
 
 #include <stdio.h>
 #include <string.h>

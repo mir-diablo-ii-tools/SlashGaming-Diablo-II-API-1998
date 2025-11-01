@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_function/fog/fog_free_client_memory.hpp"
+#include "sgd2mapi98/game_function/fog/fog_free_client_memory.hpp"
 
 #include <sgd2mapi98.h>
 

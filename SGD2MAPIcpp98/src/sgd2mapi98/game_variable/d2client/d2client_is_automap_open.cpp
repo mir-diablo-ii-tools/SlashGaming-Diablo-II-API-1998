@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_is_automap_open.hpp"
+#include "sgd2mapi98/game_variable/d2client/d2client_is_automap_open.hpp"
 
 #include <sgd2mapi98.h>
 

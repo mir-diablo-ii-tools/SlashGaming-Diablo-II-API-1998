@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../include/sgd2mapi98/game_constant/d2_difficulty_level.hpp"
+#include "sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
 namespace d2 {
 namespace difficulty_level {

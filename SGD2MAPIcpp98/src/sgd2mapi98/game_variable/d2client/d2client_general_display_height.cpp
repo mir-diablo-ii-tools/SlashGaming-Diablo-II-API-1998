@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "../../../../include/sgd2mapi98/game_variable/d2client/d2client_general_display_height.hpp"
+#include "sgd2mapi98/game_variable/d2client/d2client_general_display_height.hpp"
 
 #include <sgd2mapi98.h>
 
