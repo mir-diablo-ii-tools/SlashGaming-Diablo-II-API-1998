@@ -1,0 +1,23 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_draw_unicode_text.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_pop_up_unicode_text_width_and_height.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_unicode_text_draw_width.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_unicode_text_n_draw_width.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_load_cel_file.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_load_mpq.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_set_pop_up_unicode_text.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_set_unicode_text_font.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_unload_cel_file.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_unload_mpq.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_draw_unicode_text.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_pop_up_unicode_text_width_and_height.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_unicode_text_draw_width.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_get_unicode_text_n_draw_width.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_load_cel_file.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_load_mpq.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_set_pop_up_unicode_text.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_set_unicode_text_font.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_unload_cel_file.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_unload_mpq.hpp")

@@ -1,0 +1,9 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_belts_txt.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_inventory_txt.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_inventory_txt_records_count.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_belts_txt.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_inventory_txt.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_global_inventory_txt_records_count.hpp")

@@ -1,0 +1,11 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_bit_block_height.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_bit_block_width.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_cel_display_left.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_cel_display_right.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_bit_block_height.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_bit_block_width.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_cel_display_left.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_cel_display_right.hpp")

@@ -1,0 +1,34 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/default_game_library.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_address.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_executable.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_patch.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_version.c"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2api_version.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/default_game_library.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/file.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_address.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_bool.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_branch_type.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_constant.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_executable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_function.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_patch.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_struct.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_undefined.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_version.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/helper.h"
+
+        "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_define.inc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_undef.inc")
+
+add_subdirectory("backend")
+add_subdirectory("file")
+add_subdirectory("game_constant")
+add_subdirectory("game_function")
+add_subdirectory("game_struct")
+add_subdirectory("game_variable")
+add_subdirectory("helper")

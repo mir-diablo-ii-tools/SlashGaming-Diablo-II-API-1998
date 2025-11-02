@@ -1,0 +1,32 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/default_game_library.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_address.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_executable.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_patch.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_version.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/default_game_library.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/file.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_address.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_bool.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_branch_type.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_constant.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_executable.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_patch.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_struct.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_undefined.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_variable.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_version.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/helper.hpp"
+
+        "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_cpp98_define.inc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_cpp98_undef.inc")
+
+add_subdirectory("file")
+add_subdirectory("game_constant")
+add_subdirectory("game_function")
+add_subdirectory("game_struct")
+add_subdirectory("game_variable")
+add_subdirectory("helper")
