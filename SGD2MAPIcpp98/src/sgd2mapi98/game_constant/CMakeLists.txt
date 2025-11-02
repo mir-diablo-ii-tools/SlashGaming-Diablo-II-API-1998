@@ -1,0 +1,17 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_client_game_type.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_difficulty_level.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_draw_effect.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_screen_open_mode.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_text_color.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_text_font.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_video_mode.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_client_game_type.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_difficulty_level.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_draw_effect.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_screen_open_mode.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_text_color.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_text_font.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_video_mode.hpp")

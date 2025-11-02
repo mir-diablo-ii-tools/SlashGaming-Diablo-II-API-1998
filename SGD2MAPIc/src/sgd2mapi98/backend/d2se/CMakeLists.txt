@@ -1,0 +1,9 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_file_pe_signature.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_game_version.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_ini.c"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_file_pe_signature.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_game_version.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2se_ini.h")

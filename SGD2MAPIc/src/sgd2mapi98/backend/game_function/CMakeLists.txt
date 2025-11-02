@@ -1,0 +1,13 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/cdecl_function.asm"
+        "${CMAKE_CURRENT_SOURCE_DIR}/esi_function.asm"
+        "${CMAKE_CURRENT_SOURCE_DIR}/fastcall_function.asm"
+        "${CMAKE_CURRENT_SOURCE_DIR}/stdcall_function.asm"
+        "${CMAKE_CURRENT_SOURCE_DIR}/thiscall_function.asm"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/cdecl_function.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/esi_function.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/fastcall_function.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/stdcall_function.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/thiscall_function.h")

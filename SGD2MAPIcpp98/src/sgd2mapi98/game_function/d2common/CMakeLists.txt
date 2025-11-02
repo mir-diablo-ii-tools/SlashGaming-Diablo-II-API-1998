@@ -1,0 +1,13 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_belt_record.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_belt_slot_position.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_equipment_slot_layout.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_inventory_grid_layout.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_inventory_position.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_belt_record.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_belt_slot_position.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_equipment_slot_layout.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_inventory_grid_layout.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_get_global_inventory_position.hpp")

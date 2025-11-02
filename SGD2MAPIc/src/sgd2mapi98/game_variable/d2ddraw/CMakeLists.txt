@@ -1,0 +1,15 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_bit_block_height.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_bit_block_width.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_cel_display_left.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_cel_display_right.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_display_height.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_display_width.c"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_bit_block_height.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_bit_block_width.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_cel_display_left.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_cel_display_right.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_display_height.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_display_width.h")

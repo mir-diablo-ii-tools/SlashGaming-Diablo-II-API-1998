@@ -1,0 +1,31 @@
+target_sources(${PROJECT_NAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/bnclient_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2client_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2cmp_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2direct3d_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2game_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2glide_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2lang_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2launch_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2mcpclient_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2multi_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2net_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2sound_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/fog_variable.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/storm_variable.h")
+
+add_subdirectory("bnclient")
+add_subdirectory("d2client")
+add_subdirectory("d2common")
+add_subdirectory("d2ddraw")
+add_subdirectory("d2direct3d")
+add_subdirectory("d2gdi")
+add_subdirectory("d2gfx")
+add_subdirectory("d2glide")
+add_subdirectory("d2win")

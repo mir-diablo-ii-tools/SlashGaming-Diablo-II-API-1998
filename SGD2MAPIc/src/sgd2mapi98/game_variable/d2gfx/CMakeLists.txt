@@ -1,0 +1,11 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_is_windowed_mode.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_resolution_mode.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_video_mode.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_window_handle.c"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_is_windowed_mode.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_resolution_mode.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_video_mode.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_window_handle.h")

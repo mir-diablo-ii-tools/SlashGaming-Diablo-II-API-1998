@@ -1,0 +1,10 @@
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_api.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_view.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_wrapper.cpp"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_api.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_struct.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_view.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context_wrapper.hpp")

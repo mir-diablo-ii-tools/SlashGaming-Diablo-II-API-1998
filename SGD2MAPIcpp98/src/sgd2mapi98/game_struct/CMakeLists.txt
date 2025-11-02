@@ -1,0 +1,23 @@
+target_sources(${PROJECT_NAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_belt_record.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_context.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_cel_file.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_equipment_layout.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_grid_layout.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_inventory_record.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_mpq_archive.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_mpq_archive_handle.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2_positional_rectangle.hpp")
+
+add_subdirectory("d2_belt_record")
+add_subdirectory("d2_cel")
+add_subdirectory("d2_cel_context")
+add_subdirectory("d2_cel_file")
+add_subdirectory("d2_equipment_layout")
+add_subdirectory("d2_grid_layout")
+add_subdirectory("d2_inventory_record")
+add_subdirectory("d2_mpq_archive")
+add_subdirectory("d2_mpq_archive_handle")
+add_subdirectory("d2_positional_rectangle")

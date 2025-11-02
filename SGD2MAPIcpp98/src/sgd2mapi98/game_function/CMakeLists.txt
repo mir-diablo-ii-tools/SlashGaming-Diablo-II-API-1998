@@ -1,0 +1,30 @@
+target_sources(${PROJECT_NAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/bnclient_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2client_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2cmp_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2common_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2ddraw_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2direct3d_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2game_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gdi_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2gfx_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2glide_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2lang_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2launch_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2mcpclient_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2multi_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2net_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2sound_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2win_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/fog_function.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/storm_function.hpp")
+
+add_subdirectory("d2client")
+add_subdirectory("d2cmp")
+add_subdirectory("d2common")
+add_subdirectory("d2gfx")
+add_subdirectory("d2lang")
+add_subdirectory("d2win")
+add_subdirectory("fog")
+add_subdirectory("storm")
