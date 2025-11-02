@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT bool GetIsAutomapOpen();
+DLLAPI bool GetIsAutomapOpen();
 
-DLLEXPORT ::mapi::bool32 GetIsAutomapOpen_1_00();
+DLLAPI ::mapi::bool32 GetIsAutomapOpen_1_00();
 
-DLLEXPORT void SetIsAutomapOpen(bool is_automap_open);
+DLLAPI void SetIsAutomapOpen(bool is_automap_open);
 
-DLLEXPORT void SetIsAutomapOpen_1_00(::mapi::bool32 is_automap_open);
+DLLAPI void SetIsAutomapOpen_1_00(::mapi::bool32 is_automap_open);
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_AUTOMAP_OPEN_HPP_ */

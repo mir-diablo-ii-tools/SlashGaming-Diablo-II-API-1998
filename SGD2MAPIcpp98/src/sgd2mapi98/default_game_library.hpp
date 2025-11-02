@@ -50,7 +50,7 @@
 
 #include "mdc/std/wchar.h"
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace default_library {
@@ -76,11 +76,11 @@ typedef default_library::DefaultLibrary DefaultLibrary;
 
 namespace default_library {
 
-DLLEXPORT HMODULE GetHandle(
+DLLAPI HMODULE GetHandle(
     DefaultLibrary library,
     bool is_allow_redirect_to_game_exe);
 
-DLLEXPORT const wchar_t* GetPath(
+DLLAPI const wchar_t* GetPath(
     DefaultLibrary library,
     bool is_allow_redirect_to_game_exe);
 
@@ -88,5 +88,5 @@ DLLEXPORT const wchar_t* GetPath(
 
 } // namespace d2
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_DEFAULT_GAME_LIBRARY_HPP_ */

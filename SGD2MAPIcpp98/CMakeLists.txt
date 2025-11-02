@@ -206,8 +206,8 @@ set(INCLUDE_HEADERS
     "src/sgd2mapi98/game_version.hpp"
     "src/sgd2mapi98/helper.hpp"
 
-    "src/dllexport_define.inc"
-    "src/dllexport_define.inc"
+    "src/sgd2mapi98/dllapi_cpp98_define.inc"
+    "src/sgd2mapi98/dllapi_cpp98_undef.inc"
 
     "src/sgd2mapi98.hpp"
 )

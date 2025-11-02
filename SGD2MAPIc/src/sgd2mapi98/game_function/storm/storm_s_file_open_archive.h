@@ -51,20 +51,20 @@
 #include "sgd2mapi98/game_bool.h"
 #include "sgd2mapi98/game_struct/d2_mpq_archive.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_Storm_SFileOpenArchive(
+DLLAPI int D2_Storm_SFileOpenArchive(
     const char* mpq_archive_path,
     int priority,
     unsigned int flags,
     struct D2_MpqArchive** mpq_archive_ptr_out
 );
 
-DLLEXPORT mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
+DLLAPI mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
     const char* mpq_archive_path,
     int32_t priority,
     uint32_t flags,
@@ -75,5 +75,5 @@ DLLEXPORT mapi_bool32 D2_Storm_SFileOpenArchive_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_ */

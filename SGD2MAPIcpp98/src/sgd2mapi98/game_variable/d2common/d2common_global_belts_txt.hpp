@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT BeltRecord* GetGlobalBeltsTxt();
+DLLAPI BeltRecord* GetGlobalBeltsTxt();
 
-DLLEXPORT BeltRecord_1_00* GetGlobalBeltsTxt_1_00();
+DLLAPI BeltRecord_1_00* GetGlobalBeltsTxt_1_00();
 
-DLLEXPORT void SetGlobalBeltsTxt(BeltRecord* belt_record);
+DLLAPI void SetGlobalBeltsTxt(BeltRecord* belt_record);
 
-DLLEXPORT void SetGlobalBeltsTxt_1_00(BeltRecord_1_00* belt_record);
+DLLAPI void SetGlobalBeltsTxt_1_00(BeltRecord_1_00* belt_record);
 
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_BELTS_TXT_HPP_ */

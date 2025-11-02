@@ -50,13 +50,13 @@
 
 #include "sgd2mapi98/game_constant/d2_draw_effect.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2GFX_DrawRectangle(
+DLLAPI void D2_D2GFX_DrawRectangle(
     int left,
     int top,
     int right,
@@ -65,7 +65,7 @@ DLLEXPORT void D2_D2GFX_DrawRectangle(
     enum D2_DrawEffect draw_effect
 );
 
-DLLEXPORT void D2_D2GFX_DrawRectangle_1_00(
+DLLAPI void D2_D2GFX_DrawRectangle_1_00(
     int32_t left,
     int32_t top,
     int32_t right,
@@ -78,5 +78,5 @@ DLLEXPORT void D2_D2GFX_DrawRectangle_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_ */

@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gdi {
 
-DLLEXPORT int GetCelDisplayRight();
+DLLAPI int GetCelDisplayRight();
 
-DLLEXPORT int32_t GetCelDisplayRight_1_00();
+DLLAPI int32_t GetCelDisplayRight_1_00();
 
-DLLEXPORT void SetCelDisplayRight(int right);
+DLLAPI void SetCelDisplayRight(int right);
 
-DLLEXPORT void SetCelDisplayRight_1_00(int32_t right);
+DLLAPI void SetCelDisplayRight_1_00(int32_t right);
 
 } // namespace d2gdi
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_RIGHT_HPP_ */

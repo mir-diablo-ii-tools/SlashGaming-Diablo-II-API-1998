@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VERSION_HPP_
 #define SGD2MAPI_CPP98_GAME_VERSION_HPP_
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace game_version {
@@ -82,32 +82,32 @@ namespace game_version {
  * Returns the UTF-8 encoded null-terminated string associated with the
  * specified game version.
  */
-DLLEXPORT const char* GetName(GameVersion game_version);
+DLLAPI const char* GetName(GameVersion game_version);
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT GameVersion GetRunning();
+DLLAPI GameVersion GetRunning();
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
  * running game version.
  */
-DLLEXPORT const char* GetRunningName();
+DLLAPI const char* GetRunningName();
 
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT bool IsAtLeast1_14(GameVersion game_version);
+DLLAPI bool IsAtLeast1_14(GameVersion game_version);
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT bool IsRunningAtLeast1_14();
+DLLAPI bool IsRunningAtLeast1_14();
 
 } // namespace game_version
 
 } // namespace d2
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VERSION_HPP_ */

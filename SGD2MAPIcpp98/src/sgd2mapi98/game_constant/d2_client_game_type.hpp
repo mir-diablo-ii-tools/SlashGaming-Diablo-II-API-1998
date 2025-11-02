@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace client_game_type {
@@ -132,20 +132,20 @@ typedef client_game_type::v1_07::ClientGameType_1_07 ClientGameType_1_07;
 
 namespace client_game_type {
 
-DLLEXPORT int ToGameValue(ClientGameType api_value);
+DLLAPI int ToGameValue(ClientGameType api_value);
 
-DLLEXPORT ClientGameType_1_00 ToGameValue_1_00(ClientGameType api_value);
+DLLAPI ClientGameType_1_00 ToGameValue_1_00(ClientGameType api_value);
 
-DLLEXPORT ClientGameType_1_07 ToGameValue_1_07(ClientGameType api_value);
+DLLAPI ClientGameType_1_07 ToGameValue_1_07(ClientGameType api_value);
 
-DLLEXPORT ClientGameType ToApiValue(int game_value);
+DLLAPI ClientGameType ToApiValue(int game_value);
 
-DLLEXPORT ClientGameType ToApiValue_1_00(ClientGameType_1_00 game_value);
+DLLAPI ClientGameType ToApiValue_1_00(ClientGameType_1_00 game_value);
 
-DLLEXPORT ClientGameType ToApiValue_1_07(ClientGameType_1_07 game_value);
+DLLAPI ClientGameType ToApiValue_1_07(ClientGameType_1_07 game_value);
 
 } // namespace client_game_type
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_CLIENT_GAME_TYPE_HPP_ */

@@ -48,23 +48,23 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT int GetMainMenuMousePositionY();
+DLLAPI int GetMainMenuMousePositionY();
 
-DLLEXPORT int32_t GetMainMenuMousePositionY_1_00();
+DLLAPI int32_t GetMainMenuMousePositionY_1_00();
 
-DLLEXPORT void SetMainMenuMousePositionY(int mouse_position_y);
+DLLAPI void SetMainMenuMousePositionY(int mouse_position_y);
 
-DLLEXPORT void SetMainMenuMousePositionY_1_00(
+DLLAPI void SetMainMenuMousePositionY_1_00(
     int32_t mouse_position_y
 );
 
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2WIN_D2WIN_MAIN_MENU_MOUSE_POSITION_Y_HPP_ */

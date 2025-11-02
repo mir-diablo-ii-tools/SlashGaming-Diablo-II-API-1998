@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace text_font {
@@ -123,16 +123,16 @@ typedef text_font::v1_00::TextFont_1_00 TextFont_1_00;
 
 namespace text_font {
 
-DLLEXPORT int ToGameValue(TextFont api_value);
+DLLAPI int ToGameValue(TextFont api_value);
 
-DLLEXPORT TextFont_1_00 ToGameValue_1_00(TextFont api_value);
+DLLAPI TextFont_1_00 ToGameValue_1_00(TextFont api_value);
 
-DLLEXPORT TextFont ToApiValue(int game_value);
+DLLAPI TextFont ToApiValue(int game_value);
 
-DLLEXPORT TextFont ToApiValue_1_00(TextFont_1_00 game_value);
+DLLAPI TextFont ToApiValue_1_00(TextFont_1_00 game_value);
 
 } // namespace text_font
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_TEXT_FONT_HPP_ */

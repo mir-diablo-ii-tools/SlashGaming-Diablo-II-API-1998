@@ -52,11 +52,11 @@
 #include "mdc/std/stdint.h"
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 
-class DLLEXPORT FilePeSignature {
+class DLLAPI FilePeSignature {
  public:
   FilePeSignature();
 
@@ -70,5 +70,5 @@ class DLLEXPORT FilePeSignature {
 
 } // namespace mapi
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_FILE_FILE_PE_SIGNATURE_HPP_ */

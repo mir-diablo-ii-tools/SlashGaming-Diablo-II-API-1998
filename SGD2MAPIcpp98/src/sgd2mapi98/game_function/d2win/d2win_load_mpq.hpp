@@ -51,19 +51,19 @@
 #include "sgd2mapi98/game_bool.hpp"
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT MpqArchiveHandle* LoadMpq(
+DLLAPI MpqArchiveHandle* LoadMpq(
     const char* mpq_file_name,
     bool is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(),
     int priority
 );
 
-DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_00(
+DLLAPI MpqArchiveHandle_1_00* LoadMpq_1_00(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -71,7 +71,7 @@ DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_00(
     void* (*on_fail_callback)()
 );
 
-DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_03(
+DLLAPI MpqArchiveHandle_1_00* LoadMpq_1_03(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -80,7 +80,7 @@ DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_03(
     void* (*on_fail_callback)()
 );
 
-DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_07(
+DLLAPI MpqArchiveHandle_1_00* LoadMpq_1_07(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -90,7 +90,7 @@ DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_07(
     int32_t priority
 );
 
-DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_11(
+DLLAPI MpqArchiveHandle_1_00* LoadMpq_1_11(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -99,7 +99,7 @@ DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_11(
     int32_t priority
 );
 
-DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_14A(
+DLLAPI MpqArchiveHandle_1_00* LoadMpq_1_14A(
     const char* mpq_file_name,
     ::mapi::bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(),
@@ -109,5 +109,5 @@ DLLEXPORT MpqArchiveHandle_1_00* LoadMpq_1_14A(
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_HPP_ */

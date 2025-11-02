@@ -49,18 +49,18 @@
 #include "mdc/std/stdint.h"
 #include "mdc/std/wchar.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT void GetPopUpUnicodeTextWidthAndHeight(
+DLLAPI void GetPopUpUnicodeTextWidthAndHeight(
     const wchar_t* text,
     int* width,
     int* height
 );
 
-DLLEXPORT void GetPopUpUnicodeTextWidthAndHeight_1_00(
+DLLAPI void GetPopUpUnicodeTextWidthAndHeight_1_00(
     const wchar_t* text,
     int32_t* width,
     int32_t* height
@@ -69,5 +69,5 @@ DLLEXPORT void GetPopUpUnicodeTextWidthAndHeight_1_00(
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_GET_POP_UP_UNICODE_TEXT_WIDTH_AND_HEIGHT_HPP_ */

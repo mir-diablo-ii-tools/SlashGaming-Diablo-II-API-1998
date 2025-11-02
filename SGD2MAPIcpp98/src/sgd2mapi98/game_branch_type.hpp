@@ -46,7 +46,7 @@
 #ifndef SGMAPI_CPP98_GAME_BRANCH_TYPE_HPP_
 #define SGMAPI_CPP98_GAME_BRANCH_TYPE_HPP_
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 namespace branch_type {
@@ -72,5 +72,5 @@ typedef branch_type::BranchType BranchType;
 
 } // namespace mapi
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_GAME_BRANCH_TYPE_HPP_ */

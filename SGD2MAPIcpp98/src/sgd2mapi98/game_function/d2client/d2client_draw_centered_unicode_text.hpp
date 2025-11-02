@@ -51,12 +51,12 @@
 
 #include "sgd2mapi98/game_constant/d2_text_color.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT void DrawCenteredUnicodeText(
+DLLAPI void DrawCenteredUnicodeText(
     int left,
     int position_y,
     const wchar_t* text,
@@ -64,7 +64,7 @@ DLLEXPORT void DrawCenteredUnicodeText(
     TextColor text_color
 );
 
-DLLEXPORT void DrawCenteredUnicodeText_1_00(
+DLLAPI void DrawCenteredUnicodeText_1_00(
     int32_t left,
     int32_t position_y,
     const wchar_t* text,
@@ -75,5 +75,5 @@ DLLEXPORT void DrawCenteredUnicodeText_1_00(
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2CLIENT_D2CLIENT_DRAW_CENTERED_UNICODE_TEXT_HPP_ */

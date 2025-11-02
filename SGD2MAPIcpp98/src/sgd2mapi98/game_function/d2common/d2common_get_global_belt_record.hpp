@@ -50,23 +50,23 @@
 
 #include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT void GetGlobalBeltRecord(
+DLLAPI void GetGlobalBeltRecord(
     unsigned int belt_record_index,
     unsigned int inventory_arrange_mode,
     BeltRecord* out_belt_record
 );
 
-DLLEXPORT void GetGlobalBeltRecord_1_00(
+DLLAPI void GetGlobalBeltRecord_1_00(
     uint32_t belt_record_index,
     BeltRecord_1_00* out_belt_record
 );
 
-DLLEXPORT void GetGlobalBeltRecord_1_07(
+DLLAPI void GetGlobalBeltRecord_1_07(
     uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     BeltRecord_1_00* out_belt_record
@@ -75,5 +75,5 @@ DLLEXPORT void GetGlobalBeltRecord_1_07(
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_RECORD_HPP_ */

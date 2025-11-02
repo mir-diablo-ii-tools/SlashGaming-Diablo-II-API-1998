@@ -52,13 +52,13 @@
 #include "sgd2mapi98/game_bool.h"
 #include "sgd2mapi98/game_constant/d2_text_color.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2Win_SetPopUpUnicodeText(
+DLLAPI void D2_D2Win_SetPopUpUnicodeText(
     const wchar_t* text,
     int position_x,
     int position_y,
@@ -66,7 +66,7 @@ DLLEXPORT void D2_D2Win_SetPopUpUnicodeText(
     int is_text_box_centered
 );
 
-DLLEXPORT void D2_D2Win_SetPopUpUnicodeText_1_00(
+DLLAPI void D2_D2Win_SetPopUpUnicodeText_1_00(
     const wchar_t* text,
     int32_t position_x,
     int32_t position_y,
@@ -78,5 +78,5 @@ DLLEXPORT void D2_D2Win_SetPopUpUnicodeText_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_POP_UP_UNICODE_TEXT_H_ */

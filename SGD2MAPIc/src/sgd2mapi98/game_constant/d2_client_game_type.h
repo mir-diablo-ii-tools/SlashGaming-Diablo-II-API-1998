@@ -46,9 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_CONSTANT_D2_CLIENT_GAME_TYPE_H_
 #define SGD2MAPI_C_GAME_CONSTANT_D2_CLIENT_GAME_TYPE_H_
 
-#include "../../d2api_version.h"
+#include "sgd2mapi98/d2api_version.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic enum definitions
@@ -113,27 +113,27 @@ typedef enum D2_ClientGameType_1_07 D2_ClientGameType_1_07;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_ClientGameType_ToGameValue(
+DLLAPI int D2_ClientGameType_ToGameValue(
     enum D2_ClientGameType api_value
 );
 
-DLLEXPORT enum D2_ClientGameType_1_00 D2_ClientGameType_ToGameValue_1_00(
+DLLAPI enum D2_ClientGameType_1_00 D2_ClientGameType_ToGameValue_1_00(
     enum D2_ClientGameType api_value
 );
 
-DLLEXPORT enum D2_ClientGameType_1_07 D2_ClientGameType_ToGameValue_1_07(
+DLLAPI enum D2_ClientGameType_1_07 D2_ClientGameType_ToGameValue_1_07(
     enum D2_ClientGameType api_value
 );
 
-DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue(
+DLLAPI enum D2_ClientGameType D2_ClientGameType_ToApiValue(
     int game_value
 );
 
-DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_00(
+DLLAPI enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_00(
     enum D2_ClientGameType_1_00 game_value
 );
 
-DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
+DLLAPI enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
     enum D2_ClientGameType_1_07 game_value
 );
 
@@ -141,5 +141,5 @@ DLLEXPORT enum D2_ClientGameType D2_ClientGameType_ToApiValue_1_07(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_CONSTANT_D2_CLIENT_GAME_TYPE_H_ */

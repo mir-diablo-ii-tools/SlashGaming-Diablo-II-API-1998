@@ -53,7 +53,7 @@
 
 #include "sgd2mapi98/game_struct/d2_positional_rectangle.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -111,7 +111,7 @@ extern "C" {
  * Returns the element of the EquipmentLayout array at the specified
  * index.
  */
-DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
+DLLAPI struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
     struct D2_EquipmentLayout* equipment_layout,
     size_t index
 );
@@ -120,7 +120,7 @@ DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Access(
  * Returns the element of the EquipmentLayout array at the specified
  * index.
  */
-DLLEXPORT const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
+DLLAPI const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
     const struct D2_EquipmentLayout* equipment_layout,
     size_t index
 );
@@ -129,7 +129,7 @@ DLLEXPORT const struct D2_EquipmentLayout* D2_EquipmentLayout_AccessConst(
  * Assigns each EquipmentLayout member the values of the source
  * EquipmentLayout. This is a shallow copy operation.
  */
-DLLEXPORT void D2_EquipmentLayout_AssignMembers(
+DLLAPI void D2_EquipmentLayout_AssignMembers(
     struct D2_EquipmentLayout* dest,
     const struct D2_EquipmentLayout* src
 );
@@ -137,14 +137,14 @@ DLLEXPORT void D2_EquipmentLayout_AssignMembers(
 /**
  * Returns a pointer to the EquipmentLayout's position member.
  */
-DLLEXPORT struct D2_PositionalRectangle* D2_EquipmentLayout_GetPosition(
+DLLAPI struct D2_PositionalRectangle* D2_EquipmentLayout_GetPosition(
     struct D2_EquipmentLayout* equipment_layout
 );
 
 /**
  * Returns a pointer to the EquipmentLayout's position member.
  */
-DLLEXPORT const struct D2_PositionalRectangle*
+DLLAPI const struct D2_PositionalRectangle*
 D2_EquipmentLayout_GetPositionConst(
     const struct D2_EquipmentLayout* equipment_layout
 );
@@ -152,14 +152,14 @@ D2_EquipmentLayout_GetPositionConst(
 /**
  * Returns the value of the EquipmentLayout's width member.
  */
-DLLEXPORT unsigned char D2_EquipmentLayout_GetWidth(
+DLLAPI unsigned char D2_EquipmentLayout_GetWidth(
     const struct D2_EquipmentLayout* equipment_layout
 );
 
 /**
  * Sets the value of the EquipmentLayout's width member.
  */
-DLLEXPORT void D2_EquipmentLayout_SetWidth(
+DLLAPI void D2_EquipmentLayout_SetWidth(
     struct D2_EquipmentLayout* equipment_layout,
     unsigned char width
 );
@@ -167,14 +167,14 @@ DLLEXPORT void D2_EquipmentLayout_SetWidth(
 /**
  * Returns the value of the EquipmentLayout's height member.
  */
-DLLEXPORT unsigned char D2_EquipmentLayout_GetHeight(
+DLLAPI unsigned char D2_EquipmentLayout_GetHeight(
     const struct D2_EquipmentLayout* equipment_layout
 );
 
 /**
  * Sets the value of the EquipmentLayout's height member.
  */
-DLLEXPORT void D2_EquipmentLayout_SetHeight(
+DLLAPI void D2_EquipmentLayout_SetHeight(
     struct D2_EquipmentLayout* equipment_layout,
     unsigned char height
 );
@@ -187,7 +187,7 @@ DLLEXPORT void D2_EquipmentLayout_SetHeight(
  * Initializes an EquipmentLayout with the specified position, width,
  * and height.
  */
-DLLEXPORT struct D2_EquipmentLayout_Api
+DLLAPI struct D2_EquipmentLayout_Api
 D2_EquipmentLayout_Api_InitFromLayout(
     const struct D2_PositionalRectangle* position,
     unsigned char width,
@@ -197,15 +197,15 @@ D2_EquipmentLayout_Api_InitFromLayout(
 /**
  * Deinitializes the EquipmentLayout.
  */
-DLLEXPORT void D2_EquipmentLayout_Api_Deinit(
+DLLAPI void D2_EquipmentLayout_Api_Deinit(
     struct D2_EquipmentLayout_Api* equipment_layout
 );
 
-DLLEXPORT struct D2_EquipmentLayout* D2_EquipmentLayout_Api_Get(
+DLLAPI struct D2_EquipmentLayout* D2_EquipmentLayout_Api_Get(
     struct D2_EquipmentLayout_Api* belt_record
 );
 
-DLLEXPORT const struct D2_EquipmentLayout*
+DLLAPI const struct D2_EquipmentLayout*
 D2_EquipmentLayout_Api_GetConst(
     const struct D2_EquipmentLayout_Api* belt_record
 );
@@ -238,5 +238,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_EQUIPMENT_LAYOUT_H_ */

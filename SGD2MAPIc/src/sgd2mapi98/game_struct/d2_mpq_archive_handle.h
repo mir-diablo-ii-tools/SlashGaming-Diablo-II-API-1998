@@ -53,7 +53,7 @@
 
 #include "sgd2mapi98/game_struct/d2_mpq_archive.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -97,7 +97,7 @@ extern "C" {
  * Returns the element of the MpqArchiveHandle array at the specified
  * index.
  */
-DLLEXPORT struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_Access(
+DLLAPI struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_Access(
     struct D2_MpqArchiveHandle* mpq_archive_handle,
     size_t index
 );
@@ -106,7 +106,7 @@ DLLEXPORT struct D2_MpqArchiveHandle* D2_MpqArchiveHandle_Access(
  * Returns the element of the MpqArchiveHandle array at the specified
  * index.
  */
-DLLEXPORT const struct D2_MpqArchiveHandle*
+DLLAPI const struct D2_MpqArchiveHandle*
 D2_MpqArchiveHandle_AccessConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle,
     size_t index
@@ -116,7 +116,7 @@ D2_MpqArchiveHandle_AccessConst(
  * Assigns each MpqArchiveHandle member the values of the source
  * MpqArchiveHandle. This is a shallow copy operation.
  */
-DLLEXPORT void D2_MpqArchiveHandle_AssignMembers(
+DLLAPI void D2_MpqArchiveHandle_AssignMembers(
     struct D2_MpqArchiveHandle* dest,
     const struct D2_MpqArchiveHandle* src
 );
@@ -125,7 +125,7 @@ DLLEXPORT void D2_MpqArchiveHandle_AssignMembers(
  * Returns the value of the MpqArchiveHandle's Mpq archive pointer
  * member.
  */
-DLLEXPORT struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
+DLLAPI struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 );
 
@@ -133,7 +133,7 @@ DLLEXPORT struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchive(
  * Returns the value of the MpqArchiveHandle's Mpq archive pointer
  * member.
  */
-DLLEXPORT const struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchiveConst(
+DLLAPI const struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchiveConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 );
 
@@ -141,7 +141,7 @@ DLLEXPORT const struct D2_MpqArchive* D2_MpqArchiveHandle_GetMpqArchiveConst(
  * Sets the value of the MpqArchiveHandle's Mpq archive pointer
  * member.
  */
-DLLEXPORT void D2_MpqArchiveHandle_SetMpqArchive(
+DLLAPI void D2_MpqArchiveHandle_SetMpqArchive(
     struct D2_MpqArchiveHandle* mpq_archive_handle,
     struct D2_MpqArchive* mpq_archive
 );
@@ -150,7 +150,7 @@ DLLEXPORT void D2_MpqArchiveHandle_SetMpqArchive(
  * Returns a pointer to the MpqArchiveHandle's Mpq archive file path
  * member.
  */
-DLLEXPORT char* D2_MpqArchiveHandle_GetMpqArchivePath(
+DLLAPI char* D2_MpqArchiveHandle_GetMpqArchivePath(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 );
 
@@ -158,7 +158,7 @@ DLLEXPORT char* D2_MpqArchiveHandle_GetMpqArchivePath(
  * Returns a pointer to the MpqArchiveHandle's Mpq archive file path
  * member.
  */
-DLLEXPORT const char* D2_MpqArchiveHandle_GetMpqArchivePathConst(
+DLLAPI const char* D2_MpqArchiveHandle_GetMpqArchivePathConst(
     const struct D2_MpqArchiveHandle* mpq_archive_handle
 );
 
@@ -185,5 +185,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_ */

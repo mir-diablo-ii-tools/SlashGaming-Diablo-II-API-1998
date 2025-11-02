@@ -48,19 +48,19 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace fog {
 
-DLLEXPORT void* AllocClientMemory(
+DLLAPI void* AllocClientMemory(
     int size,
     const char* source_file,
     int line,
     int unused__set_to_0
 );
 
-DLLEXPORT void* AllocClientMemory_1_00(
+DLLAPI void* AllocClientMemory_1_00(
     int32_t size,
     const char* source_file,
     int32_t line,
@@ -70,5 +70,5 @@ DLLEXPORT void* AllocClientMemory_1_00(
 } // namespace fog
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_FOG_FOG_ALLOC_CLIENT_MEMORY_HPP_ */

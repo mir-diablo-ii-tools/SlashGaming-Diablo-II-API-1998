@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT unsigned int GetResolutionMode();
+DLLAPI unsigned int GetResolutionMode();
 
-DLLEXPORT uint32_t GetResolutionMode_1_00();
+DLLAPI uint32_t GetResolutionMode_1_00();
 
-DLLEXPORT void SetResolutionMode(unsigned int resolution_mode);
+DLLAPI void SetResolutionMode(unsigned int resolution_mode);
 
-DLLEXPORT void SetResolutionMode_1_00(uint32_t resolution_mode);
+DLLAPI void SetResolutionMode_1_00(uint32_t resolution_mode);
 
 } // namespace d2gfx
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_RESOLUTION_MODE_HPP_ */

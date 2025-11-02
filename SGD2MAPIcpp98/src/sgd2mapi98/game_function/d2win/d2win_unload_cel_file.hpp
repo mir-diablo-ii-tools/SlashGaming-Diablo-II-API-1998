@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT void UnloadCelFile(
+DLLAPI void UnloadCelFile(
     CelFile* cel_file
 );
 
-DLLEXPORT void UnloadCelFile_1_00(
+DLLAPI void UnloadCelFile_1_00(
     CelFile_1_00* cel_file
 );
 
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_CEL_FILE_HPP_ */

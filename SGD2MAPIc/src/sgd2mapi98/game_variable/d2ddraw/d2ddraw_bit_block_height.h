@@ -48,23 +48,23 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2DDraw_GetBitBlockHeight(void);
+DLLAPI int D2_D2DDraw_GetBitBlockHeight(void);
 
-DLLEXPORT int32_t D2_D2DDraw_GetBitBlockHeight_1_00(void);
+DLLAPI int32_t D2_D2DDraw_GetBitBlockHeight_1_00(void);
 
-DLLEXPORT void D2_D2DDraw_SetBitBlockHeight(int height);
+DLLAPI void D2_D2DDraw_SetBitBlockHeight(int height);
 
-DLLEXPORT void D2_D2DDraw_SetBitBlockHeight_1_00(int32_t height);
+DLLAPI void D2_D2DDraw_SetBitBlockHeight_1_00(int32_t height);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_HEIGHT_H_ */

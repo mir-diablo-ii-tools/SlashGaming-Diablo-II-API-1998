@@ -53,7 +53,7 @@
 
 #include "sgd2mapi98/game_undefined.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -117,14 +117,14 @@ extern "C" {
 /**
  * Returns the value of the CelFile's file format version member.
  */
-DLLEXPORT unsigned int D2_CelFile_GetVersion(
+DLLAPI unsigned int D2_CelFile_GetVersion(
     const struct D2_CelFile* cel_file
 );
 
 /**
  * Sets the value of the CelFile's file format version member.
  */
-DLLEXPORT void D2_CelFile_SetVersion(
+DLLAPI void D2_CelFile_SetVersion(
     struct D2_CelFile* cel_file,
     unsigned int version
 );
@@ -132,14 +132,14 @@ DLLEXPORT void D2_CelFile_SetVersion(
 /**
  * Returns the value of the CelFile's number of directions member.
  */
-DLLEXPORT unsigned int D2_CelFile_GetNumDirections(
+DLLAPI unsigned int D2_CelFile_GetNumDirections(
     const struct D2_CelFile* cel_file
 );
 
 /**
  * Sets the value of the CelFile's number of directions member.
  */
-DLLEXPORT void D2_CelFile_SetNumDirections(
+DLLAPI void D2_CelFile_SetNumDirections(
     struct D2_CelFile* cel_file,
     unsigned int num_directions
 );
@@ -147,14 +147,14 @@ DLLEXPORT void D2_CelFile_SetNumDirections(
 /**
  * Returns the value of the CelFile's number of frames member.
  */
-DLLEXPORT unsigned int D2_CelFile_GetNumFrames(
+DLLAPI unsigned int D2_CelFile_GetNumFrames(
     const struct D2_CelFile* cel_file
 );
 
 /**
  * Sets the value of the CelFile's number of frames member.
  */
-DLLEXPORT void D2_CelFile_SetNumFrames(
+DLLAPI void D2_CelFile_SetNumFrames(
     struct D2_CelFile* cel_file,
     unsigned int num_frames
 );
@@ -192,5 +192,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_FILE_H_ */

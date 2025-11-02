@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT int GetGeneralDisplayHeight();
+DLLAPI int GetGeneralDisplayHeight();
 
-DLLEXPORT int32_t GetGeneralDisplayHeight_1_00();
+DLLAPI int32_t GetGeneralDisplayHeight_1_00();
 
-DLLEXPORT void SetGeneralDisplayHeight(int general_display_height);
+DLLAPI void SetGeneralDisplayHeight(int general_display_height);
 
-DLLEXPORT void SetGeneralDisplayHeight_1_00(int32_t general_display_height);
+DLLAPI void SetGeneralDisplayHeight_1_00(int32_t general_display_height);
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_DISPLAY_HEIGHT_HPP_ */

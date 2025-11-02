@@ -49,17 +49,17 @@
 #include "sgd2mapi98/game_bool.hpp"
 #include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT CelFile* LoadCelFile(
+DLLAPI CelFile* LoadCelFile(
     const char* cel_file_path,
     bool is_dcc_else_dc6
 );
 
-DLLEXPORT CelFile_1_00* LoadCelFile_1_00(
+DLLAPI CelFile_1_00* LoadCelFile_1_00(
     const char* cel_file_path,
     ::mapi::bool32 is_dcc_else_dc6
 );
@@ -67,5 +67,5 @@ DLLEXPORT CelFile_1_00* LoadCelFile_1_00(
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_HPP_ */

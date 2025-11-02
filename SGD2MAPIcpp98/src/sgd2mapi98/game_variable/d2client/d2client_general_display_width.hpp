@@ -48,23 +48,23 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT int GetGeneralDisplayWidth();
+DLLAPI int GetGeneralDisplayWidth();
 
-DLLEXPORT int32_t GetGeneralDisplayWidth_1_00();
+DLLAPI int32_t GetGeneralDisplayWidth_1_00();
 
-DLLEXPORT void SetGeneralDisplayWidth(int general_display_width);
+DLLAPI void SetGeneralDisplayWidth(int general_display_width);
 
-DLLEXPORT void SetGeneralDisplayWidth_1_00(
+DLLAPI void SetGeneralDisplayWidth_1_00(
     int32_t general_display_width
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_DISPLAY_WIDTH_HPP_ */

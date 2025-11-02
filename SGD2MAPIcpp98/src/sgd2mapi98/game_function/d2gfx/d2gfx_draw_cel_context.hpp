@@ -53,12 +53,12 @@
 #include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
 #include "sgd2mapi98/game_undefined.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT bool DrawCelContext(
+DLLAPI bool DrawCelContext(
     CelContext* cel_context,
     int position_x,
     int position_y,
@@ -67,7 +67,7 @@ DLLEXPORT bool DrawCelContext(
     ::mapi::Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT ::mapi::bool32 DrawCelContext_1_00(
+DLLAPI ::mapi::bool32 DrawCelContext_1_00(
     CelContext_1_00* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -76,7 +76,7 @@ DLLEXPORT ::mapi::bool32 DrawCelContext_1_00(
     ::mapi::Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT ::mapi::bool32 DrawCelContext_1_12A(
+DLLAPI ::mapi::bool32 DrawCelContext_1_12A(
     CelContext_1_12A* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -85,7 +85,7 @@ DLLEXPORT ::mapi::bool32 DrawCelContext_1_12A(
     ::mapi::Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT ::mapi::bool32 DrawCelContext_1_13C(
+DLLAPI ::mapi::bool32 DrawCelContext_1_13C(
     CelContext_1_13C* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -97,5 +97,5 @@ DLLEXPORT ::mapi::bool32 DrawCelContext_1_13C(
 } // namespace d2gfx
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_HPP_ */

@@ -53,13 +53,13 @@
 #include "sgd2mapi98/game_struct/d2_cel_context.h"
 #include "sgd2mapi98/game_undefined.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2GFX_DrawCelContext(
+DLLAPI int D2_D2GFX_DrawCelContext(
     struct D2_CelContext* cel_context,
     int position_x,
     int position_y,
@@ -68,7 +68,7 @@ DLLEXPORT int D2_D2GFX_DrawCelContext(
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
+DLLAPI mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     struct D2_CelContext_1_00* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -77,7 +77,7 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_00(
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
+DLLAPI mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     struct D2_CelContext_1_12A* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -86,7 +86,7 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_12A(
     struct Mapi_Undefined* unknown_06__set_to_nullptr
 );
 
-DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
+DLLAPI mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
     struct D2_CelContext_1_13C* cel_context,
     int32_t position_x,
     int32_t position_y,
@@ -99,5 +99,5 @@ DLLEXPORT mapi_bool32 D2_D2GFX_DrawCelContext_1_13C(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_H_ */

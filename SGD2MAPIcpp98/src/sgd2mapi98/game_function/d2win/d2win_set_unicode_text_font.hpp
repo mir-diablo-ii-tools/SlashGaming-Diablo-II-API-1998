@@ -50,21 +50,21 @@
 
 #include "sgd2mapi98/game_constant/d2_text_font.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT TextFont SetUnicodeTextFont(
+DLLAPI TextFont SetUnicodeTextFont(
     TextFont text_font
 );
 
-DLLEXPORT TextFont_1_00 SetUnicodeTextFont_1_00(
+DLLAPI TextFont_1_00 SetUnicodeTextFont_1_00(
     TextFont_1_00 text_font
 );
 
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_HPP_ */

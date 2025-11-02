@@ -48,22 +48,22 @@
 
 #include "sgd2mapi98/game_struct/d2_inventory_record.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT struct D2_InventoryRecord* D2_D2Common_GetGlobalInventoryTxt(void);
+DLLAPI struct D2_InventoryRecord* D2_D2Common_GetGlobalInventoryTxt(void);
 
-DLLEXPORT struct D2_InventoryRecord_1_00*
+DLLAPI struct D2_InventoryRecord_1_00*
 D2_D2Common_GetGlobalInventoryTxt_1_00(void);
 
-DLLEXPORT void D2_D2Common_SetGlobalInventoryTxt(
+DLLAPI void D2_D2Common_SetGlobalInventoryTxt(
     struct D2_InventoryRecord* inventory_record
 );
 
-DLLEXPORT void D2_D2Common_SetGlobalInventoryTxt_1_00(
+DLLAPI void D2_D2Common_SetGlobalInventoryTxt_1_00(
     struct D2_InventoryRecord_1_00* inventory_record
 );
 
@@ -71,5 +71,5 @@ DLLEXPORT void D2_D2Common_SetGlobalInventoryTxt_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_H_ */

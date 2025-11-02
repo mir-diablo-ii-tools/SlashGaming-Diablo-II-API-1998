@@ -51,19 +51,19 @@
 #include "sgd2mapi98/game_bool.hpp"
 #include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace storm {
 
-DLLEXPORT bool SFileOpenArchive(
+DLLAPI bool SFileOpenArchive(
     const char* mpq_archive_path,
     int priority,
     unsigned int flags,
     MpqArchive** mpq_archive_ptr_out
 );
 
-DLLEXPORT ::mapi::bool32 SFileOpenArchive_1_00(
+DLLAPI ::mapi::bool32 SFileOpenArchive_1_00(
     const char* mpq_archive_path,
     int32_t priority,
     uint32_t flags,
@@ -73,5 +73,5 @@ DLLEXPORT ::mapi::bool32 SFileOpenArchive_1_00(
 } // namespace storm
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_HPP_ */

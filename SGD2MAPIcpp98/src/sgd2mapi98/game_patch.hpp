@@ -55,11 +55,11 @@
 #include "sgd2mapi98/game_address.hpp"
 #include "sgd2mapi98/game_branch_type.hpp"
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 
-class DLLEXPORT GamePatch {
+class DLLAPI GamePatch {
 public:
   GamePatch();
 
@@ -168,5 +168,5 @@ private:
 
 } // namespace mapi
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_GAME_PATCH_HPP_ */

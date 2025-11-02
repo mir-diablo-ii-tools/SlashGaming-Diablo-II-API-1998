@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2022  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,10 +43,4 @@
  *  work.
  */
 
-#if defined(SGD2MAPI_CPP98_DLLEXPORT)
-  #define DLLEXPORT __declspec(dllexport)
-#elif defined(SGD2MAPI_CPP98_DLLIMPORT)
-  #define DLLEXPORT __declspec(dllimport)
-#else
-  #define DLLEXPORT
-#endif
+#undef DLLAPI

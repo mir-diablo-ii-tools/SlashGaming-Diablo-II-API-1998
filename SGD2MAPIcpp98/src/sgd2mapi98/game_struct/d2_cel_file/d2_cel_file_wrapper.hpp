@@ -55,11 +55,11 @@
 #include "sgd2mapi98/game_struct/d2_cel/d2_cel_view.hpp"
 #include "sgd2mapi98/game_struct/d2_cel/d2_cel_wrapper.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT CelFile_Wrapper {
+class DLLAPI CelFile_Wrapper {
  public:
   union WrapperType {
     CelFile_1_00* v1_00;
@@ -105,5 +105,5 @@ class DLLEXPORT CelFile_Wrapper {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_WRAPPER_HPP_ */

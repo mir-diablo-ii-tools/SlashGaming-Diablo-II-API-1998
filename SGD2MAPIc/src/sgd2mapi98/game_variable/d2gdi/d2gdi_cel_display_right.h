@@ -48,23 +48,23 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2GDI_GetCelDisplayRight(void);
+DLLAPI int D2_D2GDI_GetCelDisplayRight(void);
 
-DLLEXPORT int32_t D2_D2GDI_GetCelDisplayRight_1_00(void);
+DLLAPI int32_t D2_D2GDI_GetCelDisplayRight_1_00(void);
 
-DLLEXPORT void D2_D2GDI_SetCelDisplayRight(int right);
+DLLAPI void D2_D2GDI_SetCelDisplayRight(int right);
 
-DLLEXPORT void D2_D2GDI_SetCelDisplayRight_1_00(int32_t right);
+DLLAPI void D2_D2GDI_SetCelDisplayRight_1_00(int32_t right);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2GDI_D2GDI_CEL_DISPLAY_RIGHT_H_ */

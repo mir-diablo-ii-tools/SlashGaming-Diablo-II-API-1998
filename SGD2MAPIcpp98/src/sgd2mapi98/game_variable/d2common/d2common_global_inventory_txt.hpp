@@ -48,23 +48,23 @@
 
 #include "sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT InventoryRecord* GetGlobalInventoryTxt();
+DLLAPI InventoryRecord* GetGlobalInventoryTxt();
 
-DLLEXPORT InventoryRecord_1_00* GetGlobalInventoryTxt_1_00();
+DLLAPI InventoryRecord_1_00* GetGlobalInventoryTxt_1_00();
 
-DLLEXPORT void SetGlobalInventoryTxt(InventoryRecord* inventory_record);
+DLLAPI void SetGlobalInventoryTxt(InventoryRecord* inventory_record);
 
-DLLEXPORT void SetGlobalInventoryTxt_1_00(
+DLLAPI void SetGlobalInventoryTxt_1_00(
     InventoryRecord_1_00* inventory_record
 );
 
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_HPP_ */

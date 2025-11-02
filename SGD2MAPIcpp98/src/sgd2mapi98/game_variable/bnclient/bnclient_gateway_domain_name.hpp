@@ -46,17 +46,17 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_HPP_
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace bnclient {
 
-DLLEXPORT char* GetGatewayDomainName();
+DLLAPI char* GetGatewayDomainName();
 
-DLLEXPORT char* GetGatewayDomainName_1_00();
+DLLAPI char* GetGatewayDomainName_1_00();
 
 } // namespace bnclient
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_HPP_ */

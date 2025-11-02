@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VERSION_H_
 #define SGD2MAPI_C_GAME_VERSION_H_
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,36 +78,36 @@ enum D2_GameVersion {
  * Returns the UTF-8 encoded null-terminated string associated with the
  * specified game version.
  */
-DLLEXPORT const char* D2_GameVersion_GetName(
+DLLAPI const char* D2_GameVersion_GetName(
     enum D2_GameVersion game_version
 );
 
 /**
  * Returns the identifier of the running game version.
  */
-DLLEXPORT enum D2_GameVersion D2_GameVersion_GetRunning(void);
+DLLAPI enum D2_GameVersion D2_GameVersion_GetRunning(void);
 
 /**
  * Returns the UTF-8 encoded null-terminated string associated with the
  * running game version.
  */
-DLLEXPORT const char* D2_GameVersion_GetRunningName(void);
+DLLAPI const char* D2_GameVersion_GetRunningName(void);
 
 /**
  * Returns whether the Diablo II game version is at least 1.14.
  */
-DLLEXPORT int D2_GameVersion_IsAtLeast1_14(
+DLLAPI int D2_GameVersion_IsAtLeast1_14(
     enum D2_GameVersion game_version_id
 );
 
 /**
  * Returns whether the running game version is at least 1.14.
  */
-DLLEXPORT int D2_GameVersion_IsRunningAtLeast1_14(void);
+DLLAPI int D2_GameVersion_IsRunningAtLeast1_14(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VERSION_H_ */

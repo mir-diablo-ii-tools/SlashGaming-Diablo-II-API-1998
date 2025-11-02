@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2ddraw {
 
-DLLEXPORT int GetBitBlockHeight();
+DLLAPI int GetBitBlockHeight();
 
-DLLEXPORT int32_t GetBitBlockHeight_1_00();
+DLLAPI int32_t GetBitBlockHeight_1_00();
 
-DLLEXPORT void SetBitBlockHeight(int height);
+DLLAPI void SetBitBlockHeight(int height);
 
-DLLEXPORT void SetBitBlockHeight_1_00(int32_t height);
+DLLAPI void SetBitBlockHeight_1_00(int32_t height);
 
 } // namespace d2ddraw
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_HEIGHT_HPP_ */

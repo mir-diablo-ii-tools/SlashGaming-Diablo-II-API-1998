@@ -43,4 +43,4 @@
  *  work.
  */
 
-#undef DLLEXPORT
+#undef DLLAPI

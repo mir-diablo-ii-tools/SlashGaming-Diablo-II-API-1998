@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace draw_effect {
@@ -110,16 +110,16 @@ typedef draw_effect::v1_00::DrawEffect_1_00 DrawEffect_1_00;
 
 namespace draw_effect {
 
-DLLEXPORT int ToGameValue(DrawEffect api_value);
+DLLAPI int ToGameValue(DrawEffect api_value);
 
-DLLEXPORT DrawEffect_1_00 ToGameValue_1_00(DrawEffect api_value);
+DLLAPI DrawEffect_1_00 ToGameValue_1_00(DrawEffect api_value);
 
-DLLEXPORT DrawEffect ToApiValue(int game_value);
+DLLAPI DrawEffect ToApiValue(int game_value);
 
-DLLEXPORT DrawEffect ToApiValue_1_00(DrawEffect_1_00 game_value);
+DLLAPI DrawEffect ToApiValue_1_00(DrawEffect_1_00 game_value);
 
 } // namespace draw_effect
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_DRAW_EFFECT_HPP_ */

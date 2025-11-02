@@ -50,23 +50,23 @@
 
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT void GetGlobalInventoryPosition(
+DLLAPI void GetGlobalInventoryPosition(
     unsigned int inventory_record_index,
     unsigned int inventory_arrange_mode,
     PositionalRectangle* out_position
 );
 
-DLLEXPORT void GetGlobalInventoryPosition_1_00(
+DLLAPI void GetGlobalInventoryPosition_1_00(
     uint32_t inventory_record_index,
     PositionalRectangle_1_00* out_position
 );
 
-DLLEXPORT void GetGlobalInventoryPosition_1_07(
+DLLAPI void GetGlobalInventoryPosition_1_07(
     uint32_t inventory_record_index,
     uint32_t inventory_arrange_mode,
     PositionalRectangle_1_00* out_position
@@ -75,5 +75,5 @@ DLLEXPORT void GetGlobalInventoryPosition_1_07(
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_POSITION_HPP_ */

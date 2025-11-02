@@ -49,29 +49,29 @@
 #include "sgd2mapi98/game_struct/d2_cel/d2_cel_struct.hpp"
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2cmp {
 
-DLLEXPORT Cel* GetCelFromCelContext(
+DLLAPI Cel* GetCelFromCelContext(
     CelContext* cel_context
 );
 
-DLLEXPORT Cel_1_00* GetCelFromCelContext_1_00(
+DLLAPI Cel_1_00* GetCelFromCelContext_1_00(
     CelContext_1_00* cel_context
 );
 
-DLLEXPORT Cel_1_00* GetCelFromCelContext_1_12A(
+DLLAPI Cel_1_00* GetCelFromCelContext_1_12A(
     CelContext_1_12A* cel_context
 );
 
-DLLEXPORT Cel_1_00* GetCelFromCelContext_1_13C(
+DLLAPI Cel_1_00* GetCelFromCelContext_1_13C(
     CelContext_1_13C* cel_context
 );
 
 } // namespace d2cmp
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_HPP_ */

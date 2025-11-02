@@ -48,23 +48,23 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT bool GetIsGameMenuOpen();
+DLLAPI bool GetIsGameMenuOpen();
 
-DLLEXPORT ::mapi::bool32 GetIsGameMenuOpen_1_00();
+DLLAPI ::mapi::bool32 GetIsGameMenuOpen_1_00();
 
-DLLEXPORT void SetIsGameMenuOpen(bool is_game_menu_open);
+DLLAPI void SetIsGameMenuOpen(bool is_game_menu_open);
 
-DLLEXPORT void SetIsGameMenuOpen_1_00(
+DLLAPI void SetIsGameMenuOpen_1_00(
     ::mapi::bool32 is_game_menu_open
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_GAME_MENU_OPEN_HPP_ */

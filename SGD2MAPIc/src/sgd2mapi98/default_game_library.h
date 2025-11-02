@@ -50,7 +50,7 @@
 
 #include "mdc/std/wchar.h"
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,11 +72,11 @@ enum D2_DefaultLibrary {
   D2_DefaultLibrary_kFog, D2_DefaultLibrary_kStorm,
 };
 
-DLLEXPORT HMODULE D2_DefaultLibrary_GetHandle(
+DLLAPI HMODULE D2_DefaultLibrary_GetHandle(
     enum D2_DefaultLibrary library,
     int is_allow_redirect_to_game_exe);
 
-DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPath(
+DLLAPI const wchar_t* D2_DefaultLibrary_GetPath(
     enum D2_DefaultLibrary library,
     int is_allow_redirect_to_game_exe);
 
@@ -84,5 +84,5 @@ DLLEXPORT const wchar_t* D2_DefaultLibrary_GetPath(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_DEFAULT_GAME_LIBRARY_H_ */

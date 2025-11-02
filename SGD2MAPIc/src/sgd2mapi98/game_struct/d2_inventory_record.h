@@ -54,7 +54,7 @@
 #include "sgd2mapi98/game_struct/d2_grid_layout.h"
 #include "sgd2mapi98/game_struct/d2_positional_rectangle.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -110,7 +110,7 @@ extern "C" {
 /**
  * Returns the element of the InventoryRecord array at the specified index.
  */
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Access(
+DLLAPI struct D2_InventoryRecord* D2_InventoryRecord_Access(
     struct D2_InventoryRecord* inventory_record,
     size_t index
 );
@@ -118,7 +118,7 @@ DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Access(
 /**
  * Returns the element of the InventoryRecord array at the specified index.
  */
-DLLEXPORT const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
+DLLAPI const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
     const struct D2_InventoryRecord* inventory_record,
     size_t index
 );
@@ -127,7 +127,7 @@ DLLEXPORT const struct D2_InventoryRecord* D2_InventoryRecord_AccessConst(
  * Assigns each InventoryRecord member the values of the source
  * InventoryRecord. This is a shallow copy operation.
  */
-DLLEXPORT void D2_InventoryRecord_AssignMembers(
+DLLAPI void D2_InventoryRecord_AssignMembers(
     struct D2_InventoryRecord* dest,
     const struct D2_InventoryRecord* src
 );
@@ -135,14 +135,14 @@ DLLEXPORT void D2_InventoryRecord_AssignMembers(
 /**
  * Returns a pointer to the InventoryRecord's position member.
  */
-DLLEXPORT struct D2_PositionalRectangle* D2_InventoryRecord_GetPosition(
+DLLAPI struct D2_PositionalRectangle* D2_InventoryRecord_GetPosition(
     struct D2_InventoryRecord* inventory_record
 );
 
 /**
  * Returns a pointer to the InventoryRecord's position member.
  */
-DLLEXPORT const struct D2_PositionalRectangle*
+DLLAPI const struct D2_PositionalRectangle*
 D2_InventoryRecord_GetPositionConst(
     const struct D2_InventoryRecord* inventory_record
 );
@@ -150,28 +150,28 @@ D2_InventoryRecord_GetPositionConst(
 /**
  * Returns a pointer to the InventoryRecord's grid layout member.
  */
-DLLEXPORT struct D2_GridLayout* D2_InventoryRecord_GetGridLayout(
+DLLAPI struct D2_GridLayout* D2_InventoryRecord_GetGridLayout(
     struct D2_InventoryRecord* inventory_record
 );
 
 /**
  * Returns a pointer to the InventoryRecord's grid layout member.
  */
-DLLEXPORT const struct D2_GridLayout* D2_InventoryRecord_GetGridLayoutConst(
+DLLAPI const struct D2_GridLayout* D2_InventoryRecord_GetGridLayoutConst(
     const struct D2_InventoryRecord* inventory_record
 );
 
 /**
  * Returns a pointer to the InventoryRecord's equipment slots array member.
  */
-DLLEXPORT struct D2_EquipmentLayout* D2_InventoryRecord_GetEquipmentSlots(
+DLLAPI struct D2_EquipmentLayout* D2_InventoryRecord_GetEquipmentSlots(
     struct D2_InventoryRecord* inventory_record
 );
 
 /**
  * Returns a pointer to the InventoryRecord's equipment slots array member.
  */
-DLLEXPORT const struct D2_EquipmentLayout*
+DLLAPI const struct D2_EquipmentLayout*
 D2_InventoryRecord_GetEquipmentSlotsConst(
     const struct D2_InventoryRecord* inventory_record
 );
@@ -183,7 +183,7 @@ D2_InventoryRecord_GetEquipmentSlotsConst(
 /**
  * Initializes an InventoryRecord with the specified record.
  */
-DLLEXPORT struct D2_InventoryRecord_Api D2_InventoryRecord_Api_InitFromRecord(
+DLLAPI struct D2_InventoryRecord_Api D2_InventoryRecord_Api_InitFromRecord(
     const struct D2_PositionalRectangle* position,
     const struct D2_GridLayout* grid_layout,
     const struct D2_EquipmentLayout* equipment_slots
@@ -192,15 +192,15 @@ DLLEXPORT struct D2_InventoryRecord_Api D2_InventoryRecord_Api_InitFromRecord(
 /**
  * Deinitializes the InventoryRecord.
  */
-DLLEXPORT void D2_InventoryRecord_Api_Deinit(
+DLLAPI void D2_InventoryRecord_Api_Deinit(
     struct D2_InventoryRecord_Api* inventory_record
 );
 
-DLLEXPORT struct D2_InventoryRecord* D2_InventoryRecord_Api_Get(
+DLLAPI struct D2_InventoryRecord* D2_InventoryRecord_Api_Get(
     struct D2_InventoryRecord_Api* inventory_record
 );
 
-DLLEXPORT const struct D2_InventoryRecord*
+DLLAPI const struct D2_InventoryRecord*
 D2_InventoryRecord_Api_GetConst(
     const struct D2_InventoryRecord_Api* inventory_record
 );
@@ -233,5 +233,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_INVENTORY_RECORD_H_ */

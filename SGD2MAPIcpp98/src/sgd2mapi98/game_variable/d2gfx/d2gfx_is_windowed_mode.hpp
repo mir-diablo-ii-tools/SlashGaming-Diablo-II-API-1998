@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT bool GetIsWindowedMode();
+DLLAPI bool GetIsWindowedMode();
 
-DLLEXPORT ::mapi::bool32 GetIsWindowedMode_1_00();
+DLLAPI ::mapi::bool32 GetIsWindowedMode_1_00();
 
-DLLEXPORT void SetIsWindowedMode(bool is_window_mode);
+DLLAPI void SetIsWindowedMode(bool is_window_mode);
 
-DLLEXPORT void SetIsWindowedMode_1_00(::mapi::bool32 is_window_mode);
+DLLAPI void SetIsWindowedMode_1_00(::mapi::bool32 is_window_mode);
 
 } // namespace d2gfx
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_HPP_ */

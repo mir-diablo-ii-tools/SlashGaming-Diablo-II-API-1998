@@ -50,20 +50,20 @@
 
 #include "sgd2mapi98/game_constant/d2_video_mode.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT enum D2_VideoMode D2_D2GFX_GetVideoMode(void);
+DLLAPI enum D2_VideoMode D2_D2GFX_GetVideoMode(void);
 
-DLLEXPORT /* enum D2_VideoMode_1_00 */ int32_t
+DLLAPI /* enum D2_VideoMode_1_00 */ int32_t
 D2_D2GFX_GetVideoMode_1_00(void);
 
-DLLEXPORT void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode);
+DLLAPI void D2_D2GFX_SetVideoMode(enum D2_VideoMode video_mode);
 
-DLLEXPORT void D2_D2GFX_SetVideoMode_1_00(
+DLLAPI void D2_D2GFX_SetVideoMode_1_00(
     /* enum D2_VideoMode_1_00 */ int32_t video_mode
 );
 
@@ -71,5 +71,5 @@ DLLEXPORT void D2_D2GFX_SetVideoMode_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_H_ */

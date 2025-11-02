@@ -46,17 +46,17 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_IPV4_ADDRESS_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_IPV4_ADDRESS_HPP_
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace bnclient {
 
-DLLEXPORT char* GetGatewayIpV4Address();
+DLLAPI char* GetGatewayIpV4Address();
 
-DLLEXPORT char* GetGatewayIpV4Address_1_00();
+DLLAPI char* GetGatewayIpV4Address_1_00();
 
 } // namespace bnclient
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_IPV4_ADDRESS_HPP_ */

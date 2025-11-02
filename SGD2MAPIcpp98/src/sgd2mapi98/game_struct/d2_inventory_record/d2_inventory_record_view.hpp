@@ -55,11 +55,11 @@
 #include "sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_struct.hpp"
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT InventoryRecord_View {
+class DLLAPI InventoryRecord_View {
  public:
   union ViewType {
     const InventoryRecord_1_00* v1_00;
@@ -85,5 +85,5 @@ class DLLEXPORT InventoryRecord_View {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_VIEW_HPP_ */

@@ -48,17 +48,17 @@
 
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2Win_UnloadMpq(
+DLLAPI void D2_D2Win_UnloadMpq(
     struct D2_MpqArchiveHandle* mpq_archive_handle
 );
 
-DLLEXPORT void D2_D2Win_UnloadMpq_1_00(
+DLLAPI void D2_D2Win_UnloadMpq_1_00(
     struct D2_MpqArchiveHandle_1_00* mpq_archive_handle
 );
 
@@ -66,5 +66,5 @@ DLLEXPORT void D2_D2Win_UnloadMpq_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_MPQ_H_ */

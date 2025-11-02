@@ -48,20 +48,20 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void* D2_Fog_AllocClientMemory(
+DLLAPI void* D2_Fog_AllocClientMemory(
     int size,
     const char* source_file,
     int line,
     int unused__set_to_0
 );
 
-DLLEXPORT void* D2_Fog_AllocClientMemory_1_00(
+DLLAPI void* D2_Fog_AllocClientMemory_1_00(
     int32_t size,
     const char* source_file,
     int32_t line,
@@ -72,5 +72,5 @@ DLLEXPORT void* D2_Fog_AllocClientMemory_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_ALLOC_CLIENT_MEMORY_H_ */

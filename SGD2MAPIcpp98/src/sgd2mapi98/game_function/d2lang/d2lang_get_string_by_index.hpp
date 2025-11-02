@@ -49,21 +49,21 @@
 #include "mdc/std/stdint.h"
 #include "mdc/std/wchar.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2lang {
 
-DLLEXPORT const wchar_t* GetStringByIndex(
+DLLAPI const wchar_t* GetStringByIndex(
     unsigned int id
 );
 
-DLLEXPORT const wchar_t* GetStringByIndex_1_00(
+DLLAPI const wchar_t* GetStringByIndex_1_00(
     uint32_t id
 );
 
 } // namespace d2lang
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2LANG_D2LANG_GET_STRING_BY_INDEX_HPP_ */
