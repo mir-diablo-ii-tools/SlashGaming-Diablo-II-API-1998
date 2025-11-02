@@ -51,11 +51,11 @@
 #include "mdc/std/stdint.h"
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 
-class DLLEXPORT FixedFileVersion {
+class DLLAPI FixedFileVersion {
  public:
   FixedFileVersion();
 
@@ -86,5 +86,5 @@ class DLLEXPORT FixedFileVersion {
 
 } // namespace mapi
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_FILE_FIXED_FILE_VERSION_HPP_ */

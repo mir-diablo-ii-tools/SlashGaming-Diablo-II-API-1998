@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_constant/d2_client_game_type.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT ClientGameType GetGameType();
+DLLAPI ClientGameType GetGameType();
 
-DLLEXPORT ClientGameType_1_00 GetGameType_1_00();
+DLLAPI ClientGameType_1_00 GetGameType_1_00();
 
-DLLEXPORT void SetGameType(ClientGameType game_type);
+DLLAPI void SetGameType(ClientGameType game_type);
 
-DLLEXPORT void SetGameType_1_00(ClientGameType_1_00 game_type);
+DLLAPI void SetGameType_1_00(ClientGameType_1_00 game_type);
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_HPP_ */

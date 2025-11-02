@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
 #define SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic enum definitions
@@ -89,19 +89,19 @@ typedef enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_1_07;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_ScreenOpenMode_ToGameValue(
+DLLAPI int D2_ScreenOpenMode_ToGameValue(
     enum D2_ScreenOpenMode api_value
 );
 
-DLLEXPORT enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
+DLLAPI enum D2_ScreenOpenMode_1_07 D2_ScreenOpenMode_ToGameValue_1_07(
     enum D2_ScreenOpenMode api_value
 );
 
-DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(
+DLLAPI enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue(
     int game_value
 );
 
-DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
+DLLAPI enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
     enum D2_ScreenOpenMode_1_07 game_value
 );
 
@@ -109,5 +109,5 @@ DLLEXPORT enum D2_ScreenOpenMode D2_ScreenOpenMode_ToApiValue_1_07(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_H_ */

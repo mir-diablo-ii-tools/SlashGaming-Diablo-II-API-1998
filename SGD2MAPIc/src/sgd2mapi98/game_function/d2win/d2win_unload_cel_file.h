@@ -48,17 +48,17 @@
 
 #include "sgd2mapi98/game_struct/d2_cel_file.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2Win_UnloadCelFile(
+DLLAPI void D2_D2Win_UnloadCelFile(
     struct D2_CelFile* cel_file
 );
 
-DLLEXPORT void D2_D2Win_UnloadCelFile_1_00(
+DLLAPI void D2_D2Win_UnloadCelFile_1_00(
     struct D2_CelFile_1_00* cel_file
 );
 
@@ -66,5 +66,5 @@ DLLEXPORT void D2_D2Win_UnloadCelFile_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_CEL_FILE_H_ */

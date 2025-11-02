@@ -48,25 +48,25 @@
 
 #include "sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT DifficultyLevel GetDifficultyLevel();
+DLLAPI DifficultyLevel GetDifficultyLevel();
 
-DLLEXPORT DifficultyLevel_1_00 GetDifficultyLevel_1_00();
+DLLAPI DifficultyLevel_1_00 GetDifficultyLevel_1_00();
 
-DLLEXPORT void SetDifficultyLevel(
+DLLAPI void SetDifficultyLevel(
     DifficultyLevel difficulty_level
 );
 
-DLLEXPORT void SetDifficultyLevel_1_00(
+DLLAPI void SetDifficultyLevel_1_00(
     DifficultyLevel_1_00 difficulty_level
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_DIFFICULTY_LEVEL_HPP_ */

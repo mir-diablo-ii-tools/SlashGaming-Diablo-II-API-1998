@@ -48,19 +48,19 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2Client_GetGeneralDisplayWidth(void);
+DLLAPI int D2_D2Client_GetGeneralDisplayWidth(void);
 
-DLLEXPORT int32_t D2_D2Client_GetGeneralDisplayWidth_1_00(void);
+DLLAPI int32_t D2_D2Client_GetGeneralDisplayWidth_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetGeneralDisplayWidth(int general_display_width);
+DLLAPI void D2_D2Client_SetGeneralDisplayWidth(int general_display_width);
 
-DLLEXPORT void D2_D2Client_SetGeneralDisplayWidth_1_00(
+DLLAPI void D2_D2Client_SetGeneralDisplayWidth_1_00(
     int32_t general_display_width
 );
 
@@ -68,5 +68,5 @@ DLLEXPORT void D2_D2Client_SetGeneralDisplayWidth_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_DISPLAY_WIDTH_H_ */

@@ -48,19 +48,19 @@
 
 #include "sgd2mapi98/game_bool.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2Client_GetIsHelpScreenOpen(void);
+DLLAPI int D2_D2Client_GetIsHelpScreenOpen(void);
 
-DLLEXPORT mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void);
+DLLAPI mapi_bool32 D2_D2Client_GetIsHelpScreenOpen_1_00(void);
 
-DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen(int is_help_screen_open);
+DLLAPI void D2_D2Client_SetIsHelpScreenOpen(int is_help_screen_open);
 
-DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen_1_00(
+DLLAPI void D2_D2Client_SetIsHelpScreenOpen_1_00(
     mapi_bool32 is_help_screen_open
 );
 
@@ -68,5 +68,5 @@ DLLEXPORT void D2_D2Client_SetIsHelpScreenOpen_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_H_ */

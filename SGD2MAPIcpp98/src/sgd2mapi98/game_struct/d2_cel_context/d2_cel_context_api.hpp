@@ -56,11 +56,11 @@
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_view.hpp"
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_wrapper.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT CelContext_Api {
+class DLLAPI CelContext_Api {
  public:
   typedef ::D2_CelContext_Api ApiType;
 
@@ -108,5 +108,5 @@ class DLLEXPORT CelContext_Api {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_API_HPP_ */

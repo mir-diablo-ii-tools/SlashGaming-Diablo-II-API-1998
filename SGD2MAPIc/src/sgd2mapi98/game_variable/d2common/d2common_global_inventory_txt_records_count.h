@@ -48,19 +48,19 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT unsigned int D2_D2Common_GetGlobalInventoryTxtRecordsCount(void);
-DLLEXPORT uint32_t D2_D2Common_GetGlobalInventoryTxtRecordsCount_1_00(void);
+DLLAPI unsigned int D2_D2Common_GetGlobalInventoryTxtRecordsCount(void);
+DLLAPI uint32_t D2_D2Common_GetGlobalInventoryTxtRecordsCount_1_00(void);
 
-DLLEXPORT void D2_D2Common_SetGlobalInventoryTxtRecordsCount(
+DLLAPI void D2_D2Common_SetGlobalInventoryTxtRecordsCount(
     unsigned int records_count
 );
-DLLEXPORT void D2_D2Common_SetGlobalInventoryTxtRecordsCount_1_00(
+DLLAPI void D2_D2Common_SetGlobalInventoryTxtRecordsCount_1_00(
     uint32_t records_count
 );
 
@@ -68,5 +68,5 @@ DLLEXPORT void D2_D2Common_SetGlobalInventoryTxtRecordsCount_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_RECORDS_COUNT_H_ */

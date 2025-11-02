@@ -50,24 +50,24 @@
 
 #include "sgd2mapi98/game_struct/d2_belt_record.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltRecord(
+DLLAPI void D2_D2Common_GetGlobalBeltRecord(
     unsigned int belt_record_index,
     unsigned int inventory_arrange_mode,
     struct D2_BeltRecord* out_belt_record
 );
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltRecord_1_00(
+DLLAPI void D2_D2Common_GetGlobalBeltRecord_1_00(
     uint32_t belt_record_index,
     struct D2_BeltRecord_1_00* out_belt_record
 );
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltRecord_1_07(
+DLLAPI void D2_D2Common_GetGlobalBeltRecord_1_07(
     uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_BeltRecord_1_00* out_belt_record
@@ -77,5 +77,5 @@ DLLEXPORT void D2_D2Common_GetGlobalBeltRecord_1_07(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_RECORD_H_ */

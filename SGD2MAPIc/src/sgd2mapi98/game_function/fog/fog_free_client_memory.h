@@ -50,20 +50,20 @@
 
 #include "sgd2mapi98/game_bool.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_Fog_FreeClientMemory(
+DLLAPI int D2_Fog_FreeClientMemory(
     void* ptr,
     const char* source_file,
     int line,
     int unused__set_to_0
 );
 
-DLLEXPORT mapi_bool32 D2_Fog_FreeClientMemory_1_00(
+DLLAPI mapi_bool32 D2_Fog_FreeClientMemory_1_00(
     void* ptr,
     const char* source_file,
     int32_t line,
@@ -74,5 +74,5 @@ DLLEXPORT mapi_bool32 D2_Fog_FreeClientMemory_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_H_ */

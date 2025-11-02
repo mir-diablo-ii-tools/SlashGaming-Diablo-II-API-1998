@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_SGD2MAPI98_H_
 #define SGD2MAPI_SGD2MAPI98_H_
 
-#include "d2api_version.h"
+#include "sgd2mapi98/d2api_version.h"
 #include "sgd2mapi98/default_game_library.h"
 #include "sgd2mapi98/file.h"
 #include "sgd2mapi98/game_address.h"

@@ -48,23 +48,23 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT bool GetIsHelpScreenOpen();
+DLLAPI bool GetIsHelpScreenOpen();
 
-DLLEXPORT ::mapi::bool32 GetIsHelpScreenOpen_1_00();
+DLLAPI ::mapi::bool32 GetIsHelpScreenOpen_1_00();
 
-DLLEXPORT void SetIsHelpScreenOpen(bool is_help_screen_open);
+DLLAPI void SetIsHelpScreenOpen(bool is_help_screen_open);
 
-DLLEXPORT void SetIsHelpScreenOpen_1_00(
+DLLAPI void SetIsHelpScreenOpen_1_00(
     ::mapi::bool32 is_help_screen_open
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_HELP_SCREEN_OPEN_HPP_ */

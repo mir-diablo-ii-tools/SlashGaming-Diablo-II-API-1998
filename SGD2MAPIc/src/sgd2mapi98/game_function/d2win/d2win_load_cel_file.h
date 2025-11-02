@@ -49,18 +49,18 @@
 #include "sgd2mapi98/game_bool.h"
 #include "sgd2mapi98/game_struct/d2_cel_file.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT struct D2_CelFile* D2_D2Win_LoadCelFile(
+DLLAPI struct D2_CelFile* D2_D2Win_LoadCelFile(
     const char* cel_file_path,
     int is_dcc_else_dc6
 );
 
-DLLEXPORT struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
+DLLAPI struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
     const char* cel_file_path,
     mapi_bool32 is_dcc_else_dc6
 );
@@ -69,5 +69,5 @@ DLLEXPORT struct D2_CelFile_1_00* D2_D2Win_LoadCelFile_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_H_ */

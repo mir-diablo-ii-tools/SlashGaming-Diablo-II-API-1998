@@ -57,11 +57,11 @@
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_view.hpp"
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_wrapper.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT MpqArchiveHandle_Api {
+class DLLAPI MpqArchiveHandle_Api {
  public:
   union ApiType {
     MpqArchiveHandle_1_00* v1_00;
@@ -166,5 +166,5 @@ class DLLEXPORT MpqArchiveHandle_Api {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_D2_MPQ_ARCHIVE_HANDLE_API_HPP_ */

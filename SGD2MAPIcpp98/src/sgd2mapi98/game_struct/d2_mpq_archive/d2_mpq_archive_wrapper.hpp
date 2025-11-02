@@ -53,11 +53,11 @@
 #include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
 #include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT MpqArchive_Wrapper {
+class DLLAPI MpqArchive_Wrapper {
  public:
   union WrapperType {
     MpqArchive_1_00* v1_00;
@@ -79,5 +79,5 @@ class DLLEXPORT MpqArchive_Wrapper {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_MPQ_ARCHIVE_D2_MPQ_ARCHIVE_WRAPPER_HPP_ */

@@ -51,7 +51,7 @@
 #include "mdc/std/stdint.h"
 #include "mdc/std/wchar.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 enum {
   Mapi_FilePeSignature_kMinSignatureCount = 32,
@@ -69,15 +69,15 @@ struct Mapi_FilePeSignature {
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT extern const struct Mapi_FilePeSignature
+DLLAPI extern const struct Mapi_FilePeSignature
 Mapi_FilePeSignature_kUninit;
 
-DLLEXPORT int Mapi_FilePeSignature_Compare(
+DLLAPI int Mapi_FilePeSignature_Compare(
     const struct Mapi_FilePeSignature* signature1,
     const struct Mapi_FilePeSignature* signature2
 );
 
-DLLEXPORT int Mapi_FilePeSignature_ReadFile(
+DLLAPI int Mapi_FilePeSignature_ReadFile(
     struct Mapi_FilePeSignature* signature,
     const wchar_t* path,
     size_t count
@@ -87,5 +87,5 @@ DLLEXPORT int Mapi_FilePeSignature_ReadFile(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_ */

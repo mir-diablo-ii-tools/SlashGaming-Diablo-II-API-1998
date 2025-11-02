@@ -50,19 +50,19 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace fog {
 
-DLLEXPORT bool FreeClientMemory(
+DLLAPI bool FreeClientMemory(
     void* ptr,
     const char* source_file,
     int line,
     int unused__set_to_0
 );
 
-DLLEXPORT ::mapi::bool32 FreeClientMemory_1_00(
+DLLAPI ::mapi::bool32 FreeClientMemory_1_00(
     void* ptr,
     const char* source_file,
     int32_t line,
@@ -72,5 +72,5 @@ DLLEXPORT ::mapi::bool32 FreeClientMemory_1_00(
 } // namespace fog
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_HPP_ */

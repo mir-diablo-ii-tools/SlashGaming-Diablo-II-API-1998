@@ -59,11 +59,11 @@
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT InventoryRecord_Wrapper {
+class DLLAPI InventoryRecord_Wrapper {
  public:
   union WrapperType {
     InventoryRecord_1_00* v1_00;
@@ -103,5 +103,5 @@ class DLLEXPORT InventoryRecord_Wrapper {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_INVENTORY_RECORD_D2_INVENTORY_RECORD_WRAPPER_HPP_ */

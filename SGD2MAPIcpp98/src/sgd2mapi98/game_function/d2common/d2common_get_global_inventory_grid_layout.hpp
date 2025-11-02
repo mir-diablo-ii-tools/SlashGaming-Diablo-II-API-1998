@@ -50,23 +50,23 @@
 
 #include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT void GetGlobalInventoryGridLayout(
+DLLAPI void GetGlobalInventoryGridLayout(
     unsigned int inventory_record_index,
     unsigned int inventory_arrange_mode,
     GridLayout* out_grid_layout
 );
 
-DLLEXPORT void GetGlobalInventoryGridLayout_1_00(
+DLLAPI void GetGlobalInventoryGridLayout_1_00(
     uint32_t inventory_record_index,
     GridLayout_1_00* out_grid_layout
 );
 
-DLLEXPORT void GetGlobalInventoryGridLayout_1_07(
+DLLAPI void GetGlobalInventoryGridLayout_1_07(
     uint32_t inventory_record_index,
     uint32_t inventory_arrange_mode,
     GridLayout_1_00* out_grid_layout
@@ -75,5 +75,5 @@ DLLEXPORT void GetGlobalInventoryGridLayout_1_07(
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_HPP_ */

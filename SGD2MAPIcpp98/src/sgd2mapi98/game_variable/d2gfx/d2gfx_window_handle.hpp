@@ -48,21 +48,21 @@
 
 #include <windows.h>
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT HWND GetWindowHandle();
+DLLAPI HWND GetWindowHandle();
 
-DLLEXPORT HWND GetWindowHandle_1_00();
+DLLAPI HWND GetWindowHandle_1_00();
 
-DLLEXPORT void SetWindowHandle(HWND window_handle);
+DLLAPI void SetWindowHandle(HWND window_handle);
 
-DLLEXPORT void SetWindowHandle_1_00(HWND window_handle);
+DLLAPI void SetWindowHandle_1_00(HWND window_handle);
 
 } // namespace d2gfx
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_WINDOW_HANDLE_HPP_ */

@@ -51,28 +51,28 @@
 
 #include "mdc/std/wchar.h"
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 namespace game_executable {
 
-DLLEXPORT const wchar_t* GetPath();
+DLLAPI const wchar_t* GetPath();
 
-DLLEXPORT bool IsD2se();
+DLLAPI bool IsD2se();
 
-DLLEXPORT const wchar_t* QueryFileVersionInfoString(
+DLLAPI const wchar_t* QueryFileVersionInfoString(
     const wchar_t* sub_block
 );
 
-DLLEXPORT const DWORD* QueryFileVersionInfoVar(
+DLLAPI const DWORD* QueryFileVersionInfoVar(
     const wchar_t* sub_block,
     size_t* count
 );
 
-DLLEXPORT const VS_FIXEDFILEINFO& QueryFixedFileInfo();
+DLLAPI const VS_FIXEDFILEINFO& QueryFixedFileInfo();
 
 } // namespace game_executable
 } // namespace mapi
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_GAME_EXECUTABLE_HPP_ */

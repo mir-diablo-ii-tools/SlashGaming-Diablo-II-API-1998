@@ -50,26 +50,26 @@
 
 #include "sgd2mapi98/game_struct/d2_positional_rectangle.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition(
+DLLAPI void D2_D2Common_GetGlobalBeltSlotPosition(
     unsigned int belt_record_index,
     unsigned int inventory_arrange_mode,
     struct D2_PositionalRectangle* out_belt_slot,
     unsigned int belt_slot_index
 );
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
+DLLAPI void D2_D2Common_GetGlobalBeltSlotPosition_1_00(
     uint32_t belt_record_index,
     struct D2_PositionalRectangle_1_00* out_belt_slot,
     uint32_t belt_slot_index
 );
 
-DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
+DLLAPI void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
     uint32_t belt_record_index,
     uint32_t inventory_arrange_mode,
     struct D2_PositionalRectangle_1_00* out_belt_slot,
@@ -80,5 +80,5 @@ DLLEXPORT void D2_D2Common_GetGlobalBeltSlotPosition_1_07(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_SLOT_POSITION_H_ */

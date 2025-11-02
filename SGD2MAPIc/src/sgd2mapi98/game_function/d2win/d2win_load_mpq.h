@@ -51,20 +51,20 @@
 #include "sgd2mapi98/game_bool.h"
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
+DLLAPI struct D2_MpqArchiveHandle* D2_D2Win_LoadMpq(
     const char* mpq_file_name,
     int is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void),
     int priority
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
+DLLAPI struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -72,7 +72,7 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_00(
     void* (*on_fail_callback)(void)
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
+DLLAPI struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -81,7 +81,7 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_03(
     void* (*on_fail_callback)(void)
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
+DLLAPI struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -91,7 +91,7 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_07(
     int32_t priority
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
+DLLAPI struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
     const char* dll_file_name,
     const char* mpq_file_name,
     const char* mpq_name,
@@ -100,7 +100,7 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_11(
     int32_t priority
 );
 
-DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
+DLLAPI struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
     const char* mpq_file_name,
     mapi_bool32 is_set_err_on_drive_query_fail,
     void* (*on_fail_callback)(void),
@@ -111,5 +111,5 @@ DLLEXPORT struct D2_MpqArchiveHandle_1_00* D2_D2Win_LoadMpq_1_14A(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_ */

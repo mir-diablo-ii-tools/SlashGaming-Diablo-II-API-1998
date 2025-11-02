@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_FONT_H_
 #define SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_FONT_H_
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic enum definitions
@@ -114,15 +114,15 @@ typedef enum D2_TextFont_1_00 D2_TextFont_1_00;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_TextFont_ToGameValue(enum D2_TextFont api_value);
+DLLAPI int D2_TextFont_ToGameValue(enum D2_TextFont api_value);
 
-DLLEXPORT enum D2_TextFont_1_00 D2_TextFont_ToGameValue_1_00(
+DLLAPI enum D2_TextFont_1_00 D2_TextFont_ToGameValue_1_00(
     enum D2_TextFont api_value
 );
 
-DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue(int game_value);
+DLLAPI enum D2_TextFont D2_TextFont_ToApiValue(int game_value);
 
-DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue_1_00(
+DLLAPI enum D2_TextFont D2_TextFont_ToApiValue_1_00(
     enum D2_TextFont_1_00 game_value
 );
 
@@ -130,5 +130,5 @@ DLLEXPORT enum D2_TextFont D2_TextFont_ToApiValue_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_FONT_H_ */

@@ -52,7 +52,7 @@
 #include "sgd2mapi98/game_struct/d2_cel_file.h"
 #include "sgd2mapi98/game_undefined.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -126,7 +126,7 @@ extern "C" {
  * Returns the element of the CelContext array at the specified
  * index.
  */
-DLLEXPORT struct D2_CelContext* D2_CelContext_Access(
+DLLAPI struct D2_CelContext* D2_CelContext_Access(
     struct D2_CelContext* cel_context,
     size_t index
 );
@@ -135,7 +135,7 @@ DLLEXPORT struct D2_CelContext* D2_CelContext_Access(
  * Returns the element of the CelContext array at the specified
  * index.
  */
-DLLEXPORT const struct D2_CelContext* D2_CelContext_AccessConst(
+DLLAPI const struct D2_CelContext* D2_CelContext_AccessConst(
     const struct D2_CelContext* cel_context,
     size_t index
 );
@@ -144,7 +144,7 @@ DLLEXPORT const struct D2_CelContext* D2_CelContext_AccessConst(
  * Assigns each CelContext member the values of the source
  * CelContext. This is a shallow copy operation.
  */
-DLLEXPORT void D2_CelContext_AssignMembers(
+DLLAPI void D2_CelContext_AssignMembers(
     struct D2_CelContext* dest,
     const struct D2_CelContext* src
 );
@@ -152,21 +152,21 @@ DLLEXPORT void D2_CelContext_AssignMembers(
 /**
  * Returns the value of the CelContext's cel file pointer member.
  */
-DLLEXPORT struct D2_CelFile* D2_CelContext_GetCelFile(
+DLLAPI struct D2_CelFile* D2_CelContext_GetCelFile(
     struct D2_CelContext* cel_context
 );
 
 /**
  * Returns the value of the CelContext's cel file pointer member.
  */
-DLLEXPORT const struct D2_CelFile* D2_CelContext_GetCelFileConst(
+DLLAPI const struct D2_CelFile* D2_CelContext_GetCelFileConst(
     const struct D2_CelContext* cel_context
 );
 
 /**
  * Sets the value of the CelContext's cel file pointer member.
  */
-DLLEXPORT void D2_CelContext_SetCelFile(
+DLLAPI void D2_CelContext_SetCelFile(
     struct D2_CelContext* cel_context,
     struct D2_CelFile* cel_file
 );
@@ -174,14 +174,14 @@ DLLEXPORT void D2_CelContext_SetCelFile(
 /**
  * Returns the value of the CelContext's direction member.
  */
-DLLEXPORT unsigned int D2_CelContext_GetDirectionIndex(
+DLLAPI unsigned int D2_CelContext_GetDirectionIndex(
     const struct D2_CelContext* cel_context
 );
 
 /**
  * Sets the value of the CelContext's direction member.
  */
-DLLEXPORT void D2_CelContext_SetDirectionIndex(
+DLLAPI void D2_CelContext_SetDirectionIndex(
     struct D2_CelContext* cel_context,
     unsigned int direction_index
 );
@@ -189,14 +189,14 @@ DLLEXPORT void D2_CelContext_SetDirectionIndex(
 /**
  * Returns the value of the CelContext's frame index member.
  */
-DLLEXPORT unsigned int D2_CelContext_GetFrameIndex(
+DLLAPI unsigned int D2_CelContext_GetFrameIndex(
     const struct D2_CelContext* cel_context
 );
 
 /**
  * Sets the value of the CelContext's frame index member.
  */
-DLLEXPORT void D2_CelContext_SetFrameIndex(
+DLLAPI void D2_CelContext_SetFrameIndex(
     struct D2_CelContext* cel_context,
     unsigned int frame_index
 );
@@ -209,7 +209,7 @@ DLLEXPORT void D2_CelContext_SetFrameIndex(
  * Initializes a CelContext with the specified cel file, direction,
  * and frame.
  */
-DLLEXPORT struct D2_CelContext_Api D2_CelContext_Api_Init(
+DLLAPI struct D2_CelContext_Api D2_CelContext_Api_Init(
     struct D2_CelFile* cel_file,
     unsigned int direction_index,
     unsigned int frame_index
@@ -218,15 +218,15 @@ DLLEXPORT struct D2_CelContext_Api D2_CelContext_Api_Init(
 /**
  * Deinitializes the CelContext.
  */
-DLLEXPORT void D2_CelContext_Api_Deinit(
+DLLAPI void D2_CelContext_Api_Deinit(
     struct D2_CelContext_Api* cel_context
 );
 
-DLLEXPORT struct D2_CelContext* D2_CelContext_Api_Get(
+DLLAPI struct D2_CelContext* D2_CelContext_Api_Get(
     struct D2_CelContext_Api* cel_context
 );
 
-DLLEXPORT const struct D2_CelContext* D2_CelContext_Api_GetConst(
+DLLAPI const struct D2_CelContext* D2_CelContext_Api_GetConst(
     const struct D2_CelContext_Api* cel_context
 );
 
@@ -306,5 +306,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_CONTEXT_H_ */

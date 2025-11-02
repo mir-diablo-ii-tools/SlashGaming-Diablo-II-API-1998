@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
@@ -58,5 +58,5 @@ typedef ::D2_CelFile_1_00 CelFile_1_00;
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_CEL_FILE_D2_CEL_FILE_STRUCT_HPP_ */

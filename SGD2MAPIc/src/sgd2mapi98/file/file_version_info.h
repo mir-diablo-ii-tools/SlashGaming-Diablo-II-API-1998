@@ -51,7 +51,7 @@
 
 #include "mdc/std/wchar.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,27 +63,27 @@ struct Mapi_FileVersionInfo {
 
 #define MAPI_FILE_VERSION_INFO_UNINIT { 0 };
 
-DLLEXPORT extern const struct Mapi_FileVersionInfo
+DLLAPI extern const struct Mapi_FileVersionInfo
 Mapi_FileVersionInfo_kUninit;
 
-DLLEXPORT struct Mapi_FileVersionInfo Mapi_FileVersionInfo_InitFromPath(
+DLLAPI struct Mapi_FileVersionInfo Mapi_FileVersionInfo_InitFromPath(
     const wchar_t* path
 );
 
-DLLEXPORT void Mapi_FileVersionInfo_Deinit(
+DLLAPI void Mapi_FileVersionInfo_Deinit(
     struct Mapi_FileVersionInfo* file_version_info
 );
 
-DLLEXPORT const VS_FIXEDFILEINFO* Mapi_FileVersionInfo_QueryFixedFileInfo(
+DLLAPI const VS_FIXEDFILEINFO* Mapi_FileVersionInfo_QueryFixedFileInfo(
     const struct Mapi_FileVersionInfo* file_version_info
 );
 
-DLLEXPORT const wchar_t* Mapi_FileVersionInfo_QueryString(
+DLLAPI const wchar_t* Mapi_FileVersionInfo_QueryString(
     const struct Mapi_FileVersionInfo* file_version_info,
     const wchar_t* sub_block
 );
 
-DLLEXPORT const DWORD* Mapi_FileVersionInfo_QueryVar(
+DLLAPI const DWORD* Mapi_FileVersionInfo_QueryVar(
     const struct Mapi_FileVersionInfo* file_version_info,
     const wchar_t* sub_block,
     size_t* count
@@ -93,5 +93,5 @@ DLLEXPORT const DWORD* Mapi_FileVersionInfo_QueryVar(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGMAPI_C_FILE_FILE_VERSION_INFO_H_ */

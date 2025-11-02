@@ -50,12 +50,12 @@
 
 #include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT void DrawRectangle(
+DLLAPI void DrawRectangle(
     int left,
     int top,
     int right,
@@ -64,7 +64,7 @@ DLLEXPORT void DrawRectangle(
     DrawEffect draw_effect
 );
 
-DLLEXPORT void DrawRectangle_1_00(
+DLLAPI void DrawRectangle_1_00(
     int32_t left,
     int32_t top,
     int32_t right,

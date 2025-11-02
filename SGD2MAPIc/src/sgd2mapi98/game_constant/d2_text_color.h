@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_COLOR_H_
 #define SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_COLOR_H_
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic enum definitions
@@ -125,15 +125,15 @@ typedef enum D2_TextColor_1_00 D2_TextColor_1_00;
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_TextColor_ToGameValue(enum D2_TextColor api_value);
+DLLAPI int D2_TextColor_ToGameValue(enum D2_TextColor api_value);
 
-DLLEXPORT enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(
+DLLAPI enum D2_TextColor_1_00 D2_TextColor_ToGameValue_1_00(
     enum D2_TextColor api_value
 );
 
-DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue(int game_value);
+DLLAPI enum D2_TextColor D2_TextColor_ToApiValue(int game_value);
 
-DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue_1_00(
+DLLAPI enum D2_TextColor D2_TextColor_ToApiValue_1_00(
     enum D2_TextColor_1_00 game_value
 );
 
@@ -141,5 +141,5 @@ DLLEXPORT enum D2_TextColor D2_TextColor_ToApiValue_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_CONSTANT_D2_TEXT_COLOR_H_ */

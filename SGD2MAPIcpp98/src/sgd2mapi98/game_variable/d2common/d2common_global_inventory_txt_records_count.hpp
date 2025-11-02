@@ -48,23 +48,23 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2common {
 
-DLLEXPORT unsigned int GetGlobalInventoryTxtRecordsCount();
-DLLEXPORT uint32_t GetGlobalInventoryTxtRecordsCount_1_00();
+DLLAPI unsigned int GetGlobalInventoryTxtRecordsCount();
+DLLAPI uint32_t GetGlobalInventoryTxtRecordsCount_1_00();
 
-DLLEXPORT void SetGlobalInventoryTxtRecordsCount(
+DLLAPI void SetGlobalInventoryTxtRecordsCount(
     unsigned int records_count
 );
-DLLEXPORT void SetGlobalInventoryTxtRecordsCount_1_00(
+DLLAPI void SetGlobalInventoryTxtRecordsCount_1_00(
     uint32_t records_count
 );
 
 } // namespace d2common
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_RECORDS_COUNT_HPP_ */

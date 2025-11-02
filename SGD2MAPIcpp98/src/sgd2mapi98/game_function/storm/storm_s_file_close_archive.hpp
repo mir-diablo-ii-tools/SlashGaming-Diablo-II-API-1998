@@ -49,21 +49,21 @@
 #include "sgd2mapi98/game_bool.hpp"
 #include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace storm {
 
-DLLEXPORT bool SFileCloseArchive(
+DLLAPI bool SFileCloseArchive(
     MpqArchive* mpq_archive
 );
 
-DLLEXPORT ::mapi::bool32 SFileCloseArchive_1_00(
+DLLAPI ::mapi::bool32 SFileCloseArchive_1_00(
     MpqArchive_1_00* mpq_archive
 );
 
 } // namespace storm
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_HPP_ */

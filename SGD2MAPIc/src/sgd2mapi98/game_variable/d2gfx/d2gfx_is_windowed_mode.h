@@ -48,23 +48,23 @@
 
 #include "sgd2mapi98/game_bool.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2GFX_GetIsWindowedMode(void);
+DLLAPI int D2_D2GFX_GetIsWindowedMode(void);
 
-DLLEXPORT mapi_bool32 D2_D2GFX_GetIsWindowedMode_1_00(void);
+DLLAPI mapi_bool32 D2_D2GFX_GetIsWindowedMode_1_00(void);
 
-DLLEXPORT void D2_D2GFX_SetIsWindowedMode(int is_window_mode);
+DLLAPI void D2_D2GFX_SetIsWindowedMode(int is_window_mode);
 
-DLLEXPORT void D2_D2GFX_SetIsWindowedMode_1_00(mapi_bool32 is_window_mode);
+DLLAPI void D2_D2GFX_SetIsWindowedMode_1_00(mapi_bool32 is_window_mode);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_H_ */

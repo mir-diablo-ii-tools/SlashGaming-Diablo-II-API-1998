@@ -51,7 +51,7 @@
 #include "mdc/std/assert.h"
 #include "mdc/std/stdint.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -109,7 +109,7 @@ extern "C" {
  * Returns the element of the PositionalRectangle array at the specified
  * index.
  */
-DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_Access(
+DLLAPI struct D2_PositionalRectangle* D2_PositionalRectangle_Access(
     struct D2_PositionalRectangle* positional_rectangle,
     size_t index
 );
@@ -118,7 +118,7 @@ DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_Access(
  * Returns the element of the PositionalRectangle array at the specified
  * index.
  */
-DLLEXPORT const struct D2_PositionalRectangle*
+DLLAPI const struct D2_PositionalRectangle*
 D2_PositionalRectangle_AccessConst(
     const struct D2_PositionalRectangle* positional_rectangle,
     size_t index
@@ -128,7 +128,7 @@ D2_PositionalRectangle_AccessConst(
  * Assigns each PositionalRectangle member the values of the source
  * PositionalRectangle. This is a shallow copy operation.
  */
-DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
+DLLAPI struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
     struct D2_PositionalRectangle* dest,
     const struct D2_PositionalRectangle* src
 );
@@ -136,14 +136,14 @@ DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_AssignMembers(
 /**
  * Returns the value of the PositionalRectangle's left member.
  */
-DLLEXPORT int D2_PositionalRectangle_GetLeft(
+DLLAPI int D2_PositionalRectangle_GetLeft(
     const struct D2_PositionalRectangle* positional_rectangle
 );
 
 /**
  * Sets the value of the PositionalRectangle's left member.
  */
-DLLEXPORT void D2_PositionalRectangle_SetLeft(
+DLLAPI void D2_PositionalRectangle_SetLeft(
     struct D2_PositionalRectangle* positional_rectangle,
     int left
 );
@@ -151,14 +151,14 @@ DLLEXPORT void D2_PositionalRectangle_SetLeft(
 /**
  * Returns the value of the PositionalRectangle's right member.
  */
-DLLEXPORT int D2_PositionalRectangle_GetRight(
+DLLAPI int D2_PositionalRectangle_GetRight(
     const struct D2_PositionalRectangle* positional_rectangle
 );
 
 /**
  * Sets the value of the PositionalRectangle's right member.
  */
-DLLEXPORT void D2_PositionalRectangle_SetRight(
+DLLAPI void D2_PositionalRectangle_SetRight(
     struct D2_PositionalRectangle* positional_rectangle,
     int right
 );
@@ -166,14 +166,14 @@ DLLEXPORT void D2_PositionalRectangle_SetRight(
 /**
  * Returns the value of the PositionalRectangle's top member.
  */
-DLLEXPORT int D2_PositionalRectangle_GetTop(
+DLLAPI int D2_PositionalRectangle_GetTop(
     const struct D2_PositionalRectangle* positional_rectangle
 );
 
 /**
  * Sets the value of the PositionalRectangle's top member.
  */
-DLLEXPORT void D2_PositionalRectangle_SetTop(
+DLLAPI void D2_PositionalRectangle_SetTop(
     struct D2_PositionalRectangle* positional_rectangle,
     int top
 );
@@ -181,14 +181,14 @@ DLLEXPORT void D2_PositionalRectangle_SetTop(
 /**
  * Returns the value of the PositionalRectangle's bottom member.
  */
-DLLEXPORT int D2_PositionalRectangle_GetBottom(
+DLLAPI int D2_PositionalRectangle_GetBottom(
     const struct D2_PositionalRectangle* positional_rectangle
 );
 
 /**
  * Sets the value of the PositionalRectangle's bottom member.
  */
-DLLEXPORT void D2_PositionalRectangle_SetBottom(
+DLLAPI void D2_PositionalRectangle_SetBottom(
     struct D2_PositionalRectangle* positional_rectangle,
     int bottom
 );
@@ -200,7 +200,7 @@ DLLEXPORT void D2_PositionalRectangle_SetBottom(
 /**
  * Initializes a PositionalRectangle with the specified position.
  */
-DLLEXPORT struct D2_PositionalRectangle_Api
+DLLAPI struct D2_PositionalRectangle_Api
 D2_PositionalRectangle_Api_InitFromPositions(
     int left,
     int right,
@@ -211,15 +211,15 @@ D2_PositionalRectangle_Api_InitFromPositions(
 /**
  * Deinitialize the PositionalRectangle.
  */
-DLLEXPORT void D2_PositionalRectangle_Api_Deinit(
+DLLAPI void D2_PositionalRectangle_Api_Deinit(
     struct D2_PositionalRectangle_Api* positional_rectangle
 );
 
-DLLEXPORT struct D2_PositionalRectangle* D2_PositionalRectangle_Api_Get(
+DLLAPI struct D2_PositionalRectangle* D2_PositionalRectangle_Api_Get(
     struct D2_PositionalRectangle_Api* positional_rectangle
 );
 
-DLLEXPORT const struct D2_PositionalRectangle*
+DLLAPI const struct D2_PositionalRectangle*
 D2_PositionalRectangle_Api_GetConst(
     const struct D2_PositionalRectangle_Api* positional_rectangle
 );
@@ -257,5 +257,5 @@ static_assert(
     "Incorrect size."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_POSITIONAL_RECTANGLE_H_ */

@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace screen_open_mode {
@@ -101,16 +101,16 @@ typedef screen_open_mode::v1_07::ScreenOpenMode_1_07 ScreenOpenMode_1_07;
 
 namespace screen_open_mode {
 
-DLLEXPORT int ToGameValue(ScreenOpenMode api_value);
+DLLAPI int ToGameValue(ScreenOpenMode api_value);
 
-DLLEXPORT ScreenOpenMode_1_07 ToGameValue_1_07(ScreenOpenMode api_value);
+DLLAPI ScreenOpenMode_1_07 ToGameValue_1_07(ScreenOpenMode api_value);
 
-DLLEXPORT ScreenOpenMode ToApiValue(int game_value);
+DLLAPI ScreenOpenMode ToApiValue(int game_value);
 
-DLLEXPORT ScreenOpenMode ToApiValue_1_07(ScreenOpenMode_1_07 game_value);
+DLLAPI ScreenOpenMode ToApiValue_1_07(ScreenOpenMode_1_07 game_value);
 
 } // namespace screen_open_mode
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_SCREEN_OPEN_MODE_HPP_ */

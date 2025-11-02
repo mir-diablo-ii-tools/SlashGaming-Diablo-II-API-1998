@@ -53,7 +53,7 @@
 
 #include "sgd2mapi98/game_undefined.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -99,42 +99,42 @@ extern "C" {
 /**
  * Returns the value of the Cel's height member.
  */
-DLLEXPORT int D2_Cel_GetHeight(const struct D2_Cel* cel);
+DLLAPI int D2_Cel_GetHeight(const struct D2_Cel* cel);
 
 /**
  * Sets the value of the Cel's height member.
  */
-DLLEXPORT void D2_Cel_SetHeight(struct D2_Cel* cel, int height);
+DLLAPI void D2_Cel_SetHeight(struct D2_Cel* cel, int height);
 
 /**
  * Returns the value of the Cel's offset-x member.
  */
-DLLEXPORT int D2_Cel_GetOffsetX(const struct D2_Cel* cel);
+DLLAPI int D2_Cel_GetOffsetX(const struct D2_Cel* cel);
 
 /**
  * Sets the value of the Cel's offset-x member.
  */
-DLLEXPORT void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x);
+DLLAPI void D2_Cel_SetOffsetX(struct D2_Cel* cel, int offset_x);
 
 /**
  * Returns the value of the Cel's offset-y member.
  */
-DLLEXPORT int D2_Cel_GetOffsetY(const struct D2_Cel* cel);
+DLLAPI int D2_Cel_GetOffsetY(const struct D2_Cel* cel);
 
 /**
  * Sets the value of the Cel's offset-y member.
  */
-DLLEXPORT void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y);
+DLLAPI void D2_Cel_SetOffsetY(struct D2_Cel* cel, int offset_y);
 
 /**
  * Returns the value of the Cel's width member.
  */
-DLLEXPORT int D2_Cel_GetWidth(const struct D2_Cel* cel);
+DLLAPI int D2_Cel_GetWidth(const struct D2_Cel* cel);
 
 /**
  * Sets the value of the Cel's width member.
  */
-DLLEXPORT void D2_Cel_SetWidth(struct D2_Cel* cel, int width);
+DLLAPI void D2_Cel_SetWidth(struct D2_Cel* cel, int width);
 
 #ifdef __cplusplus
 } /* extern "C" */
@@ -169,5 +169,5 @@ static_assert(
     "Incorrect member alignment."
 );
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_CEL_H_ */

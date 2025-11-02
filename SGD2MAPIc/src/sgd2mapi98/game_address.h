@@ -53,7 +53,7 @@
 
 #include "sgd2mapi98/default_game_library.h"
 
-#include "../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,14 +65,14 @@ struct Mapi_GameAddress {
 
 #define MAPI_GAME_ADDRESS_UNINIT { 0 }
 
-DLLEXPORT extern const struct Mapi_GameAddress Mapi_GameAddress_kUninit;
+DLLAPI extern const struct Mapi_GameAddress Mapi_GameAddress_kUninit;
 
 /**
  * Initializes a GameAddress. The game address locator is specified
  * as a string encoded in 7-bit ASCII, which represents the address's
  * exported name.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryAndExportedName(
     enum D2_DefaultLibrary library,
     const char* decorated_name
@@ -83,7 +83,7 @@ Mapi_GameAddress_InitFromLibraryAndExportedName(
  * as a null-terminated string encoded in 7-bit ASCII, which
  * represents the address's exported name.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
     HMODULE library,
     const char* decorated_name
@@ -93,7 +93,7 @@ Mapi_GameAddress_InitFromLibraryHandleAndExportedName(
  * Initializes a GameAddress. The game address locator is specified
  * as the offset from the module base address to the target address.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryAndOffset(
     enum D2_DefaultLibrary library,
     ptrdiff_t offset
@@ -103,7 +103,7 @@ Mapi_GameAddress_InitFromLibraryAndOffset(
  * Initializes a GameAddress. The game address locator is specified
  * as the offset from the module base address to the target address.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryHandleAndOffset(
     HMODULE library,
     ptrdiff_t offset
@@ -113,7 +113,7 @@ Mapi_GameAddress_InitFromLibraryHandleAndOffset(
  * Initializes a GameAddress. The game address locator is specified
  * as the address's ordinal value.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryAndOrdinal(
     enum D2_DefaultLibrary library,
     int16_t ordinal
@@ -123,45 +123,45 @@ Mapi_GameAddress_InitFromLibraryAndOrdinal(
  * Initializes a GameAddress. The game address locator is specified
  * as the address's ordinal value.
  */
-DLLEXPORT struct Mapi_GameAddress
+DLLAPI struct Mapi_GameAddress
 Mapi_GameAddress_InitFromLibraryHandleAndOrdinal(
     HMODULE library,
     int16_t ordinal
 );
 
-DLLEXPORT struct Mapi_GameAddress Mapi_GameAddress_InitCopy(
+DLLAPI struct Mapi_GameAddress Mapi_GameAddress_InitCopy(
     const struct Mapi_GameAddress* src
 );
 
-DLLEXPORT struct Mapi_GameAddress Mapi_GameAddress_InitMove(
+DLLAPI struct Mapi_GameAddress Mapi_GameAddress_InitMove(
     struct Mapi_GameAddress* src
 );
 
-DLLEXPORT void Mapi_GameAddress_Deinit(
+DLLAPI void Mapi_GameAddress_Deinit(
     struct Mapi_GameAddress* game_address
 );
 
-DLLEXPORT struct Mapi_GameAddress* Mapi_GameAddress_AssignCopy(
+DLLAPI struct Mapi_GameAddress* Mapi_GameAddress_AssignCopy(
     struct Mapi_GameAddress* dest,
     const struct Mapi_GameAddress* src
 );
 
-DLLEXPORT struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
+DLLAPI struct Mapi_GameAddress* Mapi_GameAddress_AssignMove(
     struct Mapi_GameAddress* dest,
     struct Mapi_GameAddress* src
 );
 
-DLLEXPORT int Mapi_GameAddress_Equal(
+DLLAPI int Mapi_GameAddress_Equal(
     const struct Mapi_GameAddress* game_address1,
     const struct Mapi_GameAddress* game_address2
 );
 
-DLLEXPORT int Mapi_GameAddress_Compare(
+DLLAPI int Mapi_GameAddress_Compare(
     const struct Mapi_GameAddress* game_address1,
     const struct Mapi_GameAddress* game_address2
 );
 
-DLLEXPORT void Mapi_GameAddress_Swap(
+DLLAPI void Mapi_GameAddress_Swap(
     struct Mapi_GameAddress* game_address1,
     struct Mapi_GameAddress* game_address2
 );
@@ -170,5 +170,5 @@ DLLEXPORT void Mapi_GameAddress_Swap(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGMAPI_C_GAME_ADDRESS_H_ */

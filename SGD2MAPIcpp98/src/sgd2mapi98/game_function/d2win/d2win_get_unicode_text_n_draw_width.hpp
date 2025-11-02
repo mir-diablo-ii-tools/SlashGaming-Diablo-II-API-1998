@@ -49,17 +49,17 @@
 #include "mdc/std/stdint.h"
 #include "mdc/std/wchar.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT int GetUnicodeTextNDrawWidth(
+DLLAPI int GetUnicodeTextNDrawWidth(
     const wchar_t* text,
     int length
 );
 
-DLLEXPORT int32_t GetUnicodeTextNDrawWidth_1_00(
+DLLAPI int32_t GetUnicodeTextNDrawWidth_1_00(
     const wchar_t* text,
     int32_t length
 );
@@ -67,5 +67,5 @@ DLLEXPORT int32_t GetUnicodeTextNDrawWidth_1_00(
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_GET_UNICODE_TEXT_N_DRAW_WIDTH_HPP_ */

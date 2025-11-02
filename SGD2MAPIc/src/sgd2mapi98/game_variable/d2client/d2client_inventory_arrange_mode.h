@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT unsigned int D2_D2Client_GetInventoryArrangeMode(void);
+DLLAPI unsigned int D2_D2Client_GetInventoryArrangeMode(void);
 
-DLLEXPORT uint32_t D2_D2Client_GetInventoryArrangeMode_1_07(void);
+DLLAPI uint32_t D2_D2Client_GetInventoryArrangeMode_1_07(void);
 
-DLLEXPORT void D2_D2Client_SetInventoryArrangeMode(
+DLLAPI void D2_D2Client_SetInventoryArrangeMode(
     unsigned int inventory_arrange_mode
 );
 
-DLLEXPORT void D2_D2Client_SetInventoryArrangeMode_1_07(
+DLLAPI void D2_D2Client_SetInventoryArrangeMode_1_07(
     uint32_t inventory_arrange_mode
 );
 
@@ -70,5 +70,5 @@ DLLEXPORT void D2_D2Client_SetInventoryArrangeMode_1_07(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_INVENTORY_ARRANGE_MODE_H_ */

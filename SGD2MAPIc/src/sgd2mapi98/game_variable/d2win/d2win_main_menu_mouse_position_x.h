@@ -48,19 +48,19 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT int D2_D2Win_GetMainMenuMousePositionX(void);
+DLLAPI int D2_D2Win_GetMainMenuMousePositionX(void);
 
-DLLEXPORT int32_t D2_D2Win_GetMainMenuMousePositionX_1_00(void);
+DLLAPI int32_t D2_D2Win_GetMainMenuMousePositionX_1_00(void);
 
-DLLEXPORT void D2_D2Win_SetMainMenuMousePositionX(int mouse_position_x);
+DLLAPI void D2_D2Win_SetMainMenuMousePositionX(int mouse_position_x);
 
-DLLEXPORT void D2_D2Win_SetMainMenuMousePositionX_1_00(
+DLLAPI void D2_D2Win_SetMainMenuMousePositionX_1_00(
     int32_t mouse_position_x
 );
 
@@ -68,5 +68,5 @@ DLLEXPORT void D2_D2Win_SetMainMenuMousePositionX_1_00(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_D2WIN_D2WIN_MAIN_MENU_MOUSE_POSITION_X_H_ */

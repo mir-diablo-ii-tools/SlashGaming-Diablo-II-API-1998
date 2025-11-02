@@ -48,21 +48,21 @@
 
 #include "sgd2mapi98/game_bool.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT bool GetIsNewStatsButtonPressed();
+DLLAPI bool GetIsNewStatsButtonPressed();
 
-DLLEXPORT ::mapi::bool32 GetIsNewStatsButtonPressed_1_00();
+DLLAPI ::mapi::bool32 GetIsNewStatsButtonPressed_1_00();
 
-DLLEXPORT void SetIsNewStatsButtonPressed(bool is_button_pressed);
+DLLAPI void SetIsNewStatsButtonPressed(bool is_button_pressed);
 
-DLLEXPORT void SetIsNewStatsButtonPressed_1_00(::mapi::bool32 is_button_pressed);
+DLLAPI void SetIsNewStatsButtonPressed_1_00(::mapi::bool32 is_button_pressed);
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_STATS_BUTTON_PRESSED_HPP_ */

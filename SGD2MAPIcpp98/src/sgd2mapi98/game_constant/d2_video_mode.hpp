@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace video_mode {
@@ -107,16 +107,16 @@ typedef video_mode::v1_00::VideoMode_1_00 VideoMode_1_00;
 
 namespace video_mode {
 
-DLLEXPORT int ToGameValue(VideoMode api_value);
+DLLAPI int ToGameValue(VideoMode api_value);
 
-DLLEXPORT VideoMode_1_00 ToGameValue_1_00(VideoMode api_value);
+DLLAPI VideoMode_1_00 ToGameValue_1_00(VideoMode api_value);
 
-DLLEXPORT VideoMode ToApiValue(int game_value);
+DLLAPI VideoMode ToApiValue(int game_value);
 
-DLLEXPORT VideoMode ToApiValue_1_00(VideoMode_1_00 game_value);
+DLLAPI VideoMode ToApiValue_1_00(VideoMode_1_00 game_value);
 
 } // namespace video_mode
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_VIDEO_MODE_HPP_ */

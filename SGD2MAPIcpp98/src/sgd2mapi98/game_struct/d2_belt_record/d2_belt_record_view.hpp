@@ -53,11 +53,11 @@
 #include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_struct.hpp"
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT BeltRecord_View {
+class DLLAPI BeltRecord_View {
  public:
   union ViewType {
     const BeltRecord_1_00* v1_00;
@@ -81,5 +81,5 @@ class DLLEXPORT BeltRecord_View {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_VIEW_HPP_ */

@@ -52,12 +52,12 @@
 #include "sgd2mapi98/game_bool.hpp"
 #include "sgd2mapi98/game_constant/d2_text_color.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2win {
 
-DLLEXPORT void DrawUnicodeText(
+DLLAPI void DrawUnicodeText(
     const wchar_t* text,
     int position_x,
     int position_y,
@@ -65,7 +65,7 @@ DLLEXPORT void DrawUnicodeText(
     bool is_indented
 );
 
-DLLEXPORT void DrawUnicodeText_1_00(
+DLLAPI void DrawUnicodeText_1_00(
     const wchar_t* text,
     int32_t position_x,
     int32_t position_y,
@@ -76,5 +76,5 @@ DLLEXPORT void DrawUnicodeText_1_00(
 } // namespace d2win
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_DRAW_UNICODE_TEXT_HPP_ */

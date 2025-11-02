@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace difficulty_level {
@@ -99,16 +99,16 @@ typedef difficulty_level::v1_00::DifficultyLevel_1_00 DifficultyLevel_1_00;
 
 namespace difficulty_level {
 
-DLLEXPORT int ToGameValue(DifficultyLevel api_value);
+DLLAPI int ToGameValue(DifficultyLevel api_value);
 
-DLLEXPORT DifficultyLevel_1_00 ToGameValue_1_00(DifficultyLevel api_value);
+DLLAPI DifficultyLevel_1_00 ToGameValue_1_00(DifficultyLevel api_value);
 
-DLLEXPORT DifficultyLevel ToApiValue(int game_value);
+DLLAPI DifficultyLevel ToApiValue(int game_value);
 
-DLLEXPORT DifficultyLevel ToApiValue_1_00(DifficultyLevel_1_00 game_value);
+DLLAPI DifficultyLevel ToApiValue_1_00(DifficultyLevel_1_00 game_value);
 
 } // namespace difficulty_level
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_DIFFICULTY_LEVEL_HPP_ */

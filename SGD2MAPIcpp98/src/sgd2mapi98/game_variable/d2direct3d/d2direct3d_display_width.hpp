@@ -48,21 +48,21 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2direct3d {
 
-DLLEXPORT int GetDisplayWidth();
+DLLAPI int GetDisplayWidth();
 
-DLLEXPORT int32_t GetDisplayWidth_1_00();
+DLLAPI int32_t GetDisplayWidth_1_00();
 
-DLLEXPORT void SetDisplayWidth(int width);
+DLLAPI void SetDisplayWidth(int width);
 
-DLLEXPORT void SetDisplayWidth_1_00(int32_t width);
+DLLAPI void SetDisplayWidth_1_00(int32_t width);
 
 } // namespace d2direct3d
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2DIRECT3D_D2DIRECT3D_DISPLAY_WIDTH_HPP_ */

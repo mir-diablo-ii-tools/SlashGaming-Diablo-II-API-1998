@@ -46,19 +46,19 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_H_
 #define SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_H_
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT char* D2_BNClient_GetGatewayDomainName(void);
+DLLAPI char* D2_BNClient_GetGatewayDomainName(void);
 
-DLLEXPORT char* D2_BNClient_GetGatewayDomainName_1_00(void);
+DLLAPI char* D2_BNClient_GetGatewayDomainName_1_00(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_VARIABLE_BNCLIENT_BNCLIENT_GATEWAY_DOMAIN_NAME_H_ */

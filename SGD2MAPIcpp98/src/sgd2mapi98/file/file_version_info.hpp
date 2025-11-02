@@ -51,11 +51,11 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace mapi {
 
-class DLLEXPORT FileVersionInfo {
+class DLLAPI FileVersionInfo {
  public:
   FileVersionInfo();
 
@@ -82,5 +82,5 @@ class DLLEXPORT FileVersionInfo {
 
 } // namespace mapi
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGMAPI_CPP98_FILE_FILE_VERSION_INFO_HPP_ */

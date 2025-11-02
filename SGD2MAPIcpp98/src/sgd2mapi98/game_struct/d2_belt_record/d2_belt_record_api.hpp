@@ -57,11 +57,11 @@
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
 #include "sgd2mapi98/game_undefined.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT BeltRecord_Api {
+class DLLAPI BeltRecord_Api {
  public:
   BeltRecord_Api();
 
@@ -97,5 +97,5 @@ class DLLEXPORT BeltRecord_Api {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_BELT_RECORD_D2_BELT_RECORD_API_HPP_ */

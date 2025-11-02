@@ -171,9 +171,9 @@ set(INCLUDE_HEADERS
     "src/sgd2mapi98/game_version.h"
     "src/sgd2mapi98/helper.h"
 
-    "src/d2api_version.h"
-    "src/dllexport_define.inc"
-    "src/dllexport_define.inc"
+    "src/sgd2mapi98/d2api_version.h"
+    "src/sgd2mapi98/dllapi_c_define.inc"
+    "src/sgd2mapi98/dllapi_c_define.inc"
     "src/sgd2mapi98.h"
 )
 

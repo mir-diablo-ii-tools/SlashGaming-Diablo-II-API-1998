@@ -51,7 +51,7 @@
 #include "mdc/std/assert.h"
 #include "mdc/std/stdint.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 /**
  * Generic struct declaration
@@ -96,5 +96,5 @@ extern "C" {
  * Static assertions (1.00)
  */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_H_ */

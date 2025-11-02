@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98/game_constant/d2_video_mode.hpp"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace helper {
@@ -57,12 +57,12 @@ namespace helper {
  * Determine the video mode from the command line args, then from the
  * registry.
  */
-DLLEXPORT VideoMode DetermineVideoMode();
+DLLAPI VideoMode DetermineVideoMode();
 
-DLLEXPORT VideoMode_1_00 DetermineVideoMode_1_00();
+DLLAPI VideoMode_1_00 DetermineVideoMode_1_00();
 
 } // namespace helper
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_HELPER_D2_DETERMINE_VIDEO_MODE_HPP_ */

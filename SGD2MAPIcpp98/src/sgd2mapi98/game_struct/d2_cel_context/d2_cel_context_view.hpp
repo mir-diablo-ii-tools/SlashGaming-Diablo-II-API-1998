@@ -53,11 +53,11 @@
 #include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_view.hpp"
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_struct.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 
-class DLLEXPORT CelContext_View {
+class DLLAPI CelContext_View {
  public:
   union ViewType {
     const CelContext_1_00* v1_00;
@@ -89,5 +89,5 @@ class DLLEXPORT CelContext_View {
 
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_STRUCT_D2_CEL_CONTEXT_D2_CEL_CONTEXT_VIEW_HPP_ */

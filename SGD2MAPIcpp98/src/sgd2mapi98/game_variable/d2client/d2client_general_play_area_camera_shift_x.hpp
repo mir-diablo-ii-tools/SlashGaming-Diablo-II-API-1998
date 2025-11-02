@@ -48,25 +48,25 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT int GetGeneralPlayAreaCameraShiftX();
+DLLAPI int GetGeneralPlayAreaCameraShiftX();
 
-DLLEXPORT int32_t GetGeneralPlayAreaCameraShiftX_1_00();
+DLLAPI int32_t GetGeneralPlayAreaCameraShiftX_1_00();
 
-DLLEXPORT void SetGeneralPlayAreaCameraShiftX(
+DLLAPI void SetGeneralPlayAreaCameraShiftX(
     int camera_shift_x
 );
 
-DLLEXPORT void SetGeneralPlayAreaCameraShiftX_1_00(
+DLLAPI void SetGeneralPlayAreaCameraShiftX_1_00(
     int32_t camera_shift_x
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GENERAL_PLAY_AREA_CAMERA_SHIFT_X_HPP_ */

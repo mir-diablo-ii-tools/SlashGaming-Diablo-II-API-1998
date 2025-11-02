@@ -51,7 +51,7 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #define MAPI_FIXED_FILE_VERSION_MERGE_VERSION_TO_VALUE( \
     major_high, \
@@ -79,10 +79,10 @@ struct Mapi_FixedFileVersion {
 extern "C" {
 #endif /* __cplusplus */
 
-DLLEXPORT extern const struct Mapi_FixedFileVersion
+DLLAPI extern const struct Mapi_FixedFileVersion
 Mapi_FixedFileVersion_kUninit;
 
-DLLEXPORT struct Mapi_FixedFileVersion
+DLLAPI struct Mapi_FixedFileVersion
 Mapi_FixedFileVersion_InitFromVersion(
     WORD major_high,
     WORD major_low,
@@ -90,11 +90,11 @@ Mapi_FixedFileVersion_InitFromVersion(
     WORD minor_low
 );
 
-DLLEXPORT void Mapi_FixedFileVersion_Deinit(
+DLLAPI void Mapi_FixedFileVersion_Deinit(
     struct Mapi_FixedFileVersion* fixed_file_version
 );
 
-DLLEXPORT uint_least64_t Mapi_FixedFileVersion_ToValue(
+DLLAPI uint_least64_t Mapi_FixedFileVersion_ToValue(
     const struct Mapi_FixedFileVersion* fixed_file_version
 );
 
@@ -102,5 +102,5 @@ DLLEXPORT uint_least64_t Mapi_FixedFileVersion_ToValue(
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGMAPI_C_FILE_FIXED_FILE_VERSION_H_ */

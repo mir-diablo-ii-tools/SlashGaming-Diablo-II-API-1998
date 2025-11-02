@@ -50,21 +50,21 @@
 
 #include "sgd2mapi98/game_constant/d2_video_mode.hpp"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2gfx {
 
-DLLEXPORT VideoMode GetVideoMode();
+DLLAPI VideoMode GetVideoMode();
 
-DLLEXPORT VideoMode_1_00 GetVideoMode_1_00();
+DLLAPI VideoMode_1_00 GetVideoMode_1_00();
 
-DLLEXPORT void SetVideoMode(VideoMode video_mode);
+DLLAPI void SetVideoMode(VideoMode video_mode);
 
-DLLEXPORT void SetVideoMode_1_00(VideoMode_1_00 video_mode);
+DLLAPI void SetVideoMode_1_00(VideoMode_1_00 video_mode);
 
 } // namespace d2gfx
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_HPP_ */

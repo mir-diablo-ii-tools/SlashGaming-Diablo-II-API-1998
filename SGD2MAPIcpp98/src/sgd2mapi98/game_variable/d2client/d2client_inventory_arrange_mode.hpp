@@ -48,25 +48,25 @@
 
 #include "mdc/std/stdint.h"
 
-#include "../../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace d2client {
 
-DLLEXPORT unsigned int GetInventoryArrangeMode();
+DLLAPI unsigned int GetInventoryArrangeMode();
 
-DLLEXPORT uint32_t GetInventoryArrangeMode_1_07();
+DLLAPI uint32_t GetInventoryArrangeMode_1_07();
 
-DLLEXPORT void SetInventoryArrangeMode(
+DLLAPI void SetInventoryArrangeMode(
     unsigned int inventory_arrange_mode
 );
 
-DLLEXPORT void SetInventoryArrangeMode_1_07(
+DLLAPI void SetInventoryArrangeMode_1_07(
     uint32_t inventory_arrange_mode
 );
 
 } // namespace d2client
 } // namespace d2
 
-#include "../../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_INVENTORY_ARRANGE_MODE_HPP_ */

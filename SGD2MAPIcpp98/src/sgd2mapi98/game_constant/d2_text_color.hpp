@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_cpp98_define.inc"
 
 namespace d2 {
 namespace text_color {
@@ -131,16 +131,16 @@ typedef text_color::v1_00::TextColor_1_00 TextColor_1_00;
 
 namespace text_color {
 
-DLLEXPORT int ToGameValue(TextColor api_value);
+DLLAPI int ToGameValue(TextColor api_value);
 
-DLLEXPORT TextColor_1_00 ToGameValue_1_00(TextColor api_value);
+DLLAPI TextColor_1_00 ToGameValue_1_00(TextColor api_value);
 
-DLLEXPORT TextColor ToApiValue(int game_value);
+DLLAPI TextColor ToApiValue(int game_value);
 
-DLLEXPORT TextColor ToApiValue_1_00(TextColor_1_00 game_value);
+DLLAPI TextColor ToApiValue_1_00(TextColor_1_00 game_value);
 
 } // namespace text_color
 } // namespace d2
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_cpp98_undef.inc"
 #endif /* SGD2MAPI_CPP98_GAME_CONSTANT_D2_TEXT_COLOR_HPP_ */

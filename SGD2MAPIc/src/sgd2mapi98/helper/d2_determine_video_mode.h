@@ -48,7 +48,7 @@
 
 #include "sgd2mapi98/game_constant/d2_video_mode.h"
 
-#include "../../dllexport_define.inc"
+#include "sgd2mapi98/dllapi_c_define.inc"
 
 #ifdef __cplusplus
 extern "C" {
@@ -58,13 +58,13 @@ extern "C" {
  * Determine the video mode from the command line args, then from the
  * registry.
  */
-DLLEXPORT enum D2_VideoMode D2_Helper_DetermineVideoMode(void);
+DLLAPI enum D2_VideoMode D2_Helper_DetermineVideoMode(void);
 
-DLLEXPORT enum D2_VideoMode_1_00 D2_Helper_DetermineVideoMode_1_00(void);
+DLLAPI enum D2_VideoMode_1_00 D2_Helper_DetermineVideoMode_1_00(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-#include "../../dllexport_undefine.inc"
+#include "sgd2mapi98/dllapi_c_undef.inc"
 #endif /* SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_ */
