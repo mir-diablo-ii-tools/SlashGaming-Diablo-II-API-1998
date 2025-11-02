@@ -45,7 +45,8 @@
 
 #include "sgd2mapi98/game_variable/d2common/d2common_global_inventory_txt_records_count.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2common {

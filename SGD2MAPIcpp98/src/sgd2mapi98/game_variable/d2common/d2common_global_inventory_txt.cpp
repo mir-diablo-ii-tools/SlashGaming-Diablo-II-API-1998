@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2common/d2common_global_inventory_txt.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_inventory_record/d2_inventory_record_struct.hpp"
 
 namespace d2 {
 namespace d2common {

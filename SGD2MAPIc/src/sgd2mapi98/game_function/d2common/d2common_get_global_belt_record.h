@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_RECORD_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_BELT_RECORD_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_struct/d2_belt_record.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_struct/d2_belt_record.h"
 
 #include "../../../dllexport_define.inc"
 

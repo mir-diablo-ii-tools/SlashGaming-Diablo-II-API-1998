@@ -48,10 +48,11 @@
 
 #include <stddef.h>
 
-#include <mdc/std/assert.h>
-#include <mdc/std/stdint.h>
-#include "../game_undefined.h"
-#include "d2_positional_rectangle.h"
+#include "mdc/std/assert.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_struct/d2_positional_rectangle.h"
+#include "sgd2mapi98/game_undefined.h"
 
 #include "../../dllexport_define.inc"
 

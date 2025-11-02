@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_FOG_FOG_ALLOC_CLIENT_MEMORY_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_FOG_FOG_ALLOC_CLIENT_MEMORY_HPP_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../../dllexport_define.inc"
 

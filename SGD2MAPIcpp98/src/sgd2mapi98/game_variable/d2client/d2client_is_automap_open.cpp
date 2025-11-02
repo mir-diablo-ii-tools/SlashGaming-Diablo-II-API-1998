@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2client/d2client_is_automap_open.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
 
 namespace d2 {
 namespace d2client {

@@ -45,10 +45,10 @@
 
 #include "sgd2mapi98/game_variable/bnclient/bnclient_gateway_domain_name.h"
 
+#include "sgd2mapi98/backend/game_address_table.h"
 #include "sgd2mapi98/default_game_library.h"
 #include "sgd2mapi98/game_address.h"
 #include "sgd2mapi98/game_version.h"
-#include "../../backend/game_address_table.h"
 
 static struct Mapi_GameAddress game_address;
 

@@ -45,6 +45,11 @@
 
 #include "sgd2mapi98/file/fixed_file_version.h"
 
+#include <limits.h>
+#include <windows.h>
+
+#include "mdc/std/stdint.h"
+
 /**
  * External
  */

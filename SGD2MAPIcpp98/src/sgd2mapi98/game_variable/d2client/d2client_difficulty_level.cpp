@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2client/d2client_difficulty_level.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_constant/d2_difficulty_level.hpp"
 
 namespace d2 {
 namespace d2client {

@@ -45,10 +45,20 @@
 
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_api.hpp"
 
+#include <stddef.h>
+
 #include <utility>
+
+#include "mdc/std/assert.h"
+#include "sgd2mapi98.h"
 
 #include "sgd2mapi98/game_function/d2win/d2win_load_mpq.hpp"
 #include "sgd2mapi98/game_function/d2win/d2win_unload_mpq.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_view.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_wrapper.hpp"
 
 namespace d2 {
 

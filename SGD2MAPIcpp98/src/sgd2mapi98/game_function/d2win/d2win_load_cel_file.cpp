@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
 
 namespace d2 {
 namespace d2win {

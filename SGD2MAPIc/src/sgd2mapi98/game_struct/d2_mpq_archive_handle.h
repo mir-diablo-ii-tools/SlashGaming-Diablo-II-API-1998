@@ -46,12 +46,12 @@
 #ifndef SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_
 #define SGD2MAPI_C_GAME_STRUCT_D2_MPQ_ARCHIVE_HANDLE_H_
 
+#include <stddef.h>
 #include <windows.h>
 
-#include <stddef.h>
+#include "mdc/std/assert.h"
 
-#include <mdc/std/assert.h>
-#include "d2_mpq_archive.h"
+#include "sgd2mapi98/game_struct/d2_mpq_archive.h"
 
 #include "../../dllexport_define.inc"
 

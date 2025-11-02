@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2GDI_D2GDI_BIT_BLOCK_WIDTH_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2GDI_D2GDI_BIT_BLOCK_WIDTH_HPP_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../../dllexport_define.inc"
 

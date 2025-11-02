@@ -48,8 +48,9 @@
 
 #include <stddef.h>
 
-#include <mdc/std/stdint.h>
-#include <mdc/std/wchar.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+
 #include "sgd2mapi98/game_address.h"
 
 #ifdef __cplusplus

@@ -45,6 +45,13 @@
 
 #include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_view.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+
 namespace d2 {
 
 GridLayout_View::GridLayout_View(const GridLayout* grid_layout) {

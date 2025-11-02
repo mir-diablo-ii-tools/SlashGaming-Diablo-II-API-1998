@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_HEIGHT_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_HEIGHT_HPP_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../../dllexport_define.inc"
 

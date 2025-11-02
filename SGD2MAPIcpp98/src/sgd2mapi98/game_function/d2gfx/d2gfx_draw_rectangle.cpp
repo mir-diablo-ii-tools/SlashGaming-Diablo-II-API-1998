@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/d2gfx/d2gfx_draw_rectangle.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
 
 namespace d2 {
 namespace d2gfx {

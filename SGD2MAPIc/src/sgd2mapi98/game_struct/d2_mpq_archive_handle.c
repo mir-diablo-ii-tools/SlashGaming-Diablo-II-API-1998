@@ -45,6 +45,13 @@
 
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle.h"
 
+#include <stddef.h>
+#include <windows.h>
+
+#include "mdc/std/assert.h"
+
+#include "sgd2mapi98/game_struct/d2_mpq_archive.h"
+
 /**
  * View and wrapper declarations
  */

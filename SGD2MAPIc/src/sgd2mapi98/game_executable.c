@@ -45,13 +45,15 @@
 
 #include "sgd2mapi98/game_executable.h"
 
+#include <stddef.h>
 #include <windows.h>
 
-#include <mdc/malloc/malloc.h>
-#include <mdc/std/threads.h>
+#include "mdc/malloc/malloc.h"
+#include "mdc/std/threads.h"
+#include "mdc/std/wchar.h"
 
+#include "sgd2mapi98/backend/d2se/d2se_file_pe_signature.h"
 #include "sgd2mapi98/file/file_version_info.h"
-#include "backend/d2se/d2se_file_pe_signature.h"
 
 static wchar_t game_executable_path[MAX_PATH + 1];
 static size_t game_executable_path_len = 0;

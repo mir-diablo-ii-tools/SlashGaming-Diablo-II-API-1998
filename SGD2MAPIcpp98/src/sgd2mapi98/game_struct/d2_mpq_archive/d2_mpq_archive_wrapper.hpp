@@ -48,9 +48,10 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi98.h>
-#include "d2_mpq_archive_struct.hpp"
-#include "d2_mpq_archive_view.hpp"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
 
 #include "../../../dllexport_define.inc"
 

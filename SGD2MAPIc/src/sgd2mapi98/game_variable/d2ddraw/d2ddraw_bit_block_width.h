@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_WIDTH_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2DDRAW_D2DDRAW_BIT_BLOCK_WIDTH_H_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../../dllexport_define.inc"
 

@@ -45,7 +45,12 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_draw_unicode_text.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_constant/d2_text_color.hpp"
 
 namespace d2 {
 namespace d2win {

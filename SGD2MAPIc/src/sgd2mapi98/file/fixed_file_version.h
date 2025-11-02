@@ -49,7 +49,7 @@
 #include <limits.h>
 #include <windows.h>
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../dllexport_define.inc"
 

@@ -43,10 +43,12 @@
  *  work.
  */
 
-#include "architecture_opcode.h"
+#include "sgd2mapi98/backend/architecture_opcode.h"
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/game_branch_type.h"
 
 enum Mapi_OpCode Mapi_ToOpcode(enum Mapi_BranchType branch_type) {
   switch (branch_type) {

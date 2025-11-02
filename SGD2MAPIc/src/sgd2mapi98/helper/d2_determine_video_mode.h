@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_
 #define SGD2MAPI_C_HELPER_D2_DETERMINE_VIDEO_MODE_H_
 
-#include "../game_constant/d2_video_mode.h"
+#include "sgd2mapi98/game_constant/d2_video_mode.h"
 
 #include "../../dllexport_define.inc"
 

@@ -45,7 +45,8 @@
 
 #include "sgd2mapi98/game_variable/d2gdi/d2gdi_bit_block_width.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2gdi {

@@ -48,11 +48,12 @@
 
 #include <stddef.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
-#include <sgd2mapi98.h>
-#include "game_address.hpp"
-#include "game_branch_type.hpp"
+#include "mdc/error/exit_on_error.h"
+#include "mdc/wchar_t/filew.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_address.hpp"
+#include "sgd2mapi98/game_branch_type.hpp"
 
 #include "../dllexport_define.inc"
 

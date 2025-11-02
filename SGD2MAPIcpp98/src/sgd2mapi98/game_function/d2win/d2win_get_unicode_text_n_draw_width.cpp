@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_get_unicode_text_n_draw_width.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2win {

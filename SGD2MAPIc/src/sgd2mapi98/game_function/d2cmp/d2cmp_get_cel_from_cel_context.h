@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_H_
 
-#include "../../game_struct/d2_cel.h"
-#include "../../game_struct/d2_cel_context.h"
+#include "sgd2mapi98/game_struct/d2_cel.h"
+#include "sgd2mapi98/game_struct/d2_cel_context.h"
 
 #include "../../../dllexport_define.inc"
 

@@ -45,6 +45,12 @@
 
 #include "sgd2mapi98/game_struct/d2_cel/d2_cel_view.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_cel/d2_cel_struct.hpp"
+
 namespace d2 {
 
 Cel_View::Cel_View(const Cel* cel) {

@@ -49,8 +49,9 @@
 #include <stddef.h>
 #include <windows.h>
 
-#include <mdc/std/stdint.h>
-#include "default_game_library.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/default_game_library.h"
 
 #include "../dllexport_define.inc"
 

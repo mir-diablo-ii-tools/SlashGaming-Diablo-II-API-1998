@@ -45,6 +45,15 @@
 
 #include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_wrapper.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_view.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_view.hpp"
+
 namespace d2 {
 
 MpqArchiveHandle_Wrapper::MpqArchiveHandle_Wrapper(

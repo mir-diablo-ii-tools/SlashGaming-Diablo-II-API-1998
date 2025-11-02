@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2CMP_D2CMP_GET_CEL_FROM_CEL_CONTEXT_HPP_
 
-#include "../../game_struct/d2_cel/d2_cel_struct.hpp"
-#include "../../game_struct/d2_cel_context/d2_cel_context_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_cel/d2_cel_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_LOAD_CEL_FILE_HPP_
 
-#include "../../game_bool.hpp"
-#include "../../game_struct/d2_cel_file/d2_cel_file_struct.hpp"
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

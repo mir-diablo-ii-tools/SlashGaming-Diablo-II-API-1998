@@ -45,6 +45,15 @@
 
 #include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_wrapper.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_grid_layout/d2_grid_layout_view.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+
 namespace d2 {
 
 GridLayout_Wrapper::GridLayout_Wrapper(GridLayout* grid_layout) {

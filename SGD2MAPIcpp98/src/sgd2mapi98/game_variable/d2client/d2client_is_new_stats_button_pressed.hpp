@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_STATS_BUTTON_PRESSED_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_IS_NEW_STATS_BUTTON_PRESSED_HPP_
 
-#include "../../game_bool.hpp"
+#include "sgd2mapi98/game_bool.hpp"
 
 #include "../../../dllexport_define.inc"
 

@@ -45,11 +45,14 @@
 
 #include "sgd2mapi98/file/file_pe_signature.h"
 
+#include <stddef.h>
 #include <stdio.h>
 #include <string.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+#include "mdc/wchar_t/filew.h"
 
 /**
  * External

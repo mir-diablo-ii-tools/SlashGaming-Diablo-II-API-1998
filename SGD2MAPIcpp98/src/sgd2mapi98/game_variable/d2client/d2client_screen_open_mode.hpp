@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_HPP_
 
-#include "../../game_constant/d2_screen_open_mode.hpp"
+#include "sgd2mapi98/game_constant/d2_screen_open_mode.hpp"
 
 #include "../../../dllexport_define.inc"
 

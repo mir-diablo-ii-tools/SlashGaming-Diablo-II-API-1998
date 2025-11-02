@@ -45,7 +45,8 @@
 
 #include "sgd2mapi98/game_variable/d2ddraw/d2ddraw_cel_display_left.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2ddraw {

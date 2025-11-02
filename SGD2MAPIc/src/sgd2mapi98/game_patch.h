@@ -48,9 +48,10 @@
 
 #include <stddef.h>
 
-#include <mdc/std/stdint.h>
-#include "game_address.h"
-#include "game_branch_type.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_branch_type.h"
 
 #include "../dllexport_define.inc"
 

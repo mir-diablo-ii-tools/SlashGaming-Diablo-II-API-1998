@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_GET_POP_UP_UNICODE_TEXT_WIDTH_AND_HEIGHT_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_GET_POP_UP_UNICODE_TEXT_WIDTH_AND_HEIGHT_HPP_
 
-#include <mdc/std/stdint.h>
-#include <mdc/std/wchar.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
 
 #include "../../../dllexport_define.inc"
 

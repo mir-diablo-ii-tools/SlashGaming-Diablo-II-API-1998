@@ -45,8 +45,9 @@
 
 #include "sgd2mapi98/game_constant/d2_screen_open_mode.h"
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/wchar_t/filew.h"
+
 #include "sgd2mapi98/game_version.h"
 
 int D2_ScreenOpenMode_ToGameValue(enum D2_ScreenOpenMode api_value) {

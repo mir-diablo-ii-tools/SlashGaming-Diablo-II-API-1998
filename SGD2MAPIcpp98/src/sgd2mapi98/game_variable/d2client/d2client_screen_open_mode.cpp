@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2client/d2client_screen_open_mode.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_constant/d2_screen_open_mode.hpp"
 
 namespace d2 {
 namespace d2client {

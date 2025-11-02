@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2GFX_D2GFX_IS_WINDOWED_MODE_H_
 
-#include "../../game_bool.h"
+#include "sgd2mapi98/game_bool.h"
 
 #include "../../../dllexport_define.inc"
 

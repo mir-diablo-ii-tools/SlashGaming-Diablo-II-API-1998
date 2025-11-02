@@ -45,6 +45,12 @@
 
 #include "sgd2mapi98/file/file_pe_signature.hpp"
 
+#include <stddef.h>
+#include <windows.h>
+
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
 namespace mapi {
 
 FilePeSignature::FilePeSignature()

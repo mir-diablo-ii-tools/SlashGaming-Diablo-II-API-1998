@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_unload_mpq.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
 
 namespace d2 {
 namespace d2win {

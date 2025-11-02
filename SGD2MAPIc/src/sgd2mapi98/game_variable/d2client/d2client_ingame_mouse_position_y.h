@@ -46,7 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_INGAME_MOUSE_POSITION_Y_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_INGAME_MOUSE_POSITION_Y_H_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
+
 #include "../../../dllexport_define.inc"
 
 #ifdef __cplusplus

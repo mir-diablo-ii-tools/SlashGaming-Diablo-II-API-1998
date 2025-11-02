@@ -48,7 +48,7 @@
 
 #include <windows.h>
 
-#include <mdc/std/wchar.h>
+#include "mdc/std/wchar.h"
 
 #include "../dllexport_define.inc"
 

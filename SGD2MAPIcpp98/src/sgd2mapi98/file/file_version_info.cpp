@@ -45,6 +45,11 @@
 
 #include "sgd2mapi98/file/file_version_info.hpp"
 
+#include <stddef.h>
+#include <windows.h>
+
+#include "sgd2mapi98.h"
+
 namespace mapi {
 
 FileVersionInfo::FileVersionInfo()

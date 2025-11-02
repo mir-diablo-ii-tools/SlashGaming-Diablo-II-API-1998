@@ -43,15 +43,18 @@
  *  work.
  */
 
-#include "game_address_table.h"
+#include "sgd2mapi98/backend/game_address_table.h"
 
 #include <stdlib.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/std/threads.h>
-#include <mdc/wchar_t/filew.h>
-#include <mdc/wchar_t/wide_decoding.h>
-#include "game_address_table/game_address_table_impl.h"
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/threads.h"
+#include "mdc/wchar_t/filew.h"
+#include "mdc/wchar_t/wide_decoding.h"
+
+#include "sgd2mapi98/backend/game_address_table/game_address_table_impl.h"
+#include "sgd2mapi98/default_game_library.h"
+#include "sgd2mapi98/game_address.h"
 
 enum {
   kAddressNameWideCapacity = 512

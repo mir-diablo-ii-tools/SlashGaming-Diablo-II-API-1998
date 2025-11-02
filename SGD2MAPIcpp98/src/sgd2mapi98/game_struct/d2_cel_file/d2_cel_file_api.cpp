@@ -45,10 +45,17 @@
 
 #include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_api.hpp"
 
+#include <stddef.h>
+
 #include <utility>
+
+#include "mdc/std/assert.h"
+#include "sgd2mapi98.h"
 
 #include "sgd2mapi98/game_function/d2win/d2win_load_cel_file.hpp"
 #include "sgd2mapi98/game_function/d2win/d2win_unload_cel_file.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
 
 namespace d2 {
 

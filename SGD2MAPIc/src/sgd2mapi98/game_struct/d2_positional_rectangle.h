@@ -48,8 +48,8 @@
 
 #include <stddef.h>
 
-#include <mdc/std/assert.h>
-#include <mdc/std/stdint.h>
+#include "mdc/std/assert.h"
+#include "mdc/std/stdint.h"
 
 #include "../../dllexport_define.inc"
 

@@ -45,8 +45,15 @@
 
 #include "sgd2mapi98/game_struct/d2_belt_record.h"
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include <stddef.h>
+
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/assert.h"
+#include "mdc/std/stdint.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/game_struct/d2_positional_rectangle.h"
+#include "sgd2mapi98/game_undefined.h"
 
 /**
  * View and wrapper declarations

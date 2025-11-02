@@ -45,6 +45,13 @@
 
 #include "sgd2mapi98/game_struct/d2_cel.h"
 
+#include <stddef.h>
+
+#include "mdc/std/assert.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_undefined.h"
+
 /**
  * View and wrapper declarations
  */
