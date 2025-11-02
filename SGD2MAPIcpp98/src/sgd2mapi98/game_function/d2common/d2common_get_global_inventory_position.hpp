@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_POSITION_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_POSITION_HPP_
 
-#include <mdc/std/stdint.h>
-#include "../../game_struct/d2_positional_rectangle/d2_positional_rectangle_struct.hpp"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

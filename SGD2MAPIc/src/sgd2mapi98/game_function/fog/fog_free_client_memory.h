@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_H_
 #define SGD2MAPI_C_GAME_FUNCTION_FOG_FOG_FREE_CLIENT_MEMORY_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_bool.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_bool.h"
 
 #include "../../../dllexport_define.inc"
 

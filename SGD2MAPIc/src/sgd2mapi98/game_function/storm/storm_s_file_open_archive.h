@@ -46,9 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_STORM_STORM_S_FILE_OPEN_ARCHIVE_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_bool.h"
-#include "../../game_struct/d2_mpq_archive.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_bool.h"
+#include "sgd2mapi98/game_struct/d2_mpq_archive.h"
 
 #include "../../../dllexport_define.inc"
 

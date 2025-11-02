@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/d2common/d2common_get_global_belt_record.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_struct.hpp"
 
 namespace d2 {
 namespace d2common {

@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_EQUIPMENT_SLOT_LAYOUT_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_EQUIPMENT_SLOT_LAYOUT_HPP_
 
-#include <mdc/std/stdint.h>
-#include "../../game_struct/d2_equipment_layout/d2_equipment_layout_struct.hpp"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_struct/d2_equipment_layout/d2_equipment_layout_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

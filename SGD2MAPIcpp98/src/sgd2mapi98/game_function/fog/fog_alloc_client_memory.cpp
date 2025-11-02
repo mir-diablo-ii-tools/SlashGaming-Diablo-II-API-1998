@@ -45,7 +45,8 @@
 
 #include "sgd2mapi98/game_function/fog/fog_alloc_client_memory.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace fog {

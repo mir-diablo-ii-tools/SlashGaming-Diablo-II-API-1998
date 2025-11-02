@@ -45,7 +45,13 @@
 
 #include "sgd2mapi98/game_function/d2gfx/d2gfx_draw_cel_context.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context.hpp"
+#include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
+#include "sgd2mapi98/game_undefined.hpp"
 
 namespace d2 {
 namespace d2gfx {

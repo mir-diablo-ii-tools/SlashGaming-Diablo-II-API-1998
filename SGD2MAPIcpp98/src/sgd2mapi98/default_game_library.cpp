@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/default_game_library.hpp"
 
-#include <sgd2mapi98.h>
+#include <windows.h>
+
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace default_library {

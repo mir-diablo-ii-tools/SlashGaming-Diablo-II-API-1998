@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_BELTS_TXT_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_BELTS_TXT_H_
 
-#include "../../game_struct/d2_belt_record.h"
+#include "sgd2mapi98/game_struct/d2_belt_record.h"
 
 #include "../../../dllexport_define.inc"
 

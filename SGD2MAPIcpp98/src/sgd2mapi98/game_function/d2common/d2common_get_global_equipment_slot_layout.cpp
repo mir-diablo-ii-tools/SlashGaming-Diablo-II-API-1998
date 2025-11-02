@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/d2common/d2common_get_global_equipment_slot_layout.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_equipment_layout/d2_equipment_layout_struct.hpp"
 
 namespace d2 {
 namespace d2common {

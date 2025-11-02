@@ -45,6 +45,8 @@
 
 #include "sgd2mapi98/game_constant/d2_text_font.hpp"
 
+#include "sgd2mapi98.h"
+
 namespace d2 {
 namespace text_font {
 

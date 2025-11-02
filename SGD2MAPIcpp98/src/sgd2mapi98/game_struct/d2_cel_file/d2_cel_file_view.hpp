@@ -48,8 +48,9 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi98.h>
-#include "d2_cel_file_struct.hpp"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

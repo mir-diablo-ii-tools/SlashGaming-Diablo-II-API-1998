@@ -45,11 +45,14 @@
 
 #include "sgd2mapi98/file/file_version_info.h"
 
+#include <stddef.h>
 #include <stdlib.h>
+#include <windows.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/malloc/malloc.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/malloc/malloc.h"
+#include "mdc/std/wchar.h"
+#include "mdc/wchar_t/filew.h"
 
 const struct Mapi_FileVersionInfo Mapi_FileVersionInfo_kUninit =
     MAPI_FILE_VERSION_INFO_UNINIT;

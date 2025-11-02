@@ -46,7 +46,7 @@
 #ifndef SGMAPI_CPP98_GAME_UNDEFINED_HPP_
 #define SGMAPI_CPP98_GAME_UNDEFINED_HPP_
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
 
 namespace mapi {
 

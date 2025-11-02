@@ -45,11 +45,16 @@
 
 #include "sgd2mapi98/game_address.h"
 
+
+#include <stddef.h>
 #include <windows.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
-#include <mdc/wchar_t/wide_decoding.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/stdint.h"
+#include "mdc/wchar_t/filew.h"
+#include "mdc/wchar_t/wide_decoding.h"
+
+#include "sgd2mapi98/default_game_library.h"
 
 /**
  * External

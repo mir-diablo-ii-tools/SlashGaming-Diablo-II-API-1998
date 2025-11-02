@@ -47,14 +47,15 @@
 
 #include <windows.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/std/threads.h>
-#include <mdc/std/wchar.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/threads.h"
+#include "mdc/std/wchar.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/backend/d2se/d2se_ini.h"
+#include "sgd2mapi98/backend/game_version/game_version_file_pe_signature.h"
+#include "sgd2mapi98/backend/game_version/game_version_file_version.h"
 #include "sgd2mapi98/game_executable.h"
-#include "backend/d2se/d2se_ini.h"
-#include "backend/game_version/game_version_file_pe_signature.h"
-#include "backend/game_version/game_version_file_version.h"
 
 static enum D2_GameVersion running_game_version;
 

@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_SET_UNICODE_TEXT_FONT_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_constant/d2_text_font.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_constant/d2_text_font.h"
 
 #include "../../../dllexport_define.inc"
 

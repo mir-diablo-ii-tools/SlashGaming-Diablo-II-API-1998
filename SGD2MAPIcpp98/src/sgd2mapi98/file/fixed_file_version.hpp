@@ -48,8 +48,8 @@
 
 #include <windows.h>
 
-#include <mdc/std/stdint.h>
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
 
 #include "../../dllexport_define.inc"
 

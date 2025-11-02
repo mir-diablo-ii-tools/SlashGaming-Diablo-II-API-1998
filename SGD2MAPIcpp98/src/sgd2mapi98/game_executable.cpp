@@ -45,7 +45,11 @@
 
 #include "sgd2mapi98/game_executable.hpp"
 
-#include <sgd2mapi98.h>
+#include <stddef.h>
+#include <windows.h>
+
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
 
 namespace mapi {
 namespace game_executable {

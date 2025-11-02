@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/storm/storm_s_file_close_archive.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
 
 namespace d2 {
 namespace storm {

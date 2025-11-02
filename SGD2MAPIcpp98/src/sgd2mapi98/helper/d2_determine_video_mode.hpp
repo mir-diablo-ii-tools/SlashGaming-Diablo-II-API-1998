@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_HELPER_D2_DETERMINE_VIDEO_MODE_HPP_
 #define SGD2MAPI_CPP98_HELPER_D2_DETERMINE_VIDEO_MODE_HPP_
 
-#include "../game_constant/d2_video_mode.hpp"
+#include "sgd2mapi98/game_constant/d2_video_mode.hpp"
 
 #include "../../dllexport_define.inc"
 

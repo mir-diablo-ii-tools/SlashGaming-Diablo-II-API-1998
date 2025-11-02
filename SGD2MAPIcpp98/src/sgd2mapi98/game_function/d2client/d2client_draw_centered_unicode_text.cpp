@@ -45,7 +45,11 @@
 
 #include "sgd2mapi98/game_function/d2client/d2client_draw_centered_unicode_text.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_constant/d2_text_color.hpp"
 
 namespace d2 {
 namespace d2client {

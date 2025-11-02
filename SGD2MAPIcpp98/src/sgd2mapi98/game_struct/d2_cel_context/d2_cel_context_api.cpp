@@ -45,6 +45,15 @@
 
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_api.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_wrapper.hpp"
 #include "sgd2mapi98/game_version.hpp"
 
 namespace d2 {

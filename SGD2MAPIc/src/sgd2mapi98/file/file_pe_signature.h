@@ -48,8 +48,8 @@
 
 #include <stddef.h>
 
-#include <mdc/std/stdint.h>
-#include <mdc/std/wchar.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
 
 #include "../../dllexport_define.inc"
 

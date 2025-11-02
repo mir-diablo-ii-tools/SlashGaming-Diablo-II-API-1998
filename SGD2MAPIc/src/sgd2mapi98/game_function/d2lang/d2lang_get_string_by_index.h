@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_GET_STRING_BY_INDEX_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2LANG_D2LANG_GET_STRING_BY_INDEX_H_
 
-#include <mdc/std/stdint.h>
-#include <mdc/std/wchar.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
 
 #include "../../../dllexport_define.inc"
 

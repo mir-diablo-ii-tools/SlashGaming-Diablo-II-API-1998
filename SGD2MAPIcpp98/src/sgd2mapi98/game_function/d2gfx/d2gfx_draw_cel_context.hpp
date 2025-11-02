@@ -46,11 +46,12 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2GFX_D2GFX_DRAW_CEL_CONTEXT_HPP_
 
-#include <mdc/std/stdint.h>
-#include "../../game_bool.hpp"
-#include "../../game_struct/d2_cel_context.hpp"
-#include "../../game_constant/d2_draw_effect.hpp"
-#include "../../game_undefined.hpp"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context.hpp"
+#include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
+#include "sgd2mapi98/game_undefined.hpp"
 
 #include "../../../dllexport_define.inc"
 

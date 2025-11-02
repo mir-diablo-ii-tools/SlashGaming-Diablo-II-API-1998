@@ -45,7 +45,10 @@
 
 #include "sgd2mapi98/game_function/fog/fog_free_client_memory.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
 
 namespace d2 {
 namespace fog {

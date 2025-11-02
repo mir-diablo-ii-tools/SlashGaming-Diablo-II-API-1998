@@ -46,9 +46,10 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_LOAD_MPQ_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_bool.h"
-#include "../../game_struct/d2_mpq_archive_handle.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_bool.h"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle.h"
 
 #include "../../../dllexport_define.inc"
 

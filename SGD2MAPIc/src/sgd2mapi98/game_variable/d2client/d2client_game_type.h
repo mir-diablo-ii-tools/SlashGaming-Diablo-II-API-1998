@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_constant/d2_client_game_type.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_constant/d2_client_game_type.h"
 
 #include "../../../dllexport_define.inc"
 

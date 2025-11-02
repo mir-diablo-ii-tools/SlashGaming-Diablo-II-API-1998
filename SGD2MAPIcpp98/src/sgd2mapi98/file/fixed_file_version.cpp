@@ -45,6 +45,11 @@
 
 #include "sgd2mapi98/file/fixed_file_version.hpp"
 
+#include <windows.h>
+
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
 namespace mapi {
 
 FixedFileVersion::FixedFileVersion()

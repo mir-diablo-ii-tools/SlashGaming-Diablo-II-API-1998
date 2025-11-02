@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2CLIENT_D2CLIENT_GAME_TYPE_HPP_
 
-#include "../../game_constant/d2_client_game_type.hpp"
+#include "sgd2mapi98/game_constant/d2_client_game_type.hpp"
 
 #include "../../../dllexport_define.inc"
 

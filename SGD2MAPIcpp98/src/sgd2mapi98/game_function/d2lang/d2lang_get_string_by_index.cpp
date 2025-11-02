@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_function/d2lang/d2lang_get_string_by_index.hpp"
 
-#include <sgd2mapi98.h>
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2lang {

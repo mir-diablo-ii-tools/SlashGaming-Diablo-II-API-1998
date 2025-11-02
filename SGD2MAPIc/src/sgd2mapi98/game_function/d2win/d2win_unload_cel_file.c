@@ -45,11 +45,12 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_unload_cel_file.h"
 
+#include "sgd2mapi98/backend/game_address_table.h"
+#include "sgd2mapi98/backend/game_function/fastcall_function.h"
 #include "sgd2mapi98/default_game_library.h"
 #include "sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_struct/d2_cel_file.h"
 #include "sgd2mapi98/game_version.h"
-#include "../../backend/game_address_table.h"
-#include "../../backend/game_function/fastcall_function.h"
 
 static struct Mapi_GameAddress game_address;
 

@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2GFX_D2GFX_DRAW_RECTANGLE_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_constant/d2_draw_effect.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_constant/d2_draw_effect.h"
 
 #include "../../../dllexport_define.inc"
 

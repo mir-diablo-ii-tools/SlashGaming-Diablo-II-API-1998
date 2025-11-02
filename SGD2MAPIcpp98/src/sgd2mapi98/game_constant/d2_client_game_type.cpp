@@ -45,6 +45,8 @@
 
 #include "sgd2mapi98/game_constant/d2_client_game_type.hpp"
 
+#include "sgd2mapi98.h"
+
 namespace d2 {
 namespace client_game_type {
 

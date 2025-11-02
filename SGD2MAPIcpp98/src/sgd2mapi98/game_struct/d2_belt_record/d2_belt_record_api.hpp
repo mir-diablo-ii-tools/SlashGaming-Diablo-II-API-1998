@@ -48,13 +48,14 @@
 
 #include <stddef.h>
 
-#include <sgd2mapi98.h>
-#include "../../game_undefined.hpp"
-#include "../d2_positional_rectangle/d2_positional_rectangle_view.hpp"
-#include "../d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
-#include "d2_belt_record_struct.hpp"
-#include "d2_belt_record_view.hpp"
-#include "d2_belt_record_wrapper.hpp"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_view.hpp"
+#include "sgd2mapi98/game_struct/d2_belt_record/d2_belt_record_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_wrapper.hpp"
+#include "sgd2mapi98/game_undefined.hpp"
 
 #include "../../../dllexport_define.inc"
 

@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_RECORDS_COUNT_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2COMMON_D2COMMON_GLOBAL_INVENTORY_TXT_RECORDS_COUNT_HPP_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
 #include "../../../dllexport_define.inc"
 

@@ -45,11 +45,14 @@
 
 #include "sgd2mapi98/game_function/d2win/d2win_get_pop_up_unicode_text_width_and_height.h"
 
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+
+#include "sgd2mapi98/backend/game_address_table.h"
+#include "sgd2mapi98/backend/game_function/fastcall_function.h"
 #include "sgd2mapi98/default_game_library.h"
 #include "sgd2mapi98/game_address.h"
 #include "sgd2mapi98/game_version.h"
-#include "../../backend/game_address_table.h"
-#include "../../backend/game_function/fastcall_function.h"
 
 static struct Mapi_GameAddress game_address;
 

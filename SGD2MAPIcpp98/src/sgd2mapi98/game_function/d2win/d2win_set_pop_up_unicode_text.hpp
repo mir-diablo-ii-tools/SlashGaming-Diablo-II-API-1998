@@ -46,10 +46,11 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_SET_POP_UP_UNICODE_TEXT_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_SET_POP_UP_UNICODE_TEXT_HPP_
 
-#include <mdc/std/stdint.h>
-#include <mdc/std/wchar.h>
-#include "../../game_bool.hpp"
-#include "../../game_constant/d2_text_color.hpp"
+#include "mdc/std/stdint.h"
+#include "mdc/std/wchar.h"
+
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_constant/d2_text_color.hpp"
 
 #include "../../../dllexport_define.inc"
 

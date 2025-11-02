@@ -45,6 +45,12 @@
 
 #include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_view.hpp"
 
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_struct/d2_positional_rectangle/d2_positional_rectangle_struct.hpp"
+
 namespace d2 {
 
 PositionalRectangle_View::PositionalRectangle_View(

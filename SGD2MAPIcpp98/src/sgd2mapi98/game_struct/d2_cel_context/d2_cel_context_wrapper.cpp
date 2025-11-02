@@ -45,8 +45,18 @@
 
 #include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_wrapper.hpp"
 
-#include "sgd2mapi98/game_function/d2gfx/d2gfx_draw_cel_context.hpp"
+#include <stddef.h>
+
+#include "sgd2mapi98.h"
+
 #include "sgd2mapi98/game_function/d2cmp/d2cmp_get_cel_from_cel_context.hpp"
+#include "sgd2mapi98/game_function/d2gfx/d2gfx_draw_cel_context.hpp"
+#include "sgd2mapi98/game_struct/d2_cel/d2_cel_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel/d2_cel_wrapper.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_context/d2_cel_context_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_view.hpp"
+#include "sgd2mapi98/game_struct/d2_cel_file/d2_cel_file_wrapper.hpp"
 #include "sgd2mapi98/game_version.hpp"
 
 namespace d2 {

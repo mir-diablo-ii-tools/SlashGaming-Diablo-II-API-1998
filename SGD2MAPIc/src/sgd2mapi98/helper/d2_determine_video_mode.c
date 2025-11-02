@@ -49,10 +49,12 @@
 #include <windows.h>
 #include <shlwapi.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/backend/d2se/d2se_ini.h"
+#include "sgd2mapi98/game_constant/d2_video_mode.h"
 #include "sgd2mapi98/game_executable.h"
-#include "../backend/d2se/d2se_ini.h"
 
 static enum D2_VideoMode_1_00 GetVideoModeFromRegValue_1_00(DWORD reg_value) {
   switch (reg_value) {

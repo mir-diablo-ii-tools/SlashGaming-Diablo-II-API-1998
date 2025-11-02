@@ -45,6 +45,8 @@
 
 #include "sgd2mapi98/game_constant/d2_screen_open_mode.hpp"
 
+#include "sgd2mapi98.h"
+
 namespace d2 {
 namespace screen_open_mode {
 

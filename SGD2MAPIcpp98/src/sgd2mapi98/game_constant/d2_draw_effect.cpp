@@ -45,6 +45,8 @@
 
 #include "sgd2mapi98/game_constant/d2_draw_effect.hpp"
 
+#include "sgd2mapi98.h"
+
 namespace d2 {
 namespace draw_effect {
 

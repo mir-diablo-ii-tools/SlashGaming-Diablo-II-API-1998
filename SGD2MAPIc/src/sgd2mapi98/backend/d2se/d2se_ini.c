@@ -43,14 +43,17 @@
  *  work.
  */
 
-#include "d2se_ini.h"
+#include "sgd2mapi98/backend/d2se/d2se_ini.h"
 
 #include <windows.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/std/wchar.h>
-#include <mdc/wchar_t/filew.h>
-#include "d2se_game_version.h"
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/wchar.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/backend/d2se/d2se_game_version.h"
+#include "sgd2mapi98/game_constant/d2_video_mode.h"
+#include "sgd2mapi98/game_version.h"
 
 #define D2SE_INI_PATH L"D2SE_SETUP.ini"
 

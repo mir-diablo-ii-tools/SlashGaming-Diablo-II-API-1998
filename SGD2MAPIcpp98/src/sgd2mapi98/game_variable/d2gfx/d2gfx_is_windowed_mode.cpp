@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2gfx/d2gfx_is_windowed_mode.hpp"
 
-#include <sgd2mapi98.h>
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/game_bool.hpp"
 
 namespace d2 {
 namespace d2gfx {

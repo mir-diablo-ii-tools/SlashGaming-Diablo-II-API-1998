@@ -45,7 +45,9 @@
 
 #include "sgd2mapi98/game_variable/d2gfx/d2gfx_window_handle.hpp"
 
-#include <sgd2mapi98.h>
+#include <windows.h>
+
+#include "sgd2mapi98.h"
 
 namespace d2 {
 namespace d2gfx {

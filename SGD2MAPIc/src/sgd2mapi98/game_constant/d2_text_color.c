@@ -45,8 +45,9 @@
 
 #include "sgd2mapi98/game_constant/d2_text_color.h"
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/wchar_t/filew.h"
+
 #include "sgd2mapi98/game_version.h"
 
 int D2_TextColor_ToGameValue(enum D2_TextColor api_value) {

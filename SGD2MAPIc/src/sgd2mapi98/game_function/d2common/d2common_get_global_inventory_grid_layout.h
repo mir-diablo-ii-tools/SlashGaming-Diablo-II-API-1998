@@ -46,8 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2COMMON_D2COMMON_GET_GLOBAL_INVENTORY_GRID_LAYOUT_H_
 
-#include <mdc/std/stdint.h>
-#include "../../game_struct/d2_grid_layout.h"
+#include "mdc/std/stdint.h"
+
+#include "sgd2mapi98/game_struct/d2_grid_layout.h"
 
 #include "../../../dllexport_define.inc"
 

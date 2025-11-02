@@ -46,7 +46,8 @@
 #ifndef SGD2MAPI_C_BACKEND_D2SE_D2SE_GAME_VERSION_H_
 #define SGD2MAPI_C_BACKEND_D2SE_D2SE_GAME_VERSION_H_
 
-#include <mdc/std/wchar.h>
+#include "mdc/std/wchar.h"
+
 #include "sgd2mapi98/game_version.h"
 
 enum D2_GameVersion D2seIni_GuessGameVersion(const wchar_t* version_str);

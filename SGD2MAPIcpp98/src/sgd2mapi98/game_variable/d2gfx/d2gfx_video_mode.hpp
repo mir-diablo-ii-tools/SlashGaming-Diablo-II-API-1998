@@ -46,9 +46,9 @@
 #ifndef SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_HPP_
 #define SGD2MAPI_CPP98_GAME_VARIABLE_D2GFX_D2GFX_VIDEO_MODE_HPP_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
-#include "../../game_constant/d2_video_mode.hpp"
+#include "sgd2mapi98/game_constant/d2_video_mode.hpp"
 
 #include "../../../dllexport_define.inc"
 

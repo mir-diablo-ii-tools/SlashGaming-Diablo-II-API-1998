@@ -43,14 +43,15 @@
  *  work.
  */
 
-#include "d2se_file_pe_signature.h"
+#include "sgd2mapi98/backend/d2se/d2se_file_pe_signature.h"
 
 #include <stddef.h>
 #include <stdlib.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/std/wchar.h>
-#include <mdc/wchar_t/filew.h>
+#include "mdc/error/exit_on_error.h"
+#include "mdc/std/wchar.h"
+#include "mdc/wchar_t/filew.h"
+
 #include "sgd2mapi98/file/file_pe_signature.h"
 #include "sgd2mapi98/game_executable.h"
 

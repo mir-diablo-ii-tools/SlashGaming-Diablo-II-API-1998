@@ -46,8 +46,8 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_STORM_STORM_S_FILE_CLOSE_ARCHIVE_HPP_
 
-#include "../../game_bool.hpp"
-#include "../../game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
+#include "sgd2mapi98/game_bool.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive/d2_mpq_archive_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

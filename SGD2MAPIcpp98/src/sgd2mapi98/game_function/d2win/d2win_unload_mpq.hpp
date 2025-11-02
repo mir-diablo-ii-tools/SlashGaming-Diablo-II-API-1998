@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_MPQ_HPP_
 #define SGD2MAPI_CPP98_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_MPQ_HPP_
 
-#include "../../game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
+#include "sgd2mapi98/game_struct/d2_mpq_archive_handle/d2_mpq_archive_handle_struct.hpp"
 
 #include "../../../dllexport_define.inc"
 

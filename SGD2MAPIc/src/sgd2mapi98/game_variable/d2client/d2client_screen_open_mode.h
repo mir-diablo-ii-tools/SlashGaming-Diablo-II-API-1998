@@ -46,9 +46,9 @@
 #ifndef SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
 #define SGD2MAPI_C_GAME_VARIABLE_D2CLIENT_D2CLIENT_SCREEN_OPEN_MODE_H_
 
-#include <mdc/std/stdint.h>
+#include "mdc/std/stdint.h"
 
-#include "../../game_constant/d2_screen_open_mode.h"
+#include "sgd2mapi98/game_constant/d2_screen_open_mode.h"
 
 #include "../../../dllexport_define.inc"
 

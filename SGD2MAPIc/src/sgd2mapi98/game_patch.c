@@ -45,12 +45,17 @@
 
 #include "sgd2mapi98/game_patch.h"
 
+#include <stddef.h>
 #include <string.h>
 
-#include <mdc/error/exit_on_error.h>
-#include <mdc/malloc/malloc.h>
-#include <mdc/wchar_t/filew.h>
-#include "backend/architecture_opcode.h"
+#include "mdc/error/exit_on_error.h"
+#include "mdc/malloc/malloc.h"
+#include "mdc/std/stdint.h"
+#include "mdc/wchar_t/filew.h"
+
+#include "sgd2mapi98/backend/architecture_opcode.h"
+#include "sgd2mapi98/game_address.h"
+#include "sgd2mapi98/game_branch_type.h"
 
 const struct Mapi_GamePatch Mapi_GamePatch_kUninit =
     MAPI_GAME_PATCH_UNINIT;

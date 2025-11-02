@@ -46,7 +46,7 @@
 #ifndef SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_CEL_FILE_H_
 #define SGD2MAPI_C_GAME_FUNCTION_D2WIN_D2WIN_UNLOAD_CEL_FILE_H_
 
-#include "../../game_struct/d2_cel_file.h"
+#include "sgd2mapi98/game_struct/d2_cel_file.h"
 
 #include "../../../dllexport_define.inc"
 

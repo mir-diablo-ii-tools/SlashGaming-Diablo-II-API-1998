@@ -45,7 +45,13 @@
 
 #include "sgd2mapi98/game_address.hpp"
 
+#include <stddef.h>
 #include <windows.h>
+
+#include "mdc/std/stdint.h"
+#include "sgd2mapi98.h"
+
+#include "sgd2mapi98/default_game_library.hpp"
 
 namespace mapi {
 
