@@ -7,3 +7,5 @@ FetchContent_Declare(MDC
 )
 
 FetchContent_MakeAvailable(MDC)
+
+add_subdirectory("cutest-1.5")
