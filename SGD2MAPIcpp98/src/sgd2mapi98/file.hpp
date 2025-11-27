@@ -46,7 +46,6 @@
 #ifndef SGMAPI_CPP98_FILE_HPP_
 #define SGMAPI_CPP98_FILE_HPP_
 
-#include "file/file_pe_signature.hpp"
 #include "file/file_version_info.hpp"
 #include "file/fixed_file_version.hpp"
 
