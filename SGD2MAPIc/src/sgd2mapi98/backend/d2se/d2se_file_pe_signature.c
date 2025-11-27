@@ -52,16 +52,15 @@
 #include "mdc/std/wchar.h"
 #include "mdc/wchar_t/filew.h"
 
-#include "sgd2mapi98/file/file_pe_signature.h"
+#include "sgd2mapi/core/file_metadata/pe_signature.h"
 #include "sgd2mapi98/game_executable.h"
 
 enum {
   kSignatureCount = 64,
 };
 
-static const struct Mapi_FilePeSignature kD2seSignatureSortedSet[] = {
+static const struct PeSignature kD2seSignatureSortedSet[] = {
     {
-        kSignatureCount,
         {
             0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
             0x5F, 0xDC, 0xB5, 0x4D, 0x00, 0x00, 0x00, 0x00,
@@ -83,22 +82,22 @@ enum {
       / sizeof(kD2seSignatureSortedSet[0])
 };
 
-static int Mapi_FilePeSignature_CompareAsVoid(
+static int PeSignature_CompareAsVoid(
     const void* signature1,
     const void* signature2
 ) {
-  return Mapi_FilePeSignature_Compare(signature1, signature2);
+  return PeSignature_Compare(signature1, signature2);
 }
 
-static int ContainsSignature(const struct Mapi_FilePeSignature* signature) {
-  const struct Mapi_FilePeSignature* search_result;
+static int ContainsSignature(const struct PeSignature* signature) {
+  const struct PeSignature* search_result;
 
   search_result = bsearch(
       signature,
       kD2seSignatureSortedSet,
       kD2seSignatureSortedSetCount,
       sizeof(kD2seSignatureSortedSet[0]),
-      &Mapi_FilePeSignature_CompareAsVoid
+      &PeSignature_CompareAsVoid
   );
 
   return (search_result != NULL);
@@ -110,15 +109,11 @@ static int ContainsSignature(const struct Mapi_FilePeSignature* signature) {
 
 int FilePeSignature_IsD2se(void) {
   const wchar_t* game_executable_path;
-  struct Mapi_FilePeSignature signature;
+  struct PeSignature signature;
 
   game_executable_path = Mapi_GameExecutable_GetPath();
 
-  Mapi_FilePeSignature_ReadFile(
-      &signature,
-      game_executable_path,
-      kSignatureCount
-  );
+  PeSignature_ReadFile(&signature, game_executable_path);
 
   return ContainsSignature(&signature);
 }

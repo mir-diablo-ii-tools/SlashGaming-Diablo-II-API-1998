@@ -43,49 +43,93 @@
  *  work.
  */
 
-#ifndef SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_
-#define SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_
+#include "sgd2mapi/core/file_metadata/pe_signature_tests.h"
 
 #include <stddef.h>
+#include <stdio.h>
+#include <windows.h>
+#include <shlwapi.h>
 
-#include "mdc/std/stdint.h"
-#include "mdc/std/wchar.h"
+#include <CuTest.h>
+#include <mdc/std/wchar.h>
 
-#include "sgd2mapi98/dllapi_c_define.inc"
+#include "sgd2mapi/core/file_metadata/pe_signature.h"
 
-enum {
-  Mapi_FilePeSignature_kMinSignatureCount = 32,
-  Mapi_FilePeSignature_kMaxSignatureCount = 64,
-};
+#define SIMPLE_PATH L"../file_metadata/data/simple.txt"
+#define TOO_SMALL_PATH L"../file_metadata/data/too_small.txt"
 
-struct Mapi_FilePeSignature {
-  size_t signature_count;
-  uint8_t signature[Mapi_FilePeSignature_kMaxSignatureCount];
-};
+#define NON_EXISTENT_PATH L"this\1path\2does\3not\4exist"
 
-#define MAPI_FILE_PE_SIGNATURE_UNINIT { 0 }
+static void Precondition_CheckFiles(void) {
+  static wchar_t EXISTING_PATHS[][MAX_PATH] = {
+    SIMPLE_PATH,
+    TOO_SMALL_PATH
+  };
+  enum {
+    EXISTING_PATH_COUNT = sizeof(EXISTING_PATHS) / sizeof(EXISTING_PATHS[0])
+  };
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+  size_t i;
 
-DLLAPI extern const struct Mapi_FilePeSignature
-Mapi_FilePeSignature_kUninit;
+  for (i = 0; i < EXISTING_PATH_COUNT; ++i) {
+    if (!PathFileExistsW(EXISTING_PATHS[i])) {
+      wprintf(L"File not found: %s\n", EXISTING_PATHS[i]);
+    }
+  }
 
-DLLAPI int Mapi_FilePeSignature_Compare(
-    const struct Mapi_FilePeSignature* signature1,
-    const struct Mapi_FilePeSignature* signature2
-);
+  if (PathFileExistsW(NON_EXISTENT_PATH)) {
+    wprintf(L"File should no exist: %s\n", NON_EXISTENT_PATH);
+  }
+}
 
-DLLAPI int Mapi_FilePeSignature_ReadFile(
-    struct Mapi_FilePeSignature* signature,
-    const wchar_t* path,
-    size_t count
-);
+static void ReadFile_Simple_MatchesExpected(CuTest* tc) {
+  struct PeSignature actual;
+  struct PeSignature expected;
+  struct PeSignature* result;
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif /* __cplusplus */
+  memcpy(
+      expected.data,
+      "The quick brown fox jumped over the lazy dog. 0 1 2 3 4 5 6 7 8 ",
+      PE_SIGNATURE_SIZE);
 
-#include "sgd2mapi98/dllapi_c_undef.inc"
-#endif /* SGMAPI_C_FILE_FILE_PE_SIGNATURE_H_ */
+  result = PeSignature_ReadFile(&actual, SIMPLE_PATH);
+
+  CuAssertPtrNotNull(tc, result);
+  CuAssertIntEquals(tc, 0, PeSignature_Compare(&actual, &expected));
+}
+
+static void ReadFile_PathNotExist_ReturnsNull(CuTest* tc) {
+  struct PeSignature signature;
+  struct PeSignature* result;
+
+  result = PeSignature_ReadFile(&signature, NON_EXISTENT_PATH);
+
+  CuAssertPtrEquals(tc, NULL, result);
+}
+
+static void ReadFile_FileTooSmall_ReturnsNull(CuTest* tc) {
+  struct PeSignature signature;
+  struct PeSignature* result;
+
+  result = PeSignature_ReadFile(&signature, TOO_SMALL_PATH);
+
+  CuAssertPtrEquals(tc, NULL, result);
+}
+
+/**
+ * External
+ */
+
+CuSuite* PeSignature_GetTestSuite(void) {
+  CuSuite* suite;
+
+  suite = CuSuiteNew();
+
+  Precondition_CheckFiles();
+
+  SUITE_ADD_TEST(suite, &ReadFile_Simple_MatchesExpected);
+  SUITE_ADD_TEST(suite, &ReadFile_PathNotExist_ReturnsNull);
+  SUITE_ADD_TEST(suite, &ReadFile_FileTooSmall_ReturnsNull);
+
+  return suite;
+}

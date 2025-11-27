@@ -46,7 +46,6 @@
 #ifndef SGMAPI_C_FILE_H_
 #define SGMAPI_C_FILE_H_
 
-#include "file/file_pe_signature.h"
 #include "file/file_version_info.h"
 #include "file/fixed_file_version.h"
 

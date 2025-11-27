@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2025  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,42 +43,31 @@
  *  work.
  */
 
-#include "sgd2mapi98/file/file_pe_signature.hpp"
+#ifndef SGD2MAPI_C_CORE_FILE_METADATA_PE_SIGNATURE_H_
+#define SGD2MAPI_C_CORE_FILE_METADATA_PE_SIGNATURE_H_
 
-#include <stddef.h>
-#include <windows.h>
+#include <mdc/std/wchar.h>
 
-#include "mdc/std/stdint.h"
-#include "sgd2mapi98.h"
+#ifdef __cplusplus
+extern "C" {
+#endif  /* __cplusplus */
 
-namespace mapi {
+enum {
+  PE_SIGNATURE_SIZE = 64
+};
 
-FilePeSignature::FilePeSignature()
-    : file_pe_signature_(::Mapi_FilePeSignature_kUninit) {
-}
+struct PeSignature {
+  unsigned char data[PE_SIGNATURE_SIZE];
+};
 
-int FilePeSignature::CompareSignature(
-    const FilePeSignature& signature
-) const {
-  return ::Mapi_FilePeSignature_Compare(
-      &this->file_pe_signature_,
-      &signature.file_pe_signature_
-  );
-}
+struct PeSignature* PeSignature_ReadFile(
+    struct PeSignature* signature, const wchar_t* path);
 
-FilePeSignature FilePeSignature::ReadFile(
-    const wchar_t* path,
-    size_t count
-) {
-  FilePeSignature file_pe_signature;
+int PeSignature_Compare(
+    const struct PeSignature* lhs, const struct PeSignature* rhs);
 
-  ::Mapi_FilePeSignature_ReadFile(
-      &file_pe_signature.file_pe_signature_,
-      path,
-      count
-  );
+#ifdef __cplusplus
+}  // extern "C"
+#endif  /* __cplusplus */
 
-  return file_pe_signature;
-}
-
-} // namespace mapi
+#endif  /* SGD2MAPI_C_CORE_FILE_METADATA_PE_SIGNATURE_H_ */

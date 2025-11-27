@@ -51,7 +51,7 @@
 #include "mdc/std/wchar.h"
 #include "mdc/wchar_t/filew.h"
 
-#include "sgd2mapi98/file/file_pe_signature.h"
+#include "sgd2mapi/core/file_metadata/pe_signature.h"
 #include "sgd2mapi98/game_executable.h"
 #include "sgd2mapi98/game_version.h"
 
@@ -60,7 +60,7 @@ enum {
 };
 
 struct VersionTableEntry {
-  struct Mapi_FilePeSignature key;
+  struct PeSignature key;
   enum D2_GameVersion value;
 };
 
@@ -68,7 +68,7 @@ static int VersionTableEntry_CompareKey(
     const struct VersionTableEntry* entry1,
     const struct VersionTableEntry* entry2
 ) {
-  return Mapi_FilePeSignature_Compare(&entry1->key, &entry2->key);
+  return PeSignature_Compare(&entry1->key, &entry2->key);
 }
 
 static int VersionTableEntry_CompareKeyAsVoid(
@@ -81,7 +81,6 @@ static int VersionTableEntry_CompareKeyAsVoid(
 static const struct VersionTableEntry kSortedVersionTable[] = {
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0x34, 0x81, 0xD4, 0x56, 0x00, 0x00, 0x00, 0x00,
@@ -100,7 +99,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0x38, 0x81, 0xD4, 0x56, 0x00, 0x00, 0x00, 0x00,
@@ -119,7 +117,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0x4D, 0xDF, 0x2C, 0x57, 0x00, 0x00, 0x00, 0x00,
@@ -138,7 +135,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0x52, 0xDF, 0x2C, 0x57, 0x00, 0x00, 0x00, 0x00,
@@ -157,7 +153,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0xA8, 0x78, 0xFC, 0x56, 0x00, 0x00, 0x00, 0x00,
@@ -176,7 +171,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0xAE, 0x78, 0xFC, 0x56, 0x00, 0x00, 0x00, 0x00,
@@ -195,7 +189,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0xBC, 0xDF, 0x4D, 0x57, 0x00, 0x00, 0x00, 0x00,
@@ -214,7 +207,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x05, 0x00,
                 0xC4, 0xDF, 0x4D, 0x57, 0x00, 0x00, 0x00, 0x00,
@@ -233,7 +225,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0x25, 0x47, 0x52, 0x39, 0x00, 0x00, 0x00, 0x00,
@@ -252,7 +243,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0x32, 0xA6, 0xDC, 0x3A, 0x00, 0x00, 0x00, 0x00,
@@ -271,7 +261,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0x43, 0x0C, 0xD6, 0x3A, 0x00, 0x00, 0x00, 0x00,
@@ -290,7 +279,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0x79, 0xBD, 0x20, 0x39, 0x00, 0x00, 0x00, 0x00,
@@ -309,7 +297,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0xB5, 0x92, 0xF5, 0x3A, 0x00, 0x00, 0x00, 0x00,
@@ -328,7 +315,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0xB7, 0x70, 0xD0, 0x38, 0x00, 0x00, 0x00, 0x00,
@@ -347,7 +333,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0xBC, 0xC7, 0x2E, 0x39, 0x00, 0x00, 0x00, 0x00,
@@ -366,7 +351,6 @@ static const struct VersionTableEntry kSortedVersionTable[] = {
     },
     {
         {
-            kSignatureCount,
             {
                 0x50, 0x45, 0x00, 0x00, 0x4C, 0x01, 0x06, 0x00,
                 0xC1, 0x7B, 0xE0, 0x3A, 0x00, 0x00, 0x00, 0x00,
@@ -391,17 +375,17 @@ enum {
 };
 
 static enum D2_GameVersion SearchTable(
-    const struct Mapi_FilePeSignature* file_pe_signature
+    const struct PeSignature* signature
 ) {
   const struct VersionTableEntry* search_result;
 
   /*
-   * This use of file_pe_signature as a VersionTableEntry is safe,
+   * This use of signature as a VersionTableEntry is safe,
    * because only the key is ever accessed by the compare function
-   * and the key matches the type of file_pe_signature.
+   * and the key matches the type of signature.
    */
   search_result = bsearch(
-      file_pe_signature,
+      signature,
       kSortedVersionTable,
       kSortedVersionTableCount,
       sizeof(kSortedVersionTable[0]),
@@ -431,15 +415,15 @@ enum D2_GameVersion FilePeSignature_GuessGameVersion(
     int is_game_version_at_least_1_14
 ) {
   const wchar_t* path;
-  struct Mapi_FilePeSignature file_pe_signature;
+  struct PeSignature pe_signature;
 
   path = is_game_version_at_least_1_14
       ? Mapi_GameExecutable_GetPath()
       : L"Storm.dll";
 
-  Mapi_FilePeSignature_ReadFile(&file_pe_signature, path, kSignatureCount);
+  PeSignature_ReadFile(&pe_signature, path);
 
-  return SearchTable(&file_pe_signature);
+  return SearchTable(&pe_signature);
 }
 
 int FilePeSignature_HasCheck(enum D2_GameVersion game_version) {

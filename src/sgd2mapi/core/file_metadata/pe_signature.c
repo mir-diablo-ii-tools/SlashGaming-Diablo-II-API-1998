@@ -1,8 +1,8 @@
 /**
- * SlashGaming Diablo II Modding API for C++98
+ * SlashGaming Diablo II Modding API for C
  * Copyright (C) 2018-2025  Mir Drualga
  *
- * This file is part of SlashGaming Diablo II Modding API for C++98.
+ * This file is part of SlashGaming Diablo II Modding API for C.
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
@@ -43,32 +43,79 @@
  *  work.
  */
 
-#ifndef SGMAPI_CPP98_FILE_FILE_PE_SIGNATURE_HPP_
-#define SGMAPI_CPP98_FILE_FILE_PE_SIGNATURE_HPP_
+#include "sgd2mapi/core/file_metadata/pe_signature.h"
 
 #include <stddef.h>
 #include <windows.h>
 
-#include "mdc/std/stdint.h"
-#include "sgd2mapi98.h"
+#include <mdc/std/wchar.h>
 
-#include "sgd2mapi98/dllapi_cpp98_define.inc"
-
-namespace mapi {
-
-class DLLAPI FilePeSignature {
- public:
-  FilePeSignature();
-
-  int CompareSignature(const FilePeSignature& signature) const;
-
-  static FilePeSignature ReadFile(const wchar_t* path, size_t count);
-
- private:
-  ::Mapi_FilePeSignature file_pe_signature_;
+enum {
+  PE_SIGNATURE_START_OFFSET = 0x3C
 };
 
-} // namespace mapi
+static int IsFileSizeSufficient(HANDLE file) {
+  DWORD file_size_low;
+  DWORD file_size_high;
 
-#include "sgd2mapi98/dllapi_cpp98_undef.inc"
-#endif /* SGMAPI_CPP98_FILE_FILE_PE_SIGNATURE_HPP_ */
+  file_size_low = GetFileSize(file, &file_size_high);
+  return file_size_high > 0 || file_size_low >= PE_SIGNATURE_START_OFFSET + PE_SIGNATURE_SIZE;
+}
+
+/**
+ * External
+ */
+
+struct PeSignature* PeSignature_ReadFile(
+    struct PeSignature* signature, const wchar_t* path) {
+  HANDLE file;
+  BOOL read_file_succeeded;
+  DWORD set_file_pointer_result;
+
+  file =
+      CreateFileW(
+          path,
+          GENERIC_READ,
+          FILE_SHARE_READ,
+          NULL,
+          OPEN_EXISTING,
+          FILE_ATTRIBUTE_NORMAL,
+          NULL);
+  if (file == INVALID_HANDLE_VALUE) {
+    goto error;
+  }
+
+  if (!IsFileSizeSufficient(file)) {
+    goto error_close_file;
+  }
+
+  set_file_pointer_result =
+      SetFilePointer(file, PE_SIGNATURE_START_OFFSET, NULL, FILE_BEGIN);
+  if (set_file_pointer_result == INVALID_SET_FILE_POINTER) {
+    DWORD last_error;
+
+    last_error = GetLastError();
+    if (last_error != NO_ERROR) {
+      goto error_close_file;
+    }
+  }
+
+  read_file_succeeded =
+      ReadFile(file, signature->data, PE_SIGNATURE_SIZE, NULL, NULL);
+  if (!read_file_succeeded) {
+    goto error_close_file;
+  }
+
+  return signature;
+
+error_close_file:
+  CloseHandle(file);
+
+error:
+  return NULL;
+}
+
+int PeSignature_Compare(
+    const struct PeSignature* lhs, const struct PeSignature* rhs) {
+  return memcmp(lhs->data, rhs->data, sizeof(lhs->data));
+}
