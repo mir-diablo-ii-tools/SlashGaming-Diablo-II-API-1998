@@ -48,6 +48,8 @@
 
 #include <mdc/std/wchar.h>
 
+#include "sgd2mapi/core/dllapi_c_define.inc"
+
 #ifdef __cplusplus
 extern "C" {
 #endif  /* __cplusplus */
@@ -60,14 +62,15 @@ struct PeSignature {
   unsigned char data[PE_SIGNATURE_SIZE];
 };
 
-struct PeSignature* PeSignature_ReadFile(
+DLLAPI struct PeSignature* PeSignature_ReadFile(
     struct PeSignature* signature, const wchar_t* path);
 
-int PeSignature_Compare(
+DLLAPI int PeSignature_Compare(
     const struct PeSignature* lhs, const struct PeSignature* rhs);
 
 #ifdef __cplusplus
 }  // extern "C"
 #endif  /* __cplusplus */
 
+#include "sgd2mapi/core/dllapi_c_undef.inc"
 #endif  /* SGD2MAPI_C_CORE_FILE_METADATA_PE_SIGNATURE_H_ */
