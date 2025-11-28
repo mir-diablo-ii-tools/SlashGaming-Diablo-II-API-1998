@@ -27,5 +27,5 @@ target_include_directories(${PROJECT_NAME}
         "${CMAKE_SOURCE_DIR}/src"
         "${CMAKE_SOURCE_DIR}/tests"
         "${CMAKE_SOURCE_DIR}/third_party/cutest-1.5")
-target_link_libraries(${PROJECT_NAME} PRIVATE SGD2MAPIc CuTest)
+target_link_libraries(${PROJECT_NAME} PRIVATE SGD2MAPIc.Core CuTest)
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
