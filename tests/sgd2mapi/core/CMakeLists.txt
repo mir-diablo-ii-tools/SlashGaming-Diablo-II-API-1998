@@ -20,6 +20,7 @@ endif (MINGW)
 add_executable(${PROJECT_NAME} "core_tests.c")
 
 add_subdirectory("file_metadata")
+add_subdirectory("main_exe")
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE NOMINMAX)
 target_include_directories(${PROJECT_NAME}
