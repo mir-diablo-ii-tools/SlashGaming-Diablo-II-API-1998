@@ -43,17 +43,19 @@
  *  work.
  */
 
-#include "sgd2mapi/core/file_metadata/pe_signature_tests.h"
-
 #include <stdio.h>
 
 #include <CuTest.h>
+
+#include "sgd2mapi/core/file_metadata/pe_signature_tests.h"
+#include "sgd2mapi/core/main_exe/main_exe_path_tests.h"
 
 static void RunAllTests(void) {
   CuString *output = CuStringNew();
   CuSuite* suite = CuSuiteNew();
 
   CuSuiteAddSuite(suite, PeSignature_GetTestSuite());
+  CuSuiteAddSuite(suite, MainExePath_GetTestSuite());
 
   CuSuiteRun(suite);
   CuSuiteSummary(suite, output);

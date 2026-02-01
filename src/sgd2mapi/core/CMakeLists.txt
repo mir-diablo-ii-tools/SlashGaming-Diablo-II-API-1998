@@ -41,3 +41,4 @@ target_include_directories(
 target_link_libraries(${PROJECT_NAME} PUBLIC MDCc shlwapi version)
 
 add_subdirectory("file_metadata")
+add_subdirectory("main_exe")
