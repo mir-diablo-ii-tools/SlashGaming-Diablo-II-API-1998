@@ -38,7 +38,7 @@ target_sources(${PROJECT_NAME}
 target_include_directories(
     ${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/src")
 
-target_link_libraries(${PROJECT_NAME} PUBLIC MDCc shlwapi version)
+target_link_libraries(${PROJECT_NAME} PUBLIC MDCc imagehlp shlwapi version)
 
 add_subdirectory("error")
 add_subdirectory("file_metadata")
