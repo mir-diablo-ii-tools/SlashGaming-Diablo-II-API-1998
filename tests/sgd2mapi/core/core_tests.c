@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/core/file_metadata/pe_signature_tests.h"
+#include "sgd2mapi/core/file_metadata/pe_timestamp_tests.h"
 #include "sgd2mapi/core/main_exe/main_exe_path_tests.h"
 
 static void RunAllTests(void) {
@@ -55,6 +56,7 @@ static void RunAllTests(void) {
   CuSuite* suite = CuSuiteNew();
 
   CuSuiteAddSuite(suite, PeSignature_GetTestSuite());
+  CuSuiteAddSuite(suite, PeTimestamp_GetTestSuite());
   CuSuiteAddSuite(suite, MainExePath_GetTestSuite());
 
   CuSuiteRun(suite);
