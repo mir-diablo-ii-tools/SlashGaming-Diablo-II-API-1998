@@ -21,12 +21,12 @@ endif (MINGW)
 # Build output
 option(${PROJECT_NAME}_BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 if (${PROJECT_NAME}_BUILD_SHARED_LIBS)
-    add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+    add_library(${PROJECT_NAME} SHARED)
     target_compile_definitions(${PROJECT_NAME}
         INTERFACE SGD2MAPI_C_CORE_DLLIMPORT
         PRIVATE SGD2MAPI_C_CORE_DLLEXPORT)
 else()
-    add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+    add_library(${PROJECT_NAME} STATIC)
 endif()
 
 target_sources(${PROJECT_NAME}
