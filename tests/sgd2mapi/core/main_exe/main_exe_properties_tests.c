@@ -43,7 +43,7 @@
  *  work.
  */
 
-#include "sgd2mapi/core/main_exe/main_exe_path_tests.h"
+#include "sgd2mapi/core/main_exe/main_exe_properties_tests.h"
 
 #include <windows.h>
 #include <shlwapi.h>
@@ -51,15 +51,15 @@
 #include <CuTest.h>
 #include <mdc/std/wchar.h>
 
-#include "sgd2mapi/core/main_exe/main_exe_path.h"
+#include "sgd2mapi/core/main_exe/main_exe_properties.h"
 
-static void GetPath_MatchesExpected(CuTest* tc) {
-  const wchar_t* main_exe_path;
+static void GetProperties_MatchesExpected(CuTest* tc) {
+  const struct MainExeProperties* main_exe_properties;
   const wchar_t* filename;
 
-  main_exe_path = MainExe_GetPath();
+  main_exe_properties = MainExe_GetProperties(NULL);
 
-  filename = PathFindFileNameW(main_exe_path);
+  filename = PathFindFileNameW(main_exe_properties->path);
   CuAssertIntEquals(tc, 0, wcscmp(filename, L"Tests.SGD2MAPIc.Core.exe"));
 }
 
@@ -67,12 +67,12 @@ static void GetPath_MatchesExpected(CuTest* tc) {
  * External
  */
 
-CuSuite* MainExePath_GetTestSuite(void) {
+CuSuite* MainExeProperties_GetTestSuite(void) {
   CuSuite* suite;
 
   suite = CuSuiteNew();
 
-  SUITE_ADD_TEST(suite, &GetPath_MatchesExpected);
+  SUITE_ADD_TEST(suite, &GetProperties_MatchesExpected);
 
   return suite;
 }
