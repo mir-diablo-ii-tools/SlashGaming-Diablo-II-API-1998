@@ -43,25 +43,19 @@
  *  work.
  */
 
-#include "sgd2mapi/core/main_exe/main_exe_path.h"
+#ifndef SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_TESTS_H_
+#define SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_TESTS_H_
 
-#include <stddef.h>
-#include <windows.h>
+#include <CuTest.h>
 
-#include <mdc/std/wchar.h>
+#ifdef __cplusplus
+extern "C" {
+#endif  /* __cplusplus */
 
-/**
- * External
- */
+CuSuite* MainExeProperties_GetTestSuite(void);
 
-const wchar_t* MainExe_GetPath(void) {
-  static wchar_t g_main_exe_path[MAX_PATH];
-  static int inited = 0;
+#ifdef __cplusplus
+}  // extern "C"
+#endif  /* __cplusplus */
 
-  if (!inited) {
-    GetModuleFileNameW(NULL, g_main_exe_path, MAX_PATH);
-    inited = 1;
-  }
-
-  return g_main_exe_path;
-}
+#endif  /* SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_TESTS_H_ */

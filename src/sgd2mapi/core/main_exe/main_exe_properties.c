@@ -43,19 +43,58 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_TESTS_H_
-#define SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_TESTS_H_
+#include "sgd2mapi/core/main_exe/main_exe_properties.h"
 
-#include <CuTest.h>
+#include <stddef.h>
+#include <windows.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif  /* __cplusplus */
+#include <mdc/std/wchar.h>
+#include <mdc/wchar_t/filew.h>
 
-CuSuite* MainExePath_GetTestSuite(void);
+#include "sgd2mapi/core/error/error.h"
+#include "sgd2mapi/core/file_metadata/pe_timestamp.h"
 
-#ifdef __cplusplus
-}  // extern "C"
-#endif  /* __cplusplus */
+static struct MainExeProperties* MainExeProperties_Init(
+    struct MainExeProperties* properties, struct SGD2Error* error) {
+  DWORD path_chars_count;
+  struct PeTimestamp* timestamp_read_file_result;
 
-#endif  /* SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_TESTS_H_ */
+  path_chars_count = GetModuleFileNameW(NULL, properties->path, MAX_PATH);
+  if (path_chars_count == 0) {
+    error->path = __FILEW__;
+    error->line = __LINE__;
+    error->function_name = L"GetModuleFileName";
+    error->type = SGD2ERROR_WINDOWS_ERROR;
+    error->windows_error.code = GetLastError();
+    goto error_return;
+  }
+
+  properties->path_length = path_chars_count;
+
+  timestamp_read_file_result =
+      PeTimestamp_ReadFile(properties->path, &properties->timestamp, error);
+  if (timestamp_read_file_result == NULL) {
+    goto error_return;
+  }
+
+  return properties;
+
+error_return:
+  return NULL;
+}
+
+/**
+ * External
+ */
+
+const struct MainExeProperties* MainExe_GetProperties(struct SGD2Error* error) {
+  static struct MainExeProperties g_main_exe_properties;
+  static int inited = 0;
+
+  if (!inited) {
+    MainExeProperties_Init(&g_main_exe_properties, error);
+    inited = 1;
+  }
+
+  return &g_main_exe_properties;
+}

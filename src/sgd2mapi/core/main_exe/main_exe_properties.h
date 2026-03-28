@@ -43,10 +43,16 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_H_
-#define SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_H_
+#ifndef SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_H_
+#define SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_H_
+
+#include <stddef.h>
+#include <windows.h>
 
 #include <mdc/std/wchar.h>
+
+#include "sgd2mapi/core/error/error.h"
+#include "sgd2mapi/core/file_metadata/pe_timestamp.h"
 
 #include "sgd2mapi/core/dllapi_c_define.inc"
 
@@ -54,11 +60,18 @@
 extern "C" {
 #endif  /* __cplusplus */
 
-DLLAPI const wchar_t* MainExe_GetPath(void);
+struct MainExeProperties {
+  wchar_t path[MAX_PATH];
+  size_t path_length;
+  struct PeTimestamp timestamp;
+};
+
+DLLAPI const struct MainExeProperties* MainExe_GetProperties(
+    struct SGD2Error* error);
 
 #ifdef __cplusplus
 }  // extern "C"
 #endif  /* __cplusplus */
 
 #include "sgd2mapi/core/dllapi_c_undef.inc"
-#endif  /* SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PATH_H_ */
+#endif  /* SGD2MAPI_C_CORE_MAIN_EXE_MAIN_EXE_PROPERTIES_H_ */

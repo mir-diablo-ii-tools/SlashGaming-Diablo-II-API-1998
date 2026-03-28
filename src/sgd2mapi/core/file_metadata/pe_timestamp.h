@@ -71,7 +71,7 @@ DLLAPI struct PeTimestamp* PeTimestamp_ReadFile(
     struct SGD2Error* error);
 
 DLLAPI int PeTimestamp_Compare(
-    struct PeTimestamp* lhs, struct PeTimestamp* rhs);
+    const struct PeTimestamp* lhs, const struct PeTimestamp* rhs);
 
 #ifdef __cplusplus
 }  // extern "C"

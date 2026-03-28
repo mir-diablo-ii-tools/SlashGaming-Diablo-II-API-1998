@@ -69,13 +69,13 @@ struct PeTimestamp* PeTimestamp_ReadFile(
 
   file =
       CreateFileW(
-      path,
-      GENERIC_READ,
-      FILE_SHARE_READ,
-      NULL,
-      OPEN_EXISTING,
-      FILE_ATTRIBUTE_NORMAL,
-      NULL);
+          path,
+          GENERIC_READ,
+          FILE_SHARE_READ,
+          NULL,
+          OPEN_EXISTING,
+          FILE_ATTRIBUTE_NORMAL,
+          NULL);
   if (file == INVALID_HANDLE_VALUE) {
     if (error != NULL) {
       error->path = __FILEW__;
@@ -145,6 +145,7 @@ error:
   return NULL;
 }
 
-int PeTimestamp_Compare(struct PeTimestamp* lhs, struct PeTimestamp* rhs) {
+int PeTimestamp_Compare(
+    const struct PeTimestamp* lhs, const struct PeTimestamp* rhs) {
   return (lhs->value < rhs->value) ? -1 : (lhs->value > rhs->value);
 }

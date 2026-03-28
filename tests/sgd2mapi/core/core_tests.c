@@ -49,7 +49,7 @@
 
 #include "sgd2mapi/core/file_metadata/pe_signature_tests.h"
 #include "sgd2mapi/core/file_metadata/pe_timestamp_tests.h"
-#include "sgd2mapi/core/main_exe/main_exe_path_tests.h"
+#include "sgd2mapi/core/main_exe/main_exe_properties_tests.h"
 
 static void RunAllTests(void) {
   CuString *output = CuStringNew();
@@ -57,7 +57,7 @@ static void RunAllTests(void) {
 
   CuSuiteAddSuite(suite, PeSignature_GetTestSuite());
   CuSuiteAddSuite(suite, PeTimestamp_GetTestSuite());
-  CuSuiteAddSuite(suite, MainExePath_GetTestSuite());
+  CuSuiteAddSuite(suite, MainExeProperties_GetTestSuite());
 
   CuSuiteRun(suite);
   CuSuiteSummary(suite, output);
