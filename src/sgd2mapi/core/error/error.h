@@ -83,6 +83,16 @@ struct SGD2WindowsError {
   DWORD code;
 };
 
+enum SGD2UnexpectedErrorCode {
+  SGD2UNEXPECTEDERRORCODE_UNDEFINED = 0,
+
+  SGD2UNEXPECTEDERRORCODE_NO_CONSTANT_MAPPING = 1
+};
+
+struct SGD2UnexpectedError {
+  enum SGD2UnexpectedErrorCode code;
+};
+
 struct SGD2Error {
   int line;
   const wchar_t* path;
@@ -92,6 +102,7 @@ struct SGD2Error {
   union {
     struct SGD2StdlibError stdlib_error;
     struct SGD2WindowsError windows_error;
+    struct SGD2UnexpectedError unexpected_error;
   };
 };
 
