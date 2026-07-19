@@ -38,6 +38,8 @@ target_sources(${PROJECT_NAME}
 
         "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect.c")
 
+add_subdirectory("ini_properties")
+
 if (MSVC)
     target_compile_definitions(${PROJECT_NAME} PRIVATE -D_CRT_SECURE_NO_WARNINGS)
 endif (MSVC)
