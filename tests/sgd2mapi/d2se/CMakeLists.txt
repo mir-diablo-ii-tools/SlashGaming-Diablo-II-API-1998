@@ -22,6 +22,8 @@ add_executable(${PROJECT_NAME}
     "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect_tests.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect_tests.h")
 
+add_subdirectory("ini_properties")
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE NOMINMAX)
 target_include_directories(${PROJECT_NAME}
     PRIVATE
