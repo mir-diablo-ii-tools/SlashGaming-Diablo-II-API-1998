@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/d2se/exe_detect_tests.h"
+#include "sgd2mapi/d2se/ini_properties/user_settings_section/no_sound_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/renderer_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/window_mode_test.h"
 
@@ -55,6 +56,7 @@ static void RunAllTests(void) {
   CuString *output = CuStringNew();
   CuSuite* suite = CuSuiteNew();
 
+  CuSuiteAddSuite(suite, D2SeNoSound_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeRenderer_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeWindowMode_GetTestSuite());
   CuSuiteAddSuite(suite, ExeDetect_GetTestSuite());
