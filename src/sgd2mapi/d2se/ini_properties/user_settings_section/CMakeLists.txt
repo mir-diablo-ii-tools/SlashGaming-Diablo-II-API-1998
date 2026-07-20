@@ -1,9 +1,11 @@
 target_sources(${PROJECT_NAME}
     PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/enable_hc.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/renderer.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/window_mode.h"
     PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/enable_hc.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/renderer.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/window_mode.c")
