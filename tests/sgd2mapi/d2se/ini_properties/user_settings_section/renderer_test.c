@@ -188,6 +188,7 @@ CuSuite* D2SeRenderer_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Glide);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Glide);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Glide);
+  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Glide);
 
   return suite;
 }
