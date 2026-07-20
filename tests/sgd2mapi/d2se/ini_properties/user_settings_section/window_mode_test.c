@@ -174,6 +174,7 @@ CuSuite* D2SeWindowMode_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Fullscreen);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Fullscreen);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Fullscreen);
+  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Fullscreen);
 
   return suite;
 }
