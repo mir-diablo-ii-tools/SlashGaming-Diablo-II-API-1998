@@ -1,11 +1,13 @@
 target_sources(${PROJECT_NAME}
     PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/direct_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_hc_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_plugy_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/renderer_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/window_mode_test.h"
     PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/direct_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_hc_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_plugy_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound_test.c"
