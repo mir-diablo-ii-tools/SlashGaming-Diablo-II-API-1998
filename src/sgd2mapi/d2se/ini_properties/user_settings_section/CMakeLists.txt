@@ -5,6 +5,7 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_plugy.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/renderer.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/txt.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/window_mode.h"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/direct.c"
@@ -12,4 +13,5 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/enable_plugy.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/no_sound.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/renderer.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/txt.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/window_mode.c")
