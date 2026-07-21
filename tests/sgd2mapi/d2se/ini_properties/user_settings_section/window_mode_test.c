@@ -59,7 +59,8 @@ static void ReadFrom_FullscreenIni_Fullscreen(CuTest* tc) {
 
   window_mode =
       D2SeWindowMode_ReadFrom(
-          L"../ini_properties/user_settings_section/data/fullscreen.ini", &error);
+          L"../ini_properties/user_settings_section/data/fullscreen.ini",
+          &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
   CuAssertIntEquals(tc, D2SEWINDOWMODE_FULLSCREEN, window_mode);

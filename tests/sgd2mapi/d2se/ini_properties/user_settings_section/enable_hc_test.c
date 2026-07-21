@@ -59,7 +59,8 @@ static void ReadFrom_DisableHcIni_Disabled(CuTest* tc) {
 
   enable_hc =
       D2SeEnableHc_ReadFrom(
-          L"../ini_properties/user_settings_section/data/disable_hc.ini", &error);
+          L"../ini_properties/user_settings_section/data/hc_disabled.ini",
+          &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
   CuAssertIntEquals(tc, D2SEENABLEHC_DISABLED, enable_hc);
@@ -71,7 +72,7 @@ static void ReadFrom_EnableHcIni_Enabled(CuTest* tc) {
 
   enable_hc =
       D2SeEnableHc_ReadFrom(
-          L"../ini_properties/user_settings_section/data/enable_hc.ini",
+          L"../ini_properties/user_settings_section/data/hc_enabled.ini",
           &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);

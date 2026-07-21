@@ -59,7 +59,8 @@ static void ReadFrom_SoundEnabledIni_SoundEnabled(CuTest* tc) {
 
   no_sound =
       D2SeNoSound_ReadFrom(
-          L"../ini_properties/user_settings_section/data/sound_enabled.ini", &error);
+          L"../ini_properties/user_settings_section/data/sound_enabled.ini",
+          &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
   CuAssertIntEquals(tc, D2SENOSOUND_SOUNDENABLED, no_sound);
