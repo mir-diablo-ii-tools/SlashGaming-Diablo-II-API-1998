@@ -53,6 +53,7 @@
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/enable_plugy_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/no_sound_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/renderer_test.h"
+#include "sgd2mapi/d2se/ini_properties/user_settings_section/skip_to_bnet_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/txt_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/window_mode_test.h"
 
@@ -65,6 +66,7 @@ static void RunAllTests(void) {
   CuSuiteAddSuite(suite, D2SeEnablePlugY_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeNoSound_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeRenderer_GetTestSuite());
+  CuSuiteAddSuite(suite, D2SeSkipToBNet_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeTxt_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeWindowMode_GetTestSuite());
   CuSuiteAddSuite(suite, ExeDetect_GetTestSuite());
