@@ -59,7 +59,7 @@ static void ReadFrom_DisablePlugYIni_Disabled(CuTest* tc) {
 
   enable_plugy =
       D2SeEnablePlugY_ReadFrom(
-          L"../ini_properties/user_settings_section/data/plugy_disable.ini",
+          L"../ini_properties/user_settings_section/data/plugy_disabled.ini",
           &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
@@ -72,7 +72,7 @@ static void ReadFrom_EnablePlugYIni_Enabled(CuTest* tc) {
 
   enable_plugy =
       D2SeEnablePlugY_ReadFrom(
-          L"../ini_properties/user_settings_section/data/plugy_enable.ini",
+          L"../ini_properties/user_settings_section/data/plugy_enabled.ini",
           &error);
 
   CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
