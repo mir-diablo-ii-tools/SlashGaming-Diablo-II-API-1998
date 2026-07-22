@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/d2se/exe_detect_tests.h"
+#include "sgd2mapi/d2se/ini_properties/user_settings_section_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/direct_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/enable_hc_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/enable_plugy_test.h"
@@ -69,6 +70,7 @@ static void RunAllTests(void) {
   CuSuiteAddSuite(suite, D2SeSkipToBNet_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeTxt_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeWindowMode_GetTestSuite());
+  CuSuiteAddSuite(suite, D2SeUserSettingsSection_GetTestSuite());
   CuSuiteAddSuite(suite, ExeDetect_GetTestSuite());
 
   CuSuiteRun(suite);
