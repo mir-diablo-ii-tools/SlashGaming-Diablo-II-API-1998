@@ -6,4 +6,5 @@ target_sources(${PROJECT_NAME}
 
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+add_subdirectory("protected_section")
 add_subdirectory("user_settings_section")
