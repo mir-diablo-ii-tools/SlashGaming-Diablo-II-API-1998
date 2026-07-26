@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/d2se/exe_detect_tests.h"
+#include "sgd2mapi/d2se/ini_properties/protected_section_test.h"
 #include "sgd2mapi/d2se/ini_properties/protected_section/d2core_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section/direct_test.h"
@@ -64,6 +65,7 @@ static void RunAllTests(void) {
   CuSuite* suite = CuSuiteNew();
 
   CuSuiteAddSuite(suite, D2SeD2Core_GetTestSuite());
+  CuSuiteAddSuite(suite, D2SeProtectedSection_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeDirect_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeEnableHc_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeEnablePlugY_GetTestSuite());
