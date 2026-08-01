@@ -143,7 +143,7 @@ static void ReadFrom_OverIni_Enabled(CuTest* tc) {
   CuAssertIntEquals(tc, D2SEENABLEPLUGY_ENABLED, enable_plugy);
 }
 
-static void ReadFrom_NotExist_Enabled(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeEnablePlugY enable_plugy;
 
@@ -154,8 +154,10 @@ static void ReadFrom_NotExist_Enabled(CuTest* tc) {
       D2SeEnablePlugY_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  CuAssertIntEquals(tc, D2SEENABLEPLUGY_ENABLED, enable_plugy);
+  CuAssertIntEquals(tc, D2SEENABLEPLUGY_UNSPECIFIED, enable_plugy);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -175,7 +177,8 @@ CuSuite* D2SeEnablePlugY_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Enabled);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Enabled);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Enabled);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Enabled);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }

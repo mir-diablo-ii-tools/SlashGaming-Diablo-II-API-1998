@@ -143,7 +143,7 @@ static void ReadFrom_OverIni_Disabled(CuTest* tc) {
   CuAssertIntEquals(tc, D2SETXT_DISABLED, txt);
 }
 
-static void ReadFrom_NotExist_Disabled(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeTxt txt;
 
@@ -154,8 +154,10 @@ static void ReadFrom_NotExist_Disabled(CuTest* tc) {
       D2SeTxt_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  CuAssertIntEquals(tc, D2SETXT_DISABLED, txt);
+  CuAssertIntEquals(tc, D2SETXT_UNSPECIFIED, txt);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -175,7 +177,8 @@ CuSuite* D2SeTxt_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Disabled);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Disabled);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Disabled);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Disabled);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }

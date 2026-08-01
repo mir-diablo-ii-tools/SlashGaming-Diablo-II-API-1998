@@ -239,7 +239,7 @@ static void ReadFrom_InvalidStringIni_NoConstantMappingError(CuTest* tc) {
       error.unexpected_error.code);
 }
 
-static void ReadFrom_NotExist_NoConstantMappingError(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   struct D2SeProtectedSection protected_section;
   struct D2SeProtectedSection* read_from_result;
@@ -254,11 +254,9 @@ static void ReadFrom_NotExist_NoConstantMappingError(CuTest* tc) {
           &error);
 
   CuAssertPtrEquals(tc, NULL, read_from_result);
-  CuAssertIntEquals(tc, SGD2ERROR_UNEXPECTED_ERROR, error.type);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
   CuAssertIntEquals(
-      tc,
-      SGD2UNEXPECTEDERRORCODE_NO_CONSTANT_MAPPING,
-      error.unexpected_error.code);
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -282,7 +280,8 @@ CuSuite* D2SeProtectedSection_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_EmptyKeyIni_NoConstantMappingError);
   SUITE_ADD_TEST(suite, &ReadFrom_EmptyValueIni_NoConstantMappingError);
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_NoConstantMappingError);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_NoConstantMappingError);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }
