@@ -20,7 +20,11 @@ endif (MINGW)
 add_executable(${PROJECT_NAME}
     "${CMAKE_CURRENT_SOURCE_DIR}/d2se_tests.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect_tests.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect_tests.h")
+    "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect_tests.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/ini_properties_test.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/ini_properties_test.h")
+
+file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory("ini_properties")
 

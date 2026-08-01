@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/d2se/exe_detect_tests.h"
+#include "sgd2mapi/d2se/ini_properties_test.h"
 #include "sgd2mapi/d2se/ini_properties/protected_section_test.h"
 #include "sgd2mapi/d2se/ini_properties/protected_section/d2core_test.h"
 #include "sgd2mapi/d2se/ini_properties/user_settings_section_test.h"
@@ -75,6 +76,8 @@ static void RunAllTests(void) {
   CuSuiteAddSuite(suite, D2SeTxt_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeWindowMode_GetTestSuite());
   CuSuiteAddSuite(suite, D2SeUserSettingsSection_GetTestSuite());
+  CuSuiteAddSuite(suite, D2SeIniProperties_GetTestSuite());
+
   CuSuiteAddSuite(suite, ExeDetect_GetTestSuite());
 
   CuSuiteRun(suite);
