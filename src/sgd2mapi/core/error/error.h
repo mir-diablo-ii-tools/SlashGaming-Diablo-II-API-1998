@@ -64,7 +64,9 @@ enum SGD2ErrorType {
   /** Windows error. */
   SGD2ERROR_WINDOWS_ERROR = 3,
   /** Unexpected error. */
-  SGD2ERROR_UNEXPECTED_ERROR = 4
+  SGD2ERROR_UNEXPECTED_ERROR = 4,
+  /** Expected error. */
+  SGD2ERROR_EXPECTED_ERROR = 5
 };
 
 /* Next ID: 2 */
@@ -83,14 +85,28 @@ struct SGD2WindowsError {
   DWORD code;
 };
 
+/* Next ID: 2 */
 enum SGD2UnexpectedErrorCode {
   SGD2UNEXPECTEDERRORCODE_UNDEFINED = 0,
 
+  /** Missing mapping between some value to a constant value. */
   SGD2UNEXPECTEDERRORCODE_NO_CONSTANT_MAPPING = 1
 };
 
 struct SGD2UnexpectedError {
   enum SGD2UnexpectedErrorCode code;
+};
+
+/* Next ID: 3 */
+enum SGD2ExpectedErrorCode {
+  SGD2EXPECTEDERRORCODE_UNDEFINED = 0,
+
+  /** Resource not found. */
+  SGD2EXPECTEDERRORCODE_NOT_FOUND = 1
+};
+
+struct SGD2ExpectedError {
+  enum SGD2ExpectedErrorCode code;
 };
 
 struct SGD2Error {
@@ -103,6 +119,7 @@ struct SGD2Error {
     struct SGD2StdlibError stdlib_error;
     struct SGD2WindowsError windows_error;
     struct SGD2UnexpectedError unexpected_error;
+    struct SGD2ExpectedError expected_error;
   };
 };
 
