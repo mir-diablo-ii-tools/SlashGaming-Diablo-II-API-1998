@@ -32,11 +32,13 @@ endif()
 target_sources(${PROJECT_NAME}
     PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/ini_properties.h"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_define.inc"
         "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_undef.inc"
 
-        "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect.c")
+        "${CMAKE_CURRENT_SOURCE_DIR}/exe_detect.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/ini_properties.c")
 
 add_subdirectory("ini_properties")
 
