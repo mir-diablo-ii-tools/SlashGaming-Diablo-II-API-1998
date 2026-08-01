@@ -155,7 +155,7 @@ static void ReadFrom_OverIni_Glide(CuTest* tc) {
   CuAssertIntEquals(tc, D2SERENDERER_GLIDE, renderer);
 }
 
-static void ReadFrom_NotExist_Glide(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeRenderer renderer;
 
@@ -166,8 +166,10 @@ static void ReadFrom_NotExist_Glide(CuTest* tc) {
       D2SeRenderer_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  CuAssertIntEquals(tc, D2SERENDERER_GLIDE, renderer);
+  CuAssertIntEquals(tc, D2SERENDERER_UNSPECIFIED, renderer);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -188,7 +190,8 @@ CuSuite* D2SeRenderer_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Glide);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Glide);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Glide);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Glide);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }

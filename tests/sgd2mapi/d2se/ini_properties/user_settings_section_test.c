@@ -212,7 +212,7 @@ static void ReadFrom_OverIni_DefaultValues(CuTest* tc) {
   CuAssertTrue(tc, equals_expected);
 }
 
-static void ReadFrom_NotExist_DefaultValues(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   struct D2SeUserSettingsSection user_settings;
   struct D2SeUserSettingsSection* read_from_result;
@@ -227,11 +227,10 @@ static void ReadFrom_NotExist_DefaultValues(CuTest* tc) {
           L"./file/that/doesnt/exist.iniw",
           &error);
 
-  CuAssertPtrEquals(tc, &user_settings, read_from_result);
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  equals_expected =
-      D2SeUserSettingsSection_Equals(&user_settings, &default_user_settings);
-  CuAssertTrue(tc, equals_expected);
+  CuAssertPtrEquals(tc, NULL, read_from_result);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -253,7 +252,8 @@ CuSuite* D2SeUserSettingsSection_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_DefaultValues);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_DefaultValues);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_DefaultValues);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_DefaultValues);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }

@@ -48,6 +48,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <windows.h>
+#include <shlwapi.h>
 
 #include <mdc/std/wchar.h>
 
@@ -66,6 +67,17 @@ enum D2SeSkipToBNet D2SeSkipToBNet_ReadFrom(
   };
 
   wchar_t value_str[VALUE_STR_CAPACITY];
+
+  if (!PathFileExistsW(ini_path)) {
+    if (error != NULL) {
+      error->path = __FILEW__;
+      error->line = __LINE__;
+      error->function_name = L"D2SeD2Core_ReadFrom";
+      error->type = SGD2ERROR_EXPECTED_ERROR;
+      error->expected_error.code = SGD2EXPECTEDERRORCODE_NOT_FOUND;
+    }
+    return D2SESKIPTOBNET_UNSPECIFIED;
+  }
 
   GetPrivateProfileStringW(
       L"USERSETTINGS",

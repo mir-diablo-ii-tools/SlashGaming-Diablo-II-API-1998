@@ -143,7 +143,7 @@ static void ReadFrom_OverIni_SoundEnabled(CuTest* tc) {
   CuAssertIntEquals(tc, D2SENOSOUND_SOUNDENABLED, no_sound);
 }
 
-static void ReadFrom_NotExist_SoundEnabled(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeNoSound no_sound;
 
@@ -154,8 +154,10 @@ static void ReadFrom_NotExist_SoundEnabled(CuTest* tc) {
       D2SeNoSound_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  CuAssertIntEquals(tc, D2SENOSOUND_SOUNDENABLED, no_sound);
+  CuAssertIntEquals(tc, D2SENOSOUND_UNSPECIFIED, no_sound);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -175,7 +177,8 @@ CuSuite* D2SeNoSound_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_SoundEnabled);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_SoundEnabled);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_SoundEnabled);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_SoundEnabled);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }

@@ -205,7 +205,7 @@ static void ReadFrom_InvalidStringIni_NoConstantMappingError(CuTest* tc) {
       error.unexpected_error.code);
 }
 
-static void ReadFrom_NotExist_NoConstantMappingError(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFound(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeD2Core d2core;
 
@@ -216,11 +216,9 @@ static void ReadFrom_NotExist_NoConstantMappingError(CuTest* tc) {
       D2SeD2Core_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_UNEXPECTED_ERROR, error.type);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
   CuAssertIntEquals(
-      tc,
-      SGD2UNEXPECTEDERRORCODE_NO_CONSTANT_MAPPING,
-      error.unexpected_error.code);
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -244,7 +242,8 @@ CuSuite* D2SeD2Core_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_EmptyKeyIni_NoConstantMappingError);
   SUITE_ADD_TEST(suite, &ReadFrom_EmptyValueIni_NoConstantMappingError);
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_NoConstantMappingError);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_NoConstantMappingError);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFound);
 
   return suite;
 }

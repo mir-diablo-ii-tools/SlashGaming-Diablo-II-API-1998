@@ -143,7 +143,7 @@ static void ReadFrom_OverIni_Fullscreen(CuTest* tc) {
   CuAssertIntEquals(tc, D2SEWINDOWMODE_FULLSCREEN, window_mode);
 }
 
-static void ReadFrom_NotExist_Fullscreen(CuTest* tc) {
+static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   enum D2SeWindowMode window_mode;
 
@@ -154,8 +154,10 @@ static void ReadFrom_NotExist_Fullscreen(CuTest* tc) {
       D2SeWindowMode_ReadFrom(
           L"./file/that/doesnt/exist.iniw", &error);
 
-  CuAssertIntEquals(tc, SGD2ERROR_GOOD, error.type);
-  CuAssertIntEquals(tc, D2SEWINDOWMODE_FULLSCREEN, window_mode);
+  CuAssertIntEquals(tc, D2SEWINDOWMODE_UNSPECIFIED, window_mode);
+  CuAssertIntEquals(tc, SGD2ERROR_EXPECTED_ERROR, error.type);
+  CuAssertIntEquals(
+      tc, SGD2EXPECTEDERRORCODE_NOT_FOUND, error.expected_error.code);
 }
 
 /**
@@ -175,7 +177,8 @@ CuSuite* D2SeWindowMode_GetTestSuite(void) {
   SUITE_ADD_TEST(suite, &ReadFrom_InvalidStringIni_Fullscreen);
   SUITE_ADD_TEST(suite, &ReadFrom_NegativeIni_Fullscreen);
   SUITE_ADD_TEST(suite, &ReadFrom_OverIni_Fullscreen);
-  SUITE_ADD_TEST(suite, &ReadFrom_NotExist_Fullscreen);
+
+  SUITE_ADD_TEST(suite, &ReadFrom_FileNotExist_NotFoundError);
 
   return suite;
 }
