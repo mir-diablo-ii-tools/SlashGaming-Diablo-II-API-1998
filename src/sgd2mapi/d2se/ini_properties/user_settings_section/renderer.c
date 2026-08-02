@@ -66,7 +66,6 @@ enum D2SeRenderer D2SeRenderer_ReadFrom(
     VALUE_STR_CAPACITY = 8
   };
 
-  UINT result;
   wchar_t value_str[VALUE_STR_CAPACITY];
 
   if (!PathFileExistsW(ini_path)) {
