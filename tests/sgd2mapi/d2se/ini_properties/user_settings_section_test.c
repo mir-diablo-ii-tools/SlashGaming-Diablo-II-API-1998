@@ -216,7 +216,6 @@ static void ReadFrom_FileNotExist_NotFoundError(CuTest* tc) {
   struct SGD2Error error;
   struct D2SeUserSettingsSection user_settings;
   struct D2SeUserSettingsSection* read_from_result;
-  int equals_expected;
 
   /* Precondition */
   CuAssertIntEquals(tc, 0, PathFileExistsW(L"./file/that/doesnt/exist.iniw"));
