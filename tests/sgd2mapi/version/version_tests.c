@@ -47,9 +47,13 @@
 
 #include <CuTest.h>
 
+#include "sgd2mapi/version/d2/d2types_test.h"
+
 static void RunAllTests(void) {
   CuString *output = CuStringNew();
   CuSuite* suite = CuSuiteNew();
+
+  CuSuiteAddSuite(suite, D2Types_GetTestSuite());
 
   CuSuiteRun(suite);
   CuSuiteSummary(suite, output);

@@ -35,6 +35,8 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_define.inc"
         "${CMAKE_CURRENT_SOURCE_DIR}/dllapi_c_undef.inc")
 
+add_subdirectory("d2")
+
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(

@@ -20,6 +20,8 @@ endif (MINGW)
 add_executable(${PROJECT_NAME}
     "${CMAKE_CURRENT_SOURCE_DIR}/version_tests.c")
 
+add_subdirectory("d2")
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE NOMINMAX)
 target_include_directories(${PROJECT_NAME}
     PRIVATE
