@@ -48,6 +48,7 @@
 #include <CuTest.h>
 
 #include "sgd2mapi/version/d2/d2converter_test.h"
+#include "sgd2mapi/version/d2/d2detector_test.h"
 #include "sgd2mapi/version/d2/d2types_test.h"
 
 static void RunAllTests(void) {
@@ -55,6 +56,7 @@ static void RunAllTests(void) {
   CuSuite* suite = CuSuiteNew();
 
   CuSuiteAddSuite(suite, D2Types_GetTestSuite());
+  CuSuiteAddSuite(suite, D2Detector_GetTestSuite());
   CuSuiteAddSuite(suite, D2Converter_GetTestSuite());
 
   CuSuiteRun(suite);
