@@ -1,0 +1,9 @@
+target_sources(${PROJECT_NAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2converter.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2detector.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2types.h"
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2converter.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2detector.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/d2types.c")
