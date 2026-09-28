@@ -6,5 +6,6 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_file.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq.h")

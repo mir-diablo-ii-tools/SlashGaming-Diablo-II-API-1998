@@ -3,9 +3,11 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_context_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle_test.h"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_context_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle_test.c")
