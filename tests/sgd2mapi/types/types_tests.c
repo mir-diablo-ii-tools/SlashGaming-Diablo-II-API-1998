@@ -52,6 +52,7 @@
 #include "sgd2mapi/types/d2/cel_context_test.h"
 #include "sgd2mapi/types/d2/cel_file_header_test.h"
 #include "sgd2mapi/types/d2/cel_header_test.h"
+#include "sgd2mapi/types/d2/equipment_slot_test.h"
 #include "sgd2mapi/types/d2/inventory_rect_test.h"
 #include "sgd2mapi/types/d2/mpq_handle_test.h"
 
@@ -64,6 +65,7 @@ static void RunAllTests(void) {
   CuSuiteAddSuite(suite, D2CelContext_GetTestSuite());
   CuSuiteAddSuite(suite, D2CelFileHeader_GetTestSuite());
   CuSuiteAddSuite(suite, D2CelHeader_GetTestSuite());
+  CuSuiteAddSuite(suite, D2EquipmentSlot_GetTestSuite());
   CuSuiteAddSuite(suite, D2InventoryRect_GetTestSuite());
   CuSuiteAddSuite(suite, D2MpqHandle_GetTestSuite());
 
