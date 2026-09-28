@@ -22,6 +22,8 @@ endif (MINGW)
 add_library(${PROJECT_NAME} INTERFACE
     "${CMAKE_CURRENT_SOURCE_DIR}/undefined.h")
 
+add_subdirectory("d2")
+
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE C)
 
 target_include_directories(
