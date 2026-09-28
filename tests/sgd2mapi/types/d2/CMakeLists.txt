@@ -1,11 +1,13 @@
 target_sources(${PROJECT_NAME}
     PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/belt_txt_row_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_context_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle_test.h"
     PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/belt_txt_row_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_context_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.c"
