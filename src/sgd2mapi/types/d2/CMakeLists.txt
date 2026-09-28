@@ -1,5 +1,8 @@
 target_sources(${PROJECT_NAME}
     INTERFACE
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_flags.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/cel.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle.h"
