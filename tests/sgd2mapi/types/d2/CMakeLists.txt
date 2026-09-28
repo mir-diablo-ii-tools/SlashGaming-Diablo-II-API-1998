@@ -7,6 +7,7 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/equipment_slot_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect_test.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_txt_row_test.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle_test.h"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/backpack_grid_test.c"
@@ -16,4 +17,5 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/cel_header_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/equipment_slot_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect_test.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_txt_row_test.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle_test.c")

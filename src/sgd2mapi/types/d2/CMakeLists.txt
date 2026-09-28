@@ -10,5 +10,6 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/cel.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/equipment_slot.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_txt_row.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq.h")
