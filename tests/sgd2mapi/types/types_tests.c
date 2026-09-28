@@ -47,6 +47,7 @@
 
 #include <CuTest.h>
 
+#include "sgd2mapi/types/d2/backpack_grid_test.h"
 #include "sgd2mapi/types/d2/belt_txt_row_test.h"
 #include "sgd2mapi/types/d2/cel_context_test.h"
 #include "sgd2mapi/types/d2/cel_file_header_test.h"
@@ -58,6 +59,7 @@ static void RunAllTests(void) {
   CuString *output = CuStringNew();
   CuSuite* suite = CuSuiteNew();
 
+  CuSuiteAddSuite(suite, D2BackpackGrid_GetTestSuite());
   CuSuiteAddSuite(suite, D2BeltTxtRow_GetTestSuite());
   CuSuiteAddSuite(suite, D2CelContext_GetTestSuite());
   CuSuiteAddSuite(suite, D2CelFileHeader_GetTestSuite());
