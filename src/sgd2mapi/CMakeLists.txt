@@ -1,3 +1,4 @@
 add_subdirectory("core")
 add_subdirectory("d2se")
+add_subdirectory("types")
 add_subdirectory("version")
