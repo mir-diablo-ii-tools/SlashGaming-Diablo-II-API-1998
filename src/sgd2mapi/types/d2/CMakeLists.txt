@@ -13,4 +13,5 @@ target_sources(${PROJECT_NAME}
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/inventory_txt_row.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mpq.h")
+        "${CMAKE_CURRENT_SOURCE_DIR}/mpq.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/video_mode.h")
