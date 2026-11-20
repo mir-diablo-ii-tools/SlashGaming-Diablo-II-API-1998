@@ -43,11 +43,11 @@
  *  work.
  */
 
-#ifndef SGD2MAPI_C_TYPES_D2_VIDEO_MODE_H_
-#define SGD2MAPI_C_TYPES_D2_VIDEO_MODE_H_
+#ifndef SGD2MAPI_C_TYPES_D2_RENDERER_H_
+#define SGD2MAPI_C_TYPES_D2_RENDERER_H_
 
 #define ENUMERATOR(version, identifier) \
-    D2VIDEOMODE_##version##_##identifier
+    D2RENDERER_##version##_##identifier
 
 #define ENUMERATOR_LIST(version) \
     ENUMERATOR(version, GDI) = 1, \
@@ -58,7 +58,7 @@
     ENUMERATOR(version, DIRECT3D) = 6, \
     ENUMERATOR(version, RAVE) = 7
 
-enum D2VideoMode_1_00 {
+enum D2Renderer_1_00 {
   ENUMERATOR_LIST(1_00),
   ENUMERATOR_LIST(1_01),
   ENUMERATOR_LIST(1_02),
@@ -95,38 +95,38 @@ enum D2VideoMode_1_00 {
 
 #undef ENUMERATOR_LIST
 
-#define D2VideoMode_1_01 D2VideoMode_1_00
-#define D2VideoMode_1_02 D2VideoMode_1_01
-#define D2VideoMode_1_03 D2VideoMode_1_02
-#define D2VideoMode_1_04 D2VideoMode_1_03
-#define D2VideoMode_1_04b D2VideoMode_1_04
-#define D2VideoMode_1_04c D2VideoMode_1_04b
-#define D2VideoMode_1_05 D2VideoMode_1_04c
-#define D2VideoMode_1_05b D2VideoMode_1_05
-#define D2VideoMode_1_06 D2VideoMode_1_05b
-#define D2VideoMode_1_06b D2VideoMode_1_06
-#define D2VideoMode_1_07Beta D2VideoMode_1_06b
-#define D2VideoMode_1_07 D2VideoMode_1_07Beta
-#define D2VideoMode_1_08 D2VideoMode_1_07
-#define D2VideoMode_1_09 D2VideoMode_1_08
-#define D2VideoMode_1_09b D2VideoMode_1_09
-#define D2VideoMode_1_09c D2VideoMode_1_09b
-#define D2VideoMode_1_09d D2VideoMode_1_09c
-#define D2VideoMode_1_10Beta D2VideoMode_1_09d
-#define D2VideoMode_1_10sBeta D2VideoMode_1_10Beta
-#define D2VideoMode_1_10 D2VideoMode_1_10sBeta
-#define D2VideoMode_1_11 D2VideoMode_1_10
-#define D2VideoMode_1_11b D2VideoMode_1_11
-#define D2VideoMode_1_12 D2VideoMode_1_11b
-#define D2VideoMode_1_13a D2VideoMode_1_12
-#define D2VideoMode_1_13b D2VideoMode_1_13a
-#define D2VideoMode_1_13c D2VideoMode_1_13b
-#define D2VideoMode_1_13d D2VideoMode_1_13c
-#define D2VideoMode_1_14a D2VideoMode_1_13d
-#define D2VideoMode_1_14b D2VideoMode_1_14a
-#define D2VideoMode_1_14c D2VideoMode_1_14b
-#define D2VideoMode_1_14d D2VideoMode_1_14c
+#define D2Renderer_1_01 D2Renderer_1_00
+#define D2Renderer_1_02 D2Renderer_1_01
+#define D2Renderer_1_03 D2Renderer_1_02
+#define D2Renderer_1_04 D2Renderer_1_03
+#define D2Renderer_1_04b D2Renderer_1_04
+#define D2Renderer_1_04c D2Renderer_1_04b
+#define D2Renderer_1_05 D2Renderer_1_04c
+#define D2Renderer_1_05b D2Renderer_1_05
+#define D2Renderer_1_06 D2Renderer_1_05b
+#define D2Renderer_1_06b D2Renderer_1_06
+#define D2Renderer_1_07Beta D2Renderer_1_06b
+#define D2Renderer_1_07 D2Renderer_1_07Beta
+#define D2Renderer_1_08 D2Renderer_1_07
+#define D2Renderer_1_09 D2Renderer_1_08
+#define D2Renderer_1_09b D2Renderer_1_09
+#define D2Renderer_1_09c D2Renderer_1_09b
+#define D2Renderer_1_09d D2Renderer_1_09c
+#define D2Renderer_1_10Beta D2Renderer_1_09d
+#define D2Renderer_1_10sBeta D2Renderer_1_10Beta
+#define D2Renderer_1_10 D2Renderer_1_10sBeta
+#define D2Renderer_1_11 D2Renderer_1_10
+#define D2Renderer_1_11b D2Renderer_1_11
+#define D2Renderer_1_12 D2Renderer_1_11b
+#define D2Renderer_1_13a D2Renderer_1_12
+#define D2Renderer_1_13b D2Renderer_1_13a
+#define D2Renderer_1_13c D2Renderer_1_13b
+#define D2Renderer_1_13d D2Renderer_1_13c
+#define D2Renderer_1_14a D2Renderer_1_13d
+#define D2Renderer_1_14b D2Renderer_1_14a
+#define D2Renderer_1_14c D2Renderer_1_14b
+#define D2Renderer_1_14d D2Renderer_1_14c
 
 #undef ENUMERATOR
 
-#endif /* SGD2MAPI_C_TYPES_D2_VIDEO_MODE_H_ */
+#endif /* SGD2MAPI_C_TYPES_D2_RENDERER_H_ */
