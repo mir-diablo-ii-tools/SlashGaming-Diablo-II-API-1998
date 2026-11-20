@@ -1,0 +1,22 @@
+target_sources(${PROJECT_NAME}
+    INTERFACE
+        "${CMAKE_CURRENT_SOURCE_DIR}/backpack_grid.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/belt_txt_row.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_context.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header_flags.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file_header.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_file.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel_header.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cel.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/difficulty_level.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/equipment_slot.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/font_id.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/game_type.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/gfx_draw_effect.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_rect.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inventory_txt_row.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/mpq_handle.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/mpq.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/renderer.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/screen_open_mode.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/text_color.h")
